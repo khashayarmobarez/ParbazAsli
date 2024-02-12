@@ -1,13 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
+  background-color: var(--bg-dark-active) ;
+  color:#fff;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'iransans', 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
+
+
+/* gradients */
+.gradient {
+  /* Defined the gradient colors as CSS variables */
+  --gradient-start: #ff7e5f;
+  --gradient-end: #feb47b;
+  /* Define other gradient properties */
+  --gradient-direction: to bottom;
+  
+  /* example to use:
+  background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
+}
+
+:root {
+  /* Defined global colors using CSS custom properties */
+  --accent-normal: #A5E65E; /* Green-light */
+  --accent-darker: #212829; /* Green-dark */
+  --bg-dark: #181A2D; /* Yellow */
+  --bg-dark-active: #131423; /* Yellow */
+  --neutral-light:#EEEEEE; /* Neutral color */
+  --neutral-light-active:#CACACA; /* Neutral color */
+  --neutral-normal:#535353; /* Neutral color */
+  --warning-normal:#ED553B; /* warning color */
+
+   /* Defined the gradient colors as CSS variables */
+  --gradient-start: rgba(53, 58, 101, 1);
+  --gradient-end: rgba(42, 46, 81, 0.95);
+   /* Define other gradient properties */
+   --gradient-direction: to bottom;
+   
+   /* example to use:
+    background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
+}
+
+
+/* fonts imported here */
+@font-face {
+  font-family: 'iransans';
+  src: url('./assets/Fonts/IRANSansX-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iransans';
+  src: url('./assets/Fonts/IRANSansX-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iransans';
+  src: url('./assets/Fonts/IRANSansX-Light.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: normal;
+}
+

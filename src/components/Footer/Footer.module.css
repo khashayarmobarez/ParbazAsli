@@ -1,0 +1,33 @@
+.container {
+    width: 100%;
+}
+
+.buttonsContainer {
+    background: linear-gradient(195.31deg, #353A65 34.63%, rgba(42, 46, 81, 0) 100.99%);
+    width: 100%;
+    box-shadow: -3px 4px 5.8px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E;
+    height: 75px;
+  }
+  
+
+
+@media screen and (min-width: 768px) {
+
+    .container {
+        right: 0;
+        top: 25%;
+        width: 150px;
+        height: 340px;
+    }
+
+    .buttonsContainer {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 2rem 0 0 2rem;
+        
+    }
+}
