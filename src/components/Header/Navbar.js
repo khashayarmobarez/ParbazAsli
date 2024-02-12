@@ -72,7 +72,7 @@ const Navbar = () => {
                                     </button>
                                     
 
-                                    <label className={styles.burger} for="burger" >
+                                    <label className={styles.burger} htmlFor="burger" >
                                         <input type="checkbox" id="burger" onClick={toggleNavbar}/>
                                             <span></span>
                                             <span></span>
