@@ -18,15 +18,15 @@ const styles = {
       width: '100%',
       '@media screen and (min-width: 768px)': {
         right: 0,
-        top: '25%',
-        width: '150px',
-        height: '340px',
+        top: '15%',
+        width: '125px',
+        height: '320px',
       }
     },
     buttonsContainer: {
-      background: 'linear-gradient(195.31deg, #353A65 34.63%, rgba(42, 46, 81, 0) 100.99%)',
       width: '100%',
-      boxShadow: '-3px 4px 5.8px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E',
+      background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
+      boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
       height: '75px',
       '@media screen and (min-width: 768px)': {
         height: '100%',

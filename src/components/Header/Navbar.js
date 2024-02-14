@@ -6,11 +6,13 @@ import Toolbar from '@mui/material/Toolbar';
 // import Button from '@mui/material/Button';
 
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
-import styles from './Navbar.module.css'; 
+import styles from './Navbar.module.css';
+
+import { Link } from 'react-router-dom';
 
 import companyLogo from '../../assets/Logo/Digilogbook -1401 1.svg';
 import iconBell from '../../assets/icons/bell icon (Stroke).svg'
-import { Link } from 'react-router-dom';
+import logout from '../../assets//icons/logout.svg'
 
 // icons 
 import {EditOutlined, GroupsOutlined, HomeOutlined, InfoOutlined, PhoneOutlined, SettingsOutlined }from '@mui/icons-material';
@@ -33,12 +35,12 @@ const Navbar = () => {
     };
 
     return (
-        <Box position="fixed" sx={{ flexGrow: 1 }}>
+        <Box position="fixed" sx={{ flexGrow: 1, backgroundColor:'var(--bg-dark-active)' }}>
                          
             <AppBar  sx={{
                 height:'56px',
-                boxShadow: '-3px 4px 5.800000190734863px 5px #00000045',
-                backgroundImage: 'linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end))',
+                background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
+                boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
                     height: '80', // Adjust height for smaller screens}   
@@ -48,11 +50,11 @@ const Navbar = () => {
                     
                             <Toolbar sx={{display:'flex', justifyContent: 'space-between'}}>
 
-                            <div className='flex items-center justify-center md:w-[70%] md:mr-[-2.2rem] '>
+                            <div className='flex items-center justify-center md:w-[80%] md:mr-[-7%] '>
                                 <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
                                 
-                                    <div className={`${GradientStyles.container} ${styles.navList} ${isOpen ? styles.open : ''}`}>
-                                        <ul className=' h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:w-[100%] md:text-sm'>
+                                    <div className={`${GradientStyles.container2} ${styles.navList} ${isOpen ? styles.open : ''} z-100`}>
+                                        <ul className=' h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:w-[80%] md:text-sm z-101'>
                                             <li className={styles.navItem}> <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>بلاگ</Link></li>
                                             <li className={styles.navItem}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>درباره ما</Link></li>
@@ -65,11 +67,16 @@ const Navbar = () => {
                                     </div>
                             </div>
 
-                                <div className=' flex justify-between w-14 md:w-14 md:ml-[-2rem]'>
+                                <div className=' flex justify-between w-14 md:w-14 md:ml-[2rem]'>
 
                                     <button >
                                         <img src={iconBell} alt='bell icon' className=' w-6' />
                                     </button>
+
+                                    <Link to='/' className={`hidden md:flex justify-center items-center`} >
+                                        <img src={logout} alt='icon' />
+                                    </Link>
+
                                     
 
                                     <label className={styles.burger} htmlFor="burger" >
