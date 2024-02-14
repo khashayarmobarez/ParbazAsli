@@ -27,7 +27,7 @@ const Profile = () => {
     console.log(data, isLoading, error);
 
     return (
-        <div className='flex flex-col items-center w-100%'>
+        <div className='flex flex-col items-center '>
 
             {
                 isLoading && isFetching && <h2 className=' text-white top-10'>is loading</h2>
@@ -39,7 +39,7 @@ const Profile = () => {
 
             {
             data && 
-            <div className='flex flex-col mt-[25%] items-center justify-center gap-8 md:w-[60%] md:mt-[8%]'>
+            <div className='flex flex-col mt-[25%] items-center justify-center gap-8 w-[90%] md:w-[60%] md:mt-[8%]'>
 
                 {/* first data box  */}
                 <div className={`${boxStyles.containerDarkmode} flex items-center w-[100%] justify-around p-6 md:py-5 md:px-2`}>
@@ -84,7 +84,7 @@ const Profile = () => {
                     </div>
 
                     {/* box 2, for mapping the parachute data  */}
-                    <div className=' w-[100%] md:self-start flex justify-between'>
+                    <div className=' flex flex-col space-y-8 md:space-y-0 md:flex-row w-[100%] md:self-start justify-between'>
                         <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
                         <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
                     </div>
