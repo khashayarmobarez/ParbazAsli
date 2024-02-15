@@ -14,8 +14,9 @@ justify-content: space-between;
 align-items: center;
 left: -60%;
 list-style-type: none;
-height: 95%;
+height: 90%;
 width: 60%;
+border-radius:  2rem 0 2rem 0;
 transition: left 0.3s ease; /* Add transition for left property */
 }
 
@@ -52,6 +53,11 @@ margin-right: 10px;
   margin-bottom: 5px;
   margin-left: 20px;
 }
+
+.link {
+  font-size: smaller;
+}
+
 }
 
 

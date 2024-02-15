@@ -24,8 +24,6 @@ const Profile = () => {
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
-    console.log(data, isLoading, error);
-
     return (
         <div className='flex flex-col items-center '>
 
@@ -49,7 +47,7 @@ const Profile = () => {
 
                             {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px'}}/>} 
                             <div className=' space-y-2 md:space-y-5' >
-                                {data && <p className=' font-normal text-xl w-36'>{data.data.title.slice(0, 15)}</p>}
+                                {data && <p className=' font-normal text-xl w-36'>{data.data.title.slice(0, 10)}</p>}
                                 {data && <p className=' font-normal text-xs w-36 text-[#5F7174]'>{data.data.title.slice(0, 20)}</p>}
                                 {data && <p className=' font-normal text-xs w-36 text-[#5F7174]'>کد کاربری: {data.data.title.slice(0, 5)}</p>}
                             </div>
@@ -91,7 +89,7 @@ const Profile = () => {
 
                     {/* buttons */}
                     <div className='flex justify-between w-[400px] md:w-[47%] md:self-start'>
-                        <Link className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} to='/'>
+                        <Link to='/equipment' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon'/>
                             <p>تجهیزات</p>
                         </Link>

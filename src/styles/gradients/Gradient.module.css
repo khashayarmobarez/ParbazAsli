@@ -4,6 +4,8 @@
 }
 
 .container2 {
-    background: linear-gradient(222.79deg, #181A2D 31.59%, rgba(135, 141, 203, 0) 170.26%);
-    box-shadow: -2px 3px 4.300000190734863px 1px #0000007A, 1px -1px 2.5999999046325684px 0px #EBE0E082, 0px 4px 10.800000190734863px 2px #3F4D6C inset;
+    background: linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%),
+                linear-gradient(214.83deg, rgba(248, 248, 248, 0.46) -14.24%, rgba(17, 24, 39, 0) 70.57%);
+    box-shadow: -2px 3px 4.300000190734863px 1px #0000007A;
+    z-index: 100;
 }

@@ -16,6 +16,7 @@ const styles = {
     container: {
         bottom:'-5px',
       width: '100%',
+      zIndex: 1,
       '@media screen and (min-width: 768px)': {
         right: 0,
         top: '15%',
