@@ -53,7 +53,7 @@ const Navbar = () => {
                             <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
                                 <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
                                 
-                                    <div className={`${GradientStyles.container2} ${styles.navList} ${isOpen ? styles.open : ''} z-50`}>
+                                    <div className={`${GradientStyles.container2} ${styles.navList} ${isOpen ? styles.open : ''}`}>
                                         <ul className=' h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:w-[80%] md:text-sm z-101'>
                                             <li className={styles.navItem}> <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>بلاگ</Link></li>

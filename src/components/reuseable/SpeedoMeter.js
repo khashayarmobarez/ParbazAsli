@@ -73,8 +73,8 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div className={`${GradientStyles.container2} absolute w-[111px] h-[111px] rounded-full flex justify-center items-center z-10`}>
-                <Link className=' text-[#A5E65E] text-xs z-10'>تمدید زود هنگام</Link>
+            <div className={`${GradientStyles.container2} absolute -z-10 w-[111px] h-[111px] rounded-full flex justify-center items-center`}>
+                <Link className=' text-[#A5E65E] text-xs'>تمدید زود هنگام</Link>
             </div>
 
         </div>
