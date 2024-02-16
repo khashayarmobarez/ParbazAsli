@@ -10,11 +10,16 @@ import GradientStyles from '../../styles/gradients/Gradient.module.css'
 import { Link } from 'react-router-dom';
 
 
+// SpeedoMeter Component: Displays the remaining time for parachute renewal with a circular progress bar
 const SpeedoMeter = (props) => {
 
+
+    // Props:
+    // - remaining: The remaining time (in days) until parachute renewal
+    // - data: The data object containing user information
     const { remaining, data } = props;
 
-  // function for calculating the color
+  // Function to calculate the color of the progress bar based on the percentage value
   const calcColor = (percent, start, end) => {
     let a = percent / 100,
       b = (end - start) * a,
@@ -42,6 +47,7 @@ const SpeedoMeter = (props) => {
                         value={remaining}
                         //   text={`${remaining} % تمدید زود هنگام`}
                         circleRatio={0.7} /* Make the circle only 0.7 of the full diameter */
+                        // Styles for the circular progress bar and its text
                         styles={{
                             trail: {
                             strokeLinecap: 'round',
@@ -67,7 +73,7 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div className={`${GradientStyles.container2} fixed w-[111px] h-[111px] rounded-full flex justify-center items-center z-10`}>
+            <div className={`${GradientStyles.container2} absolute w-[111px] h-[111px] rounded-full flex justify-center items-center z-10`}>
                 <Link className=' text-[#A5E65E] text-xs z-10'>تمدید زود هنگام</Link>
             </div>
 
