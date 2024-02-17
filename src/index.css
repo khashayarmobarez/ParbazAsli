@@ -76,3 +76,10 @@ code {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'iransans';
+  src: url('./assets/Fonts/IRANSansX-DemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+

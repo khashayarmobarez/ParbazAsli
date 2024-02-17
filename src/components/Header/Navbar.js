@@ -35,12 +35,11 @@ const Navbar = () => {
     };
 
     return (
-        <Box position="fixed" sx={{ flexGrow: 1 }}>
+        <Box position="fixed" sx={{ flexGrow: 1,zIndex:'10' }}>
                          
             <AppBar  sx={{
                 height:'56px',
-                background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
-                boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
+                background: '#131423',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
                     height: '80', // Adjust height for smaller screens}   
@@ -48,7 +47,11 @@ const Navbar = () => {
                 },
                 }} >
                     
-                            <Toolbar sx={{display:'flex', justifyContent: 'space-between'}}>
+                            <Toolbar sx={{
+                            display:'flex',
+                            justifyContent: 'space-between',
+                            background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
+                            boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
 
                             <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
                                 <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 

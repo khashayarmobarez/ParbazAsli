@@ -18,7 +18,6 @@ height: 90%;
 width: 60%;
 border-radius:  0 0 2rem 0;
 transition: left 0.3s ease; /* Add transition for left property */
-/* z-index: 750; */
 }
 
 .open {

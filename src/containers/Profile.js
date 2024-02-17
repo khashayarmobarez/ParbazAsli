@@ -25,7 +25,7 @@ const Profile = () => {
     const { data, isLoading, error, isFetching } = useUserDetails();
 
     return (
-        <div className='flex flex-col items-center '>
+        <div className='flex flex-col items-center min-h-[150vh]'>
 
             {
                 isLoading && isFetching && <h2 className=' text-white top-10'>is loading</h2>
@@ -45,7 +45,7 @@ const Profile = () => {
                 {/* picture, name and code  */}
                         <div className='flex flex-col justify-center items-center ml-[6%] space-y-5 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
 
-                            {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px'}}/>} 
+                            {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'-10'}}/>} 
                             <div className=' space-y-2 md:space-y-5' >
                                 {data && <p className=' font-normal text-xl w-36'>{data.data.title.slice(0, 10)}</p>}
                                 {data && <p className=' font-normal text-xs w-36 text-[#5F7174]'>{data.data.title.slice(0, 20)}</p>}
@@ -88,7 +88,7 @@ const Profile = () => {
                     </div>
 
                     {/* buttons */}
-                    <div className='flex justify-between w-[400px] md:w-[47%] md:self-start'>
+                    <div className='flex justify-between w-[100%] md:w-[47%] md:self-start'>
                         <Link to='/equipment' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon'/>
                             <p>تجهیزات</p>

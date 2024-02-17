@@ -1,13 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, Outlet, Route, Routes } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 // styles and assets
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
-import AddIcon from '@mui/icons-material/Add';
-
-// components
-import FlightEquipment from '../components/Equipment page comps/FlightEquipment';
 
 // Queries
 import { useUserDetails } from '../Utilities/hooks/queries';
@@ -15,6 +11,8 @@ import { useUserDetails } from '../Utilities/hooks/queries';
 const Equipment = () => {
 
     const { data, isLoading, error } = useUserDetails();
+
+    console.log(data)
 
     const [activeLink, setActiveLink] = useState('flight'); // State to track active link
     
@@ -52,7 +50,7 @@ const Equipment = () => {
             <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
 
                 {
-                    isLoading && <h2 className='text-white top-10'>is loading</h2>
+                    isLoading && <h2 className='text-white mt-32'>is loading</h2>
                 }
 
                 {
@@ -60,18 +58,12 @@ const Equipment = () => {
                 }
                 {
                 data && 
-                <Outlet key={data.data.id} data={data}/>
+                <Outlet />
                 // <FlightEquipment key={data} data={data} />
                 // data && data.data.map(data => (<FlightEquipment key={data} data={data} />))
                 }
 
             </div>
-
-
-            <button className={`${ButtonStyles.addButton} fixed bottom-24`} >
-                <AddIcon />
-                <p>افزودن مورد جدید</p>
-            </button>
 
 
             
@@ -84,9 +76,3 @@ export default Equipment;
 
 
 
-
-// {/* <Routes>
-//                 <Route path="/" element={<ProductList />} />
-//                 <Route path="/:id" element={<ProductDetails />} />
-//                 <Route path="/:id/edit" element={<ProductEdit />} />
-//             </Routes> */}
