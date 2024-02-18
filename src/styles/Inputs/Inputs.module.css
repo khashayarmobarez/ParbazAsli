@@ -34,3 +34,51 @@
 }
 
 /* upload file input */
+
+.customFileUpload input[type="file"] {
+    display: none;
+}
+
+.customFileUpload {
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(200.38deg, #181A2D -7.59%, rgba(135, 141, 203, 0) 323.12%);
+    box-shadow: 1px -1px 2.5999999046325684px 0px #EBE0E082;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 1rem 0 0;
+    border-radius: 0.75rem;
+}
+
+.customFileUpload p {
+    background: linear-gradient(105.63deg, #181A2D 28.16%, rgba(137, 137, 142, 0) 424.09%);
+    box-shadow: 2px 2px 7.800000190734863px 2px #D3CBCB40 inset;
+    height: 100%;
+    width: 94px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:   0.75rem 0 0 0.75rem ;
+}
+
+
+
+/* date input */
+.dateContainer {
+    background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
+    border: 2px solid rgba(238, 238, 238, 0.46);
+    box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+    border-radius: 0.75rem;
+    position: relative;
+    display: flex;
+}
+
+.customDateInput {
+    background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
+    width: 100%;
+    border-radius: 0.75rem;
+    padding: 0 0.5rem;
+    color: #fff;
+}

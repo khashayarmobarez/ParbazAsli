@@ -1,6 +1,8 @@
 import React from 'react';
 
-const UploadFileInput = ({ selectedFile, onFileChange }) => {
+import inputStyles from '../../styles/Inputs/Inputs.module.css'
+
+const UploadFileInput = ({ selectedFile, onFileChange, name }) => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -8,10 +10,18 @@ const UploadFileInput = ({ selectedFile, onFileChange }) => {
   };
 
   return (
-    <div className='w-full'>
-      {selectedFile && <p>Selected file: {selectedFile.name}</p>}
-      <input type="file" onChange={handleFileChange} value={selectedFile ? selectedFile.name : ''} />
-    </div>
+    <>
+  {/* 
+        {selectedFile && <p>Selected file: {selectedFile.name}</p>} */}
+
+      <label className={inputStyles.customFileUpload}>
+          { !selectedFile && <h3>عکس شناسه {name}</h3>}
+          {selectedFile && <h3>عکس شما: {selectedFile.name}</h3>}
+          <input type="file" onChange={handleFileChange}/>
+          <p>آپلود فایل</p> 
+      </label>
+
+    </>
   );
 };
 
