@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
 
+// redux
+import { useSelector } from 'react-redux';
+import { selectHarness } from '../../../Utilities/ReduxToolKit/features/harnessSlice';
+
 // assets
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
@@ -15,6 +19,11 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 import {brandsOptionsData, flightHourOptionData, sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 
 const AddHarness = () => {
+
+  // redux Store 
+  const store = useSelector(selectHarness)
+
+  console.log(store)
 
     
     // State for selected option

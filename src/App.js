@@ -4,6 +4,7 @@ import './App.css';
 
 // react query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'react-redux'; 
 
 
 // components
@@ -24,32 +25,32 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
 
-      <div className="App">
-        <Navbar/>
-          <Routes>
+        <div className="App">
+          <Navbar/>
+            <Routes>
 
-            <Route path='/profile' element={<Profile/>} />
+              <Route path='/profile' element={<Profile/>} />
 
-            {/* equipments pages  */}
-            <Route path='/equipment' element={<Equipment />} >
-                <Route index element={<FlightEquipment />} />
-                <Route path="flightEquipment" element={<FlightEquipment />} />
-                <Route path="parachute" element={<Parachute />} />
-                <Route path="harness" element={<Harness />} />
-            </Route>
-            <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} />
-            <Route path='/equipment/addParachute' element={<AddParachute />} />
-            <Route path='/equipment/addHarness' element={<AddHarness />} />
+              {/* equipments pages  */}
+              <Route path='/equipment' element={<Equipment />} >
+                  <Route index element={<FlightEquipment />} />
+                  <Route path="flightEquipment" element={<FlightEquipment />} />
+                  <Route path="parachute" element={<Parachute />} />
+                  <Route path="harness" element={<Harness />} />
+              </Route>
+              <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
+              <Route path='/equipment/addParachute' element={<AddParachute />} />
+              <Route path='/equipment/addHarness' element={<AddHarness />} />
 
-            <Route path='/*' element={<Profile/>} />
+              <Route path='/*' element={<Profile/>} />
 
-          </Routes>
-        <Footer />
-      </div>
+            </Routes>
+          <Footer />
+        </div>
 
-    </QueryClientProvider>
+      </QueryClientProvider>
 
 
 

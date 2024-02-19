@@ -5,7 +5,7 @@ import boxStyles from '../styles/Boxes/DataBox.module.css'
 import GradientStyles from '../styles/gradients/Gradient.module.css'
 
 // queries 
-import { useUserDetails } from '../Utilities/hooks/queries';
+import { useUserDetails } from '../Utilities/Services/queries';
 
 import { Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,7 @@ const Profile = () => {
     const { data, isLoading, error, isFetching } = useUserDetails();
 
     return (
-        <div className='flex flex-col items-center min-h-[150vh]'>
+        <div className='flex flex-col items-center'>
 
             {
                 isLoading && isFetching && <h2 className=' text-white top-10'>is loading</h2>
@@ -37,7 +37,7 @@ const Profile = () => {
 
             {
             data && 
-            <div className='flex flex-col mt-[25%] items-center justify-center gap-8 w-[90%] md:w-[60%] md:mt-[8%]'>
+            <div className='flex flex-col mt-[25%] items-center justify-center gap-8 w-[90%] md:w-[60%] md:mt-[8%] pb-28'>
 
                 {/* first data box  */}
                 <div className={`${boxStyles.containerDarkmode} flex items-center w-[100%] justify-around p-6 md:py-5 md:px-2`}>
@@ -105,10 +105,8 @@ const Profile = () => {
 
                         
             </div>
-
-                
+   
             }
-
 
         </div>
     );

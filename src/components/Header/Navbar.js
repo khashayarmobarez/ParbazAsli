@@ -38,7 +38,7 @@ const Navbar = () => {
         <Box position="fixed" sx={{ flexGrow: 1,zIndex:'10' }}>
                          
             <AppBar  sx={{
-                height:'56px',
+                height:'62px',
                 background: '#131423',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
