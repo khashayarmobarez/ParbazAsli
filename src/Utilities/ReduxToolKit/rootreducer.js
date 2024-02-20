@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import harnessReducer from './features/Add/harnessSlice';
-import 
+import userReducer from './features/userData/userSlice';
 
 const rootReducer = combineReducers({
   harness: harnessReducer,

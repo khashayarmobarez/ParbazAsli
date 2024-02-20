@@ -20,9 +20,10 @@ import SpeedoMeter from '../components/reuseable/SpeedoMeter';
 
 const Profile = () => {
 
+    const { data, isLoading, error, isFetching } = useUserDetails();
+
     const [remainingDays, setRemainingDays] = useState(10)
 
-    const { data, isLoading, error, isFetching } = useUserDetails();
 
     return (
         <div className='flex flex-col items-center'>
