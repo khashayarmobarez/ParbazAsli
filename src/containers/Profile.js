@@ -45,7 +45,7 @@ const Profile = () => {
                 {/* picture, name and code  */}
                         <div className='flex flex-col justify-center items-center ml-[6%] space-y-5 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
 
-                            {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'-10'}}/>} 
+                            {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'0'}}/>} 
                             <div className=' space-y-2 md:space-y-5' >
                                 {data && <p className=' font-normal text-xl w-36'>{data.data.title.slice(0, 10)}</p>}
                                 {data && <p className=' font-normal text-xs w-36 text-[#5F7174]'>{data.data.title.slice(0, 20)}</p>}
@@ -84,7 +84,7 @@ const Profile = () => {
                     {/* box 2, for mapping the parachute data  */}
                     <div className=' flex flex-col space-y-8 md:space-y-0 md:flex-row w-[100%] md:self-start justify-between'>
                         <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
-                        <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
+                        {/* <SpeedoMeter remaining={remainingDays} data={data} className='z-10' /> */}
                     </div>
 
                     {/* buttons */}

@@ -1,4 +1,8 @@
 .App {
+  z-index: -100;
+  min-height: 140vh;
+  background-color: var(--bg-dark-active) ;
+  color:#fff;
   text-align: center;
   margin: 0;
   overflow: hidden;

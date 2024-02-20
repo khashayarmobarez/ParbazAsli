@@ -20,13 +20,13 @@ const initialState = {
         state.size = action.payload;
       },
       updateHour: (state, action) => {
-        state.hour = action.payload;
+        state.flightHour = action.payload;
       },
       updateAircraft: (state, action) => {
         state.aircraft = action.payload;
       },
       updateWingcode: (state, action) => {
-        state.wingcode = action.payload;
+        state.wingCode = action.payload;
       },
       // Add more reducers for other fields
       updateSelectedFile: (state, action) => {

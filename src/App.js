@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
+// dark and light mode
+
 // react query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'react-redux'; 
 
 
 // components
@@ -24,11 +25,31 @@ const queryClient = new QueryClient();
 
 
 function App() {
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const themeFile = isDarkMode ? 'darkTheme.css' : 'lightTheme.css';
+    import(`./styles/Themes/${themeFile}`).then(() => {
+      document.documentElement.classList.add(isDarkMode ? 'dark-theme' : 'light-theme');
+    });
+  
+    return () => {
+      document.documentElement.classList.remove('dark-theme', 'light-theme');
+    };
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
+
+
+  
   return (
       <QueryClientProvider client={queryClient}>
 
         <div className="App">
-          <Navbar/>
+          <Navbar toggleTheme={toggleTheme}  />
             <Routes>
 
               <Route path='/profile' element={<Profile/>} />
