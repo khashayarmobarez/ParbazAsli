@@ -20,7 +20,7 @@ import SpeedoMeter from '../components/reuseable/SpeedoMeter';
 
 const Profile = () => {
 
-    const [remainingDays, setRemainingDays] = useState(10)
+    const [remainingDays, setRemainingDays] = useState(90)
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
