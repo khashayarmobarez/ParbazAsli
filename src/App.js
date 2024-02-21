@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
+// dark and light mode
 
 // react query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -23,33 +25,60 @@ const queryClient = new QueryClient();
 
 
 function App() {
+
+  const [userRole, setUserRole] = useState('coach');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const themeFile = isDarkMode ? 'darkTheme.css' : 'lightTheme.css';
+    import(`./styles/Themes/${themeFile}`).then(() => {
+      document.documentElement.classList.add(isDarkMode ? 'dark-theme' : 'light-theme');
+    });
+  
+    return () => {
+      document.documentElement.classList.remove('dark-theme', 'light-theme');
+    };
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
+
+
+  
   return (
-    <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
 
-      <div className="App">
-        <Navbar/>
-          <Routes>
+        <div className="App">
+          <Navbar toggleTheme={toggleTheme}  />
+            <Routes>
 
-            <Route path='/profile' element={<Profile/>} />
+            {userRole === 'coach' && (
+              <>
+              
+                <Route path='/profile' element={<Profile/>} />
 
-            {/* equipments pages  */}
-            <Route path='/equipment' element={<Equipment />} >
-                <Route index element={<FlightEquipment />} />
-                <Route path="flightEquipment" element={<FlightEquipment />} />
-                <Route path="parachute" element={<Parachute />} />
-                <Route path="harness" element={<Harness />} />
-            </Route>
-            <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} />
-            <Route path='/equipment/addParachute' element={<AddParachute />} />
-            <Route path='/equipment/addHarness' element={<AddHarness />} />
+                <Route path='/*' element={<Profile/>} />
 
-            <Route path='/*' element={<Profile/>} />
+                {/* coach equipments pages  */}
+                <Route path='/equipment' element={<Equipment />} >
+                    <Route index element={<FlightEquipment />} />
+                    <Route path="flightEquipment" element={<FlightEquipment />} />
+                    <Route path="parachute" element={<Parachute />} />
+                    <Route path="harness" element={<Harness />} />
+                </Route>
+                <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
+                <Route path='/equipment/addParachute' element={<AddParachute />} />
+                <Route path='/equipment/addHarness' element={<AddHarness />} />
 
-          </Routes>
-        <Footer />
-      </div>
+              </>
+            )}
 
-    </QueryClientProvider>
+            </Routes>
+          <Footer />
+        </div>
+
+      </QueryClientProvider>
 
 
 

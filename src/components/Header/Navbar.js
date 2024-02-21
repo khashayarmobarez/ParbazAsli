@@ -26,7 +26,9 @@ const inlineStyles = {
 
 
 
-const Navbar = () => {
+const Navbar = ({toggleTheme}) => {
+
+
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -38,7 +40,7 @@ const Navbar = () => {
         <Box position="fixed" sx={{ flexGrow: 1,zIndex:'10' }}>
                          
             <AppBar  sx={{
-                height:'56px',
+                height:'62px',
                 background: '#131423',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
@@ -73,7 +75,7 @@ const Navbar = () => {
                                 <div className=' flex justify-between w-14 md:w-14 xl:ml-[2%]'>
 
                                     <button >
-                                        <img src={iconBell} alt='bell icon' className=' w-6' />
+                                        <img onClick={toggleTheme} src={iconBell} alt='bell icon' className=' w-6' />
                                     </button>
 
                                     <Link to='/' className={`hidden md:flex justify-center items-center`} >

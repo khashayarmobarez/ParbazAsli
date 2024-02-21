@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 // styles and assets
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // Queries
-import { useUserDetails } from '../Utilities/hooks/queries';
+import { useUserDetails } from '../Utilities/Services/queries';
 
 const Equipment = () => {
 
     const { data, isLoading, error } = useUserDetails();
 
-    console.log(data)
+    const navigate = useNavigate();
 
     const [activeLink, setActiveLink] = useState('flight'); // State to track active link
     
@@ -36,7 +36,7 @@ const Equipment = () => {
             
             <div className=' bg-[#1B253B] w-[90%] h-20 flex justify-between items-end p-3 pr-[40%] rounded-b-2xl'>
                 <p>تجهیزات</p>
-                <ArrowBackIosNewIcon sx={{ width:'26px', height:'26px', padding:'5px', backgroundColor:'', borderRadius:'10rem', background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)', boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)'}} />
+                <ArrowBackIosNewIcon onClick={() => navigate('/profile')} sx={{ width:'26px', height:'26px', padding:'5px', backgroundColor:'', borderRadius:'10rem', background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)', boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)'}} />
             </div>
             
             {/* buttons */}

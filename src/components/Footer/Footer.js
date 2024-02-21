@@ -10,6 +10,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
 
 
 const styles = {
@@ -47,6 +48,8 @@ const styles = {
 const Footer = () => {
 
     const [value, setValue] = useState(0);
+
+    const navigate = useNavigate();
     
     return (
         <Box
@@ -65,9 +68,9 @@ const Footer = () => {
                 setValue(newValue);
                 }}
             >
-                <BottomNavigationAction label="پروفایل" icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
-                <BottomNavigationAction label="ثبت پرواز" icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'5px', width:'2.2rem', height: '2.2rem'}} />} sx={{ width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
-                <BottomNavigationAction label="سوابق پرواز" icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/profile')} label="پروفایل" icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/')} label="ثبت پرواز" icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'10px', width:'2.4rem', height: '2.4rem'}} />} sx={{ width:'12      0%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/')} label="سوابق پرواز" icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
             </BottomNavigation>
         </Box>
     );

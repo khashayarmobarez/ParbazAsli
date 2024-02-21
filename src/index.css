@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 body {
-  background-color: var(--bg-dark-active) ;
-  color:#fff;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'iransans', 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,19 +17,6 @@ code {
   monospace;
 }
 
-
-/* gradients */
-.gradient {
-  /* Defined the gradient colors as CSS variables */
-  --gradient-start: #ff7e5f;
-  --gradient-end: #feb47b;
-  /* Define other gradient properties */
-  --gradient-direction: to bottom;
-  
-  /* example to use:
-  background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
-}
-
 :root {
   /* Defined global colors using CSS custom properties */
   --accent-normal: #A5E65E; /* Green-light */
@@ -42,12 +27,6 @@ code {
   --neutral-light-active:#CACACA; /* Neutral color */
   --neutral-normal:#535353; /* Neutral color */
   --warning-normal:#ED553B; /* warning color */
-
-   /* Defined the gradient colors as CSS variables */
-  --gradient-start: rgba(53, 58, 101, 1);
-  --gradient-end: rgba(42, 46, 81, 0.95);
-   /* Define other gradient properties */
-   --gradient-direction: to bottom;
    
    /* example to use:
     background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
