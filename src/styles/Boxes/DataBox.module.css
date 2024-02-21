@@ -1,3 +1,5 @@
+
+/* profile user data and parachute stylings  */
 .containerDarkmode {
     min-height: 3rem;
     border-radius: 20px;
@@ -12,3 +14,20 @@
     box-shadow: -3px 4px 5.800000190734863px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E;
 
 }
+
+
+/* education syllubus box styling */
+.Container2 {
+    background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
+    /* border: 2px solid rgba(238, 238, 238, 0.46); */
+    box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+    border-radius: 0.75rem;
+    position: relative;
+    display: flex;
+}
+
+.Container2:active {
+    background: linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%);
+    box-shadow: -2px 3px 4.300000190734863px 1px #0000007a, 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
+}
+

@@ -37,7 +37,7 @@ const Navbar = ({toggleTheme}) => {
     };
 
     return (
-        <Box position="fixed" sx={{ flexGrow: 1,zIndex:'10' }}>
+        <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000' }}>
                          
             <AppBar  sx={{
                 height:'62px',

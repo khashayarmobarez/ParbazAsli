@@ -94,7 +94,7 @@ const Profile = () => {
                             <img src={pencil} alt='icon'/>
                             <p>تجهیزات</p>
                         </Link>
-                        <Link className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} to='/'>
+                        <Link  to='/education' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon'/>
                             <p>آموزش</p>
                         </Link>
