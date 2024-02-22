@@ -82,3 +82,18 @@
     padding: 0 0.5rem;
     color: #fff;
 }
+
+
+/* search input */
+.searchContainer {
+    display: flex;
+}
+
+.searchInput {
+    background: #181A2D;
+}
+
+.searchedBaseOnButton {
+    background: linear-gradient(105.63deg, #181A2D 28.16%, rgba(137, 137, 142, 0) 424.09%);
+    box-shadow: 2px 2px 7.800000190734863px 2px rgba(211, 203, 203, 0.25) inset;
+}
