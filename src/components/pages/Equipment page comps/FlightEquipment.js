@@ -91,7 +91,7 @@ const FlightEquipment = (props) => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className='fixed bottom-24 w-[90%]'>
+            <Link to='/equipment/addFlightEquipment' className='fixed bottom-24 w-[90%] bg-[#131423] rounded-xl'>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

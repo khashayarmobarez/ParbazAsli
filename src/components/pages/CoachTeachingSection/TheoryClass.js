@@ -33,7 +33,7 @@ const TheoryClass = () => {
             <ClassesBox title={'کلاس‌ها'} />
             <ClassesBox title={'ورک‌شاپ‌ها'} />
 
-            <Link to='/' className='fixed bottom-24 w-[90%]'>
+            <Link to='/education/addClass' className='bg-[#131423] rounded-xl fixed bottom-24 w-[90%]'>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

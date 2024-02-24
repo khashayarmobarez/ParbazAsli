@@ -9,6 +9,7 @@ import Cube from '../../assets/icons/3dCube.svg'
 
 
 const DropdownInput = ({ options, selectedOption, handleSelectChange, name }) => {
+
   return (
     <div className='flex relative w-[100%] h-12 rounded-xl'>
       <span> 
@@ -26,6 +27,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name }) =>
         <ArrowBackIosNewIcon sx={{ position: 'absolute', transform: 'rotate(-90deg)', margin: '0.8rem -2rem 0 0rem',  }} />
       </span>
     </div>
+    
   );
 };
 

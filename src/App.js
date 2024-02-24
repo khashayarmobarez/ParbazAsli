@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
@@ -23,6 +23,11 @@ import Education from './containers/Education';
 import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
 import Students from './components/pages/CoachTeachingSection/Students';
 import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
+import AddClass from './components/pages/CoachTeachingSection/AddClass';
+
+// Hooks 
+import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
+import ClassDetails from './components/pages/CoachTeachingSection/ClassDetails';
 
 
 const queryClient = new QueryClient();
@@ -31,18 +36,10 @@ const queryClient = new QueryClient();
 function App() {
 
   const [userRole, setUserRole] = useState('coach');
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  useEffect(() => {
-    const themeFile = isDarkMode ? 'darkTheme.css' : 'lightTheme.css';
-    import(`./styles/Themes/${themeFile}`).then(() => {
-      document.documentElement.classList.add(isDarkMode ? 'dark-theme' : 'light-theme');
-    });
-  
-    return () => {
-      document.documentElement.classList.remove('dark-theme', 'light-theme');
-    };
-  }, [isDarkMode]);
+  useAppModeEffect(isDarkMode)
+ 
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
@@ -81,6 +78,8 @@ function App() {
                     <Route path="theoryClass" element={ <TheoryClass />} />
                     <Route path="syllabus" element={<Syllabus/>} />
                 </Route>
+                <Route path='/education/addClass' element={<AddClass />} /> 
+                <Route path='/education/ClassDetails' element={<ClassDetails />} /> 
 
               </>
             )}
