@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import gradients from '../../styles/gradients/Gradient.module.css'
 
@@ -7,6 +8,8 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import clipboard from '../../assets/icons/clipboard.svg'
 
 const ClassesBox = (props) => {
+
+    const navigate = useNavigate();
 
     const {title} = props
 
@@ -26,7 +29,7 @@ const ClassesBox = (props) => {
                     </span>
                     <p>مقدماتی</p>
                     <p>ساعت</p>
-                    <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                    <button onClick={() => navigate('/education/ClassDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                         <img src={clipboard} alt='icon' />
                     </button>
                 </div>
@@ -37,7 +40,7 @@ const ClassesBox = (props) => {
                     </span>
                     <p>مقدماتی</p>
                     <p>ساعت</p>
-                    <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                    <button onClick={() => navigate('/education/ClassDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                         <img src={clipboard} alt='icon' />
                     </button>
                 </div>

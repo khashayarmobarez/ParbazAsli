@@ -38,3 +38,16 @@
     border: 1px solid  var(--Basic-dataBox-border) ;
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
 }
+
+/* class details forms */
+.classDetails {
+    background: var(--class-details-bg);
+    box-shadow: 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51);
+    min-height: 5rem;
+}
+
+.classDetailsData {
+    background-color: var(--Basic-dataBox-bg);  
+    border: 1px solid rgba(165, 230, 94, 0.26);
+    box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+}

@@ -17,6 +17,11 @@ const useAppModeEffect = (isDarkMode) => {
             // yellow background buttons
             root.style.setProperty('--yellow-button-bg', 'linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%)');
             
+        // databox
+            // class details
+            root.style.setProperty('--class-details-bg', 'linear-gradient(200.38deg, #181A2D -7.59%, rgba(135, 141, 203, 0) 323.12%)');
+
+            
 
         // Add more CSS variable updates for dark mode as needed
         
