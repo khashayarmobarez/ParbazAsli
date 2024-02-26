@@ -18,8 +18,8 @@ const ClassesBox = (props) => {
 
                 {/* group name of data */}
                 <div className='flex justify-between items-center'>
-                    <h2>{title}</h2>
-                    <div id='line' className='w-[80%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
+                    <h2 >{title}</h2>
+                    <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
                 </div>
 
                 {/* classesInput */}
