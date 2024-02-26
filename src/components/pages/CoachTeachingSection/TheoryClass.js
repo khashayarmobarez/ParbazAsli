@@ -38,6 +38,9 @@ const TheoryClass = () => {
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
                 </button>
+
+            
+
             </Link>
 
         </div>

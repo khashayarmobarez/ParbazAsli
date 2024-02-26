@@ -11,7 +11,8 @@
 
 
 .BorderYellow {
-    border: 1px solid #A5E65E;
+    border: 1px solid var(--yellow-border-button);
+    color: var(--yellow-border-button);
     /* box-shadow: 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51); */
 }
 

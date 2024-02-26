@@ -7,6 +7,9 @@ import './App.css';
 // react query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+// Hooks 
+import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
+
 
 // components
 import Footer from './components/Footer/Footer';
@@ -24,10 +27,9 @@ import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
 import Students from './components/pages/CoachTeachingSection/Students';
 import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
 import AddClass from './components/pages/CoachTeachingSection/AddClass';
-
-// Hooks 
-import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
 import ClassDetails from './components/pages/CoachTeachingSection/ClassDetails';
+import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
+
 
 
 const queryClient = new QueryClient();
@@ -80,6 +82,7 @@ function App() {
                 </Route>
                 <Route path='/education/addClass' element={<AddClass />} /> 
                 <Route path='/education/ClassDetails' element={<ClassDetails />} /> 
+                <Route path='/education/StudentDetails' element={<StudentDetails/>} />
 
               </>
             )}
