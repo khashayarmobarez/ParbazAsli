@@ -29,6 +29,7 @@ import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
 import AddClass from './components/pages/CoachTeachingSection/AddClass';
 import ClassDetails from './components/pages/CoachTeachingSection/ClassDetails';
 import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
+import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
 
 
 
@@ -83,6 +84,8 @@ function App() {
                 <Route path='/education/addClass' element={<AddClass />} /> 
                 <Route path='/education/ClassDetails' element={<ClassDetails />} /> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
+                <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
+                
 
               </>
             )}

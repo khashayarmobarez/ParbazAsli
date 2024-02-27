@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// assets
+// styles
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// mui
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CloseIcon from '@mui/icons-material/Close';
 
 // components 
 import DropdownInput from '../../inputs/DropDownInput';
@@ -24,6 +29,9 @@ const AddFlightEquipment = () => {
   const [wingCode, setWingCode] = useState('');
 
   const [selectedFile, setSelectedFile] = useState(null);
+
+  // popUp use state
+  const [showPopup, setShowPopup] = useState(false);
 
   // useNavigate to go back one page
   const navigate = useNavigate();
@@ -65,6 +73,7 @@ const AddFlightEquipment = () => {
 //    Event handler for form submission
   const handleSubmit = (event) => {
     event.preventDefault();
+    setShowPopup(true);
     // Here you can handle form submission, such as sending data to a backend server
   };
 
@@ -104,7 +113,23 @@ const AddFlightEquipment = () => {
                 {/* for uploading pictures */}
                 <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
 
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                <button type="submit"  onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+
+            </form>
+
+            {/* submit pop up */}
+            <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
+
+                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+
+                <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
+
+                <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
+
+                <div className='w-full flex justify-around items-center'>
+                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>تایید</button>
+                </div>
 
             </form>
             

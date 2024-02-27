@@ -7,11 +7,13 @@ import SpeedoMeterProvider from '../../Utilities/Providers/SpeedoMeterProvider';
 import boxStyles from '../../styles/Boxes/DataBox.module.css'
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 // SpeedoMeter Component: Displays the remaining time for parachute renewal with a circular progress bar
 const SpeedoMeter = (props) => {
+
+  const navigate = useNavigate()
 
 
     // Props:
@@ -73,8 +75,8 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div className={`${GradientStyles.container2} absolute -z-10 w-[111px] h-[111px] rounded-full flex justify-center items-center`}>
-                <Link className=' text-[#A5E65E] text-xs'>تمدید زود هنگام</Link>
+            <div onClick={() => navigate('/ParachuteRenewal')} className={`${GradientStyles.container2} absolute w-[111px] h-[111px] rounded-full flex justify-center items-center`}>
+                <p className=' text-[#A5E65E] text-xs'>تمدید زود هنگام</p>
             </div>
 
         </div>

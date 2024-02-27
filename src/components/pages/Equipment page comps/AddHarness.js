@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
+
+
+// styles
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectHarness } from '../../../Utilities/ReduxToolKit/features/Add/harnessSlice';
 import { updateBrand, updateAircraft, updateSelectedFile, updateHour, updateSize, updateWingcode } from '../../../Utilities/ReduxToolKit/features/Add/harnessSlice';
 
-// assets
+// mui
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 // components
 import DropdownInput from '../../inputs/DropDownInput';
@@ -20,6 +28,8 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 import {brandsOptionsData, flightHourOptionData, sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 
 const AddHarness = () => {
+
+  const [showPopup, setShowPopup] = useState(false);
 
   // redux
   const {brand, aircraft, size, flightHour, wingCode,  selectedFile } = useSelector(selectHarness)
@@ -55,6 +65,7 @@ const AddHarness = () => {
   
     const handleSubmit = (event) => {
       event.preventDefault();
+      setShowPopup(true);
       // Here you can handle form submission, such as sending data to a backend server
     };
 
@@ -91,7 +102,25 @@ const AddHarness = () => {
               {/* for uploading pictures */}
               <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
 
-              <button type="submit" onClick={handleSubmit}>Submit</button>
+              <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
+            </form>
+
+            {/* submit pop up */}
+            <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
+
+                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+
+                <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
+
+
+                <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
+
+
+                <div className='w-full flex justify-around items-center'>
+                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>تایید</button>
+                </div>
+
             </form>
             
         </div>
