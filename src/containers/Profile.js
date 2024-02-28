@@ -14,11 +14,12 @@ import { Link } from 'react-router-dom';
 import flightHour from '../assets/icons/flightHour.svg'
 import flightQuan from '../assets/icons/flightQuantity.svg'
 import pencil from '../assets/icons/pencil-alt.svg'
+import pencilV2 from '../assets/icons/pencil-alt copy.svg'
 
 // reuseable component 
 import SpeedoMeter from '../components/reuseable/SpeedoMeter';
 
-const Profile = () => {
+const Profile = ({userRole}) => {
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
@@ -59,20 +60,26 @@ const Profile = () => {
 
                             <div className=' space-y-2 flex flex-col items-start md:space-y-5'>
 
-                                {data && <div className=' flex justify-center items-start' >
-                                            <img src={flightQuan} alt='icon'/>
-                                            <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.title.slice(0, 5)} تعداد پرواز</p>
-                                        </div> }
+                                {data &&
+                                <div className=' flex justify-center items-start' >
+                                    <img src={flightQuan} alt='icon'/>
+                                    <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.title.slice(0, 5)} تعداد پرواز</p>
+                                </div> }
 
-                                {data && <div className=' flex justify-between items-start' >
-                                            <img src={flightHour} alt='icon'/>
-                                            <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.title.slice(0, 5)} ساعت پرواز</p>
-                                        </div>}
+                                {data &&
+                                <div className=' flex justify-between items-start' >
+                                    <img src={flightHour} alt='icon'/>
+                                    <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.title.slice(0, 5)} ساعت پرواز</p>
+                                </div>}
+                                
+                                {/* condition based on coach  */}
+                                {data &&
+                                 userRole === 'coach' &&
+                                <div className=' flex justify-between items-start' >
+                                    <img src={flightHour} alt='icon'/>
+                                    <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.title.slice(0, 5)} ساعت مربیگری</p>
+                                </div>}
 
-                                {data && <div className=' flex justify-between items-start' >
-                                            <img src={flightHour} alt='icon'/>
-                                            <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.title.slice(0, 5)} ساعت مربیگری</p>
-                                        </div>}
 
                             </div>
 
@@ -90,18 +97,33 @@ const Profile = () => {
 
                     {/* buttons */}
                     <div className='flex justify-between w-[100%] md:w-[47%] md:self-start'>
+
                         <Link to='/equipment' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon'/>
                             <p>تجهیزات</p>
                         </Link>
+
                         <Link  to='/education' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon'/>
                             <p>آموزش</p>
                         </Link>
+
+                        {
+                        userRole === 'coach' &&
                         <Link className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} to='/'>
                             <img src={pencil} alt='icon'/>
                             <p>باشگاه</p>
                         </Link>
+                        }
+
+                        {
+                        userRole === 'student' &&
+                        <Link className={`${GradientStyles.container2Disabled} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} to='/'>
+                            <img src={pencilV2} style={{fill:'#535353'}} alt='icon'/>
+                            <p>باشگاه</p>
+                        </Link>
+                        }
+
                     </div>
 
                         

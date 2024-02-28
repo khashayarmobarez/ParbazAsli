@@ -18,6 +18,10 @@ const useAppModeEffect = (isDarkMode) => {
             root.style.setProperty('--yellow-button-bg', 'linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%)');
             // yellow text and border, transparent background button style
             root.style.setProperty('--yellow-border-button', '#A5E65E');
+            // disable button
+            root.style.setProperty('--disabled-button-bg', '#323232');
+            root.style.setProperty('--disabled-button-text', '#535353');
+
 
             
         // databox

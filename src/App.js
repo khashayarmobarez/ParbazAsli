@@ -1,5 +1,5 @@
 import React, {  useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 // dark and light mode
@@ -38,7 +38,7 @@ const queryClient = new QueryClient();
 
 function App() {
 
-  const [userRole, setUserRole] = useState('coach');
+  const [userRole, setUserRole] = useState('student');
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useAppModeEffect(isDarkMode)
@@ -61,9 +61,8 @@ function App() {
             {userRole === 'coach' && (
               <>
               
-                <Route path='/profile' element={<Profile/>} />
+                <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
-                <Route path='/*' element={<Profile/>} />
 
                 <Route path='/equipment' element={<Equipment />} >
                     <Route index element={<FlightEquipment />} />
@@ -86,6 +85,40 @@ function App() {
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
                 
+                <Route path='*' element={<Navigate to="/profile" replace />} />
+
+              </>
+            )}
+
+            {/* student view, rendering routes based on the rule of the user */}
+            {userRole === 'student' && (
+              <>
+              
+                <Route path='/profile' element={<Profile userRole={ userRole } />} />
+
+
+                <Route path='/equipment' element={<Equipment />} >
+                    <Route index element={<FlightEquipment />} />
+                    <Route path="flightEquipment" element={<FlightEquipment />} />
+                    <Route path="parachute" element={<Parachute />} />
+                    <Route path="harness" element={<Harness />} />
+                </Route>
+                <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
+                <Route path='/equipment/addParachute' element={<AddParachute />} />
+                <Route path='/equipment/addHarness' element={<AddHarness />} />
+
+                <Route path='/education' element={<Education />}>
+                    <Route index element={<Syllabus />} />
+                    <Route path="students" element={ <Students />} />
+                    <Route path="theoryClass" element={ <TheoryClass />} />
+                    <Route path="syllabus" element={<Syllabus/>} />
+                </Route>
+                <Route path='/education/addClass' element={<AddClass />} /> 
+                <Route path='/education/ClassDetails' element={<ClassDetails />} /> 
+                <Route path='/education/StudentDetails' element={<StudentDetails/>} />
+                <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
+                
+                <Route path='*' element={<Navigate to="/profile" replace />} />
 
               </>
             )}
