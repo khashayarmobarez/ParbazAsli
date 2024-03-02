@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+
+// styles
 import dataStyles from '../../styles/Boxes/DataBox.module.css'
 
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const DropDownDataBox = (props) => {
+const DropDownDataStudent = (props) => {
 
     const{title, dataText} = props
 
@@ -17,7 +19,11 @@ const DropDownDataBox = (props) => {
     return (
     <div className='flex flex-col gap-y-3'>
 
-        <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 ${isExpanded ? 'border-2 border-green-500 border-opacity-50' : 'border-2 border-gray-300 border-opacity-50'}`}>
+        <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 border-2 border-opacity-50`}
+        style={{
+            borderColor: isExpanded ? 'var(--yellow-border-button)' : 'var(--light-border-button-collapsed)',
+            color: isExpanded ? 'var(--yellow-border-button)' : 'var(--light-border-button-collapsed)',
+        }}>
 
             <div className='flex' >
                 <span> 
@@ -38,4 +44,4 @@ const DropDownDataBox = (props) => {
     );
 };
 
-export default DropDownDataBox;
+export default DropDownDataStudent;

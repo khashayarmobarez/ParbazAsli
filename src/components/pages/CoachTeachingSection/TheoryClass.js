@@ -12,14 +12,16 @@ import ClassesBox from '../../reuseable/ClassesBox';
 // icons
 import AddIcon from '@mui/icons-material/Add';
 
-const TheoryClass = () => {
+const TheoryClass = ({userRole}) => {
 
 
 
     return (
-        <div className='w-full flex flex-col space-y-6'>
+        <div className='w-full flex flex-col space-y-10'>
 
-            <div className='flex w-full justify-between items-center text-border-button-yellow '>
+            {
+            userRole === 'coach' &&
+                <div className='flex w-full justify-between items-center text-border-button-yellow '>
                 <div className={` ${gradientStyles.BorderYellow} w-[47%] h-12 rounded-xl flex items-center justify-center`}>
                 46 ساعت کلاس 
                 </div>
@@ -27,21 +29,27 @@ const TheoryClass = () => {
                 46 تعداد کلاس 
                 </div>
             </div>
+            }
 
             <SearchInput />
 
             <ClassesBox title={'کلاس‌ها'} />
             <ClassesBox title={'ورک‌شاپ‌ها'} />
 
+            { userRole === 'coach' &&
             <Link to='/education/addClass' className='bg-[#131423] rounded-xl fixed bottom-24 w-[90%]'>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
                 </button>
-
-            
-
             </Link>
+            }
+
+            { userRole === 'student' &&
+                <div className={` ${gradientStyles.BorderYellow} w-full h-12 rounded-xl flex items-center justify-center `}>
+                46 ساعت کلاس 
+                </div>
+            }
 
         </div>
     );

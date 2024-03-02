@@ -18,6 +18,14 @@ const useAppModeEffect = (isDarkMode) => {
             root.style.setProperty('--yellow-button-bg', 'linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%)');
             // yellow text and border, transparent background button style
             root.style.setProperty('--yellow-border-button', '#A5E65E');
+      
+            // input normal border color
+            root.style.setProperty('--light-border-button-collapsed', 'linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%)');
+            // input active border color
+            root.style.setProperty('--yellow-border-button-active', 'linear-gradient(180deg, #A5E65E -27.08%, #A5E65E -27.07%, #859278 147.92%)');
+            // drop down student syllabus box data boxes color
+            root.style.setProperty('--syllabus-data-boxes-bg', '#1B253B');
+
             // disable button
             root.style.setProperty('--disabled-button-bg', '#323232');
             root.style.setProperty('--disabled-button-text', '#535353');

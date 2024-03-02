@@ -10,13 +10,13 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 //  Queries
 import { useUserDetails } from '../Utilities/Services/queries';
 
-const Education = () => {
+const Education = ({userRole}) => {
 
     // react query
     const { data, isLoading, error } = useUserDetails();
 
     // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState('flight'); // State to track active link
+    const [activeLink, setActiveLink] = useState('syllabus'); // State to track active link
 
 
     // Ref to the button element
@@ -38,11 +38,23 @@ const Education = () => {
 
             <PageTitle title={'آموزش'} navigateTo={'profile'} paddingRight={'40%'} />  
 
+            {/* for coach */}
+            { userRole === 'coach' &&
             <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
                 <Link to='/education/students' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
                 <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >کلاس تئوری</Link> 
-                <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link> 
+                <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
             </div>
+            }
+
+            {/* for student */}
+            { userRole === 'student' &&
+            <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>  
+                <Link to='/education/practicalClass' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
+                <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >کلاس تئوری</Link> 
+                <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
+            </div>
+            }
 
             <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
 

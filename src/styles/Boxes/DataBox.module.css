@@ -19,7 +19,6 @@
 /* education syllubus box styling */
 .Container2 {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    /* border: 2px solid rgba(238, 238, 238, 0.46); */
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     border-radius: 0.75rem;
     position: relative;
