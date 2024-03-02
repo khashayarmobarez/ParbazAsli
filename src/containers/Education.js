@@ -50,8 +50,8 @@ const Education = ({userRole}) => {
             {/* for student */}
             { userRole === 'student' &&
             <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>  
-                <Link to='/education/practicalClass' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
-                <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >کلاس تئوری</Link> 
+                <Link to='/education/practicalClass' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>عملی</Link> 
+                <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >تئوری</Link> 
                 <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
             </div>
             }
