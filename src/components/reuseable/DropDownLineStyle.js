@@ -30,7 +30,7 @@ const DropDownLineStyle = (props) => {
                 {level}
             </p>
 
-            <div className='border-t border-gray-300 w-40'></div>
+            <div className='border-t border-gray-300 w-3/5'></div>
 
             <span className={`transition-transform duration-300 transform ${isExpanded ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
                 <ArrowBackIosIcon />
