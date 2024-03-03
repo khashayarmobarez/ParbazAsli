@@ -8,7 +8,7 @@
 /* for add new vehicle component */
 .inputDropdown {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 2px solid rgba(238, 238, 238, 0.46);
+    border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 1.8rem 0 0;
@@ -22,7 +22,7 @@
 /* for add new vehicle component  */
 .inputText2 {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 2px solid rgba(238, 238, 238, 0.46);
+    border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 1.8rem 0 0;
@@ -68,7 +68,7 @@
 /* date input */
 .dateContainer {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 2px solid rgba(238, 238, 238, 0.46);
+    border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     border-radius: 0.75rem;
     position: relative;

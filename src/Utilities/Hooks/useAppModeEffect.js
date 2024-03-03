@@ -30,11 +30,15 @@ const useAppModeEffect = (isDarkMode) => {
             root.style.setProperty('--disabled-button-bg', '#323232');
             root.style.setProperty('--disabled-button-text', '#535353');
 
-
+        
             
         // databox
             // class details
-            root.style.setProperty('--class-details-bg', 'linear-gradient(200.38deg, #181A2D -7.59%, rgba(135, 141, 203, 0) 323.12%)');
+            root.style.setProperty('--class-details-bg', 'linear-gradient(8deg, rgba(135,141,203,0.3) 0%, rgba(24,26,45,1) 85%)');
+  
+        // input border
+            root.style.setProperty('--input-border', 'rgba(238, 238, 238, 0.26)');
+            
 
 
             

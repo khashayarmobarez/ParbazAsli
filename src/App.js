@@ -41,7 +41,7 @@ const queryClient = new QueryClient();
 
 function App() {
 
-  const [userRole, setUserRole] = useState('student');
+  const [userRole, setUserRole] = useState('coach');
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useAppModeEffect(isDarkMode)
@@ -84,7 +84,7 @@ function App() {
                     <Route path="syllabus" element={<Syllabus userRole={ userRole } />} />
                 </Route>
                 <Route path='/education/addClass' element={<AddClass />} /> 
-                <Route path='/education/ClassDetails' element={<ClassDetails />} /> 
+                <Route path='/education/ClassDetails' element={<ClassDetails userRole={ userRole } />} /> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
                 
@@ -117,7 +117,7 @@ function App() {
                     <Route path="theoryClass" element={ <TheoryClass userRole={ userRole } />} />
                     <Route path="syllabus" element={<Syllabus userRole={ userRole } />} /> 
                 </Route>
-                <Route path='/education/ClassDetails' element={<ClassDetails />} /> 
+                <Route path='/education/ClassDetails' element={<ClassDetails userRole={ userRole } />} /> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
                 

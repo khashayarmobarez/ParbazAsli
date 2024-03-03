@@ -4,14 +4,16 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 import PageTitle from '../../reuseable/PageTitle'
 
-const ClassDetails = () => {
+const ClassDetails = ({userRole}) => {
     return (
         <div className='flex flex-col justify-center items-center mt-14 w-full gap-y-6'>
             <PageTitle title={'جزئیات کلاس'} navigateTo={'education'} paddingRight={'33%'} /> 
 
-            <div className= {`${boxStyles.basicDataBoxColor} flex justify-center items-center w-52 h-12 rounded-xl`}>  
+            {   userRole === 'coach' &&
+                <div className= {`${boxStyles.basicDataBoxColor} flex justify-center items-center w-52 h-12 rounded-xl`}>  
                 <p>کلاس شماره 12</p>
             </div>
+            }
 
             <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col py-10`}>
 
@@ -61,14 +63,18 @@ const ClassDetails = () => {
 
                 </div>
 
-                <div id='no grid list' className='flex flex-col gap-y-5 mt-6'>
 
-                    <div className='flex flex-col items-start gap-y-2 mx-4'>
-                            <p className=' text-sm'>مباحث مطرح شده</p>
-                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                <p>لورم ایپسوم</p>
-                            </div>
-                    </div>
+                <div className='flex flex-col items-start gap-y-2 mx-4 mt-7'>
+                        <p className=' text-sm'>مباحث مطرح شده</p>
+                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                            <p>لورم ایپسوم</p>
+                        </div>
+                </div>
+
+
+                {   userRole === 'coach' &&
+                    <div id='no grid list' className='flex flex-col gap-y-5 mt-6'>
+
 
                     <div className='flex flex-col items-start gap-y-2 mx-4'>
                             <p className=' text-sm'>هنرجویان</p>
@@ -100,7 +106,7 @@ const ClassDetails = () => {
                             </div>
                     </div>
 
-                </div>
+                </div>}
 
 
             </form>
