@@ -2,7 +2,7 @@ import React, {  useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 
-// dark and light mode
+
 
 // react query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -10,28 +10,31 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // Hooks 
 import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
 
+// redux
+import { useSelector } from 'react-redux';
+import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice';
 
 // main and caoch components
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Header/Navbar';
-import Profile from './containers/Profile';
-import Equipment from './containers/Equipment';
-import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
-import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
-import Parachute from './components/pages//Equipment page comps/Parachute'
-import Harness from './components/pages//Equipment page comps/Harness'
-import AddParachute from './components/pages/Equipment page comps/AddParachute';
-import AddHarness from './components/pages/Equipment page comps/AddHarness';
-import Education from './containers/Education';
-import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
-import Students from './components/pages/CoachTeachingSection/Students';
-import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
-import AddClass from './components/pages/CoachTeachingSection/AddClass';
-import ClassDetails from './components/pages/CoachTeachingSection/ClassDetails';
-import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
-import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
-import PracticalClass from './components/pages/StudentEducation/PracticalClass';
+  import Footer from './components/Footer/Footer';
+  import Navbar from './components/Header/Navbar';
+  import Profile from './containers/Profile';
+  import Equipment from './containers/Equipment';
+  import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
+  import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
+  import Parachute from './components/pages//Equipment page comps/Parachute'
+  import Harness from './components/pages//Equipment page comps/Harness'
+  import AddParachute from './components/pages/Equipment page comps/AddParachute';
+  import AddHarness from './components/pages/Equipment page comps/AddHarness';
+  import Education from './containers/Education';
+  import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
+  import Students from './components/pages/CoachTeachingSection/Students';
+  import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
+  import AddClass from './components/pages/CoachTeachingSection/AddClass';
+  import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
+  import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
+  import AddFlight from './containers/AddFlight';
   // Student components 
+  import PracticalClass from './components/pages/StudentEducation/PracticalClass';
 
 
 
@@ -41,7 +44,9 @@ const queryClient = new QueryClient();
 
 function App() {
 
-  const [userRole, setUserRole] = useState('student');
+          
+  const {userRole} = useSelector(selectUser)
+  
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useAppModeEffect(isDarkMode)
@@ -59,6 +64,7 @@ function App() {
         <div className="App ">
           <Navbar toggleTheme={toggleTheme}  />
             <Routes>
+
 
             {/* coach view, rendering routes based on the rule of the user */}
             {userRole === 'coach' && (
@@ -84,9 +90,10 @@ function App() {
                     <Route path="syllabus" element={<Syllabus userRole={ userRole } />} />
                 </Route>
                 <Route path='/education/addClass' element={<AddClass />} /> 
-                <Route path='/education/ClassDetails' element={<ClassDetails userRole={ userRole } />} /> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
+
+                <Route path='/addFlight' element={<AddFlight />} ></Route>
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
@@ -117,7 +124,6 @@ function App() {
                     <Route path="theoryClass" element={ <TheoryClass userRole={ userRole } />} />
                     <Route path="syllabus" element={<Syllabus userRole={ userRole } />} /> 
                 </Route>
-                <Route path='/education/ClassDetails' element={<ClassDetails userRole={ userRole } />} /> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
                 

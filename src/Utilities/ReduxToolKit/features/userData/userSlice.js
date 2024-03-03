@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
+    userRole:'coach',
     name:'',
     packageRemainingDays: '',
     certificate:'',
@@ -16,6 +17,9 @@ const initialState = {
     name: 'user',
     initialState,
     reducers: {
+      updateUserRole: (state, action) => {
+        state.userRole = action.payload;
+      },
       updateName: (state, action) => {
         state.name = action.payload;
       },
@@ -41,6 +45,6 @@ const initialState = {
   });
 
 
-export const { updateCertificate,updateCouchingHours, updateFlightCount, updateFlightHour, updateName, updatePackageRemainingsDays, updateUserId } = userSlice.actions;
+export const { updateCertificate,updateCouchingHours, updateFlightCount, updateFlightHour, updateName, updatePackageRemainingsDays, updateUserId, updateUserRole } = userSlice.actions;
 export default userSlice.reducer;
 export const selectUser = (store) =>store.user;

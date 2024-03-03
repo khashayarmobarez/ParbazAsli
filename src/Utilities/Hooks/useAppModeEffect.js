@@ -8,6 +8,7 @@ const useAppModeEffect = (isDarkMode) => {
 
             root.style.setProperty('--bg-color', '#131423');
             root.style.setProperty('--text-color', '#ffffff');
+            root.style.setProperty('--yellow-text', '#A5E65E');
 
         // basic data box styles
             root.style.setProperty('--Basic-dataBox-bg', '#181A2D');
