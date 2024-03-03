@@ -111,7 +111,11 @@ const AddFlightEquipment = () => {
                 </div>
 
                 {/* for uploading pictures */}
-                <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                <div className='w-full flex flex-col items-start space-y-3'>
+                  <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                  <p className=' text-xs'>*فرمت‌های مجاز فایل JPEG,JPG,Png</p>
+                </div>
+
 
                 <button type="submit"  onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 

@@ -41,7 +41,7 @@ const queryClient = new QueryClient();
 
 function App() {
 
-  const [userRole, setUserRole] = useState('coach');
+  const [userRole, setUserRole] = useState('student');
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useAppModeEffect(isDarkMode)

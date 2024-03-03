@@ -45,7 +45,7 @@ const ClassDetails = ({userRole}) => {
                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                             <p>لورم ایپسوم</p>
                         </div>
-                    </div>
+                    </div>  
 
                     <div className='flex flex-col items-start gap-y-2'>
                         <p className=' text-sm'>تاریخ</p>

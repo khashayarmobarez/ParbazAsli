@@ -22,6 +22,7 @@ const ClassesBox = (props) => {
                     <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
                 </div>
 
+                {/* the below part should be mapped when data is recieved from server */}
                 {/* classesInput */}
                 <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl`}>
                     <span>
@@ -34,16 +35,9 @@ const ClassesBox = (props) => {
                     </button>
                 </div>
 
-                <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl`}>
-                    <span>
-                        <AutoStoriesOutlinedIcon />
-                    </span>
-                    <p>مقدماتی</p>
-                    <p>ساعت</p>
-                    <button onClick={() => navigate('/education/ClassDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                        <img src={clipboard} alt='icon' />
-                    </button>
-                </div>
+                
+                
+
 
         </div>
     );
