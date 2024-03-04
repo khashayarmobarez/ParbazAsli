@@ -35,6 +35,8 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
   import AddFlight from './containers/AddFlight';
   // Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
+import UploadIgc from './components/pages/AddFlight/UploadIgc';
+import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
 
 
 
@@ -93,7 +95,11 @@ function App() {
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
 
-                <Route path='/addFlight' element={<AddFlight />} ></Route>
+                <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
+                    <Route index element={<UploadIgc />} />
+                    <Route path="UploadIgc" element={ <UploadIgc />} />
+                    <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
+                </Route>
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
@@ -126,6 +132,11 @@ function App() {
                 </Route>
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
+                
+                <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
+                    <Route index element={<UploadIgc />} />
+                    <Route path="UploadIgc" element={ <UploadIgc />} />
+                </Route>
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
