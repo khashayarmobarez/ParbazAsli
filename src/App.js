@@ -32,11 +32,15 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
   import AddClass from './components/pages/CoachTeachingSection/AddClass';
   import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
   import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
+  // addFlightComponents
   import AddFlight from './containers/AddFlight';
-  // Student components 
+  import UploadIgc from './components/pages/AddFlight/UploadIgc';
+  import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
+  import AddSituation from './components/pages/AddFlight/AddSituation';
+  import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
+  import AddLanding from './components/pages/AddFlight/AddLanding';
+// Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
-import UploadIgc from './components/pages/AddFlight/UploadIgc';
-import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
 
 
 
@@ -99,6 +103,9 @@ function App() {
                     <Route index element={<UploadIgc />} />
                     <Route path="UploadIgc" element={ <UploadIgc />} />
                     <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
+                    <Route path="AddSituation" element={ <AddSituation />} />
+                    <Route path="AddTakeoff" element={ <AddTakeoff />} />
+                    <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
@@ -136,6 +143,10 @@ function App() {
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
                     <Route index element={<UploadIgc />} />
                     <Route path="UploadIgc" element={ <UploadIgc />} />
+                    <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
+                    <Route path="AddSituation" element={ <AddSituation />} />
+                    <Route path="AddTakeoff" element={ <AddTakeoff />} />
+                    <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />

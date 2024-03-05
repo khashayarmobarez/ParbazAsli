@@ -4,7 +4,7 @@ import React from 'react';
 import DropdownInput from '../../inputs/DropDownInput';
 
 // provider
-import { flightHourOptionData } from '../../../Utilities/Providers/dropdownInputOptions';
+import { flightHourOptionData, flightTypeOptions } from '../../../Utilities/Providers/dropdownInputOptions';
 import { useNavigate } from 'react-router-dom';
 
 // assets
@@ -13,29 +13,34 @@ import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateWing, updateHarness, updateParachute } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateCity, updateSight,updateClouds, updateFlightType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 
-const AddUsedEquipment = () => {
+const AddSituation = () => {
 
     // redux
-    const {wing, harness, parachute} = useSelector(selectAddFlight)
+    const { city, sight, clouds, flightType } = useSelector(selectAddFlight)
     const dispatch = useDispatch()
 
     // react router dom
     const navigate= useNavigate('')
 
 
-    const handleSelectSetWing = (event) => {
-        dispatch(updateWing(event.target.value));
+    const handleSelectSetCity = (event) => {
+        dispatch(updateCity(event.target.value));
       };
 
-    const handleSelectSetHarness = (event) => {
-        dispatch(updateHarness(event.target.value));
+    const handleSelectSetSight = (event) => {
+        dispatch(updateSight(event.target.value));
       };
 
-    const handleSelectSetParachute = (event) => {
-        dispatch(updateParachute(event.target.value));
+    const handleSelectSetClouds = (event) => {
+        dispatch(updateClouds(event.target.value));
+      };
+
+    const handleSelectSetFlightType = (event) => {
+        dispatch(updateFlightType(event.target.value));
+        console.log({city, sight, clouds, flightType})
       };
 
 
@@ -45,8 +50,8 @@ const AddUsedEquipment = () => {
 
     const handleNextPageButton = () => {
 
-        if(wing && harness && parachute) {
-            navigate('/addFlight/AddSituation')
+        if(city && sight && clouds && flightType) {
+            navigate('/addFlight/addTakeoff')
         } else {
 
         }
@@ -73,9 +78,9 @@ const AddUsedEquipment = () => {
 
                         <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--yellow-text)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
 
@@ -87,7 +92,7 @@ const AddUsedEquipment = () => {
 
                         <p className='' style={{color:'var(--soft-white)'}}>Takeoff</p>
 
-                        <p className='' style={{color:'var(--soft-white)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--yellow-text)'}}>شرایط پرواز</p>
 
                         <p className='' style={{color:'var(--yellow-text)'}}>وسیله پرواز</p>
 
@@ -97,16 +102,18 @@ const AddUsedEquipment = () => {
 
 
                 <div id='title' className='flex justify-between items-center w-full mt-2' style={{color:'var(--yellow-text'}}  >
-                    <h3 className=' text-base '>مشخصات وسیله پروازی</h3>
+                    <h3 className=' text-base '>موقعیت و شرایط پرواز</h3>
                     <div className='h-[1px] w-6/12 mt-2' style={{background: 'var(--yellow-text)' }}></div>
                 </div>
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-                    <DropdownInput name={'بال'} options={flightHourOptionData} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                    <DropdownInput name={'شهر'} options={flightHourOptionData} selectedOption={city} handleSelectChange={handleSelectSetCity} />
 
-                    <DropdownInput name={'هارنس'} options={flightHourOptionData} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
+                    <DropdownInput name={'سایت'} options={flightHourOptionData} selectedOption={sight} handleSelectChange={handleSelectSetSight} />
 
-                    <DropdownInput name={'چتر'} options={flightHourOptionData} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
+                    <DropdownInput name={'نوع پوشش ابری'} options={flightHourOptionData} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} />
+                    
+                    <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} />
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
@@ -128,4 +135,4 @@ const AddUsedEquipment = () => {
     );
 };
 
-export default AddUsedEquipment;
+export default AddSituation;

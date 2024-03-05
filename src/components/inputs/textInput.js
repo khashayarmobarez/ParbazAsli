@@ -16,3 +16,5 @@ const TextInput = ({ value, onChange, placeholder }) => {
 };
 
 export default TextInput;
+
+//  <TextInput value={guestStudent} onChange={handleGuestStudent} placeholder='کد کاربری هنرجوی مهمان' />

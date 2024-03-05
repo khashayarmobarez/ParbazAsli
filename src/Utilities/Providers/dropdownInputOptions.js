@@ -24,5 +24,11 @@ const brandsOptionsData = [
     { value: '5', label: ' 5' },
   ];
 
+  const flightTypeOptions = [
+    { value: 'single', label: ' سینگل' },
+    { value: 'tandem', label: ' تندم' },
+    { value: 'coach', label: ' مربی' },
+  ];
 
-  export {brandsOptionsData, classesOpptionData, sizeOptionData, flightHourOptionData}
+
+  export {brandsOptionsData, classesOpptionData, sizeOptionData, flightHourOptionData, flightTypeOptions}

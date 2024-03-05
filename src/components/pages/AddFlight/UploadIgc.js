@@ -1,5 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateIgcFile } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // assets
 import IGC from '../../../assets/icons/IGC-Download.svg'
@@ -10,15 +15,19 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 const UploadIgc = () => {
 
+    // redux
+    const {igcFile} = useSelector(selectAddFlight)
+    const dispatch = useDispatch()
+
+    // react router dom
     const navigate = useNavigate()
 
     const fileInputRef = useRef(null); // Ref for file input element
 
-    const [igcFile, setIgcFile] = useState(null)
 
     const handleFileSelect = (event) => {
         const file = event.target.files[0]; // Access the selected file
-        setIgcFile(file); // Update the state with the selected file
+        dispatch(updateIgcFile(file));; // Update the state with the selected file
       };
 
     const handleButtonClick = () => {
