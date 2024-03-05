@@ -94,7 +94,7 @@ const AddHarness = () => {
               {/* FLight hour input */}
               <DropdownInput name={'حدود ساعت پرواز'} options={flightHourOptionData} selectedOption={flightHour} handleSelectChange={handleFlightHourChange} />
 
-              <div className='flex flex-col justify-between items-center w-full space-y-2'>
+              <div className='flex flex-col justify-be tween items-center w-full space-y-2'>
                 <p className=' self-start'>ثبت سریال هارنس (اختیاری)</p>
                 <TextInput value={wingCode} onChange={handleWingCodeChange} placeholder='سریال بال' />
               </div>

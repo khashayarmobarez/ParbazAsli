@@ -9,7 +9,7 @@ const AddFlight = () => {
     return (
         <div className='flex flex-col items-center pt-14 gap-y-8'>
 
-            <PageTitle title={'ثبت پرواز'} navigateTo={'profile'} paddingRight={'40%'} />
+            <PageTitle title={'ثبت پرواز'} navigateTo={-1} paddingRight={'40%'} />
 
             <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col py-10 gap-y-8`}>
 
