@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -7,6 +7,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // components
 import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
+import SubmitForm from '../../reuseable/SubmitForm';
 
 // provider
 import { flightHourOptionData } from '../../../Utilities/Providers/dropdownInputOptions';
@@ -14,6 +15,9 @@ import { useNavigate } from 'react-router-dom';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+
+// react-toastify
+import { toast } from 'react-toastify';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +30,10 @@ const AddLanding = ({userRole}) => {
     // redux
     const { landingTime, landingWindSpeed, landingWindDirection, flightType , passengerPhoneNumber } = useSelector(selectAddFlight)
     const dispatch = useDispatch()
+
+    // states, submit pop up control
+    const [showPopup, setShowPopup] = useState(false); 
+    
 
     // react router dom
     const navigate= useNavigate('')
@@ -50,26 +58,65 @@ const AddLanding = ({userRole}) => {
 
 
 
-    // Determine if the next button should be disabled
     
-
-    const handleNextPageButton = () => {
-        
+    // Event handler for form submission
+    const handleSubmit = (event) => {
         if(flightType === 'tandem') {
             if(landingTime && landingWindSpeed && landingWindDirection && passengerPhoneNumber.length > 10) {
-                navigate('/addFlight')
+                event.preventDefault();
+                setShowPopup(true);
+                // Here you can handle form submission, such as sending data to a backend server
+
             } else {
-    
+                toast('لطفا اطلاعات را کامل وارد کنید', {
+                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                  });
             }
         } else {
             if(landingTime && landingWindSpeed && landingWindDirection) {
-                navigate('/addFlight')
+                event.preventDefault();
+                setShowPopup(true);
+                // Here you can handle form submission, such as sending data to a backend server
+                
             } else {
-    
+                toast('لطفا اطلاعات را کامل وارد کنید', {
+                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                  });
             }
         }
+        
+    };
 
-      };
+    // handling for sending data
+    const handlePost = (event) => {
+        if(userRole === 'coach') {
+            toast('!پرواز شما ثبت شد', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+              setShowPopup(false);
+        } else if (userRole === 'student') {
+            toast('اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+              setShowPopup(false);
+        }
+    }
 
 
 
@@ -143,10 +190,7 @@ const AddLanding = ({userRole}) => {
 
                 <div className='flex justify-between items-center w-full'>
 
-                    <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <span className='w-10'><img alt='icon' className='w-full h-full' src={RightArrowButton}/></span>
-                        <p className='mr-2 pb-2'>بعدی</p>
-                    </div> 
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <p className='ml-2 '>قبلی</p>
@@ -154,6 +198,12 @@ const AddLanding = ({userRole}) => {
                     </div>
                 
                 </div>
+
+                <div className='w-full justify-center items-center'>
+                    <SubmitForm text={"در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید "}
+                    showPopup={showPopup} setShowPopup={setShowPopup} handleSubmit={handleSubmit} handlePost={handlePost} />
+                </div>
+                
 
             </div>
         </>

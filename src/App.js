@@ -14,6 +14,10 @@ import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
 import { useSelector } from 'react-redux';
 import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice';
 
+// react toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // main and caoch components
   import Footer from './components/Footer/Footer';
   import Navbar from './components/Header/Navbar';
@@ -32,6 +36,7 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
   import AddClass from './components/pages/CoachTeachingSection/AddClass';
   import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
   import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
+  import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
   // addFlightComponents
   import AddFlight from './containers/AddFlight';
   import UploadIgc from './components/pages/AddFlight/UploadIgc';
@@ -41,6 +46,7 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
   import AddLanding from './components/pages/AddFlight/AddLanding';
 // Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
+  
 
 
 
@@ -107,6 +113,9 @@ function App() {
                     <Route path="AddTakeoff" element={ <AddTakeoff />} />
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
+
+                {/* notifications */}
+                <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
@@ -156,6 +165,7 @@ function App() {
 
             </Routes>
           <Footer />
+          <ToastContainer/>
         </div>
 
       </QueryClientProvider>

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { toast } from 'react-toastify';
+
 // components
 import DropdownInput from '../../inputs/DropDownInput';
 
@@ -48,7 +50,13 @@ const AddUsedEquipment = () => {
         if(wing && harness && parachute) {
             navigate('/addFlight/AddSituation')
         } else {
-
+            toast('لطفا اطلاعات را کامل وارد کنید', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
         }
 
       };

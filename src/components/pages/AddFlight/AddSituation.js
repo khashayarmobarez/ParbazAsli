@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom';
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 
+// reactToastify
+
+import { toast } from 'react-toastify';
+
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
@@ -53,7 +57,13 @@ const AddSituation = () => {
         if(city && sight && clouds && flightType) {
             navigate('/addFlight/addTakeoff')
         } else {
-
+            toast('لطفا اطلاعات را کامل وارد کنید', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
         }
 
       };
