@@ -179,7 +179,7 @@ const AddLanding = ({userRole}) => {
 
                         <p className=' text-start text-sm w-full' >در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛ از این طریق می‌توانید متن آزمایشی و متن تستی خودتان. </p>
 
-                        <button type="reset" className={`${ButtonStyles.normalButton} w-full`} >سیلابس‌ها</button>
+                        <button onClick={() => navigate('/AddFlight/syllabuses')} type="reset"  className={`${ButtonStyles.normalButton} w-full `} >سیلابس‌ها</button>
 
                     </form>}
 

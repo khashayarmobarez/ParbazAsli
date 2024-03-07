@@ -12,7 +12,7 @@ const PageTitle = (props) => {
     return (
         <>
             <div className={`sticky top-9 z-10 bg-[#1B253B] w-[90%] h-20 flex justify-between items-end p-3 pr-[${paddingRight}] rounded-b-2xl `}>
-                <p>{title}</p>
+                <p className=' font-medium'>{title}</p>
                 <ArrowBackIosNewIcon onClick={() => navigate(`/${navigateTo}`)} sx={{ width:'26px', height:'26px', padding:'5px', backgroundColor:'', borderRadius:'10rem', background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)', boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)'}} />
             </div>
         </>

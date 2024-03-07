@@ -37,6 +37,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
   import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
   import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
+  import Syllabuses from './components/pages/AddFlight/Syllabuses';
+  import FlightHistory from './containers/FlightHistory';
   // addFlightComponents
   import AddFlight from './containers/AddFlight';
   import UploadIgc from './components/pages/AddFlight/UploadIgc';
@@ -113,6 +115,10 @@ function App() {
                     <Route path="AddTakeoff" element={ <AddTakeoff />} />
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
+                <Route path="addFlight/syllabuses" element={ <Syllabuses />} />
+
+                {/* flight history */}
+                <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
 
                 {/* notifications */}
                 <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
@@ -157,6 +163,9 @@ function App() {
                     <Route path="AddTakeoff" element={ <AddTakeoff />} />
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
+
+                {/* flight history */}
+                <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
