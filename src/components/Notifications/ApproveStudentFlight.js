@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../styles/Boxes/DataBox.module.css'
@@ -7,6 +8,9 @@ import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 import PageTitle from '../reuseable/PageTitle';
 
 const ApproveStudentFlight = () => {
+
+    const navigate = useNavigate()
+
     return (
 
         <div className='pt-14 flex flex-col justify-center items-center gap-y-2'>
@@ -124,6 +128,10 @@ const ApproveStudentFlight = () => {
                         <button type="reset" className={`${ButtonStyles.normalButton} w-full`} >سیلابس‌ها</button>
 
                     </div>
+
+                    <button type="submit" onClick={() => navigate('/profile')} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+
+
 
 
                 </form>
