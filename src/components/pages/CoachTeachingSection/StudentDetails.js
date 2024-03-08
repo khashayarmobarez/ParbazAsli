@@ -22,16 +22,12 @@ const StudentDetails = () => {
                 <SearchInput />
 
                 <FlightDetailsBox title={'مقطع مبتدی'} />
-                
-                
 
                 <div className='w-full'>
                     <button className={ButtonStyles.normalButton}>مشاهده IGC</button>
                 </div>
                 
-
             </div>
-
 
         </div>
         );

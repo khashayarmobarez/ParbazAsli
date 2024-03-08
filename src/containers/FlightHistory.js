@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import SearchInput from '../components/inputs/SearchInput';
+import DropDownLineFlightHistory from '../components/reuseable/DropDownLineFlightHistory'
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -12,6 +13,7 @@ import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 
 //  Queries
 import { useUserDetails } from '../Utilities/Services/queries';
+
 
 const FlightHistory = ({userRole}) => {
 
@@ -85,8 +87,13 @@ const FlightHistory = ({userRole}) => {
                             <p>map section</p>
                         </div>
 
-                        <div className='w-full flex flex-col'>
+                        <div className='w-full flex flex-col gap-y-6'>
+                            
                             <SearchInput />
+
+                            <DropDownLineFlightHistory title={'مقطع آزاد'} />
+
+                            
                         </div>
 
                     </div>
