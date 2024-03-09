@@ -136,7 +136,7 @@ const DropDownLineFlightHistory = (props) => {
                                     </div>
                                 </div>
 
-                                <div className='flex flex-col items-start gap-y-3'>
+                                {/* <div className='flex flex-col items-start gap-y-3'>
                                     <p className=' text-xs pr-2'>نام مربی</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>لورم ایپسوم</p>
@@ -148,7 +148,7 @@ const DropDownLineFlightHistory = (props) => {
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>لورم ایپسوم</p>
                                     </div>
-                                </div>
+                                </div> */}
 
                             </div>
 

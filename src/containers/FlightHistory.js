@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PageTitle from '../components/reuseable/PageTitle';
 import SearchInput from '../components/inputs/SearchInput';
 import DropDownLineFlightHistory from '../components/reuseable/DropDownLineFlightHistory'
+import WorldMapFlightHistory from '../components/reuseable/WorldMapFlightHistory';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -70,22 +71,25 @@ const FlightHistory = ({userRole}) => {
                 }
                 {
                     data && 
-                    <div className='w-full flex flex-col justify-center items-center px-1 gap-y-4'>
+                    <div className='w-full flex flex-col justify-center items-center px-1 gap-y-3'>
+                        
+                        <div className='w-full flex flex-col gap-y-2'>
 
-                        <div className='w-full flex justify-between items-center'>
-                            <div className='flex justify-center items-center' >
-                                <MailOutlinedIcon sx={{width:'2.5rem'}} />
-                                <p className='text-sm' >112 تعداد پرواز</p>
+                            <div className='w-full flex justify-between items-center'>
+                                <div className='flex justify-center items-center' >
+                                    <MailOutlinedIcon sx={{width:'2.5rem'}} />
+                                    <p className='text-sm' >112 تعداد پرواز</p>
+                                </div>
+                                <div className='flex justify-center items-center' >
+                                    <MailOutlinedIcon sx={{width:'2.5rem'}} />
+                                    <p className='text-sm' >98 ساعت پرواز</p>
+                                </div>
                             </div>
-                            <div className='flex justify-center items-center' >
-                                <MailOutlinedIcon sx={{width:'2.5rem'}} />
-                                <p className='text-sm' >98 ساعت پرواز</p>
-                            </div>
+
+                            <WorldMapFlightHistory />
+
                         </div>
 
-                        <div id='map-section' className='w-full bg-khashy-blue' >
-                            <p>map section</p>
-                        </div>
 
                         <div className='w-full flex flex-col gap-y-6'>
                             
