@@ -48,6 +48,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import AddLanding from './components/pages/AddFlight/AddLanding';
 // Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
+import Settings from './containers/Settings';
   
 
 
@@ -122,6 +123,9 @@ function App() {
 
                 {/* notifications */}
                 <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
+
+                {/* settings */}
+                <Route path='/Settings' element={<Settings />} />
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
@@ -166,6 +170,9 @@ function App() {
 
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
+
+                {/* settings */}
+                <Route path='/Settings' element={<Settings />} />
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 

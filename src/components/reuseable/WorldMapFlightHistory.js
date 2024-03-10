@@ -19,7 +19,7 @@ const WorldMapFlightHistory = () => {
     ]
 
     return (
-        <div  className='w-full  flex flex-col '>
+        <div  className='w-full  flex flex-col md:max-h-[80vh]'>
             <ComposableMap >
                 <ZoomableGroup zoom={1}>
                     <Geographies geography={geoMap} >

@@ -71,9 +71,9 @@ const FlightHistory = ({userRole}) => {
                 }
                 {
                     data && 
-                    <div className='w-full flex flex-col justify-center items-center px-1 gap-y-3'>
+                    <div className='w-full flex flex-col justify-center items-center px-1 '>
                         
-                        <div className='w-full flex flex-col gap-y-2'>
+                        <div className='w-full flex flex-col gap-y-2 mb-[-2rem]'>
 
                             <div className='w-full flex justify-between items-center'>
                                 <div className='flex justify-center items-center' >
@@ -86,7 +86,7 @@ const FlightHistory = ({userRole}) => {
                                 </div>
                             </div>
 
-                            <WorldMapFlightHistory />
+                            <WorldMapFlightHistory  />
 
                         </div>
 
