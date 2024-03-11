@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 
+
+
 const useAppModeEffect = (isDarkMode) => {
+  
   useEffect(() => {
     // Update root styles when mode changes
     const root = document.documentElement;
@@ -33,8 +36,15 @@ const useAppModeEffect = (isDarkMode) => {
             // disable button
             root.style.setProperty('--disabled-button-bg', '#323232');
             root.style.setProperty('--disabled-button-text', '#535353');
+            
+            // button an input(toggle dark mode element)
+            root.style.setProperty('--button-toggle-bg', 'linear-gradient(222.79deg, #181A2D 31.59%, rgba(135, 141, 203, 0) 170.26%)');
+            root.style.setProperty('--button-toggle-boxshadow', '-2px 3px 4.3px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51), 0px 4px 10.8px 2px rgba(63, 77, 108, 1) inset');
 
-        
+            
+           
+
+    
             
         // databox
             // class details

@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    brand: '',
+    isDarkMode: true,
   };
 
   const settingsSlice = createSlice({
-    name: 'harness',
+    name: 'settings',
     initialState,
     reducers: {
-      updateBrand: (state, action) => {
-        state.brand = action.payload;
+      toggleDarkMode: (state) => {
+        state.isDarkMode = !state.isDarkMode;
       },
     },
   });
 
-export const { updateBrand } = settingsSlice.actions;
+export const { toggleDarkMode } = settingsSlice.actions;
 export default settingsSlice.reducer;
 export const selectSettings = (store) =>store.settings;

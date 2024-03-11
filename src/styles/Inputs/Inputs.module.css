@@ -33,6 +33,34 @@
     color: #fff;
 }
 
+/* fixed Input */
+.fixedInput {
+    background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
+    border: 1px solid var(--input-border);
+    box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+    appearance: none;
+    padding: 0 2rem 0 0;
+    border-radius: 1rem;
+}
+
+.fixedInput::placeholder {
+    color: var(--disabled-button-text);
+}
+
+/* password Input */
+.passwordInput {
+    background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
+    border: 1px solid var(--input-border);
+    box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+    appearance: none;
+    padding: 0 2rem 0 0;
+    border-radius: 1rem;
+}
+
+.passwordInput::placeholder {
+    color: #fff;
+}
+
 /* upload file input */
 
 .customFileUpload input[type="file"] {

@@ -29,20 +29,20 @@
   min-height: 44px;
   font-size: small;
   background: linear-gradient(222.79deg, #181A2D 31.59%, rgba(135, 141, 203, 0) 170.26%);
-  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51), 0px 4px 10.800000190734863px 2px rgba(63, 77, 108, 1) inset;
+  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51), 0px 4px 10.800000190734863px 2px rgba(63, 77, 108, 1) inset;
   border-radius: 2rem;
 }
 
 .activeYellow {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
   color: rgba(33, 40, 41, 1); 
   font-weight: 500;
 }
 
 .addButton {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51),0px 4px 10.80px 2px rgba(70, 174, 45, 1) inset;
   font-weight:bold ;
   display: flex; 
   height: 44px;
@@ -50,4 +50,59 @@
   align-items: center;
   border-radius: 2rem;
   color:rgba(33, 40, 41, 1) ;
+}
+
+
+/* toggle dark mode */
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width:4em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background:var(--button-toggle-bg);
+  box-shadow: var(--button-toggle-boxshadow);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8em;
+  width: 1.8em;
+  inset: 0;
+  background-color: var(--yellow-border-button);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background: var(--soft-white);
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #0974f1;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(-2.2em);
 }
