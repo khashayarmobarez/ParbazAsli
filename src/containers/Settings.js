@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-// componets
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSettings, setPassword1, setPassword2 } from '../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
+
+// components
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import WebColorMode from '../components/pages/Settings/WebColorMode';
@@ -16,7 +20,27 @@ import usersIcon from '../assets/icons/users-Icon.svg'
 
 const Settings = () => {
 
+    // controlling  items drop down
     const [DropDown, setDropDown] = useState('')
+
+    // redux
+    const dispatch = useDispatch();
+    const { password1, password2 } = useSelector(selectSettings );
+
+    const handlePassword1Change = (event) => {
+        dispatch(setPassword1(event.target.value));
+    };
+
+    const handlePassword2Change = (event) => {
+        dispatch(setPassword2(event.target.value));
+    };
+
+
+    // Function to check if the passwords match
+    const passwordsMatch = () => {
+        return password1 === password2;
+    };
+    
 
     return (
         <div className='w-full flex flex-col items-center'>
@@ -41,7 +65,11 @@ const Settings = () => {
                             <FixedInput test={'محمود'} />
                             <FixedInput test={'شیرازی‌نیا'} />
                             <FixedInput test={'کد ملی'} />
-                            <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'}/>
+                            <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
+                            <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
+                            {!passwordsMatch() &&
+                                <p>Passwords do not match!</p>
+                            }
                         </div>
                     }
                 </div>
