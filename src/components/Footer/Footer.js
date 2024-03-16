@@ -1,5 +1,9 @@
 import { React, useState } from 'react';
 
+// react router dom
+import { useLocation, useNavigate } from 'react-router-dom';
+
+
 // import styles from './Footer.module.css';
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
 
@@ -10,7 +14,6 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import { useNavigate } from 'react-router-dom';
 
 
 const styles = {
@@ -47,10 +50,15 @@ const styles = {
 
 const Footer = () => {
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Accessing current URL
+  const currentUrl = location.pathname;
+
     const [value, setValue] = useState(0);
 
-    const navigate = useNavigate();
-    
+
     return (
         <Box
         position='fixed'
@@ -68,9 +76,9 @@ const Footer = () => {
                 setValue(newValue);
                 }}
             >
-                <BottomNavigationAction onClick={() => navigate('/profile')} label="پروفایل" icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
-                <BottomNavigationAction onClick={() => navigate('/addFlight')} label="ثبت پرواز" icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'10px', width:'2.4rem', height: '2.4rem'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
-                <BottomNavigationAction onClick={() => navigate('/flightHistory')} label="سوابق پرواز" icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: '#A5E65E'}, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/profile')} label="پروفایل" icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/addFlight')} label="ثبت پرواز" icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'10px', width:'2.4rem', height: '2.4rem'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/flightHistory')} label="سوابق پرواز" icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
             </BottomNavigation>
         </Box>
     );

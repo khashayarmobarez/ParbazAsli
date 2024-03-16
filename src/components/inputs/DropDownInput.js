@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
@@ -10,12 +10,18 @@ import Cube from '../../assets/icons/3dCube.svg'
 
 const DropdownInput = ({ options, selectedOption, handleSelectChange, name }) => {
 
+  const [filled, setFilled] = useState(false);
+
+  const handleInputChange = (event) => {
+    setFilled(event.target.value !== '');
+  };
+
   return (
     <div className='flex relative w-[100%] h-12 rounded-xl'>
       <span> 
         <img src={Cube} alt='icon' className=' absolute mt-3 mr-1 w-6' />
       </span>
-      <select className={`${inputStyles.inputDropdown} w-[100%]`} id="dropdown" value={selectedOption} onChange={handleSelectChange}>
+      <select className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`} id="dropdown" value={selectedOption} onChange={(event) => {handleInputChange(event);handleSelectChange(event);}} >
         <option value="" disabled>{name}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
