@@ -5,7 +5,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const PageTitle = (props) => {
 
-    const {title, navigateTo, paddingRight} = props;
+    const {title,  paddingRight} = props;
 
     const navigate = useNavigate();
 

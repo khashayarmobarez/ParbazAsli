@@ -27,7 +27,6 @@ const PasswordInput = ({placeHolder, value, onChange}) => {
       </span>
       <input
         type={showPassword ? 'text' : 'password'}
-        id="password"
         value={value}
         onChange={onChange}
         className={`${inputStyles.passwordInput} w-[100%] text-sm font-sm`}

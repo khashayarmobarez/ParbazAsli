@@ -49,6 +49,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
 import Settings from './containers/Settings';
+import Notifications from './containers/Notifications';
   
 
 
@@ -86,7 +87,9 @@ function App() {
               <>
               
                 <Route path='/profile' element={<Profile userRole={ userRole } />} />
-
+                
+                {/* notifications */}
+                <Route path='/notifications' element={<Notifications />} />
 
                 <Route path='/equipment' element={<Equipment />} >
                     <Route index element={<FlightEquipment />} />
@@ -139,6 +142,8 @@ function App() {
               
                 <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
+                {/* notifications */}
+                <Route path='/notifications' element={<Notifications />} />
 
                 <Route path='/equipment' element={<Equipment />} >
                     <Route index element={<FlightEquipment />} />

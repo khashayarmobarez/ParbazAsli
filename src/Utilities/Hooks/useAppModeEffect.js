@@ -13,6 +13,7 @@ const useAppModeEffect = (isDarkMode) => {
             root.style.setProperty('--text-color', '#ffffff');
             root.style.setProperty('--yellow-text', '#A5E65E');
 
+
         // overall used colors
             root.style.setProperty('--soft-white', '#F6FDEF');
 
@@ -41,21 +42,21 @@ const useAppModeEffect = (isDarkMode) => {
             root.style.setProperty('--button-toggle-bg', 'linear-gradient(222.79deg, #181A2D 31.59%, rgba(135, 141, 203, 0) 170.26%)');
             root.style.setProperty('--button-toggle-boxshadow', '-2px 3px 4.3px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51), 0px 4px 10.8px 2px rgba(63, 77, 108, 1) inset');
 
-            
-           
-
-    
-            
         // databox
             // class details
             root.style.setProperty('--class-details-bg', 'linear-gradient(8deg, rgba(135,141,203,0.3) 0%, rgba(24,26,45,1) 85%)');
+            root.style.setProperty('--class-details-boxShadow', ' -3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)');
+
   
         // input border
             root.style.setProperty('--input-border', 'rgba(238, 238, 238, 0.26)');
-            
 
-
+                        
+        // setting input Background
+        root.style.setProperty('--dark-input-bg', '#181A2D');
+        root.style.setProperty('--dark-input-boxShadow', ' -3px 4px 4px 1px rgba(0, 0, 0, 0.32)');
             
+ 
 
         // Add more CSS variable updates for dark mode as needed
         

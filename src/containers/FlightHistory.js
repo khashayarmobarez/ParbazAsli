@@ -71,7 +71,7 @@ const FlightHistory = ({userRole}) => {
                 }
                 {
                     data && 
-                    <div className='w-full flex flex-col justify-center items-center px-1 '>
+                    <div className='w-full flex flex-col justify-center items-center px-1 gap-y-4'>
                         
                         <div className='w-full flex flex-col gap-y-2 mb-[-2rem]'>
 

@@ -13,7 +13,7 @@ const FixedInput = ({test}) => {
                 <span style={{color:'var(--disabled-button-text)'}}> 
                     <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
                 </span>
-                <input type="text" id="aircraft" disabled placeholder={test} className={`${inputStyles.fixedInput} w-[100%] text-sm font-medium`}  />
+                <input type="text" id={test} disabled placeholder={test} className={`${inputStyles.fixedInput} w-[100%] text-sm font-medium`}  />
             </div>
         </div>
     );
