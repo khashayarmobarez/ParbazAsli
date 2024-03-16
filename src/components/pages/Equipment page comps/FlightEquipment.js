@@ -34,7 +34,7 @@ const FlightEquipment = (props) => {
     };
 
     return (
-        <div className=' flex flex-col gap-y-12 items-center'>
+        <div className=' flex flex-col gap-y-6 items-center'>
 
             <div className={styles.container}>
 

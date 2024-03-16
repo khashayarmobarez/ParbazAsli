@@ -105,7 +105,7 @@ const Navbar = ({toggleTheme}) => {
                                             <li className={styles.navItem} onClick={() => clickInput()}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li>
                                             {/* Add more list items as needed */}
                                         </ul>
-                                        <Link to='/' className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
+                                        <Link to='/' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
                                     </div>
                                 </div>
 

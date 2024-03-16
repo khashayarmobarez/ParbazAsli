@@ -88,7 +88,7 @@ const AddClass = () => {
                         <TextInput value={guestStudent} onChange={handleGuestStudent} placeholder='کد کاربری هنرجوی مهمان' className='w-full' />
                     </div>
                     <span className={`w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}>
-                        <AddIcon sx={{width:'2.5rem'}} />
+                        <AddIcon sx={{width:'2.2rem', height:'2.2rem'}} />
                     </span>
                 </div>
 

@@ -50,6 +50,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
 import Settings from './containers/Settings';
 import Notifications from './containers/Notifications';
+import Club from './containers/Club';
   
 
 
@@ -110,6 +111,12 @@ function App() {
                 <Route path='/education/addClass' element={<AddClass />} /> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
+
+                {/* club
+                <Route path='/club' element={<Club userRole={ userRole }  />}>
+                <Route path='/club' element={<Club userRole={ userRole }  />}>
+
+                </Route> */}
 
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
                     <Route index element={<UploadIgc />} />
