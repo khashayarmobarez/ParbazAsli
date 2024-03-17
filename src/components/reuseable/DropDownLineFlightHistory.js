@@ -16,12 +16,17 @@ import clipboard from '../../assets/icons/clipboard.svg'
 
 const DropDownLineFlightHistory = (props) => {
 
+    // for changing the color of the texts when user clicked and expand it
+    const [isClicked, setIsClicked] = useState(false);
+
     const [isExpanded, setIsExpanded] = useState(false)
 
     const {title} = props
 
     const handleClick = () => {
         setIsExpanded(!isExpanded);
+        // for changing the text color
+        setIsClicked(!isClicked);
     }
 
     return (
@@ -36,7 +41,7 @@ const DropDownLineFlightHistory = (props) => {
 
         {/* the below part should be mapped when data is recieved from server */}
                 {/* classesInput */}
-                <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                <div className={`${gradients.container}  text-${isClicked ? 'border-button-yellow' : ''} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                     <p>16/3/96</p>
                     <p>تهران</p>
                     <p>vardavard 812m</p>

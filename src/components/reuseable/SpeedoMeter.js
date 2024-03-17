@@ -33,7 +33,7 @@ const SpeedoMeter = (props) => {
 
   return (
 
-    <div className={`${boxStyles.containerDarkmode} z-0 w-[100%] md:w-[47%] flex justify-between items-center px-2 py-5 `}>
+    <div className={`${boxStyles.containerDarkmode} z-0 w-[95%] md:w-[47%] flex justify-between items-center px-2 py-5 `}>
 
         <div className='flex flex-col justify-center items-center space-y-5'>
             <p className=' font-normal text-sm mr-2 '>آخرین بسته بندی چتر کمکی</p>

@@ -27,7 +27,6 @@ const brandsOptionsData = [
   const flightTypeOptions = [
     { value: 'single', label: ' سینگل' },
     { value: 'tandem', label: ' تندم' },
-    { value: 'coach', label: ' مربی' },
   ];
 
 

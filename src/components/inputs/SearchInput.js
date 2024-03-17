@@ -15,7 +15,7 @@ const SearchInput = () => {
 
                     <input  type="text" className={`${inputStyles.searchInput} w-full py-3 px-8 rounded-xl`} placeholder="جست‌وجو کنید" id=""/>
                     
-                    <input className={`${inputStyles.searchedBaseOnButton} absolute left-0 h-full w-[94px] rounded-l-lg text-sm`} type="button" value="بر اساس"/>
+                    <input className={`${inputStyles.searchedBaseOnButton} absolute left-0 h-full w-[94px] rounded-l-2xl text-sm`} type="button" value="بر اساس"/>
 
                 </div>
             </div>

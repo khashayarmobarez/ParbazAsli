@@ -13,8 +13,11 @@ import { brandsOptionsData } from '../../../Utilities/Providers/dropdownInputOpt
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import DropdownInput from '../../inputs/DropDownInput'
+import { useNavigate } from 'react-router-dom';
 
 const ParachuteRenewal = () => {
+
+    const navigate = useNavigate()
 
 
     const [selectedClassType, setSelectedClassType] = useState('');
@@ -24,6 +27,13 @@ const ParachuteRenewal = () => {
     const handleSelectClassType = (event) => {
         setSelectedClassType(event.target.value);
     };
+
+    const handleSubmit = () => {
+         setShowPopup(false)
+
+    };
+
+
 
 
 
@@ -40,28 +50,28 @@ const ParachuteRenewal = () => {
                 <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
 
                     <div className='flex flex-col items-start gap-y-2'>
-                        <p className=' text-sm'>نوع دوره</p>
+                        <p className=' text-sm'>برند</p>
                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                             <p>لورم ایپسوم</p>
                         </div>
                     </div>
 
                     <div className='flex flex-col items-start gap-y-2'>
-                        <p className=' text-sm'>طول دوره</p>
+                        <p className=' text-sm'>مدل</p>
                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                             <p>لورم ایپسوم</p>
                         </div>
                     </div>
 
                     <div className='flex flex-col items-start gap-y-2'>
-                        <p className=' text-sm'>زمان شروع</p>
+                        <p className=' text-sm'>سایز</p>
                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                             <p>لورم ایپسوم</p>
                         </div>
                     </div>
 
                     <div className='flex flex-col items-start gap-y-2'>
-                        <p className=' text-sm'>زمان پایان</p>
+                        <p className=' text-sm'>حدود ساعت پرواز</p>
                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                             <p>لورم ایپسوم</p>
                         </div>
@@ -72,16 +82,16 @@ const ParachuteRenewal = () => {
                 <div id='no grid list' className='flex flex-col gap-y-5 mt-6'>
 
                     <div className='flex flex-col items-start gap-y-5 mx-4'>
-                            <p className=' text-sm'>مباحث مطرح شده</p>
+                            <p className=' text-sm'>سریال چتر کمکی</p>
                             
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                 <p>لورم ایپسوم</p>
                             </div>
 
-                            <DropdownInput name={'نوع دوره'} options={brandsOptionsData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                            <DropdownInput name={'تاریخ آخرین بسته‌بندی'} options={brandsOptionsData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
 
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                <p>لورم ایپسوم</p>
+                                <p>بسته‌بندی شده توسط(کد کاربری)</p>
                             </div>
                     </div>
 

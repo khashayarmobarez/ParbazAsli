@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // hooks
 import useClickOutside from '../../Utilities/Hooks/useClickOutside';
 
 // mui
-import { AppBar } from '@mui/material';
+import { AppBar, Avatar } from '@mui/material';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
@@ -35,6 +35,9 @@ const inlineStyles = {
 
 
 const Navbar = ({toggleTheme}) => {
+
+    // state to check the width of the device to remove profile picture for desktop size devices 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const burgerRef = useRef(null);
 
@@ -73,6 +76,22 @@ const Navbar = ({toggleTheme}) => {
         }
       }
 
+
+    // function to set the width of the device in the windowWidth state
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        // Listen to window resize event
+        window.addEventListener('resize', handleResize);
+
+        // Clean up event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []); 
+
     return (
         <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000' }} >
                          
@@ -96,6 +115,10 @@ const Navbar = ({toggleTheme}) => {
                                 <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
                                 
                                     <div className={`${GradientStyles.container2} ${styles.navList} ${isOpen ? styles.open : ''}`}>
+                                        {
+                                        windowWidth < 768 &&
+                                        <Avatar alt="Remy Sharp" sx={{height:'99px', width:'100px', zIndex:'0'}} />
+                                        }
                                         <ul className=' h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:w-[80%] md:text-sm z-101'>
                                             <li className={styles.navItem} onClick={() => clickInput()} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem} onClick={() => clickInput()}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>بلاگ</Link></li>

@@ -10,11 +10,12 @@ padding: 8rem 0 15vh 0;
 position: fixed;
 display: flex;
 flex-direction: column;
-justify-content: space-between;
+justify-content: start;
+row-gap: 3rem;
 align-items: center;
 left: -60%;
 list-style-type: none;
-height: 90%;
+height: 100%;
 width: 60%;
 border-radius:  0 0 2rem 0;
 transition: left 0.3s ease; /* Add transition for left property */

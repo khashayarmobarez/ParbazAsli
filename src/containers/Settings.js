@@ -111,10 +111,10 @@ const Settings = () => {
                         DropDown === 'dropDown4' &&
                         <div className='w-full flex flex-col px-3 text-sm gap-y-6' style={{color:'var(--soft-white)'}}>
                             <div className='flex justify-between items-center'>
-                                <p>مربی: محمود شیرازی‌نیا</p>
-                                <p>کد ملی: 22354678987</p>
+                                <p>مربی : محمود شیرازی‌نیا</p>
+                                <p>کد کاربری : 22354678987</p>
                             </div>
-                            <TextInput placeholder={'شماره ملی مربی جدید'} Type={'number'}/>
+                            <TextInput placeholder={'شماره کاربری مربی جدید'} Type={'number'}/>
                         </div>
                     }
                 </div>

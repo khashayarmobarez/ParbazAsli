@@ -9,7 +9,10 @@ import GradientStyles from '../styles/gradients/Gradient.module.css'
 // queries 
 import { useUserDetails } from '../Utilities/Services/queries';
 
+// mui
 import { Avatar } from '@mui/material';
+
+//  react router dom
 import { Link } from 'react-router-dom';
 
 // icons 
@@ -19,7 +22,11 @@ import pencil from '../assets/icons/pencil-alt.svg'
 import pencilV2 from '../assets/icons/pencil-alt copy.svg'
 
 // reuseable component 
-import SpeedoMeter from '../components/reuseable/SpeedoMeter';
+// import SpeedoMeter from '../components/reuseable/SpeedoMeter';
+import Slider from '../components/pages/Profile/Slider';
+
+
+
 
 const Profile = ({userRole}) => {
 
@@ -41,10 +48,10 @@ const Profile = ({userRole}) => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-12 w-[90%] md:w-[60%]'>
+            <div className='flex flex-col items-center justify-center gap-y-10 w-[100%] md:w-[60%]'>
 
                 {/* first data box  */}
-                <div className={`${boxStyles.containerDarkmode} flex items-center w-[100%] justify-around p-6 md:py-5 md:px-2`}>
+                <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] justify-around p-6 md:py-5 md:px-2`}>
 
                 {/* picture, name and code  */}
                         <div className='flex flex-col justify-center items-center ml-[6%] space-y-5 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
@@ -91,15 +98,16 @@ const Profile = ({userRole}) => {
 
                     </div>
 
+                    <Slider remainingDays={remainingDays} data={data}  />
+
                     {/* box 2, for mapping the parachute data  */}
-                    <div className=' flex flex-col space-y-8 md:space-y-0 md:flex-row w-[100%] md:self-start justify-between'>
+                    {/* <div className=' flex flex-col space-y-8 md:space-y-0 md:flex-row w-[100%] md:self-start justify-between'>
                         <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
                         <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
-                        {/* <SpeedoMeter remaining={remainingDays} data={data} className='z-10' /> */}
-                    </div>
+                    </div> */}
 
                     {/* buttons */}
-                    <div className='flex justify-between w-[100%] md:w-[47%] md:self-start'>
+                    <div className='flex justify-between w-[90%] md:w-[47%] md:self-start'>
 
                         <Link to='/equipment' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon'/>
@@ -111,21 +119,12 @@ const Profile = ({userRole}) => {
                             <p>آموزش</p>
                         </Link>
 
-                        {
-                        userRole === 'coach' &&
+                        
                         <Link className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} to='/'>
                             <img src={pencil} alt='icon'/>
                             <p>باشگاه</p>
                         </Link>
-                        }
-
-                        {
-                        userRole === 'student' &&
-                        <Link className={`${GradientStyles.container2Disabled} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} to='/'>
-                            <img src={pencilV2} style={{fill:'#535353'}} alt='icon'/>
-                            <p>باشگاه</p>
-                        </Link>
-                        }
+                        
 
                     </div>
 
