@@ -94,6 +94,7 @@ const Profile = ({userRole}) => {
                     {/* box 2, for mapping the parachute data  */}
                     <div className=' flex flex-col space-y-8 md:space-y-0 md:flex-row w-[100%] md:self-start justify-between'>
                         <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
+                        <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
                         {/* <SpeedoMeter remaining={remainingDays} data={data} className='z-10' /> */}
                     </div>
 

@@ -96,7 +96,7 @@ const AddClass = () => {
                 
             </form>
 
-        </div>
+        </div> 
     );
 };
 

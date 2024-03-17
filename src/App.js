@@ -39,6 +39,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
   import Syllabuses from './components/pages/AddFlight/Syllabuses';
   import FlightHistory from './containers/FlightHistory';
+  import Club from './containers/Club';
+  import AddClub from './components/pages/Club/AddClub';
   // addFlightComponents
   import AddFlight from './containers/AddFlight';
   import UploadIgc from './components/pages/AddFlight/UploadIgc';
@@ -50,7 +52,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
 import Settings from './containers/Settings';
 import Notifications from './containers/Notifications';
-import Club from './containers/Club';
   
 
 
@@ -112,11 +113,9 @@ function App() {
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
 
-                {/* club
-                <Route path='/club' element={<Club userRole={ userRole }  />}>
-                <Route path='/club' element={<Club userRole={ userRole }  />}>
-
-                </Route> */}
+                club
+                <Route path='/club' element={<Club userRole={ userRole }  />}/>
+                <Route path='/addClub' element={<AddClub userRole={ userRole }  />}/>
 
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
                     <Route index element={<UploadIgc />} />

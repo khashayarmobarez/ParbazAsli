@@ -56,7 +56,7 @@ const ClassesBox = (props) => {
                 </div>
 
                 {isExpanded &&
-                    <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col pt-10 pb-5`}>
+                    <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col pt-10 pb-8`}>
 
                     <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
     

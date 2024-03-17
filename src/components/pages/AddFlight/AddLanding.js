@@ -175,13 +175,13 @@ const AddLanding = ({userRole}) => {
                     <DropdownInput name={'سرعت باد'} options={flightHourOptionData} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} />
 
                     { userRole === 'coach' &&
-                    <form  className={` ${boxStyles.containerChangeOwnership} w-full flex flex-col justify-around items-center px-4 py-5 space-y-5`}>
+                    <div  className={` ${boxStyles.containerChangeOwnership} w-full flex flex-col justify-around items-center px-4 py-5 space-y-5`}>
 
                         <p className=' text-start text-sm w-full' >در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛ از این طریق می‌توانید متن آزمایشی و متن تستی خودتان. </p>
 
                         <button onClick={() => navigate('/AddFlight/syllabuses')} type="reset"  className={`${ButtonStyles.normalButton} w-full `} >سیلابس‌ها</button>
 
-                    </form>}
+                    </div>}
 
                     {flightType === 'tandem' && 
                     <TextInput value={passengerPhoneNumber} onChange={handlePassengerPhoneNum} placeholder='درج شماره تماس مسافر' />}
