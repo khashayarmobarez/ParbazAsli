@@ -25,7 +25,7 @@ const useAppModeEffect = (isDarkMode) => {
         
             
         // buttons(profile buttons and otherspages)
-        root.style.setProperty('--profile-buttons-background', 'linear-gradient(198deg, rgba(24,26,45,1) 10%, rgba(135,141,203,0.25) 65%)');
+        root.style.setProperty('--profile-buttons-background', 'linear-gradient(198deg, rgba(24,26,45,1) 10%, rgba(135,141,203,0.25) 70%)');
         root.style.setProperty('--profile-buttons-boxShadow', '-2px 3px 4.3px 1px #0000007A, 1px -1px 2.5px 0px #EBE0E082, 0px 4px 10.8px 2px #3F4D6C inset');
 
 
