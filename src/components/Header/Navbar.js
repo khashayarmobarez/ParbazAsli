@@ -93,11 +93,11 @@ const Navbar = ({toggleTheme}) => {
     }, []); 
 
     return (
-        <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000' }} >
+        <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000', }} >
                          
             <AppBar  sx={{
                 height:'62px',
-                background: '#131423',
+                background: '#131424',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
                     height: '80', // Adjust height for smaller screens}   
@@ -114,7 +114,11 @@ const Navbar = ({toggleTheme}) => {
                             <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
                                 <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
                                 
-                                    <div className={`${GradientStyles.container2} ${styles.navList} ${isOpen ? styles.open : ''}`}>
+                                    <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
+                                    style={{background:'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)',
+                                    border: '1px solid rgba(17, 24, 39, 0.1)',
+                                    boxShadow: '-2px 3px 4.3px 1px #0000007A'}}
+                                    >
                                         {
                                         windowWidth < 768 &&
                                         <Avatar alt="Remy Sharp" sx={{height:'99px', width:'100px', zIndex:'0'}} />

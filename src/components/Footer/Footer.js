@@ -8,9 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
 
 // mui 
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import { Box, BottomNavigation, BottomNavigationAction , Typography } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
@@ -35,6 +34,7 @@ const styles = {
       background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
       boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
       height: '75px',
+      
       '@media screen and (min-width: 768px)': {
         height: '100%',
         width: '100%',
@@ -46,6 +46,12 @@ const styles = {
       }
     }
   };
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'iransans',
+    },
+  });
 
 
 const Footer = () => {
@@ -60,6 +66,7 @@ const Footer = () => {
 
 
     return (
+      <ThemeProvider theme={theme}>
         <Box
         position='fixed'
         bottom={0} // Position the Footer at the bottom of the viewport
@@ -76,11 +83,12 @@ const Footer = () => {
                 setValue(newValue);
                 }}
             >
-                <BottomNavigationAction onClick={() => navigate('/profile')} label="پروفایل" icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                <BottomNavigationAction onClick={() => navigate('/addFlight')} label="ثبت پرواز" icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'10px', width:'2.4rem', height: '2.4rem'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                <BottomNavigationAction onClick={() => navigate('/flightHistory')} label="سوابق پرواز" icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/addFlight')} label={<Typography variant="body1" sx={{ fontSize: '16px' }}>ثبت پرواز</Typography>} icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'10px', width:'2.4rem', height: '2.4rem'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>سوابق پرواز</Typography>} icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
             </BottomNavigation>
         </Box>
+      </ThemeProvider>
     );
 };
 

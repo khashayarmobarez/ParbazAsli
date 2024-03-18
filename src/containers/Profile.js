@@ -19,7 +19,6 @@ import { Link } from 'react-router-dom';
 import flightHour from '../assets/icons/flightHour.svg'
 import flightQuan from '../assets/icons/flightQuantity.svg'
 import pencil from '../assets/icons/pencil-alt.svg'
-import pencilV2 from '../assets/icons/pencil-alt copy.svg'
 
 // reuseable component 
 // import SpeedoMeter from '../components/reuseable/SpeedoMeter';

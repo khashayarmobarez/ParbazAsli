@@ -9,15 +9,25 @@ const useAppModeEffect = (isDarkMode) => {
     const root = document.documentElement;
     if (isDarkMode) {
 
-            root.style.setProperty('--bg-color', '#131423');
-            root.style.setProperty('--text-color', '#ffffff');
-            root.style.setProperty('--yellow-text', '#A5E65E');
-            root.style.setProperty('--red-text', '#ED553B');
+        root.style.setProperty('--bg-color', '#131423');
+        root.style.setProperty('--text-color', '#ffffff');
+        root.style.setProperty('--yellow-text', '#A5E65E');
+        root.style.setProperty('--red-text', '#ED553B');
 
 
         // overall used colors
-            root.style.setProperty('--soft-white', '#F6FDEF');
-            root.style.setProperty('--softer-white', ' #CDD3D4');
+        root.style.setProperty('--soft-white', '#F6FDEF');
+        root.style.setProperty('--softer-white', ' #CDD3D4');
+
+        // speedometer background
+        root.style.setProperty('--speedometer-background', 'linear-gradient(195.31deg, #323232 -84.63%, rgba(34, 34, 34, 0.285) 48.09%, rgba(79, 79, 79, 0) 100.99%)');
+        root.style.setProperty('--speedometer-boxShadow', '-3px 4px 5.80px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E, 0px 4px 4px 0px #C2BDBD40 inset');
+        
+            
+        // buttons(profile buttons and otherspages)
+        root.style.setProperty('--profile-buttons-background', 'linear-gradient(198deg, rgba(24,26,45,1) 10%, rgba(135,141,203,0.25) 65%)');
+        root.style.setProperty('--profile-buttons-boxShadow', '-2px 3px 4.3px 1px #0000007A, 1px -1px 2.5px 0px #EBE0E082, 0px 4px 10.8px 2px #3F4D6C inset');
+
 
         // basic data box styles
             root.style.setProperty('--Basic-dataBox-bg', '#181A2D');

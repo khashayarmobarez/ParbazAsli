@@ -14,8 +14,8 @@
     align-items:center;
     width: 100%;
     height: 100%;
-    background: linear-gradient(222.79deg, #181A2D 31.59%, rgba(135, 141, 203, 0) 320.26%);
-    box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51), 0px 4px 10.800000190734863px 2px rgba(63, 77, 108, 1) inset;
+    background:  var(--profile-buttons-background);
+    box-shadow: var(--profile-buttons-boxShadow);
 }
 
 .ThreeStickedButtonButton:active {
@@ -28,8 +28,8 @@
   min-width: 110px;
   min-height: 44px;
   font-size: small;
-  background: linear-gradient(222.79deg, #181A2D 31.59%, rgba(135, 141, 203, 0) 170.26%);
-  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51), 0px 4px 10.800000190734863px 2px rgba(63, 77, 108, 1) inset;
+  background:  var(--profile-buttons-background);
+  box-shadow: var(--profile-buttons-boxShadow);
   border-radius: 2rem;
 }
 

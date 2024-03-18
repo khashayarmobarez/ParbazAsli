@@ -31,7 +31,7 @@ import Certificate from '../components/reuseable/Certificate';
 import TextInput from '../components/inputs/textInput';
 
 
-const Settings = () => {
+const Settings = ({ userRole }) => {
 
     // controlling  items drop down
     const [DropDown, setDropDown] = useState('')
@@ -109,16 +109,18 @@ const Settings = () => {
                     <DropDownLine  title='تغییر مربی' icon={moneyIcon} dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClick={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
                     {
                         DropDown === 'dropDown4' &&
-                        <div className='w-full flex flex-col px-3 text-sm gap-y-6' style={{color:'var(--soft-white)'}}>
-                            <div className='flex justify-between items-center'>
+                        <div className='w-full flex flex-col items-center px-3 text-sm gap-y-6' style={{color:'var(--soft-white)'}}>
+                            <div className='flex w-full justify-between items-center'>
                                 <p>مربی : محمود شیرازی‌نیا</p>
                                 <p>کد کاربری : 22354678987</p>
                             </div>
                             <TextInput placeholder={'شماره کاربری مربی جدید'} Type={'number'}/>
+                            <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
                         </div>
                     }
                 </div>
 
+                { userRole === 'coach' &&
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
                     <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
                     {
@@ -131,6 +133,7 @@ const Settings = () => {
                         </div>
                     }
                 </div>
+                }
                     
 
             </div>

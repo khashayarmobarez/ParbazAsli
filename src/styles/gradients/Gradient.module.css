@@ -5,9 +5,8 @@
 
 /* for lower buttons (gym, equipment, teach) in profile section */
 .container2 {
-    background: linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%),
-                linear-gradient(214.83deg, rgba(248, 248, 248, 0.46) -14.24%, rgba(17, 24, 39, 0) 70.57%);
-    box-shadow: -2px 3px 4.300000190734863px 1px #0000007A;
+    background: var(--profile-buttons-background);
+    box-shadow: var(--profile-buttons-boxShadow);
 }
 
 .container2Disabled {

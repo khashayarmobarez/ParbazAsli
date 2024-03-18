@@ -75,7 +75,10 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div onClick={() => navigate('/ParachuteRenewal')} className={`${GradientStyles.container2} absolute w-[111px] h-[111px] rounded-full flex justify-center items-center`}>
+            <div onClick={() => navigate('/ParachuteRenewal')} className={` absolute w-[111px] h-[111px] rounded-full flex justify-center items-center`} 
+            style={{background:'var(--speedometer-background)',
+            boxShadow: 'var(--speedometer-boxShadow)',
+            }}>
                 <p className=' text-[#A5E65E] text-xs'>تمدید زود هنگام</p>
             </div>
 
