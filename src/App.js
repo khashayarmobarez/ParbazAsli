@@ -121,7 +121,7 @@ function App() {
                     <Route index element={<UploadIgc />} />
                     <Route path="UploadIgc" element={ <UploadIgc />} />
                     <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
-                    <Route path="AddSituation" element={ <AddSituation />} />
+                    <Route path="AddSituation" element={ <AddSituation userRole={ userRole } />}  />
                     <Route path="AddTakeoff" element={ <AddTakeoff />} />
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
@@ -174,7 +174,7 @@ function App() {
                     <Route index element={<UploadIgc />} />
                     <Route path="UploadIgc" element={ <UploadIgc />} />
                     <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
-                    <Route path="AddSituation" element={ <AddSituation />} />
+                    <Route path="AddSituation" element={ <AddSituation userRole={ userRole } />} />
                     <Route path="AddTakeoff" element={ <AddTakeoff />} />
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>

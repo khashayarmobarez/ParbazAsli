@@ -20,7 +20,7 @@ import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFli
 import { updateCity, updateSight,updateClouds, updateFlightType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 
-const AddSituation = () => {
+const AddSituation = ({ userRole }) => {
 
     // redux
     const { city, sight, clouds, flightType } = useSelector(selectAddFlight)
@@ -54,7 +54,7 @@ const AddSituation = () => {
 
     const handleNextPageButton = () => {
 
-        if(city && sight && clouds && flightType) {
+        if(city && sight && clouds) {
             navigate('/addFlight/addTakeoff')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
@@ -123,7 +123,10 @@ const AddSituation = () => {
 
                     <DropdownInput name={'نوع پوشش ابری'} options={flightHourOptionData} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} />
                     
-                    <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} />
+                    {
+                        userRole === 'coach' &&
+                        <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} />
+                    }
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
