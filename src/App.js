@@ -174,6 +174,9 @@ function App() {
                 </Route>
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
+
+                {/* club */}
+                <Route path='/club' element={<Club userRole={ userRole }  />}/>
                 
                 {/* addFlight */}
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >

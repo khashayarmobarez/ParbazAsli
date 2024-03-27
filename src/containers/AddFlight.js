@@ -24,7 +24,7 @@ const AddFlight = ({userRole}) => {
 
                         <div className='flex flex-col items-start gap-y-3 col-span-3'>
                             <p className=' text-xs pr-2'>تاریخ پرواز</p>
-                            <div className= {`${boxStyles.classDetailsData} text-sm flex justify-start items-center px-2 w-full h-12 rounded-xl text-sm`}  id='data' >
+                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-2 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p className=' text-end'>1402/11/24</p>
                             </div>
                         </div>

@@ -10,6 +10,7 @@ const initialState = {
     flightHour:'',
     flightCount:'',
     coachingHours:'',
+    club:''
   };
 
 
