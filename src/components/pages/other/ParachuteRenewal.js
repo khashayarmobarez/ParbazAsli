@@ -113,7 +113,7 @@ const ParachuteRenewal = () => {
 
                 <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
 
-                <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
+                <p className='text-base w-[90%]' >ایا از صحت تمدید خود اطمینان دارید؟</p>
 
                 <div className='w-full flex justify-around items-center'>
                     <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>

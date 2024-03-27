@@ -93,6 +93,7 @@ function App() {
                 {/* notifications */}
                 <Route path='/notifications' element={<Notifications />} />
 
+                {/* equipment */}
                 <Route path='/equipment' element={<Equipment />} >
                     <Route index element={<FlightEquipment />} />
                     <Route path="flightEquipment" element={<FlightEquipment />} />
@@ -103,6 +104,7 @@ function App() {
                 <Route path='/equipment/addParachute' element={<AddParachute />} />
                 <Route path='/equipment/addHarness' element={<AddHarness />} />
 
+                {/* education */}
                 <Route path='/education' element={<Education userRole={ userRole }  />}>
                     <Route index element={<Syllabus />} />
                     <Route path="students" element={ <Students />} />
@@ -113,10 +115,11 @@ function App() {
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
 
-                club
+                {/* club */}
                 <Route path='/club' element={<Club userRole={ userRole }  />}/>
                 <Route path='/addClub' element={<AddClub userRole={ userRole }  />}/>
 
+                {/* add flight */}
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
                     <Route index element={<UploadIgc />} />
                     <Route path="UploadIgc" element={ <UploadIgc />} />
@@ -151,6 +154,7 @@ function App() {
                 {/* notifications */}
                 <Route path='/notifications' element={<Notifications />} />
 
+                {/* equipment */}
                 <Route path='/equipment' element={<Equipment />} >
                     <Route index element={<FlightEquipment />} />
                     <Route path="flightEquipment" element={<FlightEquipment />} />
@@ -161,6 +165,7 @@ function App() {
                 <Route path='/equipment/addParachute' element={<AddParachute />} />
                 <Route path='/equipment/addHarness' element={<AddHarness />} />
 
+                {/* education */}
                 <Route path='/education' element={<Education userRole={ userRole } />}>
                     <Route index element={<Syllabus />} />
                     <Route path="PracticalClass" element={ <PracticalClass />} />
@@ -170,6 +175,7 @@ function App() {
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
                 
+                {/* addFlight */}
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
                     <Route index element={<UploadIgc />} />
                     <Route path="UploadIgc" element={ <UploadIgc />} />

@@ -17,7 +17,7 @@ const TheoryClass = ({userRole}) => {
 
 
     return (
-        <div className='w-full flex flex-col space-y-10'>
+        <div className='w-full flex flex-col space-y-10 py-12'>
 
             {
             userRole === 'coach' &&
