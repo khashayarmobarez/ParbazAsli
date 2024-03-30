@@ -1,5 +1,8 @@
 import React from 'react';
 
+// styles
+import './Slider.css'
+
 // swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -19,33 +22,40 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, ]); // Optional for usi
 const Slider = ({remainingDays, data}) => {
     return (
         <div className='w-[100%] flex justify-center items-center'>
-             <Swiper
-                    style={{ paddingRight: '20px', paddingTop:'1rem' , height:'14rem'  }}
-                    // install Swiper modules
-                    modules={[Navigation, Pagination, A11y]}
-                    centeredSlides={true}
-                    spaceBetween={50}
-                    slidesPerView={1}
-                    pagination={{ clickable: true }}
-                    // navigation={{
-                    //     nextEl: '.swiper-button-next',
-                    //     prevEl: '.swiper-button-prev',
-                    // }}
-                    // pagination={{
-                    //     el: '.swiper-pagination',
-                    //     clickable: true,
-                    // }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
-                    >
-                    {/* map later */}
-                    <SwiperSlide>
-                        <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
-                    </SwiperSlide>
-                    <SwiperSlide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></SwiperSlide>
-                    <SwiperSlide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></SwiperSlide>
-                    <SwiperSlide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></SwiperSlide>
-            </Swiper>
+            <>
+                <Swiper
+                        style={{ paddingRight: '20px', paddingTop:'1rem' , height:'14rem'  }}
+                        // install Swiper modules
+                        modules={[Navigation, Pagination, A11y]}
+                        centeredSlides={true}
+                        spaceBetween={50}
+                        slidesPerView={1}
+                        pagination={{ clickable: true }}
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }}
+                        // pagination={{
+                        //     el: '.swiper-pagination',
+                        //     clickable: true,
+                        // }}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        onSlideChange={() => console.log('slide change')}
+                        >
+                        {/* map later */}
+                        <SwiperSlide>
+                            <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
+                        </SwiperSlide>
+                        <SwiperSlide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></SwiperSlide>
+                        <SwiperSlide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></SwiperSlide>
+                        <SwiperSlide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></SwiperSlide>
+                </Swiper>
+            </>
+            
+            {/* <div className='absolute flex w-[80%]'>
+                <div className="swiper-button-prev custom-prev-button">Previous</div>
+                <div className="swiper-button-next custom-next-button">Next</div>
+            </div> */}
         </div>
     );
 };
