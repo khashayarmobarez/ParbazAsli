@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.390187f3.css",
+    "main.js": "/static/js/main.3fb7a833.js",
+    "static/media/ne_50m_land.topojson": "/static/media/ne_50m_land.f8699379e664ac171938.topojson",
+    "static/media/IRANSansX-Light.ttf": "/static/media/IRANSansX-Light.eef71fbe1f6b4acdcaaf.ttf",
+    "static/media/IRANSansX-DemiBold.ttf": "/static/media/IRANSansX-DemiBold.3be5bc7da33e456d69fb.ttf",
+    "static/media/IRANSansX-Bold.ttf": "/static/media/IRANSansX-Bold.d363547f339c9b864981.ttf",
+    "static/media/IRANSansX-Regular.ttf": "/static/media/IRANSansX-Regular.85fe140285dd2b37fb75.ttf",
+    "static/media/Digilogbook -1401 1.svg": "/static/media/Digilogbook -1401 1.b705141446596509f6d1a14bdc9e8a68.svg",
+    "static/media/certificate-Vector.svg": "/static/media/certificate-Vector.e6f91545a28b4324d0e8f9b8af5fcd41.svg",
+    "static/media/Right Arrow Button.svg": "/static/media/Right Arrow Button.69d4ff57c25c6bbd95df4b90dcb9e2c8.svg",
+    "static/media/flightQuantity.svg": "/static/media/flightQuantity.184938c074caa8b25f82bc86a20e5a57.svg",
+    "static/media/clipboard.svg": "/static/media/clipboard.f24ff5f0a2c97b57e426f208e220aab6.svg",
+    "static/media/Icon-settings.svg": "/static/media/Icon-settings.e99e56051660edde990f09252fa8743c.svg",
+    "static/media/users-Icon.svg": "/static/media/users-Icon.5cedbfe2968aaec161e9237592a1d6ac.svg",
+    "static/media/phone-Icon (Stroke).svg": "/static/media/phone-Icon (Stroke).b78c012c9f767b0906ad944b270af038.svg",
+    "static/media/logout.svg": "/static/media/logout.80e4b294dbd12c37a1ff36389279f5dc.svg",
+    "static/media/pencil-alt.svg": "/static/media/pencil-alt.8c1db617b223c0b169a524c515d02668.svg",
+    "static/media/mail-Icon (Stroke).svg": "/static/media/mail-Icon (Stroke).9c55946951cf8b24b99ff3e3a9b761d7.svg",
+    "static/media/IGC-Download.svg": "/static/media/IGC-Download.17d4ee24781abb7cb16b0d1a16f19021.svg",
+    "static/media/money-Icon.svg": "/static/media/money-Icon.88fd39cf36e2f8beb34357f3653c42ff.svg",
+    "index.html": "/index.html",
+    "static/media/key-Icon.svg": "/static/media/key-Icon.03337e832bae00e0712002d8185586fc.svg",
+    "static/media/user-Icon.svg": "/static/media/user-Icon.3e14929647521528ae32f7afdf6d562a.svg",
+    "static/media/check-badge.svg": "/static/media/check-badge.bf05688560b877902be39de9dd9da584.svg",
+    "static/media/calender-Icon.svg": "/static/media/calender-Icon.e4339234ea913fa1a2758d17798aedeb.svg",
+    "static/media/flightHour.svg": "/static/media/flightHour.bf090b9031f934d5e079520a9155eae6.svg",
+    "static/media/3dCube.svg": "/static/media/3dCube.94307efdc6b42544cdfcaa915cf41f7d.svg",
+    "main.390187f3.css.map": "/static/css/main.390187f3.css.map",
+    "main.3fb7a833.js.map": "/static/js/main.3fb7a833.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.390187f3.css",
+    "static/js/main.3fb7a833.js"
+  ]
+}
