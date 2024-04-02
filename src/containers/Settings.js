@@ -27,7 +27,7 @@ import WebColorMode from '../components/pages/Settings/WebColorMode';
 import FixedInput from '../components/inputs/FixedInput';
 import PasswordInput from '../components/inputs/PasswordInput';
 import InputWithButton from '../components/inputs/InputWithButton';
-import Certificate from '../components/reuseable/Certificate';
+import Certificate from '../components/pages/Settings/Certificate';
 import TextInput from '../components/inputs/textInput';
 
 

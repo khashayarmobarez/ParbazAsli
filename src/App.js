@@ -55,6 +55,7 @@ import Notifications from './containers/Notifications';
 import ClubEquipment from './components/pages/Club/ClubEquipment';
 import ClubCoaches from './components/pages/Club/ClubCoaches';
 import ClubStudents from './components/pages/Club/ClubStudents';
+import RenewCertificate from './components/pages/Settings/RenewCertificate';
   
 
 
@@ -146,6 +147,7 @@ function App() {
 
                 {/* settings */}
                 <Route path='/Settings' element={<Settings userRole={ userRole } />} />
+                <Route path='/Settings/certificate' element={<RenewCertificate />} />
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
@@ -202,6 +204,7 @@ function App() {
 
                 {/* settings */}
                 <Route path='/Settings' element={<Settings userRole={ userRole }  />} />
+                <Route path='/Settings/certificate' element={<RenewCertificate />} />
                 
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 

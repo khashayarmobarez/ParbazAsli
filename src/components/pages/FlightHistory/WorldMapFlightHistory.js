@@ -28,7 +28,7 @@ const WorldMapFlightHistory = () => {
             <ComposableMap width={mapWidth}
       height={mapHeight} >
                 <ZoomableGroup zoom={1}
-                    maxZoom={10}
+                    maxZoom={50}
                     translateExtent={[
                         [0, 0],
                         [mapWidth, mapHeight]

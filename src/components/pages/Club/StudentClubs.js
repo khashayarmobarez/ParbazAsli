@@ -38,7 +38,7 @@ const StudentClubs = () => {
 
                 </div>
 
-                <button className={`${ButtonStyles.normalButton}`}  > مشاهده</button>
+                <button className={`${ButtonStyles.normalButton}`} onClick={() => navigate('/club/clubHistory')}  > مشاهده</button>
             </div>
 
             <div className={`${dataBox.containerDarkmode} w-[90%] flex justify-between items-center py-4 px-5 h-22 rounded-[34px]`}>
