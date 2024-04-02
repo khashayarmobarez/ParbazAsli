@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ParbazAsli/static/css/main.0bdb874d.css",
-    "main.js": "/ParbazAsli/static/js/main.b0d9347d.js",
+    "main.js": "/ParbazAsli/static/js/main.8d6d8a11.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.80f20256a6ee5c9ae290.topojson",
     "static/media/IRANSansX-Light.ttf": "/ParbazAsli/static/media/IRANSansX-Light.eef71fbe1f6b4acdcaaf.ttf",
     "static/media/IRANSansX-DemiBold.ttf": "/ParbazAsli/static/media/IRANSansX-DemiBold.3be5bc7da33e456d69fb.ttf",
@@ -29,10 +29,10 @@
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.0f25f05198b862f051507f178eb7722d.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.e79604f297dfd13a3ebfec42d50c1c7a.svg",
     "main.0bdb874d.css.map": "/ParbazAsli/static/css/main.0bdb874d.css.map",
-    "main.b0d9347d.js.map": "/ParbazAsli/static/js/main.b0d9347d.js.map"
+    "main.8d6d8a11.js.map": "/ParbazAsli/static/js/main.8d6d8a11.js.map"
   },
   "entrypoints": [
     "static/css/main.0bdb874d.css",
-    "static/js/main.b0d9347d.js"
+    "static/js/main.8d6d8a11.js"
   ]
 }
