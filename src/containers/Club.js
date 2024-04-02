@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -8,9 +9,9 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../Utilities/ReduxToolKit/features/userData/userSlice';
 
 // components
-import AddClub from '../components/pages/Club/AddClub';
 import ClubData from '../components/pages/Club/ClubData';
-import { Link, Outlet } from 'react-router-dom';
+import ClubMemberCoach from '../components/pages/Club/ClubMemberCoach';
+import StudentClubs from '../components/pages/Club/StudentClubs';
 
 const Club = () => {
 
@@ -34,7 +35,7 @@ const Club = () => {
   }, []);
 
     return (
-        <div className='pt-24 flex justify-center'>
+        <div className='pt-14 flex justify-center'>
             {   
                 userRole === 'coach' ? 
 
@@ -47,7 +48,7 @@ const Club = () => {
                     manager ?
 
                         // club manager 
-                        <div className=' flex flex-col items-center w-[100%] gap-y-6'>
+                        (<div className=' flex flex-col items-center w-[100%] gap-y-6 mt-10'>
 
                             <ClubData />
 
@@ -57,26 +58,27 @@ const Club = () => {
                                 <Link ref={buttonRef} to='/club/clubStudents' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'clubStudents' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubStudents')} >هنرجویان</Link>
                             </div>
 
+
                             <Outlet />
                             
-                        </div>
+                        </div>)
 
                         :
 
                         // coach who is part of a club
-                        <p>coach who is part of a club</p>
+                        <ClubMemberCoach />
                     )
 
                     :
 
                     // return for coach without club 
-                    <AddClub />
+                    <StudentClubs />
                 )
 
                 :
 
                 // return for student
-                <p>student</p>
+                <StudentClubs />
             }
         </div>
     );

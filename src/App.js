@@ -40,7 +40,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import Syllabuses from './components/pages/AddFlight/Syllabuses';
   import FlightHistory from './containers/FlightHistory';
   import Club from './containers/Club';
-  import AddClub from './components/pages/Club/AddClub';
+  import ClubHistory from './components/pages/Club/ClubHistory';
   // addFlightComponents
   import AddFlight from './containers/AddFlight';
   import UploadIgc from './components/pages/AddFlight/UploadIgc';
@@ -125,7 +125,7 @@ function App() {
                     <Route path="clubCoaches" element={ < ClubCoaches userRole={ userRole } />} />
                     <Route path="clubStudents" element={< ClubStudents userRole={ userRole } />} />
                 </Route>
-                <Route path='/addClub' element={<AddClub userRole={ userRole }  />}/>
+                <Route path='/club/clubHistory' element={<ClubHistory userRole={ userRole }  />}/>
 
                 {/* add flight */}
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
@@ -185,6 +185,7 @@ function App() {
 
                 {/* club */}
                 <Route path='/club' element={<Club userRole={ userRole }  />}/>
+                <Route path='/club/clubHistory' element={<ClubHistory userRole={ userRole }  />}/>
                 
                 {/* addFlight */}
                 <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
