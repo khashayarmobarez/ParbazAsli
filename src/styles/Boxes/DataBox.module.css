@@ -2,9 +2,8 @@
 /* profile user data and parachute stylings  */
 .containerDarkmode {
     min-height: 3rem;
-    border-radius: 20px;
     background: linear-gradient(5.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%);
-    box-shadow: -3px 4px 5.800000190734863px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E;
+    box-shadow: -3px 4px 5.8px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E;
 }
 
 .containerChangeOwnership {

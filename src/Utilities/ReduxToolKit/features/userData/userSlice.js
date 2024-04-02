@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     userRole:'coach',
+    club:'test',
+    manager:'true',
     name:'',
     packageRemainingDays: '',
     certificate:'',
@@ -10,7 +12,6 @@ const initialState = {
     flightHour:'',
     flightCount:'',
     coachingHours:'',
-    club:''
   };
 
 

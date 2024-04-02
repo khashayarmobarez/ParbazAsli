@@ -52,6 +52,9 @@ import 'react-toastify/dist/ReactToastify.css';
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
 import Settings from './containers/Settings';
 import Notifications from './containers/Notifications';
+import ClubEquipment from './components/pages/Club/ClubEquipment';
+import ClubCoaches from './components/pages/Club/ClubCoaches';
+import ClubStudents from './components/pages/Club/ClubStudents';
   
 
 
@@ -116,7 +119,12 @@ function App() {
                 <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
 
                 {/* club */}
-                <Route path='/club' element={<Club userRole={ userRole }  />}/>
+                <Route path='/club' element={<Club userRole={ userRole }  />}>
+                    <Route index element={< ClubEquipment />} />
+                    <Route path="clubEquipment" element={ < ClubEquipment />} />
+                    <Route path="clubCoaches" element={ < ClubCoaches userRole={ userRole } />} />
+                    <Route path="clubStudents" element={< ClubStudents userRole={ userRole } />} />
+                </Route>
                 <Route path='/addClub' element={<AddClub userRole={ userRole }  />}/>
 
                 {/* add flight */}

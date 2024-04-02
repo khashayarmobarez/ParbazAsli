@@ -35,7 +35,7 @@ const Profile = ({userRole}) => {
 
 
     return (
-        <div className='flex flex-col items-center py-24'>
+        <div className='flex flex-col items-center pt-24 pb-4'>
 
             {
                 isLoading && isFetching && <h2 className=' text-white mt-'>is loading...</h2>
@@ -50,7 +50,7 @@ const Profile = ({userRole}) => {
             <div className='flex flex-col items-center justify-center gap-y-10 w-[100%] md:w-[60%]'>
 
                 {/* first data box  */}
-                <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] justify-around p-6 md:py-5 md:px-2`}>
+                <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] justify-around p-6 md:py-5 md:px-2 rounded-3xl`}>
 
                 {/* picture, name and code  */}
                         <div className='flex flex-col justify-center items-center ml-[6%] space-y-5 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
