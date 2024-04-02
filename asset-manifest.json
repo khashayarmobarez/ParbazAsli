@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ParbazAsli/static/css/main.c65b83b5.css",
-    "main.js": "/ParbazAsli/static/js/main.2b25d330.js",
+    "main.css": "/ParbazAsli/static/css/main.c6707538.css",
+    "main.js": "/ParbazAsli/static/js/main.624b5475.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.f8699379e664ac171938.topojson",
     "static/media/IRANSansX-Light.ttf": "/ParbazAsli/static/media/IRANSansX-Light.eef71fbe1f6b4acdcaaf.ttf",
     "static/media/IRANSansX-DemiBold.ttf": "/ParbazAsli/static/media/IRANSansX-DemiBold.3be5bc7da33e456d69fb.ttf",
@@ -27,11 +27,11 @@
     "static/media/calender-Icon.svg": "/ParbazAsli/static/media/calender-Icon.e4339234ea913fa1a2758d17798aedeb.svg",
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.bf090b9031f934d5e079520a9155eae6.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.94307efdc6b42544cdfcaa915cf41f7d.svg",
-    "main.c65b83b5.css.map": "/ParbazAsli/static/css/main.c65b83b5.css.map",
-    "main.2b25d330.js.map": "/ParbazAsli/static/js/main.2b25d330.js.map"
+    "main.c6707538.css.map": "/ParbazAsli/static/css/main.c6707538.css.map",
+    "main.624b5475.js.map": "/ParbazAsli/static/js/main.624b5475.js.map"
   },
   "entrypoints": [
-    "static/css/main.c65b83b5.css",
-    "static/js/main.2b25d330.js"
+    "static/css/main.c6707538.css",
+    "static/js/main.624b5475.js"
   ]
 }
