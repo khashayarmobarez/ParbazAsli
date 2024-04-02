@@ -1,11 +1,16 @@
 import React from 'react';
 import { ComposableMap, Geographies, Geography, Marker, Annotation, ZoomableGroup } from 'react-simple-maps';
 
-import geoMap from '../../assets/map/ne_50m_land.topojson'
+import geoMap from '../../../assets/map/ne_50m_land.topojson'
+
+
+const mapWidth = 800;
+const mapHeight = 600;
 
 
 const WorldMapFlightHistory = () => {
 
+   
     const markers = [
         {
             id:1,
@@ -20,8 +25,14 @@ const WorldMapFlightHistory = () => {
 
     return (
         <div  className='w-full  flex flex-col md:max-h-[80vh]'>
-            <ComposableMap >
-                <ZoomableGroup zoom={1}>
+            <ComposableMap width={mapWidth}
+      height={mapHeight} >
+                <ZoomableGroup zoom={1}
+                    maxZoom={10}
+                    translateExtent={[
+                        [0, 0],
+                        [mapWidth, mapHeight]
+                      ]}>
                     <Geographies geography={geoMap} >
 
                         {

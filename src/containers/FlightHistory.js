@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PageTitle from '../components/reuseable/PageTitle';
 import SearchInput from '../components/inputs/SearchInput';
 import DropDownLineFlightHistory from '../components/reuseable/DropDownLineFlightHistory'
-import WorldMapFlightHistory from '../components/reuseable/WorldMapFlightHistory';
+import WorldMapFlightHistory from '../components/pages/FlightHistory/WorldMapFlightHistory';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
