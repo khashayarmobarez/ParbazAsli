@@ -7,6 +7,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 const TextInput = ({ value, onChange, placeholder, Type, icon }) => {
 
   const [filled, setFilled] = useState(false);
+  
 
   // Function to handle changes in the input value
   const handleInputChange = (event) => {

@@ -67,6 +67,12 @@ const useAppModeEffect = (isDarkMode) => {
         // setting input Background
         root.style.setProperty('--dark-input-bg', '#181A2D');
         root.style.setProperty('--dark-input-boxShadow', ' -3px 4px 4px 1px rgba(0, 0, 0, 0.32)');
+        
+        // club => coaches => coaches details boxes
+        root.style.setProperty('--coachesDetails-bg', 'linear-gradient(200.38deg, #181A2D -10.59%, rgba(135, 141, 203, 0.8) 323.12%)');
+        root.style.setProperty('--coachesDetails-BoxShadow', ' 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51)');
+        
+
             
  
 

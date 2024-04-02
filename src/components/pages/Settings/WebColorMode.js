@@ -18,7 +18,7 @@ const WebColorMode = () => {
 
             <label className={ButtonsBox.switch} >
                 <input type="checkbox" />
-                <span className={ButtonsBox.slider}></span>
+                <span className={`${ButtonsBox.slider}`}></span>
             </label>
 
         </div>
