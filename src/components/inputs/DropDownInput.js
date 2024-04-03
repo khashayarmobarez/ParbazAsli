@@ -8,7 +8,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg'
 
 
-const DropdownInput = ({ options, selectedOption, handleSelectChange, name }) => {
+const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon }) => {
 
   const [filled, setFilled] = useState(false);
 
@@ -18,9 +18,15 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name }) =>
 
   return (
     <div className='flex relative w-[100%] h-12 rounded-xl'>
+      {icon ?
       <span> 
-        <img src={Cube} alt='icon' className=' absolute mt-3 mr-1 w-6' />
+        <img src={icon} alt='icon' className=' absolute mt-3 mr-2 w-5' />
       </span>
+      :
+      <span> 
+        <img src={Cube} alt='icon' className=' absolute mt-3 mr-2 w-6' />
+      </span>
+      }
       <select className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`} id="dropdown" value={selectedOption} onChange={(event) => {handleInputChange(event);handleSelectChange(event);}} >
         <option value="" disabled>{name}</option>
         {options.map((option) => (
