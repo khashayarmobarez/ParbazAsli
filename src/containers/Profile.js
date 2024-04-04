@@ -20,9 +20,8 @@ import flightHour from '../assets/icons/flightHour.svg'
 import flightQuan from '../assets/icons/flightQuantity.svg'
 import pencil from '../assets/icons/pencil-alt.svg'
 
-// reuseable component 
-// import SpeedoMeter from '../components/reuseable/SpeedoMeter';
-import Slider from '../components/pages/Profile/Slider';
+// components
+import SwiperSlider from '../components/pages/Profile/SwiperSlider';
 
 
 
@@ -97,7 +96,7 @@ const Profile = ({userRole}) => {
 
                     </div>
 
-                    <Slider remainingDays={remainingDays} data={data}  />
+                    <SwiperSlider remainingDays={remainingDays} data={data} />
 
                     {/* box 2, for mapping the parachute data  */}
                     {/* <div className=' flex flex-col space-y-8 md:space-y-0 md:flex-row w-[100%] md:self-start justify-between'>

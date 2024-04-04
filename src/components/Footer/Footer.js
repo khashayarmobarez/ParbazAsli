@@ -21,7 +21,7 @@ const styles = {
       width: '100%',
       zIndex: 1,
       background: '#131423',
-      borderRadius: '2rem 0 0 2rem',
+      borderRadius: '0rem 0 0 0rem',
       '@media screen and (min-width: 768px)': {
         right: 0,
         top: '15%',
