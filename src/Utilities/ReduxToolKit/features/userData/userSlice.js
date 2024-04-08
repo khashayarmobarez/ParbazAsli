@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     userRole:'organization',
-    club:'test',
+    club:'coach',
     manager:true,
     name:'',
     packageRemainingDays: '',

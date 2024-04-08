@@ -7,11 +7,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // import styles from './Footer.module.css';
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
 
+// assets
+import badgeCheck from '../../assets/icons/check-badge.svg'
+import dashboard from '../../assets/icons/dashboard.svg'
+
 // mui 
 import { Box, BottomNavigation, BottomNavigationAction , Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AddIcon from '@mui/icons-material/Add';
 
 
@@ -86,9 +91,9 @@ const Footer = ({ userRole }) => {
                 setValue(newValue);
                 }}
                 >
-                  <BottomNavigationAction onClick={() => navigate('/organizationDashboard')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>داشبورد</Typography>} icon={<PersonOutlineOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationDashboard' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                  <BottomNavigationAction onClick={() => navigate('/organizationCoaches')} label={<Typography variant="body1" sx={{ fontSize: '16px' }}>مربی</Typography>} icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationCoaches' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}}/>
-                  <BottomNavigationAction onClick={() => navigate('/organizationPilots')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>خلبان</Typography>} icon={<FolderOutlinedIcon/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationPilots' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                  <BottomNavigationAction onClick={() => navigate('/organizationDashboard')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>داشبورد</Typography>} icon={<img src={dashboard} alt='icon' className='w-8 p-1' />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationDashboard' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                  <BottomNavigationAction onClick={() => navigate('/organizationCoaches')} label={<Typography variant="body1" sx={{ fontSize: '16px' }}>مربی</Typography>} icon={<AccountCircleOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationCoaches' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}}/>
+                  <BottomNavigationAction onClick={() => navigate('/organizationPilots')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>خلبان</Typography>} icon={<img src={badgeCheck} alt='icon' className='w-8 p-1' />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationPilots' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
                 </BottomNavigation>
 
                 :
