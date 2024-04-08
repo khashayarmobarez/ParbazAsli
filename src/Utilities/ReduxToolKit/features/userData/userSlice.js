@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    userRole:'coach',
+    userRole:'organization',
     club:'test',
     manager:true,
     name:'',

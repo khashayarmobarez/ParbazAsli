@@ -48,16 +48,20 @@ import 'react-toastify/dist/ReactToastify.css';
   import AddSituation from './components/pages/AddFlight/AddSituation';
   import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
   import AddLanding from './components/pages/AddFlight/AddLanding';
-// Student components 
+  // Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
-import Settings from './containers/Settings';
-import Notifications from './containers/Notifications';
-import ClubEquipment from './components/pages/Club/ClubEquipment';
-import ClubCoaches from './components/pages/Club/ClubCoaches';
-import ClubStudents from './components/pages/Club/ClubStudents';
-import RenewCertificate from './components/pages/Settings/RenewCertificate';
+  import Settings from './containers/Settings';
+  import Notifications from './containers/Notifications';
+  import ClubEquipment from './components/pages/Club/ClubEquipment';
+  import ClubCoaches from './components/pages/Club/ClubCoaches';
+  import ClubStudents from './components/pages/Club/ClubStudents';
+  import RenewCertificate from './components/pages/Settings/RenewCertificate';
+  // organization components
+  import OrganDashboard from './containers/OrganDashboard';
+import OrganCoaches from './containers/OrganCoaches';
+import OrganPilots from './containers/OrganPilots';
+import PilotsHistory from './components/pages/Organization/PilotsHistory';
   
-
 
 
 
@@ -83,30 +87,41 @@ function App() {
   return (
       <QueryClientProvider client={queryClient}>
 
-        <div className="App ">
+        <div className="App">
           <Navbar toggleTheme={toggleTheme}  />
             <Routes>
+
+            {/* same components for coach and student  */}
+              {(userRole === 'coach' || userRole === 'student') && (
+                <>
+                  <Route path='/profile' element={<Profile userRole={ userRole } />} />
+
+                  {/* notifications */}
+                  <Route path='/notifications' element={<Notifications />} />
+
+                  {/* equipment */}
+                  <Route path='/equipment' element={<Equipment />} >
+                      <Route index element={<FlightEquipment />} />
+                      <Route path="flightEquipment" element={<FlightEquipment />} />
+                      <Route path="parachute" element={<Parachute />} />
+                      <Route path="harness" element={<Harness />} />
+                  </Route>
+                  <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
+                  <Route path='/equipment/addParachute' element={<AddParachute />} />
+                  <Route path='/equipment/addHarness' element={<AddHarness />} />
+
+                  {/* flight history */}
+                  <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
+
+                  <Route path='*' element={<Navigate to="/profile" replace />} />
+
+                </>
+              )}
 
 
             {/* coach view, rendering routes based on the rule of the user */}
             {userRole === 'coach' && (
               <>
-              
-                <Route path='/profile' element={<Profile userRole={ userRole } />} />
-                
-                {/* notifications */}
-                <Route path='/notifications' element={<Notifications />} />
-
-                {/* equipment */}
-                <Route path='/equipment' element={<Equipment />} >
-                    <Route index element={<FlightEquipment />} />
-                    <Route path="flightEquipment" element={<FlightEquipment />} />
-                    <Route path="parachute" element={<Parachute />} />
-                    <Route path="harness" element={<Harness />} />
-                </Route>
-                <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
-                <Route path='/equipment/addParachute' element={<AddParachute />} />
-                <Route path='/equipment/addHarness' element={<AddHarness />} />
 
                 {/* education */}
                 <Route path='/education' element={<Education userRole={ userRole }  />}>
@@ -139,17 +154,12 @@ function App() {
                 </Route>
                 <Route path="addFlight/syllabuses" element={ <Syllabuses />} />
 
-                {/* flight history */}
-                <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
-
                 {/* notifications */}
                 <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
 
                 {/* settings */}
                 <Route path='/Settings' element={<Settings userRole={ userRole } />} />
                 <Route path='/Settings/certificate' element={<RenewCertificate />} />
-                
-                <Route path='*' element={<Navigate to="/profile" replace />} />
 
               </>
             )}
@@ -158,22 +168,7 @@ function App() {
             {/* many of the student components are reused and got from the coach sections */}
             {userRole === 'student' && (
               <>
-              
-                <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
-                {/* notifications */}
-                <Route path='/notifications' element={<Notifications />} />
-
-                {/* equipment */}
-                <Route path='/equipment' element={<Equipment />} >
-                    <Route index element={<FlightEquipment />} />
-                    <Route path="flightEquipment" element={<FlightEquipment />} />
-                    <Route path="parachute" element={<Parachute />} />
-                    <Route path="harness" element={<Harness />} />
-                </Route>
-                <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
-                <Route path='/equipment/addParachute' element={<AddParachute />} />
-                <Route path='/equipment/addHarness' element={<AddHarness />} />
 
                 {/* education */}
                 <Route path='/education' element={<Education userRole={ userRole } />}>
@@ -199,20 +194,29 @@ function App() {
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
 
-                {/* flight history */}
-                <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
-
                 {/* settings */}
                 <Route path='/Settings' element={<Settings userRole={ userRole }  />} />
                 <Route path='/Settings/certificate' element={<RenewCertificate />} />
-                
-                <Route path='*' element={<Navigate to="/profile" replace />} />
 
               </>
             )}
 
+            {/* organization login specific */}
+            {userRole === 'organization' && (
+              <>
+                <Route path='/organizationDashboard' element={<OrganDashboard  />} />
+
+                <Route path='/organizationCoaches' element={<OrganCoaches  />} />
+                
+                <Route path='/organizationPilots' element={<OrganPilots  />} />
+                <Route path='/organizationPilots/PilotsHistory' element={<PilotsHistory  />} />
+
+                <Route path='*' element={<Navigate to="/organizationDashboard" replace />} />
+              </>
+            )}
+
             </Routes>
-          <Footer />
+          <Footer userRole = { userRole } />
           <ToastContainer/>
         </div>
 
