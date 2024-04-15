@@ -61,6 +61,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import OrganCoaches from './containers/OrganCoaches';
 import OrganPilots from './containers/OrganPilots';
 import PilotsHistory from './components/pages/Organization/PilotsHistory';
+import CoachHistory from './components/pages/Organization/CoachHistory';
   
 
 
@@ -207,6 +208,7 @@ function App() {
                 <Route path='/organizationDashboard' element={<OrganDashboard  />} />
 
                 <Route path='/organizationCoaches' element={<OrganCoaches  />} />
+                <Route path='/organizationCoaches/coachHistory' element={<CoachHistory  />} />
                 
                 <Route path='/organizationPilots' element={<OrganPilots  />} />
                 <Route path='/organizationPilots/PilotsHistory' element={<PilotsHistory  />} />

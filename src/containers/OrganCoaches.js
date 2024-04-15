@@ -20,6 +20,7 @@ const OrganCoaches = () => {
     return (
         <div className='pt-24 md:pt-32 w-full flex justify-center'>
             <div className='w-[90%] md:w-[65%] flex flex-col gap-y-12'>
+
                 <SearchInput />
 
 
@@ -32,7 +33,7 @@ const OrganCoaches = () => {
                             </span>
                             <p>رضا نظری</p>
                             <p>ساعت</p>
-                            <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <button onClick={() => navigate('/organizationCoaches/coachHistory')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                                 <img src={clipboard} alt='icon' />
                             </button>
                     </div>
@@ -43,7 +44,7 @@ const OrganCoaches = () => {
                             </span>
                             <p>رضا نظری</p>
                             <p>ساعت</p>
-                            <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <button onClick={() => navigate('/organizationCoaches/coachHistory')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                                 <img src={clipboard} alt='icon' />
                             </button>
                     </div>

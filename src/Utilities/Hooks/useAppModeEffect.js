@@ -11,6 +11,7 @@ const useAppModeEffect = (isDarkMode) => {
 
         root.style.setProperty('--bg-color', '#131423');
         root.style.setProperty('--text-color', '#ffffff');
+        root.style.setProperty('--low-opacity-white', 'rgba(255, 255, 255, 0.3)');
         root.style.setProperty('--yellow-text', '#A5E65E');
         root.style.setProperty('--red-text', '#ED553B');
 
@@ -71,6 +72,14 @@ const useAppModeEffect = (isDarkMode) => {
         // club => coaches => coaches details boxes
         root.style.setProperty('--coachesDetails-bg', 'linear-gradient(200.38deg, #181A2D -10.59%, rgba(135, 141, 203, 0.8) 323.12%)');
         root.style.setProperty('--coachesDetails-BoxShadow', ' 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51)');
+        
+        // organization/couches details/ coach data
+        root.style.setProperty('--organs-coachData-bg', 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)')
+        root.style.setProperty('--organs-coachData-boxShadow', ' -3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)')
+          // color for coach data box, right side color
+          root.style.setProperty('--boxes-yellow-side', 'linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%)')
+
+
         
 
             
