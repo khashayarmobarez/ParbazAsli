@@ -78,6 +78,7 @@ const useAppModeEffect = (isDarkMode) => {
         root.style.setProperty('--organs-coachData-boxShadow', ' -3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)')
           // color for coach data box, right side color
           root.style.setProperty('--boxes-yellow-side', 'linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%)')
+          root.style.setProperty('--boxes-yellow-side-boxshadow', '-2px 3px 4.3px 1px #0000007A,1px -1px 2.6px 0px #EBE0E082, 0px 4px 10.8px 2px #46AE2D inset')
 
 
         
