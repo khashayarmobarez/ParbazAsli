@@ -7,7 +7,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 const SearchInput = () => {
     return (
         <>
-            <div>
+            <div className='w-full'>
                 <div className={`${inputStyles.searchContainer} relative flex justify-center items-center`}>
                     <div className=" absolute right-1">
                         <SearchOutlinedIcon sx={{ color: 'white'}} />
