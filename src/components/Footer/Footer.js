@@ -18,6 +18,8 @@ import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AddIcon from '@mui/icons-material/Add';
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
 
 
 const styles = {
@@ -91,9 +93,9 @@ const Footer = ({ userRole }) => {
                 setValue(newValue);
                 }}
                 >
-                  <BottomNavigationAction onClick={() => navigate('/organizationDashboard')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>داشبورد</Typography>} icon={<img src={dashboard} alt='icon' className='w-8 p-1' />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationDashboard' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                  <BottomNavigationAction onClick={() => navigate('/organizationDashboard')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>داشبورد</Typography>} icon={<SpaceDashboardOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationDashboard' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
                   <BottomNavigationAction onClick={() => navigate('/organizationCoaches')} label={<Typography variant="body1" sx={{ fontSize: '16px' }}>مربی</Typography>} icon={<AccountCircleOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationCoaches' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}}/>
-                  <BottomNavigationAction onClick={() => navigate('/organizationPilots')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>خلبان</Typography>} icon={<img src={badgeCheck} alt='icon' className='w-8 p-1' />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationPilots' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                  <BottomNavigationAction onClick={() => navigate('/organizationPilots')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>خلبان</Typography>} icon={<LocalPoliceOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationPilots' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
                 </BottomNavigation>
 
                 :
