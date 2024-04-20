@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 // components
 import CitiesDropdownInput from './CitiesDropDownInput';
+import IranMap from './iranMap/components/IranMap';
 
 
 const useCitiesData = () => {
@@ -26,7 +27,7 @@ const FlightSitesData = () => {
     return (
         <div className='flex justify-center items-center w-[90%] min-h-20 rounded-2xl px-5 py-7 my-4 gap-x-6' style={{backgroundColor:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
             
-            <div className=' flex w-full h-full justify-between gap-x-6'>
+            <div className=' flex flex-col w-full h-full justify-between gap-x-6 md:flex-row'>
 
                 
                 {data &&
@@ -38,7 +39,9 @@ const FlightSitesData = () => {
 
                 
                 {/* map */}
-                <div className=' w-full h-full'>2</div>
+                <div className=' w-full flex flex-row-reverse justify-start items-start lg:flex lg:flex-col-reverse'>
+                    <IranMap />
+                </div>
 
             </div>
     

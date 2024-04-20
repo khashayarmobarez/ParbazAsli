@@ -30,7 +30,7 @@ const Profile = ({userRole}) => {
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
-    const [remainingDays, setRemainingDays] = useState(10)
+    const [remainingDays, setRemainingDays] = useState(90)
 
 
     return (

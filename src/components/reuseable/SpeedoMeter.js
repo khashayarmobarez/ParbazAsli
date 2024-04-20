@@ -5,7 +5,6 @@ import 'react-circular-progressbar/dist/styles.css';
 import SpeedoMeterProvider from '../../Utilities/Providers/SpeedoMeterProvider';
 
 import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import GradientStyles from '../../styles/gradients/Gradient.module.css'
 
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +60,7 @@ const SpeedoMeter = (props) => {
                             strokeLinecap: 'round',
                             transform: 'rotate(-126deg)',
                             transformOrigin: 'center center',
-                            stroke: calcColor(value, 0, 120),
+                            stroke: 'url(#gradient)',
                             },
                             text: {
                             fill: '#A5E65E',
@@ -83,6 +82,15 @@ const SpeedoMeter = (props) => {
             </div>
 
         </div>
+
+        <svg style={{ height: 0,width: 0,position:'absolute' }}>
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="52.92%" stop-color="#A5E65E" />
+                    <stop offset="77.14%" stop-color="rgba(199, 3, 15, 0.1)" />
+                  </linearGradient>
+                </defs>
+            </svg>
 
     </div>
   );

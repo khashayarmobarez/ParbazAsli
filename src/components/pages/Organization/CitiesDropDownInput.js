@@ -30,7 +30,7 @@ const CitiesDropdownInput = ({ options, selectedOption, handleSelectChange, name
       <select className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`} id="dropdown" value={selectedOption} onChange={(event) => {handleInputChange(event);handleSelectChange(event);}} >
         <option value="" disabled>{name}</option>
         {options.map((city) => (
-          <option key={city.cityId} value={city.cityName}>
+          <option key={`${city.provinceId}-${city.cityId}`} value={city.cityName}>
             {city.provinceName} - {city.cityName}
           </option>
         ))}

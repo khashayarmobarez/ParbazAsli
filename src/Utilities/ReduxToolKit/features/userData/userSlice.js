@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    userRole:'organization',
+    userRole:'coach',
     club:'coach',
     manager:false,
     name:'',
@@ -18,6 +18,7 @@ const initialState = {
   const userSlice = createSlice({
     name: 'user',
     initialState,
+    
     reducers: {
       updateUserRole: (state, action) => {
         state.userRole = action.payload;
