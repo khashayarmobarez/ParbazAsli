@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     userRole:'organization',
     club:'coach',
-    manager:true,
+    manager:false,
     name:'',
     packageRemainingDays: '',
     certificate:'',
