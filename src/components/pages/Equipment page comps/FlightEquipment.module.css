@@ -2,10 +2,10 @@
     background: linear-gradient(356.85deg, #353A65 -60.36%, rgba(42, 46, 81, 0) 134.5%);
     box-shadow: -3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18);
     height: 80px;
-    width: 100%;
     border-radius: 2rem;
     display: flex;
     justify-content:space-between;
     align-items: center;
     padding: 1rem 1.5rem;
 }
+

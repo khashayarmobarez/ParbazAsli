@@ -34,39 +34,43 @@ const FlightEquipment = (props) => {
     };
 
     return (
-        <div className=' flex flex-col gap-y-6 items-center'>
+        <div className=' flex flex-col gap-y-6 items-center '>
 
-            <div className={styles.container}>
+            <div className='w-full flex flex-col gap-y-6 items-center md:grid md:grid-cols-2 md:gap-6'>
 
-                <div className=' text-xs flex flex-col items-start gap-y-1'>
-                    <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
-                    <p>77 پرواز / 24 ساعت</p>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
+
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
+
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+
                 </div>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
 
-                <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
 
-            </div>
-            <div className={styles.container}>
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
 
-                <div className=' text-xs flex flex-col items-start gap-y-1'>
-                    <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
-                    <p>77 پرواز / 24 ساعت</p>
                 </div>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
 
-                <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
 
-            </div>
-            <div className={styles.container}>
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
 
-                <div className=' text-xs flex flex-col items-start gap-y-1'>
-                    <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
-                    <p>77 پرواز / 24 ساعت</p>
                 </div>
-
-                <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
-
             </div>
 
+            {/* pop up */}
             <form onSubmit={handleSubmit} className={` ${boxStyle.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center`}>
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
@@ -91,7 +95,7 @@ const FlightEquipment = (props) => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className='fixed bottom-24 w-[90%] bg-[#131423] rounded-xl'>
+            <Link to='/equipment/addFlightEquipment' className='fixed bottom-24 w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
