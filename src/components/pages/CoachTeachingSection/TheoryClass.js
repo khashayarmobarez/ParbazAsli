@@ -37,7 +37,7 @@ const TheoryClass = ({userRole}) => {
             <ClassesBox title={'ورک‌شاپ‌ها'} />
 
             { userRole === 'coach' &&
-            <Link to='/education/addClass' className='bg-[#131423] rounded-xl fixed bottom-24 w-[90%]'>
+            <Link to='/education/addClass' className='bg-[#131423] rounded-xl fixed bottom-24 w-[90%] md:relative md:bottom-0 md:top-2  md:w-[350px] md:self-center'>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

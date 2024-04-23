@@ -38,7 +38,7 @@ const Harness = (props) => {
 
             <div className='w-full flex flex-col gap-y-6 items-center md:grid md:grid-cols-2 md:gap-6'>
 
-                <div className={styles.container}>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
 
                     <div className=' text-xs flex flex-col items-start gap-y-1'>
                         <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
@@ -49,7 +49,7 @@ const Harness = (props) => {
 
                 </div>
 
-                <div className={styles.container}>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
 
                     <div className=' text-xs flex flex-col items-start gap-y-1'>
                         <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
@@ -60,7 +60,7 @@ const Harness = (props) => {
 
                 </div>
 
-                <div className={styles.container}>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
 
                     <div className=' text-xs flex flex-col items-start gap-y-1'>
                         <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
@@ -74,7 +74,7 @@ const Harness = (props) => {
             </div>
 
             {/* pop up */}
-            <form onSubmit={handleSubmit} className={` ${boxStyle.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center`}>
+            <form onSubmit={handleSubmit} className={` ${boxStyle.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}   w-[304px] h-[280px] flex flex-col justify-around items-center md:z-[50]`}>
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 

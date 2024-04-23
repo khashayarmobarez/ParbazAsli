@@ -34,41 +34,46 @@ const Education = ({userRole}) => {
 
 
     return (
-        <div className='flex flex-col mt-14 items-center gap-y-4'>
+        <div className='flex flex-col mt-14 items-center'>
 
-            <PageTitle title={'آموزش'} navigateTo={'profile'} paddingRight={'40%'} />  
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-            {/* for coach */}
-            { userRole === 'coach' &&
-            <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
-                <Link to='/education/students' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
-                <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >کلاس تئوری</Link> 
-                <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
-            </div>
-            }
+                <PageTitle title={'آموزش'} navigateTo={'profile'} paddingRight={'40%'} />  
 
-            {/* for student */}
-            { userRole === 'student' &&
-            <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>  
-                <Link to='/education/practicalClass' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>عملی</Link> 
-                <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >تئوری</Link> 
-                <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
-            </div>
-            }
-
-            <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
-
-                {
-                    isLoading && <h2 className='text-white mt-32'>is loading</h2>
+                {/* for coach */}
+                { userRole === 'coach' &&
+                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
+                    <Link to='/education/students' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
+                    <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >کلاس تئوری</Link> 
+                    <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
+                </div>
                 }
 
-                {
-                    error && <h3>{error.message}</h3>
+                {/* for student */}
+                { userRole === 'student' &&
+                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>  
+                    <Link to='/education/practicalClass' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>عملی</Link> 
+                    <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >تئوری</Link> 
+                    <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
+                </div>
                 }
-                {
-                    data && <Outlet />
-                }
+
+                <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
+
+                    {
+                        isLoading && <h2 className='text-white mt-32'>is loading</h2>
+                    }
+
+                    {
+                        error && <h3>{error.message}</h3>
+                    }
+                    {
+                        data && <Outlet />
+                    }
+                </div>
+
             </div>
+
 
         </div>
     );
