@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // main and caoch components
   import Footer from './components/Footer/Footer';
   import Navbar from './components/Header/Navbar';
+  import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
   import Profile from './containers/Profile';
   import Equipment from './containers/Equipment';
   import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
@@ -58,10 +59,10 @@ import 'react-toastify/dist/ReactToastify.css';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
   // organization components
   import OrganDashboard from './containers/OrganDashboard';
-import OrganCoaches from './containers/OrganCoaches';
-import OrganPilots from './containers/OrganPilots';
-import PilotsHistory from './components/pages/Organization/PilotsHistory';
-import CoachHistory from './components/pages/Organization/CoachHistory';
+  import OrganCoaches from './containers/OrganCoaches';
+  import OrganPilots from './containers/OrganPilots';
+  import PilotsHistory from './components/pages/Organization/PilotsHistory';
+  import CoachHistory from './components/pages/Organization/CoachHistory';
   
 
 
@@ -91,6 +92,11 @@ function App() {
         <div className="App">
           <Navbar toggleTheme={toggleTheme}  />
             <Routes>
+
+            {/* landing page */}
+            <Route path='/signUpLogin' element={<SignUpOrLogin />} />
+            {userRole === '' &&
+            <Route path='*' element={<Navigate to="/SignUpLogin" replace />} />}
 
             {/* same components for coach and student  */}
               {(userRole === 'coach' || userRole === 'student') && (

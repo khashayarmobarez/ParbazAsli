@@ -2,12 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
+    // coach, student or organization
     userRole:'coach',
     club:'coach',
     manager:false,
     name:'',
     packageRemainingDays: '',
-    certificate:'',
+    certificate:[
+      {
+        organization: 'anjoman',
+        role: 'coach',
+        level: 'advance'
+      },
+      {
+        organization: 'keshvari',
+        role: 'tandem',
+        level: 'tandem'
+      }
+    ],
     userId:'',
     flightHour:'',
     flightCount:'',

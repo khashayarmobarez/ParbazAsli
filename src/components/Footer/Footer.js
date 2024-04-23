@@ -71,6 +71,9 @@ const Footer = ({ userRole }) => {
 
     const [value, setValue] = useState(0);
 
+    if (userRole === '') {
+      return null; // Return null to render nothing when userRole is empty
+    }
 
     return (
       <ThemeProvider theme={theme}>
@@ -100,6 +103,7 @@ const Footer = ({ userRole }) => {
 
                 :
 
+                // for couch and student userRole
                 <BottomNavigation
                 sx={styles.buttonsContainer}
                 showLabels

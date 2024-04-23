@@ -185,7 +185,7 @@ const CoachHistory = () => {
                     <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'entertaiment' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('entertaiment')}>پرواز تفریحی</button> 
                     <button ref={buttonRef}  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'freeFlight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('freeFlight')} >پرواز آزاد</button>
                 </div>
-
+                       
                 <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
 
                     {

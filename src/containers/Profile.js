@@ -30,7 +30,7 @@ const Profile = ({userRole}) => {
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
-    const [remainingDays, setRemainingDays] = useState(90)
+    const [remainingDays, setRemainingDays] = useState(60)
 
 
     return (
@@ -46,10 +46,10 @@ const Profile = ({userRole}) => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-y-10 w-[100%] md:w-[60%]'>
+            <div className='flex flex-col items-center justify-center gap-y-10 w-[100%] md:w-[70%]'>
 
                 {/* first data box  */}
-                <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] justify-around p-6 md:py-5 md:px-2 rounded-3xl`}>
+                <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] md:w-[100%] justify-around p-6 md:py-5 md:px-2 rounded-3xl`}>
 
                 {/* picture, name and code  */}
                         <div className='flex flex-col justify-center items-center ml-[6%] space-y-5 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
