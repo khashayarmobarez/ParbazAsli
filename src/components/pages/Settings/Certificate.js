@@ -7,7 +7,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import certifiacte from '../../../assets/icons/certificate-Vector.svg'
 
 
-const Certificate = () => {
+const Certificate = ({title}) => {
 
     // react-router-dom
     const navigate = useNavigate()
@@ -28,7 +28,9 @@ const Certificate = () => {
             </div>
             
             <div>
-                <button onClick={() => navigate('/Settings/certificate')} type="submit" className={`${ButtonStyles.normalButton} w-32 h-12`} >تمدید/ارتقاء</button>
+                <button onClick={() => navigate('/Settings/certificate')} type="submit" className={`${ButtonStyles.normalButton} w-32 h-12`}>
+                {title || 'تمدید/ارتقاء'}
+                </button>
             </div>
 
         </div>

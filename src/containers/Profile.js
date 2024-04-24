@@ -90,7 +90,7 @@ const Profile = ({userRole}) => {
 
                             </div>
 
-                            <Link to='/' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[-5%] `} >ویرایش پروفایل</Link>
+                            <Link to='/editProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[-5%] `} >ویرایش پروفایل</Link>
 
                         </div>
 

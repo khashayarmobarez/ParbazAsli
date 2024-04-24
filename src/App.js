@@ -19,31 +19,35 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // main and caoch components
-  import Footer from './components/Footer/Footer';
-  import Navbar from './components/Header/Navbar';
-  import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
-  import Profile from './containers/Profile';
-  import Equipment from './containers/Equipment';
-  import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
-  import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
-  import Parachute from './components/pages//Equipment page comps/Parachute'
-  import Harness from './components/pages//Equipment page comps/Harness'
-  import AddParachute from './components/pages/Equipment page comps/AddParachute';
-  import AddHarness from './components/pages/Equipment page comps/AddHarness';
-  import Education from './containers/Education';
-  import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
-  import Students from './components/pages/CoachTeachingSection/Students';
-  import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
-  import AddClass from './components/pages/CoachTeachingSection/AddClass';
-  import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
-  import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
-  import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
-  import Syllabuses from './components/pages/AddFlight/Syllabuses';
-  import FlightHistory from './containers/FlightHistory';
-  import Club from './containers/Club';
-  import ClubHistory from './components/pages/Club/ClubHistory';
-  // addFlightComponents
-  import AddFlight from './containers/AddFlight';
+import Footer from './components/Footer/Footer';
+import Navbar from './components/Header/Navbar';
+import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
+import Profile from './containers/Profile';
+import Equipment from './containers/Equipment';
+import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
+import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
+import Parachute from './components/pages//Equipment page comps/Parachute'
+import Harness from './components/pages//Equipment page comps/Harness'
+import AddParachute from './components/pages/Equipment page comps/AddParachute';
+import AddHarness from './components/pages/Equipment page comps/AddHarness';
+import Education from './containers/Education';
+import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
+import Students from './components/pages/CoachTeachingSection/Students';
+import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
+import AddClass from './components/pages/CoachTeachingSection/AddClass';
+import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
+import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
+import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
+import Syllabuses from './components/pages/AddFlight/Syllabuses';
+import FlightHistory from './containers/FlightHistory';
+import Club from './containers/Club';
+import ClubHistory from './components/pages/Club/ClubHistory';
+import EditProfile from './containers/EditProfile';
+import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
+import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
+import ChangeCoach from './components/pages/Profile/EditProfile/ChangeCoach';
+// addFlightComponents
+import AddFlight from './containers/AddFlight';
   import UploadIgc from './components/pages/AddFlight/UploadIgc';
   import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
   import AddSituation from './components/pages/AddFlight/AddSituation';
@@ -94,9 +98,12 @@ function App() {
             <Routes>
 
             {/* landing page */}
-            <Route path='/signUpLogin' element={<SignUpOrLogin />} />
             {userRole === '' &&
-            <Route path='*' element={<Navigate to="/SignUpLogin" replace />} />}
+            <>
+              <Route path='/signUpLogin' element={<SignUpOrLogin />} />
+              <Route path='*' element={<Navigate to="/SignUpLogin" replace />} />
+            </>
+            }
 
             {/* same components for coach and student  */}
               {(userRole === 'coach' || userRole === 'student') && (
@@ -120,6 +127,15 @@ function App() {
                   {/* flight history */}
                   <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
 
+                  {/* edit profile */}
+                  <Route path='/editProfile' element={<EditProfile />}>
+                      <Route index element={<ChangeProfile />} />
+                      <Route path="changeProfile" element={<ChangeProfile />} />
+                      <Route path="changeCertificate" element={<ChangeCertificate />} />
+                      <Route path="changeCoach" element={<ChangeCoach />} />
+                  </Route>
+
+                  {/* profile */}
                   <Route path='*' element={<Navigate to="/profile" replace />} />
 
                 </>
