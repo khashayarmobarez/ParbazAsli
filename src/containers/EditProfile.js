@@ -29,7 +29,7 @@ const EditProfile = () => {
 
     return (
         <div className='w-full flex justify-center items-center mt-14'>
-            <div className='w-full flex flex-col items-center gap-y-4' >
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]' >
 
                 <PageTitle title={'ویرایش پروفایل'} />
 

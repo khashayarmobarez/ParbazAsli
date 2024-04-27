@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
+
+// mui
+import CloseIcon from '@mui/icons-material/Close';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,6 +29,9 @@ import InputWithButton from '../../../inputs/InputWithButton';
 
 const ChangeProfile = () => {
 
+    // popUp use state
+    const [showPopup, setShowPopup] = useState(false);
+
     // redux
     const dispatch = useDispatch();
     const { password1, password2 } = useSelector(selectSettings );
@@ -41,6 +48,13 @@ const ChangeProfile = () => {
     // Function to check if the passwords match
     const passwordsMatch = () => {
         return password1 === password2;
+    };
+
+    //    Event handler for form submission
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setShowPopup(true);
+        // Here you can handle form submission, such as sending data to a backend server
     };
 
     const { data, isLoading, error, isFetching } = useUserDetails();
@@ -81,7 +95,21 @@ const ChangeProfile = () => {
 
                 <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
 
-                <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                
+
+                {/* submit pop up */}
+                <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52 z-50`}>
+
+                    <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+
+                    <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
+
+                    <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
+
+                    
+                </form>
+
             </>
             }
         </div>

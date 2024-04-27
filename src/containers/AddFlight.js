@@ -7,7 +7,8 @@ import { Outlet } from 'react-router-dom';
 
 const AddFlight = ({userRole}) => {
     return (
-        <div className='flex flex-col items-center pt-14 gap-y-8'>
+        <div className='flex flex-col items-center pt-14'>
+            <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8'>
 
             <PageTitle title={'ثبت پرواز'} navigateTo={-1} paddingRight={'40%'} />
 
@@ -76,6 +77,8 @@ const AddFlight = ({userRole}) => {
                 </form>
 
                 <Outlet />
+          
+            </div>
 
         </div>
     );

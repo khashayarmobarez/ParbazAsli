@@ -36,50 +36,53 @@ const Club = () => {
 
     return (
         <div className='pt-14 flex justify-center'>
-            {   
-                userRole === 'coach' ? 
+            <div className='w-full md:w-[75%] flex flex-col'>
 
-                // return for coach
-                (
-                club ?
+                {   
+                    userRole === 'coach' ? 
 
-                    // return for coach with club
+                    // return for coach
                     (
-                    manager ?
+                    club ?
 
-                        // club manager 
-                        (<div className=' flex flex-col items-center w-[100%] gap-y-6 mt-10'>
+                        // return for coach with club
+                        (
+                        manager ?
 
-                            <ClubData />
+                            // club manager 
+                            (<div className=' flex flex-col items-center w-[100%] gap-y-6 mt-10'>
 
-                            <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
-                                <Link to='/club/clubEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'clubEquipment' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubEquipment')}>وسایل باشگاه</Link> 
-                                <Link to='/club/clubCoaches' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'clubCoaches' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubCoaches')} >مربیان باشگاه</Link> 
-                                <Link ref={buttonRef} to='/club/clubStudents' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'clubStudents' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubStudents')} >هنرجویان</Link>
-                            </div>
+                                <ClubData />
+
+                                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
+                                    <Link to='/club/clubEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'clubEquipment' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubEquipment')}>وسایل باشگاه</Link> 
+                                    <Link to='/club/clubCoaches' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'clubCoaches' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubCoaches')} >مربیان باشگاه</Link> 
+                                    <Link ref={buttonRef} to='/club/clubStudents' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'clubStudents' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubStudents')} >هنرجویان</Link>
+                                </div>
 
 
-                            <Outlet />
-                            
-                        </div>)
+                                <Outlet />
+                                
+                            </div>)
+
+                            :
+
+                            // coach who is part of a club
+                            <ClubMemberCoach />
+                        )
 
                         :
 
-                        // coach who is part of a club
-                        <ClubMemberCoach />
+                        // return for coach without club 
+                        <StudentClubs />
                     )
 
                     :
 
-                    // return for coach without club 
+                    // return for student
                     <StudentClubs />
-                )
-
-                :
-
-                // return for student
-                <StudentClubs />
-            }
+                }
+            </div>
         </div>
     );
 };

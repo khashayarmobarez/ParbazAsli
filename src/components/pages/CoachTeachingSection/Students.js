@@ -31,12 +31,12 @@ const Students = () => {
 
             <div className={` ${gradientStyles.BorderYellow} w-full h-12 rounded-xl flex items-center justify-center gap-x-2 `}>
                 <img src={checkBadge} alt='icon' />
-                <p>خلبانان تحت نظر شما</p> 
+                <p>هنرجویان باشگاه</p> 
             </div>
 
             <div className={` ${gradientStyles.BorderYellow} w-full h-12 rounded-xl flex items-center justify-center gap-x-2 `}>
                 <GroupsOutlinedIcon/>
-                <p>هنرجویان باشگاه</p> 
+                <p>هنرجویان سابق</p> 
             </div>
 
         </div>

@@ -57,7 +57,6 @@ const Profile = ({userRole}) => {
                             {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'0'}}/>} 
                             <div className=' space-y-2 md:space-y-5' >
                                 {data && <p className=' font-normal text-xl w-36'>{data.data.title.slice(0, 10)}</p>}
-                                {data && <p className=' font-normal text-xs w-36 text-[#5F7174]'>{data.data.title.slice(0, 20)}</p>}
                                 {data && <p className=' font-normal text-xs w-36 text-[#5F7174]'>کد کاربری: {data.data.title.slice(0, 5)}</p>}
                             </div>
 
