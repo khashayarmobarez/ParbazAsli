@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/ParbazAsli/static/css/main.9c1d6b35.css",
-    "main.js": "/ParbazAsli/static/js/main.11ce9bf5.js",
+    "main.css": "/ParbazAsli/static/css/main.add04901.css",
+    "main.js": "/ParbazAsli/static/js/main.b567bd7d.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.f8699379e664ac171938.topojson",
     "static/media/IRANSansX-Light.ttf": "/ParbazAsli/static/media/IRANSansX-Light.eef71fbe1f6b4acdcaaf.ttf",
     "static/media/IRANSansX-DemiBold.ttf": "/ParbazAsli/static/media/IRANSansX-DemiBold.3be5bc7da33e456d69fb.ttf",
     "static/media/IRANSansX-Bold.ttf": "/ParbazAsli/static/media/IRANSansX-Bold.d363547f339c9b864981.ttf",
     "static/media/IRANSansX-Regular.ttf": "/ParbazAsli/static/media/IRANSansX-Regular.85fe140285dd2b37fb75.ttf",
     "static/media/Digilogbook -1401 1.svg": "/ParbazAsli/static/media/Digilogbook -1401 1.b705141446596509f6d1a14bdc9e8a68.svg",
+    "static/media/Coach final 1.png": "/ParbazAsli/static/media/Coach final 1.b67ea1246fabfe0a974b.png",
+    "static/media/Digilogbook -1401 12.png": "/ParbazAsli/static/media/Digilogbook -1401 12.eca7cbbc424e66de7552.png",
     "static/media/certificate-Vector.svg": "/ParbazAsli/static/media/certificate-Vector.e6f91545a28b4324d0e8f9b8af5fcd41.svg",
     "static/media/Right Arrow Button.svg": "/ParbazAsli/static/media/Right Arrow Button.69d4ff57c25c6bbd95df4b90dcb9e2c8.svg",
     "static/media/yellow-Up-Arrow-Button.svg": "/ParbazAsli/static/media/yellow-Up-Arrow-Button.e81c6598ff438b0430de5ffebc80f526.svg",
@@ -20,6 +22,7 @@
     "static/media/logout.svg": "/ParbazAsli/static/media/logout.80e4b294dbd12c37a1ff36389279f5dc.svg",
     "static/media/pencil-alt.svg": "/ParbazAsli/static/media/pencil-alt.8c1db617b223c0b169a524c515d02668.svg",
     "static/media/mail-Icon (Stroke).svg": "/ParbazAsli/static/media/mail-Icon (Stroke).9c55946951cf8b24b99ff3e3a9b761d7.svg",
+    "static/media/yellowPlus.svg": "/ParbazAsli/static/media/yellowPlus.a2bcdcb3a811ef4e564c661a7565ff1c.svg",
     "static/media/IGC-Download.svg": "/ParbazAsli/static/media/IGC-Download.17d4ee24781abb7cb16b0d1a16f19021.svg",
     "static/media/money-Icon.svg": "/ParbazAsli/static/media/money-Icon.88fd39cf36e2f8beb34357f3653c42ff.svg",
     "index.html": "/ParbazAsli/index.html",
@@ -33,11 +36,11 @@
     "static/media/bx-zoom-out.svg": "/ParbazAsli/static/media/bx-zoom-out.5fce6c9d4b465b7f4a1e.svg",
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.bf090b9031f934d5e079520a9155eae6.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.94307efdc6b42544cdfcaa915cf41f7d.svg",
-    "main.9c1d6b35.css.map": "/ParbazAsli/static/css/main.9c1d6b35.css.map",
-    "main.11ce9bf5.js.map": "/ParbazAsli/static/js/main.11ce9bf5.js.map"
+    "main.add04901.css.map": "/ParbazAsli/static/css/main.add04901.css.map",
+    "main.b567bd7d.js.map": "/ParbazAsli/static/js/main.b567bd7d.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c1d6b35.css",
-    "static/js/main.11ce9bf5.js"
+    "static/css/main.add04901.css",
+    "static/js/main.b567bd7d.js"
   ]
 }
