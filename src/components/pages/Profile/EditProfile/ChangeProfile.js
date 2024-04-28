@@ -26,6 +26,7 @@ import YellowPlus from '../../../../assets/icons/yellowPlus.svg'
 import FixedInput from '../../../inputs/FixedInput';
 import PasswordInput from '../../../inputs/PasswordInput';
 import InputWithButton from '../../../inputs/InputWithButton';
+import VerificationCodeInput from '../../../reuseable/VerificationCodeInput';
 
 const ChangeProfile = () => {
 
@@ -99,16 +100,7 @@ const ChangeProfile = () => {
                 
 
                 {/* submit pop up */}
-                <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52 z-50`}>
-
-                    <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
-
-                    <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
-
-                    <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
-
-                    
-                </form>
+                <VerificationCodeInput showPopup={showPopup} setShowPopup={setShowPopup} />
 
             </>
             }

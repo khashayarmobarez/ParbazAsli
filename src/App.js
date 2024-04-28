@@ -67,6 +67,7 @@ import AddFlight from './containers/AddFlight';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
+import LandingPage from './containers/LandingPage';
   
 
 
@@ -101,7 +102,8 @@ function App() {
             {userRole === '' &&
             <>
               <Route path='/signUpLogin' element={<SignUpOrLogin />} />
-              <Route path='*' element={<Navigate to="/SignUpLogin" replace />} />
+              <Route path='/landing' element={<LandingPage />} />
+              <Route path='*' element={<Navigate to="/landing" replace />} />
             </>
             }
 
