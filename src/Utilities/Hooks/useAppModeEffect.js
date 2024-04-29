@@ -79,7 +79,14 @@ const useAppModeEffect = (isDarkMode) => {
           // color for coach data box, right side color
           root.style.setProperty('--boxes-yellow-side', 'linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%)')
           root.style.setProperty('--boxes-yellow-side-boxshadow', '-2px 3px 4.3px 1px #0000007A,1px -1px 2.6px 0px #EBE0E082, 0px 4px 10.8px 2px #46AE2D inset')
+          
+          
+          // landing page
+            // section titles
+            root.style.setProperty('--landing-title-bg', ' linear-gradient(159.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0) 432.75%)')
+            root.style.setProperty('--landing-title-bg-boxShadow', '1px -1px 2.6px 0px rgba(235, 224, 224, 0.51),-3px 4px 10.3px 4px rgba(0, 0, 0, 0.3)')
 
+            
 
         
 
