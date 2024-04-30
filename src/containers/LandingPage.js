@@ -83,7 +83,7 @@ const LandingPage = () => {
                     <div className='w-full h-1/2 flex flex-col justify-around items-center'>
 
                         <div className='w-full flex justify-end items-center' style={{background: ' linear-gradient(159.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0) 432.75%)'}}>
-                            <p className='w-[80%] h-16 rounded-r-3xl text-right text-xl font-semibold pt-5 pr-6'
+                            <p className='w-[80%] h-16 rounded-r-full text-right text-xl font-semibold pt-5 pr-6'
                             style={{
                                 background: 'linear-gradient(159.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0) 432.75%)',
                                 boxShadow: 'var(--landing-title-bg-boxShadow)'

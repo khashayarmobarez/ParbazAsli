@@ -80,23 +80,21 @@ const ChangeProfile = () => {
                     <img className=' w-6 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                 </div>
 
-                <FixedInput test={'محمود'} />
-
-                <FixedInput test={'شیرازی‌نیا'} />
-
-                <FixedInput test={'کد ملی'} />
-
-                <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
-                
-                <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
-                {!passwordsMatch() &&
-                    <p>Passwords do not match!</p>
-                }
-                <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
-
-                <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
-
-                <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
+                    <FixedInput test={'محمود'} />
+                    <FixedInput test={'شیرازی‌نیا'} />
+                    <FixedInput test={'کد ملی'} /> 
+                    <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
+                    <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
+                    <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
+                    {!passwordsMatch() &&
+                        <p>Passwords do not match!</p>
+                    }
+                    <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
+                    <div className='md:col-span-2 md:flex md:justify-center'>
+                        <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button> 
+                    </div>
+                </div>
                 
 
                 {/* submit pop up */}

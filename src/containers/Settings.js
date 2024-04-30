@@ -74,18 +74,20 @@ const Settings = ({ userRole }) => {
                     <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClick={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
                     {
                         DropDown === 'dropDown2' &&
-                        <div className='flex flex-col w-full space-y-6 items-center'>
+                        <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
                             <FixedInput test={'محمود'} />
                             <FixedInput test={'شیرازی‌نیا'} />
                             <FixedInput test={'کد ملی'} /> 
+                            <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
                             <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
                             <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
                             {!passwordsMatch() &&
                                 <p>Passwords do not match!</p>
                             }
-                            <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
                             <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
-                            <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                            <div className='md:col-span-2 md:flex md:justify-center'>
+                                <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                            </div>
                         </div>
                     }
                 </div>

@@ -122,7 +122,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                       }}
                                     >
                                         {
-                                        (windowWidth < 768 && !userRole === '') &&
+                                        (windowWidth < 768 && userRole && userRole !== '') &&
                                         <Avatar alt="Remy Sharp" sx={{height:'99px', width:'100px', zIndex:'0'}} />
                                         }
                                         <ul className={`${userRole === '' ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-101`}>
@@ -130,17 +130,19 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>بلاگ</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>درباره ما</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>تماس با ما</Link></li>
-                                            {!userRole === '' &&
+                                            {userRole === '' ?
+                                            null
+                                            :
                                             <>
                                                 <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <SettingsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/settings'>تنظیمات</Link></li>
                                                 <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li>
                                             </>
                                             }
                                         </ul>
-                                        {!userRole === '' ?
-                                        <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
-                                        :
+                                        {userRole === '' ?
                                         <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--yellow-text)'}}> ورود / ثبت نام</Link>
+                                        :
+                                        <Link to='/' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
                                         }
                                     </div>
                                 </div>

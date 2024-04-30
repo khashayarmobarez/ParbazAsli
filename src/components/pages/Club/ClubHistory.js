@@ -15,7 +15,7 @@ import SearchInput from '../../inputs/SearchInput';
 const ClubHistory = () => {
     return (
         <div className='w-full flex flex-col items-center'>
-            <div className='w-[90%] flex flex-col mt-24 gap-y-10'>
+            <div className='w-[90%] flex flex-col mt-24 gap-y-10 md:w-[70%]'>
 
                 <SearchInput />
 
