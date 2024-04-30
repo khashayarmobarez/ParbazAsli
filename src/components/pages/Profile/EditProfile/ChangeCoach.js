@@ -14,6 +14,8 @@ const ChangeCoach = () => {
 
     const [showPopup, setShowPopup] = useState(false);
 
+    const [inputValue, setInputValue] = useState('')
+
     // Event handler for form submission
     const handleSubmit = (event) => {
         event.preventDefault();

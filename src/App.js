@@ -95,7 +95,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
 
         <div className="App">
-          <Navbar toggleTheme={toggleTheme}  />
+          <Navbar toggleTheme={toggleTheme} userRole={ userRole } />
             <Routes>
 
             {/* landing page */}
