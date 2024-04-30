@@ -30,7 +30,7 @@ const Profile = ({userRole}) => {
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
-    const [remainingDays, setRemainingDays] = useState(60)
+    const [remainingDays, setRemainingDays] = useState(80)
 
 
     return (
@@ -46,12 +46,12 @@ const Profile = ({userRole}) => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-y-10 w-[100%] md:w-[70%]'>
+            <div className='flex flex-col items-center justify-center gap-y-4 mt-4 w-[100%] md:w-[65%]'>
 
-                {/* first data box  */}
-                <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] md:w-[100%] justify-around p-6 md:py-5 md:px-2 rounded-3xl`}>
+                    {/* first data box  */}
+                    <div className={`${boxStyles.containerDarkmode} flex items-center w-[90%] md:w-[100%] md:h-[200px] justify-around py-6 md:py-5 md:px-2 rounded-3xl`}>
 
-                {/* picture, name and code  */}
+                        {/* picture, name and code  */}
                         <div className='flex flex-col justify-center items-center ml-[6%] space-y-5 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
 
                             {data && <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'0'}}/>} 
@@ -62,7 +62,7 @@ const Profile = ({userRole}) => {
 
                         </div>
 
-                        <div className=' flex flex-col justify-center items-center space-y-8 md:flex-row md:w-[38%] md:justify-between md:space-y-0'>
+                        <div className=' flex flex-col justify-center items-center space-y-8 md:flex-row md:w-[38%] md:justify-between md:items-center md:space-y-0'>
 
                             <div className=' space-y-2 flex flex-col items-start md:space-y-5'>
 
@@ -89,7 +89,7 @@ const Profile = ({userRole}) => {
 
                             </div>
 
-                            <Link to='/editProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[-5%] `} >ویرایش پروفایل</Link>
+                            <Link to='/editProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
 
                         </div>
 
@@ -104,7 +104,7 @@ const Profile = ({userRole}) => {
                     </div> */}
 
                     {/* buttons */}
-                    <div className='flex justify-between w-[90%] md:w-[47%] md:self-start'>
+                    <div className='flex justify-between w-[90%] md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[20rem] '>
 
                         <Link to='/equipment' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center p-5 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon'/>

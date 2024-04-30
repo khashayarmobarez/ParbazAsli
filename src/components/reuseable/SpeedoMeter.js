@@ -32,7 +32,7 @@ const SpeedoMeter = (props) => {
 
   return (
 
-    <div className={`${boxStyles.containerDarkmode} rounded-3xl z-0 w-[95%] md:w-[47%] flex justify-between items-center px-2 py-5 mr-1 mt-1`}>
+    <div className={`${boxStyles.containerDarkmode} rounded-3xl z-0 w-[95%] md:w-full flex justify-between items-center px-2 py-5 mr-1 mt-1`}>
 
         <div className='flex flex-col justify-center items-center space-y-5'>
             <p className=' font-normal text-sm mr-2 '>آخرین بسته بندی چتر کمکی</p>
@@ -74,7 +74,7 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div onClick={() => navigate('/ParachuteRenewal')} className={` absolute w-[111px] h-[111px] rounded-full flex justify-center items-center`} 
+            <div onClick={() => navigate('/ParachuteRenewal')} className={` absolute w-[116px] h-[116px] rounded-full flex justify-center items-center`} 
             style={{background:'var(--speedometer-background)',
             boxShadow: 'var(--speedometer-boxShadow)',
             }}>
@@ -86,8 +86,8 @@ const SpeedoMeter = (props) => {
         <svg style={{ height: 0,width: 0,position:'absolute' }}>
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                    <stop offset="52.92%" stopColor="#A5E65E" />
-                    <stop offset="77.14%" stopColor="rgba(199, 3, 15, 0.1)" />
+                    <stop offset="22.92%" stopColor="#A5E65E" />
+                    <stop offset="227.14%" stopColor="rgba(199, 3, 15, 0.2)" />
                   </linearGradient>
                 </defs>
             </svg>

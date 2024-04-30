@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 
+// mui
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import SpeedoMeter from '../../reuseable/SpeedoMeter';
 
 import { register } from "swiper/element/bundle";
@@ -8,6 +11,8 @@ register();
 
 const SwiperSlider = ({remainingDays, data}) => {
 
+    const isDesktop = useMediaQuery('(min-width:768px)');
+
     const swiperRef = useRef(null);
 
     useEffect(() => {
@@ -15,9 +20,9 @@ const SwiperSlider = ({remainingDays, data}) => {
         const params = {
         navigation: true,
         pagination: true,
-        centeredSlides: true,
-        spaceBetween:'50',
-        slidesPerView:'1',
+        centeredSlides: !isDesktop,
+        spaceBetween: isDesktop ? '20' : '50',
+        slidesPerView: isDesktop ? '2' : '1',
         injectStyles: [
             `
               .swiper-button-next,
@@ -44,29 +49,36 @@ const SwiperSlider = ({remainingDays, data}) => {
                 height: 8px;
                 background-color: var(--softer-white);
               }
+              ${
+                isDesktop
+                  ? `.swiper-slide {
+                    width: 45% !important; // Set slide width to 45% on desktop
+                  }`
+                  : ''
+              }
           `,
           ],
         };
 
     Object.assign(swiperContainer, params);
     swiperContainer.initialize();
-  }, []);
+  }, [isDesktop]);
 
     return (
         <div className='w-full h-64'>
             <div className='w-full h-full py-2'>
             <swiper-container
-                        style={{  marginRight: '20px' , height:'15rem', }}
+                        style={{ height:'15rem',...(!isDesktop && { marginRight: '3%' }), }}
                         ref={swiperRef}
                         init="false"
                         >
                         {/* map later */}
-                        <swiper-slide>
+                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
                             <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
                         </swiper-slide>
-                        <swiper-slide><SpeedoMeter remaining={remainingDays} data={data} className='z-50 mt-10' /></swiper-slide>
-                        <swiper-slide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></swiper-slide>
-                        <swiper-slide><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></swiper-slide>
+                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}}><SpeedoMeter remaining={remainingDays} data={data} className='z-50 mt-10' /></swiper-slide>
+                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}}><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></swiper-slide>
+                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}}><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></swiper-slide>
                 </swiper-container>
             </div>
         </div>
