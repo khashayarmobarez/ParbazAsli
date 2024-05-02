@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ParbazAsli/static/css/main.3c68dc81.css",
-    "main.js": "/ParbazAsli/static/js/main.883ea5a7.js",
+    "main.js": "/ParbazAsli/static/js/main.f4e65bab.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.80f20256a6ee5c9ae290.topojson",
     "static/media/Rectangle 4111.png": "/ParbazAsli/static/media/Rectangle 4111.8ae794085898f1ecd294.png",
     "static/media/Coach.png": "/ParbazAsli/static/media/Coach.efcd8ec544f15e4c0c1c.png",
@@ -38,10 +38,10 @@
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.0f25f05198b862f051507f178eb7722d.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.e79604f297dfd13a3ebfec42d50c1c7a.svg",
     "main.3c68dc81.css.map": "/ParbazAsli/static/css/main.3c68dc81.css.map",
-    "main.883ea5a7.js.map": "/ParbazAsli/static/js/main.883ea5a7.js.map"
+    "main.f4e65bab.js.map": "/ParbazAsli/static/js/main.f4e65bab.js.map"
   },
   "entrypoints": [
     "static/css/main.3c68dc81.css",
-    "static/js/main.883ea5a7.js"
+    "static/js/main.f4e65bab.js"
   ]
 }
