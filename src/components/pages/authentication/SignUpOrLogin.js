@@ -25,8 +25,8 @@ const SignUpOrLogin = () => {
         }, []);
 
     return (
-        <div className='mt-14 flex flex-col'>
-            <div className='w-full mt-6 flex flex-col items-center justify-center'>
+        <div className='mt-14 flex flex-col items-center'>
+            <div className='w-full mt-6 flex flex-col items-center justify-center md:w-[55%]'>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
                     <button ref={buttonRef}  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'login' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('login')}>ورود</button> 
@@ -40,7 +40,7 @@ const SignUpOrLogin = () => {
                 </div> 
                 :
                 // sign up
-                <div>
+                <div className='w-[90%]'>
                     <SignUp />
                 </div>
                     }
