@@ -65,7 +65,7 @@ const LandingPage = () => {
                         <Link to='/equipment/addFlightEquipment' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
                             <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
                                 <PersonAddIcon />
-                                <p>افزودن مورد جدید</p>
+                                <p>ثبت نام در سامانه</p>
                             </button>
                         </Link>
 

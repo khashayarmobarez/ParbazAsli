@@ -21,31 +21,33 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur 
   };
 
   return (
-    <div className='flex relative w-[100%] h-12 rounded-xl px-2'>
-      <span>
-        <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
-      </span>
-      <input
-        type="text"
-        id="username"
-        ref={userRef}
-        autoComplete="off"
-        value={value}
-        onChange={handleInputChange}
-        required
-        aria-invalid={validName ? "false" : "true"}
-        aria-describedby="uidnote"
-        onFocus={() => {
-          setUserFocus(true);
-          onFocus();
-        }}
-        onBlur={() => {
-          setUserFocus(false);
-          onBlur();
-        }}
-        className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
-        placeholder="نام"
-      />
+    <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
+      <div className='flex w-full h-12'>
+        <span>
+          <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+        </span>
+        <input
+          type="text"
+          id="username"
+          ref={userRef}
+          autoComplete="off"
+          value={value}
+          onChange={handleInputChange}
+          required
+          aria-invalid={validName ? "false" : "true"}
+          aria-describedby="uidnote"
+          onFocus={() => {
+            setUserFocus(true);
+            onFocus();
+          }}
+          onBlur={() => {
+            setUserFocus(false);
+            onBlur();
+          }}
+          className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
+          placeholder="نام"
+        />
+      </div>
       <p id="uidnote" className={userFocus && value && !validName ? "instructions" : "offscreen"}>
         <InfoOutlinedIcon />
         3 to 24 characters.<br />
