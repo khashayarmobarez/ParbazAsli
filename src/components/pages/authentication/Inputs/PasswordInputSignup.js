@@ -2,8 +2,8 @@
   import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
   import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
   import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-  import keyIcon from '../../../assets/icons/key-Icon.svg';
-  import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+  import keyIcon from '../../../../assets/icons/key-Icon.svg';
+  import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
@@ -11,10 +11,16 @@
     const [pwdFocus, setPwdFocus] = useState(false);
     const [validPwd, setValidPwd] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [filled, setFilled] = useState(false);
 
     useEffect(() => {
       setValidPwd(PWD_REGEX.test(value));
     }, [value]);
+
+      const handleInputChange = (event) => {
+        onChange(event);
+        setFilled(event.target.value.trim() !== '');
+      };
 
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
@@ -30,8 +36,11 @@
             type={showPassword ? 'text' : 'password'}
             id="password"
             value={value}
-            onChange={onChange}
-            className={`${inputStyles.passwordInput} w-[100%] text-sm font-sm`}
+            onChange={(e) => {
+              onChange(e); // Call the first function
+              handleInputChange(e); 
+            }}
+            className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] text-sm font-sm pr-8`}
             required
             aria-invalid={validPwd ? "false" : "true"}
             aria-describedby="pwdnote"
@@ -53,7 +62,7 @@
             )}
           </span>
         </div>
-        <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+        <p id="pwdnote" className={filled && !validPwd ? "instructions" : "offscreen"}>
           <InfoOutlinedIcon />
           8 to 24 characters.<br />
           Must include uppercase and lowercase letters, a number and a special character.<br />

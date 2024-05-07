@@ -5,15 +5,21 @@ import axios from 'axios';
 import './SignUp.css';
 
 // components
-import UserNameInputSignup from './UserNameInputSignup';
-import UserLastNameInputSignup from './UserLastNameInputSignup';
-import PasswordInputSignup from './PasswordInputSignup';
-import ConfirmPassInputSignup from './ConfirmPassInputSignup';
+import UserNameInputSignup from './Inputs/UserNameInputSignup';
+import UserLastNameInputSignup from './Inputs/UserLastNameInputSignup';
+import PasswordInputSignup from './Inputs/PasswordInputSignup';
+import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
+import NationalCodeInput from './Inputs/NationalCodeInput';
+import PhoneInputSignup from './Inputs/PhoneInputSignup';
+import EmailInputSignup from './Inputs/EmailInputSignUp';
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PHONE_REGEX = /^[0-9]{11}$/; 
 const REGISTER_URL = '/register';
+const NATIONAL_CODE_REGEX = /^\d{10}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const SignUp = () => {
     const userRef = useRef();
@@ -25,6 +31,12 @@ const SignUp = () => {
     const [userLastName, setUserLastName] = useState(''); // New state for last name
     const [userLastNameFocus, setUserLastNameFocus] = useState(false); 
 
+    const [email, setEmail] = useState('');
+    const [emailFocus, setEmailFocus] = useState(false);
+
+    const [nationalCode, setNationalCode] = useState('');
+    const [nationalCodeFocus, setNationalCodeFocus] = useState(false);
+
     const [pwd, setPwd] = useState('');
     const [pwdFocus, setPwdFocus] = useState(false);
 
@@ -34,6 +46,13 @@ const SignUp = () => {
     const [validName, setValidName] = useState(false);
     const [validPwd, setValidPwd] = useState(false);
     const [validMatch, setValidMatch] = useState(false)
+    const [validPhone, setValidPhone] = useState(false);
+    const [validNationalCode, setValidNationalCode] = useState(false);
+    const [validEmail, setValidEmail] = useState(false);
+
+
+    const [phone, setPhone] = useState(''); // State for phone number
+    const [phoneFocus, setPhoneFocus] = useState(false); 
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -44,7 +63,7 @@ const SignUp = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd]);
+    }, [user, pwd, matchPwd,phone, email]);
 
     useEffect(() => {
         setValidName(USER_REGEX.test(user));
@@ -55,18 +74,27 @@ const SignUp = () => {
         setValidMatch(pwd === matchPwd);
       }, [pwd, matchPwd]);
 
+      useEffect(() => {
+        setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
+    }, [phone]);
+
+    useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email]);
+
+    useEffect(() => {
+        setValidNationalCode(NATIONAL_CODE_REGEX.test(nationalCode));
+      }, [nationalCode]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // if button enabled with JS hack
-        const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(pwd);
-        if (!v1 || !v2) {
+        if (!validName || !validPwd || !validMatch || !validPhone || !validNationalCode || !validEmail) { 
             setErrMsg("Invalid Entry");
             return;
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ user, pwd, phone, email }), 
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -76,11 +104,13 @@ const SignUp = () => {
             console.log(response?.accessToken);
             console.log(JSON.stringify(response))
             setSuccess(true);
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
             setUser('');
+            setUserLastName('');
+            setNationalCode('');
             setPwd('');
             setMatchPwd('');
+            setPhone(''); 
+            setEmail('');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -92,7 +122,6 @@ const SignUp = () => {
             errRef.current.focus();
         }
     }
-
     return (
         <section className='w-full flex flex-col'>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
@@ -115,6 +144,33 @@ const SignUp = () => {
                     onBlur={() => setUserLastNameFocus(false)}
                 />
 
+                <NationalCodeInput
+                    nationalCodeRef={userRef}
+                    onChange={(e) => setNationalCode(e.target.value)}
+                    value={nationalCode}
+                    focus={nationalCodeFocus}
+                    onFocus={() => setNationalCodeFocus(true)}
+                    onBlur={() => setNationalCodeFocus(false)}
+                />
+
+                <EmailInputSignup
+                    emailRef={userRef}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    focus={emailFocus}
+                    onFocus={() => setEmailFocus(true)}
+                    onBlur={() => setEmailFocus(false)}
+                />
+
+                <PhoneInputSignup
+                    phoneRef={userRef}
+                    onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    focus={phoneFocus}
+                    onFocus={() => setPhoneFocus(true)}
+                    onBlur={() => setPhoneFocus(false)}
+                />
+
                 <PasswordInputSignup
                     onChange={(e) => setPwd(e.target.value)}
                     value={pwd}
@@ -131,6 +187,7 @@ const SignUp = () => {
                     onFocus={() => setMatchFocus(true)}
                     onBlur={() => setMatchFocus(false)}
                 />
+
             </form>
 
             <button onClick={handleSubmit} disabled={!validName || !validPwd || !validMatch ? true : false}>

@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import keyIcon from '../../../assets/icons/key-Icon.svg';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import keyIcon from '../../../../assets/icons/key-Icon.svg';
+import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur }) => {
   const [matchFocus, setMatchFocus] = useState(false);
   const [validMatch, setValidMatch] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [filled, setFilled] = useState(false);
 
   useEffect(() => {
     setValidMatch(value === password);
   }, [value, password]);
+
+  const handleInputChange = (event) => {
+    onChange(event);
+    setFilled(event.target.value.trim() !== '');
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,8 +34,11 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
           type={showPassword ? 'text' : 'password'}
           id="confirm_pwd"
           value={value}
-          onChange={onChange}
-          className={`${inputStyles.passwordInput} w-[100%] text-sm font-sm`}
+          onChange={(e) => {
+            onChange(e); // Call the first function
+            handleInputChange(e); 
+          }}
+          className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] text-sm font-sm pr-8`}
           required
           aria-invalid={validMatch ? "false" : "true"}
           aria-describedby="confirmnote"
@@ -51,7 +60,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
           )}
         </span>
       </div>
-      <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+      <p id="confirmnote" className={filled && !validMatch ? "instructions" : "offscreen"}>
         <InfoOutlinedIcon />
         Must match the first password input field.
       </p>

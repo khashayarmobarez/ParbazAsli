@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
+const USER_REGEX = /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]{2,40}$/u;
 
 const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur }) => {
   const [userFocus, setUserFocus] = useState(false);
@@ -48,7 +48,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
           placeholder="نام خانوادگی"
         />
       </div>
-      <p id="uidnote" className={`${userFocus && value && !validName ? "instructions" : "offscreen"} self-start text-start`}>
+      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "offscreen"} self-start text-start`}>
         <InfoOutlinedIcon />
         3 to 24 characters.<br />
         Must begin with a letter<br />
