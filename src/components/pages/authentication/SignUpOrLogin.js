@@ -5,6 +5,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // components
 import SignUp from './SignUp';
+import Login from './Login';
 
 const SignUpOrLogin = () => {
 
@@ -36,7 +37,7 @@ const SignUpOrLogin = () => {
                 {activeLink === 'login' ? 
                 // sign in
                 <div>
-                    
+                    <Login />
                 </div> 
                 :
                 // sign up

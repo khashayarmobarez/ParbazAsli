@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // styles
 import './SignUp.css';
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // components
 import UserNameInputSignup from './Inputs/UserNameInputSignup';
@@ -12,9 +13,10 @@ import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
 import NationalCodeInput from './Inputs/NationalCodeInput';
 import PhoneInputSignup from './Inputs/PhoneInputSignup';
 import EmailInputSignup from './Inputs/EmailInputSignUp';
+import Checkbox from './Inputs/CheckBox';
 
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX = /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]{2,40}$/u;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const PHONE_REGEX = /^[0-9]{11}$/; 
 const REGISTER_URL = '/register';
@@ -42,6 +44,8 @@ const SignUp = () => {
 
     const [matchPwd, setMatchPwd] = useState('');
     const [matchFocus, setMatchFocus] = useState(false);
+
+    const [termsChecked, setTermsChecked] = useState(false);
 
     const [validName, setValidName] = useState(false);
     const [validPwd, setValidPwd] = useState(false);
@@ -86,9 +90,13 @@ const SignUp = () => {
         setValidNationalCode(NATIONAL_CODE_REGEX.test(nationalCode));
       }, [nationalCode]);
 
+    const handleTermsToggle = (isChecked) => {
+    setTermsChecked(isChecked); // Update the checked state in the parent component
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validName || !validPwd || !validMatch || !validPhone || !validNationalCode || !validEmail) { 
+        if (!validName || !validPwd || !validMatch || !validPhone || !validNationalCode || !validEmail || !termsChecked) { 
             setErrMsg("Invalid Entry");
             return;
         }
@@ -124,7 +132,7 @@ const SignUp = () => {
     }
     return (
         <section className='w-full flex flex-col'>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+            
             <form className='w-full flex flex-col gap-y-4'>
 
                 <UserNameInputSignup
@@ -188,11 +196,40 @@ const SignUp = () => {
                     onBlur={() => setMatchFocus(false)}
                 />
 
+                <Checkbox
+                label="با قوانین و مقررات موافقم"
+                isChecked={termsChecked}
+                onToggle={handleTermsToggle}
+                />
+
+                <div className='w-28 self-center'>
+                    <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
+                    onClick={handleSubmit} 
+                    disabled={!validName || !validPwd || !validMatch ? true : false}
+                    >
+                    تایید
+                    </button>
+                    {(!validName || !validPwd || !validMatch) &&
+                    <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
+                    }
+                </div>
+
+                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                
             </form>
 
-            <button onClick={handleSubmit} disabled={!validName || !validPwd || !validMatch ? true : false}>
+
+            {/* <button 
+            onClick={handleSubmit} 
+            disabled={!validName || !validPwd || !validMatch ? true : false}
+            className={`mt-10 `} style={{
+            backgroundColor: (!validName || !validPwd || !validMatch) ? '#ccc' : '#007bff',
+            color: (!validName || !validPwd || !validMatch) ? '#666' : '#fff',
+            cursor: (!validName || !validPwd || !validMatch) ? 'not-allowed' : 'pointer',
+        }}
+            >
             Sign Up
-            </button>
+            </button> */}
 
         </section>
     );

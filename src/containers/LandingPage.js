@@ -74,31 +74,122 @@ const LandingPage = () => {
                 </div>
 
                 {/* second slide */}
-                <div className='w-full h-[94vh] flex flex-col items-center justify-between gap-y-[4vh] md:flex-row' style={{background:'var(--Basic-dataBox-bg)'}}>
+                <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:gap-y-[4vh] md:flex-row' style={{background:'var(--Basic-dataBox-bg)'}}>
 
-                    <div className='w-full flex justify-center items-center h-1/2 p-4'>
+                    <div className='w-full flex justify-center items-center h-[40%]  px-4'>
                         <img src={mountain} alt='mountain' />
                     </div>
 
-                    <div className='w-full h-1/2 flex flex-col justify-around items-center'>
+                    <div className='w-full h-1/2 flex flex-col justify-around items-center gap-y-8 md:h-full'>
 
-                        <div className='w-full flex justify-end items-center' style={{background: ' linear-gradient(159.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0) 432.75%)'}}>
-                            <p className='w-[80%] h-16 rounded-r-full text-right text-xl font-semibold pt-5 pr-6'
+                        <div className='w-full flex justify-end items-center'>
+                            <p className='w-[80%] h-14 rounded-r-full text-right text-2xl font-semibold pt-3 pr-6 md:h-20 md:pt-7'
                             style={{
-                                background: 'linear-gradient(159.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0) 432.75%)',
-                                boxShadow: 'var(--landing-title-bg-boxShadow)'
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'
                               }}>
                             چرا <span style={{color:'var(--yellow-text)'}}>دیجی‌ لاگ‌بوک</span>
                             </p>
                         </div>
 
-                        <p className='text-center px-6 md:w-[65%] md:text-start'>چرا باید لاگ بوک داشته باشیم ؟
+                        <p className='text-center text-xs px-6 md:w-[55%] md:text-base md:text-start md:self-start md:mr-[8vw]'>چرا باید لاگ بوک داشته باشیم ؟
                             <br/>
                             در هنگام یادگیری پرواز، هر خلبان ملزم به نوشتن یادداشتی از ساعات پرواز خود در یک لاگ بوک به منظور ثبت  تجربه خود است. بسیاری از خلبانان خیلی زود از نوشتن  لاگ بوک خود منصرف میشوند ، چرا که بعد از مدتی این کار بیهوده به نظر میرسد ، اما این یک اشتباه است. پس چرا نگه داشتن  لاگ بوک ایده خوبی است؟
                         </p>
 
+                        <div className='flex flex-col w-full items-center gap-y-6'>
+
+                            <div className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-2xl px-3 text-sm md:text-lg grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1778;</p>
+
+                                <p
+                                className='rounded-2xl px-3 text-sm md:text-lg grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1779;</p>
+
+                                <p
+                                className='rounded-2xl px-3 text-sm md:text-lg grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button type="submit" className={`${ButtonStyles.addButton} mt-4 w-32 self-center`} 
+                            >مطالعه بیشتر 
+                        </button>
+
                     </div>
 
+                </div>
+
+
+                {/* third slide */}
+                <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:gap-y-[4vh] md:flex-row'>
+
+                    <div>
+
+                    </div>
+
+                    <div>
+                        <div className='w-full flex justify-end items-center'>
+                            <p className='w-[90%] h-20 rounded-r-full text-right text-2xl font-semibold px-2 pt-2 pr-6 md:h-24 md:pt-7'
+                            style={{
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'
+                              }}>
+                                
+                                چه طور با <span style={{color:'var(--yellow-text)'}}>دیجی لاگ بوک</span> پروازهامون روبخاطر بسپاریم
+                            
+                            </p>
+                        </div>
+                    </div>
+                    
                 </div>
 
             </div>

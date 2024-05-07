@@ -15,10 +15,14 @@ const useAppModeEffect = (isDarkMode) => {
         root.style.setProperty('--yellow-text', '#A5E65E');
         root.style.setProperty('--red-text', '#ED553B');
 
-
         // overall used colors
         root.style.setProperty('--soft-white', '#F6FDEF');
         root.style.setProperty('--softer-white', ' #CDD3D4');
+        
+        // landing page elements
+        root.style.setProperty('--landing-page-titles-bg', ' linear-gradient(179.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0.8) 252.75%)');
+        root.style.setProperty('--landing-page-titles-boxShadow', ' 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51),-3px 4px 10.3px 4px rgba(0, 0, 0, 0.3)');
+
 
         // speedometer background
         root.style.setProperty('--speedometer-background', 'linear-gradient(195.31deg, #323232 -84.63%, rgba(34, 34, 34, 0.285) 48.09%, rgba(79, 79, 79, 0) 100.99%)');
