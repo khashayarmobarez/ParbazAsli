@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -10,32 +11,13 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import iphone from '../assets/ApiData Temporary/mobile-mk 3.png'
 import coachView from '../assets/ApiData Temporary/Coach.png'
 import logo from '../assets/ApiData Temporary/Digilogbook -1401 12.png'
-import mountain from '../assets/ApiData Temporary/Rectangle 4111.png'
-import { Link } from 'react-router-dom';
+import mountain from '../assets/ApiData Temporary/mountains.png'
+import howDigi from '../assets/ApiData Temporary/howDigilogbook.png'
+
+// components 
+import ArticleSwiper from '../components/pages/LandingPageComponents/ArticleSwiper';
 
 const LandingPage = () => {
-
-    useEffect(() => {
-        // Function to handle scroll event
-        const handleScroll = (event) => {
-            const scrollDirection = event.deltaY > 0 ? 'next' : 'prev'; // Determine scroll direction
-            const scrollAmount = window.innerWidth; // Scroll by the width of the window
-
-            if (scrollDirection === 'next') {
-                window.scrollBy({ left: scrollAmount, behavior: 'smooth' }); // Scroll to the next section
-            } else {
-                window.scrollBy({ left: -scrollAmount, behavior: 'smooth' }); // Scroll to the previous section
-            }
-        };
-
-        // Event listener for scroll events
-        window.addEventListener('wheel', handleScroll);
-
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener('wheel', handleScroll);
-        };
-    }, []); // Empty dependency array to run the effect only once when the component mounts
 
 
     return (
@@ -109,7 +91,7 @@ const LandingPage = () => {
                                 >&#1777;</p>
 
                                 <p
-                                className='rounded-2xl px-3 text-sm md:text-lg grid place-content-center'
+                                className='rounded-3xl px-3 text-sm md:text-lg grid place-content-center'
                                 style={{
                                     color:'var(--yellow-text)',
                                     background: 'var(--landing-page-titles-bg)',
@@ -128,7 +110,7 @@ const LandingPage = () => {
                                 >&#1778;</p>
 
                                 <p
-                                className='rounded-2xl px-3 text-sm md:text-lg grid place-content-center'
+                                className='rounded-3xl px-3 text-sm md:text-lg grid place-content-center'
                                 style={{
                                     color:'var(--yellow-text)',
                                     background: 'var(--landing-page-titles-bg)',
@@ -147,7 +129,7 @@ const LandingPage = () => {
                                 >&#1779;</p>
 
                                 <p
-                                className='rounded-2xl px-3 text-sm md:text-lg grid place-content-center'
+                                className='rounded-3xl px-3 text-sm md:text-lg grid place-content-center'
                                 style={{
                                     color:'var(--yellow-text)',
                                     background: 'var(--landing-page-titles-bg)',
@@ -170,26 +152,182 @@ const LandingPage = () => {
 
 
                 {/* third slide */}
-                <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:gap-y-[4vh] md:flex-row'>
+                <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:pt-24 md:flex-row-reverse'>
 
-                    <div>
+                    <div className='flex flex-col items-center justify-center w-full md:py-[4vh] md:w-[50%] md:mt-20'>
+
+                        <div className='flex items-center justify-center md:w-[560px]'>
+                            <img src={howDigi} alt='how digilogbook' className='w-[80%] md:w-full' />
+                        </div>
 
                     </div>
 
-                    <div>
-                        <div className='w-full flex justify-end items-center'>
-                            <p className='w-[90%] h-20 rounded-r-full text-right text-2xl font-semibold px-2 pt-2 pr-6 md:h-24 md:pt-7'
+                    <div className=' flex flex-col w-full gap-y-10 md:w-1/2'>
+                        <div className='w-full flex justify-start items-center'>
+
+                            <p className='w-[95%] h-20 rounded-l-3xl text-right text-lg font-semibold pt-3 pl-14 pr-20 md:h-24 md:pt-4 md:text-2xl md:pr-[55%] md:pl-0'
                             style={{
                                 background: 'var(--landing-page-titles-bg)',
                                 boxShadow: 'var(--landing-page-titles-boxShadow)'
                               }}>
                                 
-                                چه طور با <span style={{color:'var(--yellow-text)'}}>دیجی لاگ بوک</span> پروازهامون روبخاطر بسپاریم
+                                چه طور با <span style={{color:'var(--yellow-text)'}}>دیجی لاگ بوک</span> پروازهامون رو بخاطر بسپاریم
                             
                             </p>
+
                         </div>
+
+                        <div className='flex flex-col gap-y-4 md:gap-y-6' >
+
+
+                            <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+
+                                <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
+                                style={{
+                                color:'var(--yellow-text)',
+                                background: 'var(--landing-page-titles-bg)',
+                                boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
+                                >&#1777;</p>
+
+                                <p
+                                className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
+                                style={{
+                                    color:'var(--yellow-text)',
+                                    background: 'var(--landing-page-titles-bg)',
+                                    boxShadow: 'var(--landing-page-titles-boxShadow)',}}
+                                >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+
+                            </div>
+
+                            
+
+                        </div>
+
                     </div>
                     
+                </div>
+
+
+                {/* fourth slide */}
+                <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:pt-24'>
+
+                    <div className='w-full flex justify-start items-center'>
+
+                        <p className='w-[60%] h-14 rounded-l-full text-right text-2xl font-semibold pt-3 pr-[3.5%] md:h-20 md:pt-7 md:text-left md:pl-8'
+                        style={{
+                            background: 'var(--landing-page-titles-bg)',
+                            boxShadow: 'var(--landing-page-titles-boxShadow)'
+                            }}>
+                        وبلاگ <span style={{color:'var(--yellow-text)'}}>دیجی‌ لاگ‌بوک</span>
+                        </p>
+
+                        <div className=' w-[40%] h-full flex justify-center items-center md:justify-end md:pl-10'>
+                            <button className={`${ButtonStyles.normalButton} h-14 w-28 md:h-[68px] md:w-56 md:font-semibold`}>مشاهده بیشتر</button>
+                        </div>
+
+                    </div>
+
+                    <div className='w-full flex flex-col justify-center items-center'>
+
+                            <ArticleSwiper />
+
+                    </div>
+
                 </div>
 
             </div>

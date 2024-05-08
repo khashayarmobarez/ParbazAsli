@@ -12,7 +12,7 @@ import { useUserDetails } from '../Utilities/Services/queries';
 // mui
 import { Avatar } from '@mui/material';
 
-//  react router dom
+// react router dom
 import { Link } from 'react-router-dom';
 
 // icons 
