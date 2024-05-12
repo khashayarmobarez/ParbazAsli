@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/ParbazAsli/static/css/main.94f7e3fa.css",
-    "main.js": "/ParbazAsli/static/js/main.57feffc1.js",
+    "main.css": "/ParbazAsli/static/css/main.50ff13af.css",
+    "main.js": "/ParbazAsli/static/js/main.d4ce82d7.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.f8699379e664ac171938.topojson",
-    "static/media/Rectangle 4111.png": "/ParbazAsli/static/media/Rectangle 4111.8ae794085898f1ecd294.png",
+    "static/media/mountains.png": "/ParbazAsli/static/media/mountains.8ae794085898f1ecd294.png",
+    "static/media/howDigilogbook.png": "/ParbazAsli/static/media/howDigilogbook.c8e5d3ea9d56ca4976e3.png",
     "static/media/Coach.png": "/ParbazAsli/static/media/Coach.efcd8ec544f15e4c0c1c.png",
     "static/media/IRANSansX-Light.ttf": "/ParbazAsli/static/media/IRANSansX-Light.eef71fbe1f6b4acdcaaf.ttf",
     "static/media/IRANSansX-DemiBold.ttf": "/ParbazAsli/static/media/IRANSansX-DemiBold.3be5bc7da33e456d69fb.ttf",
@@ -30,18 +31,17 @@
     "static/media/key-Icon.svg": "/ParbazAsli/static/media/key-Icon.03337e832bae00e0712002d8185586fc.svg",
     "static/media/user-Icon.svg": "/ParbazAsli/static/media/user-Icon.3e14929647521528ae32f7afdf6d562a.svg",
     "static/media/check-badge.svg": "/ParbazAsli/static/media/check-badge.bf05688560b877902be39de9dd9da584.svg",
-    "static/media/dashboard.svg": "/ParbazAsli/static/media/dashboard.c7eb122d1ace131d248cfd01e78cc080.svg",
     "static/media/bx-zoom-in.svg": "/ParbazAsli/static/media/bx-zoom-in.eb19f08ca2517049cb2c.svg",
     "static/media/bx-current-location.svg": "/ParbazAsli/static/media/bx-current-location.26bc410deec4fe1098cc.svg",
     "static/media/calender-Icon.svg": "/ParbazAsli/static/media/calender-Icon.e4339234ea913fa1a2758d17798aedeb.svg",
     "static/media/bx-zoom-out.svg": "/ParbazAsli/static/media/bx-zoom-out.5fce6c9d4b465b7f4a1e.svg",
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.bf090b9031f934d5e079520a9155eae6.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.94307efdc6b42544cdfcaa915cf41f7d.svg",
-    "main.94f7e3fa.css.map": "/ParbazAsli/static/css/main.94f7e3fa.css.map",
-    "main.57feffc1.js.map": "/ParbazAsli/static/js/main.57feffc1.js.map"
+    "main.50ff13af.css.map": "/ParbazAsli/static/css/main.50ff13af.css.map",
+    "main.d4ce82d7.js.map": "/ParbazAsli/static/js/main.d4ce82d7.js.map"
   },
   "entrypoints": [
-    "static/css/main.94f7e3fa.css",
-    "static/js/main.57feffc1.js"
+    "static/css/main.50ff13af.css",
+    "static/js/main.d4ce82d7.js"
   ]
 }
