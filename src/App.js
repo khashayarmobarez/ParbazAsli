@@ -68,6 +68,7 @@ import AddFlight from './containers/AddFlight';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
 import LandingPage from './containers/LandingPage';
+import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
   
 
 
@@ -242,7 +243,12 @@ function App() {
             )}
 
             </Routes>
+          
+          {/* footer section */}
+          {/* based on if the user is signed in or not */}
+          {userRole === '' && <FooterLanding /> }
           <Footer userRole = { userRole } />
+
           <ToastContainer/>
         </div>
 

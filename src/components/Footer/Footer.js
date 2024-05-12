@@ -7,9 +7,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // import styles from './Footer.module.css';
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
 
-// assets
-import badgeCheck from '../../assets/icons/check-badge.svg'
-import dashboard from '../../assets/icons/dashboard.svg'
+// // assets
+// import badgeCheck from '../../assets/icons/check-badge.svg'
+// import dashboard from '../../assets/icons/dashboard.svg'
 
 // mui 
 import { Box, BottomNavigation, BottomNavigationAction , Typography } from '@mui/material';
