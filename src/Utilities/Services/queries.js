@@ -10,7 +10,7 @@ const useUserDetails = () => {
 };
 
 const useLandingPage = () => {
-    return useQuery(['landing'], () => axios.get(`https://api.par-baz.ir/api/Landing/GetHomeSections`));
+    return useQuery(['landing'], () => axios.get(`${BASE_Test_URL}/5`));
   };
   
 
