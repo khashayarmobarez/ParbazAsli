@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// utlities
+import NumberToPersian from '../Utilities/Services/NumberToPersian';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -23,10 +26,10 @@ import ArticleSwiper from '../components/pages/LandingPageComponents/ArticleSwip
 
 const LandingPage = () => {
 
+    // number of the image shown on the 'how to log flight' section
+    const [ howToLogPictureNumber, setHowToLogPictureNumber ] = useState(0)
     
     const { data, isLoading, error, isFetching } = useLandingPage();
-
-
 
 
     return (
@@ -52,16 +55,16 @@ const LandingPage = () => {
 
                             <div className='flex items-center justify-center mt-[-4rem]'>
                                 <img alt='phone model' src={iphone} className='absolute md:w-[235px]'/>
-                                <img alt='digilogbook app' src={coachView} className=' w-[7.4rem] md:w-[195px]' />
+                                <img alt='digilogbook app' src={data.data.data[0].image.path} className=' w-[7.4rem] md:w-[195px]' />
                             </div>
 
                         </div>
                             
                         <div className='flex flex-col items-center justify-start gap-y-8 h-[40%] px-4 md:w-[50%]' >
 
-                            <h1 className=' text-xl font-bold md:text-3xl'>سامانه ثبت اطلاعات و پروازهای روزانه</h1>
+                            <h1 className=' text-xl font-bold md:text-3xl'>{data.data.data[0].title}</h1>
 
-                            <p>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛ از این طریق می‌توانید متن آزمایشی و متن تستی خودتان را تایپ کرده و در طرح‌هایتان از این متن استفاده کنید... تایپ کنید، به صورت خودکار ذخیره می‌شود.</p>
+                            <p>{data.data.data[0].summary}</p>
 
                             <Link to='/equipment/addFlightEquipment' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
                                 <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
@@ -78,7 +81,7 @@ const LandingPage = () => {
                     <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:gap-y-[4vh] md:flex-row' style={{background:'var(--Basic-dataBox-bg)'}}>
 
                         <div className='w-full flex justify-center items-center h-[40%]  px-4'>
-                            <img src={mountain} alt='mountain' />
+                            <img src={data.data.data[1].image.path} alt='mountain' />
                         </div>
 
                         <div className='w-full h-1/2 flex flex-col justify-around items-center gap-y-8 md:h-full'>
@@ -99,63 +102,31 @@ const LandingPage = () => {
                             </p>
 
                             <div className='flex flex-col w-full items-center gap-y-6'>
-
-                                <div className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
-
-                                    <p
-                                    className='rounded-3xl px-3 text-sm md:text-lg grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
-
-                                <div className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
+                                
+                            {
+                            data.data.data[1].landingSectionItems.map(item =>(
+                                <div key={item.content} className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
 
                                     <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                                     style={{
                                     color:'var(--yellow-text)',
                                     background: 'var(--landing-page-titles-bg)',
                                     boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1778;</p>
+                                    >
+                                        <NumberToPersian number={item.order} />
+                                    </p>
 
                                     <p
-                                    className='rounded-3xl px-3 text-sm md:text-lg grid place-content-center'
+                                    className='rounded-3xl w-[70vw] md:w-[20vw] px-3 text-sm md:text-lg grid place-content-center'
                                     style={{
                                         color:'var(--yellow-text)',
                                         background: 'var(--landing-page-titles-bg)',
                                         boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+                                    >{item.content}</p>
 
                                 </div>
-
-                                <div className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1779;</p>
-
-                                    <p
-                                    className='rounded-3xl px-3 text-sm md:text-lg grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
+                            ))
+                            }      
 
 
                             </div>
@@ -176,7 +147,7 @@ const LandingPage = () => {
                         <div className='flex flex-col items-center justify-center w-full md:py-[4vh] md:w-[50%] md:mt-20'>
 
                             <div className='flex items-center justify-center md:w-[560px]'>
-                                <img src={howDigi} alt='how digilogbook' className='w-[80%] md:w-full' />
+                                <img src={data.data.data[2].landingSectionItems[howToLogPictureNumber].image.path} alt='how digilogbook' className='w-[80%] md:w-full' />
                             </div>
 
                         </div>
@@ -198,15 +169,17 @@ const LandingPage = () => {
 
                             <div className='flex flex-col gap-y-4 md:gap-y-6' >
 
-
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
+                            {
+                                data.data.data[2].landingSectionItems.map(item =>(
+                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'
+                                 onClick={() => setHowToLogPictureNumber(item.order - 1)}>
 
                                     <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                                     style={{
                                     color:'var(--yellow-text)',
                                     background: 'var(--landing-page-titles-bg)',
                                     boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
+                                    ><NumberToPersian number={item.order} /></p>
 
                                     <p
                                     className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
@@ -214,106 +187,11 @@ const LandingPage = () => {
                                         color:'var(--yellow-text)',
                                         background: 'var(--landing-page-titles-bg)',
                                         boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
+                                    >{item.content}</p>
 
                                 </div>
-
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
-
-                                    <p
-                                    className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
-
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
-
-                                    <p
-                                    className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
-
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
-
-                                    <p
-                                    className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
-
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
-
-                                    <p
-                                    className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
-
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'>
-
-                                    <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
-                                    style={{
-                                    color:'var(--yellow-text)',
-                                    background: 'var(--landing-page-titles-bg)',
-                                    boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
-                                    >&#1777;</p>
-
-                                    <p
-                                    className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
-                                    style={{
-                                        color:'var(--yellow-text)',
-                                        background: 'var(--landing-page-titles-bg)',
-                                        boxShadow: 'var(--landing-page-titles-boxShadow)',}}
-                                    >امکان محاسبه ساعات پرواز و وسیله پروازی</p>
-
-                                </div>
-
-                                
+                                ))
+                            }
 
                             </div>
 

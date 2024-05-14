@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 
 const AddFlight = ({userRole}) => {
     return (
-        <div className='flex flex-col items-center pt-14'>
+        <div className='flex flex-col items-center pt-14 pb-24'>
             <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10'>
 
             <PageTitle title={'ثبت پرواز'} navigateTo={-1} paddingRight={'40%'} />

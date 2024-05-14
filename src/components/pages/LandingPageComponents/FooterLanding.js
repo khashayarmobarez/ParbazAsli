@@ -38,21 +38,35 @@ const FooterLanding = () => {
         marginBottom: '0',
       }}
     >
-        <ul className='flex flex-col gap-y-4'>
+        <ul className=' hidden md:flex flex-col gap-y-4'>
             <li>خانه</li>
             <li>بلاگ</li>
             <li>ارتباط با ما</li>
             <li>تماس با ما</li>
         </ul>
 
-        <div className='flex flex-col items-center gap-y-4 w-[30vw]'>
-            <img alt='logo' src={logo} className='w-[212px]'/>
+        <div className='flex flex-col items-center gap-y-4 md:w-[30vw] w-full h-full justify-around py-4 px-4'>
+            <img alt='logo' src={logo} className='w-1/2 md:w-[212px]'/>
+            {isSmallScreen && 
+              <>
+                <ul className='w-full flex justify-around'>
+                  <li>خانه</li>
+                  <li>بلاگ</li>
+                  <li>ارتباط با ما</li>
+                  <li>تماس با ما</li>
+                </ul>
+                <div className='w-full flex justify-around '>
+                  <div className='flex gap-x-2'><EmailOutlinedIcon /><p>info@digilogbook.ir</p></div>
+                  <div className='flex gap-x-2'><LocalPhoneOutlinedIcon /><p>021-77788899</p></div>
+              </div>
+              </>
+            }
             <p className='text-lg'>عضویت در خبرنامه</p>
             <p>ما هرزنامه ارسال نمی کنیم، پس نگران نباشید</p>
-            <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'ایمیل خود را وارد کنید'} />
+            <InputWithButton Type={'text'} icon={mail} buttonText={'ارسال'} placeH={'ایمیل خود را وارد کنید'} />
         </div>
 
-        <div className='flex flex-col gap-y-8'>
+        <div className='hidden md:flex flex-col gap-y-8'>
             <div className='flex gap-x-4'><EmailOutlinedIcon /><p>info@digilogbook.ir</p></div>
             <div className='flex gap-x-4'><LocalPhoneOutlinedIcon /><p>021-77788899</p></div>
             <div className='flex gap-x-4 mt-2'>

@@ -10,7 +10,7 @@ const useUserDetails = () => {
 };
 
 const useLandingPage = () => {
-    return useQuery(['landing'], () => axios.get(`${BASE_Test_URL}/5`));
+    return useQuery(['landing'], () => axios.get(`${BASE_URL}/Landing/GetHomeSections`));
   };
   
 
