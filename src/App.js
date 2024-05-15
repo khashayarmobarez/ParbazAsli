@@ -69,6 +69,7 @@ import AddFlight from './containers/AddFlight';
   import CoachHistory from './components/pages/Organization/CoachHistory';
 import LandingPage from './containers/LandingPage';
 import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
+import AboutUs from './containers/AboutUs';
   
 
 
@@ -99,6 +100,7 @@ function App() {
           <Navbar toggleTheme={toggleTheme} userRole={ userRole } />
             <Routes>
 
+            <Route path='/aboutUs' element={<AboutUs />} />
             {/* landing page */}
             {userRole === '' &&
             <>

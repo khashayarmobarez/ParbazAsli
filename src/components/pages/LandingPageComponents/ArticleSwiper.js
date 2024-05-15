@@ -33,7 +33,7 @@ const ArticleSwiper = () => {
         const swiperContainer = swiperRef.current;
         const params = {
         navigation: true,
-        pagination: true,
+        pagination: false,
         centeredSlides: !isDesktop,
         spaceBetween: isDesktop ? '20' : '50',
         slidesPerView: isDesktop ? '3' : '1',
@@ -104,7 +104,6 @@ const ArticleSwiper = () => {
       <style jsx>{`
         .swiper-slide-active {
           /* Your styles for the active slide here */
-          border: 5px solid red;
         }
       `}</style>
     </div>

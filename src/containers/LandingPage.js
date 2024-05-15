@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // utlities
@@ -12,10 +12,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 // assets
 import iphone from '../assets/ApiData Temporary/mobile-mk 3.png'
-import coachView from '../assets/ApiData Temporary/Coach.png'
-import logo from '../assets/ApiData Temporary/Digilogbook -1401 12.png'
-import mountain from '../assets/ApiData Temporary/mountains.png'
-import howDigi from '../assets/ApiData Temporary/howDigilogbook.png'
+import parbazLogo from '../assets/Logo/parbazLogo.svg'
 
 
 // queries 
@@ -23,6 +20,7 @@ import { useLandingPage } from '../Utilities/Services/queries';
 
 // components 
 import ArticleSwiper from '../components/pages/LandingPageComponents/ArticleSwiper';
+import Loader from '../components/Loader/Loader';
 
 const LandingPage = () => {
 
@@ -36,7 +34,11 @@ const LandingPage = () => {
         <div className='w-full flex flex-col mt-14 py-4 '>
 
             {
-                isLoading && isFetching && <h2 className=' text-white h-[100vh] w-full text-center'>is loading...</h2>
+                isLoading && isFetching && 
+                <div className='flex w-full h-[95vh] items-center justify-center'>
+                    <Loader />
+                </div>
+                // <h2 className=' text-white h-[100vh] w-full text-center'>is loading...</h2>
             }
 
             {
@@ -56,6 +58,7 @@ const LandingPage = () => {
                             <div className='flex items-center justify-center mt-[-4rem]'>
                                 <img alt='phone model' src={iphone} className='absolute md:w-[235px]'/>
                                 <img alt='digilogbook app' src={data.data.data[0].image.path} className=' w-[7.4rem] md:w-[195px]' />
+                                
                             </div>
 
                         </div>
@@ -66,7 +69,7 @@ const LandingPage = () => {
 
                             <p>{data.data.data[0].summary}</p>
 
-                            <Link to='/equipment/addFlightEquipment' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
+                            <Link to='' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
                                 <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
                                     <PersonAddIcon />
                                     <p>ثبت نام در سامانه</p>
@@ -105,7 +108,7 @@ const LandingPage = () => {
                                 
                             {
                             data.data.data[1].landingSectionItems.map(item =>(
-                                <div key={item.content} className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
+                                <div key={item.order} className='flex justify-around w-full px-4 md:w-[65%] md:px-6 md:justify-start md:gap-x-6'>
 
                                     <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                                     style={{
@@ -171,8 +174,8 @@ const LandingPage = () => {
 
                             {
                                 data.data.data[2].landingSectionItems.map(item =>(
-                                <div className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'
-                                 onClick={() => setHowToLogPictureNumber(item.order - 1)}>
+                                <div key={item.order}  className='flex justify-center gap-x-[5vw] w-full px-4 md:w-full md:px-10 md:gap-x-6  md:justify-end'
+                                 onClick={() => setHowToLogPictureNumber(item.order - 1)}> 
 
                                     <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                                     style={{
@@ -201,7 +204,7 @@ const LandingPage = () => {
 
 
                     {/* fourth slide */}
-                    <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:pt-24'>
+                    <div className='w-full flex flex-col items-center justify-between py-10 gap-y-16 md:pt-24'>
 
                         <div className='w-full flex justify-start items-center'>
 
@@ -223,6 +226,15 @@ const LandingPage = () => {
 
                                 <ArticleSwiper />
 
+                        </div>
+
+                        <div className=' w-[95%] h-[17rem] flex justify-center items-end pb-4 mt-[-16.5rem] md:mt-[-15.5rem]' style={{backgroundColor:'var(--syllabus-data-boxes-bg)'}}>
+                                <button className={`${ButtonStyles.normalButton} h-14 w-28 md:h-[58px] md:w-40 md:font-semibold`}>مشاهده بیشتر</button>
+                        </div>
+
+                        <div className='w-full flex flex-col justify-center items-center gap-y-6'>
+                            <img src={parbazLogo} alt='compnay logo' className='w-[80%] md:w-[20%]'/>
+                            <p>پیشتاز پرباز اسم شرکت یا هرچیز</p>
                         </div>
 
                     </div>
