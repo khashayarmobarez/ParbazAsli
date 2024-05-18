@@ -129,7 +129,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>بلاگ</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/aboutUs'>درباره ما</Link></li>
-                                            <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>تماس با ما</Link></li>
+                                            <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/contactUs'>تماس با ما</Link></li>
                                             {userRole === '' ?
                                             null
                                             :
