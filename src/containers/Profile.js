@@ -34,7 +34,7 @@ const Profile = ({userRole}) => {
 
 
     return (
-        <div className='flex flex-col items-center pt-24 pb-4'>
+        <div className='flex flex-col items-center pt-24 pb-[4rem]'>
 
             {
                 isLoading && isFetching && <h2 className=' text-white mt-'>is loading...</h2>

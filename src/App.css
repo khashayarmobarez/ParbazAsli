@@ -1,7 +1,6 @@
 .App {
   z-index: -100;
   min-height: 100vh;
-  padding-bottom: 5rem;
   background-color: var(--bg-dark-active) ;
   color:#fff;
   text-align: center;
