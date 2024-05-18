@@ -23,10 +23,10 @@ const ContactUs = () => {
     const isBelow768px = useMediaQuery('(max-width:768px)');
 
     return (
-        <div className='mt-10 w-full flex flex-col items-center'>
+        <div className=' w-full flex flex-col items-center pb-20' 
+        style={{ backgroundImage: `url(${contactUs})`, backgroundSize: 'cover', backgroundPosition: 'top left' }}>
             
-            <div className='w-full flex flex-col items-center mt-6 min-h-[60vh] pb-6 gap-y-10' 
-             style={{ backgroundImage: `url(${contactUs})`, backgroundSize: 'cover', backgroundPosition: 'top left' }}>
+            <div className='w-full h-[100vh] flex flex-col items-center mt-16 min-h-[60vh] pb-6 gap-y-10' >
 
                 {
                 isBelow768px &&

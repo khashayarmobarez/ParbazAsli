@@ -17,8 +17,8 @@ const AboutUs = () => {
     const isBelow768px = useMediaQuery('(max-width:768px)');
 
     return (
-        <div className='w-full md:h-[40rem] pt-14 pb-8 flex justify-center items-center md:mt-10' style={{ backgroundImage: `url(${davinci})`, backgroundSize: 'cover', backgroundPosition: 'top left' }}>
-            <div className='w-full h-full flex flex-col md:mt-14 items-center md:w-[90%] gap-y-6'>
+        <div className='w-full md:h-[50rem] pt-14 pb-8 flex justify-center items-center md:mt-10' style={{ backgroundImage: `url(${davinci})`, backgroundSize: 'cover', backgroundPosition: 'top left' }}>
+            <div className='w-full h-full flex flex-col md:mt-14 items-center md:w-[70%] gap-y-6'>
                 
                 {
                     isBelow768px &&
