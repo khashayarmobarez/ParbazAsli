@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/ParbazAsli/static/css/main.7c3f3920.css",
-    "main.js": "/ParbazAsli/static/js/main.d2115306.js",
+    "main.css": "/ParbazAsli/static/css/main.a0e21063.css",
+    "main.js": "/ParbazAsli/static/js/main.55fdd5ba.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.80f20256a6ee5c9ae290.topojson",
-    "static/media/mountains.png": "/ParbazAsli/static/media/mountains.8ae794085898f1ecd294.png",
-    "static/media/howDigilogbook.png": "/ParbazAsli/static/media/howDigilogbook.c8e5d3ea9d56ca4976e3.png",
-    "static/media/Coach.png": "/ParbazAsli/static/media/Coach.efcd8ec544f15e4c0c1c.png",
+    "static/media/davinci.jpg": "/ParbazAsli/static/media/davinci.49e132f1d219ac8abdd2.jpg",
+    "static/media/parbazLogo.svg": "/ParbazAsli/static/media/parbazLogo.8af2af82a9c0aec0c64e5d58f8ccfb92.svg",
+    "static/media/contacUs.jpg": "/ParbazAsli/static/media/contacUs.8a6f9ea6d2263c6615d3.jpg",
     "static/media/IRANSansX-Light.ttf": "/ParbazAsli/static/media/IRANSansX-Light.eef71fbe1f6b4acdcaaf.ttf",
     "static/media/IRANSansX-DemiBold.ttf": "/ParbazAsli/static/media/IRANSansX-DemiBold.3be5bc7da33e456d69fb.ttf",
     "static/media/IRANSansX-Bold.ttf": "/ParbazAsli/static/media/IRANSansX-Bold.d363547f339c9b864981.ttf",
@@ -37,11 +37,11 @@
     "static/media/bx-zoom-out.svg": "/ParbazAsli/static/media/bx-zoom-out.5fce6c9d4b465b7f4a1e.svg",
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.0f25f05198b862f051507f178eb7722d.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.e79604f297dfd13a3ebfec42d50c1c7a.svg",
-    "main.7c3f3920.css.map": "/ParbazAsli/static/css/main.7c3f3920.css.map",
-    "main.d2115306.js.map": "/ParbazAsli/static/js/main.d2115306.js.map"
+    "main.a0e21063.css.map": "/ParbazAsli/static/css/main.a0e21063.css.map",
+    "main.55fdd5ba.js.map": "/ParbazAsli/static/js/main.55fdd5ba.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c3f3920.css",
-    "static/js/main.d2115306.js"
+    "static/css/main.a0e21063.css",
+    "static/js/main.55fdd5ba.js"
   ]
 }
