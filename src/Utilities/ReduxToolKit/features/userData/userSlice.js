@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     // user role could be  coach, student or organization or null
-    userRole:'',
+    userRole:'coach',
     // club could be  coach or student
     club:'',
     manager:false,
