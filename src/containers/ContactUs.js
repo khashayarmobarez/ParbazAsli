@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 
 // queries
 import { addGeneralComment } from '../Utilities/Services/queries';
+
+// react-toastify
+import { toast } from 'react-toastify';
 
 // assets
 import contactUs from '../assets/ApiData Temporary/picture/contacUs.jpg'
@@ -28,7 +30,27 @@ const ContactUs = () => {
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
     const [comment, setComment] = useState('');
-    const [errorMessages, setErrorMessages] = useState(null);
+    const [showErrors, setShowErrors] = useState(false);
+    const [errorMessages, setErrorMessages] = useState({ fullName: null, email: null, comment: null });
+
+    useEffect(() => {
+        const errors = {};
+    
+        if (!email.trim()) {
+          errors.email = 'لطفا ایمیل را وارد کنید.';
+        }
+    
+        if (!fullName.trim()) {
+          errors.fullName = 'لطفا نام را وارد کنید.';
+        }
+    
+        if (comment.trim().length < 4 || comment.trim().length > 500) {
+          errors.comment = 'نظر باید بین 4 تا 500 کاراکتر باشد.';
+        }
+    
+        console.log(errors)
+        setErrorMessages(errors);
+    }, [email, fullName, comment]);
 
     const queryClient = useQueryClient();
 
@@ -38,21 +60,36 @@ const ContactUs = () => {
             console.log('Success:', data);
 
             // Clear error messages
-            setErrorMessages(null);
+            setErrorMessages('');
 
             // Invalidate and refetch any queries that could be affected by this mutation
             queryClient.invalidateQueries(['comments']);
             setEmail('');
             setFullName('');
             setComment('');
+
+            toast('نظر شما ثبت شده و به بخش مدیریت ارسال شد.', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
         },
         onError: (error) => {
-            if (error.message.includes('No response received')) {
-              setErrorMessages([{ errorMessage: 'Failed to receive a response from the server. Please try again later.' }]);
-            } else if (error.message.includes('An error occurred')) {
-              setErrorMessages([{ errorMessage: error.message }]);
+            console.error('Error adding comment:', error);
+          
+            if (error.response && error.response.data && error.response.data.errorMessages) {
+              setErrorMessages(error.response.data.errorMessages);
             } else {
               setErrorMessages([{ errorMessage: 'An unexpected error occurred. Please try again later.' }]);
+              toast('مشکلی وجود دارد, دوباره تلاش کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
             }
           },
     });
@@ -65,14 +102,30 @@ const ContactUs = () => {
           fullName,
           comment,
         };
+
+        const hasErrors = Object.values(errorMessages).some(
+            (value) => value !== null && value !== undefined && value !== ''
+        );
     
-        mutation.mutate(commentData, {
-          onSuccess: () => {
-            setEmail('');
-            setFullName('');
-            setComment('');
-          },
-        });
+        if (!hasErrors) {
+            mutation.mutate(commentData, {
+              onSuccess: () => {
+                setShowErrors(false);
+                setEmail('');
+                setFullName('');
+                setComment('');
+              },
+            });
+          } else {
+            setShowErrors(true);
+            toast('فرم صحیح پر نشده', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+          }
       };
 
     const isBelow768px = useMediaQuery('(max-width:768px)');
@@ -119,21 +172,37 @@ const ContactUs = () => {
 
                         <h1 className=' text-right'>نظرات خود را با ما در میان بگذارید</h1>
 
-                        <TextInput  placeholder='نام' value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        required  />
+                        <div className='w-full flex flex-col'>
+                            <TextInput  placeholder='نام' value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            required  />
+                            {showErrors && errorMessages.fullName && 
+                                <p className=' text-[#BE123C] text-right'>{errorMessages.fullName}</p>
+                            }
+                        </div>
 
-                        <TextInput  placeholder='ایمیل' icon={mailIcon}
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required />
+                        <div className='w-full flex flex-col'>
+                            <TextInput  placeholder='ایمیل' icon={mailIcon}
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required />
+                            {showErrors && errorMessages.email &&
+                                <p className=' text-[#BE123C] text-right'>{errorMessages.email}</p>
+                            }
+                        </div>
 
-                        <LongTextInput placeholder='نظر شما...' value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        required
-                        minLength={4}
-                        maxLength={500}/>
+                        <div className='w-full flex flex-col'>    
+                            <LongTextInput placeholder='نظر شما...' 
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            required
+                            minLength={4}
+                            maxLength={500}/>
+                            {showErrors && errorMessages.email &&
+                                <p className=' text-[#BE123C] text-right'>{errorMessages.comment}</p>
+                            }
+                        </div>
 
                         <button className={`${ButtonStyles.addButton} w-[100%]`} type="submit" disabled={mutation.isLoading} >
                             <p>ارسال</p>
@@ -141,14 +210,16 @@ const ContactUs = () => {
                         
                         <div>
                             {mutation.isLoading && <p>در حال ارسال کامنت, لطفا صبر کنید.</p>}
-                            {mutation.isError && (
+                            {/* add an additional check before mapping over errorMessages, This way, the component will only attempt to map over errorMessages if it's an array. */}
+                            {mutation.isError && mutation.isError && Array.isArray(errorMessages) && (
                                 <div>
                                     {errorMessages && errorMessages.map((err, index) => (
-                                         err.errorKey === 'Email' && <p key={index} style={{ color: 'red' }}>ایمیل خود را وارد کنید</p>
+                                        <p key={index} style={{ color: 'red' }}>
+                                        {err.errorMessage}
+                                        </p>
                                     ))}
                                 </div>
                             )}
-                            {mutation.isSuccess && <p >کامنت شما ارسال شد</p>}
                         </div>
 
                     </form>

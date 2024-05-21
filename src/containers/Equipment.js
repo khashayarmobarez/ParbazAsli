@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 // styles and assets
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // Queries

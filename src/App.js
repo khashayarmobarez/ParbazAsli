@@ -260,8 +260,6 @@ function App() {
 
       </QueryClientProvider>
 
-
-
   );
 }
 

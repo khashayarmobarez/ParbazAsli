@@ -23,7 +23,7 @@ const TextInput = ({ value, onChange, placeholder, Type, icon }) => {
           : <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
           }
       </span>
-      <input type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-10`} />
+      <input type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-10`} />
     </div>
   ); 
 };

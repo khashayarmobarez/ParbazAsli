@@ -224,7 +224,7 @@ const LandingPage = () => {
 
                         <div className='w-full h-[50vh] flex flex-col justify-center items-center'>
 
-                                <ArticleSwiper />
+                                {/* <ArticleSwiper /> */}
 
                         </div>
 
