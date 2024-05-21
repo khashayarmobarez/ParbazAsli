@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 
-
 import boxStyles from '../styles/Boxes/DataBox.module.css'
 import GradientStyles from '../styles/gradients/Gradient.module.css'
 
