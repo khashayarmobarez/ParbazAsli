@@ -22,7 +22,10 @@ const useAppModeEffect = (isDarkMode) => {
         // landing page elements
         root.style.setProperty('--landing-page-titles-bg', ' linear-gradient(179.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0.8) 252.75%)');
         root.style.setProperty('--landing-page-titles-boxShadow', ' 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51),-3px 4px 10.3px 4px rgba(0, 0, 0, 0.3)');
-
+        
+        // about us and contact us data box
+        root.style.setProperty('--about-us-box-color', '  linear-gradient(189.66deg, #131526 32.42%, rgba(57, 60, 84, 0) 207.54%)');
+        root.style.setProperty('--about-us-box-shodow', ' 1px -1px 2.6px 0px rgba(235, 224, 224, 0.59), -3px 4px 10.1px 4px rgba(0, 0, 0, 0.25)');
 
         // speedometer background
         root.style.setProperty('--speedometer-background', 'linear-gradient(195.31deg, #323232 -84.63%, rgba(34, 34, 34, 0.285) 48.09%, rgba(79, 79, 79, 0) 100.99%)');

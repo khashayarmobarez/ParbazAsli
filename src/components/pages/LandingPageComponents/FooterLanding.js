@@ -13,7 +13,6 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 // components
-import TextInput from '../../inputs/textInput';
 import InputWithButton from '../../inputs/InputWithButton';
 
 const FooterLanding = () => {

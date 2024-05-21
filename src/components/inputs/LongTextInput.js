@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
-const TextInput = ({ value, onChange, placeholder, Type, icon }) => {
+const LongTextInput = ({ value, onChange, placeholder, Type, icon }) => {
 
   const [filled, setFilled] = useState(false);
   
@@ -16,19 +16,13 @@ const TextInput = ({ value, onChange, placeholder, Type, icon }) => {
   };
 
   return (
-    <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
-      <span> 
-        { icon ?
-          <img src={icon} alt='icon' className=' absolute w-5 mt-[14px] mr-[8px]' style={{fill :'white'}} />
-          : <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
-          }
-      </span>
-      <input type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-10`} />
+    <div className='flex relative w-[100%] min-h-32 rounded-2xl'>
+      <textarea type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-4 pt-4 text-right align-top md:min-h-36`} />
     </div>
   ); 
 };
 
-export default TextInput;
+export default LongTextInput;
 
 // icon is optional
 //  <TextInput icon{?} value={guestStudent} onChange={handleGuestStudent} placeholder='کد کاربری هنرجوی مهمان' />

@@ -70,6 +70,7 @@ import AddFlight from './containers/AddFlight';
 import LandingPage from './containers/LandingPage';
 import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
 import AboutUs from './containers/AboutUs';
+import ContactUs from './containers/ContactUs';
   
 
 
@@ -101,6 +102,9 @@ function App() {
             <Routes>
 
             <Route path='/aboutUs' element={<AboutUs />} />
+            <Route path='/contactUs' element={<ContactUs />} />
+
+
             {/* landing page */}
             {userRole === '' &&
             <>
@@ -255,8 +259,6 @@ function App() {
         </div>
 
       </QueryClientProvider>
-
-
 
   );
 }
