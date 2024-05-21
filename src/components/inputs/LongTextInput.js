@@ -16,8 +16,8 @@ const LongTextInput = ({ value, onChange, placeholder, Type, icon }) => {
   };
 
   return (
-    <div className='flex relative w-[100%] min-h-24 rounded-2xl'>
-      <input type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-4 text-right align-top`} />
+    <div className='flex relative w-[100%] min-h-32 rounded-2xl'>
+      <textarea type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-4 pt-4 text-right align-top md:min-h-36`} />
     </div>
   ); 
 };
