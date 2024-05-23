@@ -18,6 +18,12 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// landing and overall section
+import LandingPage from './containers/LandingPage';
+import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
+import AboutUs from './containers/AboutUs';
+import ContactUs from './containers/ContactUs';
+import Blogs from './containers/Blogs';
 // main and caoch components
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Header/Navbar';
@@ -67,10 +73,7 @@ import AddFlight from './containers/AddFlight';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
-import LandingPage from './containers/LandingPage';
-import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
-import AboutUs from './containers/AboutUs';
-import ContactUs from './containers/ContactUs';
+import BlogDetails from './components/pages/Blogs/BlogDetails';
   
 
 
@@ -103,6 +106,9 @@ function App() {
 
             <Route path='/aboutUs' element={<AboutUs />} />
             <Route path='/contactUs' element={<ContactUs />} />
+            <Route path='/blogs' element={<Blogs />} />
+            <Route path='/blog/:id' element={<BlogDetails />} />
+            
 
 
             {/* landing page */}

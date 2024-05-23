@@ -10,6 +10,7 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 // mui
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
+
 // assets
 import iphone from '../assets/ApiData Temporary/mobile-mk 3.png'
 import parbazLogo from '../assets/Logo/parbazLogo.svg'
@@ -27,7 +28,7 @@ const LandingPage = () => {
     // number of the image shown on the 'how to log flight' section
     const [ howToLogPictureNumber, setHowToLogPictureNumber ] = useState(0)
     
-    const { data, isLoading, error, isFetching } = useLandingPage();
+    const { data, isLoading, error, isFetching, isError } = useLandingPage();
 
 
     return (
@@ -42,7 +43,7 @@ const LandingPage = () => {
             }
 
             {
-                error && <h3>{error.message}</h3>
+                isError && <h3 className='flex w-full h-[95vh] items-center justify-center'>{error.message}</h3>
             }
             {
                 data &&
