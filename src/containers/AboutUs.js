@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -13,6 +14,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import PageTitle from '../components/reuseable/PageTitle';
 
 const AboutUs = () => {
+
+    const navigate = useNavigate()
 
     const isBelow768px = useMediaQuery('(max-width:768px)');
 
@@ -40,7 +43,7 @@ const AboutUs = () => {
                             همراه ما باشید.
                         </p>
 
-                        <button type='submit' className={`${ButtonStyles.addButton} w-36 self-end mb-[-3rem] ml-4`}>تماس با ما</button>
+                        <button onClick={() => navigate('/contactUs')} className={`${ButtonStyles.addButton} w-36 self-end mb-[-3rem] ml-4`}>تماس با ما</button>
 
                     </div>
                 
