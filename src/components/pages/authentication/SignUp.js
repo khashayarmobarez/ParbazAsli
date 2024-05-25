@@ -18,7 +18,7 @@ import Checkbox from './Inputs/CheckBox';
 
 const USER_REGEX = /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]{2,40}$/u;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const PHONE_REGEX = /^09\d{9}$/; 
+const PHONE_REGEX = /^09\d{9}$/;
 const REGISTER_URL = '/register';
 const NATIONAL_CODE_REGEX = /^\d{10}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

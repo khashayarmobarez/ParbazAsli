@@ -67,7 +67,7 @@ const BlogDetails = () => {
                     <div className='w-full min-h-[530px] flex flex-col items-center justify-between px-4 py-6 rounded-3xl gap-y-4 md:p-8 md:w-3/5' 
                     style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
 
-                        <img src={image.path} alt={image.name} className='w-full h-40 rounded-xl md:h-[30rem]' />
+                        <img src={image.path} alt={image.name} className='w-full h-40 rounded-xl object-cover md:h-[30rem]' />
 
                         <div className='w-full grid grid-cols-2 md:grid-cols-4 gap-y-4'>
                             <div className='flex gap-x-2'>

@@ -1,0 +1,59 @@
+
+.swiperButtonNext,
+.swiperButtonPrev {
+  margin-top: 0rem;
+  background-color: var(--profile-buttons-background);
+  box-shadow: var(--profile-buttons-boxShadow);
+  padding: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  color: var(--softer-white);
+  z-index: 50;
+}
+
+.swiperButtonNext {
+  margin-left: 2%;
+}
+
+.swiperButtonPrev {
+  margin-right: 0%;
+}
+
+.swiperPaginationBullet {
+  width: 8px;
+  height: 8px;
+  background-color: var(--softer-white);
+}
+
+@media (min-width: 768px) {
+  .swiperSlide {
+    width: 30% !important; /* Set slide width on desktop */
+  }
+}
+
+.productCard { 
+  width:65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.productImage {
+  width: 100%;
+  height: 220px; /* h-56 */
+  object-fit: cover; /* object-cover */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.productTitle {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.activeSlide {
+    width: 95%;
+    background-color: #1f1f1f;
+}

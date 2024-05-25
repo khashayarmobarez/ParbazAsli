@@ -1,5 +1,5 @@
 import React, {  useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // utlities
 import NumberToPersian from '../Utilities/Services/NumberToPersian';
@@ -24,6 +24,8 @@ import ArticleSwiper from '../components/pages/LandingPageComponents/ArticleSwip
 import Loader from '../components/Loader/Loader';
 
 const LandingPage = () => {
+
+    const navigate = useNavigate()
 
     // number of the image shown on the 'how to log flight' section
     const [ howToLogPictureNumber, setHowToLogPictureNumber ] = useState(0)
@@ -223,14 +225,14 @@ const LandingPage = () => {
 
                         </div>
 
-                        <div className='w-full h-[50vh] flex flex-col justify-center items-center'>
+                        <div className='w-full h-[50vh] flex flex-col justify-center items-center md:mt-10'>
 
-                                {/* <ArticleSwiper /> */}
+                                <ArticleSwiper />
 
                         </div>
 
-                        <div className=' w-[95%] h-[17rem] flex justify-center items-end pb-4 mt-[-16.5rem] md:mt-[-15.5rem]' style={{backgroundColor:'var(--syllabus-data-boxes-bg)'}}>
-                                <button className={`${ButtonStyles.normalButton} h-14 w-28 md:h-[58px] md:w-40 md:font-semibold`}>مشاهده بیشتر</button>
+                        <div className=' w-[95%] h-[25rem] flex justify-center items-end pb-4 mt-[-24.5rem] md:mt-[-20.5rem]' style={{backgroundColor:'var(--syllabus-data-boxes-bg)'}}>
+                                <button onClick={() => navigate('/blogs')} className={` underline underline-offset-8 font-medium`}>مشاهده بیشتر ...</button>
                         </div>
 
                         <div className='w-full flex flex-col justify-center items-center gap-y-6'>
