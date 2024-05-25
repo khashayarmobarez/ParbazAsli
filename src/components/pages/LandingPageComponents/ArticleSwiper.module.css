@@ -33,18 +33,10 @@
 }
 
 .productCard { 
-  width:65%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.productImage {
-  width: 100%;
-  height: 220px; /* h-56 */
-  object-fit: cover; /* object-cover */
-  margin-bottom: 1rem; /* mb-4 */
 }
 
 .productTitle {
@@ -54,6 +46,5 @@
 }
 
 .activeSlide {
-    width: 95%;
     background-color: #1f1f1f;
 }
