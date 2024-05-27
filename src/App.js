@@ -1,8 +1,6 @@
-import React, {  useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import React, {  useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-
-
 
 // react query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -85,11 +83,17 @@ function App() {
 
           
   const {userRole} = useSelector(selectUser)
-  
+
+  const location = useLocation();
+
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useAppModeEffect(isDarkMode)
  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);

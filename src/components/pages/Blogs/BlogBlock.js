@@ -33,10 +33,12 @@ const BlogBlock = ({blogData}) => {
 
 
     return (
-        <div className='w-full h-[530px] md:h-[500px] flex flex-col items-center justify-between p-4 rounded-3xl md:p-8' 
+        <div className='w-full h-[500px] md:h-[470px] flex flex-col items-center justify-between p-4 rounded-3xl md:p-8' 
         style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
 
-            {image && <img src={image.path} alt={image.name} className='rounded h-[230px] w-full' />}
+            <div className="w-full h-52 md:h-56">
+                {image && <img src={image.path} alt={image.name} className="rounded object-cover object-center h-full w-full" />}
+            </div>
             
             <div className='w-full flex flex-col h-10 justify-center items-center'>
                 <h1 className='text-lg' style={{ color: 'var(--yellow-text)' }}>{title}</h1>

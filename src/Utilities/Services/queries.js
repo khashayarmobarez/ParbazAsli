@@ -55,7 +55,7 @@ const addGeneralComment = async (commentData) => {
   // fetch data
   const fetchBlogById = async (blogId) => {
     try {
-      const response = await axios.get(`https://api.par-baz.ir/api/Blog/GetBlog?blogId=${blogId}`);
+      const response = await axios.get(`https://api.par-baz.ir/api/Blog/GetBlog?Id=${blogId}`);
       console.log(response.data);
       return response.data;
     } catch (error) {

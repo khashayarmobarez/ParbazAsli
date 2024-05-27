@@ -1,111 +1,139 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper/modules';
 
 // mui
 import useMediaQuery from '@mui/material/useMediaQuery';
+import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined';
 
-import { register } from "swiper/element/bundle";
-register();
+// styles
+import styles from './ArticleSwiper.module.css';
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// Queries
+import { useBlogs } from '../../../Utilities/Services/queries';
+
+  const ArticleSwiper = () => {
+
+  const navigate = useNavigate()
+
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0); // State to track active slide index
+  
+  const isDesktop = useMediaQuery('(min-width:768px)');
+
+  const { data: blogData, isLoading, isError, error } = useBlogs(10, 1);
 
 
-const ArticleSwiper = () => {
-    
-    const [products, setProducts] = useState([]);
+  const handleSlideChange = (swiper) => {
+    const nextSlideIndex = swiper.activeIndex + 1; // Calculate index of the slide following the active one
+    setActiveSlideIndex(nextSlideIndex); // Update active slide index on slide change
+  };
 
-    const isDesktop = useMediaQuery('(min-width:768px)');
+  const extractWordsFromHtml = (html, wordLimit) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+    const textContent = tempDiv.textContent || tempDiv.innerText || "";
+    const words = textContent.split(' ').slice(0, wordLimit).join(' ');
+    return words;
+  };  
 
-    const swiperRef = useRef(null);
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('https://dummyjson.com/products?limit=10');
-                setProducts(response.data.products);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
-        
-        fetchProducts();
-    }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    useEffect(() => {
-        const swiperContainer = swiperRef.current;
-        const params = {
-        navigation: true,
-        pagination: false,
-        centeredSlides: !isDesktop,
-        spaceBetween: isDesktop ? '20' : '50',
-        slidesPerView: isDesktop ? '3' : '1',
-        initialSlide:'0',
-        injectStyles: [
-            `
-              .swiper-button-next,
-              .swiper-button-prev {
-                margin-top:0rem;
-                background-color: var(--profile-buttons-background);
-                box-shadow:var(--profile-buttons-boxShadow);
-                padding: 5px;
-                width:12px;
-                height:12px;
-                border-radius: 100%;
-                color: var(--softer-white);
-                z-index: 50;
-              }
-              .swiper-button-next {
-                margin-left: 0%;
-              }
-              .swiper-button-prev {
-                margin-right: 0%;
-              }
-
-              .swiper-pagination-bullet{
-                width: 8px;
-                height: 8px;
-                background-color: var(--softer-white);
-              }
-              ${
-                isDesktop
-                  ? `.swiper-slide {
-                    width: 45% !important; // Set slide width to 45% on desktop
-                  }`
-                  : ''
-              }
-          `,
-          ],
-        };
-
-    Object.assign(swiperContainer, params);
-    swiperContainer.initialize();
-  }, [isDesktop]);
-
-    
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
-    <div className='w-full md:px-[8%]'>
-      <swiper-container
-      ref={swiperRef}
-      init="false"
+    <div className='w-full md:pl-[8%] md:pr-[11%]'>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        navigation={{
+          nextEl: `.${styles.swiperButtonNext}`,
+          prevEl: `.${styles.swiperButtonPrev}`,
+        }}
+        pagination={{
+          clickable: true,
+          bulletClass: styles.swiperPaginationBullet,
+        }}
+        centeredSlides={!isDesktop}
+        spaceBetween={isDesktop ? 60 : 0}
+        slidesPerView={isDesktop ? 3 : 1}
+        initialSlide={0}
+        onSlideChange={handleSlideChange} 
+        autoplay={{ delay: 3000 }}
       >
-        {products.map((product) => (
-          <swiper-slide
-            key={product.id}
+
+        {blogData.data.map((blog,index) => (
+          <SwiperSlide
+            key={blog.id}
+            className={`${styles.swiperSlide} `} // Apply active slide style conditionally
             style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
           >
-            <div className="bg-gray-200 rounded-lg p-4 flex flex-col justify-center items-center">
-              <img src={product.images[0]} alt={product.title} className='w-[80%] h-56 object-cover rounded-lg mb-4' />
-              <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-              <p className="text-gray-700">{product.description}</p>
-            </div>
-          </swiper-slide>
-        ))}
-      </swiper-container>
 
-      <style jsx>{`
-        .swiper-slide-active {
-          /* Your styles for the active slide here */
-        }
-      `}</style>
+            <div className={`${styles.productCard} ${index === activeSlideIndex  ? 'w-full' : 'md:w-[85%] md:mt-12 w-[75%]'} `}>
+
+            {/* conditions to set active styling for desktop mode */}
+            {
+              isDesktop ? 
+                ( index === activeSlideIndex &&
+                  <p className='absolute top-3 py-1 px-2 text-sm self-end z-30 rounded-r-3xl' style={{background:'var(--dark-blue-bg)'}} >
+                    <WatchLaterOutlinedIcon  /> در {blog.timeToReadInMinutes} دقیقه بخوانید
+                  </p>
+                )
+                :
+                <p className='absolute top-3 py-1 px-2 text-sm self-end z-30 rounded-r-3xl' style={{background:'var(--dark-blue-bg)'}} >
+                    <WatchLaterOutlinedIcon  /> در {blog.timeToReadInMinutes} دقیقه بخوانید
+                </p>
+            }
+
+              <img src={blog.image.path} alt={blog.title} className={` w-full  object-cover mb-4 z-10 ${index === activeSlideIndex  ? ' h-72' : 'h-56'}`} />
+
+              {/* conditions to set active styling for desktop mode */}
+              {
+                isDesktop ? 
+                  ( index === activeSlideIndex &&
+                  <>
+                    <h3 className=' text-xl' style={{color:'var(--yellow-text)'}}>{blog.title}</h3>
+                    <p className=' mb-4' style={{color:'var(--softer-white)'}}>{blog.authorName}</p>
+                    <p className=' mb-8' style={{color:'var(--softer-white)'}}>
+                      { blog.blogSections && blog.blogSections.length > 0 && blog.blogSections[0].htmlContent
+                        ? extractWordsFromHtml(blog.blogSections[0].htmlContent, 30)
+                        : 'No content available'
+                      } ...
+                    </p>
+                    <button onClick={() => navigate(`/blog/${blog.id}`)} className={`${ButtonStyles.addButton} w-36 `}>خواندن مقاله</button>
+                  </>
+                  ) 
+                  :
+                  <>
+                    <h3 className=' text-xl' style={{color:'var(--yellow-text)'}}>{blog.title}</h3>
+                    <p className=' mb-4' style={{color:'var(--softer-white)'}}>{blog.authorName}</p>
+                    <p className=' mb-8' style={{color:'var(--softer-white)'}}>
+                      { blog.blogSections && blog.blogSections.length > 0 && blog.blogSections[0].htmlContent
+                        ? extractWordsFromHtml(blog.blogSections[0].htmlContent, 30)
+                        : 'No content available'
+                      } ...
+                    </p>
+                    <button onClick={() => navigate(`/blog/${blog.id}`)} className={`${ButtonStyles.addButton} w-36 `}>خواندن مقاله</button>
+                  </>
+              }
+
+            </div>
+
+          </SwiperSlide>
+        ))}
+
+      </Swiper>
+
     </div>
   );
 };
