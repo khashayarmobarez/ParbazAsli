@@ -68,16 +68,19 @@ const BlogDetails = () => {
                         !isBelow768px && 
                         <div className='w-3/12 flex flex-col items-center'>
                             {/* <div className='absolute h-[50%] w-1 left-20 ' style={{backgroundColor:'var(--yellow-text)'}}></div> */}
-                            {blogSections.map(section => (
+                            {blogSections.map((section, index) => (
                                 <div key={section.title} className='flex w-full h-14 mb-6 justify-center items-center'>
                                     <p className='w-3/4' >{section.title}</p>
-                                    <p className=' w-10 h-10 rounded-full text-center flex justify-center items-center' style={{background:'var(--landing-page-titles-bg)',boxShadow:'var(--landing-page-titles-boxShadow) '}}>{section.order}</p>
+                                    <p className=' w-10 h-10 rounded-full text-center flex justify-center items-center z-10' style={{background:'var(--landing-page-titles-bg)',boxShadow:'var(--landing-page-titles-boxShadow) '}}>{section.order}</p>
+                                    {index < blogSections.length - 1 && (
+                                            <div className='absolute h-20 mr-[17.5vw] mt-16 w-1 z-0' style={{backgroundColor:'var(--yellow-text) '}}></div>
+                                    )}
                                 </div>
                             )
                             )}
                         </div>
                     }
-                    <div className=' w-9/12 flex flex-col gap-y-8'>
+                    <div className='w-full md:w-9/12 flex flex-col gap-y-8'>
 
                         <div className='w-full min-h-[530px] flex flex-col items-center justify-between px-4 py-6 rounded-3xl gap-y-4 md:p-8' 
                         style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
