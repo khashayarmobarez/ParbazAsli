@@ -3,7 +3,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const USER_REGEX = /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]{2,40}$/u;
+const USER_REGEX = /^[^0-9~'`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 
 const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur }) => {
   const [userFocus, setUserFocus] = useState(false);

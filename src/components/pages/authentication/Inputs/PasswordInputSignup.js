@@ -5,12 +5,12 @@
   import keyIcon from '../../../../assets/icons/key-Icon.svg';
   import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+  const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|/\\:;"`<>,.\?]+$/;
 
   const PasswordInputSignup = ({ onChange, value, focus, onFocus, onBlur }) => {
     const [pwdFocus, setPwdFocus] = useState(false);
     const [validPwd, setValidPwd] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);  
     const [filled, setFilled] = useState(false);
 
     useEffect(() => {

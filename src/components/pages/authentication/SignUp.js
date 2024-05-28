@@ -16,12 +16,12 @@ import EmailInputSignup from './Inputs/EmailInputSignUp';
 import Checkbox from './Inputs/CheckBox';
 
 
-const USER_REGEX = /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]{2,40}$/u;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const USER_REGEX = /^[^0-9~'`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
+const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|/\\:;"`<>,.\?]+$/;
 const PHONE_REGEX = /^09\d{9}$/;
 const REGISTER_URL = '/register';
-const NATIONAL_CODE_REGEX = /^\d{10}$/;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// const NATIONAL_CODE_REGEX = /^\d{10}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/;
 
 const SignUp = () => {
     const userRef = useRef();
@@ -36,8 +36,8 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [emailFocus, setEmailFocus] = useState(false);
 
-    const [nationalCode, setNationalCode] = useState('');
-    const [nationalCodeFocus, setNationalCodeFocus] = useState(false);
+    // const [nationalCode, setNationalCode] = useState('');
+    // const [nationalCodeFocus, setNationalCodeFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [pwdFocus, setPwdFocus] = useState(false);
@@ -86,9 +86,9 @@ const SignUp = () => {
         setValidEmail(EMAIL_REGEX.test(email));
     }, [email]);
 
-    useEffect(() => {
-        setValidNationalCode(NATIONAL_CODE_REGEX.test(nationalCode));
-      }, [nationalCode]);
+    // useEffect(() => {
+    //     setValidNationalCode(NATIONAL_CODE_REGEX.test(nationalCode));
+    //   }, [nationalCode]);
 
     const handleTermsToggle = (isChecked) => {
     setTermsChecked(isChecked); // Update the checked state in the parent component
@@ -96,7 +96,7 @@ const SignUp = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validName || !validPwd || !validMatch || !validPhone || !validNationalCode || !validEmail || !termsChecked) { 
+        if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked) { 
             setErrMsg("Invalid Entry");
             return;
         }
@@ -114,7 +114,6 @@ const SignUp = () => {
             setSuccess(true);
             setUser('');
             setUserLastName('');
-            setNationalCode('');
             setPwd('');
             setMatchPwd('');
             setPhone(''); 
@@ -152,14 +151,14 @@ const SignUp = () => {
                     onBlur={() => setUserLastNameFocus(false)}
                 />
 
-                <NationalCodeInput
+                {/* <NationalCodeInput
                     nationalCodeRef={userRef}
                     onChange={(e) => setNationalCode(e.target.value)}
                     value={nationalCode}
                     focus={nationalCodeFocus}
                     onFocus={() => setNationalCodeFocus(true)}
                     onBlur={() => setNationalCodeFocus(false)}
-                />
+                /> */}
 
                 <EmailInputSignup
                     emailRef={userRef}

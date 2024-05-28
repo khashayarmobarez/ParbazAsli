@@ -97,13 +97,13 @@ const LandingPage = () => {
                     {/* second slide */}
                     <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:gap-y-[4vh] md:flex-row' style={{background:'var(--Basic-dataBox-bg)'}}>
 
-                        <div className='w-full flex justify-center items-center h-[40%]  px-4'>
+                        <div className='w-full h-[15rem] flex justify-end items-center md:h-[28rem]  px-4'>
 
                             {/* loading for picture in the second section */}
                             {loadingS2 &&
                                 <CircularProgress sx={{marginBottom:'2rem', color:'var(--softer-white)'}} />   
                             }
-                            <img className={`${loadingS2 ? 'hidden' : 'block'}`} onLoad={() => setLoadingS2(false)} src={data.data.data[1].image.path} alt='mountain' />
+                            <img className={`${loadingS2 ? 'hidden' : 'block'} w-full md:w-4/5 h-full object-cover object-bottom rounded-3xl`} onLoad={() => setLoadingS2(false)} src={data.data.data[1].image.path} alt='mountain' />
 
                         </div>
 
@@ -155,7 +155,7 @@ const LandingPage = () => {
                             </div>
 
 
-                            <button type="submit" className={`${ButtonStyles.addButton} mt-4 w-32 self-center`} 
+                            <button onClick={() => navigate('/whyUs') } className={`${ButtonStyles.addButton} mt-4 w-32 self-center`} 
                                 >مطالعه بیشتر 
                             </button>
 

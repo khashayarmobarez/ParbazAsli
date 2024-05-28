@@ -3,7 +3,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/;
 
 const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur }) => {
   const [emailFocus, setEmailFocus] = useState(false);

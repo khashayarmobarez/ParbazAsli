@@ -62,7 +62,6 @@ import { useBlogs } from '../../../Utilities/Services/queries';
         }}
         pagination={{
           clickable: true,
-          bulletClass: styles.swiperPaginationBullet,
         }}
         centeredSlides={!isDesktop}
         spaceBetween={isDesktop ? 60 : 0}

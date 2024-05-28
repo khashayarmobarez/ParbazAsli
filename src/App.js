@@ -72,6 +72,7 @@ import AddFlight from './containers/AddFlight';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
 import BlogDetails from './components/pages/Blogs/BlogDetails';
+import WhyUs from './components/pages/LandingPageComponents/WhyUs';
   
 
 
@@ -112,6 +113,7 @@ function App() {
             <Route path='/contactUs' element={<ContactUs />} />
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blog/:id' element={<BlogDetails />} />
+            <Route path='/whyUs' element={<WhyUs />} />
             
 
 

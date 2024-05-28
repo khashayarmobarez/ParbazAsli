@@ -13,9 +13,26 @@ const useUserDetails = () => {
 
 
 // landing page section query
-const useLandingPage = () => {
-    return useQuery(['landing'], () => axios.get(`${BASE_URL}/Landing/GetHomeSections`));
-  };
+  // get home sections
+  const useLandingPage = () => {
+      return useQuery(['landing'], () => axios.get(`${BASE_URL}/Landing/GetHomeSections`));
+    };
+
+    // get section
+    const useSection = (sectionName) => {
+      return useQuery(
+        ['section', sectionName],
+        () => axios.get(`${BASE_URL}/Landing/GetSection?type=${sectionName}`),
+        {
+          onSuccess: (data) => {
+            console.log('Section data:', data);
+          },
+          onError: (error) => {
+            console.error('Error fetching section:', error);
+          },
+        }
+      );
+    };
 
 
 // post comments and opinion on aboutUs page
@@ -70,4 +87,4 @@ const addGeneralComment = async (commentData) => {
 
   
 
-export { useUserDetails, useLandingPage, addGeneralComment, useBlogs, useBlog };
+export { useUserDetails, useLandingPage, addGeneralComment, useBlogs, useBlog, useSection };
