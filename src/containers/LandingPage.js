@@ -9,6 +9,7 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 // assets
@@ -31,6 +32,10 @@ const LandingPage = () => {
     const [ howToLogPictureNumber, setHowToLogPictureNumber ] = useState(0)
     
     const { data, isLoading, error, isFetching, isError } = useLandingPage();
+
+    const [loadingS1, setLoadingS1] = useState(true);
+    const [loadingS2, setLoadingS2] = useState(true);
+    const [loadingS3, setLoadingS3] = useState(true);
 
 
     return (
@@ -56,14 +61,20 @@ const LandingPage = () => {
 
                         <div className='flex flex-col items-center justify-center h-[40%] w-full mt-12 md:w-[45%]' style={{background: 'radial-gradient(50% 50% at 50% 50%, #3B4B6C -20%, rgba(39, 39, 41, 0) 95%)'}}>
 
+                            {/* loading for picture in the first section */}
+                            {loadingS1 &&
+                                <CircularProgress sx={{marginBottom:'2rem', color:'var(--softer-white)'}} />   
+                            }
+                            
+                            {/* logo behind the iphone */}
                             {/* <img alt='logo' src={logo} className='w-[664px] md:mb-[-15vh]'/> */}
-
                             <div className='flex items-center justify-center mt-[-4rem]'>
+                                {!loadingS1 &&
                                 <img alt='phone model' src={iphone} className='absolute md:w-[235px]'/>
-                                <img alt='digilogbook app' src={data.data.data[0].image.path} className=' w-[7.4rem] md:w-[195px]' />
-                                
+                                }
+                                <img alt='digilogbook app' onLoad={() => setLoadingS1(false)} src={data.data.data[0].image.path} className={`${loadingS1 ? 'hidden' : 'block'} w-[7.4rem] md:w-[195px]`} />
                             </div>
-
+                            
                         </div>
                             
                         <div className='flex flex-col items-center justify-start gap-y-8 h-[40%] px-4 md:w-[50%]' >
@@ -87,7 +98,13 @@ const LandingPage = () => {
                     <div className='w-full md:h-[94vh] flex flex-col items-center justify-between py-10 gap-y-16 md:gap-y-[4vh] md:flex-row' style={{background:'var(--Basic-dataBox-bg)'}}>
 
                         <div className='w-full flex justify-center items-center h-[40%]  px-4'>
-                            <img src={data.data.data[1].image.path} alt='mountain' />
+
+                            {/* loading for picture in the second section */}
+                            {loadingS2 &&
+                                <CircularProgress sx={{marginBottom:'2rem', color:'var(--softer-white)'}} />   
+                            }
+                            <img className={`${loadingS2 ? 'hidden' : 'block'}`} onLoad={() => setLoadingS2(false)} src={data.data.data[1].image.path} alt='mountain' />
+
                         </div>
 
                         <div className='w-full h-1/2 flex flex-col justify-around items-center gap-y-8 md:h-full'>
@@ -153,7 +170,11 @@ const LandingPage = () => {
                         <div className='flex flex-col items-center justify-center w-full md:py-[4vh] md:w-[50%] md:mt-20'>
 
                             <div className='flex items-center justify-center md:w-[560px]'>
-                                <img src={data.data.data[2].landingSectionItems[howToLogPictureNumber].image.path} alt='how digilogbook' className='w-[80%] md:w-full' />
+                                {/* loading for picture in the second section */}
+                                {loadingS3 &&
+                                    <CircularProgress sx={{marginBottom:'2rem', color:'var(--softer-white)'}} />   
+                                }
+                                <img onLoad={() => setLoadingS3(false)} src={data.data.data[2].landingSectionItems[howToLogPictureNumber].image.path} alt='how digilogbook' className={`${loadingS3 ? 'hidden' : 'block'} w-[80%] md:w-full`} />
                             </div>
 
                         </div>
