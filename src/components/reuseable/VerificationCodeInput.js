@@ -28,7 +28,7 @@ const VerificationCodeInput = ({ showPopup, setShowPopup, callback, reset, isLoa
     }
 
     useEffect(() => {
-        if (code.length === 4) {
+        if (code.length === 5) {
             if (typeof callback === 'function') callback(code);
             resetCode();
         }
@@ -122,7 +122,7 @@ const VerificationCodeInput = ({ showPopup, setShowPopup, callback, reset, isLoa
         <form
         className={`${boxStyles.containerChangeOwnership} ${
         showPopup ? 'fixed' : 'hidden'
-        } w-[304px] h-[280px] flex flex-col justify-around items-center top-52 z-50`}
+        } w-[90%] md:w-[304px] h-[280px] flex flex-col justify-around items-center top-52 z-50`}
         >
             <CloseIcon
             onClick={() => setShowPopup(false)}

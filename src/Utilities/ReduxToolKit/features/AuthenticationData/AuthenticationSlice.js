@@ -2,14 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAuthSettings } from '../../../Services/AuthenticationApi.js';
 
 const initialState = {
-  passwordMinLength: '',
-  passwordMaxLength: '',
-  passwordRequireNonAlphanumeric: '',
-  passwordRequireDigit: '',
-  passwordRequireUppercase: '',
-  passwordRequireLowercase: '',
-  phoneNumberCodeLength: 4,
-  emailCodeLength: ''
+    loading: false,
+    error: null,
+    settings:{
+        passwordMinLength: '',
+        passwordMaxLength: '',
+        passwordRequireNonAlphanumeric: '',
+        passwordRequireDigit: '',
+        passwordRequireUppercase: '',
+        passwordRequireLowercase: '',   
+        phoneNumberCodeLength: 4,
+        emailCodeLength: ''
+    }
 };
 
 export const getAuthSettings = createAsyncThunk(
@@ -56,7 +60,13 @@ const authSettingsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getAuthSettings.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
     builder.addCase(getAuthSettings.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
       const {
         passwordMinLength,
         passwordMaxLength,
@@ -67,15 +77,20 @@ const authSettingsSlice = createSlice({
         phoneNumberCodeLength,
         emailCodeLength,
       } = action.payload;
-
-      state.passwordMinLength = passwordMinLength;
-      state.passwordMaxLength = passwordMaxLength;
-      state.passwordRequireNonAlphanumeric = passwordRequireNonAlphanumeric;
-      state.passwordRequireDigit = passwordRequireDigit;
-      state.passwordRequireUppercase = passwordRequireUppercase;
-      state.passwordRequireLowercase = passwordRequireLowercase;
-      state.phoneNumberCodeLength = phoneNumberCodeLength;
-      state.emailCodeLength = emailCodeLength;
+      state.settings = {
+        passwordMinLength,
+        passwordMaxLength,
+        passwordRequireNonAlphanumeric,
+        passwordRequireDigit,
+        passwordRequireUppercase,
+        passwordRequireLowercase,
+        phoneNumberCodeLength,
+        emailCodeLength,
+      };
+    });
+    builder.addCase(getAuthSettings.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
     });
   },
 });
