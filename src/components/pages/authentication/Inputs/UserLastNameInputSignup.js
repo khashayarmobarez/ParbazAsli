@@ -28,7 +28,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
         </span>
         <input
           type="text"
-          id="username"
+          id="userLastname"
           ref={userRef}
           autoComplete="off"
           value={value}

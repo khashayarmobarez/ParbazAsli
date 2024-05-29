@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
+// useQuery
+import { useQuery } from '@tanstack/react-query';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAuthSettings, getAuthSettings } from '../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
+
 // styles
 import './SignUp.css';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -10,20 +17,36 @@ import UserNameInputSignup from './Inputs/UserNameInputSignup';
 import UserLastNameInputSignup from './Inputs/UserLastNameInputSignup';
 import PasswordInputSignup from './Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
-import NationalCodeInput from './Inputs/NationalCodeInput';
+    // import NationalCodeInput from './Inputs/NationalCodeInput';
 import PhoneInputSignup from './Inputs/PhoneInputSignup';
 import EmailInputSignup from './Inputs/EmailInputSignUp';
 import Checkbox from './Inputs/CheckBox';
 
 
 const USER_REGEX = /^[^0-9~'`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
-const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|/\\:;"`<>,.\?]+$/;
+const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 const PHONE_REGEX = /^09\d{9}$/;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const REGISTER_URL = '/register';
 // const NATIONAL_CODE_REGEX = /^\d{10}$/;
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/;
 
 const SignUp = () => {
+
+    const dispatch = useDispatch();
+
+    const authSettings = useSelector(selectAuthSettings);
+    const {
+        passwordMinLength,
+        passwordMaxLength,
+        passwordRequireNonAlphanumeric,
+        passwordRequireDigit,
+        passwordRequireUppercase,
+        passwordRequireLowercase,
+        phoneNumberCodeLength,
+        emailCodeLength,
+    } = authSettings;
+
+
     const userRef = useRef();
     const errRef = useRef();
 
@@ -62,7 +85,13 @@ const SignUp = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
+        dispatch(getAuthSettings());
+      }, [dispatch]);
+
+    useEffect(() => {
+        // to set the focus of the user
         userRef.current.focus();
+    
     }, []);
 
     useEffect(() => {
@@ -132,7 +161,7 @@ const SignUp = () => {
     return (
         <section className='w-full flex flex-col'>
             
-            <form className='w-full flex flex-col gap-y-4'>
+            <form className='w-full flex flex-col gap-y-4 pt-6 pb-10'>
 
                 <UserNameInputSignup
                     userRef={userRef}
@@ -149,6 +178,7 @@ const SignUp = () => {
                     focus={userLastNameFocus}
                     onFocus={() => setUserLastNameFocus(true)}
                     onBlur={() => setUserLastNameFocus(false)}
+                    id='lastName'
                 />
 
                 {/* <NationalCodeInput
