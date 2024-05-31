@@ -30,7 +30,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur 
           type="text"
           id="username"
           ref={userRef}
-          autoComplete="off"
+          autoComplete="name"
           value={value}
           onChange={handleInputChange}
           required

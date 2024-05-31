@@ -226,95 +226,95 @@ const SignUp = () => {
             {error && <p>Error fetching authentication settings: {error}</p>}
             
             {!loading && !error && (
+                <>
+                    <form className='w-full flex flex-col gap-y-4 pt-6 pb-10'>
 
-                <form className='w-full flex flex-col gap-y-4 pt-6 pb-10'>
+                        <UserNameInputSignup
+                            userRef={userRef}
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                            focus={userFocus}
+                            onFocus={() => setUserFocus(true)}
+                            onBlur={() => setUserFocus(false)}
+                        />
 
-                    <UserNameInputSignup
-                        userRef={userRef}
-                        onChange={(e) => setUser(e.target.value)}
-                        value={user}
-                        focus={userFocus}
-                        onFocus={() => setUserFocus(true)}
-                        onBlur={() => setUserFocus(false)}
-                    />
+                        <UserLastNameInputSignup
+                            onChange={(e) => setUserLastName(e.target.value)}
+                            value={userLastName}
+                            focus={userLastNameFocus}
+                            onFocus={() => setUserLastNameFocus(true)}
+                            onBlur={() => setUserLastNameFocus(false)}
+                            id='lastName'
+                        />
 
-                    <UserLastNameInputSignup
-                        onChange={(e) => setUserLastName(e.target.value)}
-                        value={userLastName}
-                        focus={userLastNameFocus}
-                        onFocus={() => setUserLastNameFocus(true)}
-                        onBlur={() => setUserLastNameFocus(false)}
-                        id='lastName'
-                    />
+                        {/* <NationalCodeInput
+                            nationalCodeRef={userRef}
+                            onChange={(e) => setNationalCode(e.target.value)}
+                            value={nationalCode}
+                            focus={nationalCodeFocus}
+                            onFocus={() => setNationalCodeFocus(true)}
+                            onBlur={() => setNationalCodeFocus(false)}
+                        /> */}
 
-                    {/* <NationalCodeInput
-                        nationalCodeRef={userRef}
-                        onChange={(e) => setNationalCode(e.target.value)}
-                        value={nationalCode}
-                        focus={nationalCodeFocus}
-                        onFocus={() => setNationalCodeFocus(true)}
-                        onBlur={() => setNationalCodeFocus(false)}
-                    /> */}
+                        <EmailInputSignup
+                            emailRef={userRef}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            focus={emailFocus}
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => setEmailFocus(false)}
+                        />
 
-                    <EmailInputSignup
-                        emailRef={userRef}
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                        focus={emailFocus}
-                        onFocus={() => setEmailFocus(true)}
-                        onBlur={() => setEmailFocus(false)}
-                    />
+                        <PhoneInputSignup
+                            phoneRef={userRef}
+                            onChange={(e) => setPhone(e.target.value)}
+                            value={phone}
+                            focus={phoneFocus}
+                            onFocus={() => setPhoneFocus(true)}
+                            onBlur={() => setPhoneFocus(false)}
+                        />
 
-                    <PhoneInputSignup
-                        phoneRef={userRef}
-                        onChange={(e) => setPhone(e.target.value)}
-                        value={phone}
-                        focus={phoneFocus}
-                        onFocus={() => setPhoneFocus(true)}
-                        onBlur={() => setPhoneFocus(false)}
-                    />
+                        <PasswordInputSignup 
+                            
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            focus={pwdFocus}
+                            onFocus={() => setPwdFocus(true)}
+                            onBlur={() => setPwdFocus(false)}
+                        />
 
-                    <PasswordInputSignup 
-                        
-                        onChange={(e) => setPwd(e.target.value)}
-                        value={pwd}
-                        focus={pwdFocus}
-                        onFocus={() => setPwdFocus(true)}
-                        onBlur={() => setPwdFocus(false)}
-                    />
+                        <ConfirmPassInputSignup
+                            password={pwd}
+                            onChange={(e) => setMatchPwd(e.target.value)}
+                            value={matchPwd}
+                            focus={matchFocus}
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={() => setMatchFocus(false)}
+                        />
 
-                    <ConfirmPassInputSignup
-                        password={pwd}
-                        onChange={(e) => setMatchPwd(e.target.value)}
-                        value={matchPwd}
-                        focus={matchFocus}
-                        onFocus={() => setMatchFocus(true)}
-                        onBlur={() => setMatchFocus(false)}
-                    />
+                        <Checkbox
+                        label="با قوانین و مقررات موافقم"
+                        isChecked={termsChecked}
+                        onToggle={handleTermsToggle}
+                        />
 
-                    <Checkbox
-                    label="با قوانین و مقررات موافقم"
-                    isChecked={termsChecked}
-                    onToggle={handleTermsToggle}
-                    />
+                        <div className='w-28 self-center'>
+                            <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
+                            onClick={handlePopUp} 
+                            disabled={!validName || !validPwd || !validMatch ? true : false}
+                            >
+                            تایید
+                            </button>
+                            {(!validName || !validPwd || !validMatch) &&
+                            <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
+                            }
+                        </div>
 
-                    <div className='w-28 self-center'>
-                        <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
-                        onClick={handlePopUp} 
-                        disabled={!validName || !validPwd || !validMatch ? true : false}
-                        >
-                        تایید
-                        </button>
-                        {(!validName || !validPwd || !validMatch) &&
-                        <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
-                        }
-                    </div>
+                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
 
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-
+                    </form>
                     <VerificationCodeInput showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} />
-                    
-                </form>
+                </>
 
             )}
 

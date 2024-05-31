@@ -90,6 +90,7 @@
                 onBlur();
               }}
               placeholder="رمز عبور"
+              autoComplete="new-password" 
             />
             <span onClick={togglePasswordVisibility} style={{ color: '#cacaca' }}>
               {showPassword ? (

@@ -30,7 +30,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
           type="text"
           id="phone"
           ref={phoneRef}
-          autoComplete="off"
+          autoComplete='tel'
           value={value}
           onChange={handleInputChange}
           required

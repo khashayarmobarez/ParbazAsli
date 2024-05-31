@@ -5,7 +5,7 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur }) => {
+const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, autoComplete }) => {
   const [emailFocus, setEmailFocus] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -30,7 +30,7 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur })
           type="email"
           id="email"
           ref={emailRef}
-          autoComplete="off"
+          autoComplete='email'
           value={value}
           onChange={handleInputChange}
           required
