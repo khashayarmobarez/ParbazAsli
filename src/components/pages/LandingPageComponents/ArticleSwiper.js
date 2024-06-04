@@ -29,12 +29,13 @@ import { useBlogs } from '../../../Utilities/Services/queries';
 
   const { data: blogData, isLoading, isError, error } = useBlogs(10, 1);
 
-
+  // Handle slide change event
   const handleSlideChange = (swiper) => {
     const nextSlideIndex = swiper.activeIndex + 1; // Calculate index of the slide following the active one
     setActiveSlideIndex(nextSlideIndex); // Update active slide index on slide change
   };
 
+  // Extract a limited number of words from HTML content
   const extractWordsFromHtml = (html, wordLimit) => {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = html;
@@ -54,21 +55,23 @@ import { useBlogs } from '../../../Utilities/Services/queries';
 
   return (
     <div className='w-full md:pl-[8%] md:pr-[11%]'>
+
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation,]}
         navigation={{
-          nextEl: `.${styles.swiperButtonNext}`,
-          prevEl: `.${styles.swiperButtonPrev}`,
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         }}
-        pagination={{
-          clickable: true,
-        }}
-        centeredSlides={!isDesktop}
-        spaceBetween={isDesktop ? 60 : 0}
-        slidesPerView={isDesktop ? 3 : 1}
-        initialSlide={0}
-        onSlideChange={handleSlideChange} 
-        autoplay={{ delay: 3000 }}
+        // navigation={{
+        //   nextEl: `.${styles.swiperButtonNext}`,
+        //   prevEl: `.${styles.swiperButtonPrev}`,
+        // }}
+        centeredSlides={!isDesktop} // Center slides in non-desktop view
+        spaceBetween={isDesktop ? 60 : 0} // Space between slides
+        slidesPerView={isDesktop ? 3 : 1} // Number of slides per view
+        initialSlide={1} // Start at the first slide
+        onSlideChange={handleSlideChange} // Handle slide change
+        autoplay={{ delay: 2000 }} // Autoplay with a delay of 2000ms
       >
 
         {blogData.data.map((blog,index) => (
@@ -81,6 +84,7 @@ import { useBlogs } from '../../../Utilities/Services/queries';
             <div className={`${styles.productCard} ${index === activeSlideIndex  ? 'w-full' : 'md:w-[85%] md:mt-12 w-[75%]'} `}>
 
             {/* conditions to set active styling for desktop mode */}
+            {/* Display read time in minutes */}
             {
               isDesktop ? 
                 ( index === activeSlideIndex &&
@@ -130,6 +134,10 @@ import { useBlogs } from '../../../Utilities/Services/queries';
 
           </SwiperSlide>
         ))}
+
+        {/* Navigation buttons */}
+        <div className="swiper-button-next"></div>
+        <div className="swiper-button-prev"></div>
 
       </Swiper>
 

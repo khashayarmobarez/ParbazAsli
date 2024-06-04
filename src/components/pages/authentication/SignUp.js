@@ -18,7 +18,7 @@ import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
 import PhoneInputSignup from './Inputs/PhoneInputSignup';
 import EmailInputSignup from './Inputs/EmailInputSignUp';
 import Checkbox from './Inputs/CheckBox';
-import VerificationCodeInput from '../../reuseable/VerificationCodeInput';
+import PhoneVerificationCode from './popUps/PhoneVerificationCode';
 
 
 const USER_REGEX = /^[^0-9~'`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
@@ -83,8 +83,13 @@ const SignUp = () => {
     
     const [showPopUpSubmit, setShowPopupSubmit] = useState(true)
 
+    // confirm phone code
+    const [code, setCode] = useState('');
+
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+
+    const [codeRemainingTime, setCodeRemainingTime] = useState(null)
 
     useEffect(() => {
         dispatch(getAuthSettings());
@@ -127,10 +132,6 @@ const SignUp = () => {
         setValidEmail(EMAIL_REGEX.test(email));
     }, [email]);
 
-    // useEffect(() => {
-    //     setValidNationalCode(NATIONAL_CODE_REGEX.test(nationalCode));
-    //   }, [nationalCode]);
-
     const handleTermsToggle = (isChecked) => {
     setTermsChecked(isChecked); // Update the checked state in the parent component
     };
@@ -161,6 +162,8 @@ const SignUp = () => {
                 // Handle the response data
                 console.log('Phone number code sent successfully');
                 console.log('Remaining time span:', response.data.data.remainTimeSpanInSeconds);
+                setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
+                setShowPopupSubmit(true)
                 // Update UI or perform any additional actions based on the response
             } else {
                 console.error('Failed to send phone number code');
@@ -169,7 +172,7 @@ const SignUp = () => {
         } catch (err) {
             // Handle errors
             if (!err?.response) {
-                setErrMsg('پاسخی از سرور دریافت نشد');
+                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
             } else if (err.response?.status === 409) {
                 setErrMsg('شماره تلفن قبلا استفاده شده');
             } else {
@@ -181,42 +184,64 @@ const SignUp = () => {
     
     }
 
+    // remaining time to send code again
+    useEffect(() => {
+        if (codeRemainingTime === null) return;
+
+        const intervalId = setInterval(() => {
+            setCodeRemainingTime(prevTime => {
+                if (prevTime <= 1) {
+                    clearInterval(intervalId);
+                    return 0;
+                }
+                return prevTime - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(intervalId);
+    }, [codeRemainingTime]);
+
     // final submit logic
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked) { 
-    //         setErrMsg("Invalid Entry");
-    //         return;
-    //     }
-    //     try {
-    //         const response = await axios.post(REGISTER_URL,
-    //             JSON.stringify({phone}), 
-    //             {
-    //                 headers: { 'Content-Type': 'application/json' },
-    //                 withCredentials: true
-    //             }
-    //         );
-    //         console.log(response?.data);
-    //         console.log(response?.accessToken);
-    //         console.log(JSON.stringify(response))
-    //         setSuccess(true);
-    //         setUser('');
-    //         setUserLastName('');
-    //         setPwd('');
-    //         setMatchPwd('');
-    //         setPhone(''); 
-    //         setEmail('');
-    //     } catch (err) {
-    //         if (!err?.response) {
-    //             setErrMsg('No Server Response');
-    //         } else if (err.response?.status === 409) {
-    //             setErrMsg('Username Taken');
-    //         } else {
-    //             setErrMsg('Registration Failed')
-    //         }
-    //         errRef.current.focus();
-    //     }
-    // }
+    const handleFinalSubmit = async (e) => {
+        if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked || !code) { 
+            setErrMsg("Invalid Entry");
+            return;
+        }
+        try {
+            const requestBody = {
+                "PhoneNumber": phone,
+                "Code": code,
+                "FirstName": user,
+                "LastName": userLastName,
+                "Password": pwd,
+                "ConfirmPassword": matchPwd
+            }
+
+            const response = await axios.post(
+                'https://api.par-baz.ir/api/Auth/Register',
+                requestBody
+            );
+
+            if (response.data.isSuccess) {
+                console.log('Registration successful');
+                console.log('JWT Token:', response.data.data.token);
+                console.log('Token Expiration:', response.data.data.loginExpirationDateTime);
+                // Handle successful registration (e.g., redirect to login or home page)
+            } else {
+                console.error('Registration failed');
+                setErrMsg('Registration failed');
+            }
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+            } else {
+                console.log(err);
+                setErrMsg(err.response.data.errorMessages[0].errorMessage);
+            }
+            errRef.current.focus();
+        }
+    };
+
 
     return (
         <section className='w-full flex flex-col'>
@@ -310,10 +335,14 @@ const SignUp = () => {
                             }
                         </div>
 
+
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                        <p className={codeRemainingTime ? "errmsg" : "offscreen"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
 
                     </form>
-                    <VerificationCodeInput showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} />
+
+                    <PhoneVerificationCode showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}
+                    handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} />
                 </>
 
             )}

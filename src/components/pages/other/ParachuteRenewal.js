@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -13,7 +14,6 @@ import { brandsOptionsData } from '../../../Utilities/Providers/dropdownInputOpt
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import DropdownInput from '../../inputs/DropDownInput'
-import { useNavigate } from 'react-router-dom';
 
 const ParachuteRenewal = () => {
 
