@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // react router dom
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -63,6 +64,8 @@ const styles = {
 
 const Footer = ({ userRole }) => {
 
+  const token = Cookies.get('token') || null;
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -71,7 +74,7 @@ const Footer = ({ userRole }) => {
 
     const [value, setValue] = useState(0);
 
-    if (userRole === '') {
+    if (!token) {
       return null; // Return null to render nothing when userRole is empty
     }
 

@@ -77,7 +77,7 @@
                 setFilled(e.target.value.trim() !== ''); // Update filled state
                 setValidPwd(PWD_REGEX.test(e.target.value)); // Update validPwd state
               }}
-              className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] text-sm font-sm pr-8`}
+              className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
               required
               aria-invalid={validPwd ? "false" : "true"}
               aria-describedby="pwdnote"

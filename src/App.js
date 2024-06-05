@@ -1,5 +1,8 @@
 import React, {  useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+// styles
 import './App.css';
 
 // react query
@@ -82,6 +85,7 @@ const queryClient = new QueryClient();
 
 function App() {
 
+  const token = Cookies.get('token') || null;
           
   const {userRole} = useSelector(selectUser)
 
@@ -118,7 +122,7 @@ function App() {
 
 
             {/* landing page */}
-            {userRole === '' &&
+            {!token &&
             <>
               <Route path='/signUpLogin' element={<SignUpOrLogin />} />
               <Route path='/landing' element={<LandingPage />} />
@@ -127,7 +131,7 @@ function App() {
             }
 
             {/* same components for coach and student  */}
-              {(userRole === 'coach' || userRole === 'student') && (
+              {token  && (
                 <>
                   <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
@@ -164,7 +168,8 @@ function App() {
 
 
             {/* coach view, rendering routes based on the rule of the user */}
-            {userRole === 'coach' && (
+            {/* {userRole === 'coach' && ( */}
+            {token && (
               <>
 
                 {/* education */}
@@ -264,7 +269,7 @@ function App() {
           
           {/* footer section */}
           {/* based on if the user is signed in or not */}
-          {userRole === '' && <FooterLanding /> }
+          {!token && <FooterLanding /> }
           <Footer userRole = { userRole } />
 
           <ToastContainer/>

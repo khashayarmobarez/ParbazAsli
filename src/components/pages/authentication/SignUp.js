@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +30,8 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 // const NATIONAL_CODE_REGEX = /^\d{10}$/;
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -81,7 +85,7 @@ const SignUp = () => {
     const [phone, setPhone] = useState(''); // State for phone number
     const [phoneFocus, setPhoneFocus] = useState(false); 
     
-    const [showPopUpSubmit, setShowPopupSubmit] = useState(true)
+    const [showPopUpSubmit, setShowPopupSubmit] = useState(false)
 
     // confirm phone code
     const [code, setCode] = useState('');
@@ -124,7 +128,7 @@ const SignUp = () => {
     }, [pwd, matchPwd,  passwordMinLength, passwordMaxLength, passwordRequireNonAlphanumeric, passwordRequireDigit, passwordRequireUppercase, passwordRequireLowercase]);
 
 
-      useEffect(() => {
+    useEffect(() => {
         setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
     }, [phone]);
 
@@ -141,7 +145,7 @@ const SignUp = () => {
 
         e.preventDefault();
         if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked) { 
-            setErrMsg("Invalid Entry");
+            setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
             return;
         }
         try {
@@ -177,7 +181,7 @@ const SignUp = () => {
                 setErrMsg('شماره تلفن قبلا استفاده شده');
             } else {
                 console.log(err)
-                setErrMsg(err.response.data.errorMessages[0].errorMessage)
+                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
             }
             errRef.current.focus();
         }
@@ -204,7 +208,7 @@ const SignUp = () => {
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked || !code) { 
-            setErrMsg("Invalid Entry");
+            setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
             return;
         }
         try {
@@ -222,21 +226,25 @@ const SignUp = () => {
                 requestBody
             );
 
+            // succesful registeration
             if (response.data.isSuccess) {
                 console.log('Registration successful');
-                console.log('JWT Token:', response.data.data.token);
-                console.log('Token Expiration:', response.data.data.loginExpirationDateTime);
+                console.log(response.data.data.loginExpireInDays);
                 // Handle successful registration (e.g., redirect to login or home page)
+                    // Save the token in a cookie
+                    Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
+                    // navigate the user to its page
+                    navigate('/profile');
             } else {
                 console.error('Registration failed');
-                setErrMsg('Registration failed');
+                setErrMsg('ثبت نام ناموفق');
             }
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
             } else {
                 console.log(err);
-                setErrMsg(err.response.data.errorMessages[0].errorMessage);
+                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
             }
             errRef.current.focus();
         }
@@ -246,9 +254,17 @@ const SignUp = () => {
     return (
         <section className='w-full flex flex-col'>
 
-            {loading && <p>Loading authentication settings...</p>}
+            {loading && 
+                <div className='w-full min-h-[71vh]'>
+                    <p>Loading authentication settings...</p>
+                </div>
+            }
 
-            {error && <p>Error fetching authentication settings: {error}</p>}
+            {error && 
+                <div className='w-full min-h-[71vh]'>
+                    <p>Error fetching authentication settings: {error}</p>
+                </div>
+            }
             
             {!loading && !error && (
                 <>
@@ -330,7 +346,7 @@ const SignUp = () => {
                             >
                             تایید
                             </button>
-                            {(!validName || !validPwd || !validMatch) &&
+                            {(!validName || !validPwd || !validMatch || !validPhone || !validEmail) &&
                             <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
                             }
                         </div>

@@ -1,63 +1,125 @@
-import { useRef, useState, useEffect, useContext } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
+// styles
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// components
+import PasswordInputLogin from './Inputs/PasswordInputLogin';
+import PhoneInputLogin from './Inputs/PhoneInputLogin';
+
+// regex
+const PHONE_REGEX = /^09\d{9}$/;
 
 
 
 const Login = () => {
 
-    // const userRef = useRef();
-    // const errRef = useRef();
+    const navigate = useNavigate()
 
-    // const [user, setUser] = useState('');
-    // const [pwd, setPwd] = useState('');
-    // const [errMsg, setErrMsg] = useState('');
-    // const [success, setSuccess] = useState(false);
+    const userRef = useRef();
+    const errRef = useRef();
+    
+    const [pwd, setPwd] = useState('');
+    const [pwdFocus, setPwdFocus] = useState(false);
 
-    // useEffect(() => {
-    //     userRef.current.focus();
-    // }, [])
+    const [phone, setPhone] = useState(''); // State for phone number
+    const [phoneFocus, setPhoneFocus] = useState(false);
+    const [validPhone, setValidPhone] = useState(false);
 
-    // useEffect(() => {
-    //     setErrMsg('');
-    // }, [user, pwd])
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    useEffect(() => {
+        setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
+    }, [phone]);
 
-    //     try {
-    //         const response = await axios.post(LOGIN_URL,
-    //             JSON.stringify({ user, pwd }),
-    //             {
-    //                 headers: { 'Content-Type': 'application/json' },
-    //                 withCredentials: true
-    //             }
-    //         );
-    //         console.log(JSON.stringify(response?.data));
-    //         //console.log(JSON.stringify(response));
-    //         const accessToken = response?.data?.accessToken;
-    //         const roles = response?.data?.roles;
-    //         setAuth({ user, pwd, roles, accessToken });
-    //         setUser('');
-    //         setPwd('');
-    //         setSuccess(true);
-    //     } catch (err) {
-    //         if (!err?.response) {
-    //             setErrMsg('No Server Response');
-    //         } else if (err.response?.status === 400) {
-    //             setErrMsg('Missing Username or Password');
-    //         } else if (err.response?.status === 401) {
-    //             setErrMsg('Unauthorized');
-    //         } else {
-    //             setErrMsg('Login Failed');
-    //         }
-    //         errRef.current.focus();
-    //     }
-    // }
+    // Define the login handler function
+    const handleLoginSubmit = async (e) => {
+        e.preventDefault();
 
+        // Add your validation logic here
+        if (!phone || !pwd || !validPhone) { 
+            setErrMsg("اطلاعات درست نیست");
+            return;
+        }
+        try {
+            const requestBody = {
+                userName: phone,
+                password: pwd,
+                rememberMe: true
+            };
+
+            const response = await axios.post(
+                'https://api.par-baz.ir/api/Auth/Login',
+                requestBody
+            );
+
+            // Successful login
+            if (response.data.isSuccess) {
+                console.log('Login successful');
+                console.log(response.data.data.loginExpireInDays);
+
+                // Save the token in a cookie
+                Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
+
+                // Navigate the user to the dashboard
+                navigate('/profile');
+            } else {
+                console.error('Login failed');
+                setErrMsg('Login failed');
+            }
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+            } else {
+                console.log(err);
+                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
+            }
+            errRef.current.focus();
+        }
+    };
+
+    
+
+    
 
     return (
-        <div>
+        <section className='w-full flex flex-col'>
             
-        </div>
+            <form className='w-full flex flex-col gap-y-4 pt-6 pb-10 min-h-[71vh]'>
+
+            <PhoneInputLogin
+                phoneRef={userRef}
+                onChange={(e) => setPhone(e.target.value)}
+                value={phone}
+                focus={phoneFocus}
+                onFocus={() => setPhoneFocus(true)}
+                onBlur={() => setPhoneFocus(false)}
+            />
+
+            <PasswordInputLogin    
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                focus={pwdFocus}
+                onFocus={() => setPwdFocus(true)}
+                onBlur={() => setPwdFocus(false)}
+            />
+
+            <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `}
+                onClick={handleLoginSubmit} 
+                disabled={!phone || !pwd ? true : false}
+                >
+                تایید
+            </button>
+
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
+            </form>
+            
+        </section>
     );
 };
 

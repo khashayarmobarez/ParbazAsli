@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // hooks
 import useClickOutside from '../../Utilities/Hooks/useClickOutside';
@@ -36,6 +37,8 @@ const inlineStyles = {
 
 
 const Navbar = ({toggleTheme ,userRole}) => {
+    
+    const token = Cookies.get('token') || null;
 
     // state to check the width of the device to remove profile picture for desktop size devices 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -76,6 +79,13 @@ const Navbar = ({toggleTheme ,userRole}) => {
           console.error('Input element not found.');
         }
       }
+
+    
+    // handle logout
+    const handleLogout = () => {
+        Cookies.remove('token');
+        navigate('/landing');
+    };
 
 
     // function to set the width of the device in the windowWidth state
@@ -122,15 +132,16 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                       }}
                                     >
                                         {
-                                        (windowWidth < 768 && userRole && userRole !== '') &&
+                                        // (windowWidth < 768 && userRole && userRole !== '') &&
+                                        (windowWidth < 768 && token) &&
                                         <Avatar alt="Remy Sharp" sx={{height:'99px', width:'100px', zIndex:'0'}} />
                                         }
-                                        <ul className={`${userRole === '' ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-101`}>
+                                        <ul className={`${!token ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-101`}>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/blogs'>بلاگ</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/aboutUs'>درباره ما</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/contactUs'>تماس با ما</Link></li>
-                                            {userRole === '' ?
+                                            {!token ?
                                             null
                                             :
                                             <>
@@ -139,21 +150,21 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             </>
                                             }
                                         </ul>
-                                        {userRole === '' ?
+                                        {!token ?
                                         <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--yellow-text)'}}> ورود / ثبت نام</Link>
                                         :
-                                        <Link to='/' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
+                                        <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
                                         }
                                     </div>
                                 </div>
 
                                 <div className={ `flex justify-between w-16 md:w-14 xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
 
-                                    {userRole === '' ?
+                                    {!token ?
                                         (windowWidth > 768) ?
-                                            <Link to='/signUpLogin' onClick='/' className={`${GradientStyles.container} rounded-3xl w-[120px] h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
+                                            <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-[120px] h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
                                             :
-                                            <Link to='/signUpLogin' onClick='/' className=' self-center justify-self-end'> <LoginIcon /> </Link>
+                                            <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
 
                                     :
                                     <>
@@ -164,9 +175,9 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             }
                                         </button>
 
-                                        <Link to='/' className={`hidden md:flex justify-center items-center`} >
-                                            <img src={logout} alt='logout' />
-                                        </Link>
+                                        <div to='/' className={`hidden md:flex justify-center items-center`} >
+                                            <img src={logout} alt='logout' onClick={handleLogout} />
+                                        </div>
                                     </>
                                     }
 

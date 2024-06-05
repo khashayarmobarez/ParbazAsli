@@ -36,7 +36,7 @@ const SignUpOrLogin = () => {
 
                 {activeLink === 'login' ? 
                 // sign in
-                <div>
+                <div className='w-[90%]'>
                     <Login />
                 </div> 
                 :
