@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 
+
+// api
+import { postLogout } from '../../Utilities/Services/AuthenticationApi';
+
 // hooks
 import useClickOutside from '../../Utilities/Hooks/useClickOutside';
 
@@ -85,6 +89,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
     const handleLogout = () => {
         Cookies.remove('token');
         navigate('/landing');
+        postLogout(token)
     };
 
 

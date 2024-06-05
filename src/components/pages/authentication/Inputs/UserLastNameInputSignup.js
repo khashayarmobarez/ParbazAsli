@@ -50,9 +50,8 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
       </div>
       <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "offscreen"} self-start text-start`}>
         <InfoOutlinedIcon />
-        3 to 24 characters.<br />
-        Must begin with a letter<br />
-        Letters, numbers, underscores, hyphens allowed.
+        3 تا 24 کاراکتر<br />
+        با حروف بنویسید
       </p>
     </div>
   );

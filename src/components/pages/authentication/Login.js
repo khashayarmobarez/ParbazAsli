@@ -9,6 +9,8 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // components
 import PasswordInputLogin from './Inputs/PasswordInputLogin';
 import PhoneInputLogin from './Inputs/PhoneInputLogin';
+import Checkbox from './Inputs/CheckBox';
+import ForgetPwdPopUp from './popUps/ForgetPwdPopUp';
 
 // regex
 const PHONE_REGEX = /^09\d{9}$/;
@@ -28,6 +30,10 @@ const Login = () => {
     const [phone, setPhone] = useState(''); // State for phone number
     const [phoneFocus, setPhoneFocus] = useState(false);
     const [validPhone, setValidPhone] = useState(false);
+    
+    const [termsChecked, setTermsChecked] = useState(false);
+
+    const [showForgetPassPopUp, setShowForgetPassPopUp] = useState(false)
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -35,6 +41,15 @@ const Login = () => {
     useEffect(() => {
         setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
     }, [phone]);
+
+    
+    const handleTermsToggle = (isChecked) => {
+        setTermsChecked(isChecked); // Update the checked state in the parent component
+    };
+
+    const handleForgetPassword = () => {
+        setShowForgetPassPopUp(true)
+    }
 
     // Define the login handler function
     const handleLoginSubmit = async (e) => {
@@ -61,6 +76,7 @@ const Login = () => {
             if (response.data.isSuccess) {
                 console.log('Login successful');
                 console.log(response.data.data.loginExpireInDays);
+                console.log(response.data.data.token);
 
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
@@ -74,6 +90,9 @@ const Login = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+            } else if(!err?.response.data.ErrorMessages[0].ErrorKey === 'resetPasswordRequired') {
+                setShowForgetPassPopUp(true)
+                setErrMsg(' رمز خود را از طریق فراموشی رمز عبور تغییر دهید');
             } else {
                 console.log(err);
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
@@ -91,33 +110,46 @@ const Login = () => {
             
             <form className='w-full flex flex-col gap-y-4 pt-6 pb-10 min-h-[71vh]'>
 
-            <PhoneInputLogin
-                phoneRef={userRef}
-                onChange={(e) => setPhone(e.target.value)}
-                value={phone}
-                focus={phoneFocus}
-                onFocus={() => setPhoneFocus(true)}
-                onBlur={() => setPhoneFocus(false)}
-            />
+                <PhoneInputLogin
+                    phoneRef={userRef}
+                    onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    focus={phoneFocus}
+                    onFocus={() => setPhoneFocus(true)}
+                    onBlur={() => setPhoneFocus(false)}
+                />
 
-            <PasswordInputLogin    
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                focus={pwdFocus}
-                onFocus={() => setPwdFocus(true)}
-                onBlur={() => setPwdFocus(false)}
-            />
+                <PasswordInputLogin    
+                    onChange={(e) => setPwd(e.target.value)}
+                    value={pwd}
+                    focus={pwdFocus}
+                    onFocus={() => setPwdFocus(true)}
+                    onBlur={() => setPwdFocus(false)}
+                />
 
-            <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `}
-                onClick={handleLoginSubmit} 
-                disabled={!phone || !pwd ? true : false}
-                >
-                تایید
-            </button>
+                <Checkbox
+                    label="مرا به خاطر بسپار"
+                    isChecked={termsChecked}
+                    onToggle={handleTermsToggle}
+                />
 
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                <p className='text-lg text-start' onClick={handleForgetPassword} style={{color:'var(--yellow-text)'}}>
+                    رمز عبور خود را فراموش کرده‌ام
+                </p>
 
+                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `}
+                    onClick={handleLoginSubmit} 
+                    disabled={!phone || !pwd ? true : false}
+                    >
+                    تایید
+                </button>
+
+                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
+                
             </form>
+            
+            <ForgetPwdPopUp showPopup={showForgetPassPopUp} setShowPopup={setShowForgetPassPopUp} />
             
         </section>
     );

@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 
+// axios instance
+import axiosInstance from "./axiosConfig";
+
 
 const BASE_Test_URL = 'https://jsonplaceholder.typicode.com/photos'
 const BASE_URL = 'https://api.par-baz.ir/api'

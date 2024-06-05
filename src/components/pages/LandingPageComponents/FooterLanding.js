@@ -62,7 +62,7 @@ const FooterLanding = () => {
             }
             <p className='text-lg'>عضویت در خبرنامه</p>
             <p>ما هرزنامه ارسال نمی کنیم، پس نگران نباشید</p>
-            <InputWithButton Type={'text'} icon={mail} buttonText={'ارسال'} placeH={'ایمیل خود را وارد کنید'} />
+            <InputWithButton Type={'text'} icon={mail} buttonText={'ارسال'} id={'email'} placeH={'ایمیل خود را وارد کنید'} />
         </div>
 
         <div className='hidden md:flex flex-col gap-y-8'>

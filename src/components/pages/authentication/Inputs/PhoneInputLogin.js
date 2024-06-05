@@ -49,7 +49,7 @@ const PhoneInputLogin = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) 
         />
       </div>
       <p id="phonenote" className={value && !validPhone && filled ? "instructions" : "offscreen"}>
-        <InfoOutlinedIcon /> Phone number must start with 09 and be 11 digits.
+        <InfoOutlinedIcon /> شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
       </p>
     </div>
   );

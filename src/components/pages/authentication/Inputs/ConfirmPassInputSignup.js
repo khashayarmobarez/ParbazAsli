@@ -62,7 +62,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
       </div>
       <p id="confirmnote" className={filled && !validMatch ? "instructions" : "offscreen"}>
         <InfoOutlinedIcon />
-        Must match the first password input field.
+        باید با اولین قسمت ورودی رمز عبور مطابقت داشته باشد.
       </p>
     </>
   );

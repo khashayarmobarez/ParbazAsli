@@ -23,6 +23,7 @@ import Checkbox from './Inputs/CheckBox';
 import PhoneVerificationCode from './popUps/PhoneVerificationCode';
 
 
+// regex 
 const USER_REGEX = /^[^0-9~'`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 const PHONE_REGEX = /^09\d{9}$/;
@@ -334,9 +335,9 @@ const SignUp = () => {
                         />
 
                         <Checkbox
-                        label="با قوانین و مقررات موافقم"
-                        isChecked={termsChecked}
-                        onToggle={handleTermsToggle}
+                            label="با قوانین و مقررات موافقم"
+                            isChecked={termsChecked}
+                            onToggle={handleTermsToggle}
                         />
 
                         <div className='w-28 self-center'>
@@ -362,18 +363,6 @@ const SignUp = () => {
                 </>
 
             )}
-
-            {/* <button 
-            onClick={handleSubmit} 
-            disabled={!validName || !validPwd || !validMatch ? true : false}
-            className={`mt-10 `} style={{
-            backgroundColor: (!validName || !validPwd || !validMatch) ? '#ccc' : '#007bff',
-            color: (!validName || !validPwd || !validMatch) ? '#666' : '#fff',
-            cursor: (!validName || !validPwd || !validMatch) ? 'not-allowed' : 'pointer',
-        }}
-            >
-            Sign Up
-            </button> */}
 
         </section>
     );

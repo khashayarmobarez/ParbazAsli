@@ -100,13 +100,13 @@
               )}
             </span>
           </div>
-          <p id="pwdnote" className={filled && !validPwd ? "instructions" : "offscreen"}>
+          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "offscreen"} self-start text-start`}>
             <InfoOutlinedIcon />
-            8 to 24 characters.<br />
-            Must include uppercase and lowercase letters, a number and a special character.<br />
-            Allowed special characters: <span aria-label="exclamation mark">!</span>{' '}
-            <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span>{' '}
-            <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+            پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
+            {  passwordRequireDigit && (<>رمز عبور باید حداقل شامل یک عدد باشد<br /></>)}
+            {  passwordRequireUppercase && (<>رمز عبور باید حداقل شامل یک حرف بزرگ باشد<br /></>)}
+            {  passwordRequireLowercase && (<>رمز عبور باید حداقل شامل یک حرف کوچک باشد<br /></>)}
+            {  passwordRequireNonAlphanumeric && (<>رمز عبور باید حداقل شامل یک کارکتر ویژه باشد<br /></>)}
           </p>
         </>
       );
