@@ -144,8 +144,8 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 </div>
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
                 <button  className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit}>ارسال</button>
-                <p className={codeRemainingTime ? "errmsg" : "offscreen"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کتید</p>
-                <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کتید اطلاعات در حال بارگذاری می باشد</p>
+                <p className={codeRemainingTime ? "text-light-yellow" : "offscreen"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کتید</p>
+                <p className={waitNotif ? "text-light-yellow" : "offscreen"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
 
             </form>

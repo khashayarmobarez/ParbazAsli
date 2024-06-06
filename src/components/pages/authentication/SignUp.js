@@ -356,7 +356,7 @@ const SignUp = () => {
 
 
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                        <p className={codeRemainingTime ? "errmsg" : "offscreen"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
+                        <p className={codeRemainingTime ? "text-light-yellow" : "offscreen"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
 
                     </form>
 

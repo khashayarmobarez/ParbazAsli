@@ -299,7 +299,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                             )
                         }
                         
-                        <p className={codeRemainingTime ? "errmsg" : "offscreen"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کتید</p>
+                        <p className={`${codeRemainingTime ? "text-light-yellow" : "hidden"} `} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کتید</p>
                         <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
                         {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کتید اطلاعات در حال بارگذاری می باشد</p> */}
 

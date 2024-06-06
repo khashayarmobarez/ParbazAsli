@@ -1,6 +1,6 @@
 /* Styles for the error message */
 .errmsg {
-    color: red;
+    color: var(--red-text);
   }
   
   /* Styles for the input field and label */
