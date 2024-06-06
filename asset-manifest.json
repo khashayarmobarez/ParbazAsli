@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ParbazAsli/static/css/main.59d1fa7f.css",
-    "main.js": "/ParbazAsli/static/js/main.939a0e81.js",
+    "main.js": "/ParbazAsli/static/js/main.8dd9f0b9.js",
     "static/media/ne_50m_land.topojson": "/ParbazAsli/static/media/ne_50m_land.80f20256a6ee5c9ae290.topojson",
     "static/media/davinci.jpg": "/ParbazAsli/static/media/davinci.49e132f1d219ac8abdd2.jpg",
     "static/media/parbazLogo.svg": "/ParbazAsli/static/media/parbazLogo.8af2af82a9c0aec0c64e5d58f8ccfb92.svg",
@@ -38,10 +38,10 @@
     "static/media/flightHour.svg": "/ParbazAsli/static/media/flightHour.0f25f05198b862f051507f178eb7722d.svg",
     "static/media/3dCube.svg": "/ParbazAsli/static/media/3dCube.e79604f297dfd13a3ebfec42d50c1c7a.svg",
     "main.59d1fa7f.css.map": "/ParbazAsli/static/css/main.59d1fa7f.css.map",
-    "main.939a0e81.js.map": "/ParbazAsli/static/js/main.939a0e81.js.map"
+    "main.8dd9f0b9.js.map": "/ParbazAsli/static/js/main.8dd9f0b9.js.map"
   },
   "entrypoints": [
     "static/css/main.59d1fa7f.css",
-    "static/js/main.939a0e81.js"
+    "static/js/main.8dd9f0b9.js"
   ]
 }
