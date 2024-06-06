@@ -152,13 +152,15 @@ const SignUp = () => {
         try {
             
             const requestBody = {
-                phoneNumber: phone,
+                username: phone,
                 type: 1
             };
+
+            console.log(requestBody)
     
             // Send a POST request to the endpoint with the specified body
             const response = await axios.post(
-                'https://api.par-baz.ir/api/Auth/SendPhoneNumberCode',
+                'https://api.par-baz.ir/api/Auth/SendVerificationCode',
                 requestBody
             );
     

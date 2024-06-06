@@ -8,12 +8,12 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // components
 import PasswordInputLogin from './Inputs/PasswordInputLogin';
-import PhoneInputLogin from './Inputs/PhoneInputLogin';
 import Checkbox from './Inputs/CheckBox';
 import ForgetPwdPopUp from './popUps/ForgetPwdPopUp';
+import PhoneOrEmailInput from './Inputs/PhoneOrEmailInput';
 
 // regex
-const PHONE_REGEX = /^09\d{9}$/;
+const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)$/;
 
 
 
@@ -27,9 +27,10 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
     const [pwdFocus, setPwdFocus] = useState(false);
 
-    const [phone, setPhone] = useState(''); // State for phone number
-    const [phoneFocus, setPhoneFocus] = useState(false);
-    const [validPhone, setValidPhone] = useState(false);
+    const [userInput, setUserInput] = useState('');
+    const [userInputFocus, setUserInputFocus] = useState(false);
+    const [validUserInput, setValidUserInput] = useState(false);
+
     
     const [termsChecked, setTermsChecked] = useState(false);
 
@@ -39,8 +40,8 @@ const Login = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
-    }, [phone]);
+        setValidUserInput(EMAIL_OR_PHONE_REGEX.test(userInput));
+    }, [userInput]);
 
     
     const handleTermsToggle = (isChecked) => {
@@ -56,13 +57,13 @@ const Login = () => {
         e.preventDefault();
 
         // Add your validation logic here
-        if (!phone || !pwd || !validPhone) { 
+        if (!userInput || !pwd || !validUserInput) { 
             setErrMsg("اطلاعات درست نیست");
             return;
         }
         try {
             const requestBody = {
-                userName: phone,
+                username: userInput,
                 password: pwd,
                 rememberMe: true
             };
@@ -110,13 +111,13 @@ const Login = () => {
             
             <form className='w-full flex flex-col gap-y-4 pt-6 pb-10 min-h-[71vh]'>
 
-                <PhoneInputLogin
+                <PhoneOrEmailInput
                     phoneRef={userRef}
-                    onChange={(e) => setPhone(e.target.value)}
-                    value={phone}
-                    focus={phoneFocus}
-                    onFocus={() => setPhoneFocus(true)}
-                    onBlur={() => setPhoneFocus(false)}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    value={userInput}
+                    focus={userInputFocus}
+                    onFocus={() => setUserInputFocus(true)}
+                    onBlur={() => setUserInputFocus(false)}
                 />
 
                 <PasswordInputLogin    
@@ -139,7 +140,7 @@ const Login = () => {
 
                 <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `}
                     onClick={handleLoginSubmit} 
-                    disabled={!phone || !pwd ? true : false}
+                    disabled={!userInput || !pwd ? true : false}
                     >
                     تایید
                 </button>

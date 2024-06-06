@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
 
 // react toastify
 import { toast } from 'react-toastify';
@@ -37,12 +35,10 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     const dispatch = useDispatch();
 
-    const navigate = useNavigate()
-
     const notifySuccess = (message) => {
         toast.success(message, {
           position: "top-left",
-          autoClose: 5000,
+          autoClose: 6000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -144,13 +140,13 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         try {
             
             const requestBody = {
-                phoneNumber: phone,
+                username: phone,
                 type: 2
             };
     
             // Send a POST request to the endpoint with the specified body
             const response = await axios.post(
-                'https://api.par-baz.ir/api/Auth/SendPhoneNumberCode',
+                'https://api.par-baz.ir/api/Auth/SendVerificationCode',
                 requestBody
             );
     
@@ -183,16 +179,16 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         e.preventDefault();
         
         if (!validPwd || !validMatch || !code) { 
-            setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
+            setErrMsg("اول فرم را کامل نموده و سپس تایید را بزنید");
             return;
         }
         
         try {
             const requestBody = {
                 "username": phone,
-                "Password": pwd,
-                "ConfirmPassword": matchPwd,
-                "Code": code,
+                "password": pwd,
+                "confirmPassword": matchPwd,
+                "code": code,
             };
     
             const response = await axios.post(
@@ -200,13 +196,12 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 requestBody
             );
     
-            // Successful passwordCHange
-            if (response.data.isSuccess) {
+            // Check if response exists and handle successful password change
+            if (response && response.data && response.data.isSuccess) {
                 console.log('Password change successful');
-                console.log(response.data.data.loginExpireInDays);
                 console.log(response.data);
                 
-                // Handle successful passwordCHange
+                // Handle successful password change
                 setShowPopup(false);
                 notifySuccess('رمز شما با موفقیت تغییر یافت, دوباره لاگین کنید');
             } else {
@@ -214,11 +209,14 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 setErrMsg('ناموفق');
             }
         } catch (err) {
-            if (err.response) {
+            // Improved error handling
+            if (!err.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
             } else {
-                console.error('Error:', err.response.data);
-                setErrMsg(err.response.data.ErrorMessages ? err.response.data.ErrorMessages[0].ErrorMessage : 'مشکلی رخ داده, دوباره تلاش کنید');
+                console.error('Error:', err);
+                setErrMsg(err.response.data && err.response.data.ErrorMessages 
+                    ? err.response.data.ErrorMessages[0].ErrorMessage 
+                    : 'مشکلی رخ داده, دوباره تلاش کنید');
             }
         }
     };

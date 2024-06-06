@@ -15,7 +15,7 @@ const Checkbox = ({ label, isChecked, onToggle, openTerms }) => {
       <div className={`w-6 h-6 border-2 rounded flex items-center justify-center cursor-pointer`} style={{borderColor:'var(--yellow-text )'}}>
         {isChecked && < CheckRoundedIcon />}
       </div>
-      <div className=" underline underline-offset-4 cursor-pointer" onClick={() => navigate('/landing')}>{label}</div>
+      <div className=" underline underline-offset-4 cursor-pointer" >{label}</div>
     </div>
   );
 };
