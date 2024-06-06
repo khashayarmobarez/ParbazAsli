@@ -1,10 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// utilities
+import { postIsUserAuthenticated } from '../../../Utilities/Services/AuthenticationApi';
 
 // components
 import PasswordInputLogin from './Inputs/PasswordInputLogin';
@@ -20,6 +24,7 @@ const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z
 const Login = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const userRef = useRef();
     const errRef = useRef();
@@ -56,6 +61,7 @@ const Login = () => {
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
 
+
         // Add your validation logic here
         if (!userInput || !pwd || !validUserInput) { 
             setErrMsg("اطلاعات درست نیست");
@@ -82,6 +88,7 @@ const Login = () => {
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
 
+                await postIsUserAuthenticated(response.data.data.token, dispatch, navigate);
                 // Navigate the user to the dashboard
                 navigate('/profile');
             } else {
