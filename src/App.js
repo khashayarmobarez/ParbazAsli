@@ -109,7 +109,7 @@ function App() {
   return (
       <QueryClientProvider client={queryClient}>
 
-        <div className="App">
+        <div className={`App ${token && 'py-7'}`}>
           <Navbar toggleTheme={toggleTheme} userRole={ userRole } />
             <Routes>
 
