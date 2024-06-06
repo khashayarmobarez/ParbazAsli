@@ -26,6 +26,7 @@ import ConfirmPassInputSignup from '../Inputs/ConfirmPassInputSignup';
 import CodeInput from '../Inputs/CodeInput';
 
 // regex
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const PHONE_REGEX = /^09\d{9}$/;
 const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 
@@ -64,10 +65,9 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     
     const userRef = useRef();
-    const errRef = useRef();
 
-    const [phone, setPhone] = useState(''); // State for phone number
-    const [phoneFocus, setPhoneFocus] = useState(false); 
+    const [input, setInput] = useState('');
+    const [inputFocus, setInputFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [pwdFocus, setPwdFocus] = useState(false);
@@ -78,7 +78,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     const [validPwd, setValidPwd] = useState(false);
     const [validMatch, setValidMatch] = useState(false)
 
-    const [validPhone, setValidPhone] = useState(false);
+    const [validInput, setValidInput] = useState(false);
 
     // confirm phone code
     const [code, setCode] = useState('');
@@ -94,8 +94,10 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
       }, [dispatch]);
     
     useEffect(() => {
-        setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
-    }, [phone]);
+        const isValidPhone = PHONE_REGEX.test(input);
+        const isValidEmail = EMAIL_REGEX.test(input);
+        setValidInput(isValidPhone || isValidEmail);
+    }, [input]);
 
     useEffect(() => {
         const isValid =
@@ -112,6 +114,50 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         }, [pwd, matchPwd,  passwordMinLength, passwordMaxLength, passwordRequireNonAlphanumeric, passwordRequireDigit, passwordRequireUppercase, passwordRequireLowercase]);
     
 
+        // send code handler
+        const sendCodeHandler = async(e) => {
+            e.preventDefault();
+            if (!validInput) { 
+                setErrMsg("فرمت ایمیل یا شماره تلفن صحیح نمیباشد");
+                return;
+            }
+            try {
+                
+                const requestBody = {
+                    username: input,
+                    type: 2
+                };
+        
+                // Send a POST request to the endpoint with the specified body
+                const response = await axios.post(
+                    'https://api.par-baz.ir/api/Auth/SendVerificationCode',
+                    requestBody
+                );
+        
+                // Check if the request was successful
+                if (response.data.isSuccess) {
+                    // Handle the response data
+                    console.log('Phone number code sent successfully');
+                    console.log('Remaining time span:', response.data.data.remainTimeSpanInSeconds);
+                    setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
+                    // Update UI or perform any additional actions based on the response
+                    setShowInputs(true)
+                } else {
+                    console.error('Failed to send phone number code');
+                    // Handle other scenarios if needed
+                }
+            } catch (err) {
+                // Handle errors
+                if (!err?.response) {
+                    setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+                } else {
+                    console.log(err)
+                    setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
+                }
+            }
+        }
+
+    
     // remaining time to send code again
     useEffect(() => {
         if (codeRemainingTime === null) return;
@@ -130,48 +176,6 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     }, [codeRemainingTime]);
 
 
-    // send code handler
-    const sendCodeHandler = async(e) => {
-        e.preventDefault();
-        if (!validPhone) { 
-            setErrMsg("فرمت شماره تلفن صحیح نمیباشد");
-            return;
-        }
-        try {
-            
-            const requestBody = {
-                username: phone,
-                type: 2
-            };
-    
-            // Send a POST request to the endpoint with the specified body
-            const response = await axios.post(
-                'https://api.par-baz.ir/api/Auth/SendVerificationCode',
-                requestBody
-            );
-    
-            // Check if the request was successful
-            if (response.data.isSuccess) {
-                // Handle the response data
-                console.log('Phone number code sent successfully');
-                console.log('Remaining time span:', response.data.data.remainTimeSpanInSeconds);
-                setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
-                // Update UI or perform any additional actions based on the response
-                setShowInputs(true)
-            } else {
-                console.error('Failed to send phone number code');
-                // Handle other scenarios if needed
-            }
-        } catch (err) {
-            // Handle errors
-            if (!err?.response) {
-                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-            } else {
-                console.log(err)
-                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
-            }
-        }
-    }
 
 
     // final submit logic
@@ -185,7 +189,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         
         try {
             const requestBody = {
-                "username": phone,
+                "username": input,
                 "password": pwd,
                 "confirmPassword": matchPwd,
                 "code": code,
@@ -247,19 +251,18 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                             sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                         />
 
-                        <InputWithButton 
-                            Type={'number'} 
-                            id={'phoneNumber'}
-                            onSubmit={sendCodeHandler} 
-                            icon={phoneIcon} 
-                            buttonText={'دریافت کد'} 
-                            placeH={'24** *** 0912'}
-                            phoneRef={userRef}
-                            onChange={(e) => setPhone(e.target.value)}
-                            value={phone}
-                            focus={phoneFocus}
-                            onFocus={() => setPhoneFocus(true)}
-                            onBlur={() => setPhoneFocus(false)}
+                        <InputWithButton
+                            id={'phoneOrEmail'}
+                            onSubmit={sendCodeHandler}
+                            icon={phoneIcon}
+                            buttonText={'دریافت کد'}
+                            placeH={'شماره موبایل یا ایمیل'}
+                            inputRef={userRef}
+                            onChange={(e) => setInput(e.target.value)}
+                            value={input}
+                            focus={inputFocus}
+                            onFocus={() => setInputFocus(true)}
+                            onBlur={() => setInputFocus(false)}
                         />
 
                         {
