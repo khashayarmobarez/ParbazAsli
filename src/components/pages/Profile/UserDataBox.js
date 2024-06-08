@@ -61,7 +61,7 @@ const UserDataBox = () => {
 
                             <div className=' flex justify-center items-start w-[80%]' >
                                 <img src={flightQuan} alt='icon'/>
-                                <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.flightHours} تعداد پرواز</p>
+                                <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.flightCount} تعداد پرواز</p>
                             </div> 
 
                             <div className=' flex justify-between items-start w-[80%]' >
