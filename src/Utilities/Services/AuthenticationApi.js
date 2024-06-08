@@ -17,7 +17,7 @@ const fetchAuthSettings = async () => {
         }
 };
 
-const postIsUserAuthenticated = async (token, dispatch, navigate, isUserAuthenticated) => {
+const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => {
     try {
       const response = await axios.post(
         `${BASE_URL}/Auth/IsUserAuthenticated`,
@@ -34,7 +34,9 @@ const postIsUserAuthenticated = async (token, dispatch, navigate, isUserAuthenti
         console.log('user is fully authenticated');
 
         // handling level of users authentication
-        dispatch(updateIsUserAuthenticated('authenticated'));
+        Cookies.set('isUserAuthenticated', 'authenticated', { expires: Infinity });
+
+        navigate('/profile')
 
       } else {
         console.error('is not authenticated');
@@ -54,7 +56,7 @@ const postIsUserAuthenticated = async (token, dispatch, navigate, isUserAuthenti
             case 'login':
               console.log('Token invalid');
               Cookies.remove('token');
-              dispatch(updateIsUserAuthenticated(false));
+              Cookies.set('isUserAuthenticated', false, { expires: Infinity });
               navigate('/signUpLogin');
               postLogout(token); // Ensure postLogout is defined
               console.log(isUserAuthenticated)
@@ -62,19 +64,20 @@ const postIsUserAuthenticated = async (token, dispatch, navigate, isUserAuthenti
 
             case 'email':
               console.log('ایمیل خود را وارد کنید.');
-              dispatch(updateIsUserAuthenticated('noEmail'));
+              Cookies.set('isUserAuthenticated', 'noEmail', { expires: Infinity });
+              navigate('/addEmail')
               console.log(isUserAuthenticated)
               break;
 
             case 'certificate':
               console.log('Certificate must be added');
-              dispatch(updateIsUserAuthenticated('noCertificate'));
+              Cookies.set('isUserAuthenticated', 'noCertificate', { expires: Infinity });
               console.log(isUserAuthenticated)
               break;
 
             case 'adminPending':
               console.log('Wait for admins to approve your account');
-              dispatch(updateIsUserAuthenticated('noAdminApprovment'));
+              Cookies.set('isUserAuthenticated', 'noAdminApprovment', { expires: Infinity });
               console.log(isUserAuthenticated)
               break;
 
@@ -116,6 +119,8 @@ const postLogout = async (token) => {
       // Handle error case
     }
   };
+
+
 
 
 export { fetchAuthSettings, postLogout, postIsUserAuthenticated };

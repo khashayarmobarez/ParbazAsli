@@ -3,15 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// redux
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../../Utilities/ReduxToolKit/features/userData/userSlice';
+// api
+import { postIsUserAuthenticated } from '../../../Utilities/Services/AuthenticationApi';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-
-// utilities
-import { postIsUserAuthenticated } from '../../../Utilities/Services/AuthenticationApi';
 
 // components
 import PasswordInputLogin from './Inputs/PasswordInputLogin';
@@ -26,10 +22,9 @@ const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z
 
 const Login = () => {
 
-    const {isUserAuthenticated} = useSelector(selectUser);
+    const isUserAuthenticated = Cookies.get('isUserAuthenticated')
 
     const navigate = useNavigate()
-    const dispatch = useDispatch();
 
     const userRef = useRef();
     const errRef = useRef();
@@ -95,7 +90,7 @@ const Login = () => {
                 // Navigate the user to the dashboard
                 navigate('/profile');
 
-                await postIsUserAuthenticated(response.data.data.token, dispatch, navigate, isUserAuthenticated);
+                await postIsUserAuthenticated(response.data.data.token, navigate, isUserAuthenticated);
             } else {
                 console.error('Login failed');
                 setErrMsg('Login failed');

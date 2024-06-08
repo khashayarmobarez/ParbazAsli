@@ -16,6 +16,8 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
         useRef(null),
         useRef(null),
         useRef(null),   
+        useRef(null),   
+        useRef(null),   
     ];
 
     // Reset all inputs and clear state
@@ -125,7 +127,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 />
                 <h3 className="text-[#ED553B] text-xl">تاییدیه</h3>
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
-                    {[0, 1, 2, 3].map((index) => (
+                    {[0, 1, 2, 3, 4, 5].map((index) => (
                         <input
                             style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid' }}
                             className="text-2xl rounded-none bg-none shadow-none w-10 flex p-2 text-center"
@@ -144,8 +146,8 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 </div>
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
                 <button  className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit}>ارسال</button>
-                <p className={codeRemainingTime ? "text-light-yellow" : "offscreen"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کتید</p>
-                <p className={waitNotif ? "text-light-yellow" : "offscreen"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
+                <p className={codeRemainingTime ? "text-light-yellow" : "offscreen"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کتید</p>
+                <p className={waitNotif ? "text-light-yellow mt-1" : "offscreen"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
 
             </form>

@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
-    isUserAuthenticated:'authenticated',
   // user role could be  coach, student or organization or null
     userRole:'coach',
     // club could be  coach or student
@@ -35,9 +33,6 @@ const initialState = {
     initialState,
     
     reducers: {
-      updateIsUserAuthenticated: (state, action) => {
-        state.isUserAuthenticated = action.payload;
-      },
       updateUserRole: (state, action) => {
         state.userRole = action.payload;
       },
@@ -66,6 +61,6 @@ const initialState = {
   });
 
 
-export const { updateCertificate,updateCouchingHours, updateFlightCount, updateFlightHour, updateName, updatePackageRemainingsDays, updateUserId, updateUserRole, updateIsUserAuthenticated } = userSlice.actions;
+export const { updateCertificate,updateCouchingHours, updateFlightCount, updateFlightHour, updateName, updatePackageRemainingsDays, updateUserId, updateUserRole } = userSlice.actions;
 export default userSlice.reducer;
 export const selectUser = (store) =>store.user;

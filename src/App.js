@@ -88,8 +88,11 @@ const queryClient = new QueryClient();
 function App() {
 
   const token = Cookies.get('token') || null;
+
+  // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
+  const isUserAuthenticated = Cookies.get('isUserAuthenticated')
           
-  const {isUserAuthenticated ,userRole} = useSelector(selectUser)
+  const {userRole} = useSelector(selectUser)
 
   const location = useLocation();
 
@@ -141,7 +144,7 @@ function App() {
               }
 
             {/* same components for coach and student  */}
-              {token  && (
+              {token  && isUserAuthenticated === 'authenticated' && (
                 <>
                   <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
@@ -181,7 +184,7 @@ function App() {
 
             {/* coach view, rendering routes based on the rule of the user */}
             {/* {userRole === 'coach' && ( */}
-            {token && (
+            {token && isUserAuthenticated === 'authenticated' &&  (
               <>
 
                 {/* education */}
@@ -227,7 +230,7 @@ function App() {
 
             {/* student view, rendering routes based on the rule of the user */}
             {/* many of the student components are reused and got from the coach sections */}
-            {userRole === 'student' && (
+            {userRole === 'student' && isUserAuthenticated === 'authenticated' &&  (
               <>
 
 
@@ -263,7 +266,7 @@ function App() {
             )}
 
             {/* organization login specific */}
-            {userRole === 'organization' && (
+            {userRole === 'organization' && isUserAuthenticated === 'authenticated' &&  (
               <>
                 <Route path='/organizationDashboard' element={<OrganDashboard  />} />
 

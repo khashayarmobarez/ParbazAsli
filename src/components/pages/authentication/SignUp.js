@@ -92,7 +92,6 @@ const SignUp = () => {
     const [code, setCode] = useState('');
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
 
     const [codeRemainingTime, setCodeRemainingTime] = useState(null)
 
@@ -201,6 +200,8 @@ const SignUp = () => {
         return () => clearInterval(intervalId);
     }, [codeRemainingTime]);
 
+
+    
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked || !code) { 

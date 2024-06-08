@@ -55,7 +55,7 @@ const UserDataBox = () => {
 
                     </div>
 
-                    <div className=' flex flex-col items-center self-end gap-y-10 md:flex-row md:w-[38%] md:justify-between md:items-center md:space-y-0'>
+                    <div className=' flex flex-col items-center self-end gap-y-10 md:flex-row md:self-center md:w-[38%] md:justify-between md:items-center md:space-y-0'>
 
                         <div className=' gap-y-4 flex flex-col items-center md:space-y-5'>
 

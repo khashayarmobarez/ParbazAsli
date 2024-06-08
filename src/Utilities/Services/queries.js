@@ -20,7 +20,6 @@ const BASE_URL = 'https://api.par-baz.ir/api'
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.data)
       return response.data;
     };
 
