@@ -17,7 +17,7 @@ const fetchAuthSettings = async () => {
         }
 };
 
-const postIsUserAuthenticated = async (token, dispatch, navigate) => {
+const postIsUserAuthenticated = async (token, dispatch, navigate, isUserAuthenticated) => {
     try {
       const response = await axios.post(
         `${BASE_URL}/Auth/IsUserAuthenticated`,
@@ -34,33 +34,60 @@ const postIsUserAuthenticated = async (token, dispatch, navigate) => {
         console.log('user is fully authenticated');
 
         // handling level of users authentication
-        dispatch(updateIsUserAuthenticated(true));
+        dispatch(updateIsUserAuthenticated('authenticated'));
 
       } else {
         console.error('is not authenticated');
         // Handle failure case
       }
     } catch (err) {
-      console.error('errorCase:',err);
-      // Handle error case
-      if (err.response.ErrorMessages[0].ErrorKey === 'login') {
-        console.log('token invalid')
-        console.log(err.response.ErrorMessages[0].ErrorKey)
-        Cookies.remove('token');
-        navigate('/signUpLogin');
-        postLogout(token)
-      }
-      else if (err.response.ErrorMessages[0].ErrorKey === 'email') {
-        console.log('email must be added')
-        console.log(err.response.ErrorMessages[0].ErrorKey)
-      }
-      else if (err.response.ErrorMessages[0].ErrorKey === 'certificate') {
-        console.log('certificate must be added')
-        console.log(err.response.ErrorMessages[0].ErrorKey)
-      }
-      else if (err.response.ErrorMessages[0].ErrorKey === 'adminPending') {
-        console.log('wait for admins to approve your account')
-        console.log(err.response.ErrorMessages[0].ErrorKey)
+      console.error('Error case:', err);
+  
+      if (err.response) {
+        const { ErrorMessages } = err.response.data;
+  
+        if (ErrorMessages && ErrorMessages.length > 0) {
+          const errorKey = ErrorMessages[0].ErrorKey;
+  
+          switch (errorKey) {
+
+            case 'login':
+              console.log('Token invalid');
+              Cookies.remove('token');
+              dispatch(updateIsUserAuthenticated(false));
+              navigate('/signUpLogin');
+              postLogout(token); // Ensure postLogout is defined
+              console.log(isUserAuthenticated)
+              break;
+
+            case 'email':
+              console.log('ایمیل خود را وارد کنید.');
+              dispatch(updateIsUserAuthenticated('noEmail'));
+              console.log(isUserAuthenticated)
+              break;
+
+            case 'certificate':
+              console.log('Certificate must be added');
+              dispatch(updateIsUserAuthenticated('noCertificate'));
+              console.log(isUserAuthenticated)
+              break;
+
+            case 'adminPending':
+              console.log('Wait for admins to approve your account');
+              dispatch(updateIsUserAuthenticated('noAdminApprovment'));
+              console.log(isUserAuthenticated)
+              break;
+
+            default:
+              console.error('Unknown error key:', errorKey);
+          }
+  
+          console.log('Error key:', errorKey);
+        } else {
+          console.error('Unexpected error response format:', err.response);
+        }
+      } else {
+        console.error('Request error:', err.message);
       }
     }
   };

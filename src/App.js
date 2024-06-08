@@ -20,47 +20,51 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // landing and overall section
-import LandingPage from './containers/LandingPage';
-import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
-import AboutUs from './containers/AboutUs';
-import ContactUs from './containers/ContactUs';
-import Blogs from './containers/Blogs';
+  import LandingPage from './containers/LandingPage';
+  import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
+  import AboutUs from './containers/AboutUs';
+  import ContactUs from './containers/ContactUs';
+  import Blogs from './containers/Blogs';
+  import BlogDetails from './components/pages/Blogs/BlogDetails';
+  import WhyUs from './components/pages/LandingPageComponents/WhyUs';
+// not validated user component
+  import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
 // main and caoch components
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Header/Navbar';
-import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
-import Profile from './containers/Profile';
-import Equipment from './containers/Equipment';
-import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
-import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
-import Parachute from './components/pages//Equipment page comps/Parachute'
-import Harness from './components/pages//Equipment page comps/Harness'
-import AddParachute from './components/pages/Equipment page comps/AddParachute';
-import AddHarness from './components/pages/Equipment page comps/AddHarness';
-import Education from './containers/Education';
-import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
-import Students from './components/pages/CoachTeachingSection/Students';
-import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
-import AddClass from './components/pages/CoachTeachingSection/AddClass';
-import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
-import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
-import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
-import Syllabuses from './components/pages/AddFlight/Syllabuses';
-import FlightHistory from './containers/FlightHistory';
-import Club from './containers/Club';
-import ClubHistory from './components/pages/Club/ClubHistory';
-import EditProfile from './containers/EditProfile';
-import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
-import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
-import ChangeCoach from './components/pages/Profile/EditProfile/ChangeCoach';
+  import Footer from './components/Footer/Footer';
+  import Navbar from './components/Header/Navbar';
+  import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
+  import Profile from './containers/Profile';
+  import Equipment from './containers/Equipment';
+  import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
+  import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
+  import Parachute from './components/pages//Equipment page comps/Parachute'
+  import Harness from './components/pages//Equipment page comps/Harness'
+  import AddParachute from './components/pages/Equipment page comps/AddParachute';
+  import AddHarness from './components/pages/Equipment page comps/AddHarness';
+  import Education from './containers/Education';
+  import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
+  import Students from './components/pages/CoachTeachingSection/Students';
+  import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
+  import AddClass from './components/pages/CoachTeachingSection/AddClass';
+  import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
+  import ParachuteRenewal from './components/pages/other/ParachuteRenewal';
+  import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
+  import Syllabuses from './components/pages/AddFlight/Syllabuses';
+  import FlightHistory from './containers/FlightHistory';
+  import Club from './containers/Club';
+  import ClubHistory from './components/pages/Club/ClubHistory';
+  import EditProfile from './containers/EditProfile';
+  import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
+  import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
+  import ChangeCoach from './components/pages/Profile/EditProfile/ChangeCoach';
 // addFlightComponents
-import AddFlight from './containers/AddFlight';
-  import UploadIgc from './components/pages/AddFlight/UploadIgc';
-  import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
-  import AddSituation from './components/pages/AddFlight/AddSituation';
-  import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
-  import AddLanding from './components/pages/AddFlight/AddLanding';
-  // Student components 
+  import AddFlight from './containers/AddFlight';
+    import UploadIgc from './components/pages/AddFlight/UploadIgc';
+    import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
+    import AddSituation from './components/pages/AddFlight/AddSituation';
+    import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
+    import AddLanding from './components/pages/AddFlight/AddLanding';
+// Student components 
   import PracticalClass from './components/pages/StudentEducation/PracticalClass';
   import Settings from './containers/Settings';
   import Notifications from './containers/Notifications';
@@ -68,14 +72,12 @@ import AddFlight from './containers/AddFlight';
   import ClubCoaches from './components/pages/Club/ClubCoaches';
   import ClubStudents from './components/pages/Club/ClubStudents';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
-  // organization components
+// organization components
   import OrganDashboard from './containers/OrganDashboard';
   import OrganCoaches from './containers/OrganCoaches';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
-import BlogDetails from './components/pages/Blogs/BlogDetails';
-import WhyUs from './components/pages/LandingPageComponents/WhyUs';
   
 
 
@@ -87,7 +89,7 @@ function App() {
 
   const token = Cookies.get('token') || null;
           
-  const {userRole} = useSelector(selectUser)
+  const {isUserAuthenticated ,userRole} = useSelector(selectUser)
 
   const location = useLocation();
 
@@ -130,6 +132,14 @@ function App() {
             </>
             }
 
+            {/* add email, certificate and admin approval routes */}
+              {token  && isUserAuthenticated === 'noEmail' &&
+              <>
+                <Route path='/addEmail' element={<AddEmail />} />
+                <Route path='*' element={<Navigate to="/addEmail" replace />} />
+              </> 
+              }
+
             {/* same components for coach and student  */}
               {token  && (
                 <>
@@ -161,7 +171,9 @@ function App() {
                   </Route>
 
                   {/* profile */}
+                  { isUserAuthenticated === 'authenticated' &&
                   <Route path='*' element={<Navigate to="/profile" replace />} />
+                  }
 
                 </>
               )}

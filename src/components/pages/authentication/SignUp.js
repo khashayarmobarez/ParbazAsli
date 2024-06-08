@@ -101,12 +101,6 @@ const SignUp = () => {
       }, [dispatch]);
 
     useEffect(() => {
-        // to set the focus of the user
-        userRef.current.focus();
-    
-    }, []);
-
-    useEffect(() => {
         setErrMsg('');
     }, [user, pwd, matchPwd,phone, email]);
 
@@ -186,7 +180,6 @@ const SignUp = () => {
                 console.log(err)
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
             }
-            errRef.current.focus();
         }
     
     }
@@ -249,7 +242,6 @@ const SignUp = () => {
                 console.log(err);
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
             }
-            errRef.current.focus();
         }
     };
 

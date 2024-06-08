@@ -1,8 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../../Utilities/ReduxToolKit/features/userData/userSlice';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -23,6 +26,8 @@ const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z
 
 const Login = () => {
 
+    const {isUserAuthenticated} = useSelector(selectUser);
+
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
@@ -42,7 +47,6 @@ const Login = () => {
     const [showForgetPassPopUp, setShowForgetPassPopUp] = useState(false)
 
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         setValidUserInput(EMAIL_OR_PHONE_REGEX.test(userInput));
@@ -88,9 +92,10 @@ const Login = () => {
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
 
-                await postIsUserAuthenticated(response.data.data.token, dispatch, navigate);
                 // Navigate the user to the dashboard
                 navigate('/profile');
+
+                await postIsUserAuthenticated(response.data.data.token, dispatch, navigate, isUserAuthenticated);
             } else {
                 console.error('Login failed');
                 setErrMsg('Login failed');
@@ -105,7 +110,6 @@ const Login = () => {
                 console.log(err);
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
             }
-            errRef.current.focus();
         }
     };
 
@@ -114,7 +118,7 @@ const Login = () => {
     
 
     return (
-        <section className='w-full flex flex-col'>
+        <section className='w-full flex flex-col' role="main" aria-label="Login Section">
             
             <form className='w-full flex flex-col gap-y-4 pt-6 pb-10 min-h-[71vh]'>
 

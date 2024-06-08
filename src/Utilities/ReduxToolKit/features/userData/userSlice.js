@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    // user role could be  coach, student or organization or null
-    isUserAuthenticated:'',
+  // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
+    isUserAuthenticated:'authenticated',
+  // user role could be  coach, student or organization or null
     userRole:'coach',
     // club could be  coach or student
     club:'coach',

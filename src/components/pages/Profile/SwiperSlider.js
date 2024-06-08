@@ -68,7 +68,7 @@ const SwiperSlider = ({remainingDays, data}) => {
         <div className='w-full h-64'>
             <div className='w-full h-full py-2'>
             <swiper-container
-                        style={{ height:'15rem',...(!isDesktop && { marginRight: '3%' }), }}
+                        style={{ height:'15rem',...(!isDesktop && { marginRight: '0' }), }}
                         ref={swiperRef}
                         init="false"
                         >
