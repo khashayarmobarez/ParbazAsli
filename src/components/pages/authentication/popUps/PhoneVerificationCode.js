@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
@@ -7,94 +7,57 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css';
 
-const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg }) => {
+const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength }) => {
 
     const [ waitNotif, setWaitNotif ] = useState('')
 
-    const inputRefs = [
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),   
-        useRef(null),   
-        useRef(null),   
-    ];
+    // Create an array of refs based on codeLength from api
+    const inputRefs = useRef(Array.from({ length: codeLength }, () => React.createRef()));
 
     // Reset all inputs and clear state
     const resetCode = () => {
-        inputRefs.forEach(ref => {
-            ref.current.value = '';
+        inputRefs.current.forEach(ref => {
+            if (ref.current) ref.current.value = '';
         });
-        inputRefs[0].current.focus();
+        if (inputRefs.current[0]?.current) inputRefs.current[0].current.focus();
         setCode('');
     };
 
-    // useEffect(() => {
-    //     if (code.length === 5) {
-    //         if (typeof callback === 'function') callback(code);
-    //         resetCode();
-    //     }
-    // }, [code]);
-
-    // useEffect(() => {
-    //     resetCode();
-    // }, [reset]); 
-
-    function handleInput(e, index) {
-        const input = e.target;
+    const handleInput = (e, index) => {
         const newCode = [...code];
+        newCode[index] = e.target.value;
+        setCode(newCode);
 
-        // Only allow numbers
-        if (/^[0-9]$/.test(input.value)) {
-            newCode[index] = input.value;
-            inputRefs[index].current.value = input.value;
-        } else {
-            // Clear the input if it's not a number
-            input.value = '';
+        // Move focus to the next input if available
+        if (e.target.value && index < codeLength - 1) {
+            inputRefs.current[index + 1].current.focus();
         }
-        
-        setCode(newCode.join(''));
-
-        if (input.value !== '') {
-            // Select next input on entry, if exists
-            const nextInput = inputRefs[index + 1];
-            if (nextInput) {
-                nextInput.current.focus();
-            }
-        }
-    }
+    };
 
     // Select the contents on focus
     function handleFocus(e) {
         e.target.select();
     }
 
-    // Handle backspace key
-    function handleKeyDown(e, index) {
-        const input = e.target;
-        const previousInput = inputRefs[index - 1];
-
-        if ((e.keyCode === 8 || e.keyCode === 46) && input.value === '') {
-            e.preventDefault();
-            setCode((prevCode) => {
-                const newCode = prevCode.split('');
-                newCode[index] = '';
-                return newCode.join('');
-            });
-            if (previousInput) {
-                previousInput.current.focus();
+     // Handle backspace key
+     const handleKeyDown = (e, index) => {
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+            if (!code[index] && index > 0) {
+                inputRefs.current[index - 1].current.focus();
             }
         }
     }
 
     // Capture pasted characters
     const handlePaste = (e) => {
-        const pastedCode = e.clipboardData.getData('text');
-        if (pastedCode.length === 4 && /^[0-9]+$/.test(pastedCode)) {
-            setCode(pastedCode);
-            inputRefs.forEach((inputRef, index) => {
-                inputRef.current.value = pastedCode.charAt(index);
-            });
+        const pasteData = e.clipboardData.getData('text').slice(0, codeLength);
+        const newCode = pasteData.split('').map((char, i) => pasteData[i] || code[i]);
+        setCode(newCode);
+
+        // Move focus to the appropriate input
+        const nextIndex = Math.min(newCode.length, codeLength - 1);
+        if (inputRefs.current[nextIndex]?.current) {
+            inputRefs.current[nextIndex].current.focus();
         }
     };
 
@@ -112,14 +75,21 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleFinalSubmit()
+        const codeString = code.join('');
+        handleFinalSubmit(codeString)
         setWaitNotif(true)
     }
 
+    useEffect(() => {
+        if (inputRefs.current[0]?.current) {
+            inputRefs.current[0].current.focus();
+        }
+    }, [inputRefs]);
+
     return (
-        <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? 'visible' : 'invisible'}`}>
+        <div className={` w-full fixed inset-0 flex items-center justify-center ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[304px] h-[280px] flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-[280px] flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
             >
                 <CloseIcon
                     onClick={() => setShowPopup(false)}
@@ -127,7 +97,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 />
                 <h3 className="text-[#ED553B] text-xl">تاییدیه</h3>
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
-                    {[0, 1, 2, 3, 4, 5].map((index) => (
+                    {inputRefs.current.map((ref, index) => (
                         <input
                             style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid' }}
                             className="text-2xl rounded-none bg-none shadow-none w-10 flex p-2 text-center"
@@ -135,7 +105,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                             type="text"
                             maxLength={1}
                             onChange={(e) => handleInput(e, index)}
-                            ref={inputRefs[index]}
+                            ref={ref}
                             autoFocus={index === 0}
                             onFocus={handleFocus}
                             onKeyDown={(e) => handleKeyDown(e, index)}

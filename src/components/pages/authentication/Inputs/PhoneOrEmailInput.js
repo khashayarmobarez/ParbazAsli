@@ -32,10 +32,10 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
     <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
       <div className='flex w-full h-12'>
         <span>
-          {EMAIL_REGEX.test(value) ? (
-              <EmailRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
-            ) : (
-              <LocalPhoneRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+          {!EMAIL_REGEX.test(value) ? (
+            <LocalPhoneRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+          ) : (
+            <EmailRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
           )}
         </span>
         <input

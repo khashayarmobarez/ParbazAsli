@@ -78,6 +78,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
+import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
   
 
 
@@ -142,6 +143,15 @@ function App() {
                 <Route path='*' element={<Navigate to="/addEmail" replace />} />
               </> 
               }
+
+              {token  && isUserAuthenticated === 'noCertificate' &&
+              <>
+                <Route path='/addCertificate' element={<AddCertificate />} />
+                <Route path='*' element={<Navigate to="/addCertificate" replace />} />
+              </> 
+              }
+
+
 
             {/* same components for coach and student  */}
               {token  && isUserAuthenticated === 'authenticated' && (

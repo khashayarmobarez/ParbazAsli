@@ -28,7 +28,7 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                     value={value}
                     onChange={onChange}
                     id={id}
-                    placeholder={isPhoneNumber ? 'شماره موبایل' : 'ایمیل'}
+                    placeholder={placeH}
                     className={`w-[100%] text-sm font-medium pr-8 rounded-r-2xl rounded-l-none`}
                     style={{
                         background: 'var(--dark-input-bg)',
