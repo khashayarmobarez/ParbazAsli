@@ -18,26 +18,43 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
 
   return (
     <div className='flex relative w-[100%] h-12 rounded-xl'>
-      {icon ?
-      <span> 
-        <img src={icon} alt='icon' className=' absolute mt-3 mr-2 w-5' />
-      </span>
-      :
-      <span> 
-        <img src={Cube} alt='icon' className=' absolute mt-3 mr-2 w-6' />
-      </span>
+
+      {
+        icon ?
+          <span> 
+            <img src={icon} alt='icon' className=' absolute mt-3 mr-2 w-5' />
+          </span>
+          :
+          <span> 
+            <img src={Cube} alt='icon' className=' absolute mt-3 mr-2 w-6' />
+          </span>
       }
-      <select className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`} id="dropdown" value={selectedOption} onChange={(event) => {handleInputChange(event);handleSelectChange(event);}} >
-        <option value="" disabled>{name}</option>
+
+      <select
+        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`}
+        id="dropdown"
+        value={selectedOption ? selectedOption.value : ''} // Use selectedOption.value as the value
+        onChange={(event) => {
+          handleInputChange(event);
+          const selected = options.find(option => option.value === parseInt(event.target.value));
+          handleSelectChange(selected);
+        }}
+      >
+        <option value="" disabled>
+          {name}
+        </option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
+
+
       <span className=''> 
         <ArrowBackIosNewIcon sx={{ position: 'absolute', transform: 'rotate(-90deg)', margin: '0.8rem -2rem 0 0rem',  }} />
       </span>
+
     </div>
     
   );

@@ -94,6 +94,7 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
       }
     }
   };
+  
 
 const postLogout = async (token) => {
     try {

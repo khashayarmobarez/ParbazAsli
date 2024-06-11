@@ -11,22 +11,7 @@ const BASE_Test_URL = 'https://jsonplaceholder.typicode.com/photos'
 const BASE_URL = 'https://api.par-baz.ir/api'
 
 
-// user data query
-    const fetchUserData = async () => {
-      const token = Cookies.get('token');
-      const response = await axios.get('https://api.par-baz.ir/api/User/GetUser', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      return response.data;
-    };
-
-    const useUserData = () => {
-        return useQuery(['userData'], fetchUserData);
-    }
-
+// test query
     const useUserDetails = () => {
         return useQuery(['user'], () => axios.get(`${BASE_Test_URL}/5`));
     };
@@ -92,10 +77,9 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 // get a blog
     // fetch data
-    const fetchBlogById = async (blogId) => {
+    const getBlogById = async (blogId) => {
       try {
-        const response = await axios.get(`https://api.par-baz.ir/api/Blog/GetBlog?Id=${blogId}`);
-        console.log(response.data);
+        const response = await axios.get(`${BASE_URL}/Blog/GetBlog?Id=${blogId}`);
         return response.data;
       } catch (error) {
         throw new Error('Failed to fetch blog');
@@ -104,9 +88,62 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
     // use data
     const useBlog = (blogId) => {
-      return useQuery(['blog', blogId], () => fetchBlogById(blogId));
+      return useQuery(['blog', blogId], () => getBlogById(blogId));
     };
+
+
+
+
+// get all organizations
+  const getOrganizationsData = async () => {
+    try {
+      const token = Cookies.get('token');
+      const response = await axios.get(`${BASE_URL}/Organization/GetAllOrganizations`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+      // console.log(response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to fetch organs');
+    }
+  };
+
+  // use data
+  const useOrgansData = () => {
+    return useQuery(['organizations'], () => getOrganizationsData());
+  };
+
+
+
+
+// Get Levels By Organization Id
+  const getOrganizationLevels = async (organId) => {
+    try {
+      const token = Cookies.get('token');
+      const response = await axios.get(`${BASE_URL}/Level/GetLevelsByOrganizationId?organizationId=${organId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+      // console.log(response.data);  
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to fetch organs');
+    }
+  };
+
+  // use data
+  const useOrganLevels = (organId) => {
+    return useQuery(['organLevels', organId], () => getOrganizationLevels(organId), {
+        enabled: !!organId, // This ensures the query runs only if organId is not null/undefined
+    });
+  };
+
 
   
 
-export { useUserDetails, useUserData, useLandingPage, addGeneralComment, useBlogs, useBlog, useSection };
+export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels};

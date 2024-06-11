@@ -19,7 +19,7 @@ import flightHour from '../../../assets/icons/flightHour.svg'
 import flightQuan from '../../../assets/icons/flightQuantity.svg'
 
 // queries 
-import { useUserData } from '../../../Utilities/Services/queries';
+import { useUserData } from '../../../Utilities/Services/userQueries';
 
 
 
@@ -30,7 +30,7 @@ const UserDataBox = () => {
     return (
         <>
             {
-                isLoading && isFetching && <h2 className=' text-white mt-'>is loading...</h2>
+                isLoading && isFetching && <h2 className=' text-white h-[20vh] flex justify-center items-center'>is loading...</h2>
             }
 
             {
