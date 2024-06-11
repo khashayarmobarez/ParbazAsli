@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthSettings, getAuthSettings } from '../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
 // styles
-import './SignUp.css';
+import signUpStyles from './SignUp.module.css';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // components
@@ -348,8 +348,8 @@ const SignUp = () => {
                         </div>
 
 
-                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                        <p className={codeRemainingTime ? "text-light-yellow" : "offscreen"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
+                        <p ref={errRef} className={errMsg ? `${signUpStyles.errMsg}` : "hidden"} aria-live="assertive">{errMsg}</p>
+                        <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
 
                     </form>
 

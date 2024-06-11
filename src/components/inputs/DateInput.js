@@ -1,8 +1,7 @@
-
-
-
 import React, { useState } from 'react';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+
+import { DatePicker } from "zaman";
 
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
@@ -22,7 +21,9 @@ const TextInput = ({ value, onChange, placeholder }) => {
       <span> 
         <CalendarTodayOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
       </span>
-      <input type="date" onChange={handleInputChange} className={`${inputStyles.customDateInput} ${filled && inputStyles.inputFilledBorder}`} />
+      <DatePicker onChange={(e) => console.log(e.value)} 
+      inputAttributes={{ placeholder: "Select time" }} // Example attribute
+      /> 
     </div>
   );
 };

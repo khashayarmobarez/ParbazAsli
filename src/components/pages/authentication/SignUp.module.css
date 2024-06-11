@@ -14,10 +14,13 @@
   
   input {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
+    min-height: 3rem;
     border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
-    border-radius: 0.75rem;
+    border-radius: 1rem;
+    padding-right: 3rem;
+    width: 100%;
   }
   
   /* Styles for the instructional text */

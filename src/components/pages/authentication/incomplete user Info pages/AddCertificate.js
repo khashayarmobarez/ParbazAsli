@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
+// styles
+import styles from '../../../../styles/Inputs/Inputs.module.css'
+
 // queries
 import { useOrganLevels, useOrgansData } from '../../../../Utilities/Services/queries'
 
@@ -7,6 +10,11 @@ import { useOrganLevels, useOrgansData } from '../../../../Utilities/Services/qu
 import UserDataBox from '../../Profile/UserDataBox';
 import DropdownInput from '../../../inputs/DropDownInput';
 import TextInput from '../../../inputs/textInput';
+
+// zaman
+import { DatePicker } from "zaman";
+import DateInput from '../Inputs/DateInput';
+
 
 const AddCertificate = () => {
 
@@ -20,6 +28,10 @@ const AddCertificate = () => {
     const [roleName, setRoleName] = useState('');
 
     const [certificateId, setCertificateId] = useState('');
+
+    const [dateStartValue, setDateStartValue] = useState(new Date())
+
+    const [dateEndValue, setDateEndValue] = useState(new Date())
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organId);
     
@@ -41,6 +53,16 @@ const AddCertificate = () => {
     const handleCertificateIdChange = (event) => {
         setCertificateId(event.target.value);
     };
+
+    const handleCertificateStartDateChange = (value) => {
+        setDateStartValue(value)
+        console.log(dateStartValue)
+    }
+
+    const handleCertificateEndDateChange = (value) => {
+        setDateEndValue(value)
+        console.log(dateEndValue)
+    }
 
     const organOptions = useMemo(() => organsData?.data.map(organ => ({
         value: organ.id,
@@ -122,7 +144,7 @@ const AddCertificate = () => {
                                     <>
                                         {levelsLoading && <p>Loading levels...</p>}
                                         {levelsError && <p>Error fetching levels</p>}
-                                        {!levelsLoading && !levelsError && 
+                                        {levelsData &&
                                             <>
 
                                                 <DropdownInput
@@ -135,13 +157,30 @@ const AddCertificate = () => {
                                                 {/* removing other fill options for starters */}
                                                 {
                                                     !(roleName === 'Starter') &&
-                                                    <TextInput
-                                                    value={certificateId}
-                                                    onChange={handleCertificateIdChange}
-                                                    placeholder={'شماره گواهینامه'}
-                                                    Type={'text'}
-                                                    icon={null} // You can replace `null` with a specific icon if you have one
-                                                    />
+                                                    <>
+
+                                                        <TextInput
+                                                        value={certificateId}
+                                                        onChange={handleCertificateIdChange}
+                                                        placeholder={'شماره گواهینامه'}
+                                                        Type={'text'}
+                                                        icon={null} // You can replace `null` with a specific icon if you have one
+                                                        />
+
+                                                        {/* the date picker styles comes from signUp.module.css , it is a bug, if you want to make changes to the code i recommend removing this code */}
+                                                        <DateInput 
+                                                        onChange={handleCertificateStartDateChange}
+                                                        inputAttributes={{ placeholder: "تاریخ صدور" }}
+                                                        />
+
+                                                        {/* the date picker styles comes from signUp.module.css , it is a bug, if you want to make changes to the code i recommend removing this code */}
+                                                        <DateInput 
+                                                        onChange={handleCertificateEndDateChange}
+                                                        inputAttributes={{ placeholder: "تاریخ انقضا" }}
+                                                        />
+
+
+                                                    </>
                                                 }
 
                                             </>
