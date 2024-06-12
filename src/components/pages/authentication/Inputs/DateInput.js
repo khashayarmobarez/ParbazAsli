@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'; // Make sure to import the icon
 import { DatePicker } from "zaman";
-import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const DateInput = ({ onChange, inputAttributes }) => {
   const [filled, setFilled] = useState(false);

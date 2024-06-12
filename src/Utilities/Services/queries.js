@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -144,6 +144,39 @@ const BASE_URL = 'https://api.par-baz.ir/api'
   };
 
 
+
+// post certificate
+  const addCertificate = async (formData) => {
+    const token = Cookies.get('token');
+    const response = await axios.post(`${BASE_URL}/Certificate/AddCertificate`, formData, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error('Failed to add certificate');
+    }
+
+    return response.data;
+  };
+
+  const useAddCertificate = () => {
+    return useMutation(addCertificate, {
+      onSuccess: (data) => {
+        // Handle success, e.g., show a notification, reset the form, etc.
+        console.log('Certificate added successfully:', data);
+      },
+      onError: (error) => {
+        // Handle error, e.g., show an error message
+        console.error('Error adding certificate:', error);
+      },
+    });
+  };
+
+
+
   
 
-export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels};
+export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useAddCertificate};

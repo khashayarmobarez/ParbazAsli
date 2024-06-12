@@ -1,6 +1,9 @@
 import React, {  useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+
+// api
+import { postIsUserAuthenticated } from './Utilities/Services/AuthenticationApi';
 
 // styles
 import './App.css';
@@ -97,10 +100,15 @@ function App() {
 
   const location = useLocation();
 
+  const navigate = useNavigate()
+
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useAppModeEffect(isDarkMode)
- 
+
+  useEffect(() => {
+    postIsUserAuthenticated(token, navigate, isUserAuthenticated)
+  },[])
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -72,12 +72,14 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
             case 'certificate':
               console.log('Certificate must be added');
               Cookies.set('isUserAuthenticated', 'noCertificate', { expires: Infinity });
+              navigate('/addCertificate')
               console.log(isUserAuthenticated)
               break;
 
             case 'adminPending':
               console.log('Wait for admins to approve your account');
               Cookies.set('isUserAuthenticated', 'noAdminApprovment', { expires: Infinity });
+              navigate('/adminPending')
               console.log(isUserAuthenticated)
               break;
 

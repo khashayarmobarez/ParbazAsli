@@ -1,22 +1,30 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 // styles
-import styles from '../../../../styles/Inputs/Inputs.module.css'
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+
+// mui
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 // queries
-import { useOrganLevels, useOrgansData } from '../../../../Utilities/Services/queries'
+import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../../Utilities/Services/queries'
+
+// utilities
+import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
 
 // components
 import UserDataBox from '../../Profile/UserDataBox';
 import DropdownInput from '../../../inputs/DropDownInput';
 import TextInput from '../../../inputs/textInput';
-
-// zaman
-import { DatePicker } from "zaman";
 import DateInput from '../Inputs/DateInput';
 
 
 const AddCertificate = () => {
+
+    const { formatDate } = useDateFormat();
+
+    const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
+    const maxFileSize = 10485760;
 
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     
@@ -32,12 +40,15 @@ const AddCertificate = () => {
     const [dateStartValue, setDateStartValue] = useState(new Date())
 
     const [dateEndValue, setDateEndValue] = useState(new Date())
+
+    const [uploadedFile, setUploadedFile] = useState(null);
+    const fileInputRef = useRef(null);
+
+    const [errMsg, setErrMsg] = useState(null)
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organId);
-    
-    useEffect(() => {
-        console.log(organId)
-    }, [organId]);
+
+    const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
 
     const handleSelectOrganChange = (selectedOption) => {
         setOrgan(selectedOption.label);
@@ -56,19 +67,69 @@ const AddCertificate = () => {
 
     const handleCertificateStartDateChange = (value) => {
         setDateStartValue(value)
-        console.log(dateStartValue)
+        console.log(value)
     }
 
     const handleCertificateEndDateChange = (value) => {
         setDateEndValue(value)
-        console.log(dateEndValue)
     }
 
+
+    const handleUploadClick = () => {
+        fileInputRef.current.click();
+      };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            // Check file format
+            if (!allowedFormats.includes(file.type)) {
+                setErrMsg('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
+                return;
+            }
+    
+            // Check file size
+            if (file.size > maxFileSize) {
+                setErrMsg('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
+                return;
+            }
+    
+            // Set the uploaded file if it passes all checks
+            setUploadedFile(file);
+            console.log('Selected file:', file);
+        }
+    };
+
+    // mutate, post data
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const formattedStartDate = formatDate(dateStartValue.value);
+        const formattedEndDate = formatDate(dateEndValue.value);
+
+        console.log(levelId,certificateId,formattedStartDate,formattedEndDate,uploadedFile)
+        
+        const formData = new FormData();
+        formData.append('LevelId', levelId);
+        formData.append('Number', certificateId);
+        formData.append('IssueDate', formattedStartDate);
+        formData.append('ExpirationDate', formattedEndDate);
+        if (uploadedFile) {
+          formData.append('File', uploadedFile);
+        }
+        
+        mutateCertificate(formData);
+    };
+
+
+    // organization options
     const organOptions = useMemo(() => organsData?.data.map(organ => ({
         value: organ.id,
         label: organ.name
     })), [organsData]);
 
+    // levels options
     const levelOptions = useMemo(() => levelsData?.data.map(level => ({
         value: level.id,
         label: level.name,
@@ -144,7 +205,7 @@ const AddCertificate = () => {
                                     <>
                                         {levelsLoading && <p>Loading levels...</p>}
                                         {levelsError && <p>Error fetching levels</p>}
-                                        {levelsData &&
+                                        {!levelsError && !levelsLoading &&
                                             <>
 
                                                 <DropdownInput
@@ -173,15 +234,52 @@ const AddCertificate = () => {
                                                         inputAttributes={{ placeholder: "تاریخ صدور" }}
                                                         />
 
-                                                        {/* the date picker styles comes from signUp.module.css , it is a bug, if you want to make changes to the code i recommend removing this code */}
+                                                        {/* the date picker get it's styles from signUp.module.css , it is a bug, if you want to make changes to the code i recommend removing this code */}
                                                         <DateInput 
                                                         onChange={handleCertificateEndDateChange}
                                                         inputAttributes={{ placeholder: "تاریخ انقضا" }}
                                                         />
 
+                                                        {/* upload picture */}
+                                                        <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
+                                                        style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+
+                                                            <input
+                                                                type="file"
+                                                                ref={fileInputRef}
+                                                                style={{ display: 'none' }}
+                                                                onChange={handleFileChange}
+                                                            />
+
+                                                            <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem'}} />
+
+                                                            
+                                                            {uploadedFile && (
+                                                                <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center">
+                                                                    {uploadedFile.type.startsWith('image/') && (
+                                                                    <img
+                                                                        src={URL.createObjectURL(uploadedFile)}
+                                                                        alt="Uploaded Preview"
+                                                                        className=" rounded-3xl w-full h-full object-cover"
+                                                                    />
+                                                                    )}
+                                                                </div>
+                                                            )}   
+                                                        </div>
+
+
 
                                                     </>
                                                 }
+
+                                                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `}
+                                                onClick={handleSubmit} >
+                                                    ارسال
+                                                </button>
+
+                                                {SubmitIsError && <p style={{ color: 'red' }}>Error: {SubmitError.message}</p>}
+                                                {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
+                                                {SubmitSuccess && <p style={{ color: 'green' }}>Certificate added successfully!</p>}
 
                                             </>
                                         }
