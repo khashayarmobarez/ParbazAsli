@@ -1,9 +1,9 @@
 {
-  "homepage": "https://khashayarmobarez.github.io/ParbazAsli",
+  "homepage": "./",
   "name": "digilogbook",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://api.par-baz.ir  ",
+  "proxy": "https://api.par-baz.ir",
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
