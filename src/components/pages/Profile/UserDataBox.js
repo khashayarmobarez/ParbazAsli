@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // redux
 import { useSelector } from 'react-redux';
@@ -55,7 +55,7 @@ const UserDataBox = () => {
 
                     </div>
 
-                    <div className=' flex flex-col items-center self-end gap-y-10 md:flex-row md:self-center md:w-[38%] md:justify-between md:items-center md:space-y-0'>
+                    <div className=' flex flex-col items-center self-end gap-y-8 pb-2 md:pb-0 md:flex-row md:self-center md:w-[38%] md:justify-between md:items-center md:space-y-0'>
 
                         <div className=' gap-y-4 flex flex-col items-center md:space-y-5'>
 
@@ -70,7 +70,7 @@ const UserDataBox = () => {
                             </div>
                             
                             {/* condition based on coach  */}
-                            { data.data.coachingHours &&
+                            { data.data.coachingHours >= 0 &&
                                 <div className=' flex justify-between items-start w-[80%]' >
                                     <img src={flightHour} alt='icon'/>
                                     <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.coachingHours} ساعت مربیگری</p>

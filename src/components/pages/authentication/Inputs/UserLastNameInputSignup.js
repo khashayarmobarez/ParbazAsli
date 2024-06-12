@@ -48,7 +48,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
           placeholder="نام خانوادگی"
         />
       </div>
-      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "offscreen"} self-start text-start`}>
+      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} self-start text-start`}>
         <InfoOutlinedIcon />
         3 تا 24 کاراکتر<br />
         با حروف بنویسید

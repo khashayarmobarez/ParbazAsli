@@ -232,6 +232,7 @@ const SignUp = () => {
                     Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
                     // navigate the user to its page
                     navigate('/profile');
+                    window.location.reload()
             } else {
                 console.error('Registration failed');
                 setErrMsg('ثبت نام ناموفق');

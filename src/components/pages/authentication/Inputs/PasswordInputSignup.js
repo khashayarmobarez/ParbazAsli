@@ -100,7 +100,7 @@
               )}
             </span>
           </div>
-          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "offscreen"} self-start text-start`}>
+          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} self-start text-start`}>
             <InfoOutlinedIcon />
             پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
             {  passwordRequireDigit && (<>رمز عبور باید حداقل شامل یک عدد باشد<br /></>)}

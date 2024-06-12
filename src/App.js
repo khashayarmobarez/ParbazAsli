@@ -32,6 +32,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import WhyUs from './components/pages/LandingPageComponents/WhyUs';
 // not validated user component
   import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
+  import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
+  import AdminPending from './components/pages/authentication/incomplete user Info pages/AdminPending';
 // main and caoch components
   import Footer from './components/Footer/Footer';
   import Navbar from './components/Header/Navbar';
@@ -81,7 +83,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
-import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
   
 
 
@@ -156,6 +157,13 @@ function App() {
               <>
                 <Route path='/addCertificate' element={<AddCertificate />} />
                 <Route path='*' element={<Navigate to="/addCertificate" replace />} />
+              </> 
+              }
+
+              {token  && isUserAuthenticated === 'noAdminApprovment' &&
+              <>
+                <Route path='/adminPending' element={<AdminPending />} />
+                <Route path='*' element={<Navigate to="/adminPending" replace />} />
               </> 
               }
 

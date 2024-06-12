@@ -137,7 +137,7 @@ const AddCertificate = () => {
     })), [levelsData]);
 
     return (
-        <div className='flex flex-col items-center pt-24 pb-[4rem]'>
+        <div className='flex flex-col items-center pt-20 pb-[4rem]'>
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
 
                 <UserDataBox />
@@ -241,6 +241,7 @@ const AddCertificate = () => {
                                                         />
 
                                                         {/* upload picture */}
+                                                        <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
                                                         <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
                                                         style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
 
@@ -272,14 +273,14 @@ const AddCertificate = () => {
                                                     </>
                                                 }
 
-                                                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `}
+                                                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
                                                 onClick={handleSubmit} >
                                                     ارسال
                                                 </button>
 
                                                 {SubmitIsError && <p style={{ color: 'red' }}>Error: {SubmitError.message}</p>}
                                                 {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
-                                                {SubmitSuccess && <p style={{ color: 'green' }}>Certificate added successfully!</p>}
+                                                {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
 
                                             </>
                                         }

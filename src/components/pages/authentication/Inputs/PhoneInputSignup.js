@@ -48,7 +48,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
           placeholder="شماره موبایل"
         />
       </div>
-      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "offscreen"} self-start text-start`}>
+      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} self-start text-start`}>
         <InfoOutlinedIcon /> شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
       </p>
     </div>

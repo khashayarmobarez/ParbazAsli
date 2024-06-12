@@ -53,7 +53,7 @@ const NationalCodeInput = ({ nationalCodeRef, onChange, value, focus, onFocus, o
           placeholder="کد ملی"
         />
       </div>
-      <p id="nationalCodenote" className={value && !validNationalCode && filled ? "instructions" : "offscreen"}>
+      <p id="nationalCodenote" className={value && !validNationalCode && filled ? "instructions" : "hidden"}>
         <InfoOutlinedIcon /> Invalid Iranian National Code.
       </p>
     </div>

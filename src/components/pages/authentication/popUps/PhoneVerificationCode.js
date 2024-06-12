@@ -26,7 +26,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     const handleInput = (e, index) => {
         const newCode = [...code];
         newCode[index] = e.target.value;
-        setCode(newCode);
+        setCode(newCode.join(''));  // Join the array elements into a string before setting the state
 
         // Move focus to the next input if available
         if (e.target.value && index < codeLength - 1) {
@@ -52,7 +52,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     const handlePaste = (e) => {
         const pasteData = e.clipboardData.getData('text').slice(0, codeLength);
         const newCode = pasteData.split('').map((char, i) => pasteData[i] || code[i]);
-        setCode(newCode);
+        setCode(newCode.join(''));  // Join the array elements into a string before setting the state
 
         // Move focus to the appropriate input
         const nextIndex = Math.min(newCode.length, codeLength - 1);
@@ -75,8 +75,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const codeString = code.join('');
-        handleFinalSubmit(codeString)
+        handleFinalSubmit()
         setWaitNotif(true)
     }
 
@@ -116,9 +115,9 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 </div>
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
                 <button  className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit}>ارسال</button>
-                <p className={codeRemainingTime ? "text-light-yellow" : "offscreen"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کتید</p>
-                <p className={waitNotif ? "text-light-yellow mt-1" : "offscreen"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
-                <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
+                <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کتید</p>
+                <p className={waitNotif ? "text-light-yellow mt-1" : "hidden"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
+                <p className={errMsg ? "errmsg" : "hidden"} aria-live="assertive"> {errMsg}</p>
 
             </form>
         </div>

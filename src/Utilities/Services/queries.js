@@ -167,6 +167,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
       onSuccess: (data) => {
         // Handle success, e.g., show a notification, reset the form, etc.
         console.log('Certificate added successfully:', data);
+        window.location.reload()
       },
       onError: (error) => {
         // Handle error, e.g., show an error message

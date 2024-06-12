@@ -41,7 +41,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
         <input
           type="text"
           id="phoneOrEmail"
-          autoComplete='off'
+          autoComplete='on'
           value={value}
           onChange={handleInputChange}
           required
@@ -59,7 +59,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
           placeholder="ایمیل یا شماره موبایل"
         />
       </div>
-      <p id="inputnote" className={value && !validInput && filled ? "instructions" : "offscreen"}>
+      <p id="inputnote" className={value && !validInput && filled ? "instructions" : "hidden"}>
         <InfoOutlinedIcon /> لطفاً یک شماره موبایل معتبر (شروع با 09 و 11 رقمی) یا یک ایمیل معتبر وارد کنید.
       </p>
     </div>

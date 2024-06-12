@@ -39,7 +39,7 @@ const Profile = ({userRole}) => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-y-4 mt-4 w-[90%] md:w-[65%]'>
+            <div className='flex flex-col items-center justify-center gap-y-4 w-[90%] md:w-[65%]'>
 
 
                     {/* first data box  */}

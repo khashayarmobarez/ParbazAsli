@@ -1,8 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// redux
-import { updateIsUserAuthenticated } from '../ReduxToolKit/features/userData/userSlice';
 
 
 const BASE_URL = 'https://api.par-baz.ir/api'
