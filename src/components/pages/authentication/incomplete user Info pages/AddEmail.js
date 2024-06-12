@@ -230,7 +230,7 @@ const AddEmail = () => {
 
                             <p className='' style={{color:'var(--soft-white)'}}>گواهینامه</p>
 
-                            <p className='' style={{color:'var(--yellow-text)'}}>اهراز ایمیل</p>
+                            <p className='' style={{color:'var(--yellow-text)'}}>احراز ایمیل</p>
 
                         </div>
 

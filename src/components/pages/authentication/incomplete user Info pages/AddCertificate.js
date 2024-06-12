@@ -171,7 +171,7 @@ const AddCertificate = () => {
 
                         <p className='mr-3 md:mr-0' style={{color:'var(--yellow-text)'}}>گواهینامه</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>اهراز ایمیل</p>
+                        <p className='' style={{color:'var(--yellow-text)'}}>احراز ایمیل</p>
 
                     </div>
 
