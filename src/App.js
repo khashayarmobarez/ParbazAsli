@@ -140,8 +140,8 @@ function App() {
             {!token &&
             <>
               <Route path='/signUpLogin' element={<SignUpOrLogin />} />
-              <Route path='/landing' element={<LandingPage />} />
-              <Route path='*' element={<Navigate to="/landing" replace />} />
+              <Route path='/' element={<LandingPage />} />
+              <Route path='*' element={<Navigate to="/" />} />
             </>
             }
 
@@ -200,9 +200,7 @@ function App() {
                   </Route>
 
                   {/* profile */}
-                  { isUserAuthenticated === 'authenticated' &&
                   <Route path='*' element={<Navigate to="/profile" replace />} />
-                  }
 
                 </>
               )}

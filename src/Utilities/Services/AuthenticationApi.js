@@ -55,8 +55,6 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
               console.log('Token invalid');
               Cookies.remove('token');
               Cookies.set('isUserAuthenticated', false, { expires: Infinity });
-              navigate('/signUpLogin');
-              postLogout(token); // Ensure postLogout is defined
               console.log(isUserAuthenticated)
               break;
 
