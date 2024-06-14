@@ -37,9 +37,9 @@ const AddCertificate = () => {
 
     const [certificateId, setCertificateId] = useState('');
 
-    const [dateStartValue, setDateStartValue] = useState(new Date())
+    const [dateStartValue, setDateStartValue] = useState('')    
 
-    const [dateEndValue, setDateEndValue] = useState(new Date())
+    const [dateEndValue, setDateEndValue] = useState('')
 
     const [uploadedFile, setUploadedFile] = useState(null);
     const fileInputRef = useRef(null);
@@ -67,12 +67,32 @@ const AddCertificate = () => {
 
     const handleCertificateStartDateChange = (value) => {
         setDateStartValue(value)
-        console.log(value)
+
+        // function to close the datePicker
+        clickOnRightSide()
     }
 
     const handleCertificateEndDateChange = (value) => {
         setDateEndValue(value)
+
+        // function to close the datePicker
+        clickOnRightSide()
     }
+
+    // function to close the datePicker
+    const clickOnRightSide = () => {
+        // Create a new mouse event
+        const clickEvent = new MouseEvent('mousedown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            clientX: window.innerWidth - 1, // Right edge of the screen
+            clientY: window.innerHeight / 2 // Middle of the screen vertically
+        });
+
+        // Dispatch the event to the document
+        document.dispatchEvent(clickEvent);
+    };
 
 
     const handleUploadClick = () => {

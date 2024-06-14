@@ -83,7 +83,7 @@ const LandingPage = () => {
 
                             <p>{data.data.data[0].summary}</p>
 
-                            <Link to='' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
+                            <Link to='/signUpLogin' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
                                 <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
                                     <PersonAddIcon />
                                     <p>ثبت نام در سامانه</p>
@@ -228,21 +228,17 @@ const LandingPage = () => {
 
 
                     {/* fourth slide */}
-                    <div className='w-full flex flex-col items-center justify-between py-10 gap-y-16 md:pt-24'>
+                    <div className='w-full flex flex-col items-center justify-between py-10 gap-y-24 sm:gap-y-18 md:pt-24'>
 
                         <div className='w-full flex justify-start items-center'>
 
-                            <p className='w-[60%] h-14 rounded-l-full text-right text-2xl font-semibold pt-3 pr-[3.5%] md:h-20 md:pt-7 md:text-left md:pl-8'
+                            <p className='w-[70%] h-14 rounded-l-full text-right text-2xl font-semibold pt-3 pr-[3.5%] md:h-20 md:pt-7 md:text-left md:pl-8'
                             style={{
                                 background: 'var(--landing-page-titles-bg)',
                                 boxShadow: 'var(--landing-page-titles-boxShadow)'
                                 }}>
                             وبلاگ <span style={{color:'var(--yellow-text)'}}>دیجی‌ لاگ‌بوک</span>
                             </p>
-
-                            <div className=' w-[40%] h-full flex justify-center items-center md:justify-end md:pl-10'>
-                                <button className={`${ButtonStyles.normalButton} h-14 w-28 md:h-[68px] md:w-56 md:font-semibold`}>مشاهده بیشتر</button>
-                            </div>
 
                         </div>
 
@@ -258,7 +254,7 @@ const LandingPage = () => {
 
                         <div className='w-full flex flex-col justify-center items-center gap-y-6'>
                             <img src={parbazLogo} alt='compnay logo' className='w-[80%] md:w-[20%]'/>
-                            <p>پیشتاز پرباز اسم شرکت یا هرچیز</p>
+                            <p>پیشتازان پرباز</p>
                         </div>
 
                     </div>

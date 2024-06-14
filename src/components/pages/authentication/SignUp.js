@@ -18,7 +18,6 @@ import PasswordInputSignup from './Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
     // import NationalCodeInput from './Inputs/NationalCodeInput';
 import PhoneInputSignup from './Inputs/PhoneInputSignup';
-import EmailInputSignup from './Inputs/EmailInputSignUp';
 import Checkbox from './Inputs/CheckBox';
 import PhoneVerificationCode from './popUps/PhoneVerificationCode';
 
@@ -61,9 +60,6 @@ const SignUp = () => {
     const [userLastName, setUserLastName] = useState(''); // New state for last name
     const [userLastNameFocus, setUserLastNameFocus] = useState(false); 
 
-    const [email, setEmail] = useState('');
-    const [emailFocus, setEmailFocus] = useState(false);
-
     // const [nationalCode, setNationalCode] = useState('');
     // const [nationalCodeFocus, setNationalCodeFocus] = useState(false);
 
@@ -80,7 +76,6 @@ const SignUp = () => {
     const [validMatch, setValidMatch] = useState(false)
     const [validPhone, setValidPhone] = useState(false);
     // const [validNationalCode, setValidNationalCode] = useState(false);
-    const [validEmail, setValidEmail] = useState(false);
 
 
     const [phone, setPhone] = useState(''); // State for phone number
@@ -101,7 +96,7 @@ const SignUp = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd,phone, email]);
+    }, [user, pwd, matchPwd,phone]);
 
     useEffect(() => {
         setValidName(USER_REGEX.test(user));
@@ -126,10 +121,6 @@ const SignUp = () => {
         setValidPhone(PHONE_REGEX.test(phone)); // Validate phone number
     }, [phone]);
 
-    useEffect(() => {
-        setValidEmail(EMAIL_REGEX.test(email));
-    }, [email]);
-
     const handleTermsToggle = (isChecked) => {
     setTermsChecked(isChecked); // Update the checked state in the parent component
     };
@@ -138,7 +129,7 @@ const SignUp = () => {
     const handlePopUp = async(e) => {
 
         e.preventDefault();
-        if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked) { 
+        if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked) { 
             setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
             return;
         }
@@ -204,7 +195,7 @@ const SignUp = () => {
     
     // final submit logic
     const handleFinalSubmit = async (e) => {
-        if (!validName || !validPwd || !validMatch || !validPhone || !validEmail || !termsChecked || !code) { 
+        if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !code) { 
             setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
             return;
         }
@@ -249,7 +240,7 @@ const SignUp = () => {
 
 
     return (
-        <section className='w-full flex flex-col'>
+        <section className='w-full min-h-[70vh] flex flex-col'>
 
             {loading && 
                 <div className='w-full min-h-[71vh]'>
@@ -294,15 +285,6 @@ const SignUp = () => {
                             onBlur={() => setNationalCodeFocus(false)}
                         /> */}
 
-                        <EmailInputSignup
-                            emailRef={userRef}
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                            focus={emailFocus}
-                            onFocus={() => setEmailFocus(true)}
-                            onBlur={() => setEmailFocus(false)}
-                        />
-
                         <PhoneInputSignup
                             phoneRef={userRef}
                             onChange={(e) => setPhone(e.target.value)}
@@ -339,17 +321,17 @@ const SignUp = () => {
                         <div className='w-28 self-center'>
                             <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
                             onClick={handlePopUp} 
-                            disabled={!validName || !validPwd || !validMatch ? true : false}
+                            // disabled={!validName || !validPwd || !validMatch || !validPhone ? true : false}
                             >
                             تایید
                             </button>
-                            {(!validName || !validPwd || !validMatch || !validPhone || !validEmail) &&
+                            {/* {(!validName || !validPwd || !validMatch || !validPhone || !validEmail) &&
                             <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
-                            }
+                            } */}
                         </div>
 
 
-                        <p ref={errRef} className={errMsg ? `${signUpStyles.errMsg}` : "hidden"} aria-live="assertive">{errMsg}</p>
+                        <p ref={errRef} className={errMsg ? `text-[#ED553B]` : "hidden"} aria-live="assertive">{errMsg}</p>
                         <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
 
                     </form>
