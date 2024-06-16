@@ -27,7 +27,7 @@ const Profile = ({userRole}) => {
 
 
     return (
-        <div className='flex flex-col items-center pt-20'>
+        <div className='flex flex-col items-center pt-[75px]'>
 
             {
                 isLoading && isFetching && <h2 className=' text-white mt-'>is loading...</h2>
@@ -39,7 +39,7 @@ const Profile = ({userRole}) => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-y-4 w-[90%] md:w-[65%]'>
+            <div className='flex flex-col items-center justify-center gap-y-2 w-[90%] md:w-[65%]'>
 
 
                     {/* first data box  */}
@@ -52,20 +52,30 @@ const Profile = ({userRole}) => {
                     {/* buttons */}
                     <div className='flex justify-between w-full md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[20rem] '>
 
-                        <Link to='/equipment' className={`${GradientStyles.container2} w-[75px] h-[75px] rounded-3xl flex flex-col justify-between items-center p-4 text-[#A5E65E] text-xs`} >
+                        <Link to='/equipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>تجهیزات</p>
                         </Link>
 
-                        <Link  to='/education' className={`${GradientStyles.container2} w-[75px] h-[75px] rounded-3xl flex flex-col justify-between items-center p-4 text-[#A5E65E] text-xs`}>
+                        <Link  to='/education' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>آموزش</p>
                         </Link>
 
                         
-                        <Link to='/club' className={`${GradientStyles.container2} w-[75px] h-[75px] rounded-3xl flex flex-col justify-between items-center p-4 text-[#A5E65E] text-xs`} >
+                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>باشگاه</p>
+                        </Link>
+                        
+                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                            <img src={pencil} alt='icon' className='w-[56%]'/>
+                            <p>سرفصل‌ها</p>
+                        </Link>
+                        
+                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                            <img src={pencil} alt='icon' className='w-[56%]'/>
+                            <p>دوره‌ها</p>
                         </Link>
                         
 

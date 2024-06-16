@@ -32,15 +32,15 @@ const SpeedoMeter = (props) => {
 
   return (
 
-    <div className={`${boxStyles.containerDarkmode} rounded-3xl z-0 w-[98%] md:w-full flex justify-between items-center px-2 py-5 mr-1 mt-1`}>
+    <div className={`${boxStyles.containerDarkmode} rounded-3xl z-0 w-[98%] md:w-full flex justify-between items-center px-2 py-3 mr-1 mt-1`}>
 
-        <div className='flex flex-col justify-center items-center space-y-5'>
+        <div className='flex flex-col justify-center items-center space-y-4'>
             <p className=' font-normal text-sm mr-2 '>آخرین بسته بندی چتر کمکی</p>
             <p className=' font-normal text-sm mr-2 '>{data.data.title.slice(0, 5)}</p>
             <p className=' font-normal text-sm mr-2 '>{data.data.title.slice(0, 5)} روز تا تمدید مجدد</p>
         </div>
 
-        <div className='w-[143px] h-[143px] flex flex-col justify-center items-center'>
+        <div className='w-[143px] h-[143px] flex flex-col justify-center items-center mb-[-0.5rem]'>
 
                     <SpeedoMeterProvider valueStart={0} valueEnd={remaining}>
                     {(value) => (
@@ -84,13 +84,13 @@ const SpeedoMeter = (props) => {
         </div>
 
         <svg style={{ height: 0,width: 0,position:'absolute' }}>
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                    <stop offset="22.92%" stopColor="#A5E65E" />
-                    <stop offset="227.14%" stopColor="rgba(199, 3, 15, 0.2)" />
-                  </linearGradient>
-                </defs>
-            </svg>
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="22.92%" stopColor="#A5E65E" />
+                <stop offset="227.14%" stopColor="rgba(199, 3, 15, 0.2)" />
+              </linearGradient>
+            </defs>
+        </svg>
 
     </div>
   );

@@ -27,10 +27,10 @@ const SwiperSlider = ({remainingDays, data}) => {
             `
               .swiper-button-next,
               .swiper-button-prev {
-                margin-top:5.7rem;
+                margin-top:4.6rem;
                 background-color: var(--profile-buttons-background);
                 box-shadow:var(--profile-buttons-boxShadow);
-                padding: 5px;
+                padding: 3px;
                 width:12px;
                 height:12px;
                 border-radius: 100%;
@@ -38,15 +38,15 @@ const SwiperSlider = ({remainingDays, data}) => {
                 z-index: 50;
               }
               .swiper-button-next {
-                margin-left: 31%;
+                margin-left: 33%;
               }
               .swiper-button-prev {
-                margin-right: 31%;
+                margin-right: 33%;
               }
 
               .swiper-pagination-bullet{
-                width: 8px;
-                height: 8px;
+                width: 6px;
+                height: 6px;
                 background-color: var(--softer-white);
               }
               ${
@@ -65,10 +65,10 @@ const SwiperSlider = ({remainingDays, data}) => {
   }, [isDesktop]);
 
     return (
-        <div className='w-full h-64'>
+        <div className='w-full h-52'>
             <div className='w-full h-full py-2'>
-            <swiper-container
-                        style={{ height:'15rem',...(!isDesktop && { marginRight: '0' }), }}
+                <swiper-container
+                        style={{ height:'12.4rem',...(!isDesktop && { marginRight: '0' }), }}
                         ref={swiperRef}
                         init="false"
                         >

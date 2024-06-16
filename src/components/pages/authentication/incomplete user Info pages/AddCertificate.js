@@ -125,7 +125,6 @@ const AddCertificate = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        
         const formattedStartDate = formatDate(dateStartValue.value);
         const formattedEndDate = formatDate(dateEndValue.value);
 
@@ -134,8 +133,16 @@ const AddCertificate = () => {
         const formData = new FormData();
         formData.append('LevelId', levelId);
         formData.append('Number', certificateId);
-        formData.append('IssueDate', formattedStartDate);
-        formData.append('ExpirationDate', formattedEndDate);
+
+        if (dateStartValue && dateEndValue) {
+            formData.append('IssueDate', formattedStartDate)
+            formData.append('ExpirationDate', formattedEndDate)
+        } else 
+            {
+            formData.append('IssueDate', dateStartValue)
+            formData.append('ExpirationDate', dateEndValue)
+        }
+
         if (uploadedFile) {
           formData.append('File', uploadedFile);
         }
