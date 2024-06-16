@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-
-// redux
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../Utilities/ReduxToolKit/features/userData/userSlice';
+import React, { useEffect, useState } from 'react';
 
 // react router dom
 import { Link } from 'react-router-dom';
@@ -22,16 +18,25 @@ import YellowPlus from '../../../assets/icons/yellowPlus.svg'
 // queries 
 import { useUserData } from '../../../Utilities/Services/userQueries';
 
+// components
+import ChangePicPopUp from './EditProfile/ChangePicPopUp'
+
 
 
 const UserDataBox = () => {
 
-    const { data, isLoading, error, isFetching } = useUserData();
+    const { data, isLoading, error } = useUserData();
+
+    useEffect(() => {
+        console.log(data)
+    }, [data]);
+
+    const [showPopUp,setShowPopup] = useState(false)
 
     return (
         <>
             {
-                isLoading && isFetching && <h2 className=' text-white h-[20vh] flex justify-center items-center'>is loading...</h2>
+                isLoading && <h2 className=' text-white h-[20vh] flex justify-center items-center'>is loading...</h2>
             }
 
             {
@@ -45,9 +50,9 @@ const UserDataBox = () => {
                     {/* picture, name and code  */}
                     <div className='flex flex-col justify-center items-center gap-y-2 md:flex-row md:w-[38%] md:justify-between'>
 
-                        <div className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '4px solid var(--yellow-text)',}}></div>
+                        <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
+                            <Avatar alt={data.data.fullName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
                             <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                         </div>
 
@@ -88,6 +93,7 @@ const UserDataBox = () => {
 
                         <Link to='/editProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
 
+                        <ChangePicPopUp showPopup={showPopUp} setShowPopup={setShowPopup} />
                     </div>
 
                 </div>

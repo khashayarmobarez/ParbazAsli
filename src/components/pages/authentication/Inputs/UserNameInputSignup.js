@@ -3,7 +3,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const USER_REGEX = /^[^0-9~'`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
+const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
 
 const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur }) => {
   const [userFocus, setUserFocus] = useState(false);
@@ -51,7 +51,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur 
       <p id="uidnote" className={ `${value && !validName && filled ? "instructions" : "hidden"} self-start text-start`}>
         <InfoOutlinedIcon />
         3 تا 24 کاراکتر<br />
-        با حروف بنویسید
+        با حروف فارسی بنویسید
       </p>
     </div>
   );

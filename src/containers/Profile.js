@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import GradientStyles from '../styles/gradients/Gradient.module.css'
 
@@ -24,6 +24,7 @@ const Profile = ({userRole}) => {
     const { data, isLoading, error, isFetching } = useUserDetails();
 
     const [remainingDays, setRemainingDays] = useState(80)
+
 
 
     return (
@@ -56,6 +57,16 @@ const Profile = ({userRole}) => {
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>تجهیزات</p>
                         </Link>
+                        
+                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                            <img src={pencil} alt='icon' className='w-[56%]'/>
+                            <p>دوره‌ها</p>
+                        </Link>
+                        
+                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                            <img src={pencil} alt='icon' className='w-[56%]'/>
+                            <p>سرفصل‌ها</p>
+                        </Link>
 
                         <Link  to='/education' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
@@ -66,16 +77,6 @@ const Profile = ({userRole}) => {
                         <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>باشگاه</p>
-                        </Link>
-                        
-                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
-                            <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>سرفصل‌ها</p>
-                        </Link>
-                        
-                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
-                            <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>دوره‌ها</p>
                         </Link>
                         
 

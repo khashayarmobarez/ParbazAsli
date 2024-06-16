@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -32,5 +32,67 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+// add profile picture
+  const uploadProfilePicture = async (formData) => {
+    const token = Cookies.get('token');
+    const response = await axios.post(`${BASE_URL}/User/EditProfilePicture`, formData, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+        },
+    });
 
-export {useUserData};
+    if (response.status !== 200) {
+        throw new Error('Failed to upload profile picture');
+    }
+
+    return response.data;
+  };
+
+  const useUploadProfilePicture = () => {
+    return useMutation(uploadProfilePicture, {
+          onSuccess: (data) => {
+              // Handle success, e.g., show a notification, reset the form, etc.
+              console.log('Profile picture uploaded successfully:', data);
+          },
+          onError: (error) => {
+              // Handle error, e.g., show an error message
+              console.error('Error uploading profile picture:', error);
+          },
+      });
+  };
+
+
+
+
+// remove profile picture
+  const deleteProfilePicture = async () => {
+    const token = Cookies.get('token');
+    const response = await axios.post(`${BASE_URL}/User/DeleteProfilePicture`, {}, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    if (response.status !== 200) {
+        throw new Error('Failed to delete profile picture');
+    }
+
+    return response.data;
+  };
+
+  const useDeleteProfilePicture = () => {
+    return useMutation(deleteProfilePicture, {
+        onSuccess: (data) => {
+            console.log('Profile picture deleted successfully:', data);
+        },
+        onError: (error) => {
+            console.error('Error deleting profile picture:', error);
+        },
+    });
+};
+
+
+
+
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture};

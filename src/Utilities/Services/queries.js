@@ -178,6 +178,9 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+
+
+
   
 
 export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useAddCertificate};
