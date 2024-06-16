@@ -42,11 +42,11 @@ const UserDataBox = () => {
                     <div className={`${boxStyles.containerDarkmode} flex items-center w-full justify-around py-6 rounded-3xl md:h-[200px] md:py-5 md:px-2 `}>
 
                     {/* picture, name and code  */}
-                    <div className='flex flex-col justify-center items-center gap-y-4 md:flex-row md:w-[38%] md:justify-between'>
+                    <div className='flex flex-col justify-center items-center gap-y-2 md:flex-row md:w-[38%] md:justify-between'>
 
                         <Avatar alt="Remy Sharp" src={data.data.image} sx={{height:'95px', width:'95px', zIndex:'0'}}/>
-                        <div className=' space-y-2 md:space-y-5' >
-                            <p className=' font-normal text-lg w-36'>{data.data.fullName}</p>
+                        <div className=' space-y-1 md:space-y-5 flex flex-col items-center' >
+                            <p className=' font-normal text-base w-32'>{data.data.fullName}</p>
                             { data.data.levelName &&
                                 <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>{data.data.levelName} </p>
                             }
@@ -55,9 +55,9 @@ const UserDataBox = () => {
 
                     </div>
 
-                    <div className=' flex flex-col items-center self-end gap-y-8 pb-2 md:pb-0 md:flex-row md:self-center md:w-[38%] md:justify-between md:items-center md:space-y-0'>
+                    <div className=' flex flex-col items-center self-end gap-y-6 pb-2 md:pb-0 md:flex-row md:self-center md:w-[38%] md:justify-between md:items-center md:space-y-0'>
 
-                        <div className=' gap-y-4 flex flex-col items-center md:space-y-5'>
+                        <div className=' gap-y-2 flex flex-col items-center md:space-y-5'>
 
                             <div className=' flex justify-center items-start w-[80%]' >
                                 <img src={flightQuan} alt='icon'/>

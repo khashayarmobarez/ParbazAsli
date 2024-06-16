@@ -127,8 +127,8 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
                             boxShadow: '-3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
 
-                            <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
-                                <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
+                                <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
+                                    <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
                                 
                                     <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
                                     style={{ background: isOpen ? 'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)' : 'none',
@@ -141,7 +141,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                         (windowWidth < 768 && token) &&
                                         <Avatar alt="Remy Sharp" sx={{height:'99px', width:'100px', zIndex:'0'}} />
                                         }
-                                        <ul className={`${!token ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[300px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-101`}>
+                                        <ul className={`${!token ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-101`}>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/blogs'>بلاگ</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/aboutUs'>درباره ما</Link></li>

@@ -125,6 +125,7 @@ const AddCertificate = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        
         const formattedStartDate = formatDate(dateStartValue.value);
         const formattedEndDate = formatDate(dateEndValue.value);
 

@@ -20,7 +20,7 @@
 
 .ThreeStickedButtonButton:active {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.300000190734863px 1px #0000007a, 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: -2px 3px 4.3px 1px #0000007a, 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.8px 2px rgba(70, 174, 45, 1) inset;
 }
 
 
@@ -35,14 +35,14 @@
 
 .activeYellow {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.599px 0px rgba(235, 224, 224, 0.51),0px 4px 10.8px 2px rgba(70, 174, 45, 1) inset;
   color: rgba(33, 40, 41, 1); 
   font-weight: 500;
 }
 
 .addButton {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.300000190734863px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51),0px 4px 10.80px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51),0px 4px 10.80px 2px rgba(70, 174, 45, 1) inset;
   font-weight:bold ;
   display: flex; 
   height: 44px;

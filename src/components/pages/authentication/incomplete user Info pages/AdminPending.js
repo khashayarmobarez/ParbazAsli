@@ -11,7 +11,7 @@ const AdminPending = () => {
         const intervalId = setInterval(() => {
             console.log('Refreshing page...');
             window.location.reload();
-        }, 15000); // 10000 milliseconds = 10 seconds
+        }, 60000); // 10000 milliseconds = 10 seconds
 
         // Cleanup function to clear the interval
         return () => clearInterval(intervalId);

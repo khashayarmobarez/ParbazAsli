@@ -319,7 +319,7 @@ const SignUp = () => {
                         />
 
                         <div className='w-28 self-center'>
-                            <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
+                            <button type="submit" className={`${ButtonStyles.addButton} w-32 `} 
                             onClick={handlePopUp} 
                             // disabled={!validName || !validPwd || !validMatch || !validPhone ? true : false}
                             >
