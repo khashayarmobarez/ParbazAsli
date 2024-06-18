@@ -50,6 +50,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
       </div>
       <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} self-start text-start`}>
         <InfoOutlinedIcon /> شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
+        <br/> <InfoOutlinedIcon /> شماره ی تلفن را حتما با اعداد انگلیسی وارد کنید
       </p>
     </div>
   );

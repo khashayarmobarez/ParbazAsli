@@ -63,6 +63,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup}) => {
             formData.append('file', uploadedFile);
             uploadPicture(formData);
             setShowPopup(false)
+            window.location.reload();
         } else {
             setErrMsg('لطفا یک فایل تصویری انتخاب کنید.');
         }

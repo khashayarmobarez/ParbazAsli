@@ -59,8 +59,9 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
           placeholder="ایمیل یا شماره موبایل"
         />
       </div>
-      <p id="inputnote" className={value && !validInput && filled ? "instructions" : "hidden"}>
+      <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}>
         <InfoOutlinedIcon /> لطفاً یک شماره موبایل معتبر (شروع با 09 و 11 رقمی) یا یک ایمیل معتبر وارد کنید.
+        <br/> <InfoOutlinedIcon /> شماره ی تلفن را حتما با اعداد انگلیسی وارد کنید
       </p>
     </div>
   );

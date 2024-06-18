@@ -2,12 +2,16 @@ import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 // api
 import { postIsUserAuthenticated } from '../../../Utilities/Services/AuthenticationApi';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// mui
+import CircularProgress from '@mui/material/CircularProgress';
 
 // components
 import PasswordInputLogin from './Inputs/PasswordInputLogin';
@@ -41,8 +45,19 @@ const Login = () => {
 
     const [showForgetPassPopUp, setShowForgetPassPopUp] = useState(false)
 
+    const [submitLoading, setSubmitLoading] = useState(false)
     const [errMsg, setErrMsg] = useState('');
 
+
+    useEffect(() => {
+        const savedRememberMe = Cookies.get('rememberMe') === 'true';
+        const savedUsername = Cookies.get('userInput') || '';
+        const savedPwd = Cookies.get('pwd') || '';
+        setTermsChecked(savedRememberMe);
+        setUserInput(savedUsername);
+        setPwd(savedPwd)
+    }, []);
+    
     useEffect(() => {
         setValidUserInput(EMAIL_OR_PHONE_REGEX.test(userInput));
     }, [userInput]);
@@ -62,11 +77,21 @@ const Login = () => {
 
 
         // Add your validation logic here
-        if (!userInput || !pwd || !validUserInput) { 
+        if (!userInput || !pwd || !validUserInput) {
+            toast('اطلاعات درست نیست', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            }); 
             setErrMsg("اطلاعات درست نیست");
             return;
         }
         try {
+
+            setSubmitLoading(true)
+
             const requestBody = {
                 username: userInput,
                 password: pwd,
@@ -80,9 +105,28 @@ const Login = () => {
 
             // Successful login
             if (response.data.isSuccess) {
-                console.log('Login successful');
-                console.log(response.data.data.loginExpireInDays);
-                console.log(response.data.data.token);
+
+                setSubmitLoading(false)
+
+                toast('لاگین با موفقیت انجام شد', {
+                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+
+                // save login information
+                if (termsChecked) {
+                    // Set cookies to expire in 21 days (3 weeks)
+                    Cookies.set('rememberMe', 'true', { expires: 21 });
+                    Cookies.set('userInput', userInput, { expires: 21 });
+                    Cookies.set('pwd', pwd, { expires: 21 });
+                  } else {
+                    Cookies.remove('rememberMe');
+                    Cookies.remove('userInput');
+                    Cookies.remove('pwd');
+                  }
 
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
@@ -94,16 +138,43 @@ const Login = () => {
             } else {
                 console.error('Login failed');
                 setErrMsg('Login failed');
+                setSubmitLoading(false)
             }
-        } catch (err) {
-            if (!err?.response) {
+        } catch (error) {
+            if (!error?.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-            } else if(!err?.response.data.ErrorMessages[0].ErrorKey === 'resetPasswordRequired') {
-                setShowForgetPassPopUp(true)
+                toast('مشکلی رخ داده است, دوباره تلاش کنید', {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                setSubmitLoading(false)
+            }
+            else if(error.response.data.ErrorMessages[0].ErrorKey === 'resetPasswordRequired') {
                 setErrMsg(' رمز خود را از طریق فراموشی رمز عبور تغییر دهید');
-            } else {
-                console.log(err);
-                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
+                toast('رمز خود را از طریق فراموشی رمز عبور تغییر دهید', {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                setShowForgetPassPopUp(true)
+                setSubmitLoading(false)
+            }
+            else {
+                console.log(error);
+                setErrMsg(error.response.data.ErrorMessages[0].ErrorMessage);
+                toast(error.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                setSubmitLoading(false)
             }
         }
     };
@@ -146,14 +217,20 @@ const Login = () => {
 
                 <button type="submit" className={`${ButtonStyles.addButton} w-36 self-center `}
                     onClick={handleLoginSubmit} 
-                    disabled={!userInput || !pwd ? true : false}
+                    disabled={!userInput || !pwd || submitLoading ? true : false}
                     >
-                    تایید
+                    {submitLoading ?
+                        <CircularProgress sx={{ color: 'var(--dark-blue-bg)' }} size={25} />
+                        :
+                        <>
+                            تایید
+                        </>
+                    }
                 </button>
 
-                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                {/* <p ref={errRef} className={errMsg ? "text-[#ED553B]" : "invisible"} aria-live="assertive">{errMsg}</p> */}
 
-                
+
             </form>
             
             <ForgetPwdPopUp showPopup={showForgetPassPopUp} setShowPopup={setShowForgetPassPopUp} />

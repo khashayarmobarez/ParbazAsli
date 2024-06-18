@@ -9,7 +9,7 @@ import { register } from "swiper/element/bundle";
 register();
 
 
-const SwiperSlider = ({remainingDays, data}) => {
+const UserCoursesSlider = ({coursesData}) => {
 
     const isDesktop = useMediaQuery('(min-width:768px)');
 
@@ -66,23 +66,31 @@ const SwiperSlider = ({remainingDays, data}) => {
 
     return (
         <div className='w-full h-52'>
-            <div className='w-full h-full py-2'>
-                <swiper-container
-                        style={{ height:'12.4rem',...(!isDesktop && { marginRight: '0' }), }}
-                        ref={swiperRef}
-                        init="false"
-                        >
-                        {/* map later */}
-                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
-                            <SpeedoMeter remaining={remainingDays} data={data} className='z-10' />
-                        </swiper-slide>
-                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}}><SpeedoMeter remaining={remainingDays} data={data} className='z-50 mt-10' /></swiper-slide>
-                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}}><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></swiper-slide>
-                        <swiper-slide style={{...(isDesktop && { paddingLeft: '0.5rem' }),}}><SpeedoMeter remaining={remainingDays} data={data} className='z-10 mt-10' /></swiper-slide>
-                </swiper-container>
-            </div>
+          <div className='w-full h-full py-2'>
+
+            
+              <swiper-container
+                style={{ height:'12.4rem',...(!isDesktop && { marginRight: '0' }), }}
+                ref={swiperRef}
+                init="false"
+                >
+
+                  {/* map later */}
+                  {
+                    coursesData.map( parachute => 
+
+                      <swiper-slide key={parachute.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
+                          <SpeedoMeter parachuteData={parachute} className='z-10' />
+                      </swiper-slide>
+
+                    )
+                  }
+
+              </swiper-container>
+            
+          </div>
         </div>
     );
 };
 
-export default SwiperSlider;
+export default UserCoursesSlider;

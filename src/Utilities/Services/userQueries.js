@@ -7,92 +7,118 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get userData query
-  const fetchUserData = async () => {
+    const fetchUserData = async () => {
 
-    const token = Cookies.get('token');
+        const token = Cookies.get('token');
 
-    try {
-      const response = await axios.get(`${BASE_URL}/User/GetUser`, {
-          headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-          },
-      });
-      return response.data;
-  } catch (error) {
-      if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-          window.location.reload();
-      }
+        try {
+        const response = await axios.get(`${BASE_URL}/User/GetUser`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        }
+        }
+    };
+
+    const useUserData = () => {
+        return useQuery(['userData'], fetchUserData);
     }
-  };
-
-  const useUserData = () => {
-      return useQuery(['userData'], fetchUserData);
-  }
 
 
 
 // add profile picture
-  const uploadProfilePicture = async (formData) => {
-    const token = Cookies.get('token');
-    const response = await axios.post(`${BASE_URL}/User/EditProfilePicture`, formData, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    const uploadProfilePicture = async (formData) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/User/EditProfilePicture`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
 
-    if (response.status !== 200) {
-        throw new Error('Failed to upload profile picture');
-    }
+        if (response.status !== 200) {
+            throw new Error('Failed to upload profile picture');
+        }
 
-    return response.data;
-  };
+        return response.data;
+    };
 
-  const useUploadProfilePicture = () => {
-    return useMutation(uploadProfilePicture, {
-          onSuccess: (data) => {
-              // Handle success, e.g., show a notification, reset the form, etc.
-              console.log('Profile picture uploaded successfully:', data);
-          },
-          onError: (error) => {
-              // Handle error, e.g., show an error message
-              console.error('Error uploading profile picture:', error);
-          },
-      });
-  };
+    const useUploadProfilePicture = () => {
+        return useMutation(uploadProfilePicture, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('Profile picture uploaded successfully:', data);
+            },
+            onError: (error) => {
+                // Handle error, e.g., show an error message
+                console.error('Error uploading profile picture:', error);
+            },
+        });
+    };
 
 
 
 
 // remove profile picture
-  const deleteProfilePicture = async () => {
-    const token = Cookies.get('token');
-    const response = await axios.post(`${BASE_URL}/User/DeleteProfilePicture`, {}, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-        },
-    });
+    const deleteProfilePicture = async () => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/User/DeleteProfilePicture`, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
 
-    if (response.status !== 200) {
-        throw new Error('Failed to delete profile picture');
+        if (response.status !== 200) {
+            throw new Error('Failed to delete profile picture');
+        }
+
+        return response.data;
+    };
+    
+    const useDeleteProfilePicture = () => {
+        return useMutation(deleteProfilePicture, {
+            onSuccess: (data) => {
+                console.log('Profile picture deleted successfully:', data);
+            },
+            onError: (error) => {
+                console.error('Error deleting profile picture:', error);
+            },
+        });
+    };
+
+
+
+// get Profile page data
+    const getUserProfile = async () => {
+
+        const token = Cookies.get('token');
+
+        try {
+        const response = await axios.get(`${BASE_URL}/User/GetUserProfile`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            }
+        }
+    };
+
+    const useUserProfile = () => {
+        return useQuery(['profileData'], getUserProfile);
     }
 
-    return response.data;
-  };
-
-  const useDeleteProfilePicture = () => {
-    return useMutation(deleteProfilePicture, {
-        onSuccess: (data) => {
-            console.log('Profile picture deleted successfully:', data);
-        },
-        onError: (error) => {
-            console.error('Error deleting profile picture:', error);
-        },
-    });
-};
 
 
 
-
-export {useUserData, useUploadProfilePicture, useDeleteProfilePicture};
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile};

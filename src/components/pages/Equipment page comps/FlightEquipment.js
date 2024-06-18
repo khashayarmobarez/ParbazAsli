@@ -68,6 +68,26 @@ const FlightEquipment = (props) => {
                     <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
 
                 </div>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
+
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
+
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+
+                </div>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
+
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
+
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+
+                </div>
             </div>
 
             {/* pop up */}

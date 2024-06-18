@@ -1,6 +1,6 @@
 .ThreeStickedButtonCont {
-    width: 90%;
-  height: 3rem; 
+  width: 90%;
+  height: 2.5rem; 
   border-radius: 1rem; 
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,7 @@
 }
 
 .ThreeStickedButtonButton {
+  font-size: 14px;
     display: flex;
     justify-content: center;
     align-items:center;
@@ -50,6 +51,13 @@
   align-items: center;
   border-radius: 2rem;
   color:rgba(33, 40, 41, 1) ;
+}
+
+.addButton:active {
+  background: var(--profile-buttons-background);
+  box-shadow: var(--profile-buttons-boxShadow);
+  color: var(--soft-white);
+  font-weight: 400;
 }
 
 

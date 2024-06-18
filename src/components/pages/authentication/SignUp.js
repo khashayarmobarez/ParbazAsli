@@ -2,14 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthSettings, getAuthSettings } from '../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
 // styles
-import signUpStyles from './SignUp.module.css';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// mui
+import CircularProgress from '@mui/material/CircularProgress';
 
 // components
 import UserNameInputSignup from './Inputs/UserNameInputSignup';
@@ -86,6 +89,7 @@ const SignUp = () => {
     // confirm phone code
     const [code, setCode] = useState('');
 
+    const [submitLoading, setSubmitLoading] = useState(false)
     const [errMsg, setErrMsg] = useState('');
 
     const [codeRemainingTime, setCodeRemainingTime] = useState(null)
@@ -134,6 +138,8 @@ const SignUp = () => {
             return;
         }
         try {
+
+            setSubmitLoading(true)
             
             const requestBody = {
                 username: phone,
@@ -150,25 +156,48 @@ const SignUp = () => {
     
             // Check if the request was successful
             if (response.data.isSuccess) {
+                setSubmitLoading(false)
                 // Handle the response data
-                console.log('Phone number code sent successfully');
-                console.log('Remaining time span:', response.data.data.remainTimeSpanInSeconds);
                 setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
                 setShowPopupSubmit(true)
                 // Update UI or perform any additional actions based on the response
             } else {
+                setSubmitLoading(false)
                 console.error('Failed to send phone number code');
                 // Handle other scenarios if needed
             }
         } catch (err) {
             // Handle errors
             if (!err?.response) {
+                setSubmitLoading(false)
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+                toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             } else if (err.response?.status === 409) {
+                setSubmitLoading(false)
                 setErrMsg('شماره تلفن قبلا استفاده شده');
+                toast('شماره تلفن قبلا استفاده شده', {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             } else {
-                console.log(err)
+                setSubmitLoading(false)
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             }
         }
     
@@ -197,9 +226,19 @@ const SignUp = () => {
     const handleFinalSubmit = async (e) => {
         if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !code) { 
             setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
+            toast('اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید', {
+                type: 'error', 
+                position: 'top-right', 
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
             return;
         }
         try {
+
+            setSubmitLoading(true)
+
             const requestBody = {
                 "PhoneNumber": phone,
                 "Code": code,
@@ -216,6 +255,9 @@ const SignUp = () => {
 
             // succesful registeration
             if (response.data.isSuccess) {
+
+                setSubmitLoading(false)
+
                 console.log('Registration successful');
                 console.log(response.data.data.loginExpireInDays);
                 // Handle successful registration (e.g., redirect to login or home page)
@@ -226,14 +268,31 @@ const SignUp = () => {
                     window.location.reload()
             } else {
                 console.error('Registration failed');
+                setSubmitLoading(false)
                 setErrMsg('ثبت نام ناموفق');
             }
         } catch (err) {
             if (!err?.response) {
+                setSubmitLoading(false)
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+                toast('مشکلی رخ داده است, دوباره تلاش کنید', {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             } else {
+                setSubmitLoading(false)
                 console.log(err);
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             }
         }
     };
@@ -321,9 +380,15 @@ const SignUp = () => {
                         <div className='w-28 self-center'>
                             <button type="submit" className={`${ButtonStyles.addButton} w-32 `} 
                             onClick={handlePopUp} 
-                            // disabled={!validName || !validPwd || !validMatch || !validPhone ? true : false}
+                            disabled={submitLoading ? true : false}
                             >
-                            تایید
+                            {submitLoading ?
+                                <CircularProgress sx={{ color: 'var(--dark-blue-bg)' }} size={25} />
+                                :
+                                <>
+                                    تایید
+                                </>
+                            }
                             </button>
                             {/* {(!validName || !validPwd || !validMatch || !validPhone || !validEmail) &&
                             <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
@@ -331,7 +396,7 @@ const SignUp = () => {
                         </div>
 
 
-                        <p ref={errRef} className={errMsg ? `text-[#ED553B]` : "hidden"} aria-live="assertive">{errMsg}</p>
+                        {/* <p ref={errRef} className={errMsg ? `text-[#ED553B]` : "hidden"} aria-live="assertive">{errMsg}</p> */}
                         <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
 
                     </form>

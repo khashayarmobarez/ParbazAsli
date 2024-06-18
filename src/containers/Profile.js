@@ -1,41 +1,47 @@
 import React, { useEffect, useState } from 'react';
 
+// styles
 import GradientStyles from '../styles/gradients/Gradient.module.css'
+import boxStyles from '../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // queries 
-import { useUserDetails } from '../Utilities/Services/queries';
+import { useUserProfile } from '../Utilities/Services/userQueries';
 
 
 // react router dom
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // icons 
 import pencil from '../assets/icons/pencil-alt.svg'
 
 // components
-import SwiperSlider from '../components/pages/Profile/SwiperSlider';
 import UserDataBox from '../components/pages/Profile/UserDataBox';
+import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
+import UserCoursesSlider from '../components/pages/Profile/UserCoursesSlider';
 
 
 
 
 const Profile = ({userRole}) => {
 
-    const { data, isLoading, error, isFetching } = useUserDetails();
+    const navigate = useNavigate()
 
-    const [remainingDays, setRemainingDays] = useState(80)
-
-
+    const { data, isLoading, error } = useUserProfile();
 
     return (
         <div className='flex flex-col items-center pt-[75px]'>
 
             {
-                isLoading && isFetching && <h2 className=' text-white mt-'>is loading...</h2>
+                isLoading && <h2 className=' text-white mt-'>is loading...</h2>
             }
 
             {
-                error && <h3>{error.message}</h3>
+                error &&
+                <div className='flex flex-col justify-center items-center mt-8'>
+                    <p>مشکلی پیش امده بعدا دوباره تلاش کنید</p>
+                    <h3>{error.message}</h3>
+                </div>
             }
 
             {
@@ -47,7 +53,20 @@ const Profile = ({userRole}) => {
                     <UserDataBox />
 
                     {/* parachute renewal box*/}
-                    <SwiperSlider remainingDays={remainingDays} data={data} />
+                    {
+                    data.data.parachutes && data.data.parachutes.length > 0 ? 
+                        <ParachutesSwiperSlider parachutesData={data.data.parachutes} />
+                        :
+                        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-24 z-0 w-full flex justify-between items-center px-2 py-3 my-2`}>
+                            <p>چتر خود را اضافه کنید</p>
+                        </div>
+                    }
+
+                    {/* user Courses slider */}
+                    {
+                    data.data.userCourses && data.data.userCourses.length > 0 && 
+                        <UserCoursesSlider coursesData={data.data.userCourses} />
+                    }
 
 
                     {/* buttons */}
@@ -58,23 +77,24 @@ const Profile = ({userRole}) => {
                             <p>تجهیزات</p>
                         </Link>
                         
-                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                        <Link to='/' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>دوره‌ها</p>
                         </Link>
                         
-                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                        <Link to='/' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>سرفصل‌ها</p>
                         </Link>
-
-                        <Link  to='/education' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
+                        
+                        {/* education is condition based on, data.data.hasCoach  */}
+                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'opacity-55'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>آموزش</p>
                         </Link>
-
                         
-                        <Link to='/club' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                        {/* club is condition based on, data.data.hasCoach  */}
+                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'opacity-55'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>باشگاه</p>
                         </Link>

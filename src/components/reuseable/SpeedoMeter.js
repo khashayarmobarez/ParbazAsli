@@ -15,10 +15,10 @@ const SpeedoMeter = (props) => {
   const navigate = useNavigate()
 
 
-    // Props:
-    // - remaining: The remaining time (in days) until parachute renewal
-    // - data: The data object containing user information
-    const { remaining, data } = props;
+  // Props:
+  // - remaining: The remaining time (in days) until parachute renewal
+  // - data: The data object containing user information
+  const { remaining, parachuteData } = props;
 
   // Function to calculate the color of the progress bar based on the percentage value
   const calcColor = (percent, start, end) => {
@@ -36,8 +36,8 @@ const SpeedoMeter = (props) => {
 
         <div className='flex flex-col justify-center items-center space-y-4'>
             <p className=' font-normal text-sm mr-2 '>آخرین بسته بندی چتر کمکی</p>
-            <p className=' font-normal text-sm mr-2 '>{data.data.title.slice(0, 5)}</p>
-            <p className=' font-normal text-sm mr-2 '>{data.data.title.slice(0, 5)} روز تا تمدید مجدد</p>
+            <p className=' font-normal text-sm mr-2 '>{parachuteData.lastPackingDateTime}</p>
+            <p className=' font-normal text-xs mr-2 '>{parachuteData.remainingTimeToRepackInDays} روز تا نیاز مجدد به بسته بندی </p> 
         </div>
 
         <div className='w-[143px] h-[143px] flex flex-col justify-center items-center mb-[-0.5rem]'>
@@ -45,7 +45,7 @@ const SpeedoMeter = (props) => {
                     <SpeedoMeterProvider valueStart={0} valueEnd={remaining}>
                     {(value) => (
                         <CircularProgressbar
-                        value={remaining}
+                        value={parachuteData.remainingTimeToRepackPercent}
                         //   text={`${remaining} % تمدید زود هنگام`}
                         circleRatio={0.7} /* Make the circle only 0.7 of the full diameter */
                         // Styles for the circular progress bar and its text

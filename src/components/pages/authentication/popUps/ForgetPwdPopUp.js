@@ -38,14 +38,14 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     const notifySuccess = (message) => {
         toast.success(message, {
-          position: "top-left",
+          position: "top-right",
           autoClose: 6000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          style: { backgroundColor: 'green', color: 'white' }
+          style: { backgroundColor: 'green', color: 'white', width:'90%' }
         });
       };
 
@@ -242,7 +242,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             }
             
             {!loading && !error && (
-                <>
+                <div className='w-full h-full flex justify-center items-center backdrop-blur-sm'>
                     <form
                         className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[384px] py-16 flex flex-col gap-y-4 items-center relative bg-white p-5 rounded-lg shadow-lg`}
                     >
@@ -300,11 +300,11 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                         }
                         
                         <p className={`${codeRemainingTime ? "text-light-yellow" : "hidden"} `} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کتید</p>
-                        <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
+                        <p className={errMsg ? "text-[#ED553B] text-sm" : "offscreen"} aria-live="assertive"> {errMsg}</p>
                         {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کتید اطلاعات در حال بارگذاری می باشد</p> */}
 
                     </form>
-                </>
+                </div>
             )}
 
         </div>

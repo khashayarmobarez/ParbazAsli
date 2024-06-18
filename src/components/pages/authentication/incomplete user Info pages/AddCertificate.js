@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
@@ -123,6 +123,7 @@ const AddCertificate = () => {
 
     // mutate, post data
     const handleSubmit = (event) => {
+
         event.preventDefault();
 
         const formattedStartDate = formatDate(dateStartValue.value);
@@ -144,10 +145,11 @@ const AddCertificate = () => {
         }
 
         if (uploadedFile) {
-          formData.append('File', uploadedFile);
+            formData.append('File', uploadedFile);
         }
         
         mutateCertificate(formData);
+
     };
 
 
@@ -306,7 +308,7 @@ const AddCertificate = () => {
                                                     ارسال
                                                 </button>
 
-                                                {SubmitIsError && <p style={{ color: 'red' }}>Error: {SubmitError.message}</p>}
+                                                {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
                                                 {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
                                                 {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
 

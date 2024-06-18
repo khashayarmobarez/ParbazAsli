@@ -27,10 +27,6 @@ const UserDataBox = () => {
 
     const { data, isLoading, error } = useUserData();
 
-    useEffect(() => {
-        console.log(data)
-    }, [data]);
-
     const [showPopUp,setShowPopup] = useState(false)
 
     return (

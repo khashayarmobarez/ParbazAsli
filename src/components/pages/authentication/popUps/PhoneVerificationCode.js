@@ -117,7 +117,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 <button  className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit}>ارسال</button>
                 <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کتید</p>
                 <p className={waitNotif ? "text-light-yellow mt-1" : "hidden"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
-                <p className={errMsg ? "errmsg" : "hidden"} aria-live="assertive"> {errMsg}</p>
+                <p className={errMsg ? "text-sm text-[#ED553B]" : "hidden"} aria-live="assertive"> {errMsg}</p>
 
             </form>
         </div>
