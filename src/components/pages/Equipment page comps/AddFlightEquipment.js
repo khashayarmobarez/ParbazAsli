@@ -12,6 +12,9 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
+// assets
+import Cube from '../../../assets/icons/3dCube.svg'
+
 // components 
 import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
@@ -33,7 +36,11 @@ const AddFlightEquipment = () => {
   const [selectedOptionSize, setSelectedOptionSize] = useState('');
 
   const [aircraft, setAircraft] = useState('');
+  const [size, setSize] = useState('');
   const [flightHour, setFlightHour] = useState('');
+  const [serialNumber, setSerialNumber] = useState('');
+  const [year, setYear] = useState('');
+  
 
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -53,8 +60,8 @@ const AddFlightEquipment = () => {
     setSelectedOptionClass(selectedOption);
   };
 
-  const handleSelectChangeSize = (event) => {
-    setSelectedOptionSize(event.target.value);
+  const handleTextInputSize = (event) => {
+    setSize(event.target.value);
   };
 
 
@@ -65,6 +72,14 @@ const AddFlightEquipment = () => {
 
   const handleTextInputFlightHour = (event) => {
     setFlightHour(event.target.value);
+  };
+
+  const handleTextInputSerialNumber = (event) => {
+    setSerialNumber(event.target.value);
+  };
+  
+  const handleTextInputYear = (event) => {
+    setYear(event.target.value);
   };
 
   // Event handlers for uplopading file
@@ -119,10 +134,27 @@ const AddFlightEquipment = () => {
                         />
 
                         {/* size input */}
-                        <DropdownInput className='col-span-1' name={'سایز'} options={sizeOptionData} selectedOption={selectedOptionSize} handleSelectChange={handleSelectChangeSize} />
-
+                        <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
+                        
                         {/* flight hour model input */}
-                        <TextInput className='col-span-1' value={flightHour} options={sizeOptionData} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+                        <TextInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+                      
+                        <TextInput
+                          icon={Cube}
+                          className='col-span-1'
+                          value={serialNumber}
+                          onChange={handleTextInputSerialNumber}
+                          placeholder='شماره سریال'
+                        />
+
+                        {/* Year input */}
+                        <TextInput
+                          icon={Cube}
+                          className='col-span-1'
+                          value={year}
+                          onChange={handleTextInputYear}
+                          placeholder='سال'
+                        />
                       </div>
 
                       <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>

@@ -20,6 +20,9 @@ import { updateBrand, updateAircraft, updateSelectedFile, updateHour, updateSize
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
 
+// assets
+import Cube from '../../../assets/icons/3dCube.svg'
+
 
 // components
 import DropdownInput from '../../inputs/DropDownInput';
@@ -42,6 +45,8 @@ const AddHarness = () => {
   const [wingCode, setWingCode] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [serialNumber, setSerialNumber] = useState('');
+  const [year, setYear] = useState('');
 
 
     
@@ -56,12 +61,20 @@ const AddHarness = () => {
     setAircraft(event.target.value);
   };
 
-  const handleSizeChange = (selectedOption) => {
-    setSize(selectedOption);
+  const handleTextInputSize = (event) => {
+    setSize(event.target.value);
   };
 
-  const handleFlightHourChange = (selectedOption) => {
-    setFlightHour(selectedOption);
+  const handleTextInputFlightHour = (event) => {
+    setFlightHour(event.target.value);
+  };
+
+  const handleTextInputSerialNumber = (event) => {
+    setSerialNumber(event.target.value);
+  };
+  
+  const handleTextInputYear = (event) => {
+    setYear(event.target.value);
   };
 
   const handleWingCodeChange = (event) => {
@@ -107,20 +120,27 @@ const AddHarness = () => {
                     />
 
                     {/* size input */}
-                    <DropdownInput
-                      name={'سایز'}
-                      options={sizeOptionData}
-                      selectedOption={size}
-                      handleSelectChange={handleSizeChange}
-                    />
+                    <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
 
                     {/* Flight hour input */}
-                    <DropdownInput
-                      name={'حدود ساعت پرواز'}
-                      options={flightHourOptionData}
-                      selectedOption={flightHour}
-                      handleSelectChange={handleFlightHourChange}
-                    />
+                    <TextInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+
+                    <TextInput
+                        icon={Cube}
+                        className='col-span-1'
+                        value={serialNumber}
+                        onChange={handleTextInputSerialNumber}
+                        placeholder='شماره سریال'
+                      />
+
+                      {/* Year input */}
+                      <TextInput
+                        icon={Cube}
+                        className='col-span-1'
+                        value={year}
+                        onChange={handleTextInputYear}
+                        placeholder='سال'
+                      />
 
                   </div>
 

@@ -13,16 +13,18 @@ import { useNavigate } from 'react-router-dom';
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
+// assets
+import Cube from '../../../assets/icons/3dCube.svg'
+
 // components 
 import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
-import DateInput from '../../inputs/DateInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 
 // input options
-import {brandsOptionsData, flightHourOptionData, sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
+import { sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 
 const AddParachute = () => {
 
@@ -33,8 +35,11 @@ const AddParachute = () => {
 
   // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
-  const [selectedOptionSize, setSelectedOptionSize] = useState('');
-  const [selectedFlightHour, setSelectedFlightHour] = useState('');
+  const [size, setSize] = useState('');
+  const [flightHour, setFlightHour] = useState('');
+  const [serialNumber, setSerialNumber] = useState('');
+  const [year, setYear] = useState('');
+  const [lastPackerId, setLastPackerId] = useState('');
   
   // text state 
   const [aircraft, setAircraft] = useState('');
@@ -53,12 +58,12 @@ const AddParachute = () => {
     setSelectedOptionBrand(selectedOption);
   };
 
-  const handleSelectChangeSize = (event) => {
-    setSelectedOptionSize(event.target.value);
+  const handleTextInputSize = (event) => {
+    setSize(event.target.value);
   };
 
-  const handleSelectChangeFLightHour = (event) => {
-    setSelectedFlightHour(event.target.value);
+  const handleTextInputFlightHour = (event) => {
+    setFlightHour(event.target.value);
   };
 
 
@@ -71,6 +76,17 @@ const AddParachute = () => {
   // Event handlers for uplopading file
   const handleFileChange = (file) => {
     setSelectedFile(file);
+  };
+  const handleTextInputSerialNumber = (event) => {
+    setSerialNumber(event.target.value);
+  };
+  
+  const handleTextInputYear = (event) => {
+    setYear(event.target.value);
+  };
+  
+  const handleTextInputLastPackerId = (event) => {
+    setLastPackerId(event.target.value);
   };
 
   // Event handler for package date selection
@@ -110,15 +126,42 @@ const AddParachute = () => {
                       <DropdownInput name={'برند'} options={brandsData.data} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
 
                       {/* size input */}
-                      <DropdownInput name={'سایز'} options={sizeOptionData} selectedOption={selectedOptionSize} handleSelectChange={handleSelectChangeSize} />
-                      
+                      <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
+
                       {/* FLight hour input */}
-                      <DropdownInput name={'حدود ساعت پرواز'} options={flightHourOptionData} selectedOption={selectedFlightHour} handleSelectChange={handleSelectChangeFLightHour} />
+                      <TextInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
 
                       {/* packaging parachute date input */}
                       {/* <DateInput inputAttributes={{ placeholder: "تاریخ انقضا" }} onChange={handlePackageDate} /> */}
 
                       <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+
+                      {/* Serial Number input */}
+                      <TextInput
+                        icon={Cube}
+                        className='col-span-1'
+                        value={serialNumber}
+                        onChange={handleTextInputSerialNumber}
+                        placeholder='شماره سریال'
+                      />
+
+                      {/* Year input */}
+                      <TextInput
+                        icon={Cube}
+                        className='col-span-1'
+                        value={year}
+                        onChange={handleTextInputYear}
+                        placeholder='سال'
+                      />
+
+                      {/* Last Packer ID input */}
+                      <TextInput
+                        icon={Cube}
+                        className='col-span-1'
+                        value={lastPackerId}
+                        onChange={handleTextInputLastPackerId}
+                        placeholder='شناسه آخرین بسته‌بندی کننده'
+                      />
                     
                     </div>
 

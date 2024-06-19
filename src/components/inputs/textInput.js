@@ -19,11 +19,12 @@ const TextInput = ({ value, onChange, placeholder, Type, icon }) => {
     <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
       <span> 
         { icon ?
-          <img src={icon} alt='icon' className=' absolute w-5 mt-[14px] mr-[8px]' style={{fill :'white'}} />
-          : <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+          <img src={icon} alt='icon' className=' absolute w-6 mt-[12px] mr-[8px]' style={{fill :'white'}} />
+          : 
+          <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
           }
       </span>
-      <input type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-10`} />
+      <input type={Type} id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-9`} />
     </div>
   ); 
 };
