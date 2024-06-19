@@ -34,8 +34,6 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
         // handling level of users authentication
         Cookies.set('isUserAuthenticated', 'authenticated', { expires: Infinity });
 
-        navigate('/profile')
-
       } else {
         console.error('is not authenticated');
         // Handle failure case
@@ -56,6 +54,7 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
               Cookies.remove('token');
               Cookies.set('isUserAuthenticated', false, { expires: Infinity });
               console.log(isUserAuthenticated)
+              navigate('/')
               break;
 
             case 'email':

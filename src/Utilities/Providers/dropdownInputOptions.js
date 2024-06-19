@@ -1,32 +1,32 @@
 const brandsOptionsData = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { name: 'option1', id: 'Option 1' },
+    { name: 'option2', id: 'Option 2' },
+    { name: 'option3', id: 'Option 3' },
   ];
 
   const classesOpptionData = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { name: 'option1', id: 'Option 1' },
+    { name: 'option2', id: 'Option 2' },
+    { name: 'option3', id: 'Option 3' },
   ];
   
   const sizeOptionData = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { name: 'option1', id: 'Option 1' },
+    { name: 'option2', id: 'Option 2' },
+    { name: 'option3', id: 'Option 3' },
   ];
 
   const flightHourOptionData = [
-    { value: '1', label: ' 1' },
-    { value: '2', label: ' 2' },
-    { value: '3', label: ' 3' },
-    { value: '4', label: ' 4' },
-    { value: '5', label: ' 5' },
+    { name: '1', id: ' 1' },
+    { name: '2', id: ' 2' },
+    { name: '3', id: ' 3' },
+    { name: '4', id: ' 4' },
+    { name: '5', id: ' 5' },
   ];
 
   const flightTypeOptions = [
-    { value: 'single', label: ' سینگل' },
-    { value: 'tandem', label: ' تندم' },
+    { name: 'single', id: ' سینگل' },
+    { name: 'tandem', id: ' تندم' },
   ];
 
 

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// queries and api
+import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
+
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -16,35 +19,38 @@ import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import DateInput from '../../inputs/DateInput';
 import PageTitle from '../../reuseable/PageTitle';
+import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 
 // input options
 import {brandsOptionsData, flightHourOptionData, sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 
 const AddParachute = () => {
 
-    // pop up control
-    const [showPopup, setShowPopup] = useState(false);  
+  const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('parachute');
 
-    // State for selected option
-    const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
-    const [selectedOptionSize, setSelectedOptionSize] = useState('');
-    const [selectedFlightHour, setSelectedFlightHour] = useState('');
-    
-    // text state 
-    const [aircraft, setAircraft] = useState('');
-    
-    // file state
-    const [selectedFile, setSelectedFile] = useState(null);
+  // pop up control
+  const [showPopup, setShowPopup] = useState(false);  
 
-    // date state
-    const [packageDate, setPackageDate] = useState('')
-    
-    //going a page back function
-    const navigate = useNavigate();
-    
-    // Event handler for option selection
-    const handleSelectChangeBrand = (event) => {
-        setSelectedOptionBrand(event.target.value);
+  // State for selected option
+  const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
+  const [selectedOptionSize, setSelectedOptionSize] = useState('');
+  const [selectedFlightHour, setSelectedFlightHour] = useState('');
+  
+  // text state 
+  const [aircraft, setAircraft] = useState('');
+  
+  // file state
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  // date state
+  const [packageDate, setPackageDate] = useState('')
+  
+  //going a page back function
+  const navigate = useNavigate();
+  
+  // Event handler for option selection
+  const handleSelectChangeBrand = (selectedOption) => {
+    setSelectedOptionBrand(selectedOption);
   };
 
   const handleSelectChangeSize = (event) => {
@@ -87,40 +93,48 @@ const AddParachute = () => {
 
             <PageTitle title={'افزودن چتر کمکی'}  />  
 
-            <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
-            و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
+            {
+              brandsData &&
+              <>
+                <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
+                و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
-            <form className='w-[90%] flex flex-col items-center space-y-7'>
+                <form className='w-[90%] flex flex-col items-center space-y-7'>
 
-                {/* aircraft model input */}
-                <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
-                
-                <div className=' w-full flex flex-col items-center gap-y-8 md:grid md:grid-cols-2 md:gap-6'>
+                    {/* aircraft model input */}
+                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
+                    
+                    <div className=' w-full flex flex-col items-center gap-y-8 md:grid md:grid-cols-2 md:gap-6'>
 
-                  {/* brand input */}
-                  <DropdownInput name={'برند'} options={brandsOptionsData} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
+                      {/* brand input */}
+                      <DropdownInput name={'برند'} options={brandsData.data} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
 
-                  {/* size input */}
-                  <DropdownInput name={'سایز'} options={sizeOptionData} selectedOption={selectedOptionSize} handleSelectChange={handleSelectChangeSize} />
-                  
-                  {/* FLight hour input */}
-                  <DropdownInput name={'حدود ساعت پرواز'} options={flightHourOptionData} selectedOption={selectedFlightHour} handleSelectChange={handleSelectChangeFLightHour} />
+                      {/* size input */}
+                      <DropdownInput name={'سایز'} options={sizeOptionData} selectedOption={selectedOptionSize} handleSelectChange={handleSelectChangeSize} />
+                      
+                      {/* FLight hour input */}
+                      <DropdownInput name={'حدود ساعت پرواز'} options={flightHourOptionData} selectedOption={selectedFlightHour} handleSelectChange={handleSelectChangeFLightHour} />
 
-                  {/* packaging parachute date input */}
-                  <DateInput name={'تاریخ آخرین بسته‌بندی'} onChange={handlePackageDate} />
-                
-                </div>
+                      {/* packaging parachute date input */}
+                      {/* <DateInput inputAttributes={{ placeholder: "تاریخ انقضا" }} onChange={handlePackageDate} /> */}
 
-                <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
+                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+                    
+                    </div>
 
-                <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p>
+                    <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
 
-                {/* for uploading pictures */}
-                <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                    <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p>
 
-                <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                    {/* for uploading pictures */}
+                    <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
 
-            </form>
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+
+                </form>
+              </>
+            }
+
             
             {/* submit pop up */}
             <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>

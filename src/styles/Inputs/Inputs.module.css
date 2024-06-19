@@ -111,8 +111,9 @@
 .customDateInput {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
     width: 100%;
+    min-height: 48px;
     border-radius: 0.75rem;
-    padding: 0 0.5rem;
+    padding: 0 2.2rem;
     color: #fff;
 }
 
