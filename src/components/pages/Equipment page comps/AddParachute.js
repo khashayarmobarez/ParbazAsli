@@ -7,6 +7,10 @@ import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
+// utilities
+import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
+
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
 
@@ -23,12 +27,15 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 
-// input options
-import { sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 
 const AddParachute = () => {
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('parachute');
+
+  const { mutate: mutateParachute , isLoading: isSubmitting, error: submitError} = useAddEquipment();
+
+
+  const { formatDate } = useDateFormat();
 
   // pop up control
   const [showPopup, setShowPopup] = useState(false);  
@@ -92,15 +99,68 @@ const AddParachute = () => {
   // Event handler for package date selection
   const handlePackageDate = (date) => {
     setPackageDate(date);
-};  
+
+    clickOnRightSide()
+  };  
+
+  // function to close the datePicker
+  const clickOnRightSide = () => {
+    // Create a new mouse event
+    const clickEvent = new MouseEvent('mousedown', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+        clientX: window.innerWidth - 1, // Right edge of the screen
+        clientY: window.innerHeight / 2 // Middle of the screen vertically
+  });
+
+    // Dispatch the event to the document
+    document.dispatchEvent(clickEvent);
+  };
 
 
-//    Event handler for form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // Event handler for form submission
+  const handlePopUp = () => {
     setShowPopup(true);
     // Here you can handle form submission, such as sending data to a backend server
   };
+
+
+  // Event submision
+  const handleSubmit = (event) => {
+
+      if(selectedOptionBrand || serialNumber || aircraft || size || packageDate || lastPackerId || flightHour || year ) {
+
+        event.preventDefault();
+        const formattedPackedDate = formatDate(packageDate) + " 00:00";
+
+        const formData = new FormData();
+        // type 1 for parachute
+        formData.append('Type', 1);
+        formData.append('brandId', selectedOptionBrand.id);
+        formData.append('file', selectedFile);
+        formData.append('serialNumber', serialNumber);
+        formData.append('Model', aircraft);
+        formData.append('Size', size);
+        formData.append('LastPackingDateTime', formattedPackedDate);
+        formData.append('lastPackerId', lastPackerId);
+        formData.append('flightHours', flightHour);
+        formData.append('year', year);
+
+        console.log(formData)
+        console.log('submitting')
+
+        mutateParachute(formData)
+
+        setShowPopup(false)
+      
+      }
+    }
+
+    if (submitError) {
+      console.error('Error submitting parachute:', submitError);
+      // Add any additional error handling logic here
+    }
 
     return (
         <div className='flex flex-col mt-14 items-center gap-y-5'>
@@ -172,7 +232,7 @@ const AddParachute = () => {
                     {/* for uploading pictures */}
                     <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
 
-                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
                 </form>
               </>
@@ -186,13 +246,11 @@ const AddParachute = () => {
 
                 <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
 
-
                 <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
-
 
                 <div className='w-full flex justify-around items-center'>
                     <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>تایید</button>
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-24`}>تایید</button>
                 </div>
 
             </form>

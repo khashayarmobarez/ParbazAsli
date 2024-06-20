@@ -16,7 +16,6 @@ import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
 import UserDataBox from '../../Profile/UserDataBox';
 import DropdownInput from '../../../inputs/DropDownInput';
 import TextInput from '../../../inputs/textInput';
-import DateInput from '../Inputs/DateInput';
 import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 
 

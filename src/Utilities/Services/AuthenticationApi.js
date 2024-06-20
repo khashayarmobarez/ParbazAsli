@@ -30,6 +30,7 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
       if (response.data.isSuccess) {
         
         console.log('user is fully authenticated');
+        console.log(token);
 
         // handling level of users authentication
         Cookies.set('isUserAuthenticated', 'authenticated', { expires: Infinity });
