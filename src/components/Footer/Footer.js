@@ -21,6 +21,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AddIcon from '@mui/icons-material/Add';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
+import { Padding } from '@mui/icons-material';
 
 
 const styles = {
@@ -28,6 +29,8 @@ const styles = {
       width: '100%',
       zIndex: 1,
       background: '#131423',
+      Bottom:'2rem',
+      height:'calc(3.3rem + env(safe-area-inset-bottom,5))',
       '@media screen and (min-width: 768px)': {
         right: 0,
         top: '15%',
@@ -36,6 +39,7 @@ const styles = {
       }
     },
     buttonsContainer: {
+      paddingBottom:'env(safe-area-inset-bottom, 5rem)',
       width: '100%',
       background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
       boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
@@ -83,7 +87,6 @@ const Footer = ({ userRole }) => {
         bottom={0} // Position the Footer at the bottom of the viewport
         left={0}   // Align the Footer to the left edge of the viewport
         right={0}
-        height={'3.2rem'}
         sx={styles.container}
         >
             

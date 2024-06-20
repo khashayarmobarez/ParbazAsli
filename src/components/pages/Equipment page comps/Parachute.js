@@ -37,7 +37,7 @@ const Parachute = (props) => {
     return (
         <div className=' flex flex-col gap-y-12 items-center'>
 
-            <div className='w-full flex flex-col gap-y-6 items-center md:grid md:grid-cols-2 md:gap-6'>
+            <div className='w-full flex flex-col gap-y-6 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
             
                 <div className={`${styles.container} w-full  md:col-span-1`}>
 
@@ -77,7 +77,7 @@ const Parachute = (props) => {
 
             
 
-            <Link to='/equipment/addParachute' className='fixed bottom-24 w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4'>
+            <Link to='/equipment/addParachute' className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4'>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

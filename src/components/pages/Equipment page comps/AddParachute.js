@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 
 // queries and api
 import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../../Utilities/Services/queries';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -10,7 +12,6 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // utilities
 import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
-import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +29,6 @@ import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
-import { useUserById } from '../../../Utilities/Services/queries';
 
 
 const AddParachute = () => {
@@ -219,7 +219,7 @@ const AddParachute = () => {
   }
 
   setShowPopup(true);
-};
+  };
 
   // Event submision
   const handleSubmit = (event) => {
@@ -245,9 +245,18 @@ const AddParachute = () => {
         console.log(formData)
         console.log('submitting')
 
-        mutateParachute(formData)
-
-        setShowPopup(false)
+        mutateParachute(formData, {
+          onSuccess: () => {
+            toast('چتر با موفقیت ثبت شد', {
+              type: 'success',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+            });
+            setShowPopup(false);
+          }
+        })
       
       }
     }

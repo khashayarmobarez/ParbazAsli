@@ -163,11 +163,11 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     </div>
                                 </div>
 
-                                <div className={ `flex justify-between w-16 md:w-14 xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
+                                <div className={ `flex justify-between w-16 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
 
                                     {!token ?
                                         (windowWidth > 768) ?
-                                            <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-[120px] h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
+                                            <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
                                             :
                                             <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
 

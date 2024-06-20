@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 // Queries and api
 import { useEquipmentBrands, useWingClasses } from '../../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
 
 
 // styles
@@ -21,19 +23,17 @@ import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 
-// input options
-import { sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 
 const AddFlightEquipment = () => {
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('wing');
   const { data: wingsClasses, isLoading: WClassesIsLoading, error:WClassesError } = useWingClasses();
+  const { mutate: mutateWing , isLoading: isSubmitting, error: submitError} = useAddEquipment();
 
 
     // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
   const [selectedOptionClass, setSelectedOptionClass] = useState('');
-  const [selectedOptionSize, setSelectedOptionSize] = useState('');
 
   const [aircraft, setAircraft] = useState('');
   const [size, setSize] = useState('');
@@ -47,9 +47,25 @@ const AddFlightEquipment = () => {
   // popUp use state
   const [showPopup, setShowPopup] = useState(false);
 
+  // Error states
+  const [serialNumberError, setSerialNumberError] = useState('');
+
   // useNavigate to go back one page
   const navigate = useNavigate();
 
+  // Regex patterns
+  const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
+
+  // Validation functions
+  const validateSerialNumber = (serialNumber) => {
+    if (!equipmentSerialNumberPattern.test(serialNumber)) {
+      setSerialNumberError('Invalid serial number format.');
+      return false;
+    } else {
+      setSerialNumberError('');
+      return true;
+    }
+  };
 
   // Event handler for option selection
   const handleSelectChangeBrand = (selectedOption) => {
@@ -88,12 +104,100 @@ const AddFlightEquipment = () => {
   };
 
 
-//    Event handler for form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  //Event handler for pop up
+    const handlePopUp= (event) => {
+      event.preventDefault();
+      const currentYear = new Date().getFullYear();
+      
+      // Here you can handle form submission, such as sending data to a backend server
+      const isSerialNumberValid = validateSerialNumber(serialNumber);
+
+      // Validate inputs
+      if (!isSerialNumberValid) {
+        toast('فرمت شماره سریال چتر اشتباه است', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+      }
+
+      if (year <= 1979 || year > currentYear) {
+          toast('سال تولید چتر را درست وارد کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+          });
+          return;
+      }
+
+      if (!selectedOptionBrand || !aircraft || !size || !flightHour || !year || !selectedOptionClass) {
+          toast('تمامی فیلدها را پر کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+          });
+          return;
+      }
+
+    if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
+        toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 10000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+    }
+
     setShowPopup(true);
-    // Here you can handle form submission, such as sending data to a backend server
-  };
+    };
+
+
+    // Event submision
+    const handleSubmit = (event) => {
+
+      if( serialNumber || aircraft || size || flightHour || year ) {
+
+        event.preventDefault();
+
+        const formData = new FormData();
+        // type 1 for Hamutate Harness
+        formData.append('Type', 2);
+        formData.append('brandId', selectedOptionBrand.id);
+        formData.append('file', selectedFile);
+        formData.append('serialNumber', serialNumber);
+        formData.append('Model', aircraft);
+        formData.append('Size', size);
+        formData.append('flightHours', flightHour);
+        formData.append('year', year);
+        formData.append('wingClassId', selectedOptionClass.id);
+
+        console.log(formData)
+        console.log('submitting')
+
+        mutateWing(formData, {
+          onSuccess: () => {
+            toast('وسیله پروازی با موفقیت ثبت شد', {
+              type: 'success',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+            });
+            setShowPopup(false);
+          }
+        })
+        
+      }
+    }
 
     return (
         <div className='flex flex-col mt-14 items-center'>
@@ -168,7 +272,7 @@ const AddFlightEquipment = () => {
                       </div>
 
 
-                      <button type="submit"  onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                      <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
                   </form>
 
@@ -183,7 +287,7 @@ const AddFlightEquipment = () => {
 
                       <div className='w-full flex justify-around items-center'>
                           <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                          <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>تایید</button>
+                          <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit}>تایید</button>
                       </div>
 
                   </form>

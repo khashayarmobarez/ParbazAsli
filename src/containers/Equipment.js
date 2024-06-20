@@ -40,7 +40,7 @@ const Equipment = () => {
                 <PageTitle title={'تجهیزات'}  />  
                 
                 {/* buttons */}
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[7.8rem]`}>
                     <Link ref={buttonRef} to='/equipment/flightEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'flight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('flight')}>بال</Link> 
                     <Link to='/equipment/parachute' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'parachute' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('parachute')} >چتر کمکی</Link> 
                     <Link to='/equipment/harness' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'harness' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('harness')} >هارنس</Link> 

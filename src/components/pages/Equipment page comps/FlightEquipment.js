@@ -36,8 +36,38 @@ const FlightEquipment = (props) => {
     return (
         <div className=' flex flex-col gap-y-6 items-center '>
 
-            <div className='w-full flex flex-col gap-y-6 items-center md:grid md:grid-cols-2 md:gap-6'>
+            <div className='w-full flex flex-col gap-y-6 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
 
+                <div className={`${styles.container} w-full  md:col-span-1`}>
+
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
+
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+
+                </div>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
+
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
+
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+
+                </div>
+                <div className={`${styles.container} w-full  md:col-span-1`}>
+
+                    <div className=' text-xs flex flex-col items-start gap-y-1'>
+                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
+                        <p>77 پرواز / 24 ساعت</p>
+                    </div>
+
+                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
+
+                </div>
                 <div className={`${styles.container} w-full  md:col-span-1`}>
 
                     <div className=' text-xs flex flex-col items-start gap-y-1'>
@@ -115,7 +145,7 @@ const FlightEquipment = (props) => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className='fixed bottom-24 w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
+            <Link to='/equipment/addFlightEquipment' className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
                 <button className={`${ButtonStyles.addButton} w-[100%]`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

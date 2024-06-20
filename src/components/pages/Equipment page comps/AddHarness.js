@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
 
 // Queries and api
 import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
-
-// redux
-import { useSelector, useDispatch } from 'react-redux';
-import { selectHarness } from '../../../Utilities/ReduxToolKit/features/Add/harnessSlice';
-import { updateBrand, updateAircraft, updateSelectedFile, updateHour, updateSize, updateWingcode } from '../../../Utilities/ReduxToolKit/features/Add/harnessSlice';
-
 // mui
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
@@ -30,12 +25,17 @@ import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 
 // input options
-import {brandsOptionsData, flightHourOptionData, sizeOptionData} from '../../../Utilities/Providers/dropdownInputOptions'
 import PageTitle from '../../reuseable/PageTitle';
 
 const AddHarness = () => {
 
+  //going a page back function
+  const navigate = useNavigate();
+
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('harness');
+
+  
+  const { mutate: mutateHarness , isLoading: isSubmitting, error: submitError} = useAddEquipment();
 
 
   const [brand, setBrand] = useState('');
@@ -48,10 +48,22 @@ const AddHarness = () => {
   const [serialNumber, setSerialNumber] = useState('');
   const [year, setYear] = useState('');
 
+  // Error states
+  const [serialNumberError, setSerialNumberError] = useState('');
 
-    
-  //going a page back function
-  const navigate = useNavigate();
+  // Regex patterns
+  const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
+
+  // Validation functions
+  const validateSerialNumber = (serialNumber) => {
+    if (!equipmentSerialNumberPattern.test(serialNumber)) {
+      setSerialNumberError('Invalid serial number format.');
+      return false;
+    } else {
+      setSerialNumberError('');
+      return true;
+    }
+  };
   
   const handleBrandChange = (selectedOption) => {
     setBrand(selectedOption);
@@ -77,19 +89,101 @@ const AddHarness = () => {
     setYear(event.target.value);
   };
 
-  const handleWingCodeChange = (event) => {
-    setWingCode(event.target.value);
-  };
-
   const handleFileChange = (file) => {
     setSelectedFile(file);
   };
   
-    const handleSubmit = (event) => {
+    const handlePopUp= (event) => {
       event.preventDefault();
-      setShowPopup(true);
+      const currentYear = new Date().getFullYear();
+      
       // Here you can handle form submission, such as sending data to a backend server
+      const isSerialNumberValid = validateSerialNumber(serialNumber);
+
+      // Validate inputs
+      if (!isSerialNumberValid) {
+        toast('فرمت شماره سریال چتر اشتباه است', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+      }
+
+      if (year <= 1979 || year > currentYear) {
+          toast('سال تولید چتر را درست وارد کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+          });
+          return;
+      }
+
+      if (!brand || !aircraft || !size || !flightHour || !year) {
+          toast('تمامی فیلدها را پر کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+          });
+          return;
+      }
+
+    if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
+        toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 10000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+    }
+
+    setShowPopup(true);
     };
+
+     // Event submision
+    const handleSubmit = (event) => {
+
+      if( serialNumber || aircraft || size || flightHour || year ) {
+
+        event.preventDefault();
+
+        const formData = new FormData();
+        // type 1 for Hamutate Harness
+        formData.append('Type', 3);
+        formData.append('brandId', brand.id);
+        formData.append('file', selectedFile);
+        formData.append('serialNumber', serialNumber);
+        formData.append('Model', aircraft);
+        formData.append('Size', size);
+        formData.append('flightHours', flightHour);
+        formData.append('year', year);
+
+        console.log(formData)
+        console.log('submitting')
+
+        mutateHarness(formData, {
+          onSuccess: () => {
+            toast('هارنس با موفقیت ثبت شد', {
+              type: 'success',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+            });
+            setShowPopup(false);
+          }
+        })
+      
+      }
+    }
 
     return (
         <div className='flex flex-col mt-14 items-center gap-y-5'>
@@ -146,13 +240,13 @@ const AddHarness = () => {
 
                   <p className=' self-start md:self-center'>ثبت سریال هارنس (اختیاری)</p>
 
-                  <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p>
+                  <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیمsd؛</p>
 
 
                   {/* for uploading pictures */}
                   <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
 
-                  <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
+                  <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
                 </form>
               </>
             }
@@ -170,7 +264,7 @@ const AddHarness = () => {
 
                 <div className='w-full flex justify-around items-center'>
                     <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>تایید</button>
+                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit}>تایید</button>
                 </div>
 
             </form>
