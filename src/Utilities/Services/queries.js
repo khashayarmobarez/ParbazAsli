@@ -180,7 +180,35 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+// get users names by id
+  const getUserById = async (userId) => {
+    try {
+      const token = Cookies.get('token');
+      const response = await axios.get(`${BASE_URL}/User/GetAnotherUser?userId=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+      // console.log(response.data);  
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to fetch organs');
+    }
+  };
+
+
+  const useUserById = (userId) => {
+    return useQuery(['userById', userId], () => getUserById(userId), {
+        enabled: !!userId, // This ensures the query runs only if organId is not null/undefined
+    });
+  };
+
+
+
+
+
 
   
 
-export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useAddCertificate};
+export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useAddCertificate, useUserById};

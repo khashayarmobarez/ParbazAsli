@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // queries and api
 import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
@@ -16,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
 import Cube from '../../../assets/icons/3dCube.svg'
@@ -26,20 +28,24 @@ import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
+import { useUserById } from '../../../Utilities/Services/queries';
 
 
 const AddParachute = () => {
-
+  
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('parachute');
 
+  
   const { mutate: mutateParachute , isLoading: isSubmitting, error: submitError} = useAddEquipment();
-
+  
+  //going a page back function
+  const navigate = useNavigate();
 
   const { formatDate } = useDateFormat();
 
   // pop up control
   const [showPopup, setShowPopup] = useState(false);  
-
+  
   // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
   const [size, setSize] = useState('');
@@ -48,6 +54,8 @@ const AddParachute = () => {
   const [year, setYear] = useState('');
   const [lastPackerId, setLastPackerId] = useState('');
   
+  const { data: userByIdData, loading: userByIdLoad, error: userByIdError, refetch } = useUserById(lastPackerId)
+
   // text state 
   const [aircraft, setAircraft] = useState('');
   
@@ -56,9 +64,36 @@ const AddParachute = () => {
 
   // date state
   const [packageDate, setPackageDate] = useState('')
+
+  // Error states
+  const [serialNumberError, setSerialNumberError] = useState('');
+  const [packerIdError, setPackerIdError] = useState('');
   
-  //going a page back function
-  const navigate = useNavigate();
+
+  // Regex patterns
+  const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
+  const userIdPattern = /^[0-9]{3}[a-z]{3}$/;
+
+  // Validation functions
+  const validateSerialNumber = (serialNumber) => {
+    if (!equipmentSerialNumberPattern.test(serialNumber)) {
+      setSerialNumberError('Invalid serial number format.');
+      return false;
+    } else {
+      setSerialNumberError('');
+      return true;
+    }
+  };
+
+  const validatePackerId = (lastPackerId) => {
+    if (!userIdPattern.test(lastPackerId)) {
+      setPackerIdError('Invalid packer ID format.');
+      return false;
+    } else {
+      setPackerIdError('');
+      return true;
+    }
+  };
   
   // Event handler for option selection
   const handleSelectChangeBrand = (selectedOption) => {
@@ -120,11 +155,71 @@ const AddParachute = () => {
 
 
   // Event handler for form submission
-  const handlePopUp = () => {
-    setShowPopup(true);
-    // Here you can handle form submission, such as sending data to a backend server
-  };
+  const handlePopUp = (event) => {
+    event.preventDefault();
+    const currentYear = new Date().getFullYear();
 
+    const isSerialNumberValid = validateSerialNumber(serialNumber);
+    const isPackerIdValid = validatePackerId(lastPackerId);
+    
+    // Validate inputs
+    if (!isSerialNumberValid) {
+      toast('فرمت شماره سریال چتر اشتباه است', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+      return;
+    }
+
+    if (!isPackerIdValid) {
+        toast('فرمت id بسته بندی کننده اشتباه است', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+    }
+
+    if (year <= 1979 || year > currentYear) {
+        toast('سال تولید چتر را درست وارد کنید', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+    }
+
+    if (!selectedOptionBrand || !aircraft || !size || !packageDate || !lastPackerId || !flightHour || !year) {
+        toast('تمامی فیلدها را پر کنید', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+    }
+
+  if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
+      toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 10000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+      return;
+  }
+
+  setShowPopup(true);
+};
 
   // Event submision
   const handleSubmit = (event) => {
@@ -157,10 +252,19 @@ const AddParachute = () => {
       }
     }
 
-    if (submitError) {
-      console.error('Error submitting parachute:', submitError);
-      // Add any additional error handling logic here
-    }
+    useEffect(() => {
+      if (submitError) {
+        console.log('submitError', submitError.message);
+        toast(submitError.response.data.ErrorMessages[0].ErrorMessage , {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 10000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+        // Add any additional error handling logic here
+      }
+    },[submitError])
 
     return (
         <div className='flex flex-col mt-14 items-center gap-y-5'>
@@ -211,17 +315,25 @@ const AddParachute = () => {
                         className='col-span-1'
                         value={year}
                         onChange={handleTextInputYear}
-                        placeholder='سال'
+                        placeholder='سال ساخت'
                       />
 
                       {/* Last Packer ID input */}
-                      <TextInput
-                        icon={Cube}
-                        className='col-span-1'
-                        value={lastPackerId}
-                        onChange={handleTextInputLastPackerId}
-                        placeholder='شناسه آخرین بسته‌بندی کننده'
-                      />
+                      <div className='w-full flex flex-col items-start gap-y-2'>
+                        <TextInput
+                          icon={Cube}
+                          className='col-span-1'
+                          value={lastPackerId}
+                          onChange={handleTextInputLastPackerId}
+                          placeholder='شناسه آخرین بسته‌بندی کننده'
+                        />
+                        {userByIdData &&
+                        <div className='flex gap-x-1 text-[#A5E65E]'>
+                          <PersonOutlineOutlinedIcon />
+                          <p>{userByIdData.data.fullName}</p>
+                        </div>
+                        }
+                      </div>
                     
                     </div>
 
