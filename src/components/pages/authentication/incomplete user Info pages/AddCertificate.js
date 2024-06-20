@@ -17,6 +17,7 @@ import UserDataBox from '../../Profile/UserDataBox';
 import DropdownInput from '../../../inputs/DropDownInput';
 import TextInput from '../../../inputs/textInput';
 import DateInput from '../Inputs/DateInput';
+import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 
 
 const AddCertificate = () => {
@@ -126,10 +127,10 @@ const AddCertificate = () => {
 
         event.preventDefault();
 
-        const formattedStartDate = formatDate(dateStartValue.value);
-        const formattedEndDate = formatDate(dateEndValue.value);
+        const formattedStartDate = formatDate(dateStartValue);
+        const formattedEndDate = formatDate(dateEndValue);
 
-        console.log(levelId,certificateId,formattedStartDate,formattedEndDate,uploadedFile)
+        console.log(levelId,certificateId,formattedStartDate,formattedEndDate,dateStartValue,uploadedFile)
         
         const formData = new FormData();
         formData.append('LevelId', levelId);
@@ -258,17 +259,11 @@ const AddCertificate = () => {
                                                         icon={null} // You can replace `null` with a specific icon if you have one
                                                         />
 
-                                                        {/* the date picker styles comes from signUp.module.css , it is a bug, if you want to make changes to the code i recommend removing this code */}
-                                                        <DateInput 
-                                                        onChange={handleCertificateStartDateChange}
-                                                        inputAttributes={{ placeholder: "تاریخ صدور" }}
-                                                        />
+                                                        {/* the date picker component comes from equipment section, try moving it into this component */}
+                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'} />
 
-                                                        {/* the date picker get it's styles from signUp.module.css , it is a bug, if you want to make changes to the code i recommend removing this code */}
-                                                        <DateInput 
-                                                        onChange={handleCertificateEndDateChange}
-                                                        inputAttributes={{ placeholder: "تاریخ انقضا" }}
-                                                        />
+                                                        {/* the date picker component comes from equipment section, try moving it into this component */}
+                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
 
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>

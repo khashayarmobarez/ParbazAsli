@@ -17,13 +17,22 @@ const TextInput = ({ value, onChange, placeholder }) => {
   };
   
   return (
-    <div className={`${inputStyles.dateContainer} w-[100%] h-12`}>
+    <div className={`w-full flex h-12`}>
       <span> 
-        <CalendarTodayOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+        {/* <CalendarTodayOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} /> */}
       </span>
-      <DatePicker onChange={(e) => console.log(e.value)} 
-      inputAttributes={{ placeholder: "Select time" }} // Example attribute
-      /> 
+      <DatePicker
+          onChange={handleInputChange}
+          show={true}
+          inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${inputStyles.customDateInput}`}
+          position='right'
+          round="thin"
+          accentColor="#0D59F2"
+          locale="fa"
+          inputAttributes={{ placeholder: placeholder }}
+          direction="rtl"
+          value={value}
+      />
     </div>
   );
 };

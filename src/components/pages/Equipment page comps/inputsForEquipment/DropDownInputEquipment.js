@@ -33,10 +33,10 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
       <select
         className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`}
         id="dropdown"
-        value={selectedOption ? selectedOption.value : ''}
+        value={selectedOption ? selectedOption.id : ''}
         onChange={(event) => {
           handleInputChange(event);
-          const selected = options.find(option => option.value === parseInt(event.target.value));
+          const selected = options.find(option => option.id === parseInt(event.target.value));
           handleSelectChange(selected);
         }}
       >
@@ -44,8 +44,8 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
           {name}
         </option>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
+          <option key={option.id} value={option.id}>
+            {option.name}
           </option>
         ))}
       </select>
