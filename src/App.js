@@ -96,7 +96,7 @@ function App() {
   const token = Cookies.get('token') || null;
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
-  const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+  const isUserAuthenticated = Cookies.get('isUserAuthenticated') || 'false';
           
   const {userRole} = useSelector(selectUser)
 
@@ -109,8 +109,10 @@ function App() {
   useAppModeEffect(isDarkMode)
 
   useEffect(() => {
-    postIsUserAuthenticated(token, navigate, isUserAuthenticated)
-  },[])
+    if (token) {
+      postIsUserAuthenticated(token, navigate, isUserAuthenticated);
+    }
+  }, [token, navigate, isUserAuthenticated]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

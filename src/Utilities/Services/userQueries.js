@@ -11,6 +11,10 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
         const token = Cookies.get('token');
 
+        if (!token) {
+            throw new Error('No token found');
+        }
+
         try {
         const response = await axios.get(`${BASE_URL}/User/GetUser`, {
             headers: {

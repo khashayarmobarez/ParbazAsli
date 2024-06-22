@@ -27,10 +27,6 @@ const EditEquipment = () => {
 
     const { data: EquipmentData, loading, error } = useAnEquipment(id)
 
-    useEffect(() => {
-        console.log(EquipmentData)
-    },[EquipmentData])
-
     const { brand, model, size, flightHours, equipmentType } = EquipmentData?.data || {};
 
     const [selectedClassType, setSelectedClassType] = useState('');
