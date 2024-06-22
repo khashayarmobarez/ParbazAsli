@@ -23,19 +23,19 @@ const Equipment = () => {
     return (
         <div className=' flex flex-col mt-14 items-center '>
 
-            <div className='w-full flex flex-col items-center md:w-[80%] gap-y-4 md:gap-y-6'>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6'>
 
                 <PageTitle title={'تجهیزات'}  />  
                 
                 {/* buttons */}
-                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[7.8rem]`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
                     <Link  to='/equipment/flightEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'flight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('flight')}>بال</Link> 
                     <Link to='/equipment/parachute' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'parachute' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('parachute')} >چتر کمکی</Link> 
                     <Link to='/equipment/harness' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'harness' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('harness')} >هارنس</Link> 
                 </div>
 
 
-                <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
+                <div className='w-[90%] flex flex-col'>
                     
                     <Outlet />
 

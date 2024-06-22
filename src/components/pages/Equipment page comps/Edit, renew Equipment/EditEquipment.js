@@ -27,7 +27,11 @@ const EditEquipment = () => {
 
     const { data: EquipmentData, loading, error } = useAnEquipment(id)
 
-    const { brand, model, size, flightHours, equipmentType } = EquipmentData?.data || {};
+    useEffect(() => {
+        console.log(EquipmentData)
+    },[EquipmentData])
+
+    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass } = EquipmentData?.data || {};
 
     const [selectedClassType, setSelectedClassType] = useState('');
     const [showPopup, setShowPopup] = useState(false);
@@ -39,12 +43,12 @@ const EditEquipment = () => {
 
     return (
         <div className='flex flex-col items-center pt-[4rem] '>
-            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
                 <PageTitle title={'ویرایش وسیله'} navigateTo={'profile'} />  
                 {
                 loading &&  
-                <div className='flex w-full h-[95vh] items-center justify-center'>
+                <div className='flex w-full min-h-[95vh] items-center justify-center'>
                     <Loader />
                 </div>
                 }
@@ -59,9 +63,9 @@ const EditEquipment = () => {
                         <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
                         و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
-                        <form className={` w-[90%] rounded-xl flex flex-col py-8 gap-y-6`}>
+                        <form className={` w-[90%] rounded-xl flex flex-col gap-y-6`}>
 
-                            <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full '>
+                            <div className=' grid grid-cols-2 gap-x-2 gap-y-4 w-full '>
 
                                 <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>برند</p>
@@ -74,6 +78,13 @@ const EditEquipment = () => {
                                     <p className=' text-sm'>مدل</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{model}</p>
+                                    </div>
+                                </div>
+
+                                <div className='flex flex-col items-start gap-y-2'>
+                                    <p className=' text-sm'>تعداد پرواز ها</p>
+                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                        <p>{flightCount}</p>
                                     </div>
                                 </div>
 
@@ -91,9 +102,18 @@ const EditEquipment = () => {
                                     </div>
                                 </div>
 
+                                {wingClass &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>کلاس بال پروازی</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{wingClass}</p>
+                                        </div>
+                                    </div>
+                                }
+
                             </div>
 
-                            <div id='no grid list' className='flex flex-col gap-y-5 mt-6'>
+                            <div id='no grid list' className='flex flex-col gap-y-5'>
 
                                 <div className='flex flex-col items-start gap-y-5'>
                                         <p className=' text-sm'>سریال {equipmentType}</p>

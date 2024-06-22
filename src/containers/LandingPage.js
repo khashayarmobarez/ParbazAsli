@@ -81,7 +81,7 @@ const LandingPage = () => {
 
                             <h1 className=' text-xl font-bold md:text-3xl'>{data.data.data[0].title}</h1>
 
-                            <p>{data.data.data[0].summary}</p>
+                            <p className='text-sm'>{data.data.data[0].summary}</p>
 
                             <Link to='/signUpLogin' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
                                 <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
@@ -119,7 +119,7 @@ const LandingPage = () => {
                                 </p>
                             </div>
 
-                            <p className='text-center text-xs px-6 md:w-[55%] md:text-base md:text-start md:self-start md:mr-[8vw]'>چرا باید لاگ بوک داشته باشیم ؟
+                            <p className='text-center text-sm px-6 md:w-[55%] md:text-base md:text-start md:self-start md:mr-[8vw]'>چرا باید لاگ بوک داشته باشیم ؟
                                 <br/>
                                 در هنگام یادگیری پرواز، هر خلبان ملزم به نوشتن یادداشتی از ساعات پرواز خود در یک لاگ بوک به منظور ثبت  تجربه خود است. بسیاری از خلبانان خیلی زود از نوشتن  لاگ بوک خود منصرف میشوند ، چرا که بعد از مدتی این کار بیهوده به نظر میرسد ، اما این یک اشتباه است. پس چرا نگه داشتن  لاگ بوک ایده خوبی است؟
                             </p>

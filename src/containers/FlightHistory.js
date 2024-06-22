@@ -31,13 +31,13 @@ const FlightHistory = ({userRole}) => {
 
 
     // Effect to click the button when the page is mounted
-  useEffect(() => {
-    // Check if the button ref exists and it has a current property
-    if (buttonRef.current) {
-      // Programmatically click the button
-      buttonRef.current.click();
-    }
-  }, []); // Empty dependency array ensures the effect runs only once after initial render
+    useEffect(() => {
+        // Check if the button ref exists and it has a current property
+        if (buttonRef.current) {
+        // Programmatically click the button
+        buttonRef.current.click();
+        }
+    }, []); // Empty dependency array ensures the effect runs only once after initial render
 
 
     return (

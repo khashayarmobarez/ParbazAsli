@@ -84,6 +84,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
 import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
+import PossessionTransitionEquipment from './components/pages/Equipment page comps/PossessionTransitionEquipment';
   
 
 
@@ -190,10 +191,11 @@ function App() {
                   <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
                   <Route path='/equipment/addParachute' element={<AddParachute />} />
                   <Route path='/equipment/addHarness' element={<AddHarness />} />
+                  <Route path='/EditEquipment/:id' element={<EditEquipment />} />
+                  <Route path='/possessionTransitionEquipment/:id' element={<PossessionTransitionEquipment />} />
 
                   {/* flight history */}
                   <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
-                  <Route path='/EditEquipment/:id' element={<EditEquipment />} />
 
                   {/* edit profile */}
                   <Route path='/editProfile' element={<EditProfile />}>

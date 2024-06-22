@@ -26,6 +26,7 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 
 // input options
 import PageTitle from '../../reuseable/PageTitle';
+import NumberInput from '../../inputs/NumberInput';
 
 const AddHarness = () => {
 
@@ -179,11 +180,26 @@ const AddHarness = () => {
               style: { width: "90%" }
             });
             setShowPopup(false);
+            navigate('/equipment/harness')
           }
         })
       
       }
     }
+
+    useEffect(() => {
+      if (submitError) {
+        console.log('submitError', submitError.message);
+        toast(submitError.response.data.ErrorMessages[0].ErrorMessage , {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 10000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+        // Add any additional error handling logic here
+      }
+    },[submitError])
 
     return (
         <div className='flex flex-col mt-14 items-center gap-y-5'>
@@ -195,13 +211,13 @@ const AddHarness = () => {
             {
             brandsData &&
               <>
-                <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
+                <p className=' text-sm'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
                 و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
-                <form className='w-[90%] flex flex-col items-center space-y-7'>
+                <form className='w-[90%] flex flex-col items-center space-y-6'>
                   {/* aircraft model input */}
                   
-                  <div className=' w-full flex flex-col items-center gap-y-8 md:grid md:grid-cols-2 md:gap-6'>
+                  <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                     
                     <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />
 
@@ -217,7 +233,7 @@ const AddHarness = () => {
                     <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
 
                     {/* Flight hour input */}
-                    <TextInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+                    <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
 
                     <TextInput
                         icon={Cube}
@@ -228,7 +244,7 @@ const AddHarness = () => {
                       />
 
                       {/* Year input */}
-                      <TextInput
+                      <NumberInput
                         icon={Cube}
                         className='col-span-1'
                         value={year}

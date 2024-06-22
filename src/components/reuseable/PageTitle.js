@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PageTitle = (props) => {
 
@@ -11,9 +11,9 @@ const PageTitle = (props) => {
 
     return (
         <>
-            <div className={`sticky top-9 md:top-2 z-10 bg-[#1B253B] w-[90%] h-20 md:h-32 flex justify-center items-end py-3 rounded-b-2xl `}>
-                <p className=' font-medium'>{title}</p>
-                <ArrowBackIosNewIcon onClick={() => navigate(-1)} sx={{position:'absolute',left:'1rem' , width:'26px', height:'26px', padding:'5px', backgroundColor:'', borderRadius:'10rem', background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)', boxShadow: '-3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)'}} />
+            <div className={`sticky top-6 md:top-2 z-10 bg-[#1B253B] w-[90%] h-20 md:h-32 flex justify-center items-end py-2 rounded-b-2xl `}>
+                <p className=' text-sm font-medium'>{title}</p>
+                <ArrowBackIcon onClick={() => navigate(-1)} sx={{position:'absolute',left:'1rem' , width:'24px', height:'24px', padding:'0px', backgroundColor:'', borderRadius:'10rem', background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)', boxShadow: '-3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)'}} />
             </div>
         </>
     );

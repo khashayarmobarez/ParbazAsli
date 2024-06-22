@@ -29,6 +29,7 @@ import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
+import NumberInput from '../../inputs/NumberInput';
 
 
 const AddParachute = () => {
@@ -255,6 +256,7 @@ const AddParachute = () => {
               style: { width: "90%" }
             });
             setShowPopup(false);
+            navigate('/equipment/parachute')
           }
         })
       
@@ -288,12 +290,12 @@ const AddParachute = () => {
                 <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
                 و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
-                <form className='w-[90%] flex flex-col items-center space-y-7'>
+                <form className='w-[90%] flex flex-col items-center space-y-6'>
 
-                    {/* aircraft model input */}
-                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
-                    
-                    <div className=' w-full flex flex-col items-center gap-y-8 md:grid md:grid-cols-2 md:gap-6'>
+                    <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
+
+                      {/* aircraft model input */}
+                      <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
 
                       {/* brand input */}
                       <DropdownInput name={'برند'} options={brandsData.data} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
@@ -302,7 +304,7 @@ const AddParachute = () => {
                       <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
 
                       {/* FLight hour input */}
-                      <TextInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+                      <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
 
                       {/* packaging parachute date input */}
                       {/* <DateInput inputAttributes={{ placeholder: "تاریخ انقضا" }} onChange={handlePackageDate} /> */}
@@ -319,7 +321,7 @@ const AddParachute = () => {
                       />
 
                       {/* Year input */}
-                      <TextInput
+                      <NumberInput
                         icon={Cube}
                         className='col-span-1'
                         value={year}

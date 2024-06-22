@@ -22,6 +22,7 @@ import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
+import NumberInput from '../../inputs/NumberInput';
 
 
 const AddFlightEquipment = () => {
@@ -193,31 +194,46 @@ const AddFlightEquipment = () => {
               style: { width: "90%" }
             });
             setShowPopup(false);
+            navigate('/equipment/flightEquipment')
           }
         })
         
       }
     }
 
+    useEffect(() => {
+      if (submitError) {
+        console.log('submitError', submitError.message);
+        toast(submitError.response.data.ErrorMessages[0].ErrorMessage , {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 10000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+        // Add any additional error handling logic here
+      }
+    },[submitError])
+
     return (
         <div className='flex flex-col mt-14 items-center'>
 
-            <div className='flex flex-col items-center gap-y-5 w-full md:w-[75%]'>
+            <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%]'>
 
               <PageTitle title={'افزودن وسیله پروازی'}  />  
 
               {
                 brandsData && wingsClasses &&
                 <>
-                  <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
+                  <p className=' text-sm'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
                   و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
-                  <form className='w-[90%] flex flex-col items-center space-y-7'>
+                  <form className='w-[90%] flex flex-col items-center space-y-6'>
 
+                      <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
+                      
                       {/* aircraft model input */}
                       <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل وسیله پروازی' />
-                      
-                      <div className=' w-full flex flex-col items-center gap-y-8 md:grid md:grid-cols-2 md:gap-6'>
                         
                         {/* brand input */}
                         <DropdownInput
@@ -236,12 +252,21 @@ const AddFlightEquipment = () => {
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
                         />
+                        
+                        {/* Year input */}
+                        <NumberInput
+                          icon={Cube}
+                          className='col-span-1'
+                          value={year}
+                          onChange={handleTextInputYear}
+                          placeholder='سال'
+                        />
 
                         {/* size input */}
                         <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
                         
                         {/* flight hour model input */}
-                        <TextInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+                        <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
                       
                         <TextInput
                           icon={Cube}
@@ -251,14 +276,6 @@ const AddFlightEquipment = () => {
                           placeholder='شماره سریال'
                         />
 
-                        {/* Year input */}
-                        <TextInput
-                          icon={Cube}
-                          className='col-span-1'
-                          value={year}
-                          onChange={handleTextInputYear}
-                          placeholder='سال'
-                        />
                       </div>
 
                       <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>
@@ -288,7 +305,7 @@ const AddFlightEquipment = () => {
                       <div className='w-full flex justify-around items-center'>
                           <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
                           <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit}>تایید</button>
-                      </div>
+                      </div>  
 
                   </form>
                 </>

@@ -46,10 +46,14 @@ const FlightEquipment = () => {
         navigate(`/EditEquipment/${id}`);
     };
 
+    const handlePossesion = (id) => () => {
+        navigate(`/possessionTransitionEquipment/${id}`);
+    };
+
     return (
         <div className=' flex flex-col gap-y-6 items-center '>
 
-            <div className='w-full flex flex-col gap-y-6 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
+            <div className='w-full flex flex-col gap-y-4 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
                 {
                     loading && <p>loading...</p>
                 }
@@ -67,7 +71,7 @@ const FlightEquipment = () => {
 
                             <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
                                 <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button>
-                                <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} >انتقال مالکیت</button>
+                                <button className={ButtonStyles.normalButton} onClick={handlePossesion(equipment.id)} >انتقال مالکیت</button>
                             </div>
 
                         </div>
@@ -100,8 +104,8 @@ const FlightEquipment = () => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
-                <button className={`${ButtonStyles.addButton} w-[100%]`} >
+            <Link to='/equipment/addFlightEquipment' className='fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+                <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
                 </button>
