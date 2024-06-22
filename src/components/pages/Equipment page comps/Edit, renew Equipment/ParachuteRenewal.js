@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// queries
-import { useAnEquipment } from '../../../Utilities/Services/equipmentQueries';
-
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
 // inputData
-import { brandsOptionsData } from '../../../Utilities/Providers/dropdownInputOptions'
+import { brandsOptionsData } from '../../../../Utilities/Providers/dropdownInputOptions'
 
-// comps
-import PageTitle from '../../reuseable/PageTitle';
-import DropdownInput from '../../inputs/DropDownInput'
+// components
+import PageTitle from '../../../reuseable/PageTitle';
+import DropdownInput from '../../../inputs/DropDownInput'
 
-const EditEquipment = () => {
-
-    const { data: EquipmentData, loading, error } = useAnEquipment()
+const ParachuteRenewal = () => {
 
     const navigate = useNavigate()
 
@@ -32,6 +27,12 @@ const EditEquipment = () => {
     const handleSelectClassType = (event) => {
         setSelectedClassType(event.target.value);
     };
+
+    const handleSubmit = () => {
+         setShowPopup(false)
+
+    };
+
 
     return (
         <div className='flex flex-col items-center pt-[4rem] '>
@@ -124,4 +125,4 @@ const EditEquipment = () => {
     );
 };
 
-export default EditEquipment;
+export default ParachuteRenewal;

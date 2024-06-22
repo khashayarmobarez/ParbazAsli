@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // queries
@@ -21,6 +21,10 @@ const FlightEquipment = () => {
 
     const { data: userEquipmentsData, loading, error } = useUserEquipments(2)
 
+    useEffect(() => {
+        console.log(userEquipmentsData)
+    },[userEquipmentsData])
+
     const [inputValue, setInputValue] = useState('');
     const [showPopup, setShowPopup] = useState(false);
 
@@ -38,9 +42,9 @@ const FlightEquipment = () => {
         setInputValue('');
     };
 
-    const handleEditEquipment = (id) => {
+    const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);
-    }
+    };
 
     return (
         <div className=' flex flex-col gap-y-6 items-center '>
@@ -62,7 +66,7 @@ const FlightEquipment = () => {
                             </div>
 
                             <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                {/* <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button> */}
+                                <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button>
                                 <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} >انتقال مالکیت</button>
                             </div>
 

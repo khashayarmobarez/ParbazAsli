@@ -30,6 +30,10 @@ const SpeedoMeter = (props) => {
     return 'hsl(' + c + ', 100%, 50%)';
   };
 
+  const handleEditParachute = (id) => () => {
+    navigate(`/EditEquipment/${id}`);
+  };
+
   return (
 
     <div className={`${boxStyles.containerDarkmode} rounded-3xl z-0 w-[98%] md:w-full flex justify-between items-center px-2 py-3 mr-1 mt-1`}>
@@ -74,7 +78,7 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div onClick={() => navigate('/ParachuteRenewal')} className={` absolute w-[116px] h-[116px] rounded-full flex justify-center items-center`} 
+            <div onClick={handleEditParachute(parachuteData.id)} className={` absolute w-[116px] h-[116px] rounded-full flex justify-center items-center`} 
             style={{background:'var(--speedometer-background)',
             boxShadow: 'var(--speedometer-boxShadow)',
             }}>

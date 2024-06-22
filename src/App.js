@@ -52,7 +52,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
   import AddClass from './components/pages/CoachTeachingSection/AddClass';
   import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
-  import ParachuteRenewal from './components/pages/Equipment page comps/ParachuteRenewal';
+  import ParachuteRenewal from './components/pages/Equipment page comps/Edit, renew Equipment/ParachuteRenewal';
   import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
   import Syllabuses from './components/pages/AddFlight/Syllabuses';
   import FlightHistory from './containers/FlightHistory';
@@ -83,7 +83,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
-import EditEquipment from './components/pages/Equipment page comps/EditEquipment';
+import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
   
 
 

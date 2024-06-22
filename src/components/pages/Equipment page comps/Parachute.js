@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // css classes 
 import styles from './FlightEquipment.module.css'
@@ -18,6 +18,8 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const Parachute = (props) => {
 
+    const navigate = useNavigate()
+
     const { data: userEquipmentsData, loading, error } = useUserEquipments(1)
 
     const [inputValue, setInputValue] = useState('');
@@ -35,6 +37,10 @@ const Parachute = (props) => {
         console.log('Submitted value:', inputValue);
         // Clear the input field after submission
         setInputValue('');
+    };
+
+    const handleEditEquipment = (id) => () => {
+        navigate(`/EditEquipment/${id}`);
     };
 
     return (
@@ -58,7 +64,7 @@ const Parachute = (props) => {
                         </div>
 
                         <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                            <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={() => setShowPopup(true)} >ویرایش</button>
+                            <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button>
                             <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} >انتقال مالکیت</button>
                         </div>
 

@@ -71,7 +71,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     const getAnEquipmentData = async (equipmentId) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/api/Equipment/GetEquipment?equipmentId=${equipmentId}`, {
+            const response = await axios.get(`${BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -86,7 +86,9 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
     const useAnEquipment = (equipmentId) => {
-        return useQuery(['anEquipment', equipmentId], getAnEquipmentData(equipmentId));
+        return useQuery(['anEquipment', equipmentId], () => getAnEquipmentData(equipmentId), {
+            enabled: !!equipmentId, // only run query if equipmentId is defined
+        });
     };
 
 
