@@ -111,6 +111,9 @@ function App() {
   useEffect(() => {
     if (token) {
       postIsUserAuthenticated(token, navigate, isUserAuthenticated);
+      setTimeout(() => {
+        navigate('/profile');
+      }, 1000);
     }
   }, [token, navigate, isUserAuthenticated]);
 

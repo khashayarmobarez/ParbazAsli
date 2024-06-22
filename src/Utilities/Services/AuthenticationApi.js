@@ -55,7 +55,6 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated) => 
               Cookies.remove('token');
               Cookies.set('isUserAuthenticated', false, { expires: Infinity });
               console.log(isUserAuthenticated)
-              navigate('/')
               break;
 
             case 'email':
