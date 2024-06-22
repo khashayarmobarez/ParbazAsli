@@ -116,6 +116,9 @@ const ChangePicPopUp = ({setShowPopup, showPopup}) => {
                     
                 </div>
                 
+                <p className='text-xs mt-2'>فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد</p>
+                <p className='text-xs'>حجم عکس ها نباید بیشتر از 10 مگابایت باشد</p>
+                
                 <div className='w-full flex justify-around items-center mt-4'>
 
                     <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}

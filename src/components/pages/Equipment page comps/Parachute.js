@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // css classes 
 import styles from './FlightEquipment.module.css'
@@ -6,16 +7,18 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import inputStyles from '../../../styles/Inputs/Inputs.module.css'
 import boxStyle from '../../../styles/Boxes/DataBox.module.css'
 
+// query
+import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
+
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
 
 
 const Parachute = (props) => {
-    
-    const { data } = props;
+
+    const { data: userEquipmentsData, loading, error } = useUserEquipments(1)
 
     const [inputValue, setInputValue] = useState('');
     const [showPopup, setShowPopup] = useState(false);
@@ -38,17 +41,30 @@ const Parachute = (props) => {
         <div className=' flex flex-col gap-y-12 items-center'>
 
             <div className='w-full flex flex-col gap-y-6 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
-            
-                <div className={`${styles.container} w-full  md:col-span-1`}>
+            {
+                loading && <p>loading...</p>
+            }
+            {
+                error && <p>error</p>
+            }
+            {
+            userEquipmentsData &&
+            userEquipmentsData.data.map(equipment =>
+                    <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
-                    <div className=' text-xs flex flex-col items-start gap-y-1'>
-                        <p>کلاسB / مدل{data?.data.id} / برندNiviuk</p>
-                        <p>77 پرواز / 24 ساعت</p>
+                        <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                            <p> مدل {equipment.model} / برند {equipment.brand}</p>
+                            <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت / فعال تا {equipment.remainingTimeToRepackInDays} روز</p>
+                        </div>
+
+                        <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                            <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={() => setShowPopup(true)} >ویرایش</button>
+                            <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} >انتقال مالکیت</button>
+                        </div>
+
                     </div>
-
-                    <button className={ButtonStyles.normalButton} onClick={() => setShowPopup(true)} > انتقال مالکیت</button>
-
-                </div>
+                )
+            }
 
             </div>
 

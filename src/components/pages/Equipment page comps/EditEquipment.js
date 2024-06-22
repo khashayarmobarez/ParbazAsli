@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// queries
+import { useAnEquipment } from '../../../Utilities/Services/equipmentQueries';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -11,11 +14,13 @@ import CloseIcon from '@mui/icons-material/Close';
 // inputData
 import { brandsOptionsData } from '../../../Utilities/Providers/dropdownInputOptions'
 
-// components
+// comps
 import PageTitle from '../../reuseable/PageTitle';
 import DropdownInput from '../../inputs/DropDownInput'
 
-const ParachuteRenewal = () => {
+const EditEquipment = () => {
+
+    const { data: EquipmentData, loading, error } = useAnEquipment()
 
     const navigate = useNavigate()
 
@@ -28,27 +33,18 @@ const ParachuteRenewal = () => {
         setSelectedClassType(event.target.value);
     };
 
-    const handleSubmit = () => {
-         setShowPopup(false)
-
-    };
-
-
-
-
-
     return (
         <div className='flex flex-col items-center pt-[4rem] '>
-            <div className='w-[90%] flex flex-col items-center gap-y-6 md:w-[70%]'>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'تمدید زود هنگام'} navigateTo={'profile'} paddingRight={'33%'} />  
+                <PageTitle title={'تمدید زود هنگام'} navigateTo={'profile'} />  
 
                 <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
                 و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
                 <form className={` w-[90%] rounded-xl flex flex-col py-8 gap-y-6`}>
 
-                    <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
+                    <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full '>
 
                         <div className='flex flex-col items-start gap-y-2'>
                             <p className=' text-sm'>برند</p>
@@ -82,7 +78,7 @@ const ParachuteRenewal = () => {
 
                     <div id='no grid list' className='flex flex-col gap-y-5 mt-6'>
 
-                        <div className='flex flex-col items-start gap-y-5 mx-4'>
+                        <div className='flex flex-col items-start gap-y-5'>
                                 <p className=' text-sm'>سریال چتر کمکی</p>
                                 
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
@@ -128,4 +124,4 @@ const ParachuteRenewal = () => {
     );
 };
 
-export default ParachuteRenewal;
+export default EditEquipment;

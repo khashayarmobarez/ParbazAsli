@@ -107,7 +107,7 @@ const Settings = ({ userRole }) => {
                     }
                 </div>
 
-                <div className='w-[90%] flex flex-col items-center gap-y-6'>
+                {/* <div className='w-[90%] flex flex-col items-center gap-y-6'>
                     <DropDownLine  title='تغییر مربی' icon={moneyIcon} dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClick={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
                     {
                         DropDown === 'dropDown4' &&
@@ -120,7 +120,7 @@ const Settings = ({ userRole }) => {
                             <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
                         </div>
                     }
-                </div>
+                </div> */}
 
                 { userRole === 'coach' &&
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>

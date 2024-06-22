@@ -39,4 +39,56 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useAddEquipment };
+
+
+// get all Equipment from one type
+    const getUserEquipmentsByType = async (equipmentType) => {
+        try {
+            const token = Cookies.get('token');
+            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            });
+            // console.log(response.data);  
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to fetch equipments');
+        }
+    };
+
+
+    const useUserEquipments = (equipmentType) => {
+        return useQuery(['userEquipments', equipmentType], () => getUserEquipmentsByType(equipmentType));
+    };
+
+
+
+
+
+// get an Equipment data
+    const getAnEquipmentData = async (equipmentId) => {
+        try {
+            const token = Cookies.get('token');
+            const response = await axios.get(`${BASE_URL}/api/Equipment/GetEquipment?equipmentId=${equipmentId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            });
+            // console.log(response.data);  
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to fetch the equipment data');
+        }
+    };
+
+
+    const useAnEquipment = (equipmentId) => {
+        return useQuery(['anEquipment', equipmentId], getAnEquipmentData(equipmentId));
+    };
+
+
+
+export { useAddEquipment, useUserEquipments, useAnEquipment };
