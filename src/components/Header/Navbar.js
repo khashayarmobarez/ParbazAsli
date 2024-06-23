@@ -132,7 +132,9 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             boxShadow: '-3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
 
                                 <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
-                                    <img src={companyLogo} alt="Company Logo" className={styles.logo} /> 
+
+                                    {/* app logo */}
+                                    <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={styles.logo} /> 
                                 
                                     <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
                                     style={{ background: isOpen ? 'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)' : 'none',

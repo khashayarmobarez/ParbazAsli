@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // assets
 import logo from '../../../assets/ApiData Temporary/Digilogbook -1401 12.png'
@@ -16,6 +17,9 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InputWithButton from '../../inputs/InputWithButton';
 
 const FooterLanding = () => {
+
+  const navigate = useNavigate()
+
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -49,14 +53,14 @@ const FooterLanding = () => {
             {isSmallScreen && 
               <>
                 <ul className='w-full flex justify-around'>
-                  <li>خانه</li>
-                  <li>بلاگ</li>
-                  <li>ارتباط با ما</li>
-                  <li>تماس با ما</li>
+                  <li onClick={() => navigate('/profile') } >خانه</li>
+                  <li onClick={() => navigate('/blogs') } >بلاگ</li>
+                  <li onClick={() => navigate('/aboutUs') } >درباره ما</li>
+                  <li onClick={() => navigate('/contactUs') } >تماس با ما</li>
                 </ul>
                 <div className='w-full flex justify-around '>
-                  <div className='flex gap-x-2'><EmailOutlinedIcon /><p>info@digilogbook.ir</p></div>
-                  <div className='flex gap-x-2'><LocalPhoneOutlinedIcon /><p>021-77788899</p></div>
+                  <div className='flex gap-x-2'  ><EmailOutlinedIcon /><p>info@digilogbook.ir</p></div>
+                  <div className='flex gap-x-2'  ><LocalPhoneOutlinedIcon /><p>021-77788899</p></div>
               </div>
               </>
             }

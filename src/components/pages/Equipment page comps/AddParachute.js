@@ -55,7 +55,7 @@ const AddParachute = () => {
   const [year, setYear] = useState('');
   const [lastPackerId, setLastPackerId] = useState('');
   
-  const { data: userByIdData, loading: userByIdLoad, error: userByIdError, refetch } = useUserById(lastPackerId)
+  const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(lastPackerId)
 
   // text state 
   const [aircraft, setAircraft] = useState('');

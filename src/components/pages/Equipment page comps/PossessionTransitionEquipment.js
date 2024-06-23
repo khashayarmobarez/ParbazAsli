@@ -36,7 +36,7 @@ const PossessionTransitionEquipment = () => {
     const [receiverId, setReceiverId] = useState('');
 
     // getting the reciever name
-    // const { data: userByIdData, error: userByIdError } = useUserById(receiverId)
+    const { data: userByIdData, error: userByIdError } = useUserById(receiverId)
 
     // date state
     const [expirationDate, setExpirationDate] = useState('')
@@ -105,18 +105,18 @@ const PossessionTransitionEquipment = () => {
                     onChange={handleTextInputReceiverId}
                     placeholder='کد کاربری مالک جدید'
                     />
-                    {/* {userByIdError && 
-                        <div className='flex gap-x-1 text-[#A5E65E]'>
+                    {userByIdData &&
+                        <div className='flex gap-x-1 text-[#A5E65E] self-start'>
+                            <PersonOutlineOutlinedIcon />
+                            <p>{userByIdData.data.fullName}</p>
+                        </div>
+                    }
+                    {receiverId && receiverId.length > 5 && !userByIdData &&
+                        <div className='flex gap-x-1 text-[var(--red-text)] self-start'>
                             <PersonOutlineOutlinedIcon />
                             <p>کاربر یافت نشد</p>
                         </div>
                     }
-                    {userByIdData &&
-                        <div className='flex gap-x-1 text-[#A5E65E]'>
-                            <PersonOutlineOutlinedIcon />
-                            <p>{userByIdData.data.fullName}</p>
-                        </div>
-                    } */}
 
                     {activeLink === 'temporary' && 
                         <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
