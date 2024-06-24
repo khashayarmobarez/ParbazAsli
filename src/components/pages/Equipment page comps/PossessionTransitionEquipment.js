@@ -127,9 +127,6 @@ const PossessionTransitionEquipment = () => {
                     {activeLink === 'temporary' && 
                         <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
                     }
-                    {activeLink === 'temporary' && 
-                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
-                    }
 
                     {/* <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button> */}
 
