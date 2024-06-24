@@ -65,7 +65,7 @@ const EditEquipment = () => {
 
                         <form className={` w-[90%] rounded-xl flex flex-col gap-y-6`}>
 
-                            <div className=' grid grid-cols-2 gap-x-2 gap-y-4 w-full '>
+                            <div className=' grid grid-cols-2 gap-x-2 gap-y-4 w-full text-[var(--low-opacity-white) ] '>
 
                                 <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>برند</p>
@@ -122,11 +122,15 @@ const EditEquipment = () => {
                                             <p>لورم ایپسوم</p>
                                         </div>
 
-                                        <DropdownInput name={'تاریخ آخرین بسته‌بندی'} options={brandsOptionsData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                                        {equipmentType === 'parachute' &&
+                                        <>
+                                            <DropdownInput name={'تاریخ آخرین بسته‌بندی'} options={brandsOptionsData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
 
-                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                            <p>بسته‌بندی شده توسط(کد کاربری)</p>
-                                        </div>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>بسته‌بندی شده توسط(کد کاربری)</p>
+                                            </div>
+                                        </>
+                                        }
                                 </div>
 
 

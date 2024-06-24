@@ -24,7 +24,7 @@ const FlightEquipment = () => {
         navigate(`/EditEquipment/${id}`);
     };
 
-    const handlePossesion = (id) => () => {
+    const handlePossession = (id) => () => {
         navigate(`/possessionTransitionEquipment/${id}`);
     };
 
@@ -49,7 +49,7 @@ const FlightEquipment = () => {
 
                             <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
                                 <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button>
-                                <button className={ButtonStyles.normalButton} onClick={handlePossesion(equipment.id)} >انتقال مالکیت</button>
+                                <button className={ButtonStyles.normalButton} onClick={handlePossession(equipment.id)} >انتقال مالکیت</button>
                             </div>
 
                         </div>

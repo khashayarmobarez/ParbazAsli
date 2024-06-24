@@ -41,7 +41,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-// get all Equipment from one type
+// get all active Equipment from one type
     const getUserEquipmentsByType = async (equipmentType) => {
         try {
             const token = Cookies.get('token');
@@ -51,7 +51,6 @@ const BASE_URL = 'https://api.par-baz.ir/api'
                 'Content-Type': 'application/json',
             },
             });
-            // console.log(response.data);  
             return response.data;
         } catch (error) {
             throw new Error('Failed to fetch equipments');
@@ -93,4 +92,40 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useAddEquipment, useUserEquipments, useAnEquipment };
+
+// change equipment possession mutation
+    const possessionTransition = async (formData) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/Equipment/PossessionTransition`, formData, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+        },
+        });
+    
+        if (response.status !== 200) {
+        throw new Error('Failed to change possession');
+        }
+    
+        return response.data;
+    };
+
+    const usePossessionTransition = () => {
+        return useMutation(possessionTransition, {
+        onSuccess: (data) => {
+            // Handle success, e.g., show a notification, reset the form, etc.
+            console.log('Possession transition was successful:', data);
+            // You can add additional logic here, such as navigating to another page or updating the UI
+        },
+        onError: (error) => {
+            // Handle error, e.g., show an error message
+            console.error('Error changing possession:', error);
+            // You can handle the error in a way that suits your application
+        },
+        });
+    };
+
+
+
+
+export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition };

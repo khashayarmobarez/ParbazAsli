@@ -232,9 +232,6 @@ const AddFlightEquipment = () => {
 
                       <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                       
-                      {/* aircraft model input */}
-                      <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل وسیله پروازی' />
-                        
                         {/* brand input */}
                         <DropdownInput
                           className='col-span-1'
@@ -243,6 +240,9 @@ const AddFlightEquipment = () => {
                           selectedOption={selectedOptionBrand}
                           handleSelectChange={handleSelectChangeBrand}
                         />
+                        
+                        {/* aircraft model input */}
+                        <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل وسیله پروازی' />
 
                         {/* class input */}
                         <DropdownInput

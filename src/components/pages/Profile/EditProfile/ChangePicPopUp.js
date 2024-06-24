@@ -61,16 +61,28 @@ const ChangePicPopUp = ({setShowPopup, showPopup}) => {
         if (uploadedFile) {
             const formData = new FormData();
             formData.append('file', uploadedFile);
-            uploadPicture(formData);
+            uploadPicture(formData
+                , {
+                    onSuccess: () => {
+                        window.location.reload();
+                    }
+                }
+            );
             // setShowPopup(false)
-            // window.location.reload();
         } else {
             setErrMsg('لطفا یک فایل تصویری انتخاب کنید.');
         }
     };
 
     const handleRemove = (event) => {
-        deletePicture()
+        deletePicture(
+            null,
+            {
+                onSuccess: () => {
+                    window.location.reload();
+                }
+            }
+        );
         if(!isDeleting && !deleteError) {
             setShowPopup(false)
         }

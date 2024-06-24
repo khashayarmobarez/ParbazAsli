@@ -294,11 +294,11 @@ const AddParachute = () => {
 
                     <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
 
-                      {/* aircraft model input */}
-                      <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
-
                       {/* brand input */}
                       <DropdownInput name={'برند'} options={brandsData.data} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
+                      
+                      {/* aircraft model input */}
+                      <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
 
                       {/* size input */}
                       <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
@@ -339,10 +339,10 @@ const AddParachute = () => {
                           placeholder='شناسه آخرین بسته‌بندی کننده'
                         />
                         {userByIdData &&
-                        <div className='flex gap-x-1 text-[#A5E65E]'>
-                          <PersonOutlineOutlinedIcon />
-                          <p>{userByIdData.data.fullName}</p>
-                        </div>
+                          <div className='flex gap-x-1 text-[#A5E65E]'>
+                            <PersonOutlineOutlinedIcon />
+                            <p>{userByIdData.data.fullName}</p>
+                          </div>
                         }
                       </div>
                     

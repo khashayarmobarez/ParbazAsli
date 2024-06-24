@@ -219,8 +219,6 @@ const AddHarness = () => {
                   
                   <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                     
-                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />
-
                     {/* brand input */}
                     <DropdownInput
                       name={'برند'}
@@ -228,6 +226,8 @@ const AddHarness = () => {
                       selectedOption={brand}
                       handleSelectChange={handleBrandChange}
                     />
+                    
+                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />
 
                     {/* size input */}
                     <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />

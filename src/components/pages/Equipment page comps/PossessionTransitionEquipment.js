@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // styles
@@ -12,9 +12,10 @@ import Cube from '../../../assets/icons/3dCube.svg'
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-// Queries
-import { useAnEquipment } from '../../../Utilities/Services/equipmentQueries';
+// utilities and Queries
+import { useAnEquipment, usePossessionTransition } from '../../../Utilities/Services/equipmentQueries';
 import { useUserById } from '../../../Utilities/Services/queries';
+import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // comps
 import PageTitle from '../../reuseable/PageTitle';
@@ -22,16 +23,15 @@ import TextInput from '../../inputs/textInput';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 
 
-/**
- * Component for handling possession transition of equipment.
- *
- * @returns {JSX.Element} PossessionTransitionEquipment component.
- */
 const PossessionTransitionEquipment = () => {
 
+    const navigate = useNavigate();
     const { id } = useParams();
     
     const { data: EquipmentData, loading, error } = useAnEquipment(id)
+    const { mutate: mutateTransitionData, loading:possessionLoading } = usePossessionTransition();
+
+    const { formatDate } = useDateFormat();
 
     
     // Ref to the button element
@@ -44,7 +44,7 @@ const PossessionTransitionEquipment = () => {
 
     const [showPopup, setShowPopup] = useState(false);
 
-    // getting the reciever name
+    // getting the receiver name
     const { data: userByIdData, error: userByIdError } = useUserById(receiverId)
 
     // date state
@@ -124,6 +124,24 @@ const PossessionTransitionEquipment = () => {
     }
 
 
+
+    const handleSubmit = (event) => {
+            event.preventDefault();
+    
+            var formData = new FormData();
+            // formatData function
+            const formattedDate = formatDate(expirationDate) + ' 23:00';
+    
+    
+            formData.append("equipmentId", id);
+            formData.append("receiverUserId", receiverId);
+            formData.append("type", activeLink);
+            formData.append("expirationDateTime", formattedDate);
+    
+            mutateTransitionData(formData);
+        }
+
+
     // Effect to click the button when the page is mounted
     useEffect(() => {
         // Check if the button ref exists and it has a current property
@@ -141,8 +159,8 @@ const PossessionTransitionEquipment = () => {
                 <PageTitle title={'انتقال مالکیت وسیله'}/>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[6.6rem] z-10`}>
-                    <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button> 
-                    <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanently' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanently')} >انتقال دائمی</button>
+                    <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button>
+                    <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >انتقال دائمی</button>
                 </div>
 
                 <form className='w-[90%] flex flex-col items-center mt-8  gap-y-4'>
@@ -162,7 +180,7 @@ const PossessionTransitionEquipment = () => {
                     placeholder='کد کاربری مالک جدید'
                     />
                     {userByIdData &&
-                        <div className='flex gap-x-1 text-[#A5E65E] self-start'>
+                        <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
                             <PersonOutlineOutlinedIcon />
                             <p>{userByIdData.data.fullName}</p>
                         </div>
@@ -189,7 +207,7 @@ const PossessionTransitionEquipment = () => {
                         <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                     
                         <div className='w-[80%] flex justify-between'>
-                            <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>بله</button>
+                            <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >بله</button>
                             <button className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>خیر</button>
                         </div>
                     
