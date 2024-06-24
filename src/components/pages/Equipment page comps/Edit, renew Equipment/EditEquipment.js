@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // queries
-import { useAnEquipment } from '../../../../Utilities/Services/equipmentQueries';
+import { useAnEquipment, useEditEquipment } from '../../../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../../../Utilities/Services/queries';
+
+// utilities
+import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
 
 // styles
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
@@ -10,36 +14,101 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-// inputData
-import { brandsOptionsData } from '../../../../Utilities/Providers/dropdownInputOptions'
+// assets
+import Cube from '../../../../assets/icons/3dCube.svg'
 
 // comps
 import PageTitle from '../../../reuseable/PageTitle';
-import DropdownInput from '../../../inputs/DropDownInput'
 import Loader from '../../../Loader/Loader';
+import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
+import TextInput from '../../../inputs/textInput';
+import UploadFileInput from '../../../inputs/UploadFileInput';
 
 const EditEquipment = () => {
-
     const navigate = useNavigate()
-
     const { id } = useParams();
-
     const { data: EquipmentData, loading, error } = useAnEquipment(id)
+    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass } = EquipmentData?.data || {};
+    const [showPopup, setShowPopup] = useState(false);
+    const [packageDate, setPackageDate] = useState('')
+    const [lastPackerId, setLastPackerId] = useState('');
+    const [equipmentSerial, setEquipmentSerial] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+    const { data: userByIdData } = useUserById(lastPackerId)
 
+    // useEditEquipment for submitting the form
+    const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
+    
     useEffect(() => {
         console.log(EquipmentData)
     },[EquipmentData])
 
-    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass } = EquipmentData?.data || {};
+    const handlePackageDate = (date) => {
+        setPackageDate(date);
+        console.log(date)
 
-    const [selectedClassType, setSelectedClassType] = useState('');
-    const [showPopup, setShowPopup] = useState(false);
+        clickOnRightSide()
+    }
 
-    // for dropdown
-    const handleSelectClassType = (event) => {
-        setSelectedClassType(event.target.value);
+    const clickOnRightSide = () => {
+        // Create a new mouse event
+        const clickEvent = new MouseEvent('mousedown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            clientX: window.innerWidth - 1, // Right edge of the screen
+            clientY: window.innerHeight / 2 // Middle of the screen vertically
+        });
+    // Dispatch the event to the document
+    document.dispatchEvent(clickEvent);
     };
+
+    const handleTextInputLastPackerId = (event) => {
+        setLastPackerId(event.target.value);
+    };
+
+    const handleTextInputEquipmentSerial = (event) => {
+        setEquipmentSerial(event.target.value);
+    }
+
+    // Event handlers for uplopading file
+    const handleFileChange = (file) => {
+        setSelectedFile(file);
+    };
+
+    const { formatDate } = useDateFormat();
+
+    // Event handler for form submission
+    const handlePopup = (event) => {
+
+        event.preventDefault();
+        setShowPopup(true);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('submitting')
+        
+        // Create a new FormData object
+        const formData = new FormData();
+
+        const formattedPackedDate = formatDate(packageDate) + " 00:00";
+        if(equipmentType === "Parachute") {
+            formData.append('lastPackingDateTime', formattedPackedDate);
+            formData.append('lastPackerId', lastPackerId);
+        }
+        formData.append('equipmentId', id);
+        formData.append('serialNumber', equipmentSerial);
+        formData.append('file', selectedFile);
+
+        editEquipment(formData)
+
+    }
+
+
+
 
     return (
         <div className='flex flex-col items-center pt-[4rem] '>
@@ -116,18 +185,43 @@ const EditEquipment = () => {
                             <div id='no grid list' className='flex flex-col gap-y-5'>
 
                                 <div className='flex flex-col items-start gap-y-5'>
-                                        <p className=' text-sm'>سریال {equipmentType}</p>
+
+                                        <h3 className=' text-[#ED553B] text-xl'>ویرایش اطلاعات</h3>
+                                        {/* text input to add parachute serial */}
+                                        <TextInput
+                                        icon={Cube}
+                                        className='col-span-1'
+                                        value={equipmentSerial}
+                                        onChange={handleTextInputEquipmentSerial}
+                                        placeholder='سربال وسیله'
+                                        />
+
+                                        {/* for uploading pictures */}
+                                        <UploadFileInput name={'سریال چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+
                                         
-                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                            <p>لورم ایپسوم</p>
-                                        </div>
 
-                                        {equipmentType === 'parachute' &&
+                                        {equipmentType === "Parachute" &&
                                         <>
-                                            <DropdownInput name={'تاریخ آخرین بسته‌بندی'} options={brandsOptionsData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
 
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>بسته‌بندی شده توسط(کد کاربری)</p>
+                                            {/* Last package date input */}
+                                            <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+
+                                            {/* Last Packer ID input */}
+                                            <div className='w-full flex flex-col items-start gap-y-2'>
+                                                <TextInput
+                                                icon={Cube}
+                                                className='col-span-1'
+                                                value={lastPackerId}
+                                                onChange={handleTextInputLastPackerId}
+                                                placeholder='شناسه آخرین بسته‌بندی کننده'
+                                                />
+                                                {userByIdData &&
+                                                <div className='flex gap-x-1 text-[#A5E65E]'>
+                                                    <PersonOutlineOutlinedIcon />
+                                                    <p>{userByIdData.data.fullName}</p>
+                                                </div>
+                                                }
                                             </div>
                                         </>
                                         }
@@ -138,7 +232,7 @@ const EditEquipment = () => {
 
 
                             <div className='w-full flex justify-center items-center'>
-                                <button onClick={(e) => {setShowPopup(true); e.preventDefault();} } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
+                                <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
                             </div>
 
 
@@ -155,7 +249,7 @@ const EditEquipment = () => {
 
                             <div className='w-full flex justify-around items-center'>
                                 <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                                <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>تایید</button>
+                                <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit}>تایید</button>
                             </div>
 
                         </form>

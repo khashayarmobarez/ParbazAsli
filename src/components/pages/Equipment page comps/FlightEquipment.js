@@ -4,8 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 // queries
 import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
 
-// css classes 
+// styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
 // mui
 import AddIcon from '@mui/icons-material/Add';
 

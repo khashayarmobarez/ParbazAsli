@@ -29,6 +29,14 @@ const PossessionTransitionEquipment = () => {
     const { id } = useParams();
     
     const { data: EquipmentData, loading, error } = useAnEquipment(id)
+
+    useEffect(() => {
+        if (EquipmentData && EquipmentData.data) {
+            console.log(EquipmentData);
+        }
+    }, [EquipmentData]);
+
+
     const { mutate: mutateTransitionData, loading:possessionLoading } = usePossessionTransition();
 
     const { formatDate } = useDateFormat();
@@ -158,61 +166,78 @@ const PossessionTransitionEquipment = () => {
 
                 <PageTitle title={'انتقال مالکیت وسیله'}/>
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[6.6rem] z-10`}>
-                    <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button>
-                    <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >انتقال دائمی</button>
-                </div>
+                {loading && <p>loading...</p>}
 
-                <form className='w-[90%] flex flex-col items-center mt-8  gap-y-4'>
+                {error && <p>error</p>}
 
-                    {activeLink === 'temporary' ? 
-                        <h1 className=' text-xl font-medium text-[var(--yellow-text)]'>انتقال موقت</h1>
-                        :
-                        <h1 className=' text-xl font-medium text-[var(--red-text)]'>انتقال دائمی</h1>
+                {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Accepted' &&
+                    <>
+                        <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[6.6rem] z-10`}>
+                            <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button>
+                            <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >انتقال دائمی</button>
+                        </div>
+
+                        <form className='w-[90%] flex flex-col items-center mt-8  gap-y-4'>
+
+                            {activeLink === 'temporary' ? 
+                                <h1 className=' text-xl font-medium text-[var(--yellow-text)]'>انتقال موقت</h1>
+                                :
+                                <h1 className=' text-xl font-medium text-[var(--red-text)]'>انتقال دائمی</h1>
+                            }
+                            
+                            {/* Serial Number input */}
+                            <TextInput
+                            icon={Cube}
+                            className='col-span-1'
+                            value={receiverId}
+                            onChange={handleTextInputReceiverId}
+                            placeholder='کد کاربری مالک جدید'
+                            />
+                            {userByIdData &&
+                                <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
+                                    <PersonOutlineOutlinedIcon />
+                                    <p>{userByIdData.data.fullName}</p>
+                                </div>
+                            }
+                            {receiverId && receiverId.length > 5 && !userByIdData &&
+                                <div className='flex gap-x-1 text-[var(--red-text)] self-start'>
+                                    <PersonOutlineOutlinedIcon />
+                                    <p>کاربر یافت نشد</p>
+                                </div>
+                            }
+
+                            {activeLink === 'temporary' && 
+                                <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
+                            }
+
+                            <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+
+
+                        </form>
+
+                        {/* popup */}
+                        <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
+                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-[200px] flex flex-col justify-around items-center z-10 md:z-[50]`}>
+                                <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
+                            
+                                <div className='w-[80%] flex justify-between'>
+                                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >بله</button>
+                                    <button className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>خیر</button>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </>
                     }
-                    
-                    {/* Serial Number input */}
-                    <TextInput
-                    icon={Cube}
-                    className='col-span-1'
-                    value={receiverId}
-                    onChange={handleTextInputReceiverId}
-                    placeholder='کد کاربری مالک جدید'
-                    />
-                    {userByIdData &&
-                        <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
-                            <PersonOutlineOutlinedIcon />
-                            <p>{userByIdData.data.fullName}</p>
+                    {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
+                        <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
+                            <h1 className=' text-xl font-medium text-[var(--red-text)]'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
+                            <h1 >بعد از تایید شما میتوانید مالکیت وسیله خود را انتقال دهید</h1>
                         </div>
                     }
-                    {receiverId && receiverId.length > 5 && !userByIdData &&
-                        <div className='flex gap-x-1 text-[var(--red-text)] self-start'>
-                            <PersonOutlineOutlinedIcon />
-                            <p>کاربر یافت نشد</p>
-                        </div>
+                    {(EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
+                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-[var(--red-text)]'>برای انتقال مالکیت, اول سریال وسیله پروازی خود را در قسمت ویرایش وارد کنید</h1>
                     }
-
-                    {activeLink === 'temporary' && 
-                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
-                    }
-
-                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
-
-
-                </form>
-
-                {/* popup */}
-                <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
-                    <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-[200px] flex flex-col justify-around items-center z-10 md:z-[50]`}>
-                        <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
-                    
-                        <div className='w-[80%] flex justify-between'>
-                            <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >بله</button>
-                            <button className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>خیر</button>
-                        </div>
-                    
-                    </div>
-                </div>
 
             </div>
             

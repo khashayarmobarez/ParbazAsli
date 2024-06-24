@@ -128,4 +128,40 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition };
+
+// post Edit Equipments https://api.par-baz.ir/api/Equipment/EditEquipment
+    const postEditEquipment = async (formData) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/Equipment/EditEquipment`, formData, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+        },
+        });
+    
+        if (response.status !== 200) {
+        throw new Error('Failed to edit equipment');
+        }
+    
+        return response.data;
+    }
+
+    const useEditEquipment = () => {
+        return useMutation(postEditEquipment, {
+        onSuccess: (data) => {
+            // Handle success, e.g., show a notification, reset the form, etc.
+            console.log('Equipment edited successfully:', data);
+            // You can add additional logic here, such as navigating to another page or updating the UI
+        },
+        onError: (error) => {
+            // Handle error, e.g., show an error message
+            console.error('Error editing equipment:', error);
+            // You can handle the error in a way that suits your application
+        },
+        });
+    };
+
+
+
+
+export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment };
