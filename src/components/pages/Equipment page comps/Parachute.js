@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // css classes 
-import styles from './FlightEquipment.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import inputStyles from '../../../styles/Inputs/Inputs.module.css'
 import boxStyle from '../../../styles/Boxes/DataBox.module.css'

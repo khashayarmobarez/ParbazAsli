@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // assets
 import Cube from '../../../assets/icons/3dCube.svg'
@@ -20,6 +22,11 @@ import TextInput from '../../inputs/textInput';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 
 
+/**
+ * Component for handling possession transition of equipment.
+ *
+ * @returns {JSX.Element} PossessionTransitionEquipment component.
+ */
 const PossessionTransitionEquipment = () => {
 
     const { id } = useParams();
@@ -31,9 +38,11 @@ const PossessionTransitionEquipment = () => {
     const buttonRef = useRef(null);
     
     // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState('entertaiment');
+    const [activeLink, setActiveLink] = useState('temporary');
     
     const [receiverId, setReceiverId] = useState('');
+
+    const [showPopup, setShowPopup] = useState(false);
 
     // getting the reciever name
     const { data: userByIdData, error: userByIdError } = useUserById(receiverId)
@@ -67,11 +76,52 @@ const PossessionTransitionEquipment = () => {
         document.dispatchEvent(clickEvent);
     };
 
-    // handlePopUp = (event) => {
-    //     event.preventDefault()
 
-        
-    // }
+    const handlePopUp = (event) => {
+        event.preventDefault()
+
+        if(activeLink === 'temporary') {
+            if(!userByIdData) {
+                toast('کاربر مورد نظر یافت نشد', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            } else if(!expirationDate) {
+                toast('تاریخ پایان انتقال را وارد کنید', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            } else if(!expirationDate > new Date()) {
+                toast('تاریخ پایان انتقال باید بعد از امروز باشد ', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            } else {
+                setShowPopup(true)
+            }
+        } else {
+            if(!userByIdData) {
+                toast('کاربر مورد نظر یافت نشد', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            } else {
+                setShowPopup(true)
+            }
+        }
+    }
 
 
     // Effect to click the button when the page is mounted
@@ -90,7 +140,7 @@ const PossessionTransitionEquipment = () => {
 
                 <PageTitle title={'انتقال مالکیت وسیله'}/>
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[6.6rem] z-50`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[6.6rem] z-10`}>
                     <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button> 
                     <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanently' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanently')} >انتقال دائمی</button>
                 </div>
@@ -128,11 +178,23 @@ const PossessionTransitionEquipment = () => {
                         <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
                     }
 
-                    {/* <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button> */}
+                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
 
                 </form>
 
+                {/* popup */}
+                <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
+                    <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-[200px] flex flex-col justify-around items-center z-10 md:z-[50]`}>
+                        <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
+                    
+                        <div className='w-[80%] flex justify-between'>
+                            <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => setShowPopup(false)}>بله</button>
+                            <button className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>خیر</button>
+                        </div>
+                    
+                    </div>
+                </div>
 
             </div>
             
