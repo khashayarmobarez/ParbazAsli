@@ -9,8 +9,6 @@ import PageTitle from '../components/reuseable/PageTitle';
 
 const Equipment = () => {
 
-    const navigate = useNavigate();
-
     // to set which button is active and style it
     const [activeLink, setActiveLink] = useState(''); // State to track active link
     
@@ -29,7 +27,7 @@ const Equipment = () => {
 
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6'>
 
-                <PageTitle title={'تجهیزات'}  />  
+                <PageTitle title={'تجهیزات'} navigateTo={'/profile'} />  
                 
                 {/* buttons */}
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
