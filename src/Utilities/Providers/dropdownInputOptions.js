@@ -25,8 +25,8 @@ const brandsOptionsData = [
   ];
 
   const flightTypeOptions = [
-    { name: 'single', id: ' سینگل' },
-    { name: 'tandem', id: ' تندم' },
+    { name: 'سینگل', id: 1 },
+    { name: 'تندم', id: 2 },
   ];
 
 

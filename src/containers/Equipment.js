@@ -12,10 +12,14 @@ const Equipment = () => {
     const navigate = useNavigate();
 
     // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState('flight'); // State to track active link
+    const [activeLink, setActiveLink] = useState(''); // State to track active link
     
-
-
+    // function to click with useRef on one of the buttons when page renders
+    const ref = useRef(null);
+    useEffect(() => {
+        ref.current.click();
+        }
+    , []);
 
      // Empty dependency array ensures the effect runs only once after initial render
 
@@ -29,7 +33,7 @@ const Equipment = () => {
                 
                 {/* buttons */}
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
-                    <Link  to='/equipment/flightEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'flight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('flight')}>بال</Link> 
+                    <Link ref={ref} to='/equipment/flightEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'flight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('flight')}>بال</Link> 
                     <Link to='/equipment/parachute' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'parachute' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('parachute')} >چتر کمکی</Link> 
                     <Link to='/equipment/harness' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'harness' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('harness')} >هارنس</Link> 
                 </div>

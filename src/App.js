@@ -97,7 +97,16 @@ function App() {
   const token = Cookies.get('token') || null;
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
-  const isUserAuthenticated = Cookies.get('isUserAuthenticated') || 'false';
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkUserAuthentication = async () => {
+      const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
+      setIsUserAuthenticated(isAuthenticated);
+    };
+
+    checkUserAuthentication();
+  }, []);
           
   const {userRole} = useSelector(selectUser)
 

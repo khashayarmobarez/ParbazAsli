@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // queries
 import { useAnEquipment, useEditEquipment } from '../../../../Utilities/Services/equipmentQueries';
@@ -103,7 +104,30 @@ const EditEquipment = () => {
         formData.append('serialNumber', equipmentSerial);
         formData.append('file', selectedFile);
 
-        editEquipment(formData)
+        editEquipment(formData, {
+            onSuccess: () => {
+                toast('تغییرات وسیله پروازی شما اعمال شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                navigate('/equipment');
+                },
+                onError: (error) => {
+                    const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    console.error(error);
+                    setShowPopup(false);
+                }
+        });
 
     }
 
@@ -182,58 +206,68 @@ const EditEquipment = () => {
 
                             </div>
 
-                            <div id='no grid list' className='flex flex-col gap-y-5'>
+                            {/* to check if the equipment is editable  */}
+                            { 
+                            (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') &&
+                            <>  
+                                <div id='no grid list' className='flex flex-col gap-y-5'>
 
-                                <div className='flex flex-col items-start gap-y-5'>
+                                    <div className='flex flex-col items-start gap-y-5'>
 
-                                        <h3 className=' text-[#ED553B] text-xl'>ویرایش اطلاعات</h3>
-                                        {/* text input to add parachute serial */}
-                                        <TextInput
-                                        icon={Cube}
-                                        className='col-span-1'
-                                        value={equipmentSerial}
-                                        onChange={handleTextInputEquipmentSerial}
-                                        placeholder='سربال وسیله'
-                                        />
+                                            <h3 className=' text-[#ED553B] text-xl'>ویرایش اطلاعات</h3>
 
-                                        {/* for uploading pictures */}
-                                        <UploadFileInput name={'سریال چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-
-                                        
-
-                                        {equipmentType === "Parachute" &&
-                                        <>
-
-                                            {/* Last package date input */}
-                                            <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
-
-                                            {/* Last Packer ID input */}
-                                            <div className='w-full flex flex-col items-start gap-y-2'>
+                                            {EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') &&
+                                            <>
+                                                {/* text input to add parachute serial */}
                                                 <TextInput
                                                 icon={Cube}
                                                 className='col-span-1'
-                                                value={lastPackerId}
-                                                onChange={handleTextInputLastPackerId}
-                                                placeholder='شناسه آخرین بسته‌بندی کننده'
+                                                value={equipmentSerial}
+                                                onChange={handleTextInputEquipmentSerial}
+                                                placeholder='سربال وسیله'
                                                 />
-                                                {userByIdData &&
-                                                <div className='flex gap-x-1 text-[#A5E65E]'>
-                                                    <PersonOutlineOutlinedIcon />
-                                                    <p>{userByIdData.data.fullName}</p>
+
+                                                {/* for uploading pictures */}
+                                                <UploadFileInput name={'سریال چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                            </>
+                                            }
+                                            
+
+                                            {equipmentType === "Parachute" &&
+                                            <>
+
+                                                {/* Last package date input */}
+                                                <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+
+                                                {/* Last Packer ID input */}
+                                                <div className='w-full flex flex-col items-start gap-y-2'>
+                                                    <TextInput
+                                                    icon={Cube}
+                                                    className='col-span-1'
+                                                    value={lastPackerId}
+                                                    onChange={handleTextInputLastPackerId}
+                                                    placeholder='شناسه آخرین بسته‌بندی کننده'
+                                                    />
+                                                    {userByIdData &&
+                                                    <div className='flex gap-x-1 text-[#A5E65E]'>
+                                                        <PersonOutlineOutlinedIcon />
+                                                        <p>{userByIdData.data.fullName}</p>
+                                                    </div>
+                                                    }
                                                 </div>
-                                                }
-                                            </div>
-                                        </>
-                                        }
+                                            </>
+                                            }
+                                    </div>
+
+
                                 </div>
 
 
-                            </div>
-
-
-                            <div className='w-full flex justify-center items-center'>
-                                <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
-                            </div>
+                                <div className='w-full flex justify-center items-center'>
+                                    <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
+                                </div>
+                            </> 
+                            }
 
 
                         </form>

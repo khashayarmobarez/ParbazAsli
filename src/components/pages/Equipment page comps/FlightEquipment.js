@@ -49,7 +49,15 @@ const FlightEquipment = () => {
                             </div>
 
                             <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button>
+
+                                <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >
+                                    {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
+                                    'ویرایش'
+                                    :
+                                    'جزئیات'
+                                    }
+                                </button>
+
                                 <button className={ButtonStyles.normalButton} onClick={handlePossession(equipment.id)} >انتقال مالکیت</button>
                             </div>
 

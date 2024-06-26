@@ -67,8 +67,17 @@ const Harness = (props) => {
                             </div>
 
                             <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >ویرایش</button>
+
+                                <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >
+                                    {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
+                                    'ویرایش'
+                                    :
+                                    'جزئیات'
+                                    }
+                                </button>
+
                                 <button className={ButtonStyles.normalButton} onClick={handlePossession(equipment.id)} >انتقال مالکیت</button>
+
                             </div>
 
                         </div>
@@ -76,29 +85,6 @@ const Harness = (props) => {
                 }
 
             </div>
-
-            {/* pop up
-            <form onSubmit={handleSubmit} className={` ${boxStyle.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}   w-[304px] h-[280px] flex flex-col justify-around items-center md:z-[50]`}>
-
-                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
-
-                <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>انتقال مالکیت</h3>
-
-                <div className='w-[90%] mt-[-1rem]'>
-                    <PersonOutlineOutlinedIcon sx={{position:'relative', top:'2.2rem', left:'7.5rem'}} />
-                    
-                    <input
-                    className={`${inputStyles.input1} w-[100%] h-12 rounded-xl pr-8`}
-                    type="text"
-                    value={inputValue}
-                    onChange={handleChange}
-                    placeholder="کد کاربری مالک جدید"
-                    />
-                </div>
-
-                <button type="submit" className={`${ButtonStyles.addButton} w-32`} onClick={() => setShowPopup(false)}>ارسال</button>
-
-            </form> */}
 
             
 

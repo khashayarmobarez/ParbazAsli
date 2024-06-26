@@ -17,6 +17,9 @@ import CloseIcon from '@mui/icons-material/Close';
 // assets
 import Cube from '../../../assets/icons/3dCube.svg'
 
+// input options
+import {flightTypeOptions} from '../../../Utilities/Providers/dropdownInputOptions'
+
 // components 
 import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
@@ -35,6 +38,7 @@ const AddFlightEquipment = () => {
     // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
   const [selectedOptionClass, setSelectedOptionClass] = useState('');
+  const [selectedOptionType, setSelectedOptionType] = useState('');
 
   const [aircraft, setAircraft] = useState('');
   const [size, setSize] = useState('');
@@ -75,6 +79,10 @@ const AddFlightEquipment = () => {
 
   const handleSelectChangeClass = (selectedOption) => {
     setSelectedOptionClass(selectedOption);
+  };
+
+  const handleSelectChangeType = (selectedOption) => {
+    setSelectedOptionType(selectedOption);
   };
 
   const handleTextInputSize = (event) => {
@@ -180,6 +188,7 @@ const AddFlightEquipment = () => {
         formData.append('flightHours', flightHour);
         formData.append('year', year);
         formData.append('wingClassId', selectedOptionClass.id);
+        formData.append('WingType', selectedOptionType.id);
 
         console.log(formData)
         console.log('submitting')
@@ -251,6 +260,15 @@ const AddFlightEquipment = () => {
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
+                        />
+
+                        {/* wing type input */}
+                        <DropdownInput
+                          className='col-span-1'
+                          name={'نوع'}
+                          options={flightTypeOptions}
+                          selectedOption={selectedOptionType} 
+                          handleSelectChange={handleSelectChangeType}
                         />
                         
                         {/* Year input */}

@@ -146,7 +146,32 @@ const PossessionTransitionEquipment = () => {
             formData.append("type", activeLink);
             formData.append("expirationDateTime", formattedDate);
     
-            mutateTransitionData(formData);
+            mutateTransitionData(formData, {
+                onSuccess: () => {
+                    // Code to execute after successful mutation
+                    toast('انتقال مالکیت با موفقیت انجام شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    setShowPopup(false);
+                    navigate('/equipment')
+                },
+                onError: (error) => {
+                    // Code to execute when mutation encounters an error
+                    const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    console.error(error);
+                }
+            });
         }
 
 
