@@ -144,7 +144,7 @@ const AddFlightEquipment = () => {
           return;
       }
 
-      if (!selectedOptionBrand || !aircraft || !size || !flightHour || !year || !selectedOptionClass) {
+      if (!selectedOptionBrand || !aircraft || !size || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
           toast('تمامی فیلدها را پر کنید', {
               type: 'error',
               position: 'top-right',
@@ -286,19 +286,17 @@ const AddFlightEquipment = () => {
                         {/* flight hour model input */}
                         <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
                       
+
+                      </div>
+
+                      <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>
                         <TextInput
                           icon={Cube}
                           className='col-span-1'
                           value={serialNumber}
                           onChange={handleTextInputSerialNumber}
-                          placeholder='شماره سریال'
+                          placeholder='شماره سریال (اختیاری)'
                         />
-
-                      </div>
-
-                      <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>
-
-                      <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p>
 
                       {/* for uploading pictures */}
                       <div className='w-full flex flex-col items-start space-y-3'>

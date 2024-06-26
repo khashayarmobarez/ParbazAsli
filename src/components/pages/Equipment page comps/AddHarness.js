@@ -235,29 +235,27 @@ const AddHarness = () => {
                     {/* Flight hour input */}
                     <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
 
-                    <TextInput
-                        icon={Cube}
-                        className='col-span-1'
-                        value={serialNumber}
-                        onChange={handleTextInputSerialNumber}
-                        placeholder='شماره سریال'
-                      />
-
-                      {/* Year input */}
-                      <NumberInput
-                        icon={Cube}
-                        className='col-span-1'
-                        value={year}
-                        onChange={handleTextInputYear}
-                        placeholder='سال'
-                      />
+                    {/* Year input */}
+                    <NumberInput
+                      icon={Cube}
+                      className='col-span-1'
+                      value={year}
+                      onChange={handleTextInputYear}
+                      placeholder='سال'
+                    />
 
                   </div>
 
                   <p className=' self-start md:self-center'>ثبت سریال هارنس (اختیاری)</p>
 
-                  <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیمsd؛</p>
-
+                  {/* Serial number input */}
+                  <TextInput
+                    icon={Cube}
+                    className='col-span-1'
+                    value={serialNumber}
+                    onChange={handleTextInputSerialNumber}
+                    placeholder='شماره سریال (اختیاری)'
+                  />
 
                   {/* for uploading pictures */}
                   <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />

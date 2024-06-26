@@ -96,13 +96,15 @@ const EditEquipment = () => {
         const formData = new FormData();
 
         const formattedPackedDate = formatDate(packageDate) + " 00:00";
-        if(equipmentType === "Parachute") {
+        if(equipmentType === "Parachute" && packageDate && lastPackerId) {
             formData.append('lastPackingDateTime', formattedPackedDate);
             formData.append('lastPackerId', lastPackerId);
         }
+        if(equipmentSerial && selectedFile) {
+            formData.append('serialNumber', equipmentSerial);
+            formData.append('file', selectedFile);
+        }
         formData.append('equipmentId', id);
-        formData.append('serialNumber', equipmentSerial);
-        formData.append('file', selectedFile);
 
         editEquipment(formData, {
             onSuccess: () => {
@@ -286,7 +288,7 @@ const EditEquipment = () => {
 
                             <div className='w-full flex justify-around items-center'>
                                 <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                                <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit}>تایید</button>
+                                <button disabled={isLoading} type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >{isLoading ? 'صبر کنید ...' : 'تایید'}</button>
                             </div>
 
                         </form>

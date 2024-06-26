@@ -280,7 +280,7 @@ const AddParachute = () => {
     return (
         <div className='flex flex-col mt-14 items-center gap-y-5'>
 
-          <div className='flex flex-col items-center gap-y-5 md:w-[75%]'>
+          <div className='w-full flex flex-col items-center gap-y-5 md:w-[75%]'>
 
             <PageTitle title={'افزودن چتر کمکی'}  />  
 
@@ -311,15 +311,6 @@ const AddParachute = () => {
 
                       <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
 
-                      {/* Serial Number input */}
-                      <TextInput
-                        icon={Cube}
-                        className='col-span-1'
-                        value={serialNumber}
-                        onChange={handleTextInputSerialNumber}
-                        placeholder='شماره سریال'
-                      />
-
                       {/* Year input */}
                       <NumberInput
                         icon={Cube}
@@ -349,8 +340,17 @@ const AddParachute = () => {
                     </div>
 
                     <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
+  
+                        {/* Serial Number input */}
+                        <TextInput
+                          icon={Cube}
+                          className='col-span-1'
+                          value={serialNumber}
+                          onChange={handleTextInputSerialNumber}
+                          placeholder='شماره سریال (اختیاری)'
+                        />
 
-                    <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p>
+                    {/* <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p> */}
 
                     {/* for uploading pictures */}
                     <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
