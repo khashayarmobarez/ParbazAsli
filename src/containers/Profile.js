@@ -5,6 +5,9 @@ import GradientStyles from '../styles/gradients/Gradient.module.css'
 import boxStyles from '../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
+// mui
+import AddIcon from '@mui/icons-material/Add';
+
 // queries 
 import { useUserProfile } from '../Utilities/Services/userQueries';
 
@@ -55,11 +58,16 @@ const Profile = ({userRole}) => {
                     {/* parachute renewal box*/}
                     {
                     data.data.parachutes && data.data.parachutes.length > 0 ? 
+                    
                         <ParachutesSwiperSlider parachutesData={data.data.parachutes} />
                         :
-                        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-24 z-0 w-full flex justify-between items-center px-2 py-3 my-2`}>
-                            <p>چتر خود را اضافه کنید</p>
+                        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-28 z-0 w-full flex flex-col justify-between items-center px-2 py-4 my-2`}>
+                            <p className=' font-medium text-sm'>چتر و وسایل پروازی خود را اضافه کنید</p>
+                            <button onClick={() => navigate('/equipment')} className={`${ButtonStyles.addButton} w-20`} >
+                                <AddIcon />
+                            </button>
                         </div>
+
                     }
 
                     {/* user Courses slider */}

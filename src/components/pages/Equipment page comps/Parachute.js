@@ -74,6 +74,10 @@ const Parachute = (props) => {
                     </div>
                 )
             }
+            {
+                !userEquipmentsData.data[0] &&
+                <p className=' font-medium'>هیچ تجهیزاتی ثبت نشده است</p>
+            }
 
             </div>
 
