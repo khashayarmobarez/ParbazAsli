@@ -42,7 +42,7 @@ const LandingPage = () => {
         <div className='w-full flex flex-col mt-14 py-4 '>
 
             {
-                isLoading && isFetching && 
+                (isLoading || isFetching) && 
                 <div className='flex w-full h-[95vh] items-center justify-center'>
                     <Loader />
                 </div>

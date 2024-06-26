@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // css classes 
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import inputStyles from '../../../styles/Inputs/Inputs.module.css'
-import boxStyle from '../../../styles/Boxes/DataBox.module.css'
 
 // query
 import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
 
 // mui
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import CloseIcon from '@mui/icons-material/Close';
+
+// comps
+import Loader from '../../Loader/Loader';
 
 
 const Parachute = (props) => {
@@ -20,23 +19,6 @@ const Parachute = (props) => {
     const navigate = useNavigate()
 
     const { data: userEquipmentsData, loading, error } = useUserEquipments(1)
-
-    const [inputValue, setInputValue] = useState('');
-    const [showPopup, setShowPopup] = useState(false);
-
-    // Event handler for input change
-    const handleChange = (event) => {
-        setInputValue(event.target.value);
-      };
-
-    // Event handler for form submission
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Here you can perform any action with the input value, such as submitting it to a backend or processing it in some way
-        console.log('Submitted value:', inputValue);
-        // Clear the input field after submission
-        setInputValue('');
-    };
 
     const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);
@@ -51,7 +33,10 @@ const Parachute = (props) => {
 
             <div className='w-full flex flex-col gap-y-4 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
             {
-                loading && <p>loading...</p>
+                loading && 
+                <div className='flex w-full h-[90vh] items-center justify-center'>
+                    <Loader />
+                </div>
             }
             {
                 error && <p>error</p>
@@ -75,6 +60,7 @@ const Parachute = (props) => {
                 )
             }
             {
+                userEquipmentsData &&
                 !userEquipmentsData.data[0] &&
                 <p className=' font-medium'>هیچ تجهیزاتی ثبت نشده است</p>
             }

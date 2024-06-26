@@ -43,6 +43,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
+          theme: 'dark',
           draggable: true,
           progress: undefined,
           style: { backgroundColor: 'green', color: 'white', width:'90%' }

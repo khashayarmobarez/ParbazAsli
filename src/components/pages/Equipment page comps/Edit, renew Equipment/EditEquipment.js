@@ -138,7 +138,10 @@ const EditEquipment = () => {
         <div className='flex flex-col items-center pt-[4rem] '>
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                <PageTitle title={'ویرایش وسیله'} navigateTo={'profile'} />  
+                <PageTitle 
+                title={EquipmentData && (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') ? 'ویرایش وسیله' : 'جزئیات وسیله'} 
+                navigateTo={'profile'} />  
+
                 {
                 loading &&  
                 <div className='flex w-full min-h-[95vh] items-center justify-center'>

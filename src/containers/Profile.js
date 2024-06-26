@@ -22,6 +22,7 @@ import pencil from '../assets/icons/pencil-alt.svg'
 import UserDataBox from '../components/pages/Profile/UserDataBox';
 import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
 import UserCoursesSlider from '../components/pages/Profile/UserCoursesSlider';
+import Loader from '../components/Loader/Loader';
 
 
 
@@ -36,7 +37,10 @@ const Profile = ({userRole}) => {
         <div className='flex flex-col items-center pt-[75px]'>
 
             {
-                isLoading && <h2 className=' text-white mt-'>is loading...</h2>
+                isLoading && 
+                <div className='flex w-full h-[90vh] items-center justify-center'>
+                    <Loader />
+                </div>
             }
 
             {

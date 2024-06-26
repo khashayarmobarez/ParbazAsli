@@ -98,8 +98,8 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                     {inputRefs.current.map((ref, index) => (
                         <input
-                            style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid' }}
-                            className="text-2xl rounded-none bg-none shadow-none w-10 flex p-2 text-center"
+                            style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid ', background: 'transparent'}}
+                            className="text-2xl rounded-none shadow-none w-10 flex p-2 text-center border"
                             key={index}
                             type="text"
                             maxLength={1}

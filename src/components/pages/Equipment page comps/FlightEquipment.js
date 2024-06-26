@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // queries
@@ -10,16 +10,14 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // mui
 import AddIcon from '@mui/icons-material/Add';
 
+// comps
+import Loader from '../../Loader/Loader';
+
 const FlightEquipment = () => {
 
     const navigate = useNavigate()
 
     const { data: userEquipmentsData, loading, error } = useUserEquipments(2)
-
-    useEffect(() => {
-        console.log(userEquipmentsData)
-    },[userEquipmentsData])
-
 
     const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);
@@ -34,7 +32,10 @@ const FlightEquipment = () => {
 
             <div className='w-full flex flex-col gap-y-4 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
                 {
-                    loading && <p>loading...</p>
+                    loading && 
+                    <div className='flex w-full h-[90vh] items-center justify-center'>
+                        <Loader />
+                    </div>
                 }
                 {
                     error && <p>error</p>
@@ -63,6 +64,11 @@ const FlightEquipment = () => {
 
                         </div>
                     )
+                }
+                {
+                    userEquipmentsData &&
+                    !userEquipmentsData.data[0] &&
+                    <p className=' font-medium'>هیچ تجهیزاتی ثبت نشده است</p>
                 }
             </div>
 
