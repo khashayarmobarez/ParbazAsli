@@ -84,6 +84,7 @@ const FooterLanding = () => {
                     <WhatsAppIcon sx={{width:'50px', color:'var(--yellow-text)'}} />
                 </div>
             </div>
+            <p className=''>پیشتازان پرباز</p>
         </div>
     </Box>
   );

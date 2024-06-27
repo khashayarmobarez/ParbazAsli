@@ -278,7 +278,13 @@ const AddHarness = () => {
 
                 <div className='w-full flex justify-around items-center'>
                     <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit}>تایید</button>
+                    <button 
+                    type="submit" 
+                    onClick={handleSubmit} 
+                    className={`${ButtonStyles.addButton} w-24`}
+                    disabled={isSubmitting}>
+                      {isSubmitting ? 'در حال ارسال...' : 'تایید'}
+                    </button>
                 </div>
 
             </form>

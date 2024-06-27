@@ -4,10 +4,10 @@ const brandsOptionsData = [
     { name: 'option3', id: 'Option 3' },
   ];
 
-  const classesOpptionData = [
-    { name: 'option1', id: 'Option 1' },
-    { name: 'option2', id: 'Option 2' },
-    { name: 'option3', id: 'Option 3' },
+  const courseTypeOptionData = [
+    { name: 'دوره های مطابق سیلابس', id: 1 },
+    { name: 'شخصی سازی شده', id: 2 },
+    { name: 'باز آموزی', id: 3 },
   ];
   
   const sizeOptionData = [
@@ -30,4 +30,4 @@ const brandsOptionsData = [
   ];
 
 
-  export {brandsOptionsData, classesOpptionData, sizeOptionData, flightHourOptionData, flightTypeOptions}
+  export {brandsOptionsData, courseTypeOptionData, sizeOptionData, flightHourOptionData, flightTypeOptions}

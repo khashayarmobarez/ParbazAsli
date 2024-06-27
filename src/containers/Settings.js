@@ -14,7 +14,6 @@ import AddIcon from '@mui/icons-material/Add';
 import SettIcon from '../assets/icons/Icon-settings.svg'
 import userIcon from '../assets/icons/user-Icon.svg'
 import certificateIcon from '../assets/icons/certificate-Vector.svg'
-import moneyIcon from '../assets/icons/money-Icon.svg'
 import usersIcon from '../assets/icons/users-Icon.svg'
 import phone from '../assets/icons/phone-Icon (Stroke).svg';
 import mail from '../assets/icons/mail-Icon (Stroke).svg';

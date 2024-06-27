@@ -7,18 +7,28 @@ const DropDownLine = ({title, isActive, onClick, icon}) => {
     return (
         <div className='flex justify-between w-full'>
             
-            <div  className={`flex w-[100%] h-10 items-center justify-between px-3`}>
+            <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 
-                <div className='flex gap-x-3'>
-                    <span className='w-4'>
-                        <img src={icon} alt='icon' />
-                    </span>
-                    <p className='text-sm font-light w-16'> 
+                <div className='flex gap-x-3 w-52 justify-center'>
+                    {icon ? 
+                    <>
+                        <span className='w-4'>
+                            <img src={icon} alt='icon' />
+                        </span>
+                        <p className='text-sm font-light w-16'> 
+                            {title}
+                        </p>
+                    </>
+                    :
+                    <p className='text-xs font-light'> 
                         {title}
                     </p>
+                    }
                 </div>
 
-                <div className='w-3/6 h-[1px] ' style={{ background:'var(--soft-white)'}}></div>
+                <div className='w-full'>
+                    <div className='w-full h-[1px]' style={{ background:'var(--soft-white)'}}></div>
+                </div>
 
                 <span onClick={onClick} className={`transition-transform duration-300 transform ${isActive ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
                     <ArrowBackIosIcon />
@@ -32,4 +42,4 @@ const DropDownLine = ({title, isActive, onClick, icon}) => {
 
 export default DropDownLine;
 
-// <DropDownLine  title='test' icon={} isExpanded={} />
+// <DropDownLine  title='' icon={} dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClick={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />

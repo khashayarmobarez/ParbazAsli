@@ -1,79 +1,87 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// components 
-import PageTitle from '../components/reuseable/PageTitle';
+//  Queries
+
+// mui
+import AddIcon from '@mui/icons-material/Add';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
-//  Queries
-import { useUserDetails } from '../Utilities/Services/queries';
-
-const Education = ({userRole}) => {
-
-    // react query
-    const { data, isLoading, error } = useUserDetails();
-
-    // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState('syllabus'); // State to track active link
+// components 
+import PageTitle from '../components/reuseable/PageTitle';
+import DropDownLine from '../components/reuseable/DropDownLine';
 
 
-    // Ref to the button element
-    const buttonRef = useRef(null);
+const Education = () => {
 
+    const navigate = useNavigate()
 
-    // Effect to click the button when the page is mounted
-  useEffect(() => {
-    // Check if the button ref exists and it has a current property
-    if (buttonRef.current) {
-      // Programmatically click the button
-      buttonRef.current.click();
-    }
-  }, []); // Empty dependency array ensures the effect runs only once after initial render
-
+    // controlling  items drop down
+    const [DropDown, setDropDown] = useState('')
 
     return (
         <div className='flex flex-col mt-14 items-center'>
 
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                <PageTitle title={'آموزش'} navigateTo={'profile'} paddingRight={'40%'} />  
+                <PageTitle title={'آموزش'} navigateTo={'/profile'} />  
 
-                {/* for coach */}
-                { userRole === 'coach' &&
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
-                    <Link to='/education/students' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
-                    <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >کلاس تئوری</Link> 
-                    <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
+                <div className='w-[90%] flex flex-col gap-y-6'>
+
+                <div className='w-full flex flex-col items-center gap-y-6'>
+                    <DropDownLine  title='سازمان هواپیمایی کشوری' dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClick={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
+                    {
+                        DropDown === 'dropDown1' &&
+                        <p>1</p>
+                    }
                 </div>
-                }
 
-                {/* for student */}
-                { userRole === 'student' &&
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>  
-                    <Link to='/education/practicalClass' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>عملی</Link> 
-                    <Link to='/education/theoryClass' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theoryClass' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theoryClass')} >تئوری</Link> 
-                    <Link ref={buttonRef} to='/education/syllabus' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabus' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabus')} >سیلابس</Link>
+                <div className='w-full flex flex-col items-center gap-y-6'>
+                    <DropDownLine  title='انجمن ورزشهای هوایی' dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClick={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
+                    {
+                        DropDown === 'dropDown2' &&
+                        <p>2</p>
+                    }
                 </div>
-                }
 
-                <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
+                <div className='w-full flex flex-col items-center gap-y-4'>
+                    <DropDownLine  title='دوره های بازآموزی'  dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClick={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
+                    {
+                        DropDown === 'dropDown3' &&
+                        <p>3</p>
+                    }
+                </div>
 
+                <div className='w-full flex flex-col items-center gap-y-4'>
+                    <DropDownLine  title='ورکشاپ ها'  dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClick={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
                     {
-                        isLoading && <h2 className='text-white mt-32'>is loading</h2>
+                        DropDown === 'dropDown4' &&
+                        <p>3</p>
                     }
+                </div>
 
+                <div className='w-full flex flex-col items-center gap-y-4'>
+                    <DropDownLine  title='دوره های سفارشی شده'  dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
                     {
-                        error && <h3>{error.message}</h3>
+                        DropDown === 'dropDown5' &&
+                        <p>3</p>
                     }
-                    {
-                        data && <Outlet />
-                    }
+                </div>
+
+
+                </div>
+
+                <div className='fixed bottom-[3.4rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px]' >
+                    <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/education/addClass') } >
+                        <AddIcon />
+                        <p>افزودن مورد جدید</p>
+                    </button>
                 </div>
 
             </div>
-
 
         </div>
     );

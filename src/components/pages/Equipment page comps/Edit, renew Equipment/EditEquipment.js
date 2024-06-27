@@ -229,7 +229,7 @@ const EditEquipment = () => {
                                                 className='col-span-1'
                                                 value={equipmentSerial}
                                                 onChange={handleTextInputEquipmentSerial}
-                                                placeholder='سربال وسیله'
+                                                placeholder='سریال وسیله'
                                                 />
 
                                                 {/* for uploading pictures */}

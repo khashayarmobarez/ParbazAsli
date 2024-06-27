@@ -164,7 +164,7 @@ const AddParachute = () => {
     const isPackerIdValid = validatePackerId(lastPackerId);
     
     // Validate inputs
-    if (!isSerialNumberValid) {
+    if (serialNumber && !isSerialNumberValid) {
       toast('فرمت شماره سریال چتر اشتباه است', {
           type: 'error',
           position: 'top-right',
@@ -175,40 +175,40 @@ const AddParachute = () => {
       return;
     }
 
-    if (!isPackerIdValid) {
-        toast('فرمت id بسته بندی کننده اشتباه است', {
-            type: 'error',
-            position: 'top-right',
-            autoClose: 5000,
-            theme: 'dark',
-            style: { width: "90%" }
-        });
-        return;
+    if (lastPackerId && !isPackerIdValid) {
+      toast('فرمت کد بسته بندی کننده اشتباه است', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+      return;
     }
 
     if (year <= 1979 || year > currentYear) {
-        toast('سال تولید چتر را درست وارد کنید', {
-            type: 'error',
-            position: 'top-right',
-            autoClose: 5000,
-            theme: 'dark',
-            style: { width: "90%" }
-        });
-        return;
+      toast('سال تولید چتر را درست وارد کنید', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+      return;
     }
 
-    if (!selectedOptionBrand || !aircraft || !size || !packageDate || !lastPackerId || !flightHour || !year) {
-        toast('تمامی فیلدها را پر کنید', {
-            type: 'error',
-            position: 'top-right',
-            autoClose: 5000,
-            theme: 'dark',
-            style: { width: "90%" }
-        });
-        return;
+    if (!selectedOptionBrand || !aircraft || !packageDate || !size|| !flightHour || !year) {
+      toast('تمامی فیلدهای الزامی را پر کنید', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+      return;
     }
 
-  if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
+    if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
       toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
           type: 'error',
           position: 'top-right',
@@ -217,7 +217,7 @@ const AddParachute = () => {
           style: { width: "90%" }
       });
       return;
-  }
+    }
 
   setShowPopup(true);
   };
@@ -225,7 +225,7 @@ const AddParachute = () => {
   // Event submision
   const handleSubmit = (event) => {
 
-      if(selectedOptionBrand || serialNumber || aircraft || size || packageDate || lastPackerId || flightHour || year ) {
+      if(selectedOptionBrand || serialNumber || aircraft || size || packageDate || flightHour || year ) {
 
         event.preventDefault();
         const formattedPackedDate = formatDate(packageDate) + " 00:00";
@@ -238,7 +238,9 @@ const AddParachute = () => {
         formData.append('serialNumber', serialNumber);
         formData.append('Model', aircraft);
         formData.append('Size', size);
-        formData.append('LastPackingDateTime', formattedPackedDate);
+        if (packageDate) {
+          formData.append('LastPackingDateTime', formattedPackedDate);
+        }
         formData.append('lastPackerId', lastPackerId);
         formData.append('flightHours', flightHour);
         formData.append('year', year);
@@ -306,11 +308,6 @@ const AddParachute = () => {
                       {/* FLight hour input */}
                       <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
 
-                      {/* packaging parachute date input */}
-                      {/* <DateInput inputAttributes={{ placeholder: "تاریخ انقضا" }} onChange={handlePackageDate} /> */}
-
-                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
-
                       {/* Year input */}
                       <NumberInput
                         icon={Cube}
@@ -320,6 +317,8 @@ const AddParachute = () => {
                         placeholder='سال ساخت'
                       />
 
+                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+
                       {/* Last Packer ID input */}
                       <div className='w-full flex flex-col items-start gap-y-2'>
                         <TextInput
@@ -327,7 +326,7 @@ const AddParachute = () => {
                           className='col-span-1'
                           value={lastPackerId}
                           onChange={handleTextInputLastPackerId}
-                          placeholder='شناسه آخرین بسته‌بندی کننده'
+                          placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
                         />
                         {userByIdData &&
                           <div className='flex gap-x-1 text-[#A5E65E]'>
@@ -372,8 +371,17 @@ const AddParachute = () => {
                 <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
 
                 <div className='w-full flex justify-around items-center'>
+
                     <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-24`}>تایید</button>
+
+                    <button 
+                    type="submit" 
+                    onClick={handleSubmit} 
+                    className={`${ButtonStyles.addButton} w-24`}
+                    disabled={isSubmitting}>
+                      {isSubmitting ? 'در حال ارسال...' : 'تایید'}
+                    </button>
+
                 </div>
 
             </form>

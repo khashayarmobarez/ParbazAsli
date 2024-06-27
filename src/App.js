@@ -46,13 +46,10 @@ import 'react-toastify/dist/ReactToastify.css';
   import Harness from './components/pages//Equipment page comps/Harness'
   import AddParachute from './components/pages/Equipment page comps/AddParachute';
   import AddHarness from './components/pages/Equipment page comps/AddHarness';
+// education
   import Education from './containers/Education';
-  import Syllabus from './components/pages/CoachTeachingSection/Syllabus';
-  import Students from './components/pages/CoachTeachingSection/Students';
-  import TheoryClass from './components/pages/CoachTeachingSection/TheoryClass';
-  import AddClass from './components/pages/CoachTeachingSection/AddClass';
-  import StudentDetails from './components/pages/CoachTeachingSection/StudentDetails';
-  import ParachuteRenewal from './components/pages/Equipment page comps/Edit, renew Equipment/ParachuteRenewal';
+  import AddCourse from './components/pages/Education/AddCourse';
+  import StudentDetails from './components/pages/Education/StudentDetails';
   import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
   import Syllabuses from './components/pages/AddFlight/Syllabuses';
   import FlightHistory from './containers/FlightHistory';
@@ -70,7 +67,6 @@ import 'react-toastify/dist/ReactToastify.css';
     import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
     import AddLanding from './components/pages/AddFlight/AddLanding';
 // Student components 
-  import PracticalClass from './components/pages/StudentEducation/PracticalClass';
   import Settings from './containers/Settings';
   import Notifications from './containers/Notifications';
   import ClubEquipment from './components/pages/Club/ClubEquipment';
@@ -220,6 +216,11 @@ function App() {
                 <Route path='/EditEquipment/:id' element={<EditEquipment />} />
                 <Route path='/possessionTransitionEquipment/:id' element={<PossessionTransitionEquipment />} />
 
+                {/* education */}
+                <Route path='/education' element={<Education userRole={ userRole }  />} />
+                <Route path='/education/addClass' element={<AddCourse />} /> 
+                <Route path='/education/StudentDetails' element={<StudentDetails/>} />
+
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
 
@@ -242,17 +243,6 @@ function App() {
           {/* {userRole === 'coach' && ( */}
           {token && isUserAuthenticated === 'authenticated' &&  (
             <>
-
-              {/* education */}
-              <Route path='/education' element={<Education userRole={ userRole }  />}>
-                  <Route index element={<Syllabus />} />
-                  <Route path="students" element={ <Students />} />
-                  <Route path="theoryClass" element={ <TheoryClass userRole={ userRole } />} />
-                  <Route path="syllabus" element={<Syllabus userRole={ userRole } />} />
-              </Route>
-              <Route path='/education/addClass' element={<AddClass />} /> 
-              <Route path='/education/StudentDetails' element={<StudentDetails/>} />
-              <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
 
               {/* club */}
               <Route path='/club' element={<Club userRole={ userRole }  />}>
@@ -291,14 +281,8 @@ function App() {
 
 
               {/* education */}
-              <Route path='/education' element={<Education userRole={ userRole } />}>
-                  <Route index element={<Syllabus />} />
-                  <Route path="PracticalClass" element={ <PracticalClass />} />
-                  <Route path="theoryClass" element={ <TheoryClass userRole={ userRole } />} />
-                  <Route path="syllabus" element={<Syllabus userRole={ userRole } />} /> 
-              </Route>
+              <Route path='/education' element={<Education userRole={ userRole } />}/>
               <Route path='/education/StudentDetails' element={<StudentDetails/>} />
-              <Route path='/ParachuteRenewal' element={<ParachuteRenewal/>} />
 
               {/* club */}
               <Route path='/club' element={<Club userRole={ userRole }  />}/>
