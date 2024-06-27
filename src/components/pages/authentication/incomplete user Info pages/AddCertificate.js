@@ -29,11 +29,8 @@ const AddCertificate = () => {
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     
     const [organ, setOrgan] = useState('')
-    const [organId, setOrganId] = useState('')
 
     const [level, setLevel] = useState('')
-    const [levelId, setLevelId] = useState('')
-    const [roleName, setRoleName] = useState('');
 
     const [certificateId, setCertificateId] = useState('');
 
@@ -46,19 +43,16 @@ const AddCertificate = () => {
 
     const [errMsg, setErrMsg] = useState(null)
     
-    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organId);
+    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
 
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
 
     const handleSelectOrganChange = (selectedOption) => {
-        setOrgan(selectedOption.label);
-        setOrganId(selectedOption.value);
+        setOrgan(selectedOption);
     };
 
     const handleSelectLevelChange = (selectedOption) => {
-        setRoleName(selectedOption.roleName);
-        setLevel(selectedOption.label);
-        setLevelId(selectedOption.value);
+        setLevel(selectedOption);
     };
 
     const handleCertificateIdChange = (event) => {
@@ -129,10 +123,10 @@ const AddCertificate = () => {
         const formattedStartDate = formatDate(dateStartValue);
         const formattedEndDate = formatDate(dateEndValue);
 
-        console.log(levelId,certificateId,formattedStartDate,formattedEndDate,dateStartValue,uploadedFile)
+        console.log(level,certificateId,formattedStartDate,formattedEndDate,dateStartValue,uploadedFile)
         
         const formData = new FormData();
-        formData.append('LevelId', levelId);
+        formData.append('LevelId', level.id);
         formData.append('Number', certificateId);
 
         if (dateStartValue && dateEndValue) {
@@ -151,20 +145,6 @@ const AddCertificate = () => {
         mutateCertificate(formData);
 
     };
-
-
-    // organization options
-    const organOptions = useMemo(() => organsData?.data.map(organ => ({
-        value: organ.id,
-        label: organ.name
-    })), [organsData]);
-
-    // levels options
-    const levelOptions = useMemo(() => levelsData?.data.map(level => ({
-        value: level.id,
-        label: level.name,
-        roleName: level.roleName
-    })), [levelsData]);
 
     return (
         <div className='flex flex-col items-center pt-20 pb-[4rem]'>
@@ -224,14 +204,14 @@ const AddCertificate = () => {
                             <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
                                 
                                 <DropdownInput
-                                options={organOptions}
+                                options={organsData.data}
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
                                 name={'صدور گواهینامه از'}
                                 />
 
                                 {
-                                    organId && 
+                                    organ && 
                                     <>
                                         {levelsLoading && <p>Loading levels...</p>}
                                         {levelsError && <p>Error fetching levels</p>}
@@ -239,7 +219,7 @@ const AddCertificate = () => {
                                             <>
 
                                                 <DropdownInput
-                                                    options={levelOptions}
+                                                    options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
                                                     name={'سطح گواهینامه'}

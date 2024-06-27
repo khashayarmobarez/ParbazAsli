@@ -6,8 +6,8 @@ const brandsOptionsData = [
 
   const courseTypeOptionData = [
     { name: 'دوره های مطابق سیلابس', id: 1 },
-    { name: 'شخصی سازی شده', id: 2 },
-    { name: 'باز آموزی', id: 3 },
+    { name: 'باز آموزی', id: 2 },
+    { name: 'شخصی سازی شده', id: 3 },
   ];
   
   const sizeOptionData = [

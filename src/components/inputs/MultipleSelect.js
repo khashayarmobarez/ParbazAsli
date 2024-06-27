@@ -41,7 +41,7 @@ const MultipleSelect = ({ options, selectedOption, handleSelectChange, name, han
                 </div>)
             : null
             }
-            </div>
+        </div>
 
     </div>
     
