@@ -18,7 +18,7 @@ import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInput
 
 // queires
 import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
-import { useAddRegularCourse, useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
+import { useAddCustomCourse, useAddRegularCourse, useAddRetrainingCourse, useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
@@ -43,7 +43,14 @@ const AddCourse = () => {
 
     // states for retraining
     const [selectedSyllabi, setSelectedSyllabi] = useState([]);
+    const [syllabusIds, setSyllabusIds] = useState([]);
+    const [courseName, setCourseName] = useState('')
     
+    // states for retraining
+    const [customCourseTheory, setCustomCourseTheory] = useState('');
+    const [customCoursePractical, setCustomCoursePractical] = useState('');
+    const [customCourses, setCustomCourses] = useState([]);
+
     // added students 
     const [studentsList, setStudentsList] = useState([]); 
     const [studentsData, setStudentsData] = useState([]);
@@ -59,6 +66,8 @@ const AddCourse = () => {
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level.id);
     const {data: studentData} = useUserLevelById(studentId,level.id,selectedClassType.id, setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularCourse();
+    const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingCourse();
+    const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomCourse();
 
 
     // when the studentId goes under 6 characters reset the errorMessage
@@ -70,8 +79,8 @@ const AddCourse = () => {
 
 
     useEffect(() => {
-        console.log('selectedClassType:',syllabiData)
-    },[syllabiData])
+        console.log('selectedSyllabi:',syllabusIds)
+    },[syllabusIds])
 
 
     // handle select input states
@@ -102,6 +111,10 @@ const AddCourse = () => {
         setDescription(event.target.value);
     };
 
+    const handleCourseName = (event) => {
+        setCourseName(event.target.value);
+    };
+    
     const handleAddStudent = () => {
         if (studentId.trim() && studentData?.data) {
             const newStudent = { id: studentId, name: studentData.data.fullName };
@@ -115,47 +128,117 @@ const AddCourse = () => {
         setStudentsList(prev => prev.filter(student => student !== studentToRemove.id));
         setStudentsData(prev => prev.filter(student => student.id !== studentToRemove.id));
     };    
-
-    const handleSelectChangeSyllabi = (selectedOption) => {
-        if (!selectedSyllabi.some(syllabus => syllabus.value === selectedOption.value)) {
-            setSelectedSyllabi([...selectedSyllabi, selectedOption]);
-        }
+    
+    const handleSelectChangeSyllabi = (newSelectedOptions) => {
+        setSelectedSyllabi(newSelectedOptions);
+        setSyllabusIds(newSelectedOptions.map(option => option.id));
     };
     
     const handleRemoveSyllabi = (dataToRemove) => {
-        setSelectedSyllabi(selectedSyllabi.filter(data => data.value !== dataToRemove.value));
+        setSelectedSyllabi(selectedSyllabi.filter(data => data.id !== dataToRemove.id));
+        setSyllabusIds(prev => prev.filter(id => id !== dataToRemove.id));
     };
-
-
+    
+    const handleInputTheory = (event) => {
+        setCustomCourseTheory(event.target.value);
+    };
+    
+    const handleInputPractical = (event) => {
+        setCustomCoursePractical(event.target.value);
+    };
+    
+    const handleAddCustomCourse = (type) => {
+        const newCourse = {
+            type,
+            content: type === 1 ? customCourseTheory : customCoursePractical
+        };
+        setCustomCourses([...customCourses, newCourse]);
+        if (type === 1) {
+            setCustomCourseTheory('');
+        } else {
+            setCustomCoursePractical('');
+        }
+    };
+    
+    const handleRemoveCustomCourse = (index) => {
+        setCustomCourses(customCourses.filter((_, i) => i !== index));
+    };
+    
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // for regular courses
-        if (selectedClassType.id === 1 && flightCount && organ && level && studentsList) {
-            const formData = new FormData();
-
-            formData.append('levelId', level.id);
-            formData.append('flightsCount', flightCount);
-            formData.append('description', description);
-            studentsList.forEach(studentId => formData.append('userIds', studentId));
-
-            addRegularCourse(formData,
-                {
+    
+        if ((selectedClassType.id === 1 || selectedClassType.id === 2) && flightCount && organ && level && studentsList.length > 0) {
+            
+           
+    
+            const regularformData = {
+                levelId: level.id,
+                flightsCount: flightCount,
+                description: description,
+                userIds: studentsList,
+            };
+    
+            const retrainingformData = {
+                levelId: level.id,
+                flightsCount: flightCount,
+                description: description,
+                userIds: studentsList,
+                name: courseName,
+                SyllabusIds: syllabusIds
+            };
+    
+            if (selectedClassType.id === 1) {
+                addRegularCourse(regularformData, {
                     onSuccess: () => {
-                        toast('وسیله پروازی با موفقیت ثبت شد', {
+                        toast('دوره شما با موفقیت ثبت شد', {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
                             theme: 'dark',
                             style: { width: "90%" }
-                            });
-                        navigate('/education')
+                        });
+                        navigate('/education');
                     },
-                }
-            );
-        }
+                });
+            } else if (selectedClassType.id === 2) {
+                addRetrainingCourse(retrainingformData, {
+                    onSuccess: () => {
+                        toast('دوره شما با موفقیت ثبت شد', {
+                            type: 'success',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: "90%" }
+                        });
+                        navigate('/education');
+                    },
+                });
+            } else if (selectedClassType.id === 3 && customCourses.length > 0) {
+                const customCourseData = {
+                    courses: customCourses,
+                    flightsCount: flightCount,
+                    description: description,
+                    name: courseName,
+                    userIds: studentsList,
+                };
 
-    }
+                addCustomCourse(customCourseData, {
+                    onSuccess: () => {
+                        toast('دوره شما با موفقیت ثبت شد', {
+                            type: 'success',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: "90%" }
+                        });
+                        navigate('/education');
+                    },
+                });
+
+            }
+        }
+    };
 
 
 
@@ -166,7 +249,7 @@ const AddCourse = () => {
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <DropdownInput name={'نوع دوره'} options={syllabiData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
 
                 {selectedClassType && 
                     <>
@@ -219,25 +302,78 @@ const AddCourse = () => {
 
                                 {
                                     syllabiData && selectedClassType.id === 2 && 
-                                    <MultipleSelect
-                                        name={'سیلابس ها'}
-                                        options={syllabiData.data.map(syllabus => ({ value: syllabus.id, label: syllabus.description }))}
-                                        selectedOptions={selectedSyllabi}
-                                        handleSelectChange={handleSelectChangeSyllabi}
-                                        handleRemove={handleRemoveSyllabi}
-                                    />
+                                    <>
+                                        <MultipleSelect
+                                            name={'سیلابس ها'}
+                                            options={syllabiData.data}
+                                            selectedOptions={selectedSyllabi}
+                                            handleSelectChange={handleSelectChangeSyllabi}
+                                            handleRemove={handleRemoveSyllabi}
+                                        />
+
+                                        <TextInput
+                                        value={courseName}
+                                        onChange={handleCourseName}
+                                        placeholder='نام دوره'
+                                        />
+                                    </>
 
                                 }
 
                             </>
                         }
 
+
+                        {selectedClassType.id === 3 && (
+                            <>
+
+                                    <TextInput
+                                        value={courseName}
+                                        onChange={handleCourseName}
+                                        placeholder='نام دوره'
+                                    />
+
+                                <div className='w-full flex justify-between relative items-center'>
+                                    <div className='w-[86%] flex flex-col'>
+                                        <TextInput value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                    </div>
+                                    <span
+                                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                        onClick={() => handleAddCustomCourse(1)}
+                                    >
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                    </span>
+                                </div>
+
+                                <div className='w-full flex justify-between relative items-center'>
+                                    <div className='w-[86%] flex flex-col'>
+                                        <TextInput value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                    </div>
+                                    <span
+                                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                        onClick={() => handleAddCustomCourse(2)}
+                                    >
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                    </span>
+                                </div>
+
+                                <ul className=' w-full py-0 mt-4 grid grid-cols-1 gap-2'>
+                                    {customCourses.map((course, index) => (
+                                        <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
+                                            <p className='text-sm mx-1'>{course.content} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <ClearIcon onClick={() => handleRemoveCustomCourse(index)} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
+                        
+
                         {
                             // add or later on add other types of courses
-                            ( (level) && !levelsLoading && !levelsError && level) &&
+                            (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
                                 <NumberInput icon={Cube} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
-
 
 
                                 {/* add students */}
@@ -270,6 +406,7 @@ const AddCourse = () => {
                                         </li>
                                     ))}
                                 </ul>
+
 
                                 {/* description input */}
                                 <div className='w-full flex flex-col gap-y-2'>

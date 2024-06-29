@@ -43,7 +43,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
         <option value="" disabled>
           {name}
         </option>
-        {options.map((option) => (
+        {options?.map((option) => (
           <option key={option.id} value={option.id}>
             {option.name}
           </option>

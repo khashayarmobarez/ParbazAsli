@@ -30,7 +30,11 @@ const getSyllabiForLevels = async (levelId) => {
   };
 
 
-// add course query https://api.par-baz.ir/api/Course/AddRegularCourse
+
+
+  
+
+// add regular course query https://api.par-baz.ir/api/Course/AddRegularCourse
     const addRegularCourse = async (course) => {
         const token = Cookies.get('token');
         const response = await axios.post(`${BASE_URL}/Course/AddRegularCourse`, course, {
@@ -57,5 +61,66 @@ const getSyllabiForLevels = async (levelId) => {
     }
 
 
+    
 
-export { useAddRegularCourse, useSyllabiForLevels };
+
+
+// add retraining course query https://api.par-baz.ir/api/Course/AddRetrainingCourse
+    const addRetrainingCourse = async (course) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/Course/AddRetrainingCourse`, course, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.status !== 200) {
+            throw new Error('Failed to add course');
+        }
+
+        return response.data;
+    };
+
+    const useAddRetrainingCourse = () => {
+        return useMutation(addRetrainingCourse, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('Course added successfully:', data);
+            },
+        });
+    }
+
+    
+
+
+
+// add custom course query https://api.par-baz.ir/api/Course/AddCustomCourse
+    const addCustomCourse = async (course) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/Course/AddCustomCourse`, course, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.status !== 200) {
+            throw new Error('Failed to add course');
+        }
+
+        return response.data;
+    };
+
+    const useAddCustomCourse = () => {
+        return useMutation(addCustomCourse, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('Course added successfully:', data);
+            },
+        });
+    }
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse };
