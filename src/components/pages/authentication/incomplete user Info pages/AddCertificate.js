@@ -227,7 +227,7 @@ const AddCertificate = () => {
                                                 
                                                 {/* removing other fill options for starters */}
                                                 {
-                                                    !(roleName === 'Starter') &&
+                                                    !(level.id === 1) && !(level.id === 7) &&
                                                     <>
 
                                                         <TextInput

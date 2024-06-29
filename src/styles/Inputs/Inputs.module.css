@@ -15,6 +15,12 @@
     border-radius: 0.75rem;
 }
 
+.inputDescription {
+    background: var(--corn-flower-blue);
+    background: var(--coachesDetails-bg);   
+    box-shadow: var(--coachesDetails-BoxShadow);
+}
+
 .inputDropdown option {
     background-color: #181A2D;
 }

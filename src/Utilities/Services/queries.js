@@ -21,7 +21,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 // landing page section query
     // get home sections
-    const useLandingPage = () => {
+      const useLandingPage = () => {
         return useQuery(['landing'], () => axios.get(`${BASE_URL}/Landing/GetHomeSections`));
       };
 
@@ -145,6 +145,33 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+
+// Get Levels for adding course(without starter role) By Organization Id
+  const getOrganizationLevelsForCourse = async (organId) => {
+    try {
+      const token = Cookies.get('token');
+      const response = await axios.get(`${BASE_URL}/Level/GetLevelsForAddingCourseByOrganizationId?organizationId=${organId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+      // console.log(response.data);  
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to fetch organs');
+    }
+  };
+
+  // use data
+  const useOrganLevelsForCourse = (organId) => {
+    return useQuery(['organLevelsForCourses', organId], () => getOrganizationLevelsForCourse(organId), {
+        enabled: !!organId, // This ensures the query runs only if organId is not null/undefined
+    });
+  };
+
+
+
 // post certificate
   const addCertificate = async (formData) => {
     const token = Cookies.get('token');
@@ -207,7 +234,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get another user for adding level https://api.par-baz.ir/api/User/GetAnotherUserForAddingCourse?userId=890soq&levelId=4&courseType=retraining
-const getUserLevelById = async (userId,levelId, classTypeId) => {
+const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) => {
   try {
     const token = Cookies.get('token');
     const response = await axios.get(`${BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, {
@@ -219,13 +246,17 @@ const getUserLevelById = async (userId,levelId, classTypeId) => {
     // console.log(response.data);  
     return response.data;
   } catch (error) {
+    console.log(error)
+    if(userId.length > 5) {
+      setErrorMessage(error.response?.data.ErrorMessages[0].ErrorMessage)
+    }
     throw new Error('Failed to fetch organs');
   }
 };
 
-const useUserLevelById = (userId,levelId,classTypeId) => {
-  return useQuery(['userLevelById', userId,levelId,classTypeId], () => getUserLevelById(userId,levelId,classTypeId), {
-      enabled: !!userId, // This ensures the query runs only if organId is not null/undefined
+const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
+  return useQuery(['userLevelById', userId,levelId,classTypeId,setErrorMessage], () => getUserLevelById(userId,levelId,classTypeId,setErrorMessage), {
+      enabled: !!userId, // This ensures the query runs only if userId is not null/undefined 
   });
 };
 
@@ -237,4 +268,4 @@ const useUserLevelById = (userId,levelId,classTypeId) => {
 
   
 
-export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useAddCertificate, useUserById, useUserLevelById};
+export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById};

@@ -19,6 +19,8 @@ const useAppModeEffect = (isDarkMode) => {
         // overall used colors
         root.style.setProperty('--soft-white', '#F6FDEF');
         root.style.setProperty('--softer-white', ' #CDD3D4');
+        root.style.setProperty(' --corn-flower-blue ', ' #878DCB');
+        
         
         // landing page elements
         root.style.setProperty('--landing-page-titles-bg', ' linear-gradient(179.42deg, #181A2D 18.89%, rgba(135, 141, 203, 0.8) 252.75%)');
@@ -78,8 +80,8 @@ const useAppModeEffect = (isDarkMode) => {
         root.style.setProperty('--dark-input-boxShadow', ' -3px 4px 4px 1px rgba(0, 0, 0, 0.32)');
         
         // club => coaches => coaches details boxes
-        root.style.setProperty('--coachesDetails-bg', 'linear-gradient(200.38deg, #181A2D -10.59%, rgba(135, 141, 203, 0.8) 323.12%)');
-        root.style.setProperty('--coachesDetails-BoxShadow', ' 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51)');
+        root.style.setProperty('--coachesDetails-bg', 'linear-gradient(5deg, rgba(135,141,203,0.3) 11%, rgba(24,26,45,0.2) 100%)');
+        root.style.setProperty('--coachesDetails-BoxShadow', ' 1px -1px 2.59px 0px rgba(235, 224, 224, 0.41)');
         
         // organization/couches details/ coach data
         root.style.setProperty('--organs-coachData-bg', 'linear-gradient(5.31deg, #353A65 -34.63%, rgba(42, 46, 81, 0) 100.99%)')

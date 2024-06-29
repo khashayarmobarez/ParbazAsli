@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 // bg color styles 
 import GradientStyles from '../../../styles/gradients/Gradient.module.css'
@@ -15,50 +17,61 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
 
 // queires
-import { useOrganLevels, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
+import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
+import { useAddRegularCourse, useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import DropdownInput from '../../inputs/DropDownInput';
-import MultipleSelect from '../../inputs/MultipleSelect';
 import TextInput from '../../inputs/textInput';
 import NumberInput from '../../inputs/NumberInput';
+import DescriptionInput from '../../inputs/DescriptionInput';
+import MultipleSelect from '../../inputs/MultipleSelect';
 
 const AddCourse = () => {
 
-    const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
+    const navigate = useNavigate()
 
+    
     // states
     const [selectedClassType, setSelectedClassType] = useState('');
     const [flightCount, setFlightCount] = useState('');
-
-    // states for دوره های مطابق سیلابس
+    
+    // states for regular courses
     const [organ, setOrgan] = useState('')
-
     const [level, setLevel] = useState('')
 
-    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
+    // states for retraining
+    const [selectedSyllabi, setSelectedSyllabi] = useState([]);
+    
+    // added students 
+    const [studentsList, setStudentsList] = useState([]); 
+    const [studentsData, setStudentsData] = useState([]);
+    
     // text states
     const [studentId, setStudentId] = useState('');
-    
-    const {data: studentData, error: studentDataError } = useUserLevelById(studentId,level.id,selectedClassType.id);
-
     const [errorMessage, setErrorMessage] = useState('');
+    const [description, setDescription] = useState('');
+    
+    // queries
+    const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
+    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ.id);
+    const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level.id);
+    const {data: studentData} = useUserLevelById(studentId,level.id,selectedClassType.id, setErrorMessage);
+    const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularCourse();
+
+
+    // when the studentId goes under 6 characters reset the errorMessage
+    useEffect(() => {
+        if(studentId.length < 6) {
+            setErrorMessage('')
+        }
+    },[studentId,setErrorMessage])
+
 
     useEffect(() => {
-        if (studentDataError && studentId.length > 5) {
-            const error = studentDataError.response?.data?.ErrorMessages?.[0]?.ErrorMessage;
-            setErrorMessage(error || 'An error occurred');
-        } else {
-            setErrorMessage('');
-        }
-    }, [studentDataError, studentId]);
-
-
-    // multiOption States
-    // const [selectedLevels, setSelectedLevels] = useState([]);
-
-    const [studentsList, setStudentsList] = useState([]); 
+        console.log('selectedClassType:',syllabiData)
+    },[syllabiData])
 
 
     // handle select input states
@@ -84,32 +97,66 @@ const AddCourse = () => {
         setStudentId(event.target.value);
     };
 
+    // handle Description input state
+    const handleDescription = (event) => {
+        setDescription(event.target.value);
+    };
+
     const handleAddStudent = () => {
-        if (studentId.trim()) {
-            setStudentsList([...studentsList, studentId]);
+        if (studentId.trim() && studentData?.data) {
+            const newStudent = { id: studentId, name: studentData.data.fullName };
+            setStudentsList(prev => [...prev, studentId]);
+            setStudentsData(prev => [...prev, newStudent]);
             setStudentId('');
         }
     };
-
+    
     const handleRemoveStudent = (studentToRemove) => {
-        setStudentsList(studentsList.filter(student => student !== studentToRemove));
+        setStudentsList(prev => prev.filter(student => student !== studentToRemove.id));
+        setStudentsData(prev => prev.filter(student => student.id !== studentToRemove.id));
+    };    
+
+    const handleSelectChangeSyllabi = (selectedOption) => {
+        if (!selectedSyllabi.some(syllabus => syllabus.value === selectedOption.value)) {
+            setSelectedSyllabi([...selectedSyllabi, selectedOption]);
+        }
+    };
+    
+    const handleRemoveSyllabi = (dataToRemove) => {
+        setSelectedSyllabi(selectedSyllabi.filter(data => data.value !== dataToRemove.value));
     };
 
-    // multiOptions
-    // const handleSelectChangeLevel = (e) => {
-    //     const selectedOption = Array.from(e.target.options)
-    //       .filter((option) => option.selected)
-    //       .map((option) => option.value);
-    //     setSelectedLevels(selectedLevels => [ ...selectedLevels, selectedOption]);
-    //   };
 
-    // const handleRemoveLevel = (dataToRemove) => {
-    // // Filter out the dataToRemove from the state array
-    // const updatedState = selectedLevels.filter(data => data !== dataToRemove);
-    
-    // // Update the state with the filtered array
-    // setSelectedLevels(updatedState);
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // for regular courses
+        if (selectedClassType.id === 1 && flightCount && organ && level && studentsList) {
+            const formData = new FormData();
+
+            formData.append('levelId', level.id);
+            formData.append('flightsCount', flightCount);
+            formData.append('description', description);
+            studentsList.forEach(studentId => formData.append('userIds', studentId));
+
+            addRegularCourse(formData,
+                {
+                    onSuccess: () => {
+                        toast('وسیله پروازی با موفقیت ثبت شد', {
+                            type: 'success',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: "90%" }
+                            });
+                        navigate('/education')
+                    },
+                }
+            );
+        }
+
+    }
+
 
 
     return (
@@ -119,7 +166,7 @@ const AddCourse = () => {
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                <DropdownInput name={'نوع دوره'} options={syllabiData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
 
                 {selectedClassType && 
                     <>
@@ -142,7 +189,7 @@ const AddCourse = () => {
                         }
 
                         {/* only دوره های مطابق سیلابس */}
-                        { organsData && selectedClassType.id === 1 &&
+                        { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
                             <>
                                 <DropdownInput
                                 options={organsData.data}
@@ -170,43 +217,72 @@ const AddCourse = () => {
                                     </>
                                 }
 
+                                {
+                                    syllabiData && selectedClassType.id === 2 && 
+                                    <MultipleSelect
+                                        name={'سیلابس ها'}
+                                        options={syllabiData.data.map(syllabus => ({ value: syllabus.id, label: syllabus.description }))}
+                                        selectedOptions={selectedSyllabi}
+                                        handleSelectChange={handleSelectChangeSyllabi}
+                                        handleRemove={handleRemoveSyllabi}
+                                    />
+
+                                }
+
                             </>
                         }
 
                         {
                             // add or later on add other types of courses
-                            (selectedClassType.id === 1 && !levelsLoading && !levelsError && level) &&
+                            ( (level) && !levelsLoading && !levelsError && level) &&
                             <>
                                 <NumberInput icon={Cube} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
-                                {/* <MultipleSelect name={'هنرجویان'} options={courseTypeOptionData} selectedOption={selectedLevels} handleSelectChange={handleSelectChangeLevel} handleRemove={handleRemoveLevel} /> */}
 
 
                                 {/* add students */}
-                                <div className='w-full flex justify-between relative items-center'>
-                                    <div className='w-[86%] flex flex-col '>
-                                        { studentData && 
-                                            <p>{studentData.data.fullName}</p>
-                                        }
-                                        {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
-                                        <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                <div className='w-full flex flex-col gap-y-1'>
+                                    { studentData && 
+                                        <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
+                                    }
+                                    {errorMessage &&
+                                        <p className='text-[var(--red-text)] self-start'>{errorMessage}</p>
+                                    }
+
+                                    <div className='w-full flex justify-between relative items-center'>
+                                        <div className='w-[86%] flex flex-col'>
+                                            <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                        </div>
+                                        <span 
+                                        className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                        onClick={studentData ? handleAddStudent : null}
+                                        >
+                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                        </span>
                                     </div>
-                                    <span className={`w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`} onClick={handleAddStudent}>
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
-                                    </span>
                                 </div>
 
                                 <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
-                                    {studentsList.map((student, index) => (
-                                        <li key={index} className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
-                                            <p className=' text-sm mx-1' >{student}</p>
+                                    {studentsData.map((student) => (
+                                        <li key={student.id} className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
+                                            <p className=' text-sm mx-1' >{student.name}</p>
                                             <ClearIcon onClick={() => handleRemoveStudent(student)} />
                                         </li>
                                     ))}
                                 </ul>
 
+                                {/* description input */}
+                                <div className='w-full flex flex-col gap-y-2'>
+                                    <h1 className=' self-start'>توضیحات درباره دوره</h1>
+                                    <DescriptionInput
+                                        value={description}
+                                        onChange={handleDescription}
+                                        placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                    />
+                                </div>
 
-                                <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+
+                                <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
                             </>
                         }
                         
