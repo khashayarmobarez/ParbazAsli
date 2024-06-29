@@ -216,6 +216,7 @@ const AddCourse = () => {
                 });
             } else if (selectedClassType.id === 3 && customCourses.length > 0) {
                 const customCourseData = {
+                    levelId: null,
                     courses: customCourses,
                     flightsCount: flightCount,
                     description: description,
