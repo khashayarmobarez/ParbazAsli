@@ -10,6 +10,9 @@ import InsightsIcon from '@mui/icons-material/Insights';
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
+// queries
+import { useCourseDividers } from '../Utilities/Services/coursesQueries';
+
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
@@ -18,6 +21,9 @@ import DropDownLine from '../components/reuseable/DropDownLine';
 const Education = () => {
 
     const navigate = useNavigate()
+    
+    // queries
+    const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
 
     // controlling  items drop down
     const [DropDown, setDropDown] = useState('')
@@ -31,15 +37,22 @@ const Education = () => {
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
-                <div className='w-full flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='سازمان هواپیمایی کشوری' dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClick={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
-                    {
-                        DropDown === 'dropDown1' &&
-                        <p>1</p>
-                    }
-                </div>
+                {courseDividerData &&
+                    courseDividerData.data.map((course, index) => (
+                        <div key={index} className='w-full flex flex-col items-center gap-y-6'
+                        onClick={() => setDropDown(DropDown === `dropDown${index}` ? '' : `dropDown${index}`)}>
+                            <DropDownLine  
+                                title={course.name} 
+                                dropDown={DropDown} 
+                                isActive={DropDown === `dropDown${index}`}  
+                            />
+                            {DropDown === `dropDown${index}` && <p>{index}</p>}
+                        </div>
+                    ))
+                }
+                
 
-                <div className='w-full flex flex-col items-center gap-y-6'>
+                {/* <div className='w-full flex flex-col items-center gap-y-6'>
                     <DropDownLine  title='انجمن ورزشهای هوایی' dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClick={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
                     {
                         DropDown === 'dropDown2' &&
@@ -69,7 +82,7 @@ const Education = () => {
                         DropDown === 'dropDown5' &&
                         <p>3</p>
                     }
-                </div>
+                </div> */}
 
 
                 </div>

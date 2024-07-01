@@ -4,7 +4,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const MultipleSelect = ({ options, selectedOptions, handleSelectChange, name, handleRemove }) => {
+const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, handleRemove }) => {
   const handleSelection = (e) => {
     const selectedValue = options.find(option => option.id.toString() === e.target.value);
     if (selectedValue && !selectedOptions.some(option => option.id === selectedValue.id)) {
@@ -32,7 +32,7 @@ const MultipleSelect = ({ options, selectedOptions, handleSelectChange, name, ha
       </div>
 
       <div className='flex flex-wrap items-center w-full py-0'>
-        {selectedOptions.map(option => (
+        {selectedOptions?.map(option => (
           <div key={option.id} className='p-1 w-full bg-[#282C4C] rounded-xl flex justify-between items-center mt-2'>
             <p className='text-sm mx-1'>{option.description} - {option.type === 'Theory' && 'تئوری'}{option.type === 'Practical' && 'عملی'}</p>
             <ClearIcon onClick={() => handleRemove(option)} />

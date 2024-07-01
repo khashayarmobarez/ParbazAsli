@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-// bg color styles 
+// styles
 import GradientStyles from '../../../styles/gradients/Gradient.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // assets 
 import AddIcon from '@mui/icons-material/Add';
@@ -12,6 +13,7 @@ import Cube from '../../../assets/icons/3dCube.svg';
 
 // mui
 import ClearIcon from '@mui/icons-material/Clear';
+import CloseIcon from '@mui/icons-material/Close';
 
 // drop down options
 import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
@@ -59,12 +61,15 @@ const AddCourse = () => {
     const [studentId, setStudentId] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [description, setDescription] = useState('');
+
+    // popUp
+    const [showPopup, setShowPopup] = useState(false)
     
     // queries
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level.id);
-    const {data: studentData} = useUserLevelById(studentId,level.id,selectedClassType.id, setErrorMessage);
+    const {data: studentData} = useUserLevelById(studentId , selectedClassType.id === 3 ? 1 : level.id , selectedClassType.id , setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingCourse();
     const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomCourse();
@@ -79,9 +84,15 @@ const AddCourse = () => {
 
 
     useEffect(() => {
-        console.log('selectedSyllabi:',syllabusIds)
-    },[syllabusIds])
-
+        setOrgan('')
+        setLevel('')
+        setFlightCount('')
+        setSelectedSyllabi([])
+        setSyllabusIds([])
+        setCourseName('')
+        setDescription('')
+        setCustomCourses([])
+    },[selectedClassType])
 
     // handle select input states
     const handleSelectClassType = (selectedOption ) => {
@@ -150,7 +161,8 @@ const AddCourse = () => {
     const handleAddCustomCourse = (type) => {
         const newCourse = {
             type,
-            content: type === 1 ? customCourseTheory : customCoursePractical
+            description: type === 1 ? customCourseTheory : customCoursePractical,
+            order: customCourses.length + 1
         };
         setCustomCourses([...customCourses, newCourse]);
         if (type === 1) {
@@ -163,12 +175,48 @@ const AddCourse = () => {
     const handleRemoveCustomCourse = (index) => {
         setCustomCourses(customCourses.filter((_, i) => i !== index));
     };
+
+    const handlePopUp= (event) => {
+        event.preventDefault();
+
+        if(selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
+                toast('اطلاعات را کامل وارد کنید', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                return;
+        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !selectedSyllabi ) ) {
+            toast('اطلاعات را کامل وارد کنید', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || !selectedSyllabi || !studentsList ) ) {
+            toast('اطلاعات را کامل وارد کنید', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
+
+
+        setShowPopup(true);
+    }
     
     
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        if ((selectedClassType.id === 1 || selectedClassType.id === 2) && flightCount && organ && level && studentsList.length > 0) {
+        if ( selectedClassType && flightCount && level) {
             
            
     
@@ -201,7 +249,7 @@ const AddCourse = () => {
                         navigate('/education');
                     },
                 });
-            } else if (selectedClassType.id === 2) {
+            } else if ( selectedClassType.id === 2  ) {
                 addRetrainingCourse(retrainingformData, {
                     onSuccess: () => {
                         toast('دوره شما با موفقیت ثبت شد', {
@@ -214,30 +262,33 @@ const AddCourse = () => {
                         navigate('/education');
                     },
                 });
-            } else if (selectedClassType.id === 3 && customCourses.length > 0) {
-                const customCourseData = {
-                    levelId: null,
-                    courses: customCourses,
-                    flightsCount: flightCount,
-                    description: description,
-                    name: courseName,
-                    userIds: studentsList,
-                };
+            } 
 
-                addCustomCourse(customCourseData, {
-                    onSuccess: () => {
-                        toast('دوره شما با موفقیت ثبت شد', {
-                            type: 'success',
-                            position: 'top-right',
-                            autoClose: 5000,
-                            theme: 'dark',
-                            style: { width: "90%" }
-                        });
-                        navigate('/education');
-                    },
-                });
+        } else if (selectedClassType.id === 3 && studentsList.length > 0 && flightCount) {
 
-            }
+            const customCourseData = {
+                levelId: 1,
+                syllabi: customCourses,
+                flightsCount: flightCount,
+                description: description,
+                name: courseName,
+                userIds: studentsList,
+            };
+
+            console.log(customCourseData)
+
+            addCustomCourse(customCourseData, {
+                onSuccess: () => {
+                    toast('دوره شما با موفقیت ثبت شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    navigate('/education');
+                },
+            });
         }
     };
 
@@ -358,10 +409,10 @@ const AddCourse = () => {
                                     </span>
                                 </div>
 
-                                <ul className=' w-full py-0 mt-4 grid grid-cols-1 gap-2'>
+                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
                                     {customCourses.map((course, index) => (
                                         <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                            <p className='text-sm mx-1'>{course.content} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
                                             <ClearIcon onClick={() => handleRemoveCustomCourse(index)} />
                                         </li>
                                     ))}
@@ -400,7 +451,7 @@ const AddCourse = () => {
                                 </div>
 
                                 <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
-                                    {studentsData.map((student) => (
+                                    {studentsData?.map((student) => (
                                         <li key={student.id} className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                                             <p className=' text-sm mx-1' >{student.name}</p>
                                             <ClearIcon onClick={() => handleRemoveStudent(student)} />
@@ -420,13 +471,35 @@ const AddCourse = () => {
                                 </div>
 
 
-                                <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
+                                <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
                             </>
                         }
                         
-
+                        
                     </>
                 }
+
+            </form>
+
+            {/* submit pop up */}
+            <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
+
+                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+
+                <h3 className=' text-[#ED553B] text-xl mt-[-3rem] '>تاییدیه</h3>
+
+                <p className='text-base w-[90%]' >در صورت تایید کردن بال مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
+
+                <div className='w-full flex justify-around items-center'>
+                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                    <button 
+                    type="submit" 
+                    onClick={handleSubmit} 
+                    className={`${ButtonStyles.addButton} w-24`}
+                    disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
+                    {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
+                    </button>
+                </div>  
 
             </form>
 

@@ -123,4 +123,34 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse };
+
+
+// get Course dividers in education
+    const getCourseDividers = async () => {
+
+        const token = Cookies.get('token');
+
+        try {
+        const response = await axios.get(`${BASE_URL}/Course/GetCourseDividers`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            }
+        }
+
+    };
+
+    const useCourseDividers = () => {
+        return useQuery(['courseDividers'], getCourseDividers);
+    }
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers };
