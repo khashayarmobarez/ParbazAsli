@@ -288,6 +288,17 @@ const AddCourse = () => {
                     });
                     navigate('/education');
                 },
+                onError: (error) => {
+                    const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    console.error(error);
+                }
             });
         }
     };

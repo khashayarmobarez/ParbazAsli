@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const BASE_URL = 'https://api.par-baz.ir/api'
 
@@ -142,6 +144,8 @@ const getSyllabiForLevels = async (levelId) => {
         } catch (error) {
             if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
                 window.location.reload();
+            } else {
+                throw error;
             }
         }
 
@@ -153,4 +157,97 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers };
+// get courses data
+    const getCourses = async (type, organizationId, pageNumber) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetCourses`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                params: {
+                    type,
+                    organizationId,
+                    pageNumber
+                }
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+
+    const useCourses = (type, organizationId, pageNumber) => {
+        return useQuery(['courses', type, organizationId, pageNumber], () => getCourses(type, organizationId, pageNumber));
+    };
+
+
+
+
+// post trigger course status
+    const postTriggerCourseStatus = async ({ courseId, status }) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(
+                `${BASE_URL}/Course/TriggerCourseStatus`,
+                { courseId, status },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useTriggerCourseStatus = () => {
+
+        const navigate = useNavigate()
+
+        return useMutation(postTriggerCourseStatus, {
+            onSuccess: () => {
+                toast('دوره شما با موفقیت تایید شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                navigate('/education');
+            },
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        });
+    };
+
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus };

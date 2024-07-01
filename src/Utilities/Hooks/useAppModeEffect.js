@@ -13,8 +13,10 @@ const useAppModeEffect = (isDarkMode) => {
         root.style.setProperty('--text-color', '#ffffff');
         root.style.setProperty('--low-opacity-white', 'rgba(255, 255, 255, 0.3)');
         root.style.setProperty('--yellow-text', '#A5E65E');
+        root.style.setProperty('--dark-green', '#638a38');
         root.style.setProperty('--red-text', '#ED553B');
         root.style.setProperty('--dark-blue-bg', '#151D2E');
+        root.style.setProperty('--diffrential-blue', '#262941');
 
         // overall used colors
         root.style.setProperty('--soft-white', '#F6FDEF');

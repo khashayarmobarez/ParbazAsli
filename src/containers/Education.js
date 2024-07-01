@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //  Queries
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
-import InsightsIcon from '@mui/icons-material/Insights';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useCourseDividers } from '../Utilities/Services/coursesQueries';
+import { useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
@@ -21,12 +24,47 @@ import DropDownLine from '../components/reuseable/DropDownLine';
 const Education = () => {
 
     const navigate = useNavigate()
+
+    // courseData
+    const [courseType, setCourseType] = useState('')
+    const [organizationId, setOrganizationId] = useState('')
+    const [pageNumber, setPageNumber] = useState('')
     
+    const [DropDown, setDropDown] = useState('')
+
     // queries
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
+    const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useCourses(courseType, organizationId, pageNumber);
+    const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
+
+
+
+    useEffect(() => {
+        console.log(courseData)
+    },[courseData])
+
+    // dropDown onClick
+    const handleDropDownClick = (index, course) => {
+        setDropDown(DropDown === `dropDown${index}` ? '' : `dropDown${index}`)
+        setCourseType(course.courseType)
+        setOrganizationId(course.organizationId)
+        setPageNumber(1)
+    }
+
+
+    const handleTriggerCourseStatus = (event ,status ,id) => {
+
+        event.preventDefault();
+
+        const triggerStatusForm = {
+            courseId: id,
+            status: status
+        }
+
+        triggerCourseStatus(triggerStatusForm);
+    }
 
     // controlling  items drop down
-    const [DropDown, setDropDown] = useState('')
 
     return (
         <div className='flex flex-col mt-14 items-center'>
@@ -37,52 +75,120 @@ const Education = () => {
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
+                {courseDividerLoading &&
+                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
+                    <CircularProgress /> 
+                </Box>
+                }
+
+                {courseDividerError &&
+                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                }
+
                 {courseDividerData &&
                     courseDividerData.data.map((course, index) => (
-                        <div key={index} className='w-full flex flex-col items-center gap-y-6'
-                        onClick={() => setDropDown(DropDown === `dropDown${index}` ? '' : `dropDown${index}`)}>
+                        <div key={index} className='w-full flex flex-col items-center gap-y-4'>
                             <DropDownLine  
+                                onClick={() => handleDropDownClick(index, course)}
                                 title={course.name} 
                                 dropDown={DropDown} 
                                 isActive={DropDown === `dropDown${index}`}  
                             />
-                            {DropDown === `dropDown${index}` && <p>{index}</p>}
+
+                            {DropDown === `dropDown${index}` && 
+                                <div className='w-full flex flex-col'>
+
+                                    {courseDataLoading && 
+                                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                                            <CircularProgress /> 
+                                        </Box>
+                                    }
+
+                                    {courseDataError &&
+                                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                                    }
+
+                                    {
+                                        courseData && courseData.data?.map((course) => (
+                                            <div className='w-full flex flex-col items-center'>
+
+                                                <div
+                                                key={course.id}
+                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 text-xs z-20"
+                                                style={{
+                                                    background: 'var(--organs-coachData-bg) var(--bg-color)',
+                                                    boxShadow: 'var(--organs-coachData-boxShadow)'
+                                                }}
+                                                >
+                                                    <h1 className='text-base'>{course.name}</h1>
+
+                                                    <div className='w-full flex justify-between items-center'>
+
+                                                        <div className='flex flex-col text-start gap-y-1'>
+
+                                                            <p>
+                                                                {course.level} {course.organization && `/ ${course.organization}`}
+                                                            </p>
+
+                                                            { course.clubName &&
+                                                                <p>باشگاه: {course.clubName}</p>
+                                                            }
+
+                                                            <p>تعداد پرواز: {course.flightsCount}</p>
+
+                                                            <div className='flex gap-x-1'>
+                                                                <p>وضعیت: {course.status}</p>
+
+                                                                {course.status === 'Active' && 
+                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                                }
+                                                                {course.status === 'Pending' &&
+                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
+                                                                }
+                                                                {course.status === 'Disable' &&
+                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                }
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <button className={`${ButtonStyles.normalButton} self-end`} >
+                                                            جزئیات
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+
+                                                {/* Trigger course status */}
+                                                {course.status === 'Pending' &&
+                                                    <div className='w-full min-h-14 rounded-b-2xl z-10 mt-[-1rem] pt-5 flex justify-between px-4' 
+                                                    style={{background: '#262941',
+                                                        boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+
+                                                        <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
+                                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                            <p style={{color:''}}>آیا این دوره مورد تایید شما است؟</p>
+                                                        </div>
+
+                                                        <div className='flex gap-x-4 items-center'>
+
+                                                            <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--dark-green)'}} />
+                                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--red-text)'}} />
+
+                                                        </div>
+                                                    </div>
+                                                } 
+
+                                            </div>
+                                        ))
+                                    }
+
+                                </div>
+                            }
                         </div>
                     ))
                 }
-                
-
-                {/* <div className='w-full flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='انجمن ورزشهای هوایی' dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClick={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
-                    {
-                        DropDown === 'dropDown2' &&
-                        <p>2</p>
-                    }
-                </div>
-
-                <div className='w-full flex flex-col items-center gap-y-4'>
-                    <DropDownLine  title='دوره های بازآموزی'  dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClick={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
-                    {
-                        DropDown === 'dropDown3' &&
-                        <p>3</p>
-                    }
-                </div>
-
-                <div className='w-full flex flex-col items-center gap-y-4'>
-                    <DropDownLine  title='ورکشاپ ها'  dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClick={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
-                    {
-                        DropDown === 'dropDown4' &&
-                        <p>3</p>
-                    }
-                </div>
-
-                <div className='w-full flex flex-col items-center gap-y-4'>
-                    <DropDownLine  title='دوره های سفارشی شده'  dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
-                    {
-                        DropDown === 'dropDown5' &&
-                        <p>3</p>
-                    }
-                </div> */}
 
 
                 </div>
