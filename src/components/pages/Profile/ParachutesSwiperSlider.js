@@ -23,6 +23,10 @@ const ParachutesSwiperSlider = ({parachutesData}) => {
         centeredSlides: !isDesktop,
         spaceBetween: isDesktop ? '20' : '50',
         slidesPerView: isDesktop ? '2' : '1',
+        autoplay: {
+          delay: 3500, // 3 seconds
+          disableOnInteraction: true,
+        },
         injectStyles: [
             `
               .swiper-button-next,

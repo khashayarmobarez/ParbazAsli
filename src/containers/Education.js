@@ -37,11 +37,10 @@ const Education = () => {
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
-
-
-    useEffect(() => {
-        console.log(courseData)
-    },[courseData])
+    // to check data
+    // useEffect(() => {
+    //     console.log(courseData)
+    // },[courseData])
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
@@ -50,6 +49,10 @@ const Education = () => {
         setOrganizationId(course.organizationId)
         setPageNumber(1)
     }
+
+    const handleCourseDetails = (id) => () => {
+        navigate(`/education/courseDetails/${id}`);
+    };
 
 
     const handleTriggerCourseStatus = (event ,status ,id) => {
@@ -153,8 +156,8 @@ const Education = () => {
 
                                                         </div>
 
-                                                        <button className={`${ButtonStyles.normalButton} self-end`} >
-                                                            جزئیات
+                                                        <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-end`} >
+                                                            جزئیات  
                                                         </button>
 
                                                     </div>
@@ -171,8 +174,13 @@ const Education = () => {
                                                             <p style={{color:''}}>آیا این دوره مورد تایید شما است؟</p>
                                                         </div>
 
-                                                        <div className='flex gap-x-4 items-center'>
+                                                        <div className='flex gap-x-4 items-center px-6'>
 
+                                                            {triggerCourseStatusLoading && 
+                                                                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                                                                    <CircularProgress sx={{width:'1rem'}} /> 
+                                                                </Box>
+                                                            }
                                                             <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--dark-green)'}} />
                                                             <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--red-text)'}} />
 

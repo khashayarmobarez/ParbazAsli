@@ -81,6 +81,10 @@ import 'react-toastify/dist/ReactToastify.css';
   import CoachHistory from './components/pages/Organization/CoachHistory';
 import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
 import PossessionTransitionEquipment from './components/pages/Equipment page comps/PossessionTransitionEquipment';
+import CourseDetails from './components/pages/Education/CourseDetails';
+import CourseStudents from './components/pages/Education/CourseDetailPages/CourseStudents';
+import CourseClasses from './components/pages/Education/CourseDetailPages/CourseClasses';
+import CourseSyllabi from './components/pages/Education/CourseDetailPages/CourseSyllabi';
   
 
 
@@ -219,6 +223,12 @@ function App() {
                 {/* education */}
                 <Route path='/education' element={<Education userRole={ userRole }  />} />
                 <Route path='/education/addClass' element={<AddCourse />} /> 
+                <Route path='/education/courseDetails/:id' element={<CourseDetails />} >
+                  <Route index element={<CourseStudents />} />
+                  <Route path="students" element={<CourseStudents />} />
+                  <Route path="classes" element={<CourseClasses />} />
+                  <Route path="syllabi" element={<CourseSyllabi />} />
+                </Route> 
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
 
                 {/* flight history */}

@@ -34,7 +34,7 @@ const Profile = ({userRole}) => {
     const { data, isLoading, error } = useUserProfile();
 
     return (
-        <div className='flex flex-col items-center pt-[75px]'>
+        <div className='flex flex-col items-center pt-[75px] md:pt-28'>
 
             {
                 isLoading && 
@@ -53,7 +53,7 @@ const Profile = ({userRole}) => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-y-2 w-[90%] md:w-[65%]'>
+            <div className='flex flex-col items-center justify-center gap-y-2 md:gap-y-4 w-[90%] md:w-[65%]'>
 
 
                     {/* first data box  */}
@@ -65,7 +65,7 @@ const Profile = ({userRole}) => {
                     
                         <ParachutesSwiperSlider parachutesData={data.data.parachutes} />
                         :
-                        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-28 z-0 w-full flex flex-col justify-between items-center px-2 py-4 my-2`}>
+                        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-28 z-0 w-full flex flex-col justify-between items-center px-2 py-4 `}>
                             <p className=' font-medium text-sm'>چتر و وسایل پروازی خود را اضافه کنید</p>
                             <button onClick={() => navigate('/equipment')} className={`${ButtonStyles.addButton} w-20`} >
                                 <AddIcon />
@@ -74,15 +74,10 @@ const Profile = ({userRole}) => {
 
                     }
 
-                    {/* user Courses slider */}
-                    {
-                    data.data.userCourses && data.data.userCourses.length > 0 && 
-                        <UserCoursesSlider coursesData={data.data.userCourses} />
-                    }
 
 
                     {/* buttons */}
-                    <div className='flex justify-between w-full md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[20rem] '>
+                    <div className='flex justify-between w-full md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[24rem] '>
 
                         <Link to='/equipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
@@ -114,10 +109,15 @@ const Profile = ({userRole}) => {
 
                     </div>
 
+                    {/* user Courses slider */}
+                    {
+                    data.data.userCourses && data.data.userCourses.length > 0 && 
+                        <UserCoursesSlider coursesData={data.data.userCourses} />
+                    }
                         
             </div>
    
-            }
+}
 
         </div>
     );

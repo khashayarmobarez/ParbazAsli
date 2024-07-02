@@ -3,10 +3,12 @@ import React, { useEffect, useRef } from 'react';
 // mui
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import SpeedoMeter from '../../reuseable/SpeedoMeter';
+// components
+import CourseSlide from './EditProfile/CourseSlide';
 
 import { register } from "swiper/element/bundle";
 register();
+
 
 
 const UserCoursesSlider = ({coursesData}) => {
@@ -16,6 +18,10 @@ const UserCoursesSlider = ({coursesData}) => {
     const swiperRef = useRef(null);
 
     useEffect(() => {
+      console.log(coursesData)
+    },[coursesData])
+
+    useEffect(() => {
         const swiperContainer = swiperRef.current;
         const params = {
         navigation: true,
@@ -23,11 +29,15 @@ const UserCoursesSlider = ({coursesData}) => {
         centeredSlides: !isDesktop,
         spaceBetween: isDesktop ? '20' : '50',
         slidesPerView: isDesktop ? '2' : '1',
+        autoplay: {
+          delay: 3500, // 3 seconds
+          disableOnInteraction: true,
+        },
         injectStyles: [
             `
               .swiper-button-next,
               .swiper-button-prev {
-                margin-top:4.6rem;
+                margin-top:5.5rem;
                 background-color: var(--profile-buttons-background);
                 box-shadow:var(--profile-buttons-boxShadow);
                 padding: 3px;
@@ -65,22 +75,21 @@ const UserCoursesSlider = ({coursesData}) => {
   }, [isDesktop]);
 
     return (
-        <div className='w-full h-52'>
+        <div className='w-full h-60'>
           <div className='w-full h-full py-2'>
-
             
               <swiper-container
-                style={{ height:'12.4rem',...(!isDesktop && { marginRight: '0' }), }}
+                style={{ height:'14.3rem',...(!isDesktop && { marginRight: '0' }), }}
                 ref={swiperRef}
                 init="false"
                 >
 
                   {/* map later */}
                   {
-                    coursesData.map( parachute => 
+                    coursesData.map( course => 
 
-                      <swiper-slide key={parachute.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
-                          <SpeedoMeter parachuteData={parachute} className='z-10' />
+                      <swiper-slide key={course.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
+                          <CourseSlide courseData={course} className='z-10' />
                       </swiper-slide>
 
                     )
