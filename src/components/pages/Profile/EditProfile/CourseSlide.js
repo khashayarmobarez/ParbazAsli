@@ -10,6 +10,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 const CourseSlide = ({courseData}) => {
 
+    // add to the percentage when the value is 0 so it shos that this bar can ce filled
     const[theOne, setTheOne] = useState(0)
 
     useEffect(() => {

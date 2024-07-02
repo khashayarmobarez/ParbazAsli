@@ -122,15 +122,23 @@ const CourseDetails = () => {
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
                                     <p className=' text-xs pr-2'>وضعیت</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                        <p>{aCourseData.data.status}</p>
                                         {aCourseData.data.status === 'Active' && 
-                                        <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                            <>
+                                                <p>فعال</p>
+                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                            </>
                                         }
                                         {aCourseData.data.status === 'Pending' &&
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
+                                            <>
+                                                <p>در انتظار تایید</p>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
+                                            </>
                                         }
                                         {aCourseData.data.status === 'Disable' &&
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                            <>
+                                                <p>غیرفعال</p>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                            </>
                                         }
                                     </div>
                                 </div>
@@ -146,12 +154,15 @@ const CourseDetails = () => {
 
                     
                         <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
-                            <Link ref={buttonRef} to={`/education/courseDetails/${id}/students`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>وسایل باشگاه</Link> 
-                            <Link to={`/education/courseDetails/${id}/classes`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'classes' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('classes')} >مربیان باشگاه</Link> 
-                            <Link to={`/education/courseDetails/${id}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabi' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabi')} >هنرجویان</Link>
+                            <Link ref={buttonRef} to={`/education/courseDetails/${id}/students`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
+                            <Link to={`/education/courseDetails/${id}/classes`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'classes' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('classes')} >کلاس تئوری</Link> 
+                            <Link to={`/education/courseDetails/${id}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabi' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabi')} >سیلابس</Link>
                         </div>
 
-                        <Outlet />
+                        <div className='w-[90%]'>
+                            <Outlet />
+                        </div>
+
                         
                     </>
                 }

@@ -250,36 +250,70 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-// get a course details
-const getACourse = async (courseId) => {
-    const token = Cookies.get('token');
-
-    try {
-        const response = await axios.get(`${BASE_URL}/Course/GetCourse?courseId=${courseId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return response.data;
-    } catch (error) {
-        if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-            window.location.reload();
-        } else {
-            throw error;
+    
+    
+    
+    
+    // get a course details
+    const getACourse = async (courseId) => {
+        const token = Cookies.get('token');
+        
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetCourse?courseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
         }
-    }
-};
-
-
-const useACourse = (courseId) => {
-    return useQuery(['aCourse', courseId], () => getACourse(courseId));
-};
-
-
+    };
+    
+    
+    const useACourse = (courseId) => {
+        return useQuery(['aCourse', courseId], () => getACourse(courseId));
+    };
 
 
 
 
+    
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse }; 
+    
+// get a course students data
+    const getACourseStudents = async (courseId, pageNumber) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+
+    const useACourseStudents = (courseId,pageNumber) => {
+        return useQuery(['aCourseStudents', courseId], () => getACourseStudents(courseId, pageNumber));
+    };
+
+
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents }; 

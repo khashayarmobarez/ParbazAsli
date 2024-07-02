@@ -171,7 +171,7 @@ const Education = () => {
 
                                                         <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
                                                             <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                            <p style={{color:''}}>آیا این دوره مورد تایید شما است؟</p>
+                                                            <p >آیا این دوره مورد تایید شما است؟</p>
                                                         </div>
 
                                                         <div className='flex gap-x-4 items-center px-6'>
