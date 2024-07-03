@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // styles
 import gradients from '../../../../styles/gradients/Gradient.module.css'
@@ -11,27 +12,88 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 // assests
 import clipboard from '../../../../assets/icons/clipboard.svg'
+import AddIcon from '@mui/icons-material/Add';
 
 // queries
-import { useACourseStudents } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse } from '../../../../Utilities/Services/coursesQueries';
+
+// components
+import TextInput from '../../../inputs/textInput';
+import { useUserById } from '../../../../Utilities/Services/queries';
+import DropDownLine from '../../../reuseable/DropDownLine';
 
 const CourseStudents = () => {
     
     const navigate = useNavigate();
     const { id } = useParams();
+    const [pageNumber, setPageNumber] = useState(1);
+    const [historyPageNumber, sethistoryPageNumber] = useState(1);
+    const [DropDownHistory, setDropDownHistory] = useState(false);
+
+    // add student
+    const [studentId, setStudentId] = useState('');
 
     const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError } = useACourseStudents(id,pageNumber);
-    
-    const pageNumber = 1;
+    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError } = useACourseHistoryStudents(id,historyPageNumber);
+    const {  data: studentData, isLoading: studentDataLoading, error: studentDataError } = useUserById(studentId);
 
-    // add to the percentage when the value is 0 so it shos that this bar can ce filled
-    const[theOne, setTheOne] = useState(0)    
+    // post student to course
+    const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToCourse();
     
-    useEffect(() => {
-        if((studentsData.percent === 0)) {
-            setTheOne(2)
+
+
+    const handleNextPage = () => {
+        if(studentsData.totalPagesCount === pageNumber) return;
+        console.log('next page')
+        setPageNumber(prev => prev + 1)
+    }
+
+    const handleNextPageHistory = () => {
+        if(studentsHistoryData.totalPagesCount === historyPageNumber) return;
+        console.log('next page')
+        sethistoryPageNumber(prev => prev + 1)
+    }
+
+    // handle text input state
+    const handleInputStudentId = (event) => {
+        setStudentId(event.target.value);
+    };
+
+    // handle add student
+    const handleAddStudnetToCourse = () => {
+
+        const customCourseData = {
+            courseId: id,
+            userId: studentId
         }
-    },[studentsData])
+
+        addStudentToCourse( customCourseData , {
+            onSuccess: () => {
+                toast('دوره شما با موفقیت تایید شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            },
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        })
+    }
+    
+
 
     return (
         <div className='w-full flex flex-col items-center'>
@@ -50,22 +112,89 @@ const CourseStudents = () => {
             }
 
             {
-                studentsData && studentsData.data?.map((student) => (
-                    <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
-                        <span>
-                            <PersonOutlineOutlinedIcon />
-                        </span>
-                        <p>{student.name}</p>
-                        <p>{student.joinDateTime}</p>
-                        <Box sx={{ display: 'flex' , justifyContent:'center' }}>
-                            <CircularProgress variant="determinate" value={student.percent + theOne }
-                            sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'},}}/>
-                        </Box>
-                        <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                            <img src={clipboard} alt='icon' />
-                        </button>
+                studentsData && 
+                <div className='w-full flex flex-col items-center gap-y-6'>
+                    {studentsData.data?.map((student) => (
+                        <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                            <span>
+                                <PersonOutlineOutlinedIcon />
+                            </span>
+                            <p>{student.name}</p>
+                            <p>{student.joinDateTime}</p>
+                            <Box sx={{ display: 'flex' , justifyContent:'center' }}>
+                                <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
+                                sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
+                            </Box>
+                            <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                                <img src={clipboard} alt='icon' />
+                            </button>
+                        </div>
+                    ))}
+                    {
+                        studentsData.totalPagesCount < pageNumber &&
+                        <p onClick={handleNextPage} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
+                    }
+
+                    <div className='flex flex-col w-full gap-y-2'>
+                        { studentData && 
+                            <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
+                        }
+                        {/* {studentDataError &&
+                            <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
+                        } */}
+                        <div className='w-full flex justify-between relative items-center'>
+                            <div className='w-[86%] flex flex-col'>
+                                <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
+                            </div>
+                            <span
+                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                                onClick={handleAddStudnetToCourse}
+                                disabled={addStudentToCourseLoading}
+                            >
+                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                            </span>
+                        </div>
                     </div>
-                ))
+
+                    {
+                        studentsHistoryData && studentsHistoryData && studentsHistoryData.data.length > 0 &&
+                        <div  className='w-full flex flex-col items-center gap-y-4'>
+                            <DropDownLine  
+                                onClick={() => setDropDownHistory(!DropDownHistory)}
+                                title={'هنر جویان سابق'} 
+                                dropDown={DropDownHistory} 
+                                isActive={DropDownHistory === true}  
+                            />
+
+                            {DropDownHistory &&
+                                <div className='w-full flex flex-col items-center gap-y-6'>
+                                    {studentsHistoryData.data?.map((student) => (
+                                        <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                                            <span>
+                                                <PersonOutlineOutlinedIcon />
+                                            </span>
+                                            <p>{student.name}</p>
+                                            <p>{student.joinDateTime}</p>
+                                            <Box sx={{ display: 'flex' , justifyContent:'center' }}>
+                                                <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
+                                                sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
+                                            </Box>
+                                            <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                                                <img src={clipboard} alt='icon' />
+                                            </button>
+                                        </div>
+                                    ))}
+                                    {
+                                        studentsData.totalPagesCount < pageNumber &&
+                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
+                                    }
+                                </div>
+                            }
+                        </div>
+
+                    }
+
+                </div>
             }
             </div>
         </div>

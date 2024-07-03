@@ -37,10 +37,6 @@ const CourseDetails = () => {
     }
   }, []);
 
-    useEffect(() => {
-        console.log(aCourseData)
-    },[aCourseData])
-
 
 
     return (
@@ -140,7 +136,7 @@ const CourseDetails = () => {
                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                             </>
                                         }
-                                    </div>
+                                    </div> 
                                 </div>
 
                             </div>

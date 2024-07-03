@@ -315,5 +315,102 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
+    
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents }; 
+    
+// get a course old students data
+    const getACourseHistoryStudents = async (courseId, pageNumber) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+
+    const useACourseHistoryStudents = (courseId,pageNumber) => {
+        return useQuery(['aCourseHistoryStudents', courseId], () => getACourseHistoryStudents(courseId, pageNumber));
+    };
+
+
+
+
+// add student to course  /Course/AddStudentToCourse
+    const addStudentToCourse = async (student) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Course/AddStudentToCourse`, student, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) { 
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useAddStudentToCourse = () => {
+        return useMutation(addStudentToCourse, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('Student added successfully:', data);
+            },
+        });
+    }
+
+
+
+
+
+
+// get a course syllabi   /Course/GetCourseSyllabi?courseId=30&type=2
+    const getACourseSyllabi = async (courseId, type) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useACourseSyllabi = (courseId, type) => {
+        return useQuery(['aCourseSyllabi', courseId, type], () => getACourseSyllabi(courseId, type));
+    };
+
+
+
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi }; 
