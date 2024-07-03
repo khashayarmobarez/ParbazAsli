@@ -8,7 +8,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const DropDownDataStudent = (props) => {
 
-    const{title, dataText} = props
+    const{title, data} = props
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -38,7 +38,16 @@ const DropDownDataStudent = (props) => {
 
         </div>
 
-        <p className={`${isExpanded ? 'block' : 'hidden'}`} >{dataText}</p>
+        {
+            data && isExpanded &&
+            data.map((data,index) => (
+                <div key={data.id}>
+                    <p className={`${isExpanded ? 'block' : 'hidden'} text-right`} >{data.order}. {data.description}</p>
+                    {index !== data.length - 1 && <hr className='w-full border-[1px] border-opacity-50 mt-2' />}
+                </div>
+            ))
+
+        }
 
     </div>
     );
