@@ -10,19 +10,23 @@ import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
+// assets
+import attention from '../assets/icons/attention.svg'
+
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
+import { useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
+import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 
 
-const Education = () => {
 
+const MyCourses = () => {
     const navigate = useNavigate()
 
     // courseData
@@ -33,8 +37,8 @@ const Education = () => {
     const [DropDown, setDropDown] = useState('')
 
     // queries
-    const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
-    const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useCourses(courseType, organizationId, pageNumber);
+    const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useUserCourseDividers();
+    const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useUserCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
     // to check data
@@ -90,6 +94,14 @@ const Education = () => {
 
                 {courseDividerError &&
                     <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                }
+
+                {
+                    courseDividerData && courseDividerData.data.length === 0 &&
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
+                        <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
+                        <p>در انتظار مربی...</p>
+                    </div>
                 }
 
                 {courseDividerData && courseDividerData.data.length > 0 &&
@@ -218,4 +230,4 @@ const Education = () => {
     );
 };
 
-export default Education;
+export default MyCourses;

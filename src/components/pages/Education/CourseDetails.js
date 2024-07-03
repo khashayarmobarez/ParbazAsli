@@ -9,7 +9,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useACourse } from '../../../Utilities/Services/coursesQueries';
+import { useACourse, useTriggerCourseStatus } from '../../../Utilities/Services/coursesQueries';
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
@@ -20,6 +20,8 @@ const CourseDetails = () => {
 
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
 
+    const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
+
     // to set which button is active and style it
     const [activeLink, setActiveLink] = useState('students'); // State to track active link
 
@@ -29,13 +31,25 @@ const CourseDetails = () => {
 
 
     // Effect to click the button when the page is mounted
-  useEffect(() => {
-    // Check if the button ref exists and it has a current property
-    if (buttonRef.current) {
-      // Programmatically click the button
-      buttonRef.current.click();
+    useEffect(() => {
+        // Check if the button ref exists and it has a current property
+        if (buttonRef.current) {
+        // Programmatically click the button
+        buttonRef.current.click();
+        }
+    }, []);
+
+    const handleTriggerCourseStatus = (event ,status ,id) => {
+
+        event.preventDefault();
+
+        const triggerStatusForm = {
+            courseId: id,
+            status: status
+        }
+
+        triggerCourseStatus(triggerStatusForm);
     }
-  }, []);
 
 
 
@@ -159,7 +173,8 @@ const CourseDetails = () => {
                             <Outlet />
                         </div>
 
-                        <button className={`${ButtonStyles.normalButton} fixed bottom-[3.75rem] w-[90%] text-base`} >
+                        <button className={`${ButtonStyles.normalButton} fixed bottom-[3.75rem] w-[90%] text-base`} 
+                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', id)} >
                             <p>آرشیو دوره</p>
                         </button>
                     </>

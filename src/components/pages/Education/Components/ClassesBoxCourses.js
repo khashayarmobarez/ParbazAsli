@@ -23,7 +23,9 @@ const ClassesBoxCourses = (props) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const [extraData, setExtraData] = useState(false)
 
-    const {title} = props
+    const {title, data} = props
+
+    console.log(data)
 
     const handleClick = () => {
         setIsExpanded(!isExpanded);

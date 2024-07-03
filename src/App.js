@@ -86,6 +86,7 @@ import CourseStudents from './components/pages/Education/CourseDetailPages/Cours
 import CourseClasses from './components/pages/Education/CourseDetailPages/CourseClasses';
 import CourseSyllabi from './components/pages/Education/CourseDetailPages/CourseSyllabi';
 import AddClass from './components/pages/Education/CourseDetailPages/AddClass';
+import MyCourses from './containers/MyCourses';
   
 
 
@@ -232,6 +233,9 @@ function App() {
                 </Route> 
                 <Route path='/education/:id/AddClass' element={<AddClass/>} />
                 <Route path='/education/StudentDetails' element={<StudentDetails/>} />
+
+                {/* my courses */}
+                <Route path='/MyCourses' element={<MyCourses  />} />
 
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
