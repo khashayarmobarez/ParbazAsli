@@ -45,3 +45,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* mui */
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root  {
+  width: 100%;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  background-color: red;
+}
+
+.MuiOutlinedInput-root {
+  width: 100%;
+}

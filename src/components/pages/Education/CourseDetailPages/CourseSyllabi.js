@@ -24,7 +24,7 @@ const CourseSyllabi = () => {
     }, [syllabiDataTheory, syllabiDataPractical])
     
     return (
-        <div className=' w-full flex flex-col gap-y-7'>
+        <div className=' w-full flex flex-col gap-y-7 pb-14'>
             {
                 syllabiDataTheory && syllabiDataTheory.data.length > 0 &&
                 <DropDownDataBox title={"سیلابس تئوری"} data={syllabiDataTheory.data}  />

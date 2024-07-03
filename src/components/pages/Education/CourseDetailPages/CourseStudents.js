@@ -96,7 +96,7 @@ const CourseStudents = () => {
 
 
     return (
-        <div className='w-full flex flex-col items-center'>
+        <div className='w-full flex flex-col items-center pb-14'>
             <div className='w-full flex flex-col'>
 
             {

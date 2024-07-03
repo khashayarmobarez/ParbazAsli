@@ -149,7 +149,7 @@ const CourseDetails = () => {
                         </div>
 
                     
-                        <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
+                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
                             <Link ref={buttonRef} to={`/education/courseDetails/${id}/students`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
                             <Link to={`/education/courseDetails/${id}/classes`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'classes' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('classes')} >کلاس تئوری</Link> 
                             <Link to={`/education/courseDetails/${id}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabi' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabi')} >سیلابس</Link>
@@ -159,7 +159,9 @@ const CourseDetails = () => {
                             <Outlet />
                         </div>
 
-                        
+                        <button className={`${ButtonStyles.normalButton} fixed bottom-[3.75rem] w-[90%] text-base`} >
+                            <p>آرشیو دوره</p>
+                        </button>
                     </>
                 }
 
