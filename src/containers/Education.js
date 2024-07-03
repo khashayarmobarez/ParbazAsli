@@ -28,7 +28,7 @@ const Education = () => {
     // courseData
     const [courseType, setCourseType] = useState('')
     const [organizationId, setOrganizationId] = useState('')
-    const [pageNumber, setPageNumber] = useState('')
+    const [pageNumber, setPageNumber] = useState(1)
     
     const [DropDown, setDropDown] = useState('')
 
@@ -37,10 +37,7 @@ const Education = () => {
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
-    // to check data
-    // useEffect(() => {
-    //     console.log(courseData)
-    // },[courseData])
+    
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
@@ -74,7 +71,7 @@ const Education = () => {
 
 
     return (
-        <div className='flex flex-col mt-14 items-center'>
+        <div className='flex flex-col mt-14 items-center pb-14'>
 
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
@@ -196,12 +193,18 @@ const Education = () => {
                                         ))
                                     }
 
+                                    {/* <div className='w-full flex justify-between'>
+                                        <p>{courseData.totalPagesCount !== 1 && 'بقیه ی دوره ها'}</p>
+                                        <p>{pageNumber > 1 && 'دوره های قبلی'}</p>
+                                    </div> */}
+
                                 </div>
                             }
                         </div>
                     ))
                 }
-
+                
+                
 
                 </div>
 
