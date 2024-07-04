@@ -49,7 +49,7 @@ const CourseSlide = ({courseData}) => {
                         <p>مربی: {courseData.coach}</p>
                     }
                 </div>
-                <button className={`${ButtonStyles.normalButton} self-end`} >
+                <button className={`${ButtonStyles.normalButton} self-end opacity-55`} >
                     جزئیات  
                 </button>
 
