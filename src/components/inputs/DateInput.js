@@ -17,7 +17,7 @@ const TextInput = ({ value, onChange, placeholder }) => {
   };
   
   return (
-    <div className={`w-full flex h-12`}>
+    <div className={`w-full flex h-12 `}>
       <span> 
         {/* <CalendarTodayOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} /> */}
       </span>
