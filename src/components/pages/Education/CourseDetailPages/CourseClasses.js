@@ -45,7 +45,7 @@ const CourseClasses = () => {
         }
 
             {
-                classesData && classesData.data.length > 0 &&
+                classesData && 
                 <ClassesBoxCourses title={'کلاس‌ها'} data={classesData} />
             }
             
