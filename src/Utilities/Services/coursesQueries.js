@@ -471,25 +471,6 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 // add class to course /Course/AddCourseClass 
-// {
-//     "courseId": 30,
-//     "Name": "کلاس اول",
-//     "Description": "توضیحات کلاس اول",
-//     "startTime": "08:00  ",
-//     "endTime": "12:00  ",
-//     "userCourseIds": [
-//         35
-//     ],
-//     "classSyllabusIds": [
-//         515,
-//         516,
-//         517,
-//         518
-//     ],
-//     "guestUserIds": [
-//         "676aoj"
-//     ]
-// }
     const addCourseClass = async (courseClass) => {
         const token = Cookies.get('token');
 
@@ -523,8 +504,36 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
+    
+
+// get a class data /Course/GetCourseClass?classId=1
+    const getAClass = async (classId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetCourseClass?classId=${classId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAClass = (classId) => {
+        return useQuery(['aClass', classId], () => getAClass(classId));
+    };
 
 
 
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents }; 
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass}; 

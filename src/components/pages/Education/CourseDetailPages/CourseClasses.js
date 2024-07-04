@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // mui
@@ -21,33 +21,49 @@ const CourseClasses = () => {
 
     const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useACourseClasses(id);
 
+    useEffect(() => {
+        if(classesData) {
+            console.log(classesData)
+        }
+    }, [classesData])
+
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
 
-        {classesData && 
-            <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-10'>
-                
-                <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
-                    <p className='text-xs'>تعداد کلاس های برگزارشده</p>
-                    <p className={` ${dataBox.classDetailsData} w-full h-10 rounded-xl flex items-center justify-center`}>
-                    {classesData.data.classesCount}
-                    </p>
+            {classesData && 
+            <>
+                <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-10'>
+                    
+                    <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
+                        <p className='text-xs'>تعداد کلاس های برگزارشده</p>
+                        <p className={` ${dataBox.classDetailsData} w-full h-10 rounded-xl flex items-center justify-center`}>
+                        {classesData.data.classesCount}
+                        </p>
+                    </div>
+                    
+                    <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
+                        <p className='text-xs'>جمع ساعت کلاس ها</p>
+                        <p className={` ${dataBox.classDetailsData} w-full h-10 rounded-xl flex items-center justify-center`}>
+                        {classesData.data.totalClassHours}
+                        </p>
+                    </div>
+
                 </div>
-                
-                <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
-                    <p className='text-xs'>جمع ساعت کلاس ها</p>
-                    <p className={` ${dataBox.classDetailsData} w-full h-10 rounded-xl flex items-center justify-center`}>
-                    {classesData.data.totalClassHours}
-                    </p>
+            
+                {/* group name of data */}
+                <div className='flex justify-between items-center w-full'>
+                    <h2 >کلاس ها</h2>
+                    <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
                 </div>
 
-            </div>
-        }
-
-            {
-                classesData && 
-                <ClassesBoxCourses title={'کلاس‌ها'} data={classesData} />
+                {
+                    classesData.data.classes.map((classData) => {
+                    return <ClassesBoxCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    })
+                }
+            </>
             }
+
             
 
             <button onClick={() => navigate(`/education/${id}/AddClass`)} 

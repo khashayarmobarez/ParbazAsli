@@ -125,7 +125,7 @@ const CourseStudents = () => {
                                 <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
                                 sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                             </Box> */}
-                            <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                                 <img src={clipboard} alt='icon' />
                             </button>
                         </div>

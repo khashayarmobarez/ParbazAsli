@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // styles
 import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useACourseStudents, useACourseSyllabi, useAllActiveCourseStudents } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents } from '../../../../Utilities/Services/coursesQueries';
 import { useUserById } from '../../../../Utilities/Services/queries';
 
 // mui
@@ -22,9 +23,10 @@ import MultipleSelectStudent from '../../../inputs/MultipleSelectStudent';
 
 const AddClass = () => {
 
+    const navigate = useNavigate();
     const { id } = useParams();
 
-    const [courseName, setCourseName] = useState('');
+    const [ClassName, setClassName] = useState('');
 
     const [StartSelectedTime, setStartSelectedTime] = useState('');
     const [endSelectedTime, setEndSelectedTime] = useState('');
@@ -39,19 +41,38 @@ const AddClass = () => {
     const [guestStudentDatas, setGuestStudentDatas] = useState([]);
 
 
+
     const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
     const {  data: courseStudents, isLoading: courseStudentsLoading, error: courseStudentsError } = useAllActiveCourseStudents(id);
     const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(guestStudentId)
+    const { mutate: addCourseClass, isLoading: addCourseClassLoading } = useAddCourseClass();
+    
 
 
 
     useEffect(() => {
-        console.log(guestStudentDatas)
-    }, [guestStudentDatas]);
+        console.log(StartSelectedTime, endSelectedTime)
+    }, [StartSelectedTime, endSelectedTime]);
 
 
-    const handleCourseName = (event) => {
-        setCourseName(event.target.value);
+    // a use effect to check the endSelectedTime is after StartSelectedTime when the endSelectedTime is changed
+    useEffect(() => {
+        if (StartSelectedTime && endSelectedTime) {
+            if (StartSelectedTime > endSelectedTime) {
+                toast('تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        }
+    }, [endSelectedTime]);
+
+
+    const handleClassName = (event) => {
+        setClassName(event.target.value);
     };
 
     const handleSelectChangeSyllabi = (newSelectedOptions) => {
@@ -104,10 +125,77 @@ const AddClass = () => {
     }
 
 
-    const handleSubmit = () => {
-        const Class = {
-            
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+
+        // turn the startSelectedTime and end selected time into HH:mm format
+        const startHour = StartSelectedTime.$d.getHours();
+        const startMinute = StartSelectedTime.$d.getMinutes();
+        const startTime = `${startHour}:${startMinute}`;
+
+        const endHour = endSelectedTime.$d.getHours();
+        const endMinute = endSelectedTime.$d.getMinutes();
+        const endTime = `${endHour}:${endMinute}`;
+        
+
+        const classData = {
+            "courseId": id,
+            "Name": ClassName,
+            "Description": "empty",
+            "startTime": startTime,
+            "endTime": endTime,
+            "userCourseIds": studentIds,
+            "classSyllabusIds": syllabusIds,
+            "guestUserIds": guestStudentIds
         };
+
+        if(!id || !ClassName || !startTime || !endTime || syllabusIds.length === 0 || studentIds.length === 0){
+            return toast('لطفا تمامی فیلد ها را پر کنید', {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+        } else if (StartSelectedTime > endSelectedTime) {
+            return toast('تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+        } else {
+            addCourseClass(classData, {
+                onSuccess: () => {
+                    toast('کلاس با موفقیت اضافه شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    navigate(`/education/courseDetails/${id}/classes`)
+                }, onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                }
+            });
+        }
+            
+
+
     }
 
         
@@ -125,8 +213,8 @@ const AddClass = () => {
                     <form className='w-[90%] flex flex-col items-center gap-y-4'>
 
                         <TextInput
-                        value={courseName}
-                        onChange={handleCourseName}
+                        value={ClassName}
+                        onChange={handleClassName}
                         placeholder='نام دوره'
                         />
 
@@ -146,6 +234,10 @@ const AddClass = () => {
                             onChange={handleEndTimeChange}
                             placeholder="Select time"
                             />
+                            {
+                                (StartSelectedTime > endSelectedTime) &&
+                                <p className='text-start text-sm' style={{color:'var(--red-text)'}} >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
+                            }
                         </div>
 
                         <MultipleSelect
