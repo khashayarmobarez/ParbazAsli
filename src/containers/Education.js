@@ -93,6 +93,11 @@ const Education = () => {
                     <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                 }
 
+                {
+                    !courseDividerData && 
+                    <p className='h-60vh w-full text-center flex justify-center items-center'> دوره ای اضافه نشده</p>
+                }
+
                 {courseDividerData && courseDividerData.data.length > 0 &&
                     courseDividerData.data.map((course, index) => (
                         <div key={index} className='w-full flex flex-col items-center gap-y-4'>
