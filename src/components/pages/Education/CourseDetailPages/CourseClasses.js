@@ -24,6 +24,7 @@ const CourseClasses = () => {
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
 
+        {classesData && 
             <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-10'>
                 
                 <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
@@ -41,6 +42,7 @@ const CourseClasses = () => {
                 </div>
 
             </div>
+        }
 
             {
                 classesData && classesData.data.length > 0 &&
