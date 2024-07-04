@@ -48,9 +48,6 @@ const CourseSlide = ({courseData}) => {
                     { courseData.coach &&
                         <p>مربی: {courseData.coach}</p>
                     }
-                    { courseData.coach &&
-                        <p>مربی: {courseData.coach}</p>
-                    }
                 </div>
                 <button className={`${ButtonStyles.normalButton} self-end`} >
                     جزئیات  
