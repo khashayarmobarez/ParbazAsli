@@ -190,7 +190,6 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-
 // post trigger course status
     const postTriggerCourseStatus = async ({ courseId, status }) => {
         const token = Cookies.get('token');
@@ -442,7 +441,36 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
+// Get All Active Course Students /Course/GetAllActiveCourseStudents?courseId=30
+    const getAllActiveCourseStudents = async (courseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetAllActiveCourseStudents?courseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAllActiveCourseStudents = (courseId) => {
+        return useQuery(['allActiveCourseStudents', courseId], () => getAllActiveCourseStudents(courseId));
+    };
 
 
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses }; 
+
+
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents }; 

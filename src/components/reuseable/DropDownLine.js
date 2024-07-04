@@ -3,24 +3,24 @@ import React from 'react';
 // mui
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const DropDownLine = ({title, isActive, onClick, icon}) => {
+const DropDownLine = ({title, isActive, onClick, icon, textWidth}) => {
     return (
         <div className='flex justify-between w-full'>
             
             <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 
-                <div className='flex gap-x-3 w-52 justify-center'>
+                <div className='flex gap-x-3 justify-center'>
                     {icon ? 
                     <>
                         <span className='w-4'>
                             <img src={icon} alt='icon' />
                         </span>
-                        <p className='text-sm font-light w-16'> 
+                        <p className='text-sm font-light w-16 '> 
                             {title}
                         </p>
                     </>
                     :
-                    <p className='text-xs font-light'> 
+                    <p className='text-xs font-light whitespace-nowrap' > 
                         {title}
                     </p>
                     }
