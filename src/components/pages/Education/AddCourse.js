@@ -217,8 +217,6 @@ const AddCourse = () => {
         e.preventDefault();
     
         if ( selectedClassType && flightCount && level) {
-            
-           
     
             const regularformData = {
                 levelId: level.id,

@@ -220,7 +220,11 @@ const BASE_URL = 'https://api.par-baz.ir/api'
       // console.log(response.data);  
       return response.data;
     } catch (error) {
-      throw new Error('Failed to fetch organs');
+      if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+          window.location.reload();
+      } else {
+          throw error;
+      }
     }
   };
 
@@ -246,11 +250,11 @@ const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) =>
     // console.log(response.data);  
     return response.data;
   } catch (error) {
-    console.log(error)
-    if(userId.length > 5) {
-      setErrorMessage(error.response?.data.ErrorMessages[0].ErrorMessage)
+    if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+        window.location.reload();
+    } else {
+        throw error;
     }
-    throw new Error('Failed to fetch organs');
   }
 };
 

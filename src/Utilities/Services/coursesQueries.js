@@ -470,6 +470,60 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
+// add class to course /Course/AddCourseClass 
+// {
+//     "courseId": 30,
+//     "Name": "کلاس اول",
+//     "Description": "توضیحات کلاس اول",
+//     "startTime": "08:00  ",
+//     "endTime": "12:00  ",
+//     "userCourseIds": [
+//         35
+//     ],
+//     "classSyllabusIds": [
+//         515,
+//         516,
+//         517,
+//         518
+//     ],
+//     "guestUserIds": [
+//         "676aoj"
+//     ]
+// }
+    const addCourseClass = async (courseClass) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Course/AddCourseClass`, courseClass, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useAddCourseClass = () => {
+        return useMutation(addCourseClass, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('Class added successfully:', data);
+            },
+        });
+    }
+
+
+
+
+
 
 
 

@@ -9,8 +9,9 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import { useACourseStudents, useACourseSyllabi, useAllActiveCourseStudents } from '../../../../Utilities/Services/coursesQueries';
 import { useUserById } from '../../../../Utilities/Services/queries';
 
-// assets 
+// mui
 import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
 
 // components
 import PageTitle from '../../../reuseable/PageTitle';
@@ -35,6 +36,7 @@ const AddClass = () => {
     const [studentIds, setStudentIds] = useState([]);
     const [guestStudentId, setGuestStudentId] = useState('');
     const [guestStudentIds, setGuestStudentIds] = useState([]);
+    const [guestStudentDatas, setGuestStudentDatas] = useState([]);
 
 
     const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
@@ -44,8 +46,8 @@ const AddClass = () => {
 
 
     useEffect(() => {
-        console.log(syllabusIds)
-    }, [syllabusIds]);
+        console.log(guestStudentDatas)
+    }, [guestStudentDatas]);
 
 
     const handleCourseName = (event) => {
@@ -88,14 +90,25 @@ const AddClass = () => {
     }
 
     const handleAddguestStudent = () => {
+        if (guestStudentId === '') return;
+        if (guestStudentIds.includes(guestStudentId)) return;
         if (userByIdData) {
-            setSelectedStudents(prev => [...prev, userByIdData]);
-            setGuestStudentIds(prev => [...prev, userByIdData.id]);
+            setGuestStudentDatas([...guestStudentDatas, userByIdData]);
+            setGuestStudentIds([...guestStudentIds, guestStudentId]);
         }
     }
 
+    const handleRemoveGuestStudents = (index) => {
+        setGuestStudentDatas(guestStudentDatas.filter((_, i) => i !== index));
+        setGuestStudentIds(guestStudentIds.filter((_, i) => i !== index));
+    }
 
-    const handleSubmit = () => {}
+
+    const handleSubmit = () => {
+        const Class = {
+            
+        };
+    }
 
         
 
@@ -161,9 +174,15 @@ const AddClass = () => {
                             <div className='w-full h-[0.5px]' style={{ background:'var(--soft-white)'}}></div>
                         </div>
 
+                        {
+                            userByIdData &&
+                            <p className=' self-start text-start text-sm mb-[-10px]' style={{color:'var(--yellow-text)'}}>
+                                {userByIdData.data.fullName}
+                            </p>
+                        }
                         <div className='w-full flex justify-between relative items-center'>
                             <div className='w-[86%] flex flex-col'>
-                                <TextInput value={guestStudentId} onChange={handleGuestStudentId} placeholder='دانشجویان مهمان' className='w-full' />
+                                <TextInput value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
                             </div>
                             <span
                                 className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -173,8 +192,20 @@ const AddClass = () => {
                             </span>
                         </div>
 
+                        {
+                            guestStudentDatas &&
+                            <ul className=' w-full py-0 grid grid-cols-1 gap-y-2'>
+                                {guestStudentDatas.map((student, index) => (
+                                    <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
+                                        <p className='text-sm mx-1'>{student.data.fullName}</p>
+                                        <ClearIcon onClick={() => handleRemoveGuestStudents(index)} />
+                                    </li>
+                                ))}
+                            </ul>
+                        }
 
-                        <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-8`}>ثبت </button>
+
+                        <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-10`}>ثبت </button>
 
                     </form>
                 }
