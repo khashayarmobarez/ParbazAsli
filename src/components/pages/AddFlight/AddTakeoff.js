@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { toast } from 'react-toastify';
 
@@ -16,24 +16,43 @@ import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { useTakeoffTypes } from '../../../Utilities/Services/addFlightQueries';
 
 
 const AddTakeoff = () => {
 
-    // redux
-    const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection } = useSelector(selectAddFlight)
     const dispatch = useDispatch()
-
-    // react router dom
     const navigate= useNavigate('')
+
+    // redux
+    const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection
+    ,wing, harness, parachute, country, city, sight, clouds ,
+    } = useSelector(selectAddFlight)
+
+    // useTakeOffTypes
+    const { data: takeOffTypesData, loading:takeOffTypesLoading, error:takeOffTypesError } = useTakeoffTypes()
+
+
+    useEffect(() => {
+        if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id) {
+            navigate('/addFlight/AddUsedEquipment')
+            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+        }
+    }, [ wing, harness, parachute, country, city , sight , clouds , navigate])
 
 
     const handleSelectSetTakeoffTime = (event) => {
         dispatch(updateTakeoffTime(event.target.value));
       };
 
-    const handleSelectSetTakeoffType = (event) => {
-        dispatch(updateTakeOfftype(event.target.value));
+    const handleSelectSetTakeoffType = (selectedOption) => {
+        dispatch(updateTakeOfftype(selectedOption));
       };
 
     const handleSelectSetTakeoffWindspeed = (event) => {
@@ -116,7 +135,10 @@ const AddTakeoff = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
                     <DropdownInput name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} />
 
-                    <DropdownInput name={'شیوه'} options={flightHourOptionData} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
+                    {
+                        takeOffTypesData &&
+                        <DropdownInput name={'شیوه'} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
+                    }
 
                     <DropdownInput name={'سرعت باد'} options={flightHourOptionData} selectedOption={takeoffWindSpeed} handleSelectChange={handleSelectSetTakeoffWindspeed} />
                     

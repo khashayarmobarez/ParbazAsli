@@ -38,12 +38,6 @@ const AddSituation = () => {
 
 
     useEffect(() => {
-        console.log({country, city, sight, clouds})
-    }, [country, city, sight, clouds])
-    
-
-
-    useEffect(() => {
         if(!wing.id || !harness.id || !parachute.id) {
             navigate('/addFlight/AddUsedEquipment')
             toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {

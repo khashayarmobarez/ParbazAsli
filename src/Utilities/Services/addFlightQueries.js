@@ -143,7 +143,6 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 //  get all take off types
-// /TakeoffType/GetAllTakeoffTypes 
     const getTakeoffTypes = async () => {
             
         const token = Cookies.get('token');
@@ -170,6 +169,8 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     const useTakeoffTypes = () => {
         return useQuery(['getTakeoffTypes'], getTakeoffTypes);
     }
+
+
 
 
 

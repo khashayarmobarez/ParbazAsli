@@ -65,7 +65,7 @@ const AddUsedEquipment = () => {
                 autoClose: 3000,
                 theme: 'dark',
                 style: { width: "350px" }
-              });
+            });
         }
 
       };
