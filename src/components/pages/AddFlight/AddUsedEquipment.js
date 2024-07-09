@@ -1,43 +1,52 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-// components
-import DropdownInput from '../../inputs/DropDownInput';
-
-// provider
-import { flightHourOptionData } from '../../../Utilities/Providers/dropdownInputOptions';
-import { useNavigate } from 'react-router-dom';
+// styles
+import { Box, CircularProgress } from '@mui/material';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+
+// queries
+import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateWing, updateHarness, updateParachute } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+// components
+import DropdownInputForEquipment from './Components/DropDownInputForEquipment';
+
 
 const AddUsedEquipment = () => {
+
+    // user equipments data
+    const { data: userParachuteData, loading:userParachuteLoading, error:userParachuteError } = useUserEquipments(1)
+    const { data: userWingsData, loading:userWingsLoading, error:userWingsError } = useUserEquipments(2)
+    const { data: userHarnessData, loading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3)
+
 
     // redux
     const {wing, harness, parachute} = useSelector(selectAddFlight)
     const dispatch = useDispatch()
 
+
     // react router dom
     const navigate= useNavigate('')
 
 
-    const handleSelectSetWing = (event) => {
-        dispatch(updateWing(event.target.value));
+    const handleSelectSetWing = (selectedOption) => {
+        dispatch(updateWing(selectedOption));
       };
 
-    const handleSelectSetHarness = (event) => {
-        dispatch(updateHarness(event.target.value));
+    const handleSelectSetHarness = (selectedOption) => {
+        dispatch(updateHarness(selectedOption));
       };
 
-    const handleSelectSetParachute = (event) => {
-        dispatch(updateParachute(event.target.value));
+    const handleSelectSetParachute = (selectedOption) => {
+        dispatch(updateParachute(selectedOption));
       };
 
 
@@ -47,7 +56,7 @@ const AddUsedEquipment = () => {
 
     const handleNextPageButton = () => {
 
-        if(wing && harness && parachute) {
+        if(wing.id && harness.id && parachute.id) {
             navigate('/addFlight/AddSituation')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
@@ -110,11 +119,50 @@ const AddUsedEquipment = () => {
                 </div>
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-                    <DropdownInput name={'بال'} options={flightHourOptionData} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
 
-                    <DropdownInput name={'هارنس'} options={flightHourOptionData} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
+                    {
+                        (userParachuteLoading || userWingsLoading || userHarnessLoading) &&
+                        <Box sx={{ display: 'flex', width:'100%' , justifyContent:'center', marginTop:'4rem' }}>
+                            <CircularProgress /> 
+                        </Box>
+                    }
 
-                    <DropdownInput name={'چتر'} options={flightHourOptionData} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
+                    {
+                        userParachuteError && userWingsError && userHarnessError &&
+                        <p style={{color:'var(--red-text)'}}>مشکلی پیش امده دوباره تلاش کنید</p>
+                    }
+
+                    {
+                        userWingsData.data === null && !userWingsLoading &&
+                        <p>
+                            شما وسیله پروازی ثبت نکرده اید 
+                        </p>
+                    }
+
+                    {
+                        userParachuteData.data === null && !userParachuteLoading &&
+                        <p>
+                            شما چتر پروازی ثبت نکرده اید 
+                        </p>
+                    }
+
+                    {
+                        userHarnessData.data === null && !userHarnessLoading &&
+                        <p>
+                            شما هارنسی ثبت نکرده اید 
+                        </p>
+                    }
+
+                    {
+                        userWingsData && userHarnessData && userParachuteData && 
+                        <>
+                            <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+
+                            <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
+                            
+                            <DropdownInputForEquipment name={'چتر'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
+                        </>
+                    }
                 </form>
 
                 <div className='flex justify-between items-center w-full'>

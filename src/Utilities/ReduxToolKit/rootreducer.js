@@ -1,5 +1,4 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import harnessReducer from './features/Add/harnessSlice';
 import userReducer from './features/userData/userSlice';
 import addFlightReducer from './features/AddFlight/addFlightSlice';
 import settingsReducer from './features/SettingsData/settingsSlice'
@@ -7,7 +6,6 @@ import authSettingsReducer from './features/AuthenticationData/AuthenticationSli
 
 
 const rootReducer = combineReducers({
-  harness: harnessReducer,
   user: userReducer,
   addFlight: addFlightReducer,
   settings: settingsReducer,
