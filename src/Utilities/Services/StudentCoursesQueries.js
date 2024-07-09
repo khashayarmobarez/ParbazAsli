@@ -78,33 +78,63 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get one of the student course details
-const getAUserCourse = async (courseId) => {
-    const token = Cookies.get('token');
-    
-    try {
-        const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return response.data;
-    } catch (error) {
-        if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-            window.location.reload();
-        } else {
-            throw error;
+    const getAUserCourse = async (courseId) => {
+        const token = Cookies.get('token');
+        
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
         }
-    }
-};
+    };
 
 
-const useAUserCourse = (courseId) => {
-    return useQuery(['aCourse', courseId], () => getAUserCourse(courseId));
-};
-
-
+    const useAUserCourse = (courseId) => {
+        return useQuery(['aCourse', courseId], () => getAUserCourse(courseId));
+    };
 
 
 
-export { useUserCourseDividers, useUserCourses, useAUserCourse };
+
+
+
+// getting a student course syllabi
+    const getAUserCourseSyllabi = async (courseId, type) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}&type=${type}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAUserCourseSyllabi = (courseId, type) => {
+        return useQuery(['aCourseSyllabi', courseId, type], () => getAUserCourseSyllabi(courseId, type));
+    };
+
+
+
+
+
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi };
