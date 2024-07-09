@@ -76,6 +76,11 @@ const CourseStudents = () => {
                     theme: 'dark',
                     style: { width: "90%" }
                 });
+
+                // reload after 1 second
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
             },
             onError: (error) => {
                 let errorMessage = 'خطایی رخ داده است';

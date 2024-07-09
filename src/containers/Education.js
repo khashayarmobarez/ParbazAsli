@@ -94,7 +94,7 @@ const Education = () => {
                 }
 
                 {
-                    !courseDividerData && 
+                    !courseDividerData && !courseDividerLoading && !courseDividerError &&
                     <p className='h-60vh w-full text-center flex justify-center items-center'> دوره ای اضافه نشده</p>
                 }
 
