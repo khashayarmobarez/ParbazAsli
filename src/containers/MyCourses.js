@@ -15,6 +15,7 @@ import attention from '../assets/icons/attention.svg'
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../styles/Boxes/DataBox.module.css'
 
 // queries
 
@@ -23,10 +24,12 @@ import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import { useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
 import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
+import { LinearProgress } from '@mui/material';
 
 
 
 const MyCourses = () => {
+
     const navigate = useNavigate()
 
     // courseData
@@ -55,7 +58,7 @@ const MyCourses = () => {
     }
 
     const handleCourseDetails = (id) => () => {
-        navigate(`/education/courseDetails/${id}`);
+        navigate(`/MyCourses/courseDetails/${id}`);
     };
 
 
@@ -128,55 +131,45 @@ const MyCourses = () => {
                                     }
 
                                     {
-                                        courseData && courseData.data?.map((course) => (
-                                            <div className='w-full flex flex-col items-center'>
+                                        courseData && courseData.data?.map((courseData) => (
+                                            <div key={courseData.id} className='w-full flex flex-col items-center'>
 
-                                                <div
-                                                key={course.id}
-                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 text-xs"
-                                                style={{
-                                                    background: 'var(--organs-coachData-bg) var(--bg-color)',
-                                                    boxShadow: 'var(--organs-coachData-boxShadow)'
-                                                }}
-                                                >
-                                                    <h1 className='text-base'>{course.name}</h1>
+                                                <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
 
-                                                    <div className='w-full flex justify-between items-center'>
 
-                                                        <div className='flex flex-col text-start gap-y-1'>
+                                                    <div className='w-full flex justify-between'>
+                                                        <p className=' text-base'>{courseData.name}</p>
+                                                        <p>{courseData.percent} %</p>
+                                                    </div>
 
-                                                            <p>
-                                                                {course.level} {course.organization && `/ ${course.organization}`}
-                                                            </p>
+                                                    <Box sx={{ width: '100%' }}>
+                                                        <LinearProgress variant="determinate" value={courseData.percent + (courseData.percent < 2 ? 2 : 0)} 
+                                                        sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--diffrential-blue)', '& .MuiLinearProgress-bar': {
+                                                            backgroundColor: 'var(--red-text)' // Change this to your desired color
+                                                        }}} />
+                                                    </Box>
 
-                                                            { course.clubName &&
-                                                                <p>باشگاه: {course.clubName}</p>
+                                                    <div className='w-full flex justify-between text-start text-sm'>
+                                                        <div className='flex flex-col justify-between self-start'>
+                                                            { courseData.organization &&
+                                                                <p>ارگان: {courseData.organization}</p>
                                                             }
-
-                                                            <p>تعداد پرواز: {course.flightsCount}</p>
-
-                                                            <div className='flex gap-x-1'>
-                                                                <p>وضعیت: {course.status}</p>
-
-                                                                {course.status === 'Active' && 
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                                                }
-                                                                {course.status === 'Pending' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
-                                                                }
-                                                                {course.status === 'Disable' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                                }
-
-                                                            </div>
-
+                                                            { courseData.organization &&
+                                                                <p>مقطع: {courseData.level}</p>
+                                                            }
+                                                            { courseData.clubName &&
+                                                                <p>باشگاه: {courseData.clubName}</p>
+                                                            }
+                                                            { courseData.coach &&
+                                                                <p>مربی: {courseData.coach}</p>
+                                                            }
                                                         </div>
-
-                                                        <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-end`} >
+                                                        <button onClick={handleCourseDetails(courseData.id)} className={`${ButtonStyles.normalButton} self-end`} >
                                                             جزئیات  
                                                         </button>
 
                                                     </div>
+
                                                 </div>
 
                                                 {/* Trigger course status */}
@@ -215,13 +208,6 @@ const MyCourses = () => {
                 }
 
 
-                </div>
-
-                <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px]' >
-                    <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/education/addClass') } >
-                        <AddIcon />
-                        <p>افزودن مورد جدید</p>
-                    </button>
                 </div>
 
             </div>

@@ -87,6 +87,10 @@ import CourseClasses from './components/pages/Education/CourseDetailPages/Course
 import CourseSyllabi from './components/pages/Education/CourseDetailPages/CourseSyllabi';
 import AddClass from './components/pages/Education/CourseDetailPages/AddClass';
 import MyCourses from './containers/MyCourses';
+import MyCourseDetails from './components/pages/MyCourses/MyCourseDetails';
+import PracticalMyCourse from './components/pages/MyCourses/MyCourseDetailPages/PracticalMyCourse';
+import TheoryMyCourse from './components/pages/MyCourses/MyCourseDetailPages/TheoryMyCourse';
+import MySyllabiMyCourse from './components/pages/MyCourses/MyCourseDetailPages/MySyllabiMyCourse';
   
 
 
@@ -236,6 +240,12 @@ function App() {
 
                 {/* my courses */}
                 <Route path='/MyCourses' element={<MyCourses  />} />
+                <Route path='/MyCourses/courseDetails/:id' element={<MyCourseDetails />} >
+                  <Route index element={<PracticalMyCourse />} />
+                  <Route path="practical" element={<PracticalMyCourse />} />
+                  <Route path="theory" element={<TheoryMyCourse />} />
+                  <Route path="mySyllabi" element={<MySyllabiMyCourse />} />
+                </Route>
 
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />

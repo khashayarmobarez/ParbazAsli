@@ -45,7 +45,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourses`, {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -75,4 +75,36 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useUserCourseDividers, useUserCourses };
+
+
+// get one of the student course details
+const getAUserCourse = async (courseId) => {
+    const token = Cookies.get('token');
+    
+    try {
+        const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
+        }
+    }
+};
+
+
+const useAUserCourse = (courseId) => {
+    return useQuery(['aCourse', courseId], () => getAUserCourse(courseId));
+};
+
+
+
+
+
+export { useUserCourseDividers, useUserCourses, useAUserCourse };

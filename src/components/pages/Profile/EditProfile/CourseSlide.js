@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // style
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
@@ -9,6 +10,8 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
 const CourseSlide = ({courseData}) => {
+
+    const navigate = useNavigate()
 
     // add to the percentage when the value is 0 so it shos that this bar can ce filled
     const[theOne, setTheOne] = useState(0)
@@ -49,7 +52,7 @@ const CourseSlide = ({courseData}) => {
                         <p>مربی: {courseData.coach}</p>
                     }
                 </div>
-                <button className={`${ButtonStyles.normalButton} self-end opacity-55`} >
+                <button className={`${ButtonStyles.normalButton} self-end`} >
                     جزئیات  
                 </button>
 
