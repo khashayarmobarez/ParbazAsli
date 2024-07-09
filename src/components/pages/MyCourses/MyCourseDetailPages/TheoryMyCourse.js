@@ -18,12 +18,6 @@ const TheoryMyCourse = () => {
     const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useUserCourseClasses(id);
 
 
-    useEffect(() => {
-        if(classesData) {
-            console.log(classesData)
-        }
-    }, [classesData])
-
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
 
@@ -35,9 +29,9 @@ const TheoryMyCourse = () => {
             <>
             
                 {/* group name of data */}
-                <div className='flex justify-between items-center w-full'>
-                    <h2 >کلاس ها</h2>
-                    <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
+                <div className='flex justify-between items-center w-full gap-x-2'>
+                    <h2 className='text-nowrap' >کلاس ها</h2>
+                    <div id='line' className='w-full h-[1px] rounded-xl bg-[#D9D9D9]'></div>
                 </div>
 
                 {
@@ -45,6 +39,12 @@ const TheoryMyCourse = () => {
                     return <ClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
+
+                {/* group name of data */}
+                {/* <div className='flex justify-between items-center w-full gap-x-2 mt-4'>
+                    <h2 className='text-nowrap'>کلاس های مهمان </h2>
+                    <div id='line' className='w-full h-[1px] rounded-xl bg-[#D9D9D9]'></div>
+                </div> */}
             </>
             }
             

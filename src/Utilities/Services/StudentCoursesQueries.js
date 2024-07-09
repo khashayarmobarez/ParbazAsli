@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
@@ -223,6 +223,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     const useUserCourseFlights = (courseId, pageNumber, pageSize) => {
         return useQuery(['aCourseFlights', courseId, pageNumber, pageSize], () => getUserCourseFlights(courseId, pageNumber, pageSize));
     };
+    
 
 
 
