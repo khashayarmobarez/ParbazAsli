@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
 // styles
-import gradients from '../../styles/gradients/Gradient.module.css'
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import gradients from '../../../../styles/gradients/Gradient.module.css'
+import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 
 // assets
-import clipboard from '../../assets/icons/clipboard.svg'
+import clipboard from '../../../../assets/icons/clipboard.svg'
 
 
 
 
-const DropDownLineFlightHistory = (props) => {
+const PracticalFlightHistoryBox = (props) => {
 
     // for changing the color of the texts when user clicked and expand it
     const [isClicked, setIsClicked] = useState(false);
@@ -176,4 +176,4 @@ const DropDownLineFlightHistory = (props) => {
     );
 };
 
-export default DropDownLineFlightHistory;
+export default PracticalFlightHistoryBox;

@@ -169,8 +169,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-// get user a course Class
-// /UserCourse/GetUserCourseClass?classId=1 
+// get user a course Class 
     const getUserACourseClass = async (classId) => {
         const token = Cookies.get('token');
 
@@ -200,4 +199,34 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass };
+// get student course flights
+    const getUserCourseFlights = async (courseId, pageNumber, pageSize) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseFlights?userCourseId=${courseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useUserCourseFlights = (courseId, pageNumber, pageSize) => {
+        return useQuery(['aCourseFlights', courseId, pageNumber, pageSize], () => getUserCourseFlights(courseId, pageNumber, pageSize));
+    };
+
+
+
+
+
+
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useUserCourseFlights };

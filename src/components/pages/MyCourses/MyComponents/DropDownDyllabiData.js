@@ -11,6 +11,8 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const DropDownSyllabiData = (props) => {
 
+    // const { id } = usePa
+
     const{title, data, percent} = props
 
     const [isExpanded, setIsExpanded] = useState(false);
