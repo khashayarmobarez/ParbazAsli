@@ -6,6 +6,7 @@ const initialState = {
     wing:'',
     harness: '',
     parachute :'',
+    country:'',
     city:'',
     sight:'',
     clouds:'',
@@ -40,6 +41,9 @@ const initialState = {
       },
       updateCity: (state, action) => {
         state.city = action.payload;
+      },
+      updateCountry: (state, action) => {
+        state.country = action.payload;
       },
       updateSight: (state, action) => {
         state.sight = action.payload;
@@ -78,6 +82,6 @@ const initialState = {
   });
 
 
-export const { updateIgcFile, updateWing,updateHarness,updateParachute,updateCity,updateClouds,updateFlightType,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber } = addFlightSlice.actions;
+export const { updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber } = addFlightSlice.actions;
 export default addFlightSlice.reducer;
 export const selectAddFlight = (store) =>store.addFlight;

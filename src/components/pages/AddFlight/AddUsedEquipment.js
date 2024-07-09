@@ -60,7 +60,7 @@ const AddUsedEquipment = () => {
             navigate('/addFlight/AddSituation')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
-                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: 'dark',
@@ -133,21 +133,21 @@ const AddUsedEquipment = () => {
                     }
 
                     {
-                        userWingsData.data === null && !userWingsLoading &&
+                        userWingsData && userWingsData.data === null && !userWingsLoading &&
                         <p>
                             شما وسیله پروازی ثبت نکرده اید 
                         </p>
                     }
 
                     {
-                        userParachuteData.data === null && !userParachuteLoading &&
+                        userParachuteData && userParachuteData.data === null && !userParachuteLoading &&
                         <p>
                             شما چتر پروازی ثبت نکرده اید 
                         </p>
                     }
 
                     {
-                        userHarnessData.data === null && !userHarnessLoading &&
+                        userHarnessData && userHarnessData.data === null && !userHarnessLoading &&
                         <p>
                             شما هارنسی ثبت نکرده اید 
                         </p>

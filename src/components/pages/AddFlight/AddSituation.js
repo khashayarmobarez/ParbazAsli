@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // components
 import DropdownInput from '../../inputs/DropDownInput';
@@ -17,35 +17,68 @@ import { toast } from 'react-toastify';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateCity, updateSight,updateClouds, updateFlightType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateCity, updateSight,updateClouds,updateCountry } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { useCloudTypes, useCountries, useProvincesByCountryId , useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
 
 
-const AddSituation = ({ userRole }) => {
+const AddSituation = () => {
 
-    // redux
-    const { city, sight, clouds, flightType } = useSelector(selectAddFlight)
+    const navigate= useNavigate('')
     const dispatch = useDispatch()
 
-    // react router dom
-    const navigate= useNavigate('')
+    // redux, the first line are this page datas and the second line is for checking the form to be complete
+    const { country, city, sight, clouds ,
+    wing, harness, parachute, } = useSelector(selectAddFlight)
+
+    const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
+    const { data: provincesData, loading:provincesLoading, error:provincesError } = useProvincesByCountryId(country.id)
+    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError } = useSitesByProvinceId(city.id)
+    // useCloudTypes
+    const { data: cloudTypesData, loading:cloudTypesLoading, error:cloudTypesError } = useCloudTypes()
 
 
-    const handleSelectSetCity = (event) => {
-        dispatch(updateCity(event.target.value));
+    useEffect(() => {
+        console.log({country, city, sight, clouds})
+    }, [country, city, sight, clouds])
+    
+
+
+    useEffect(() => {
+        if(!wing.id || !harness.id || !parachute.id) {
+            navigate('/addFlight/AddUsedEquipment')
+            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+        }
+    }, [ wing, harness, parachute, navigate])
+
+
+    const handleSelectSetCountry = (selectedOption) => {
+        dispatch(updateCountry(selectedOption));
       };
 
-    const handleSelectSetSight = (event) => {
-        dispatch(updateSight(event.target.value));
+    const handleSelectSetCity = (selectedOption) => {
+        dispatch(updateCity(selectedOption));
       };
 
-    const handleSelectSetClouds = (event) => {
-        dispatch(updateClouds(event.target.value));
+    const handleSelectSetSight = (selectedOption) => {
+        dispatch(updateSight(selectedOption));
       };
 
-    const handleSelectSetFlightType = (event) => {
-        dispatch(updateFlightType(event.target.value));
-        console.log({city, sight, clouds, flightType})
+    const handleSelectSetClouds = (selectedOption) => {
+        dispatch(updateClouds(selectedOption));
       };
+
+
+    // flight type moved to another page
+    // const handleSelectSetFlightType = (event) => {
+    //     dispatch(updateFlightType(event.target.value));
+    //     console.log({city, sight, clouds, flightType})
+    //   };
 
 
 
@@ -58,7 +91,7 @@ const AddSituation = ({ userRole }) => {
             navigate('/addFlight/addTakeoff')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
-                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: 'dark',
@@ -117,16 +150,27 @@ const AddSituation = ({ userRole }) => {
                 </div>
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-                    <DropdownInput name={'شهر'} options={flightHourOptionData} selectedOption={city} handleSelectChange={handleSelectSetCity} />
-
-                    <DropdownInput name={'سایت'} options={flightHourOptionData} selectedOption={sight} handleSelectChange={handleSelectSetSight} />
-
-                    <DropdownInput name={'نوع پوشش ابری'} options={flightHourOptionData} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} />
-                    
                     {
-                        userRole === 'coach' &&
-                        <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} />
+                        countriesData &&
+                        <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} />
                     }
+
+                    {
+                        provincesData &&
+                        <DropdownInput name={'شهر'} options={provincesData.data} selectedOption={city} handleSelectChange={handleSelectSetCity} />
+                    }
+
+                    {
+                        flightSitesData &&
+                        <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight} />
+                    }
+
+                    {
+                        flightSitesData && cloudTypesData &&
+                        <DropdownInput name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} />
+                    }
+                    
+                    {/* <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
