@@ -53,19 +53,19 @@ const AddSituation = () => {
 
     const handleSelectSetCountry = (selectedOption) => {
         dispatch(updateCountry(selectedOption));
-      };
+    };
 
     const handleSelectSetCity = (selectedOption) => {
         dispatch(updateCity(selectedOption));
-      };
+    };
 
     const handleSelectSetSight = (selectedOption) => {
         dispatch(updateSight(selectedOption));
-      };
+    };
 
     const handleSelectSetClouds = (selectedOption) => {
         dispatch(updateClouds(selectedOption));
-      };
+    };
 
 
     // flight type moved to another page

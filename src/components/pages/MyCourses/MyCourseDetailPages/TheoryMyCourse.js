@@ -4,6 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 // styles
 import dataBox from '../../../../styles/Boxes/DataBox.module.css'
 
+// mui
+import { Box, CircularProgress } from '@mui/material';
+
 // queries
 import { useUserCourseClasses } from '../../../../Utilities/Services/StudentCoursesQueries';
 
@@ -13,13 +16,19 @@ import ClassesBoxMyCourses from '../MyComponents/ClassesBoxMyCourses';
 const TheoryMyCourse = () => {
 
     const { id } = useParams();
-    const navigate = useNavigate();
 
     const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useUserCourseClasses(id);
 
 
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
+
+            {
+                classesDataLoading &&
+                <Box sx={{ display: 'flex', width:'100%' , justifyContent:'center', marginTop:'4rem' }}>
+                    <CircularProgress /> 
+                </Box>
+            }
 
             {classesData && classesData.data.classesCount === 0 && 
                 <p> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>

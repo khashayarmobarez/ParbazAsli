@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+// mui
+import { Box, CircularProgress } from '@mui/material';
 
 // queries
 import { useUserCourseFlights } from '../../../../Utilities/Services/StudentCoursesQueries';
-import { useParams } from 'react-router-dom';
+
+// components
 import PracticalFlightHistoryBox from '../MyComponents/PracticalFlightHistoryBox';
 
 const PracticalMyCourse = () => {
@@ -19,6 +24,11 @@ const PracticalMyCourse = () => {
 
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
+            {userFlightsLoading &&
+            <Box sx={{ display: 'flex', width:'100%' , justifyContent:'center', marginTop:'4rem' }}>
+                <CircularProgress /> 
+            </Box>
+            }
             {userFlights && userFlights.totalCount === 0 &&
                 <p> هنوز پروازی برای این دوره ثبت نشده است</p>
             }
