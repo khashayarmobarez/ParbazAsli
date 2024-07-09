@@ -137,6 +137,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+
 // get user course Classes
     const getUserCourseClasses = async (courseId) => {
         const token = Cookies.get('token');
@@ -167,4 +168,36 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses };
+
+// get user a course Class
+// /UserCourse/GetUserCourseClass?classId=1 
+    const getUserACourseClass = async (classId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseClass?classId=${classId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAUserCourseClass = (classId) => {
+        return useQuery(['aCourseClass', classId], () => getUserACourseClass(classId));
+    };
+
+
+
+
+
+
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass };

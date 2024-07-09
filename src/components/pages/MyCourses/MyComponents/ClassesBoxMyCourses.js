@@ -14,27 +14,22 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import clipboard from '../../../../assets/icons/clipboard.svg'
 
 // queiries
-import { useAClass } from '../../../../Utilities/Services/coursesQueries';
-
-// redux
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../../Utilities/ReduxToolKit/features/userData/userSlice';
+import { useAUserCourseClass } from '../../../../Utilities/Services/StudentCoursesQueries';
 
 
-const ClassesBoxCourses = (props) => {
+
+const ClassesBoxMyCourses = (props) => {
 
     const convertToHoursAndMinutes = useConvertMinutesToHours();
 
-    // imported directly here from redux to prevent props drilling
-    const {userRole} = useSelector(selectUser)
     const { classData } = props
 
     const [isExpanded, setIsExpanded] = useState(false)
-    const [extraData, setExtraData] = useState(false)
 
     const [formatedDuration, setFormatedDuration] = useState('')
 
-    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useAClass(classData.id);
+
+    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useAUserCourseClass(classData.id);
 
     useEffect(() => {
         if (classDetails) {
@@ -46,10 +41,6 @@ const ClassesBoxCourses = (props) => {
 
     const handleClick = () => {
         setIsExpanded(!isExpanded);
-    }
-
-    const handleClickExtraData = () =>{
-        setExtraData(!extraData);
     }
 
     return (
@@ -105,64 +96,17 @@ const ClassesBoxCourses = (props) => {
             
                             </div>
             
-            
-                            <div className='flex flex-col items-start gap-y-2 mx-4 mt-7'>
-                                    <p className=' text-sm'>مباحث مطرح شده</p>
-                                    {
-                                        classDetails.data.syllabi.map((syllabus) => (
-                                            <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
-                                                <p>{syllabus.description}</p>
-                                            </div>
-                                        ))
+                            {classDetails.data.syllabi &&
+                                <div className='flex flex-col items-start gap-y-2 mx-4 mt-7'>
+                                        <p className=' text-sm'>مباحث مطرح شده</p>
+                                        { 
+                                            classDetails.data.syllabi.map((syllabus) => (
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
+                                                    <p>{syllabus.description}</p>
+                                                </div>
+                                            ))
 
-                                    }
-                            </div>
-            
-
-                            {
-                                userRole === 'coach' && !extraData &&
-                                <div className='w-full flex justify-center px-4 mt-12'>
-                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >اطلاعات بیشتر...</button>
-                                </div>
-                            }
-            
-                            {   userRole === 'coach' && extraData &&
-                                <div id='no grid list' className='flex flex-col gap-y-5 mt-6'>
-            
-            
-                                <div className='flex flex-col items-start gap-y-2 mx-4'>
-                                        <p className=' text-sm'>هنرجویان</p>
-                                        <div className='w-full flex flex-col gap-y-5'>
-                                        {
-                                        classDetails.data.userCourses.map((student) => (    
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{student.name}</p>
-                                            </div>
-                                        ))
                                         }
-                                        </div>
-                                </div>
-            
-                                {classDetails.data.guestUsers &&
-                                    <div className='flex flex-col items-start gap-y-2 mx-4'>
-                                            <p className=' text-sm'>هنرجویان مهمان</p>
-                                            <div className='w-full flex flex-col gap-y-5'>   
-                                            {
-                                            classDetails.data.guestUsers.map((student) => ( 
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                    <p>{student.name}</p>
-                                                </div>))
-                                            }
-                                            </div>
-                                    </div>
-                                }
-            
-                            </div>}
-
-                            {
-                                userRole === 'coach' && extraData &&
-                                <div className='w-full flex justify-center px-4 mt-12'>
-                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >بستن اطلاعات بیشتر</button>
                                 </div>
                             }
             
@@ -180,4 +124,4 @@ const ClassesBoxCourses = (props) => {
     );
 };
 
-export default ClassesBoxCourses;
+export default ClassesBoxMyCourses;

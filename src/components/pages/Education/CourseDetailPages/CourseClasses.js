@@ -20,12 +20,7 @@ const CourseClasses = () => {
     const navigate = useNavigate();
 
     const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useACourseClasses(id);
-
-    useEffect(() => {
-        if(classesData) {
-            console.log(classesData)
-        }
-    }, [classesData])
+    
 
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
