@@ -23,8 +23,17 @@ const PracticalMyCourse = () => {
                 <p> هنوز پروازی برای این دوره ثبت نشده است</p>
             }
             {
-                userFlights && userFlights.totalCount === 0 &&
-                <PracticalFlightHistoryBox />
+                userFlights && userFlights.totalCount > 0 &&
+                <div className='flex flex-col gap-y-4'>
+
+                    {/* group name of data */}
+                    <div className='flex justify-between items-center gap-x-2'>
+                        <h2 className='text-nowrap' >تاریخچه پروازها</h2>
+                        <div id='line' className='w-full h-[1px] rounded-xl bg-[#D9D9D9]'></div>
+                    </div>
+
+                    <PracticalFlightHistoryBox />
+                </div>
             }
         </div>
     );

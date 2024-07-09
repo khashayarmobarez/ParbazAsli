@@ -17,9 +17,9 @@ const PracticalFlightHistoryBox = (props) => {
     // for changing the color of the texts when user clicked and expand it
     const [isClicked, setIsClicked] = useState(false);
 
-    const [isExpanded, setIsExpanded] = useState(false)
+    const [isExpanded, setIsExpanded] = useState(false);
 
-    const {title} = props
+    const { data } = props;
 
     const handleClick = () => {
         setIsExpanded(!isExpanded);
@@ -29,13 +29,6 @@ const PracticalFlightHistoryBox = (props) => {
 
     return (
     <div className='flex flex-col gap-y-5'>
-
-         {/* group name of data */}
-        <div className='flex justify-between items-center'>
-            <h2 >{title}</h2>
-            <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
-        </div>
-
 
         {/* the below part should be mapped when data is recieved from server */}
                 {/* classesInput */}
@@ -139,7 +132,7 @@ const PracticalFlightHistoryBox = (props) => {
                                     </div>
                                 </div>
 
-                                {/* <div className='flex flex-col items-start gap-y-3'>
+                                <div className='flex flex-col items-start gap-y-3'>
                                     <p className=' text-xs pr-2'>نام مربی</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>لورم ایپسوم</p>
@@ -151,7 +144,7 @@ const PracticalFlightHistoryBox = (props) => {
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>لورم ایپسوم</p>
                                     </div>
-                                </div> */}
+                                </div>
 
                             </div>
 
