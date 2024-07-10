@@ -14,26 +14,25 @@ const MySyllabiMyCourse = () => {
 
     const { id } = useParams();
 
-    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useAUserCourseSyllabi(id,1);
-    const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useAUserCourseSyllabi(id,2);
+    const {  data: syllabiData, isLoading: syllabiDataLoading, error: syllabiDataError } = useAUserCourseSyllabi(id);
 
 
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
 
             {
-                (syllabiDataTheoryLoading || syllabiDataPracticalLoading) &&
+                syllabiDataLoading &&
                 <Box sx={{ display: 'flex', width:'100%' , justifyContent:'center', marginTop:'4rem' }}>
                     <CircularProgress /> 
                 </Box>
             }
             {
-                syllabiDataTheory && syllabiDataTheory.data.length > 0 &&
-                <DropDownSyllabiData title={"سیلابس تئوری"} data={syllabiDataTheory.data} percent={0}  />
+                syllabiData && syllabiData.data.theorySyllabi.length > 0 &&
+                <DropDownSyllabiData title={"سیلابس تئوری"} data={syllabiData.data.theorySyllabi} percent={syllabiData.data.theorySyllabiPercent}  />
             }
             {
-                 syllabiDataPractical && syllabiDataPractical.data.length > 0 &&
-                <DropDownSyllabiData title={"سیلابس عملی"} data={syllabiDataPractical.data} percent={0} />
+                 syllabiData && syllabiData.data.practicalSyllabi.length > 0 &&
+                <DropDownSyllabiData title={"سیلابس عملی"} data={syllabiData.data.practicalSyllabi} percent={syllabiData.data.practicalSyllabiPercent} />
             }
         </div>
     );

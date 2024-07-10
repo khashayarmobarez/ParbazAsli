@@ -109,11 +109,11 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // getting a student course syllabi
-    const getAUserCourseSyllabi = async (courseId, type) => {
+    const getAUserCourseSyllabi = async (courseId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}&type=${type}`, {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -129,8 +129,8 @@ const BASE_URL = 'https://api.par-baz.ir/api'
         }
     };
 
-    const useAUserCourseSyllabi = (courseId, type) => {
-        return useQuery(['aCourseSyllabi', courseId, type], () => getAUserCourseSyllabi(courseId, type));
+    const useAUserCourseSyllabi = (courseId) => {
+        return useQuery(['aCourseSyllabi', courseId], () => getAUserCourseSyllabi(courseId));
     };
 
 
