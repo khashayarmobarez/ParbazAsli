@@ -35,6 +35,14 @@ const AddFlightType = () => {
         if(type === 'Course') {
             dispatch(updateCourseId(theCourseId));
         }
+
+        if(type !== 'Course') {
+            dispatch(updateCourseId(''));
+        }
+
+        navigate('/addFlight/UploadIgc')
+
+        console.log(flightType, courseId)
     };
 
     return (
@@ -45,11 +53,11 @@ const AddFlightType = () => {
 
                 <h1 className='text-sm'>نوع یا دوره پروازی خود را انتخاب کنید</h1>
 
-                <div className='w-full flex flex-col items-center gap-y-4'>
+                <div className='w-full flex flex-col items-center gap-y-6'>
                     {
                         flightTypesData &&
                         flightTypesData.data.map((flightType, index) => (
-                            <div key={index} className={`${boxStyles.containerDarkmode} w-[90%] rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}
+                            <div key={index} className={`${boxStyles.containerDarkmode} w-[90%] rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-2 text-sm`}
                             onClick={() => handleSelectSetFlightType(flightType.type,flightType.userCourseId)}>
                                 <div className='w-full flex justify-between'>
                                     <div className='w-full flex justify-start items-enter gap-x-2'>
@@ -60,8 +68,15 @@ const AddFlightType = () => {
                                         }
                                         <p>{flightType.name}</p> 
                                     </div>
-                                    <p>{flightType.coach}</p>
+                                    {flightType.type === 'Course' && flightType.club &&
+                                    <p>باشگاه: {flightType.club}</p>
+                                    }   
                                 </div>
+                                {flightType.type === 'Course' &&
+                                <div className='flex justify-start w-full'>
+                                    <p className='text-xs text-nowrap'>مربی: {flightType.coach}</p>
+                                </div>
+                                }
                             </div>
                         ))
                     }

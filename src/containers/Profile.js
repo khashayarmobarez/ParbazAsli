@@ -77,7 +77,8 @@ const Profile = ({userRole}) => {
 
 
                     {/* buttons */}
-                    <div className='flex justify-between w-full md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[24rem] '>
+                    <div className={`flex justify-between w-full md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[24rem]
+                        ${!data.data.hasCoach && 'px-12'}`}>
 
                         <Link to='/equipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
@@ -95,13 +96,13 @@ const Profile = ({userRole}) => {
                         </Link>
                         
                         {/* education is condition based on, data.data.hasCoach  */}
-                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'opacity-55'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
+                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>آموزش</p>
                         </Link>
                         
                         {/* club is condition based on, data.data.hasCoach  */}
-                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'opacity-55'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>باشگاه</p>
                         </Link>

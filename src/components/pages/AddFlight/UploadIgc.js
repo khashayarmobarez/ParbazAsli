@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,13 +17,27 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 const UploadIgc = () => {
 
     // redux
-    const {igcFile} = useSelector(selectAddFlight)
+    const {igcFile,
+    flightType} = useSelector(selectAddFlight)
     const dispatch = useDispatch()
 
     // react router dom
     const navigate = useNavigate()
 
     const fileInputRef = useRef(null); // Ref for file input element
+
+    useEffect(() => {
+        if(!flightType) {
+            navigate('/addFlight/AddFlightType')
+            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+        }
+    }, [ flightType, navigate])
 
 
     const handleFileSelect = (event) => {

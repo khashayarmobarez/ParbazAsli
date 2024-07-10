@@ -26,7 +26,7 @@ const AddTakeoff = () => {
 
     // redux
     const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection
-    ,wing, harness, parachute, country, city, sight, clouds ,
+    ,wing, harness, parachute, country, city, sight, clouds , flightType
     } = useSelector(selectAddFlight)
 
     // useTakeOffTypes
@@ -34,7 +34,7 @@ const AddTakeoff = () => {
 
 
     useEffect(() => {
-        if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id) {
+        if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id || !flightType) {
             navigate('/addFlight/AddUsedEquipment')
             toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -44,7 +44,7 @@ const AddTakeoff = () => {
                 style: { width: "350px" }
               });
         }
-    }, [ wing, harness, parachute, country, city , sight , clouds , navigate])
+    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate])
 
 
     const handleSelectSetTakeoffTime = (event) => {

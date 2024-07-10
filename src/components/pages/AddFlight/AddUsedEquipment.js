@@ -29,7 +29,7 @@ const AddUsedEquipment = () => {
 
 
     // redux
-    const {wing, harness, parachute} = useSelector(selectAddFlight)
+    const {wing, harness, parachute, flightType} = useSelector(selectAddFlight)
     const dispatch = useDispatch()
 
 
@@ -56,7 +56,7 @@ const AddUsedEquipment = () => {
 
     const handleNextPageButton = () => {
 
-        if(wing.id && harness.id && parachute.id) {
+        if(wing.id && harness.id && parachute.id && flightType) {
             navigate('/addFlight/AddSituation')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
