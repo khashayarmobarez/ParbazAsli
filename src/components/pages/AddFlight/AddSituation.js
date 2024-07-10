@@ -30,7 +30,7 @@ const AddSituation = () => {
 
     // redux, the first line are this page datas and the second line is for checking the form to be complete
     const { country, city, sight, clouds ,
-    wing, harness, parachute, } = useSelector(selectAddFlight)
+    wing, harness, parachute, flightType } = useSelector(selectAddFlight)
 
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
     const { data: provincesData, loading:provincesLoading, error:provincesError } = useProvincesByCountryId(country.id)
@@ -40,7 +40,7 @@ const AddSituation = () => {
 
 
     useEffect(() => {
-        if(!wing.id || !harness.id || !parachute.id) {
+        if(!wing.id || !harness.id || !parachute.id || !flightType) {
             navigate('/addFlight/AddFlightType')
             toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -50,7 +50,7 @@ const AddSituation = () => {
                 style: { width: "350px" }
               });
         }
-    }, [ wing, harness, parachute, navigate])
+    }, [ wing, harness, parachute, flightType , navigate])
 
 
     const handleSelectSetCountry = (selectedOption) => {

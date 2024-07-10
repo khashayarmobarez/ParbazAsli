@@ -22,6 +22,9 @@ import DropdownInputForEquipment from './Components/DropDownInputForEquipment';
 
 const AddUsedEquipment = () => {
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     // user equipments data
     const { data: userParachuteData, loading:userParachuteLoading, error:userParachuteError } = useUserEquipments(1)
     const { data: userWingsData, loading:userWingsLoading, error:userWingsError } = useUserEquipments(2)
@@ -29,12 +32,23 @@ const AddUsedEquipment = () => {
 
 
     // redux
-    const {wing, harness, parachute, flightType} = useSelector(selectAddFlight)
-    const dispatch = useDispatch()
+    const {wing, harness, parachute,
+    flightType} = useSelector(selectAddFlight)
 
 
-    // react router dom
-    const navigate= useNavigate('')
+    useEffect(() => {
+        if(!flightType) {
+            navigate('/addFlight/AddFlightType')
+            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+        }
+    }, [ flightType , navigate])
+
 
 
     const handleSelectSetWing = (selectedOption) => {
@@ -56,7 +70,7 @@ const AddUsedEquipment = () => {
 
     const handleNextPageButton = () => {
 
-        if(wing.id && harness.id && parachute.id && flightType) {
+        if(wing.id && harness.id && parachute.id) {
             navigate('/addFlight/AddSituation')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {

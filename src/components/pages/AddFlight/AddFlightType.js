@@ -23,12 +23,7 @@ const AddFlightType = () => {
     const { flightType, courseId } = useSelector(selectAddFlight)
 
     const { data: flightTypesData, loading:flightTypesLoading, error:flightTypesError } = useFlightTypes()
-
-    useEffect(() => {
-        if(flightTypesData) {
-            console.log(flightTypesData)
-        }
-    }, [flightTypesData])
+    
 
     const handleSelectSetFlightType = (type, theCourseId) => {
         dispatch(updateFlightType(type));
