@@ -202,13 +202,13 @@ const PossessionTransitionEquipment = () => {
                             <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >انتقال دائمی</button>
                         </div>
 
-                        <form className='w-[90%] flex flex-col items-center mt-8  gap-y-4'>
+                        <form className='w-[90%] flex flex-col items-center mt-4  gap-y-4'>
 
-                            {activeLink === 'temporary' ? 
+                            {/* {activeLink === 'temporary' ? 
                                 <h1 className=' text-xl font-medium text-[var(--yellow-text)]'>انتقال موقت</h1>
                                 :
                                 <h1 className=' text-xl font-medium text-[var(--red-text)]'>انتقال دائمی</h1>
-                            }
+                            } */}
                             
                             {/* Serial Number input */}
                             <TextInput
@@ -235,7 +235,7 @@ const PossessionTransitionEquipment = () => {
                                 <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
                             }
 
-                            <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                            <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-6`}>ثبت</button>
 
 
                         </form>
