@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// styles
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+
 // queries
 import { useFlightTypes } from '../../../Utilities/Services/addFlightQueries';
 
@@ -10,14 +13,14 @@ import PageTitle from '../../reuseable/PageTitle';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateFlightType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateFlightType, updateCourseId } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 const AddFlightType = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {  } = useSelector(selectAddFlight)
+    const { flightType, courseId } = useSelector(selectAddFlight)
 
     const { data: flightTypesData, loading:flightTypesLoading, error:flightTypesError } = useFlightTypes()
 
@@ -27,6 +30,13 @@ const AddFlightType = () => {
         }
     }, [flightTypesData])
 
+    const handleSelectSetFlightType = (type, theCourseId) => {
+        dispatch(updateFlightType(type));
+        if(type === 'Course') {
+            dispatch(updateCourseId(theCourseId));
+        }
+    };
+
     return (
         <div className='flex flex-col items-center pt-14 pb-24'>
             <div className='w-full flex flex-col items-center gap-y-6'>
@@ -34,15 +44,28 @@ const AddFlightType = () => {
                 <PageTitle title={'ثبت پرواز'} navigateTo={'/profile'} />
 
                 <h1 className='text-sm'>نوع یا دوره پروازی خود را انتخاب کنید</h1>
-                {
-                    flightTypesData &&
-                    flightTypesData.data.map((flightType, index) => (
-                        <div key={index} className='w-[90%] h-[70px] bg-white rounded-xl flex justify-between items-center px-4 shadow-md mt-4'>
-                            <p>{flightType.FlightType}</p> 
-                            <button className='text-white bg-blue-500 px-4 py-1 rounded-xl' onClick={() => navigate('/addFlight/addSituation')}>انتخاب</button>
-                        </div>
-                    ))
-                }
+
+                <div className='w-full flex flex-col items-center gap-y-4'>
+                    {
+                        flightTypesData &&
+                        flightTypesData.data.map((flightType, index) => (
+                            <div key={index} className={`${boxStyles.containerDarkmode} w-[90%] rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}
+                            onClick={() => handleSelectSetFlightType(flightType.type,flightType.userCourseId)}>
+                                <div className='w-full flex justify-between'>
+                                    <div className='w-full flex justify-start items-enter gap-x-2'>
+                                        {flightType.type === 'Course' ?
+                                            <div className=' w-4 h-4 rounded-full' style={{background:'var(--yellow-text)'}} />
+                                            : 
+                                            <div className=' w-4 h-4 rounded-full' style={{background:'var(--diffrential-blue)'}} />
+                                        }
+                                        <p>{flightType.name}</p> 
+                                    </div>
+                                    <p>{flightType.coach}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
 
             </div>
 

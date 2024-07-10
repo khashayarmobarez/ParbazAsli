@@ -12,6 +12,7 @@ const initialState = {
     clouds:'',
     // flight type sets the last page of the coach
     flightType:'',
+    courseId:'',
     takeoffTime :'',
     takeoffType :'',
     takeoffWindSpeed :'',
@@ -54,6 +55,9 @@ const initialState = {
       updateFlightType: (state, action) => {
         state.flightType = action.payload;
       },
+      updateCourseId: (state, action) => {
+        state.courseId = action.payload;
+      },
       updateTakeoffTime: (state, action) => {
         state.takeoffTime = action.payload;
       },
@@ -82,6 +86,6 @@ const initialState = {
   });
 
 
-export const { updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber } = addFlightSlice.actions;
+export const { updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber } = addFlightSlice.actions;
 export default addFlightSlice.reducer;
 export const selectAddFlight = (store) =>store.addFlight;

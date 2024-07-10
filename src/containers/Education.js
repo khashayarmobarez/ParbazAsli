@@ -127,7 +127,7 @@ const Education = () => {
 
                                                 <div
                                                 key={course.id}
-                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 text-xs"
+                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs"
                                                 style={{
                                                     background: 'var(--organs-coachData-bg) var(--bg-color)',
                                                     boxShadow: 'var(--organs-coachData-boxShadow)'
@@ -175,7 +175,7 @@ const Education = () => {
 
                                                 {/* Trigger course status */}
                                                 {course.status === 'Pending' &&
-                                                    <div className='w-full min-h-14 rounded-b-2xl z-10 mt-[-1rem] pt-5 flex justify-between px-4' 
+                                                    <div className='w-full min-h-14 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
                                                     style={{background: '#262941',
                                                         boxShadow: 'var(--organs-coachData-boxShadow)'}}>
 
@@ -219,7 +219,7 @@ const Education = () => {
 
                 </div>
 
-                <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px]' >
+                <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
                     <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/education/addClass') } >
                         <AddIcon />
                         <p>افزودن مورد جدید</p>

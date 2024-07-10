@@ -27,7 +27,7 @@ import { Padding } from '@mui/icons-material';
 const styles = {
     container: {
       width: '100%',
-      zIndex: 1,
+      zIndex: 100,
       background: '#131423',
       Bottom:'2rem',
       height:'calc(3.3rem + env(safe-area-inset-bottom,5))',
