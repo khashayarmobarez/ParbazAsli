@@ -91,6 +91,7 @@ import MyCourseDetails from './components/pages/MyCourses/MyCourseDetails';
 import PracticalMyCourse from './components/pages/MyCourses/MyCourseDetailPages/PracticalMyCourse';
 import TheoryMyCourse from './components/pages/MyCourses/MyCourseDetailPages/TheoryMyCourse';
 import MySyllabiMyCourse from './components/pages/MyCourses/MyCourseDetailPages/MySyllabiMyCourse';
+import AddFlightType from './components/pages/AddFlight/AddFlightType';
   
 
 
@@ -247,6 +248,18 @@ function App() {
                   <Route path="mySyllabi" element={<MySyllabiMyCourse />} />
                 </Route>
 
+                {/* add flight */}
+                <Route path="/addFlight/AddFlightType" element={ <AddFlightType />} />
+                <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
+                    <Route index element={<UploadIgc />} />
+                    <Route path="UploadIgc" element={ <UploadIgc />} />
+                    <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
+                    <Route path="AddSituation" element={ <AddSituation />}  />
+                    <Route path="AddTakeoff" element={ <AddTakeoff />} />
+                    <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
+                </Route>
+                <Route path="addFlight/syllabuses" element={ <Syllabuses />} />
+
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
 
@@ -279,17 +292,6 @@ function App() {
               </Route>
               <Route path='/club/clubHistory' element={<ClubHistory userRole={ userRole }  />}/>
 
-              {/* add flight */}
-              <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
-                  <Route index element={<UploadIgc />} />
-                  <Route path="UploadIgc" element={ <UploadIgc />} />
-                  <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
-                  <Route path="AddSituation" element={ <AddSituation userRole={ userRole } />}  />
-                  <Route path="AddTakeoff" element={ <AddTakeoff />} />
-                  <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
-              </Route>
-              <Route path="addFlight/syllabuses" element={ <Syllabuses />} />
-
               {/* notifications */}
               <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
 
@@ -313,16 +315,6 @@ function App() {
               {/* club */}
               <Route path='/club' element={<Club userRole={ userRole }  />}/>
               <Route path='/club/clubHistory' element={<ClubHistory userRole={ userRole }  />}/>
-              
-              {/* addFlight */}
-              <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
-                  <Route index element={<UploadIgc />} />
-                  <Route path="UploadIgc" element={ <UploadIgc />} />
-                  <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
-                  <Route path="AddSituation" element={ <AddSituation userRole={ userRole } />} />
-                  <Route path="AddTakeoff" element={ <AddTakeoff />} />
-                  <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
-              </Route>
 
               {/* settings */}
               <Route path='/Settings' element={<Settings userRole={ userRole }  />} />

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-// components
-import DropdownInput from '../../inputs/DropDownInput';
 
 // provider
 import { flightHourOptionData, flightTypeOptions } from '../../../Utilities/Providers/dropdownInputOptions';
@@ -14,12 +12,16 @@ import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 
 import { toast } from 'react-toastify';
 
+// queries
+import { useCloudTypes, useCountries, useProvincesByCountryId , useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
+
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateCity, updateSight,updateClouds,updateCountry } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { useCloudTypes, useCountries, useProvincesByCountryId , useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
 
+// components
+import DropdownInput from '../../inputs/DropDownInput';
 
 const AddSituation = () => {
 

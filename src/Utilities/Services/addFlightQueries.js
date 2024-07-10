@@ -174,4 +174,40 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes };
+    
+
+
+// get user available flight types
+// /Flight/GetFlightTypes 
+    const getFlightTypes = async () => {
+            
+        const token = Cookies.get('token');
+
+        try {
+        const response = await axios.get(`${BASE_URL}/Flight/GetFlightTypes`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useFlightTypes = () => {
+        return useQuery(['getFlightTypes'], getFlightTypes);
+    }
+
+
+
+
+
+export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , useFlightTypes };

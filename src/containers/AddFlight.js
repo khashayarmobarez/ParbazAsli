@@ -10,7 +10,7 @@ const AddFlight = ({userRole}) => {
         <div className='flex flex-col items-center pt-14 pb-24'>
             <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10'>
 
-            <PageTitle title={'ثبت پرواز'} navigateTo={-1} paddingRight={'40%'} />
+            <PageTitle title={'ثبت پرواز'} navigateTo={'/profile'} />
 
             <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col py-10 gap-y-8`}>
 
