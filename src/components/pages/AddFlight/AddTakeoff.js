@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 
-// windDirection provider
+// provider
 import { windDirectionOptions, windSpeedUnits } from '../../../Utilities/Providers/dropdownInputOptions';
 
 // redux
@@ -20,12 +20,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, updateTakeOffWindUnit } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { useTakeoffTypes } from '../../../Utilities/Services/addFlightQueries';
+import TimeInput from '../../inputs/TimeInput';
+import NumberInput from '../../inputs/NumberInput';
 
 
 const AddTakeoff = () => {
 
     const dispatch = useDispatch()
-    const navigate= useNavigate('')
+    const navigate = useNavigate()
 
     // redux
     const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection, takeOffWindUnit,
@@ -50,8 +52,8 @@ const AddTakeoff = () => {
     }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate])
 
 
-    const handleSelectSetTakeoffTime = (event) => {
-        dispatch(updateTakeoffTime(event.target.value));
+    const handleTakeOffTimeChange = (newTime) => {
+        dispatch(updateTakeoffTime(newTime));
       };
 
     const handleSelectSetTakeoffType = (selectedOption) => {
@@ -62,7 +64,7 @@ const AddTakeoff = () => {
         dispatch(updateTakeOffWindUnit(selectedOption));
       };
 
-    const handleSelectSetTakeoffWindspeed = (event) => {
+    const handleSetTakeoffWindspeedChange = (event) => {
         dispatch(updateTakeoffWindSpeed(event.target.value));
       };
 
@@ -77,7 +79,7 @@ const AddTakeoff = () => {
 
     const handleNextPageButton = () => {
 
-        if(takeoffTime && takeoffType && takeoffWindSpeed && takeoffwindDirection) {
+        if(takeoffTime && takeoffType && takeoffWindSpeed && takeoffwindDirection && takeOffWindUnit) {
             navigate('/addFlight/AddLanding')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
@@ -140,16 +142,33 @@ const AddTakeoff = () => {
                 </div>
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-                    <DropdownInput name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} />
+
+                    <div className='w-full flex flex-col gap-y-1'>
+                        <p className='text-xs text-start self-start'>زمان take off</p>
+                        <TimeInput
+                        value={takeoffTime}
+                        onChange={handleTakeOffTimeChange}
+                        placeholder="Select time"
+                        />
+                    </div>
+
+                    {/* <DropdownInput name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} /> */}
 
                     {
                         takeOffTypesData &&
                         <DropdownInput name={'شیوه'} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
                     }
 
-                    <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} />
-                    
                     <DropdownInput name={'جهت باد'} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
+                    
+                    <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} />
+
+                    <NumberInput
+                        value={takeoffWindSpeed}
+                        onChange={handleSetTakeoffWindspeedChange}
+                        placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                    />
+
                 </form>
 
                 <div className='flex justify-between items-center w-full'>

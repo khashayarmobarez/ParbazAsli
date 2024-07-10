@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-
-// components
-import DropdownInput from '../../inputs/DropDownInput';
-import TextInput from '../../inputs/textInput';
-import SubmitForm from '../../reuseable/SubmitForm';
 
 // provider
 import { flightHourOptionData } from '../../../Utilities/Providers/dropdownInputOptions';
@@ -19,16 +14,27 @@ import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 // react-toastify
 import { toast } from 'react-toastify';
 
+// provider
+import { windDirectionOptions } from '../../../Utilities/Providers/dropdownInputOptions';
+
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+// components
+import DropdownInput from '../../inputs/DropDownInput';
+import TextInput from '../../inputs/textInput';
+import SubmitForm from '../../reuseable/SubmitForm';
+import TimeInput from '../../inputs/TimeInput';
+import NumberInput from '../../inputs/NumberInput';
 
 const AddLanding = ({userRole}) => {
 
     // redux
-    const { landingTime, landingWindSpeed, landingWindDirection, flightType , passengerPhoneNumber } = useSelector(selectAddFlight)
+    const { landingTime, landingWindSpeed, landingWindDirection, flightType , passengerPhoneNumber 
+    ,takeOffWindUnit , wing, harness, parachute, country, city, sight, clouds, takeoffTime
+    } = useSelector(selectAddFlight)
     const dispatch = useDispatch()
 
     // states, submit pop up control
@@ -39,16 +45,30 @@ const AddLanding = ({userRole}) => {
     const navigate= useNavigate('')
 
 
-    const handleSelectSetLandingTime = (event) => {
-        dispatch(updateLandingTime(event.target.value));
-      };
+    useEffect(() => {
+        if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id || !flightType || !takeoffTime) {
+            navigate('/addFlight/AddFlightType')
+            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+              });
+        }
+    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate])
 
-    const handleSelectSetLandingWindSpeed = (event) => {
+
+    const handleLandingTimeChange = (newTime) => {
+        dispatch(updateLandingTime(newTime));
+       };
+
+    const handleSetLandingWindspeedChange = (event) => {
         dispatch(updateLandingWindSpeed(event.target.value));
       };
 
-    const handleSelectSetLandingWindDirection = (event) => {
-        dispatch(updateLandingWindDirection(event.target.value));
+    const handleSelectSetLandingWindDirection = (selectedOption) => {
+        dispatch(updateLandingWindDirection(selectedOption));
       };
 
     const handlePassengerPhoneNum = (event) => {
@@ -168,11 +188,22 @@ const AddLanding = ({userRole}) => {
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
-                    <DropdownInput name={'زمان'} options={flightHourOptionData} selectedOption={landingTime} handleSelectChange={handleSelectSetLandingTime} />
+                    <div className='w-full flex flex-col gap-y-1'>
+                        <p className='text-xs text-start self-start'>زمان land</p>
+                        <TimeInput
+                        value={landingTime}
+                        onChange={handleLandingTimeChange}
+                        placeholder="Select time"
+                        />
+                    </div>
 
-                    <DropdownInput name={'شیوه'} options={flightHourOptionData} selectedOption={landingWindSpeed} handleSelectChange={handleSelectSetLandingWindSpeed} />
-
-                    <DropdownInput name={'سرعت باد'} options={flightHourOptionData} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} />
+                    <DropdownInput name={'جهت باد'} options={windDirectionOptions} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} />
+                    
+                    <NumberInput
+                        value={landingWindSpeed}
+                        onChange={handleSetLandingWindspeedChange}
+                        placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                    />
 
                     { userRole === 'coach' &&
                     <div  className={` ${boxStyles.containerChangeOwnership} w-full flex flex-col justify-around items-center px-4 py-5 space-y-5`}>
