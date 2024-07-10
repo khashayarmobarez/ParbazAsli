@@ -4,6 +4,22 @@ const brandsOptionsData = [
     { name: 'option3', id: 'Option 3' },
   ];
 
+  const windDirectionOptions = [
+    { name: 'شمال', id: 1 },
+    { name: 'شمال شرقی', id: 2 },
+    { name: 'شرق', id: 3 },
+    { name: 'جنوب شرقی', id: 4 },
+    { name: 'جنوب', id: 5 },
+    { name: 'جنوب غربی', id: 6 },
+    { name: 'غرب', id: 7 },
+    { name: 'شمال غربی', id: 8 },
+  ]
+
+  const windSpeedUnits = [
+    { name: 'knots', id: 1 },
+    { name: 'km/h', id: 2 },
+  ]
+
   const courseTypeOptionData = [
     { name: 'دوره های مطابق سیلابس', id: 1 },
     { name: 'باز آموزی', id: 2 },
@@ -30,4 +46,4 @@ const brandsOptionsData = [
   ];
 
 
-  export {brandsOptionsData, courseTypeOptionData, sizeOptionData, flightHourOptionData, flightTypeOptions}
+  export {brandsOptionsData, windDirectionOptions , courseTypeOptionData, windSpeedUnits, sizeOptionData, flightHourOptionData, flightTypeOptions}

@@ -15,6 +15,7 @@ const initialState = {
     courseId:'',
     takeoffTime :'',
     takeoffType :'',
+    takeOffWindUnit:'',
     takeoffWindSpeed :'',
     takeoffwindDirection :'', 
     landingTime :'',
@@ -61,6 +62,9 @@ const initialState = {
       updateTakeoffTime: (state, action) => {
         state.takeoffTime = action.payload;
       },
+      updateTakeOffWindUnit: (state, action) => {
+        state.takeOffWindUnit = action.payload;
+      },
       updateTakeoffWindSpeed: (state, action) => {
         state.takeoffWindSpeed = action.payload;
       },
@@ -86,6 +90,8 @@ const initialState = {
   });
 
 
-export const { updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber } = addFlightSlice.actions;
+export const {
+   updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber
+   } = addFlightSlice.actions;
 export default addFlightSlice.reducer;
 export const selectAddFlight = (store) =>store.addFlight;

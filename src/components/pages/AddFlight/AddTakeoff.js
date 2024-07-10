@@ -12,10 +12,13 @@ import { useNavigate } from 'react-router-dom';
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 
+// windDirection provider
+import { windDirectionOptions, windSpeedUnits } from '../../../Utilities/Providers/dropdownInputOptions';
+
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, updateTakeOffWindUnit } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { useTakeoffTypes } from '../../../Utilities/Services/addFlightQueries';
 
 
@@ -25,8 +28,8 @@ const AddTakeoff = () => {
     const navigate= useNavigate('')
 
     // redux
-    const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection
-    ,wing, harness, parachute, country, city, sight, clouds , flightType
+    const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection, takeOffWindUnit,
+    wing, harness, parachute, country, city, sight, clouds , flightType
     } = useSelector(selectAddFlight)
 
     // useTakeOffTypes
@@ -55,12 +58,16 @@ const AddTakeoff = () => {
         dispatch(updateTakeOfftype(selectedOption));
       };
 
+    const handleSelectSetWindUnit = (selectedOption) => {
+        dispatch(updateTakeOffWindUnit(selectedOption));
+      };
+
     const handleSelectSetTakeoffWindspeed = (event) => {
         dispatch(updateTakeoffWindSpeed(event.target.value));
       };
 
-    const handleSelectSetTakeoffwindDirection = (event) => {
-        dispatch(updateTakeOffWindDirection(event.target.value));
+    const handleSelectSetTakeoffwindDirection = (selectedOption) => {
+        dispatch(updateTakeOffWindDirection(selectedOption));
       };
 
 
@@ -140,9 +147,9 @@ const AddTakeoff = () => {
                         <DropdownInput name={'شیوه'} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
                     }
 
-                    <DropdownInput name={'سرعت باد'} options={flightHourOptionData} selectedOption={takeoffWindSpeed} handleSelectChange={handleSelectSetTakeoffWindspeed} />
+                    <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} />
                     
-                    <DropdownInput name={'جهت باد'} options={flightHourOptionData} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
+                    <DropdownInput name={'جهت باد'} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
