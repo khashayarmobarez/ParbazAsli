@@ -34,7 +34,7 @@ const PracticalMyCourse = () => {
             }
             {
                 userFlights && userFlights.totalCount > 0 &&
-                <div className='flex flex-col gap-y-4'>
+                <div className='flex flex-col gap-y-6'>
 
                     {/* group name of data */}
                     <div className='flex justify-between items-center gap-x-2'>
@@ -42,7 +42,12 @@ const PracticalMyCourse = () => {
                         <div id='line' className='w-full h-[1px] rounded-xl bg-[#D9D9D9]'></div>
                     </div>
 
-                    <PracticalFlightHistoryBox />
+                    <div className='w-full flex flex-col gap-y-6'>
+                        {userFlights.data.map((flight) => (
+                            <PracticalFlightHistoryBox key={flight.id} flightBaseData={flight} />
+                        ))}
+                    </div>
+
                 </div>
             }
         </div>

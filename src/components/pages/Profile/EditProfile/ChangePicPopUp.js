@@ -89,7 +89,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup}) => {
     }
 
     return (
-        <div className={` w-full h-full backdrop-blur-sm absolute inset-0 flex items-center justify-center z-50 ${showPopup ? 'visible' : 'invisible'}`}>
+        <div className={` w-full h-full backdrop-blur-sm fixed inset-0 flex items-center justify-center z-50 ${showPopup ? 'visible' : 'invisible'}`}>
             <form
                 className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] gap-y-2 flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
             >

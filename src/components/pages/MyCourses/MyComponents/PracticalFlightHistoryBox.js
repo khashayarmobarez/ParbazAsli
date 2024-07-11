@@ -9,17 +9,20 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 // assets
 import clipboard from '../../../../assets/icons/clipboard.svg'
 
-
+// queries
+import { useAUserCourseAFlight } from '../../../../Utilities/Services/StudentCoursesQueries';
 
 
 const PracticalFlightHistoryBox = (props) => {
+
+    const { flightBaseData } = props;
+    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserCourseAFlight(flightBaseData.id);
 
     // for changing the color of the texts when user clicked and expand it
     const [isClicked, setIsClicked] = useState(false);
 
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const { data } = props;
 
     const handleClick = () => {
         setIsExpanded(!isExpanded);
@@ -28,136 +31,200 @@ const PracticalFlightHistoryBox = (props) => {
     }
 
     return (
-    <div className='flex flex-col gap-y-5'>
+    <div className='flex flex-col gap-y-2'>
 
         {/* the below part should be mapped when data is recieved from server */}
                 {/* classesInput */}
-                <div className={`${gradients.container}  text-${isClicked ? 'border-button-yellow' : ''} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
-                    <p>16/3/96</p>
-                    <p>تهران</p>
-                    <p>vardavard 812m</p>
-                    <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                        <img src={clipboard} alt='icon' />
-                    </button>
-                </div>
+                {
+                    flightBaseData &&
+                    <div className={`${gradients.container}  text-${isClicked ? 'border-button-yellow' : ''} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                        <p>{flightBaseData.takeOffDateAndFlightDuration}</p>
+                        <p>{flightBaseData.city}</p>
+                        <p>{flightBaseData.site}</p>
+                        <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <img src={clipboard} alt='icon' />
+                        </button>
+                    </div>
+                }
 
-                {isExpanded &&
-                    <div className='w-full flex flex-col items-center justify-center gap-y-8' >
+                {isExpanded && fullFlightData &&
+                    <div className='w-full flex flex-col items-center justify-center gap-y-2' >
 
                         <div className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col py-10 gap-y-8`}>
 
-                            <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full px-4'>
+                            <div className=' grid grid-cols-2 gap-x-4 gap-y-6 w-full px-4 text-sm'>
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>مقطع</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
+                                { 
+                                    fullFlightData.data.courseName &&
+                                    <div className='flex flex-col items-start gap-y-3'>
+                                        <p className=' text-xs pr-2'>نام دوره</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{fullFlightData.data.courseName}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>برند</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.wing &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>بال</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.wing}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>مدل/ کلاس</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.harness &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>هارنس</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.harness}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>سرعت باد Takeoff</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
+                                {
+                                    fullFlightData.data.parachute &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>چتر</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.parachute}</p>
+                                            </div>
+                                        </div>
+                                }
+                                
+                                {
+                                    fullFlightData.data.takeOffWindSpeedInKmh &&
+                                    <div className='flex flex-col items-start gap-y-3'>
+                                        <p className=' text-xs pr-2'>سرعت باد Takeoff</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{fullFlightData.data.takeOffWindSpeedInKmh}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>جهت باد Takeoff</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>شیوه Takeoff</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
+                                {
+                                    fullFlightData.data.takeOffWindDirection &&
+                                    <div className='flex flex-col items-start gap-y-3'>
+                                        <p className=' text-xs pr-2'>جهت باد Takeoff</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{fullFlightData.data.takeOffWindDirection}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>ساعت Takeoff</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
+                                {
+                                    fullFlightData.data.takeOffType &&
+                                    <div className='flex flex-col items-start gap-y-3'>
+                                        <p className=' text-xs pr-2'>شیوه Takeoff</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{fullFlightData.data.takeOffType}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>سرعت باد Landing</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.takeOffDateTime &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>زمان Takeoff</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.takeOffDateTime}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>جهت باد Landing</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.landingWindSpeedInKmh &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>سرعت باد Landing</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.landingWindSpeedInKmh}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>ساعت Landing</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.landingWindDirection &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>جهت باد Landing</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.landingWindDirection}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>نوع پوشش ابری</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.landingDateTime &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>زمان Landing</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.landingDateTime}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>مدت زمان پرواز</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.cloudCoverType &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>نوع پوشش ابری</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.cloudCoverType}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>نام مربی</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
-                                    </div>
-                                </div>
+                                {
+                                    fullFlightData.data.flightDurationInMinutes &&
+                                        <div className='flex flex-col items-start gap-y-3'>
+                                            <p className=' text-xs pr-2'>مدت زمان پرواز</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{fullFlightData.data.flightDurationInMinutes}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-3'>
-                                    <p className=' text-xs pr-2'>نام باشگاه</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>لورم ایپسوم</p>
+                                {
+                                fullFlightData.data.coachName &&
+                                    <div className='flex flex-col items-start gap-y-3'>
+                                        <p className=' text-xs pr-2'>نام مربی</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{fullFlightData.data.coachName}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
+
 
                             </div>
 
+                            {
+                                fullFlightData.data.syllabi.length > 0 &&
+                                    <div className=' grid grid-cols-1 gap-x-4 gap-y-2 w-full px-4 text-sm'>
+                                        <p className=' text-xs pr-2 text-right'>سر فصل های پرواز</p>
+                                        {
+                                            fullFlightData.data.syllabi.map((syllabus, index) => (
+                                            <div key={index} className='flex flex-col items-start gap-y-3'>
+                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                    <p>{syllabus}</p>
+                                                </div>
+                                            </div>
+                                            ))
+                                        }
+                                    </div>
+                            }
+
+                            {/* 
                             <div className='w-full flex flex-col items-start gap-y-4 p-4'>
                                 <h1>توضیحات و مانورها</h1>
                                 <p className=' border border-[#EBEEF3] text-sm px-3 py-5 rounded-3xl text-start'>لورم ایپسوم در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در  را تایپ کرده و در طرح‌هایتان از این متن استفاده کنید... تایپ کنید، به صورت خودکار ذخیره می‌شود.</p>
-                            </div>
+                            </div> */}
 
 
                         </div>
 
                         <div className='w-full'>
-                            <button className={ButtonStyles.normalButton}>مشاهده IGC</button>
+                            <button className={`${ButtonStyles.normalButton} text-sm`}>مشاهده IGC</button>
                         </div>
 
                     </div>

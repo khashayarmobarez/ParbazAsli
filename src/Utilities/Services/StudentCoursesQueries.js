@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
 
 const BASE_URL = 'https://api.par-baz.ir/api'
 
@@ -223,6 +221,37 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     const useUserCourseFlights = (courseId, pageNumber, pageSize) => {
         return useQuery(['aCourseFlights', courseId, pageNumber, pageSize], () => getUserCourseFlights(courseId, pageNumber, pageSize));
     };
+
+
+
+
+
+
+
+// get a student course flight
+    const getAUserCourseAFlight = async (flightId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseFlight?flightId=${flightId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAUserCourseAFlight = (flightId) => {
+        return useQuery(['aCourseAFlight', flightId], () => getAUserCourseAFlight(flightId));
+    };
     
 
 
@@ -230,4 +259,4 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useUserCourseFlights };
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useUserCourseFlights, useAUserCourseAFlight };
