@@ -17,6 +17,9 @@ import { toast } from 'react-toastify';
 // provider
 import { windDirectionOptions } from '../../../Utilities/Providers/dropdownInputOptions';
 
+// react-query
+import { useAddCourseFlight, useAddSoloFlight, useAddTandemFlight } from '../../../Utilities/Services/addFlightQueries';
+
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
@@ -29,20 +32,22 @@ import SubmitForm from '../../reuseable/SubmitForm';
 import TimeInput from '../../inputs/TimeInput';
 import NumberInput from '../../inputs/NumberInput';
 
-const AddLanding = ({userRole}) => {
+const AddLanding = () => {
+
+    const dispatch = useDispatch()
+    const navigate= useNavigate('')
+
+    const { mutate: mutateCourseFlight , isLoading: courseLoading, error: courseError} = useAddCourseFlight();
+    const { mutate: mutateSoloFlight , isLoading: SoloLoading, error: SoloError} = useAddSoloFlight();
+    const { mutate: mutateTandemFlight , isLoading: TandemLoading, error: TandemError} = useAddTandemFlight();
 
     // redux
-    const { landingTime, landingWindSpeed, landingWindDirection, flightType , passengerPhoneNumber 
-    ,takeOffWindUnit , wing, harness, parachute, country, city, sight, clouds, takeoffTime
+    const { landingTime, landingWindSpeed, landingWindDirection , passengerPhoneNumber
+    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId
     } = useSelector(selectAddFlight)
-    const dispatch = useDispatch()
 
     // states, submit pop up control
     const [showPopup, setShowPopup] = useState(false); 
-    
-
-    // react router dom
-    const navigate= useNavigate('')
 
 
     useEffect(() => {
@@ -56,7 +61,7 @@ const AddLanding = ({userRole}) => {
                 style: { width: "350px" }
               });
         }
-    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate])
+    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , takeoffTime, navigate])
 
 
     const handleLandingTimeChange = (newTime) => {
@@ -73,7 +78,6 @@ const AddLanding = ({userRole}) => {
 
     const handlePassengerPhoneNum = (event) => {
         dispatch(updatePassengerPhoneNumber(event.target.value));
-        console.log({passengerPhoneNumber, landingTime, landingWindDirection, landingWindSpeed})
       };
 
 
@@ -104,7 +108,7 @@ const AddLanding = ({userRole}) => {
                 
             } else {
                 toast('لطفا اطلاعات را کامل وارد کنید', {
-                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: 'dark',
@@ -114,28 +118,159 @@ const AddLanding = ({userRole}) => {
         }
         
     };
+    
 
     // handling for sending data
     const handlePost = (event) => {
-        if(userRole === 'coach') {
-            toast('!پرواز شما ثبت شد', {
-                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+        
+        const formData = new FormData();
+
+        if( wing && harness && parachute && sight && clouds && takeoffType && takeoffWindSpeed && takeoffwindDirection && landingWindSpeed && landingWindDirection && landingTime && takeoffTime) {
+    
+            // turn the startSelectedTime and end selected time into HH:mm format
+            const landingHour = landingTime.$d.getHours();
+            const landingMinute = landingTime.$d.getMinutes();
+            const formatedLandingTime = `${landingHour}:${landingMinute}`;
+
+            const takeoffHour = takeoffTime.$d.getHours();
+            const takeoffMinute = takeoffTime.$d.getMinutes();
+            const formatedTakeOffTime = `${takeoffHour}:${takeoffMinute}`;
+
+            console.log(formatedLandingTime, formatedTakeOffTime)
+
+            formData.append('wingId', wing.id);
+            formData.append('harnessId', harness.id);
+            formData.append('parachuteId', parachute.id);
+            formData.append('siteId', sight.id);
+            formData.append('cloudCoverTypeId', clouds.id);
+            formData.append('takeoffTime',formatedTakeOffTime);
+            formData.append('takeoffTypeId', takeoffType.id);
+            formData.append('takeoffWindSpeedInKmh', takeoffWindSpeed);
+            formData.append('takeoffWindDirection', takeoffwindDirection.id);
+            formData.append('landingTime', formatedLandingTime);
+            formData.append('landingWindSpeedInKmh', landingWindSpeed);
+            formData.append('landingWindDirection', landingWindDirection.id);
+            if(flightType === 'Course') {
+                formData.append('userCourseId', courseId);
+            }
+            if(flightType === 'tandem') {
+                formData.append('passengerPhoneNumber', passengerPhoneNumber);
+                formData.append('passengerHarnessId', passengerHarness.id);
+            }
+
+        } else {
+            toast('لطفا اطلاعات را کامل وارد کنید', {
+                type: 'error', // Specify the type of toast 
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: 'dark',
                 style: { width: "350px" }
-              });
-              setShowPopup(false);
-        } else if (userRole === 'student') {
-            toast('اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید', {
-                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                autoClose: 3000,
-                theme: 'dark',
-                style: { width: "350px" }
-              });
-              setShowPopup(false);
+            });
+            setShowPopup(false);
+            return;
         }
+        
+
+
+        if(flightType === 'Solo') {
+
+                mutateSoloFlight(formData,
+                    {
+                        onSuccess: () => {
+                            toast('!پرواز شما ثبت شد', {
+                                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                autoClose: 3000,
+                                theme: 'dark',
+                                style: { width: "350px" }
+                            });
+                            setShowPopup(false);
+                        },
+                        onError: (error) => {
+                            let errorMessage = 'خطایی رخ داده است';
+                            if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                                errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                            }
+                            toast(errorMessage, {
+                                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                autoClose: 3000,
+                                theme: 'dark',
+                                style: { width: "350px" }
+                            });
+                            setShowPopup(false);
+                        }
+                    }
+                );
+
+            } 
+        else if (flightType === 'Course') 
+            {
+                
+                mutateCourseFlight(formData,
+                    {
+                        onSuccess: () => {
+                            toast('!اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید', {
+                                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                autoClose: 3000,
+                                theme: 'dark',
+                                style: { width: "350px" }
+                            });
+                            setShowPopup(false);
+                        },
+                        onError: (error) => {
+                            let errorMessage = 'خطایی رخ داده است';
+                            if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                                errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                            }
+                            toast(errorMessage, {
+                                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                autoClose: 3000,
+                                theme: 'dark',
+                                style: { width: "350px" }
+                            });
+                            setShowPopup(false);
+                        }
+                    }
+                );
+
+            } 
+        else if (flightType === 'Tandem') 
+            {
+
+                mutateTandemFlight(formData,
+                    {
+                        onSuccess: () => {
+                            toast('!پرواز شما ثبت شد', {
+                                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                autoClose: 3000,
+                                theme: 'dark',
+                                style: { width: "350px" }
+                            });
+                            setShowPopup(false);
+                        },
+                        onError: (error) => {
+                            let errorMessage = 'خطایی رخ داده است';
+                            if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                                errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                            }
+                            toast(errorMessage, {
+                                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                autoClose: 3000,
+                                theme: 'dark',
+                                style: { width: "350px" }
+                            });
+                            setShowPopup(false);
+                        }
+                    }
+                );
+
+            }
+
     }
 
 
@@ -186,6 +321,7 @@ const AddLanding = ({userRole}) => {
                     <div className='h-[1px] w-9/12 mt-2' style={{background: 'var(--yellow-text)' }}></div>
                 </div>
 
+
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
@@ -205,17 +341,9 @@ const AddLanding = ({userRole}) => {
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
                     />
 
-                    { userRole === 'coach' &&
-                    <div  className={` ${boxStyles.containerChangeOwnership} w-full flex flex-col justify-around items-center px-4 py-5 space-y-5`}>
-
-                        <p className=' text-start text-sm w-full' >در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛ از این طریق می‌توانید متن آزمایشی و متن تستی خودتان. </p>
-
-                        <button onClick={() => navigate('/AddFlight/syllabuses')} type="reset"  className={`${ButtonStyles.normalButton} w-full `} >سیلابس‌ها</button>
-
-                    </div>}
-
-                    {flightType === 'tandem' && 
-                    <TextInput value={passengerPhoneNumber} onChange={handlePassengerPhoneNum} placeholder='درج شماره تماس مسافر' />}
+                    {flightType === 'Tandem' && 
+                    <TextInput value={passengerPhoneNumber} onChange={handlePassengerPhoneNum} placeholder='درج شماره تماس مسافر' />
+                    }
 
                 </form>
 
@@ -232,11 +360,14 @@ const AddLanding = ({userRole}) => {
 
                 <div className='w-full justify-center items-center'>
                     <SubmitForm text={"در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید "}
-                    showPopup={showPopup} setShowPopup={setShowPopup} handleSubmit={handleSubmit} handlePost={handlePost} />
+                    showPopup={showPopup} setShowPopup={setShowPopup} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
                 </div>
                 
 
             </div>
+
+            {/* hidden tag */}
+            <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>
     );
 };

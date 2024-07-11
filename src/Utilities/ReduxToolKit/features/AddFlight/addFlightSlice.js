@@ -5,12 +5,14 @@ const initialState = {
     igcFile:null,
     wing:'',
     harness: '',
+    passengerHarness: '',
     parachute :'',
     country:'',
     city:'',
+    // site
     sight:'',
+    // cloud cover type id 
     clouds:'',
-    // flight type sets the last page of the coach
     flightType:'',
     courseId:'',
     takeoffTime :'',
@@ -21,7 +23,10 @@ const initialState = {
     landingTime :'',
     landingWindSpeed :'',
     landingWindDirection :'', 
-    passengerPhoneNumber:''
+    // passenger phone number for tandem flights
+    passengerPhoneNumber:'',
+    // syllabi for only sollo flights
+    syllabi:[],
   };
 
 
@@ -86,12 +91,19 @@ const initialState = {
       updatePassengerPhoneNumber: (state, action) => {
         state.passengerPhoneNumber = action.payload;
       },
+      updatePassengerHarness: (state, action) => {
+        state.passengerHarness = action.payload;
+      },
+      updateSyllabi: (state, action) => {
+        state.syllabi = action.payload;
+      },
     },
   });
 
 
 export const {
-   updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber
-   } = addFlightSlice.actions;
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness
+  } = addFlightSlice.actions;
+
 export default addFlightSlice.reducer;
 export const selectAddFlight = (store) =>store.addFlight;

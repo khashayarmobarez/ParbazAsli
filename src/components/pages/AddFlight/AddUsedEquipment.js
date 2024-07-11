@@ -13,7 +13,7 @@ import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight, updatePassengerHarness } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateWing, updateHarness, updateParachute } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // components
@@ -32,7 +32,7 @@ const AddUsedEquipment = () => {
 
 
     // redux
-    const {wing, harness, parachute,
+    const {wing, harness, parachute, passengerHarness,
     flightType} = useSelector(selectAddFlight)
 
 
@@ -57,6 +57,10 @@ const AddUsedEquipment = () => {
 
     const handleSelectSetHarness = (selectedOption) => {
         dispatch(updateHarness(selectedOption));
+      };
+
+    const handleSelectSetPassengerHarness = (selectedOption) => {
+        dispatch(updatePassengerHarness(selectedOption));
       };
 
     const handleSelectSetParachute = (selectedOption) => {
@@ -173,6 +177,11 @@ const AddUsedEquipment = () => {
                             <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
 
                             <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
+
+                            {
+                                flightType === 'Tandem' &&
+                                <DropdownInputForEquipment name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} />
+                            }
                             
                             <DropdownInputForEquipment name={'چتر'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
                         </>

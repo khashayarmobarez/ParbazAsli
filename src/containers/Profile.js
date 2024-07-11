@@ -116,7 +116,9 @@ const Profile = ({userRole}) => {
                         <UserCoursesSlider coursesData={data.data.userCourses} />
                     }
                         
+                        
             </div>
+            
    
 }
 

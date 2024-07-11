@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateFlightType, updateCourseId } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+
 const AddFlightType = () => {
 
     const navigate = useNavigate()
@@ -68,9 +69,9 @@ const AddFlightType = () => {
                                     }   
                                 </div>
                                 {flightType.type === 'Course' &&
-                                <div className='flex justify-start w-full'>
-                                    <p className='text-xs text-nowrap'>مربی: {flightType.coach}</p>
-                                </div>
+                                    <div className='flex justify-start w-full'>
+                                        <p className='text-xs text-nowrap'>مربی: {flightType.coach}</p>
+                                    </div>
                                 }
                             </div>
                         ))

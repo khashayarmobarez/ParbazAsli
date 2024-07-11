@@ -210,4 +210,101 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , useFlightTypes };
+
+
+// add course flight
+    const addCourseFlight = async (formData) => {
+        
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Flight/AddCourseFlight`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddCourseFlight = () => {
+        return useMutation(addCourseFlight);
+    };
+
+
+
+
+
+
+// add Solo flight
+    const addSoloFlight = async (formData) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Flight/AddSoloFlight`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddSoloFlight = () => {
+        return useMutation(addSoloFlight);
+    };
+
+
+
+
+
+
+// add Tandem flight
+    const addTandemFlight = async (formData) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Flight/AddTandemFlight`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddTandemFlight = () => {
+        return useMutation(addTandemFlight);
+    };
+
+
+    
+
+
+
+
+
+export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , useFlightTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight};
