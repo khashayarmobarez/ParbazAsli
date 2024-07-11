@@ -89,8 +89,8 @@ const Settings = ({ userRole }) => {
                             </div>
                         </div>
                     }
-                </div>
-
+            </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
+                                                                                                                                                                                                                                                                                                                         
                 <div className='w-[90%] flex flex-col items-center gap-y-4'>
                     <DropDownLine  title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClick={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
                     {
