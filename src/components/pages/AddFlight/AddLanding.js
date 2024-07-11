@@ -136,7 +136,12 @@ const AddLanding = () => {
             const takeoffMinute = takeoffTime.$d.getMinutes();
             const formatedTakeOffTime = `${takeoffHour}:${takeoffMinute}`;
 
-            console.log(formatedLandingTime, formatedTakeOffTime)
+            
+            // Convert wind speeds from knots to km/h if necessary
+            const convertToKmh = (speed) => Math.round(speed * 1.852);
+            const takeoffWindSpeedInKmh = takeOffWindUnit.name === 'knots' ? convertToKmh(takeoffWindSpeed) : takeoffWindSpeed;
+            const landingWindSpeedInKmh = takeOffWindUnit.name === 'knots' ? convertToKmh(landingWindSpeed) : landingWindSpeed;
+
 
             formData.append('wingId', wing.id);
             formData.append('harnessId', harness.id);
@@ -145,15 +150,15 @@ const AddLanding = () => {
             formData.append('cloudCoverTypeId', clouds.id);
             formData.append('takeoffTime',formatedTakeOffTime);
             formData.append('takeoffTypeId', takeoffType.id);
-            formData.append('takeoffWindSpeedInKmh', takeoffWindSpeed);
+            formData.append('takeoffWindSpeedInKmh', takeoffWindSpeedInKmh);
             formData.append('takeoffWindDirection', takeoffwindDirection.id);
             formData.append('landingTime', formatedLandingTime);
-            formData.append('landingWindSpeedInKmh', landingWindSpeed);
+            formData.append('landingWindSpeedInKmh', landingWindSpeedInKmh);
             formData.append('landingWindDirection', landingWindDirection.id);
             if(flightType === 'Course') {
                 formData.append('userCourseId', courseId);
             }
-            if(flightType === 'tandem') {
+            if(flightType === 'Tandem') {
                 formData.append('passengerPhoneNumber', passengerPhoneNumber);
                 formData.append('passengerHarnessId', passengerHarness.id);
             }

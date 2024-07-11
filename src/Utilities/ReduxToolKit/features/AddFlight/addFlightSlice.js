@@ -27,6 +27,13 @@ const initialState = {
     passengerPhoneNumber:'',
     // syllabi for only sollo flights
     syllabi:[],
+
+    // based data to show to the user in add flight upper box
+    flightCount:'',
+    flightDuration:'',
+    courseLevel:'',
+    clubName:'',
+    coachName:'',
   };
 
 
@@ -97,12 +104,27 @@ const initialState = {
       updateSyllabi: (state, action) => {
         state.syllabi = action.payload;
       },
+      updateFlightCount: (state, action) => {
+        state.flightCount = action.payload;
+      },
+      updateFlightDuration: (state, action) => {
+        state.flightDuration = action.payload;
+      },
+      updateCourseLevel: (state, action) => {
+        state.courseLevel = action.payload;
+      },
+      updateClubName: (state, action) => {
+        state.clubName = action.payload;
+      },
+      updateCoachName: (state, action) => {
+        state.coachName = action.payload
+      }
     },
   });
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;

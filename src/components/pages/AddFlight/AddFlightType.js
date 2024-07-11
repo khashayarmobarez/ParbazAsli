@@ -13,7 +13,7 @@ import PageTitle from '../../reuseable/PageTitle';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateFlightType, updateCourseId } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 
 const AddFlightType = () => {
@@ -21,24 +21,28 @@ const AddFlightType = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { flightType, courseId } = useSelector(selectAddFlight)
-
     const { data: flightTypesData, loading:flightTypesLoading, error:flightTypesError } = useFlightTypes()
     
 
-    const handleSelectSetFlightType = (type, theCourseId) => {
-        dispatch(updateFlightType(type));
-        if(type === 'Course') {
-            dispatch(updateCourseId(theCourseId));
+    const handleSelectSetFlightType = (flightType) => {
+
+        dispatch(updateFlightType(flightType.type));
+        dispatch(updateFlightCount(flightType.flightsCount));
+
+        if(flightType.type === 'Course') {
+            dispatch(updateCourseId(flightType.theCourseId));
+            dispatch(updateClubName(flightType.club));
+            dispatch(updateCoachName(flightType.coach));
+            dispatch(updateCourseLevel(flightType.level));
         }
 
-        if(type !== 'Course') {
+        if(flightType.type !== 'Course') {
             dispatch(updateCourseId(''));
         }
 
         navigate('/addFlight/UploadIgc')
 
-        console.log(flightType, courseId)
+        console.log(flightType)
     };
 
     return (
@@ -54,7 +58,7 @@ const AddFlightType = () => {
                         flightTypesData &&
                         flightTypesData.data.map((flightType, index) => (
                             <div key={index} className={`${boxStyles.containerDarkmode} w-[90%] rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-2 text-sm`}
-                            onClick={() => handleSelectSetFlightType(flightType.type,flightType.userCourseId)}>
+                            onClick={() => handleSelectSetFlightType(flightType)}>
                                 <div className='w-full flex justify-between'>
                                     <div className='w-full flex justify-start items-enter gap-x-2'>
                                         {flightType.type === 'Course' ?
