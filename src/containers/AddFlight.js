@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import dayjs from 'dayjs';
+
+// components
 import PageTitle from '../components/reuseable/PageTitle';
 
 // style
@@ -6,15 +9,40 @@ import boxStyles from '../styles/Boxes/DataBox.module.css'
 import { Outlet } from 'react-router-dom';
 
 // redux
-import { useSelector } from 'react-redux';
-import { selectAddFlight } from '../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAddFlight, updateFlightDuration } from '../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
-const AddFlight = ({userRole}) => {
+const AddFlight = () => {
 
-    const { flightCount, flightDuration, courseLevel, clubName, coachName } = useSelector(selectAddFlight)
+    const dispatch = useDispatch()
+
+    const { flightCount, flightDuration, courseLevel, clubName, coachName , takeoffTime, landingTime } = useSelector(selectAddFlight)
 
     const today = new Date();
     const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
+
+    // calculate the flight duration
+    useEffect(() => {
+        if(takeoffTime && landingTime) {
+
+            // turn the startSelectedTime and end selected time into HH:mm format
+            const landingHour = landingTime.$d.getHours();
+            const landingMinute = landingTime.$d.getMinutes();
+
+            const takeoffHour = takeoffTime.$d.getHours();
+            const takeoffMinute = takeoffTime.$d.getMinutes();
+
+            const landing = dayjs().hour(landingHour).minute(landingMinute);
+            const takeoff = dayjs().hour(takeoffHour).minute(takeoffMinute);
+
+            const flightDurationInMinutes = landing.diff(takeoff, 'minute');
+
+            dispatch(updateFlightDuration(flightDurationInMinutes));
+
+        }
+    },[takeoffTime, landingTime, dispatch])
+
+
 
     return (
         <div className='flex flex-col items-center pt-14 pb-24'>

@@ -31,6 +31,7 @@ import TextInput from '../../inputs/textInput';
 import SubmitForm from '../../reuseable/SubmitForm';
 import TimeInput from '../../inputs/TimeInput';
 import NumberInput from '../../inputs/NumberInput';
+import { CircularProgress } from '@mui/material';
 
 const AddLanding = () => {
 
@@ -283,7 +284,16 @@ const AddLanding = () => {
     
     return (
         <>
+            {
+            (SoloLoading || TandemLoading || courseLoading) &&
+                <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
+                    <CircularProgress sx={{ color:'var(--yellow-text) '}} /> 
+                    <p>در حال ثبت اطلاعات</p>
+                </div>
+            }
+
             <div className='flex flex-col justify-center items-center w-[90%] gap-y-7'>
+
 
                 {/* line and circle of adding flight level */}
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
@@ -365,7 +375,7 @@ const AddLanding = () => {
 
                 <div className='w-full justify-center items-center'>
                     <SubmitForm text={"در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید "}
-                    showPopup={showPopup} setShowPopup={setShowPopup} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
+                    showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
                 </div>
                 
 

@@ -30,7 +30,7 @@ const AddFlightType = () => {
         dispatch(updateFlightCount(flightType.flightsCount));
 
         if(flightType.type === 'Course') {
-            dispatch(updateCourseId(flightType.theCourseId));
+            dispatch(updateCourseId(flightType.userCourseId));
             dispatch(updateClubName(flightType.club));
             dispatch(updateCoachName(flightType.coach));
             dispatch(updateCourseLevel(flightType.level));
