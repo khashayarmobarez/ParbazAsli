@@ -16,12 +16,14 @@ import { useAUserFlight } from '../../../Utilities/Services/flightHistoriesQueri
 const PracticalFlightHistoryBox = (props) => {
 
     const { flightBaseData } = props;
-    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserFlight(flightBaseData.id);
 
-    // for changing the color of the texts when user clicked and expand it
     const [isClicked, setIsClicked] = useState(false);
 
     const [isExpanded, setIsExpanded] = useState(false);
+    
+    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserFlight(flightBaseData.id);
+
+    // for changing the color of the texts when user clicked and expand it
 
 
     const handleClick = () => {

@@ -12,6 +12,9 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 import arrowIcon from '../assets/icons/Right Arrow Button.svg';
 
 // mui
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 //  Queries
 import { useUserFlights } from '../Utilities/Services/flightHistoriesQueries';
@@ -19,6 +22,7 @@ import { useUserFlights } from '../Utilities/Services/flightHistoriesQueries';
 // components
 import PageTitle from '../components/reuseable/PageTitle';
 import PracticalFlightHistoryBox from '../components/pages/FlightHistory/PracticalFlightHistoryBox';
+import FilterVariables from '../components/pages/FlightHistory/FilterVariables';
 
 
 const FlightHistory = () => {
@@ -30,11 +34,9 @@ const FlightHistory = () => {
         courseFilter,
         wingFilter,
         harnessFilter,
-        // 
         countryFilter,
         provinceFilter,
         siteFilter,
-        // 
         flightTypeFilter,
         coachNameFilter,
         flightStatusFilter,
@@ -103,10 +105,37 @@ const FlightHistory = () => {
                                 فیلتر جست‌وجو 
                             </button>
 
+                            {
+                                (courseFilter.id !== '' ||
+                                wingFilter.id !== '' ||
+                                harnessFilter.id !== '' ||
+                                countryFilter.id !== '' ||
+                                provinceFilter.id !== '' ||
+                                siteFilter.id !== '' ||
+                                flightTypeFilter.id !== '' ||
+                                coachNameFilter.id !== '' ||
+                                flightStatusFilter.id !== '' ||
+                                fromDateFilter !== '' ||
+                                toDateFilter !== '' ) &&
+                                <FilterVariables />
+                            }
+
+                            {
+                                userFlightsLoading &&
+                                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'10rem' }}>
+                                    <CircularProgress /> 
+                                </Box>
+                            }
+
+                            {
+                                userFlights && userFlights.data.length === 0 &&
+                                <p className='text-base text-center font-medium mt-6' style={{color:'var(--red-text)'}}>هیچ پروازی یافت نشد</p>
+                            }
+
 
                             {/* flight history */}
                             {
-                                userFlights &&
+                                userFlights && userFlights.data.length > 0 &&
                                 <div className='w-full flex flex-col gap-y-6'>
                                     {userFlights.data.map((flight) => (
                                         <PracticalFlightHistoryBox key={flight.id} flightBaseData={flight} />
@@ -115,7 +144,7 @@ const FlightHistory = () => {
                             }
 
                             {/* pagination buttons */}
-                            {userFlights &&
+                            {userFlights && userFlights.data.length > 0 &&
                             <div className='w-full flex justify-between px-10 items-center'>
 
                                 <button className={`w-10 justify-self-start`} 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +7,10 @@ import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateC
 
 // styles
 import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
+
+// mui
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // queries
 import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
@@ -23,8 +28,10 @@ import DropdownInput from '../../inputs/DropDownInput';
 import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
+
 const FlightsAdvancedFilter = () => {
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { formatDate } = useDateFormat();
 
@@ -33,11 +40,9 @@ const FlightsAdvancedFilter = () => {
         courseFilter,
         wingFilter,
         harnessFilter,
-        // 
         countryFilter,
         provinceFilter,
         siteFilter,
-        // 
         flightTypeFilter,
         coachNameFilter,
         flightStatusFilter,
@@ -135,58 +140,72 @@ const FlightsAdvancedFilter = () => {
 
                 <PageTitle title={'فیلتر جست‌وجو'} navigateTo={-1} />
 
-                <div className='w-[90%] md:w-[65%] flex flex-col gap-y-4'>
+                {   (userWingsLoading || userHarnessLoading || userCoachesLoading || userCoursesLoading || countriesLoading) &&
+                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'10rem' }}>
+                        <CircularProgress /> 
+                    </Box>
+                }
 
-                    {
-                        userCoursesData && userCoursesData.data.length > 0 &&
-                        <DropdownInput name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
-                    }
+                {
+                    (userWingsData && userHarnessData && userCoachesData && userCoursesData && countriesData) &&
+
+                    <>
+                        <div className='w-[90%] md:w-[65%] flex flex-col gap-y-4'>
                     
-                    {
-                        userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
-                        <>
-                            <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
+                            {
+                                userCoursesData && userCoursesData.data.length > 0 &&
+                                <DropdownInput name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                            }
+                            
+                            {
+                                userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
+                                <>
+                                    <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
-                            <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
-                        </>
-                    }
+                                    <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
+                                </>
+                            }
 
-                    {
-                        countriesData &&
-                        <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
-                    }
+                            {
+                                countriesData &&
+                                <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                            }
 
-                    {
-                        provincesData &&
-                        <DropdownInput name={'شهر'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
-                    }
+                            {
+                                provincesData &&
+                                <DropdownInput name={'شهر'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
+                            }
 
-                    {
-                        flightSitesData &&
-                        <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
-                    }
+                            {
+                                flightSitesData &&
+                                <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
+                            }
 
-                    <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                            <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                            
+                            {
+                                userCoachesData && userCoachesData.data.length > 0 &&
+                                <DropdownInput name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
+                            }
+
+                            <DropdownInput name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+
+
+                            {/* the date picker component comes from equipment section, try moving it into this component */}
+                            <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
+
+                            {/* the date picker component comes from equipment section, try moving it into this component */}
+                            <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
+
+                        </div>
+
+                        <div className='w-[90%] md:w-[65%] flex justify-center'>
+                            <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-40 h-12`}>اعمال فیلتر</button>
+                        </div>
+                    </>
                     
-                    {
-                        userCoachesData && userCoachesData.data.length > 0 &&
-                        <DropdownInput name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
-                    }
+                }
 
-                    <DropdownInput name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
-
-
-                    {/* the date picker component comes from equipment section, try moving it into this component */}
-                    <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
-
-                    {/* the date picker component comes from equipment section, try moving it into this component */}
-                    <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
-
-                </div>
-
-                <div className='w-[90%] md:w-[65%] flex justify-center'>
-                    <button className={` ${buttonStyles.addButton} w-40 h-12`}>اعمال فیلتر</button>
-                </div>
             
             </div>
             

@@ -21,7 +21,6 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AddIcon from '@mui/icons-material/Add';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
-import { Padding } from '@mui/icons-material';
 
 
 const styles = {
@@ -30,7 +29,7 @@ const styles = {
       zIndex: 100,
       background: '#131423',
       Bottom:'2rem',
-      height:'calc(3.3rem + env(safe-area-inset-bottom,5))',
+      height:'calc(3.6rem + env(safe-area-inset-bottom,5))',
       '@media screen and (min-width: 768px)': {
         right: 0,
         top: '15%',
@@ -42,7 +41,7 @@ const styles = {
       paddingBottom:'env(safe-area-inset-bottom, 5rem)',
       width: '100%',
       background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
-      boxShadow: '-3px 4px 5.800000190734863px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
+      boxShadow: '-3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
       height: '100%',
       
       '@media screen and (min-width: 768px)': {
@@ -83,11 +82,11 @@ const Footer = ({ userRole }) => {
     return (
       <ThemeProvider theme={theme}>
         <Box
-        position='fixed'
-        bottom={0} // Position the Footer at the bottom of the viewport
-        left={0}   // Align the Footer to the left edge of the viewport
-        right={0}
-        sx={styles.container}
+          position='fixed'
+          bottom={0} // Position the Footer at the bottom of the viewport
+          left={0}   // Align the Footer to the left edge of the viewport
+          right={0}
+          sx={styles.container}
         >
             
               {
@@ -117,7 +116,7 @@ const Footer = ({ userRole }) => {
                 }}
                 >
                   <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}} />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                  <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px' }}>ثبت پرواز</Typography>} icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'8px', width:'1.65rem', height: '1.5rem', marginBottom:'0px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+                  <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px' }}>ثبت پرواز</Typography>} icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'8px', width:'1.75rem', height: '1.6rem', marginBottom:'0px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
                   <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>سوابق پرواز</Typography>} icon={<FolderOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}}/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
                 </BottomNavigation>
               }
