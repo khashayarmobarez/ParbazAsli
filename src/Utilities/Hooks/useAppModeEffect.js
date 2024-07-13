@@ -69,8 +69,8 @@ const useAppModeEffect = (isDarkMode) => {
 
         // databox
             // class details
-            root.style.setProperty('--class-details-bg', 'linear-gradient(8deg, rgba(135,141,203,0.3) 0%, rgba(24,26,45,1) 85%)');
-            root.style.setProperty('--class-details-boxShadow', ' -3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)');
+            root.style.setProperty('--class-details-bg', 'linear-gradient(8deg, rgba(135,141,203,0.25) 0%, rgba(24,26,45,1) 115%)');
+            root.style.setProperty('--class-details-boxShadow', ' -3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.2)');
 
   
         // input border

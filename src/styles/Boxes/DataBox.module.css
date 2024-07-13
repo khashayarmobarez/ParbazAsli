@@ -40,7 +40,7 @@
 /* class details forms */
 .classDetails {
     background: var(--class-details-bg);
-    box-shadow: 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51);
+    box-shadow: 1px -1px 2.6px 0px rgba(235, 224, 224, 0.31);
     min-height: 5rem;
 }
 

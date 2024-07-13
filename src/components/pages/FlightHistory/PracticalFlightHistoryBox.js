@@ -31,13 +31,14 @@ const PracticalFlightHistoryBox = (props) => {
     }
 
     return (
-    <div className='flex flex-col gap-y-2'>
+    <div className='flex flex-col gap-y-4'>
 
         {/* the below part should be mapped when data is recieved from server */}
                 {/* classesInput */}
                 {
                     flightBaseData &&
-                    <div className={`${gradients.container}  text-${isClicked ? 'border-button-yellow' : ''} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                    <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`} 
+                    style={{ color: isExpanded && fullFlightData ? 'var(--yellow-text)' : '' }}>
                         <p>{flightBaseData.takeOffDateAndFlightDuration}</p>
                         <p>{flightBaseData.city}</p>
                         <p>{flightBaseData.site}</p>
