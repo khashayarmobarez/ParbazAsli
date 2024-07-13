@@ -46,7 +46,7 @@ const FlightHistory = ({userRole}) => {
 
             <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-2'>
 
-                <PageTitle title={'سوابق پرواز'} navigateTo={'profile'} paddingRight={'33%'} /> 
+                <PageTitle title={'سوابق پرواز'} navigateTo={'profile'} /> 
 
                 {/* for coach */}
                 { userRole === 'coach' &&

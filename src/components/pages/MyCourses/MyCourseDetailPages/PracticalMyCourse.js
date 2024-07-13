@@ -29,7 +29,8 @@ const PracticalMyCourse = () => {
                 <CircularProgress /> 
             </Box>
             }
-            {userFlights && userFlights.totalCount === 0 &&
+            {
+            userFlights && userFlights.totalCount === 0 &&
                 <p> هنوز پروازی برای این دوره ثبت نشده است</p>
             }
             {
