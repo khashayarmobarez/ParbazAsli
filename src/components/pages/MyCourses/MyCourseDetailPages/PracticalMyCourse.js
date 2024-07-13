@@ -14,7 +14,7 @@ const PracticalMyCourse = () => {
 
     const { id } = useParams();
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(1,10,id);
+    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(1,10,id, '', '', '', '', '', '', '', '',);
 
     useEffect(() => {
         if(userFlights) {

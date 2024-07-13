@@ -92,6 +92,7 @@ import PracticalMyCourse from './components/pages/MyCourses/MyCourseDetailPages/
 import TheoryMyCourse from './components/pages/MyCourses/MyCourseDetailPages/TheoryMyCourse';
 import MySyllabiMyCourse from './components/pages/MyCourses/MyCourseDetailPages/MySyllabiMyCourse';
 import AddFlightType from './components/pages/AddFlight/AddFlightType';
+import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
   
 
 
@@ -261,7 +262,9 @@ function App() {
                 <Route path="addFlight/syllabuses" element={ <Syllabuses />} />
 
                 {/* flight history */}
-                <Route path='/flightHistory' element={<FlightHistory userRole={ userRole } />} />
+                <Route path='/flightHistory' element={<FlightHistory  />} />
+                <Route path='/flightHistory/advancedFilter' element={<FlightsAdvancedFilter  />} />
+
 
                 {/* edit profile */}
                 <Route path='/editProfile' element={<EditProfile />}>

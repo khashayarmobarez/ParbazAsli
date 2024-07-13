@@ -5,39 +5,40 @@ import Cookies from 'js-cookie';
 const BASE_URL = 'https://api.par-baz.ir/api'
 
 
-// get student course flights
-const getUserFlights = async (pageNumber, pageSize, courseId) => {
-    const token = Cookies.get('token');
+// get flights histories
+    const getUserFlights = async (pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status) => {
+        const token = Cookies.get('token');
 
-    try {
-        const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}${courseId && `userCourseId=${courseId}&`}`,
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return response.data;
-    } catch (error) {
-        if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-            window.location.reload();
-        } else {
-            throw error;
+        try {
+            const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}${courseId && `userCourseId=${courseId}&`}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${tandem}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
         }
-    }
-};
+    };
 
-const useUserFlights = (pageNumber, pageSize, courseId) => {
-    return useQuery(['userFlights', pageNumber, pageSize, courseId], () => getUserFlights(pageNumber, pageSize, courseId));
-};
-
-
+    const useUserFlights = (pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status) => {
+        return useQuery(['userFlights', pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status],
+            () => getUserFlights(pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status));
+    };
 
 
 
 
 
-// get a student course flight
+
+
+// get a flight
 const getAUserFlight = async (flightId) => {
     const token = Cookies.get('token');
 

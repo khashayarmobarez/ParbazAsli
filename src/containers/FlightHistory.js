@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
@@ -20,6 +21,8 @@ import PracticalFlightHistoryBox from '../components/pages/FlightHistory/Practic
 
 const FlightHistory = () => {
 
+    const navigate = useNavigate();
+
     const [pageNumber, setPageNumber] = useState(1);
 
     useEffect(() => {
@@ -27,7 +30,7 @@ const FlightHistory = () => {
     }, [pageNumber])
 
     // react query
-    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(pageNumber,10);
+    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(pageNumber,10, '','', '', '', '', '', '', '', '', '',);
 
     // increase the page number by 1 
     const handleNextPage= () => {
@@ -44,13 +47,13 @@ const FlightHistory = () => {
         
         <div className='w-full flex flex-col justify-center items-center'>
 
-            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-2'>
+            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-0'>
 
                 <PageTitle title={'سوابق پرواز'} navigateTo={'profile'} /> 
 
-                <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
+                <div className='w-[90%] mt-6 flex flex-col'>
 
-                        <div className='w-full flex flex-col justify-center items-center px-1 gap-y-4'>
+                        <div className='w-full flex flex-col justify-center items-center px-1 gap-y-8'>
                             
                             {/* removed from this page */}
                             {/* <div className='w-full flex flex-col gap-y-2 mb-[-2rem]'>
@@ -72,7 +75,11 @@ const FlightHistory = () => {
 
 
                             {/* Advanced filter */}
-                            
+                            <button
+                            className={`w-full ${ButtonStyles.normalButton} `}
+                            onClick={() => navigate('/flightHistory/advancedFilter')}>
+                                فیلتر جست‌وجو 
+                            </button>
 
 
                             {/* flight history */}
@@ -90,15 +97,17 @@ const FlightHistory = () => {
                             <div className='w-full flex justify-between px-10 items-center'>
 
                                 <button className={`w-10 justify-self-start`} 
+                                disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber} 
                                 onClick={handleNextPage}>
                                     <img src={arrowIcon} alt='arrow' 
-                                    className={ `${(userFlights && (userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber)) && 'opacity-60' } `} />
+                                    className={ `${(userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber) && 'opacity-60' } `} />
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{color:'var(--yellow-text)'}}>صفحه ی {pageNumber}</p>
                                 
                                 <button 
-                                    className={`transform rotate-180 w-10 justify-self-end`}  
+                                    className={`transform rotate-180 w-10 justify-self-end`}
+                                    disabled={pageNumber === 1}
                                     onClick={ handlePrevPage}>
                                     <img src={arrowIcon} alt='arrow' className={`mt-2 ${ pageNumber === 1 && 'opacity-60'}`} />
                                 </button>
