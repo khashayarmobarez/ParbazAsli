@@ -199,9 +199,34 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+// Get All User Courses For Dropdown
+// /UserCourse/GetAllUserCoursesForDropdown 
+    const getAllUserCoursesForDropdown = async () => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetAllUserCoursesForDropdown`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAllUserCoursesForDropdown = () => {
+        return useQuery(['allUserCoursesForDropdown'], getAllUserCoursesForDropdown);
+    };
 
 
 
 
 
-export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass };
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useAllUserCoursesForDropdown };

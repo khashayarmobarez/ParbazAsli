@@ -6,11 +6,11 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get flights histories
-    const getUserFlights = async (pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status) => {
+    const getUserFlights = async (pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status, countryId ,provinceId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}${courseId && `userCourseId=${courseId}&`}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${tandem}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}`,
+            const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}${courseId && `userCourseId=${courseId}&`}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${tandem}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}${countryId && `&countryId=${countryId}`}${provinceId && `&provinceId=${provinceId}`}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -27,9 +27,9 @@ const BASE_URL = 'https://api.par-baz.ir/api'
         }
     };
 
-    const useUserFlights = (pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status) => {
-        return useQuery(['userFlights', pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status],
-            () => getUserFlights(pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status));
+    const useUserFlights = (pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status, countryId ,provinceId) => {
+        return useQuery(['userFlights', pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status, countryId ,provinceId],
+            () => getUserFlights(pageNumber, pageSize, courseId, wingId, harnessId, siteId, tandem, fromData, toData, coachUserId, status, countryId ,provinceId));
     };
 
 

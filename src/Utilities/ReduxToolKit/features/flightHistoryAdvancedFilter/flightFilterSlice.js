@@ -2,107 +2,75 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    wing:'',
-    harness: '',
-    parachute :'',
-    country:'',
-    province:'',
+    courseFilter: '',
+    wingFilter:'',
+    harnessFilter: '',
+    countryFilter:'',
+    provinceFilter:'',
     // site
-    site:'',
-    // cloud cover type id 
-    clouds:'',
-    flightType:'',
-    clubName:'',
-    coachName:'',
+    siteFilter:'',
+    flightTypeFilter:'',
+    coachNameFilter:'',
+    flightStatusFilter:'',
+    fromDateFilter:'',
+    toDateFilter:'',
   };
 
 
-  const addFlightSlice = createSlice({
-    name: 'addFlight',
+const flightFilterSlice = createSlice({
+    name: 'flightFilter',
     initialState,
     reducers: {
-      updateWing: (state, action) => {
-        state.wing = action.payload;
-      },
-      updateHarness: (state, action) => {
-        state.harness = action.payload;
-      },
-      updateParachute: (state, action) => {
-        state.parachute = action.payload;
-      },
-      updateCity: (state, action) => {
-        state.city = action.payload;
-      },
-      updateCountry: (state, action) => {
-        state.country = action.payload;
-      },
-      updateSight: (state, action) => {
-        state.sight = action.payload;
-      },
-      updateClouds: (state, action) => {
-        state.clouds = action.payload;
-      },
-      updateFlightType: (state, action) => {
-        state.flightType = action.payload;
-      },
-      updateCourseId: (state, action) => {
-        state.courseId = action.payload;
-      },
-      updateTakeoffTime: (state, action) => {
-        state.takeoffTime = action.payload;
-      },
-      updateTakeOffWindUnit: (state, action) => {
-        state.takeOffWindUnit = action.payload;
-      },
-      updateTakeoffWindSpeed: (state, action) => {
-        state.takeoffWindSpeed = action.payload;
-      },
-      updateTakeOffWindDirection: (state, action) => {
-        state.takeoffwindDirection = action.payload;
-      },
-      updateTakeOfftype: (state, action) => {
-        state.takeoffType = action.payload;
-      },
-      updateLandingTime: (state, action) => {
-        state.landingTime = action.payload;
-      },
-      updateLandingWindSpeed: (state, action) => {
-        state.landingWindSpeed = action.payload;
-      },
-      updateLandingWindDirection: (state, action) => {
-        state.landingWindDirection = action.payload;
-      },
-      updatePassengerPhoneNumber: (state, action) => {
-        state.passengerPhoneNumber = action.payload;
-      },
-      updatePassengerHarness: (state, action) => {
-        state.passengerHarness = action.payload;
-      },
-      updateSyllabi: (state, action) => {
-        state.syllabi = action.payload;
-      },
-      updateFlightCount: (state, action) => {
-        state.flightCount = action.payload;
-      },
-      updateFlightDuration: (state, action) => {
-        state.flightDuration = action.payload;
-      },
-      updateCourseLevel: (state, action) => {
-        state.courseLevel = action.payload;
-      },
-      updateClubName: (state, action) => {
-        state.clubName = action.payload;
-      },
-      updateCoachName: (state, action) => {
-        state.coachName = action.payload
-      }
+        updateCourseFilter: (state, action) => {
+            state.courseFilter = action.payload;
+        },
+        updateWingFilter: (state, action) => {
+            state.wingFilter = action.payload;
+        },
+        updateHarnessFilter: (state, action) => {
+            state.harnessFilter = action.payload;
+        },
+        updateCountryFilter: (state, action) => {
+            state.countryFilter = action.payload;
+        },
+        updateProvinceFilter: (state, action) => {
+            state.provinceFilter = action.payload;
+        },
+        updateSiteFilter: (state, action) => {
+            state.siteFilter = action.payload;
+        },
+        updateFlightTypeFilter: (state, action) => {
+            state.flightTypeFilter = action.payload;
+        },
+        updateCoachNameFilter: (state, action) => {
+            state.coachNameFilter = action.payload;
+        },
+        updateFlightStatusFilter: (state, action) => {
+            state.flightStatusFilter = action.payload;
+        },
+        updateFromDateFilter: (state, action) => {
+            state.fromDateFilter = action.payload;
+        },
+        updateToDateFilter: (state, action) => {
+            state.toDateFilter = action.payload;
+        },
     },
-  });
+});
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName
-  } = addFlightSlice.actions;
+    updateCourseFilter,
+    updateWingFilter,
+    updateHarnessFilter,
+    updateCountryFilter,
+    updateProvinceFilter,
+    updateSiteFilter,
+    updateFlightTypeFilter,
+    updateCoachNameFilter,
+    updateFlightStatusFilter,
+    updateFromDateFilter,
+    updateToDateFilter,
+} = flightFilterSlice.actions;
 
-export default addFlightSlice.reducer;
-export const selectAddFlight = (store) =>store.addFlight;
+export default flightFilterSlice.reducer;
+export const selectFlightFilter = (store) =>store.flightFilter;

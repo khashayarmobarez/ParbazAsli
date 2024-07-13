@@ -25,6 +25,12 @@ const brandsOptionsData = [
     { name: 'باز آموزی', id: 2 },
     { name: 'شخصی سازی شده', id: 3 },
   ];
+
+  const flightStatusOptions = [
+    { name: 'در انتظار تایید', id: 1 },
+    { name: 'تایید شده', id: 2 },
+    { name: 'رد شده', id: 3 },
+  ];
   
   const sizeOptionData = [
     { name: 'option1', id: 'Option 1' },
@@ -46,4 +52,4 @@ const brandsOptionsData = [
   ];
 
 
-  export {brandsOptionsData, windDirectionOptions , courseTypeOptionData, windSpeedUnits, sizeOptionData, flightHourOptionData, flightTypeOptions}
+  export {brandsOptionsData, windDirectionOptions , courseTypeOptionData, windSpeedUnits, flightStatusOptions , sizeOptionData, flightHourOptionData, flightTypeOptions}

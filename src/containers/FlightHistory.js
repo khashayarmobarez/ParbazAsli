@@ -30,7 +30,7 @@ const FlightHistory = () => {
     }, [pageNumber])
 
     // react query
-    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(pageNumber,10, '','', '', '', '', '', '', '', '', '',);
+    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(pageNumber,10, '','', '', '', '', '', '', '', '', '' , '' , '');
 
     // increase the page number by 1 
     const handleNextPage= () => {
