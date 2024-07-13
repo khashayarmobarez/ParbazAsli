@@ -2,12 +2,16 @@ import React from 'react';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFlightFilter, updateCoachNameFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateToDateFilter, updateWingFilter } from '../../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+
+// styles
+import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 
 // queries
 import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
 import { useAllUsersCoaches } from '../../../Utilities/Services/userQueries';
 import { useAllUserCoursesForDropdown } from '../../../Utilities/Services/StudentCoursesQueries';
+import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
 
 // providers
 import { flightTypeOptions, flightStatusOptions } from '../../../Utilities/Providers/dropdownInputOptions';
@@ -29,9 +33,11 @@ const FlightsAdvancedFilter = () => {
         courseFilter,
         wingFilter,
         harnessFilter,
+        // 
         countryFilter,
         provinceFilter,
         siteFilter,
+        // 
         flightTypeFilter,
         coachNameFilter,
         flightStatusFilter,
@@ -45,6 +51,9 @@ const FlightsAdvancedFilter = () => {
     const { data: userHarnessData, loading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3)
     const { data: userCoachesData, loading:userCoachesLoading, error:userCoachesError } = useAllUsersCoaches()
     const { data: userCoursesData, loading:userCoursesLoading, error:userCoursesError } = useAllUserCoursesForDropdown()
+    const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
+    const { data: provincesData, loading:provincesLoading, error:provincesError } = useProvincesByCountryId(countryFilter.id)
+    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError } = useSitesByProvinceId(provinceFilter.id)
 
 
     const handleSelectCourseFilter = (selectedOption) => {
@@ -70,6 +79,18 @@ const FlightsAdvancedFilter = () => {
     const handleSelectFlightStatusFilter = (selectedOption) => {
         dispatch(updateFlightStatusFilter(selectedOption));
     }
+
+    const handleSelectSetCountryFilter = (selectedOption) => {
+        dispatch(updateCountryFilter(selectedOption));
+    };
+
+    const handleSelectSetCityFilter = (selectedOption) => {
+        dispatch(updateProvinceFilter(selectedOption));
+    };
+
+    const handleSelectSetSiteFilter = (selectedOption) => {
+        dispatch(updateSiteFilter(selectedOption));
+    };
 
 
     const handleFlightFromDateFilterChange = (value) => {
@@ -110,45 +131,62 @@ const FlightsAdvancedFilter = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center'>
 
-            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-8'>
+            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-6'>
 
-            <PageTitle title={'فیلتر جست‌وجو'} navigateTo={-1} />
+                <PageTitle title={'فیلتر جست‌وجو'} navigateTo={-1} />
 
-            <div className='w-[90%] md:w-[65%] flex flex-col gap-y-4'>
+                <div className='w-[90%] md:w-[65%] flex flex-col gap-y-4'>
 
-                {
-                    userCoursesData && userCoursesData.data.length > 0 &&
-                    <DropdownInput name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
-                }
-                
-                {
-                    userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
-                    <>
-                        <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
+                    {
+                        userCoursesData && userCoursesData.data.length > 0 &&
+                        <DropdownInput name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                    }
+                    
+                    {
+                        userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
+                        <>
+                            <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
-                        <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
-                    </>
-                }
+                            <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
+                        </>
+                    }
 
-                <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
-                
-                {
-                    userCoachesData && userCoachesData.data.length > 0 &&
-                    <DropdownInput name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
-                }
+                    {
+                        countriesData &&
+                        <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                    }
 
-                <DropdownInput name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+                    {
+                        provincesData &&
+                        <DropdownInput name={'شهر'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
+                    }
+
+                    {
+                        flightSitesData &&
+                        <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
+                    }
+
+                    <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                    
+                    {
+                        userCoachesData && userCoachesData.data.length > 0 &&
+                        <DropdownInput name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
+                    }
+
+                    <DropdownInput name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
-                {/* the date picker component comes from equipment section, try moving it into this component */}
-                <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
+                    {/* the date picker component comes from equipment section, try moving it into this component */}
+                    <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
 
-                {/* the date picker component comes from equipment section, try moving it into this component */}
-                <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
+                    {/* the date picker component comes from equipment section, try moving it into this component */}
+                    <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
 
-            
-            </div>
+                </div>
 
+                <div className='w-[90%] md:w-[65%] flex justify-center'>
+                    <button className={` ${buttonStyles.addButton} w-40 h-12`}>اعمال فیلتر</button>
+                </div>
             
             </div>
             

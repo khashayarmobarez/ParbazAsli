@@ -2,16 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    courseFilter: '',
-    wingFilter:'',
-    harnessFilter: '',
-    countryFilter:'',
-    provinceFilter:'',
+    courseFilter: {name:'', id:''},
+    wingFilter:{name:'', id:''},
+    harnessFilter: {name:'', id:''},
+    countryFilter:{name:'', id:''},
+    provinceFilter:{name:'', id:''},
     // site
-    siteFilter:'',
-    flightTypeFilter:'',
-    coachNameFilter:'',
-    flightStatusFilter:'',
+    siteFilter:{name:'', id:''},
+    flightTypeFilter:{name:'', id:''},
+    coachNameFilter:{name:'', id:''},
+    flightStatusFilter:{name:'', id:''},
     fromDateFilter:'',
     toDateFilter:'',
   };

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// components 
-import PageTitle from '../components/reuseable/PageTitle';
+// redux
+import { useSelector } from 'react-redux';
+import { selectFlightFilter } from '../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -16,12 +17,30 @@ import arrowIcon from '../assets/icons/Right Arrow Button.svg';
 import { useUserFlights } from '../Utilities/Services/flightHistoriesQueries';
 
 // components
+import PageTitle from '../components/reuseable/PageTitle';
 import PracticalFlightHistoryBox from '../components/pages/FlightHistory/PracticalFlightHistoryBox';
 
 
 const FlightHistory = () => {
 
     const navigate = useNavigate();
+
+    // redux
+    const { 
+        courseFilter,
+        wingFilter,
+        harnessFilter,
+        // 
+        countryFilter,
+        provinceFilter,
+        siteFilter,
+        // 
+        flightTypeFilter,
+        coachNameFilter,
+        flightStatusFilter,
+        fromDateFilter,
+        toDateFilter
+    } = useSelector(selectFlightFilter)
 
     const [pageNumber, setPageNumber] = useState(1);
 
@@ -30,7 +49,10 @@ const FlightHistory = () => {
     }, [pageNumber])
 
     // react query
-    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(pageNumber,10, '','', '', '', '', '', '', '', '', '' , '' , '');
+    const { 
+        data: userFlights, isLoading: userFlightsLoading
+    } = useUserFlights(pageNumber,10, courseFilter.id , wingFilter.id, harnessFilter.id, siteFilter.id, flightTypeFilter.id, fromDateFilter, toDateFilter, coachNameFilter.id, flightStatusFilter.id , countryFilter.id , provinceFilter.id);
+
 
     // increase the page number by 1 
     const handleNextPage= () => {

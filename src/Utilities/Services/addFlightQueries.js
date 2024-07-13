@@ -101,7 +101,11 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     };
 
     const useProvincesByCountryId = (countryId) => {
-        return useQuery(['getProvincesByCountryId', countryId], () => getProvincesByCountryId(countryId));
+        return useQuery(['getProvincesByCountryId', countryId], () => {
+            if (countryId) {
+                return getProvincesByCountryId(countryId);
+            }
+        });
     }
 
 
@@ -134,7 +138,11 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     };
 
     const useSitesByProvinceId = (provinceId) => {
-        return useQuery(['getSitesByProvinceId', provinceId], () => getSitesByProvinceId(provinceId));
+        return useQuery(['getSitesByProvinceId', provinceId], () => {
+            if (provinceId) {
+                return getSitesByProvinceId(provinceId);
+            }
+        });
     }
 
 
