@@ -197,30 +197,6 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-// get student course flights
-    const getUserCourseFlights = async (courseId, pageNumber, pageSize) => {
-        const token = Cookies.get('token');
-
-        try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseFlights?userCourseId=${courseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
-        }
-    };
-
-    const useUserCourseFlights = (courseId, pageNumber, pageSize) => {
-        return useQuery(['aCourseFlights', courseId, pageNumber, pageSize], () => getUserCourseFlights(courseId, pageNumber, pageSize));
-    };
 
 
 
@@ -228,35 +204,4 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-// get a student course flight
-    const getAUserCourseAFlight = async (flightId) => {
-        const token = Cookies.get('token');
-
-        try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseFlight?flightId=${flightId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
-        }
-    };
-
-    const useAUserCourseAFlight = (flightId) => {
-        return useQuery(['aCourseAFlight', flightId], () => getAUserCourseAFlight(flightId));
-    };
-    
-
-
-
-
-
-
-export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useUserCourseFlights, useAUserCourseAFlight };
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass };

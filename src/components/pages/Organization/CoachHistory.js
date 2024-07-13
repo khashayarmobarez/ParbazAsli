@@ -12,7 +12,6 @@ import { useUserDetails } from '../../../Utilities/Services/queries';
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import SearchInput from '../../inputs/SearchInput';
-import DropDownLineFlightHistory from '../../reuseable/DropDownLineFlightHistory'
 import WorldMapFlightHistory from '../../pages/FlightHistory/WorldMapFlightHistory';
 
 
@@ -220,8 +219,6 @@ const CoachHistory = () => {
                             <div className='w-full flex flex-col gap-y-6'>
                                 
                                 <SearchInput />
-
-                                <DropDownLineFlightHistory title={'مقطع آزاد'} />
 
                                 
                             </div>

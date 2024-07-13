@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import DropdownInput from '../../inputs/DropDownInput';
 
 // provider
-import { flightHourOptionData } from '../../../Utilities/Providers/dropdownInputOptions';
 import { useNavigate } from 'react-router-dom';
 
 // assets
@@ -60,9 +59,9 @@ const AddTakeoff = () => {
         dispatch(updateTakeOfftype(selectedOption));
       };
 
-    const handleSelectSetWindUnit = (selectedOption) => {
-        dispatch(updateTakeOffWindUnit(selectedOption));
-      };
+    // const handleSelectSetWindUnit = (selectedOption) => {
+    //     dispatch(updateTakeOffWindUnit(selectedOption));
+    //   };
 
     const handleSetTakeoffWindspeedChange = (event) => {
         dispatch(updateTakeoffWindSpeed(event.target.value));
@@ -146,9 +145,9 @@ const AddTakeoff = () => {
                     <div className='w-full flex flex-col gap-y-1'>
                         <p className='text-xs text-start self-start'>زمان take off</p>
                         <TimeInput
-                        value={takeoffTime}
-                        onChange={handleTakeOffTimeChange}
-                        placeholder="Select time"
+                            value={takeoffTime}
+                            onChange={handleTakeOffTimeChange}
+                            placeholder="Select time"
                         />
                     </div>
 
@@ -161,7 +160,7 @@ const AddTakeoff = () => {
 
                     <DropdownInput name={'جهت باد'} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
                     
-                    <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} />
+                    {/* <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
                     <NumberInput
                         value={takeoffWindSpeed}

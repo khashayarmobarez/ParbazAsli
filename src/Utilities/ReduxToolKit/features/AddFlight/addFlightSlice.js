@@ -17,7 +17,7 @@ const initialState = {
     courseId:'',
     takeoffTime :'',
     takeoffType :'',
-    takeOffWindUnit:'',
+    takeOffWindUnit:{ name: 'km/h', id: 2 },
     takeoffWindSpeed :'',
     takeoffwindDirection :'', 
     landingTime :'',

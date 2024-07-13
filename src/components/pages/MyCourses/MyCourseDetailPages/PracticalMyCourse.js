@@ -5,16 +5,16 @@ import { useParams } from 'react-router-dom';
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useUserCourseFlights } from '../../../../Utilities/Services/StudentCoursesQueries';
+import { useUserFlights } from '../../../../Utilities/Services/flightHistoriesQueries';
 
 // components
-import PracticalFlightHistoryBox from '../MyComponents/PracticalFlightHistoryBox';
+import PracticalFlightHistoryBox from '../../FlightHistory/PracticalFlightHistoryBox';
 
 const PracticalMyCourse = () => {
 
     const { id } = useParams();
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useUserCourseFlights(id,1,5);
+    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(1,10,id);
 
     useEffect(() => {
         if(userFlights) {

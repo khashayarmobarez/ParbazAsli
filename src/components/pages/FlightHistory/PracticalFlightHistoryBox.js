@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 
 // styles
-import gradients from '../../../../styles/gradients/Gradient.module.css'
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import gradients from '../../../styles/gradients/Gradient.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 
 // assets
-import clipboard from '../../../../assets/icons/clipboard.svg'
+import clipboard from '../../../assets/icons/clipboard.svg'
 
 // queries
-import { useAUserCourseAFlight } from '../../../../Utilities/Services/StudentCoursesQueries';
+import { useAUserFlight } from '../../../Utilities/Services/flightHistoriesQueries';
 
 
 const PracticalFlightHistoryBox = (props) => {
 
     const { flightBaseData } = props;
-    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserCourseAFlight(flightBaseData.id);
+    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserFlight(flightBaseData.id);
 
     // for changing the color of the texts when user clicked and expand it
     const [isClicked, setIsClicked] = useState(false);
