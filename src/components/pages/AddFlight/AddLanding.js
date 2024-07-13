@@ -105,8 +105,6 @@ const AddLanding = () => {
             if(landingTime && landingWindSpeed && landingWindDirection) {
                 event.preventDefault();
                 setShowPopup(true);
-                // Here you can handle form submission, such as sending data to a backend server
-                
             } else {
                 toast('لطفا اطلاعات را کامل وارد کنید', {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -191,6 +189,7 @@ const AddLanding = () => {
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
+                            navigate('/profile')
                         },
                         onError: (error) => {
                             let errorMessage = 'خطایی رخ داده است';
