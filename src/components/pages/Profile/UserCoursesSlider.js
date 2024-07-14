@@ -18,10 +18,6 @@ const UserCoursesSlider = ({coursesData}) => {
     const swiperRef = useRef(null);
 
     useEffect(() => {
-      console.log(coursesData)
-    },[coursesData])
-
-    useEffect(() => {
         const swiperContainer = swiperRef.current;
         const params = {
         navigation: true,

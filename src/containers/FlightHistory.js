@@ -46,10 +46,6 @@ const FlightHistory = () => {
 
     const [pageNumber, setPageNumber] = useState(1);
 
-    useEffect(() => {
-        console.log('page number:', pageNumber)
-    }, [pageNumber])
-
     // react query
     const { 
         data: userFlights, isLoading: userFlightsLoading
