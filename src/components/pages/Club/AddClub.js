@@ -12,6 +12,7 @@ import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // mui
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { CircularProgress } from '@mui/material';
 
 // queries
 import { useAddClub } from '../../../Utilities/Services/clubQueries'; 
@@ -142,42 +143,58 @@ const AddClub = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const formData = new FormData();
 
-        formData.append('Name', clubName);
-        formData.append('LicenseNumber', licenseNumber);
-        formData.append('FoundationDate', foundationDate);
-        formData.append('ExpirationDate', expirationDate);
-        formData.append('licenseImage', uploadedLicense);
-        formData.append('profileImage', uploadedProfilePic);
+        if(!clubName || !licenseNumber || !foundationDate || !expirationDate || !uploadedLicense || !uploadedProfilePic) {
+            toast('لطفا تمامی فیلد ها را پر کنید', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+            });
+        } else {
+
+            const formData = new FormData();
+
+            formData.append('Name', clubName);
+            formData.append('LicenseNumber', licenseNumber);
+            formData.append('FoundationDate', foundationDate);
+            formData.append('ExpirationDate', expirationDate);
+            formData.append('licenseImage', uploadedLicense);
+            formData.append('profileImage', uploadedProfilePic);
 
 
-        mutateClub(formData, {
-            onSuccess: (data) => {
-                console.log('Club Added:', data);
-                toast('باشگاه با موفقیت اضافه شد، منتظر تایید ادمین باشید', {
-                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 3000,
-                    theme: 'dark',
-                    style: { width: "350px" }
-                });
-            },
-            onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
-                if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+            mutateClub(formData, {
+                onSuccess: (data) => {
+                    console.log('Club Added:', data);
+                    toast('باشگاه با موفقیت اضافه شد، منتظر تایید ادمین باشید', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+
+                    // reload function after half a second
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 500);
+                },
+                onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
                 }
-                toast(errorMessage, {
-                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 3000,
-                    theme: 'dark',
-                    style: { width: "350px" }
-                });
-            }
-        })
-        
+            })
+        }
 
     }
 
@@ -186,6 +203,14 @@ const AddClub = () => {
     return (
         <>
             <PageTitle title='باشگاه' />
+
+            {
+             mutateClubLoading &&
+                <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
+                    <CircularProgress sx={{ color:'var(--yellow-text) '}} /> 
+                    <p>در حال ثبت اطلاعات</p>
+                </div>
+            }
 
             <form className='w-[90%] flex flex-col items-center pt-8 gap-y-6'>
 
@@ -205,7 +230,7 @@ const AddClub = () => {
                     {uploadedProfilePic && 
                         <>
                             <div className='w-[115px] h-[115px] absolute z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
-                            <img className=' w-7 absolute mt-20 ml-20 z-20' src={YellowPlus} alt='icon' />
+                            <img className=' w-7 absolute mt-20 ml-20 z-10' src={YellowPlus} alt='icon' />
                         </>
                     }
 
@@ -272,7 +297,8 @@ const AddClub = () => {
                 </div>
 
                 <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
-                onClick={handleSubmit} >
+                onClick={handleSubmit}
+                disabled={mutateClubLoading} >
                     ارسال
                 </button>
 

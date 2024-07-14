@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // provider
-import { flightHourOptionData } from '../../../Utilities/Providers/dropdownInputOptions';
 import { useNavigate } from 'react-router-dom';
 
 // assets
@@ -25,13 +23,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+// mui
+import { CircularProgress } from '@mui/material';
+
 // components
 import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
 import SubmitForm from '../../reuseable/SubmitForm';
 import TimeInput from '../../inputs/TimeInput';
 import NumberInput from '../../inputs/NumberInput';
-import { CircularProgress } from '@mui/material';
 
 const AddLanding = () => {
 
@@ -378,10 +378,7 @@ const AddLanding = () => {
                 </div>
                 
 
-            </div>
-
-            {/* hidden tag */}
-            <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
+            </div>                                                                                                                                                                                                                                                                                           <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>
     );
 };
