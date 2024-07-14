@@ -191,10 +191,10 @@ const FlightsAdvancedFilter = () => {
                             <DropdownInput name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
-                            {/* the date picker component comes from equipment section, try moving it into this component */}
+                            {/* the date picker component comes from equipment section */}
                             <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
 
-                            {/* the date picker component comes from equipment section, try moving it into this component */}
+                            {/* the date picker component comes from equipment section */}
                             <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
 
                         </div>
