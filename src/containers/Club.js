@@ -12,6 +12,7 @@ import { useClubStatus } from '../Utilities/Services/clubQueries';
 // components
 import ClubData from '../components/pages/Club/ClubData';
 import AddClub from '../components/pages/Club/AddClub';
+import PendingClubSubmission from '../components/pages/Club/PendingClubSubmission';
 // import ClubMemberCoach from '../components/pages/Club/ClubMemberCoach';
 // import StudentClubs from '../components/pages/Club/StudentClubs';
 
@@ -43,7 +44,7 @@ const Club = () => {
 
                 {clubStatus && clubStatus.data === 'NotAdded' && <AddClub />}
 
-                {clubStatus && clubStatus.data === 'Pending' && <h1>Pending</h1>}
+                {clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission /> }
 
                 {clubStatus && clubStatus.data === 'Accepted' && 
                     <div className=' flex flex-col items-center w-[100%] gap-y-6 mt-10'>

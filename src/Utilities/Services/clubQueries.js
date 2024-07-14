@@ -37,4 +37,37 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useClubStatus };
+
+
+
+
+// Add Club
+    const postClub = async (formData) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Club/AddClub`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddClub = () => {
+        return useMutation(postClub);
+    };
+
+
+
+
+export { useClubStatus, useAddClub };

@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
+// styles
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
 // assets
 import YellowPlus from '../../../assets/icons/yellowPlus.svg'
 
@@ -9,6 +12,9 @@ import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // mui
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+
+// queries
+import { useAddClub } from '../../../Utilities/Services/clubQueries'; 
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
@@ -22,6 +28,8 @@ const AddClub = () => {
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;
+
+    const { mutate: mutateClub, isLoading: mutateClubLoading } = useAddClub();
 
     const [uploadedProfilePic, setUploadedProfilePic] = useState(null);
     const ProfilePicInputRef = useRef(null);
@@ -131,6 +139,48 @@ const AddClub = () => {
     }
 
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+
+        formData.append('Name', clubName);
+        formData.append('LicenseNumber', licenseNumber);
+        formData.append('FoundationDate', foundationDate);
+        formData.append('ExpirationDate', expirationDate);
+        formData.append('licenseImage', uploadedLicense);
+        formData.append('profileImage', uploadedProfilePic);
+
+
+        mutateClub(formData, {
+            onSuccess: (data) => {
+                console.log('Club Added:', data);
+                toast('باشگاه با موفقیت اضافه شد، منتظر تایید ادمین باشید', {
+                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                });
+            },
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                });
+            }
+        })
+        
+
+    }
+
 
 
     return (
@@ -220,6 +270,11 @@ const AddClub = () => {
                     </div>
 
                 </div>
+
+                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
+                onClick={handleSubmit} >
+                    ارسال
+                </button>
 
             </form>
         </>
