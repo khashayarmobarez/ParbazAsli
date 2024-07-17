@@ -114,7 +114,7 @@ const ClubCoaches = () => {
                         {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
                             <>
                                 {clubCoachesData.data.map((coach) => (
-                                <ClubCoachBox key={coach.id} coachData={coach} />
+                                <ClubCoachBox key={coach.id} coachData={coach} />   
                                 ))}
 
                                 {clubCoachesData && clubCoachesData.totalCount > 5 &&
