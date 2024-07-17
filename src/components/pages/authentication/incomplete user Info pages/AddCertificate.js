@@ -202,6 +202,7 @@ const AddCertificate = () => {
                         organsData &&
                         <>
                             <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
+
                                 
                                 <DropdownInput
                                 options={organsData.data}
@@ -209,7 +210,6 @@ const AddCertificate = () => {
                                 selectedOption={organ}
                                 name={'صدور گواهینامه از'}
                                 />
-
                                 {
                                     organ && 
                                     <>
@@ -217,6 +217,8 @@ const AddCertificate = () => {
                                         {levelsError && <p>Error fetching levels</p>}
                                         {!levelsError && !levelsLoading &&
                                             <>
+
+
 
                                                 <DropdownInput
                                                     options={levelsData.data}

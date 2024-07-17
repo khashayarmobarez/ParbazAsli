@@ -1,73 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
-// styles
-import GradientStyles from '../../../styles/gradients/Gradient.module.css'
+// styles and assets
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import dataBox from '../../../styles/Boxes/DataBox.module.css'
 
-// assets
-import pencil from '../../../assets/icons/pencil-alt.svg'
+// comps
+import PageTitle from '../../../components/reuseable/PageTitle';
 
 const ClubEquipment = () => {
+
+    // to set which button is active and style it
+    const [activeLink, setActiveLink] = useState(''); // State to track active link
+    
+    // function to click with useRef on one of the buttons when page renders
+    const ref = useRef(null);
+    useEffect(() => {
+        ref.current.click();
+        }
+    , []);
+
+     // Empty dependency array ensures the effect runs only once after initial render
+
+
     return (
-        <div className='w-full flex flex-col items-center gap-y-8 mt-4'>
+        <div className=' flex flex-col mt-14 items-center '>
 
-            <div className='flex justify-between w-[90%] px-4 md:w-[47%] md:self-start'>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6'>
 
-                <button to='/equipment' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center py-5 text-[#A5E65E] text-xs`} >
-                    <img src={pencil} alt='icon'/>
-                    <p>وسیله پروازی</p>
-                </button>
-
-                <button  to='/education' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center py-5 text-[#A5E65E] text-xs`}>
-                    <img src={pencil} alt='icon'/>
-                    <p>چتر کمکی</p>
-                </button>
-
-
-                <button to='/club' className={`${GradientStyles.container2} w-[80px] h-[80px] rounded-3xl flex flex-col justify-between items-center py-5 text-[#A5E65E] text-xs`} >
-                    <img src={pencil} alt='icon'/>
-                    <p>هارنس</p>
-                </button>
-
-            </div>
-
-            <div className='flex flex-col space-y-4 w-[90%] items-center'>
-
-                {/* group name of data */}
-                <div className='flex justify-between items-center w-full'>
-                    <h2>هارنس‌ ها</h2>
-                    <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
+                <PageTitle title={'تجهیزات'} navigateTo={'/profile'} />  
+                
+                {/* buttons */}
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
+                    <Link ref={ref} to='/club/clubEquipment/flightEquipments' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'flight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('flight')}>بال</Link> 
+                    <Link to='/club/clubEquipment/parachutes' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'parachute' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('parachute')} >چتر کمکی</Link> 
+                    <Link to='/club/clubEquipment/harnesses' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'harness' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('harness')} >هارنس</Link> 
                 </div>
 
-                {/* equipments */}
-                <div className={`${dataBox.containerDarkmode} w-full flex justify-between items-center py-4 px-6 h-20 rounded-3xl`}>
 
-                    <div className=' text-xs flex flex-col items-start gap-y-1'>
-                        <p>کلاسB / مدل / برندNiviuk</p>
-                        <p>77 پرواز / 24 ساعت</p>
-                    </div>
-
-                    <button className={`${ButtonStyles.normalButton}`}  > مشاهده</button>
-
-                </div>
-
-                <div className={`${dataBox.containerDarkmode} w-full flex justify-between items-center py-4 px-6 h-20 rounded-3xl`}>
-
-                    <div className=' text-xs flex flex-col items-start gap-y-1'>
-                        <p>کلاسB / مدل / برندNiviuk</p>
-                        <p>77 پرواز / 24 ساعت</p>
-                    </div>
-
-                    <button className={`${ButtonStyles.normalButton}`}  > مشاهده</button>
+                <div className='w-[90%] flex flex-col'>
+                    
+                    <Outlet />
 
                 </div>
 
             </div>
-
 
         </div>
     );
 };
 
 export default ClubEquipment;
+
+
+

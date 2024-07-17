@@ -92,6 +92,9 @@ import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvan
 import ClubCoaches from './components/pages/Club/ClubCoaches';
 import ClubEquipment from './components/pages/Club/ClubEquipment';
 import ClubCourses from './components/pages/Club/ClubCourses';
+import ClubFlightEquipments from './components/pages/Club/clubEquipments/ClubFlightEquipments';
+import ClubParachutes from './components/pages/Club/clubEquipments/ClubParachutes';
+import ClubHarnesses from './components/pages/Club/clubEquipments/ClubHarnesses';
   
 
 
@@ -267,7 +270,12 @@ function App() {
 
                 {/* club */}
                 <Route path='/club' element={<Club  />} />
-                <Route path="/club/clubEquipment" element={ < ClubEquipment />} />
+                <Route path="/club/clubEquipment" element={ < ClubEquipment />} >
+                    <Route index element={<ClubFlightEquipments />} />
+                    <Route path="flightEquipments" element={<ClubFlightEquipments />} />
+                    <Route path="parachutes" element={<ClubParachutes />} />
+                    <Route path="harnesses" element={<ClubHarnesses />} />
+                </Route >
                 <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
                 <Route path="/club/clubCourses" element={ < ClubCourses  />} />
 

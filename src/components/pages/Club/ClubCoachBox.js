@@ -10,7 +10,7 @@ import students from '../../../assets/icons/users-Icon.svg'
 import hour from '../../../assets/icons/flightHour.svg'
 import StudentBox from '../../reuseable/StudentBox';
 
-const ClubCoachesDetails = () => {
+const ClubCoachBox = () => {
 
     
     const [expanded, setExpanded] = useState(false)
@@ -68,4 +68,4 @@ const ClubCoachesDetails = () => {
     );
 };
 
-export default ClubCoachesDetails;
+export default ClubCoachBox;

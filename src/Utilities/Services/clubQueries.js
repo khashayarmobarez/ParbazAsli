@@ -161,16 +161,16 @@ const BASE_URL = 'https://api.par-baz.ir/api'
         } 
     };
 
-const useDeleteClubProfilePicture = () => {
-    return useMutation(deleteClubProfilePicture, {
-        onSuccess: (data) => {
-            console.log('club picture deleted successfully:', data);
-        },
-        onError: (error) => {
-            console.error('Error deleting club picture:', error);
-        },
-    });
-};
+    const useDeleteClubProfilePicture = () => {
+        return useMutation(deleteClubProfilePicture, {
+            onSuccess: (data) => {
+                console.log('club picture deleted successfully:', data);
+            },
+            onError: (error) => {
+                console.error('Error deleting club picture:', error);
+            },
+        });
+    };
 
 
 
