@@ -91,6 +91,7 @@ import AddFlightType from './components/pages/AddFlight/AddFlightType';
 import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
 import ClubCoaches from './components/pages/Club/ClubCoaches';
 import ClubEquipment from './components/pages/Club/ClubEquipment';
+import ClubCourses from './components/pages/Club/ClubCourses';
   
 
 
@@ -268,6 +269,7 @@ function App() {
                 <Route path='/club' element={<Club  />} />
                 <Route path="/club/clubEquipment" element={ < ClubEquipment />} />
                 <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
+                <Route path="/club/clubCourses" element={ < ClubCourses  />} />
 
 
                 {/* edit profile */}
