@@ -9,15 +9,15 @@ const ClubCoachBox = ({ coachData }) => {
 
     const navigate = useNavigate();
 
-    const clickHandler = (id) => () => {
-        if(coachData.status === 'Active' || coachData.status === 'Disable') {
-            navigate(`/club/coachDetails/${id}`)
-        } else if(coachData.status === 'Pending') {
-            toast.error('مربی هنوز تایید نشده است')
-        } else if(coachData.status === 'Rejected') {
-            toast.error('مربی عضویت در باشگاه را رد کرده است')
-        }
-    }
+    // const clickHandler = (id) => () => {
+    //     if(coachData.status === 'Active' || coachData.status === 'Disable') {
+    //         navigate(`/club/coachDetails/${id}`)
+    //     } else if(coachData.status === 'Pending') {
+    //         toast.error('مربی هنوز تایید نشده است')
+    //     } else if(coachData.status === 'Rejected') {
+    //         toast.error('مربی عضویت در باشگاه را رد کرده است')
+    //     }
+    // }
 
     return (
         <>
@@ -34,7 +34,6 @@ const ClubCoachBox = ({ coachData }) => {
                     {coachData.status === 'Pending' && <span style={{color:'var(--yellow-text)'}}> در انتظار تایید</span>}
                     {coachData.status === 'Disable' && <span style={{color:'var(--low-opacity-white)'}}> غیر فعال</span>}
                     {coachData.status === 'Rejected' && <span style={{color:'var(--red-text)'}}> رد شده</span>}
-
                 </p>
             </div>
         </>

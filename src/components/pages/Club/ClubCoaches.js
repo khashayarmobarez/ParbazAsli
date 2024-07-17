@@ -17,6 +17,7 @@ import { useAddCoachToClub, useGetClubCoaches, useGetClubCoachesHistory } from '
 import DropDownLine from '../../reuseable/DropDownLine';
 import ClubCoachBox from './ClubCoachBox';
 import TextInput from '../../inputs/textInput';
+import PageTitle from '../../reuseable/PageTitle';
 
 const ClubCoaches = () => {
 
@@ -95,8 +96,10 @@ const ClubCoaches = () => {
     }
 
     return (
-        <div className='w-full flex flex-col justify-center items-center pt-16'>
+        <div className='w-full flex flex-col justify-center items-center pt-14'>
             <div className='w-[90%] flex flex-col items-center gap-y-6'>
+
+                <PageTitle  title='مربیان' />
 
                 <DropDownLine  
                     onClick={() => handleDropDownClick('activeCoaches')}
@@ -120,7 +123,7 @@ const ClubCoaches = () => {
                                 style={{color:' var(--red-text)'}}>مشاهده ی بیشتر ...</p>}
                             </>
                         : 
-                        <p style={{color:' var(--red-text)'}}>مربی فعالی در دوره وجود ندارد</p>
+                        <p style={{color:' var(--red-text)'}}>مربی فعالی در باشگاه وجود ندارد</p>
                         }
                     </div>
                 }
@@ -145,7 +148,7 @@ const ClubCoaches = () => {
                                 <p onClick={() => setPageSizePrevious(pageSizePrevious + 5)} style={{color:' var(--red-text)'}}>مشاهده ی بیشتر ...</p>}
                             </>
                             :
-                            <p style={{color:' var(--red-text)'}}>مربی سابقی در این دوره ثبت نشده</p>
+                            <p style={{color:' var(--red-text)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
                         }
                     </div>
                 }
@@ -162,9 +165,9 @@ const ClubCoaches = () => {
                             <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                         </div>
                         <span
-                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
-                            onClick={handleAddCoachToClub}
-                            disabled={false}
+                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                        onClick={handleAddCoachToClub}
+                        disabled={false}
                         >
                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
                         </span>
