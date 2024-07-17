@@ -95,6 +95,7 @@ import ClubCourses from './components/pages/Club/ClubCourses';
 import ClubFlightEquipments from './components/pages/Club/clubEquipments/ClubFlightEquipments';
 import ClubParachutes from './components/pages/Club/clubEquipments/ClubParachutes';
 import ClubHarnesses from './components/pages/Club/clubEquipments/ClubHarnesses';
+import ClubCoachDetails from './components/pages/Club/ClubCoachDetails';
   
 
 
@@ -278,6 +279,7 @@ function App() {
                 </Route >
                 <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
                 <Route path="/club/clubCourses" element={ < ClubCourses  />} />
+                <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
 
 
                 {/* edit profile */}

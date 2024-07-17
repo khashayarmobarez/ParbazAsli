@@ -244,4 +244,37 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches };
+
+
+// get previous club coaches
+// /Club/GetClubCoachesHistory?pageNumber=1&pageSize=5
+    const getClubCoachesHistory = async ({ queryKey }) => {
+        const [_key, pageNumber, pageSize] = queryKey;
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCoachesHistory?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response?.data?.ErrorMessages[0]?.ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCoachesHistory = (pageNumber, pageSize) => {
+        return useQuery(['getClubCoachesHistory', pageNumber, pageSize], getClubCoachesHistory);
+    };
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory };

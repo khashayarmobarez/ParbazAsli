@@ -11,7 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 // queries
 import { useUserById } from '../../../Utilities/Services/queries';
-import { useAddCoachToClub, useGetClubCoaches } from '../../../Utilities/Services/clubQueries';
+import { useAddCoachToClub, useGetClubCoaches, useGetClubCoachesHistory } from '../../../Utilities/Services/clubQueries';
 
 // components
 import DropDownLine from '../../reuseable/DropDownLine';
@@ -22,19 +22,16 @@ const ClubCoaches = () => {
 
     
     const [DropDown, setDropDown] = useState('');
-    const [pageNumber, setPageNumber] = useState(1);
+    const [pageSize, setPageSize] = useState(5);
+    const [pageSizePrevious, setPageSizePrevious ] = useState(5);
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
     
-    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(pageNumber,5);
+    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(1,pageSize);
+    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading, error: coachesPreviousDataError } = useGetClubCoachesHistory(1,pageSize);
     const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId);
     const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
 
-    useEffect(() => {
-        if(clubCoachesData) {
-        console.log(clubCoachesData)
-        }
-    } , [ clubCoachesData])
 
     useEffect(() => {
         setDropDown('activeCoaches')
@@ -99,7 +96,7 @@ const ClubCoaches = () => {
 
     return (
         <div className='w-full flex flex-col justify-center items-center pt-16'>
-            <div className='w-[90%] flex flex-col items-center gap-y-4'>
+            <div className='w-[90%] flex flex-col items-center gap-y-6'>
 
                 <DropDownLine  
                     onClick={() => handleDropDownClick('activeCoaches')}
@@ -109,11 +106,15 @@ const ClubCoaches = () => {
                 />
 
                 {DropDown === `activeCoaches` && 
-                    <div className='w-full flex flex-col gap-y-4'>
+                    <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
                     {/* map clubCoachesData */}
-                        {clubCoachesData && clubCoachesData.data.map((coach) => (
+                        {(clubCoachesData && clubCoachesData.data.length > 0 && coachDataLoading) ?
+                            clubCoachesData.data.map((coach) => (
                             <ClubCoachBox key={coach.id} coachData={coach} />
-                        ))}
+                        ))
+                        : 
+                        <p style={{color:' var(--red-text)'}}>مربی فعالی در دوره وجود ندارد</p>
+                        }
                     </div>
                 }
 
@@ -125,10 +126,19 @@ const ClubCoaches = () => {
                 />
 
                 {DropDown === `PreviousCoaches` && 
-                    'PreviousCoaches'
+                    <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
+                    {/* map clubCoachesData */}
+                        {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0) ?
+                            clubCoachesPreviousData.data.map((coach) => (
+                            <ClubCoachBox key={coach.id} coachData={coach} />
+                            ))
+                            :
+                            <p style={{color:' var(--red-text)'}}>مربی سابقی در این دوره ثبت نشده</p>
+                        }
+                    </div>
                 }
 
-                <div className='flex flex-col w-full gap-y-2'>
+                <div className='flex flex-col w-full gap-y-2 mt-4'>
                     { coachData && 
                         <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
                     }
@@ -137,7 +147,7 @@ const ClubCoaches = () => {
                     } */}
                     <div className='w-full flex justify-between relative items-center'>
                         <div className='w-[86%] flex flex-col'>
-                            <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن هنرجو' className='w-full' />
+                            <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                         </div>
                         <span
                             className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
