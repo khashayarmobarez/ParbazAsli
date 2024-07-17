@@ -84,9 +84,9 @@ const Education = () => {
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
                 {courseDividerLoading &&
-                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                    <CircularProgress /> 
-                </Box>
+                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
+                        <CircularProgress /> 
+                    </Box>
                 }
 
                 {courseDividerError &&
@@ -117,7 +117,8 @@ const Education = () => {
                                         </Box>
                                     }
 
-                                    {courseDataError &&
+                                    {
+                                        courseDataError &&
                                         <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                                     }
 

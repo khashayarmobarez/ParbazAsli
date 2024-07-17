@@ -281,7 +281,6 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get coach details
-// /Club/GetCoachDetails?coachId=mhc2xu 
     const getCoachDetails = async (coachId) => {
 
         const token = Cookies.get('token');
@@ -311,4 +310,38 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails };
+
+
+// get coach courses
+// /Club/GetCoachCourses?coachId=mhc2xu
+    const getCoachCourses = async (coachId) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetCoachCourses?coachId=${coachId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetCoachCourses = (coachId) => {
+        return useQuery(['getCoachCourses', coachId], () => getCoachCourses(coachId));
+    };
+
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses };
