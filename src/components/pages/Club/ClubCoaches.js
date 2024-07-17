@@ -11,7 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 // queries
 import { useUserById } from '../../../Utilities/Services/queries';
-import { useAddCoachToClub } from '../../../Utilities/Services/clubQueries';
+import { useAddCoachToClub, useGetClubCoaches } from '../../../Utilities/Services/clubQueries';
 
 // components
 import DropDownLine from '../../reuseable/DropDownLine';
@@ -22,11 +22,19 @@ const ClubCoaches = () => {
 
     
     const [DropDown, setDropDown] = useState('');
+    const [pageNumber, setPageNumber] = useState(1);
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
     
+    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(pageNumber,5);
     const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId);
     const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
+
+    useEffect(() => {
+        if(clubCoachesData) {
+        console.log(clubCoachesData)
+        }
+    } , [ clubCoachesData])
 
     useEffect(() => {
         setDropDown('activeCoaches')
@@ -48,35 +56,45 @@ const ClubCoaches = () => {
 
     const handleAddCoachToClub = () => {
 
-        addCoachToClub( coachId , {
-            onSuccess: () => {
-                toast('دوره شما با موفقیت تایید شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
+        if (coachId.length > 5) {
+            addCoachToClub( coachId , {
+                onSuccess: () => {
+                    toast('درخواست عضویت شما به مربی ارسال شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
 
-                // reload after 1 second
-                setTimeout(() => {
-                    window.location.reload();
-                }, 800);
-            },
-            onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
-                if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    // reload after 1 second
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 800);
+                },
+                onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
                 }
-                toast(errorMessage, {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-            }
-        })
+            })
+        } else {
+            toast('لطفا کد عضویت را به درستی وارد کنید', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+        }
     }
 
     return (
@@ -92,8 +110,10 @@ const ClubCoaches = () => {
 
                 {DropDown === `activeCoaches` && 
                     <div className='w-full flex flex-col gap-y-4'>
-                        <ClubCoachBox />
-                        <ClubCoachBox />
+                    {/* map clubCoachesData */}
+                        {clubCoachesData && clubCoachesData.data.map((coach) => (
+                            <ClubCoachBox key={coach.id} coachData={coach} />
+                        ))}
                     </div>
                 }
 
@@ -109,25 +129,25 @@ const ClubCoaches = () => {
                 }
 
                 <div className='flex flex-col w-full gap-y-2'>
-                        { coachData && 
-                            <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
-                        }
-                        {/* {studentDataError &&
-                            <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
-                        } */}
-                        <div className='w-full flex justify-between relative items-center'>
-                            <div className='w-[86%] flex flex-col'>
-                                <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن هنرجو' className='w-full' />
-                            </div>
-                            <span
-                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
-                                onClick={handleAddCoachToClub}
-                                disabled={false}
-                            >
-                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
-                            </span>
+                    { coachData && 
+                        <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
+                    }
+                    {/* {studentDataError &&
+                        <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
+                    } */}
+                    <div className='w-full flex justify-between relative items-center'>
+                        <div className='w-[86%] flex flex-col'>
+                            <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن هنرجو' className='w-full' />
                         </div>
+                        <span
+                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                            onClick={handleAddCoachToClub}
+                            disabled={false}
+                        >
+                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                        </span>
                     </div>
+                </div>
 
 
             </div>

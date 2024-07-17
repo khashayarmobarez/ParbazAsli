@@ -203,11 +203,45 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     };
 
     const useAddCoachToClub = (coachUserId) => {
-        return useMutation(addCoachToClub(coachUserId));
+        return useMutation(addCoachToClub, {
+            mutationKey: ['addCoachToClub', coachUserId],
+            enabled: coachUserId,
+        });
     };
 
 
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub };
+// getClubCoaches 
+// /Club/GetClubCoaches?pageNumber=1&pageSize=5 
+    const getClubCoaches = async ({ queryKey }) => {
+        const [_key, pageNumber, pageSize] = queryKey;
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCoaches?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response?.data?.ErrorMessages[0]?.ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCoaches = (pageNumber, pageSize) => {
+        return useQuery(['getClubCoaches', pageNumber, pageSize], getClubCoaches);
+    };
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches };
