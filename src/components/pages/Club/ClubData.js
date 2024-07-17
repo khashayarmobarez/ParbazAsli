@@ -61,6 +61,7 @@ const ClubData = () => {
                     </div>
             
                     <ChangeClubPicPopUp showPopup={showPopUp} setShowPopup={setShowPopup} />
+                    
                 </div>
             }
 
