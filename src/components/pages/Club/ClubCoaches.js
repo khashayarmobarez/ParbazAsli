@@ -1,22 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import gradients from '../../../styles/gradients/Gradient.module.css'
 
 // mui
-import CloseIcon from '@mui/icons-material/Close';
-import TextInput from '../../inputs/textInput';
+
+// assets
+import AddIcon from '@mui/icons-material/Add';
+
+// queries
+import { useUserById } from '../../../Utilities/Services/queries';
+import { useAddCoachToClub } from '../../../Utilities/Services/clubQueries';
+
+// components
 import DropDownLine from '../../reuseable/DropDownLine';
 import ClubCoachBox from './ClubCoachBox';
+import TextInput from '../../inputs/textInput';
 
 const ClubCoaches = () => {
+
     
     const [DropDown, setDropDown] = useState('');
-    // popUp use state
-    const [showPopup, setShowPopup] = useState(false);
     // State to hold the value of the input
-    const [coachCode, setCoachCode] = useState('');
+    const [coachId, setCoachId] = useState('');
+    
+    const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId);
+    const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
+
+    useEffect(() => {
+        setDropDown('activeCoaches')
+    } , [])
 
     // Function to handle the dropdown click
     const handleDropDownClick = (dropDown) => {
@@ -26,10 +40,44 @@ const ClubCoaches = () => {
         }
     }
 
-    // Function to handle changes in the input value
-    const handleCoachCodeChange = (event) => {
-        setCoachCode(event.target.value);
-    };
+    // Function to handle the input value
+    const handleInputCoachId = (event) => {
+        setCoachId(event.target.value);
+    }
+
+
+    const handleAddCoachToClub = () => {
+
+        addCoachToClub( coachId , {
+            onSuccess: () => {
+                toast('دوره شما با موفقیت تایید شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+
+                // reload after 1 second
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
+            },
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        })
+    }
 
     return (
         <div className='w-full flex flex-col justify-center items-center pt-16'>
@@ -60,24 +108,27 @@ const ClubCoaches = () => {
                     'PreviousCoaches'
                 }
 
-
-                {/* submit pop up */}
-                <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
-
-                    <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
-
-                    <h3 className=' text-xl mt-[-3rem] ' style={{color:'var(--yellow-text)'}}>افزودن مربی</h3>
-
-                    <div className='w-[85%]'> 
-                        <TextInput placeholder={'کد کاربری مربی را وارد کنید'} 
-                            Type={'number'}
-                            value={coachCode}
-                            onChange={handleCoachCodeChange}/>
+                <div className='flex flex-col w-full gap-y-2'>
+                        { coachData && 
+                            <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
+                        }
+                        {/* {studentDataError &&
+                            <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
+                        } */}
+                        <div className='w-full flex justify-between relative items-center'>
+                            <div className='w-[86%] flex flex-col'>
+                                <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن هنرجو' className='w-full' />
+                            </div>
+                            <span
+                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                                onClick={handleAddCoachToClub}
+                                disabled={false}
+                            >
+                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                            </span>
+                        </div>
                     </div>
 
-                    <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
-
-                </form>
 
             </div>
 

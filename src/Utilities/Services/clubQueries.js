@@ -175,4 +175,39 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture };
+
+
+
+
+// post coach to club
+// example /Club/AddCoachToClub?coachUserId=890soq
+    const addCoachToClub = async (coachUserId) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Club/AddCoachToClub?coachUserId=${coachUserId}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddCoachToClub = (coachUserId) => {
+        return useMutation(addCoachToClub(coachUserId));
+    };
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub };
