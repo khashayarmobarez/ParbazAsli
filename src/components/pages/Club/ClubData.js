@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import GradientStyles from '../../../styles/gradients/Gradient.module.css'
 
 // assets
 import clubCoaches from '../../../assets/icons/user-Icon.svg'
 import clubStudents from '../../../assets/icons/users-Icon.svg'
-import YellowPlus from '../../../assets/icons/yellowPlus.svg'
-import pencil from '../../../assets/icons/pencil-alt.svg'
+import YellowPlus from '../../../assets/icons/yellowPlus.svg'   
 
 // queries 
 import { useGetClub } from '../../../Utilities/Services/clubQueries';
@@ -28,7 +25,7 @@ const ClubData = () => {
     const [showPopUp,setShowPopup] = useState(false)
 
     return (
-        <div className='flex flex-col items-center w-[90%] gap-y-6'>
+        <div className='flex flex-col items-center w-full gap-y-6'>
 
             {/* club data box  */}
            { 
@@ -69,23 +66,6 @@ const ClubData = () => {
 
                 </div>
             }
-
-            <div className='w-full flex justify-around'>
-                <Link to='/club/clubEquipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
-                    <img src={pencil} alt='icon' className='w-[56%]'/>
-                    <p>تجهیزات</p>
-                </Link>
-                
-                <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
-                    <img src={pencil} alt='icon' className='w-[56%]'/>
-                    <p>دوره‌ها</p>
-                </Link>
-                
-                <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
-                    <img src={pencil} alt='icon' className='w-[56%]'/>
-                    <p>مربیان</p>
-                </Link>
-            </div>
 
         </div>
     );

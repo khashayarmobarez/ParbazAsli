@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // styles
-import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
+import GradientStyles from '../styles/gradients/Gradient.module.css'
 
+// assets
+import pencil from '../assets/icons/pencil-alt.svg'
 
 // use club status
 import { useClubStatus } from '../Utilities/Services/clubQueries';
@@ -31,9 +33,26 @@ const Club = () => {
                 {clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission /> }
 
                 {clubStatus && clubStatus.data === 'Accepted' && 
-                    <div className=' flex flex-col items-center w-[100%] gap-y-6 mt-6'>
+                    <div className=' flex flex-col items-center w-[90%] gap-y-6 mt-6'>
 
                         <ClubData />
+
+                        <div className='w-full flex justify-around'>
+                            <Link to='/club/clubEquipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                                <img src={pencil} alt='icon' className='w-[56%]'/>
+                                <p>تجهیزات</p>
+                            </Link>
+                            
+                            <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                                <img src={pencil} alt='icon' className='w-[56%]'/>
+                                <p>دوره‌ها</p>
+                            </Link>
+                            
+                            <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                                <img src={pencil} alt='icon' className='w-[56%]'/>
+                                <p>مربیان</p>
+                            </Link>
+                        </div>
                         
                     </div>
                 }
