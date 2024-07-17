@@ -23,7 +23,7 @@ const ClubCoaches = () => {
     
     const [DropDown, setDropDown] = useState('');
     const [pageSize, setPageSize] = useState(5);
-    const [pageSizePrevious, setPageSizePrevious ] = useState(5);
+    const [pageSizePrevious, setPageSizePrevious ] = useState(10);
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
     
@@ -108,10 +108,17 @@ const ClubCoaches = () => {
                 {DropDown === `activeCoaches` && 
                     <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
                     {/* map clubCoachesData */}
-                        {(clubCoachesData && clubCoachesData.data.length > 0 && coachDataLoading) ?
-                            clubCoachesData.data.map((coach) => (
-                            <ClubCoachBox key={coach.id} coachData={coach} />
-                        ))
+                        {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
+                            <>
+                                {clubCoachesData.data.map((coach) => (
+                                <ClubCoachBox key={coach.id} coachData={coach} />
+                                ))}
+
+                                {clubCoachesData && clubCoachesData.totalCount > 5 &&
+                                <p
+                                onClick={() => setPageSize(pageSize + 5)}
+                                style={{color:' var(--red-text)'}}>مشاهده ی بیشتر ...</p>}
+                            </>
                         : 
                         <p style={{color:' var(--red-text)'}}>مربی فعالی در دوره وجود ندارد</p>
                         }
@@ -128,17 +135,22 @@ const ClubCoaches = () => {
                 {DropDown === `PreviousCoaches` && 
                     <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
                     {/* map clubCoachesData */}
-                        {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0) ?
-                            clubCoachesPreviousData.data.map((coach) => (
-                            <ClubCoachBox key={coach.id} coachData={coach} />
-                            ))
+                        {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0 && !coachesPreviousDataLoading) ?
+                            <>
+                                {clubCoachesPreviousData.data.map((coach) => (
+                                <ClubCoachBox key={coach.id} coachData={coach} />
+                                ))}
+
+                                {clubCoachesPreviousData && clubCoachesPreviousData.totalCount > 5 &&
+                                <p onClick={() => setPageSizePrevious(pageSizePrevious + 5)} style={{color:' var(--red-text)'}}>مشاهده ی بیشتر ...</p>}
+                            </>
                             :
                             <p style={{color:' var(--red-text)'}}>مربی سابقی در این دوره ثبت نشده</p>
                         }
                     </div>
                 }
 
-                <div className='flex flex-col w-full gap-y-2 mt-4'>
+                <div className='flex flex-col w-full gap-y-2 mt-2'>
                     { coachData && 
                         <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
                     }

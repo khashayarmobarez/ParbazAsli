@@ -9,20 +9,20 @@ const ClubCoachBox = ({ coachData }) => {
 
     const navigate = useNavigate();
 
-    // const clickHandler = (id) => () => {
-    //     if(coachData.status === 'Active' || coachData.status === 'Disable') {
-    //         navigate(`/club/coachDetails/${id}`)
-    //     } else if(coachData.status === 'Pending') {
-    //         toast.error('مربی هنوز تایید نشده است')
-    //     } else if(coachData.status === 'Rejected') {
-    //         toast.error('مربی عضویت در باشگاه را رد کرده است')
-    //     }
-    // }
+    const clickHandler = (id) => () => {
+        if(coachData.status === 'Active' || coachData.status === 'Disable') {
+            navigate(`/club/coachDetails/${id}`)
+        } else if(coachData.status === 'Pending') {
+            toast.error('مربی هنوز تایید نشده است')
+        } else if(coachData.status === 'Rejected') {
+            toast.error('مربی عضویت در باشگاه را رد کرده است')
+        }
+    }
 
     return (
         <>
             <div
-            // onClick={clickHandler(coachData.id)} 
+            onClick={clickHandler(coachData.id)} 
             className='flex w-full justify-between items-center rounded-2xl text-xs h-16 px-2' 
             style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}} >
                 <Avatar src={coachData.profilePicture.path} alt="Remy Sharp" sx={{height:'40px', width:'40px', zIndex:'0'}} />
