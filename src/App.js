@@ -54,7 +54,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import Syllabuses from './components/pages/AddFlight/Syllabuses';
   import FlightHistory from './containers/FlightHistory';
   import Club from './containers/Club';
-  import ClubHistory from './components/pages/Club/ClubHistory';
   import EditProfile from './containers/EditProfile';
   import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
   import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
@@ -69,9 +68,6 @@ import 'react-toastify/dist/ReactToastify.css';
 // Student components 
   import Settings from './containers/Settings';
   import Notifications from './containers/Notifications';
-  import ClubEquipment from './components/pages/Club/ClubEquipment';
-  import ClubCoaches from './components/pages/Club/ClubCoaches';
-  import ClubStudents from './components/pages/Club/ClubStudents';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
 // organization components
   import OrganDashboard from './containers/OrganDashboard';
@@ -93,6 +89,8 @@ import TheoryMyCourse from './components/pages/MyCourses/MyCourseDetailPages/The
 import MySyllabiMyCourse from './components/pages/MyCourses/MyCourseDetailPages/MySyllabiMyCourse';
 import AddFlightType from './components/pages/AddFlight/AddFlightType';
 import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
+import ClubCoaches from './components/pages/Club/ClubCoaches';
+import ClubEquipment from './components/pages/Club/ClubEquipment';
   
 
 
@@ -266,6 +264,12 @@ function App() {
                 <Route path='/flightHistory/advancedFilter' element={<FlightsAdvancedFilter  />} />
 
 
+                {/* club */}
+                <Route path='/club' element={<Club  />} />
+                <Route path="/club/clubEquipment" element={ < ClubEquipment />} />
+                <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
+
+
                 {/* edit profile */}
                 <Route path='/editProfile' element={<EditProfile />}>
                     <Route index element={<ChangeProfile />} />
@@ -286,15 +290,6 @@ function App() {
           {token && isUserAuthenticated === 'authenticated' &&  (
             <>
 
-              {/* club */}
-              <Route path='/club' element={<Club userRole={ userRole }  />}>
-                  <Route index element={< ClubEquipment />} />
-                  <Route path="clubEquipment" element={ < ClubEquipment />} />
-                  <Route path="clubCoaches" element={ < ClubCoaches userRole={ userRole } />} />
-                  <Route path="clubStudents" element={< ClubStudents userRole={ userRole } />} />
-              </Route>
-              <Route path='/club/clubHistory' element={<ClubHistory userRole={ userRole }  />}/>
-
               {/* notifications */}
               <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
 
@@ -309,15 +304,6 @@ function App() {
           {/* many of the student components are reused and got from the coach sections */}
           {userRole === 'student' && isUserAuthenticated === 'authenticated' &&  (
             <>
-
-
-              {/* education */}
-              <Route path='/education' element={<Education userRole={ userRole } />}/>
-              <Route path='/education/StudentDetails' element={<StudentDetails/>} />
-
-              {/* club */}
-              <Route path='/club' element={<Club userRole={ userRole }  />}/>
-              <Route path='/club/clubHistory' element={<ClubHistory userRole={ userRole }  />}/>
 
               {/* settings */}
               <Route path='/Settings' element={<Settings userRole={ userRole }  />} />
