@@ -9,15 +9,15 @@ const ClubCoachBox = ({ coachData }) => {
 
     const navigate = useNavigate();
 
-    // const clickHandler = (id) => () => {
-    //     if(coachData.status === 'Active' || coachData.status === 'Disable') {
-    //         navigate(`/club/coachDetails/${id}`)
-    //     } else if(coachData.status === 'Pending') {
-    //         toast.error('مربی هنوز تایید نشده است')
-    //     } else if(coachData.status === 'Rejected') {
-    //         toast.error('مربی عضویت در باشگاه را رد کرده است')
-    //     }
-    // }
+    const clickHandler = (id) => () => {
+        if(coachData.status === 'Active' || coachData.status === 'Disable') {
+            navigate(`/club/coachDetails/${id}`)
+        } else if(coachData.status === 'Pending') {
+            toast.error('مربی هنوز تایید نشده است')
+        } else if(coachData.status === 'Rejected') {
+            toast.error('مربی عضویت در باشگاه را رد کرده است')
+        }
+    }
 
     return (
         <>
