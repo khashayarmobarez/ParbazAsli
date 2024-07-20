@@ -44,6 +44,16 @@ const ClubParachutes = (props) => {
         });
     };
 
+    const handleDisabledButton = () => {
+        toast('در حال طراحی و توسعه...', {
+            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+            autoClose: 3000,
+            theme: 'dark',
+            style: { width: "350px" }
+        });
+    }
+
     return (
         <div className=' flex flex-col gap-y-12 items-center'>
 
@@ -79,14 +89,16 @@ const ClubParachutes = (props) => {
             {
                 userEquipmentsData &&
                 !userEquipmentsData.data[0] &&
-                <p className=' font-medium'>هیچ تجهیزاتی ثبت نشده است</p>
+                <div className='w-full flex justify-center items-center self-center md:col-span-2'>
+                    <p className=' font-medium text-center '>هیچ تجهیزاتی ثبت نشده است</p>
+                </div>
             }
 
             </div>
 
             
 
-            <Link to='/club/clubEquipment/parachutes' className='fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to='/club/clubEquipment/parachutes' onClick={handleDisabledButton} className='fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

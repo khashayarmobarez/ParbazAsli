@@ -94,6 +94,18 @@ const AddCourse = () => {
         setCustomCourses([])
     },[selectedClassType])
 
+
+    useEffect(() => {
+        setFlightCount('')
+        setSelectedSyllabi([])
+        setSyllabusIds([])
+        setCourseName('')
+        setDescription('')
+        setCustomCourses([])
+    },[level])
+
+
+
     // handle select input states
     const handleSelectClassType = (selectedOption ) => {
         setSelectedClassType(selectedOption);
@@ -246,6 +258,19 @@ const AddCourse = () => {
                         });
                         navigate('/education');
                     },
+                    onError: (error) => {
+                        let errorMessage = 'خطایی رخ داده است';
+                        if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                            errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                        }
+                        toast(errorMessage, {
+                            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            autoClose: 3000,
+                            theme: 'dark',
+                            style: { width: "350px" }
+                        });
+                    }
                 });
             } else if ( selectedClassType.id === 2  ) {
                 addRetrainingCourse(retrainingformData, {
@@ -259,6 +284,19 @@ const AddCourse = () => {
                         });
                         navigate('/education');
                     },
+                    onError: (error) => {
+                        let errorMessage = 'خطایی رخ داده است';
+                        if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                            errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                        }
+                        toast(errorMessage, {
+                            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            autoClose: 3000,
+                            theme: 'dark',
+                            style: { width: "350px" }
+                        });
+                    }
                 });
             } 
 
