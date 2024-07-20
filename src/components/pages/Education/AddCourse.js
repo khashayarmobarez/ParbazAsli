@@ -69,10 +69,16 @@ const AddCourse = () => {
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level.id);
-    const {data: studentData} = useUserLevelById(studentId , selectedClassType.id === 3 ? 1 : level.id , selectedClassType.id , setErrorMessage);
+    const {data: studentData, isLoading:studentNameLoading , error: studentError} = useUserLevelById(studentId , selectedClassType.id === 3 ? 1 : level.id , selectedClassType.id , setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingCourse();
     const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomCourse();
+
+    useEffect(() => {
+        if(studentError) {
+            console.log(studentError.response.data.ErrorMessages[0].ErrorMessage)
+        }
+    },[studentError])
 
 
     // when the studentId goes under 6 characters reset the errorMessage
@@ -270,6 +276,7 @@ const AddCourse = () => {
                             theme: 'dark',
                             style: { width: "350px" }
                         });
+                        setShowPopup(false)
                     }
                 });
             } else if ( selectedClassType.id === 2  ) {
@@ -296,6 +303,7 @@ const AddCourse = () => {
                             theme: 'dark',
                             style: { width: "350px" }
                         });
+                        setShowPopup(false)
                     }
                 });
             } 
@@ -333,7 +341,7 @@ const AddCourse = () => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
-                    console.error(error);
+                    setShowPopup(false)
                 }
             });
         }
@@ -477,11 +485,14 @@ const AddCourse = () => {
 
                                 {/* add students */}
                                 <div className='w-full flex flex-col gap-y-1'>
+                                    { studentNameLoading && studentId.length > 5 &&
+                                        <p className=' self-start text-[var(--yellow-text)]'>در حال بررسی هنرجو ... </p>
+                                    }
                                     { studentData && 
                                         <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
                                     }
-                                    {errorMessage &&
-                                        <p className='text-[var(--red-text)] self-start'>{errorMessage}</p>
+                                    {studentError && studentId.length > 5 &&
+                                        <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                                     }
 
                                     <div className='w-full flex justify-between relative items-center'>

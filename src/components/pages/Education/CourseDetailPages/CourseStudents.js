@@ -15,7 +15,7 @@ import clipboard from '../../../../assets/icons/clipboard.svg'
 import AddIcon from '@mui/icons-material/Add';
 
 // queries
-import { useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse } from '../../../../Utilities/Services/coursesQueries';
+import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse } from '../../../../Utilities/Services/coursesQueries';
 
 // components
 import TextInput from '../../../inputs/textInput';
@@ -35,7 +35,8 @@ const CourseStudents = () => {
 
     const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError } = useACourseStudents(id,pageNumber);
     const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError } = useACourseHistoryStudents(id,historyPageNumber);
-    const {  data: studentData, isLoading: studentDataLoading, error: studentDataError } = useUserById(studentId);
+    const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
 
     // post student to course
     const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToCourse();
@@ -141,24 +142,30 @@ const CourseStudents = () => {
                     }
 
                     <div className='flex flex-col w-full gap-y-2'>
+                        { studentNameLoading && studentId.length > 5 &&
+                            <p className=' self-start text-[var(--yellow-text)]'>در حال بررسی هنرجو ... </p>
+                        }
                         { studentData && 
                             <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
                         }
-                        {/* {studentDataError &&
-                            <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
-                        } */}
-                        <div className='w-full flex justify-between relative items-center'>
-                            <div className='w-[86%] flex flex-col'>
-                                <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
-                            </div>
-                            <span
-                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
-                                onClick={handleAddStudnetToCourse}
-                                disabled={addStudentToCourseLoading}
-                            >
-                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
-                            </span>
-                        </div>
+                        {studentError && studentId.length > 5 &&
+                            <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                        }
+                        {
+                            aCourseData && aCourseData.data.clubName !== '' &&
+                                <div className='w-full flex justify-between relative items-center'>
+                                    <div className='w-[86%] flex flex-col'>
+                                        <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
+                                    </div>
+                                    <span
+                                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                                        onClick={handleAddStudnetToCourse}
+                                        disabled={addStudentToCourseLoading}
+                                    >
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                    </span>
+                                </div>
+                        }
                     </div>
 
                     {

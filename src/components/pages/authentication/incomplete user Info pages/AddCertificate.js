@@ -153,7 +153,7 @@ const AddCertificate = () => {
                 <UserDataBox />
                 
                 <div className='w-full flex flex-col gap-y-2'>
-                    <p style={{color:'var(--red-text)'}}>برای دسترسی به پنل کاربری اهراز موارد زیر الزامی است.</p>
+                    <p style={{color:'var(--red-text)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
                     <p className='text-sm text-right' style={{color:'var(--yellow-text)'}}>اول ارگان خود را انتخاب کرده سپس اطلاعات گواهینامه ی خود را کامل کنید.</p>
                 </div>
 

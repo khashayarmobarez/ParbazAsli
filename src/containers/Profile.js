@@ -96,13 +96,13 @@ const Profile = ({userRole}) => {
                         </Link> */}
                         
                         {/* education is condition based on, data.data.hasCoach  */}
-                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
+                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'opacity-50'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>آموزش</p>
                         </Link>
                         
                         {/* club is condition based on, data.data.hasCoach  */}
-                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${GradientStyles.container2} ${!data.data.hasCoach && 'opacity-50'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>باشگاه</p>
                         </Link>
