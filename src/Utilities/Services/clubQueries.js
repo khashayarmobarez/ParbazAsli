@@ -343,4 +343,187 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses };
+
+
+// get club courses dividers
+// /Club/GetClubCourseDividers
+    const getClubCoursesDividers = async () => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseDividers`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCoursesDividers = () => {
+        return useQuery(['clubCoursesDividers'], () => getClubCoursesDividers());
+    };
+
+
+
+
+
+
+
+
+
+// get club courses data
+    const getClubCourses = async (type, organizationId, pageNumber) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourses`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                params: {
+                    type,
+                    organizationId,
+                    pageNumber
+                }
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+
+    const useClubCourses = (type, organizationId, pageNumber) => {
+        return useQuery(['clubCourses', type, organizationId, pageNumber], () => getClubCourses(type, organizationId, pageNumber));
+    };
+
+
+
+
+
+
+
+
+
+// add course for club
+// /club/addCourse 
+    // add regular club course query 
+        const addRegularCLubCourse = async (course) => {
+
+            const token = Cookies.get('token');
+
+            try {
+                const response = await axios.post(`${BASE_URL}/Club/AddRegularClubCourse`, course, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                    window.location.reload();
+                } else {
+                    throw error;
+                }
+            }
+
+        };
+
+        const useAddRegularClubCourse = () => {
+            return useMutation(addRegularCLubCourse, {
+                onSuccess: (data) => {
+                    // Handle success, e.g., show a notification, reset the form, etc.
+                    console.log('Course added successfully:', data);
+                },
+            });
+        }
+
+
+    
+
+
+
+    // add retraining course query 
+        const addRetrainingClubCourse = async (course) => {
+            const token = Cookies.get('token');
+
+            try {
+                const response = await axios.post(`${BASE_URL}/Club/AddRetrainingClubCourse`, course, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                    window.location.reload();
+                } else {
+                    throw error;
+                }
+            }
+        };
+
+        const useAddRetrainingClubCourse = () => {
+            return useMutation(addRetrainingClubCourse, {
+                onSuccess: (data) => {
+                    // Handle success, e.g., show a notification, reset the form, etc.
+                    console.log('Course added successfully:', data);
+                },
+            });
+        }
+
+    
+
+
+
+    // add custom course query https://api.par-baz.ir/api/Course/AddCustomCourse
+        const addCustomCLubCourse = async (course) => {
+            const token = Cookies.get('token');
+
+            try {
+                const response = await axios.post(`${BASE_URL}/Course/AddCustomCourse`, course, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                return response.data;
+            } catch (error) {
+                if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                    window.location.reload();
+                } else {
+                    throw error;
+                }
+            }
+        };
+
+        const useAddCustomClubCourse = () => {
+            return useMutation(addCustomCLubCourse, {
+                onSuccess: (data) => {
+                    // Handle success, e.g., show a notification, reset the form, etc.
+                    console.log('Course added successfully:', data);
+                },
+            });
+        }
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse };
