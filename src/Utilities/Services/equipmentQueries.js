@@ -197,4 +197,4 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment };
+export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory };

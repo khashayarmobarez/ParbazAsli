@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // queries
 import { useUserEquipments } from '../../../../Utilities/Services/equipmentQueries';
@@ -22,11 +23,25 @@ const ClubHarnesses = (props) => {
     const { data: userEquipmentsData, isLoading, error } = useUserEquipments(3, true)
 
     const handleEditEquipment = (id) => () => {
-        navigate(`/EditEquipment/${id}`);
+        // navigate(`/EditEquipment/${id}`);
+        toast('در حال طراحی و توسعه...', {
+            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+            autoClose: 3000,
+            theme: 'dark',
+            style: { width: "350px" }
+        });
     };
 
     const handlePossession = (id) => () => {
-        navigate(`/possessionTransitionEquipment/${id}`);
+        // navigate(`/possessionTransitionEquipment/${id}`);
+        toast('در حال طراحی و توسعه...', {
+            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+            autoClose: 3000,
+            theme: 'dark',
+            style: { width: "350px" }
+        });
     };
 
     return (
