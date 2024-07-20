@@ -139,7 +139,8 @@ const ClubCourses = () => {
 
                                                         </div>
 
-                                                        <button  className={`${ButtonStyles.normalButton} self-end`} >
+                                                        <button
+                                                        className={`${ButtonStyles.normalButton} self-end`} >
                                                             جزئیات  
                                                         </button>
 
@@ -167,7 +168,7 @@ const ClubCourses = () => {
             </div>
 
             <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
-                <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/club/addCourse') } >
+                <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/club/addCourseToClub')}>
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
                 </button>

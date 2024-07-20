@@ -57,7 +57,7 @@ const ClubCoachDetails = () => {
                     style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}>
 
                         <div className=' w-full flex items-center justify-between gap-y-4'>
-                            <p className='text-base' style={{color:'var(--yellow-text)'}}>{coachDetails.data.fullName}</p>
+                            <p className='text-base' style={{color:'var(--yellow-text)'}}>{coachDetails.data.name}</p>
                             <p className=''>وضعیت: {coachDetails.data.status}</p>
                         </div>
 

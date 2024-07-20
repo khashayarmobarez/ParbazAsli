@@ -155,7 +155,7 @@ const ClubCoaches = () => {
 
                 <div className='flex flex-col w-full gap-y-2 mt-2'>
                     { coachData && 
-                        <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
+                        <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.name}</p>
                     }
                     {/* {studentDataError &&
                         <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
