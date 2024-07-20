@@ -42,10 +42,10 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get all active Equipment from one type
-    const getUserEquipmentsByType = async (equipmentType) => {
+    const getUserEquipmentsByType = async (equipmentType, isForClub) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}`, {
+            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}&isForClub=${isForClub}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -53,13 +53,17 @@ const BASE_URL = 'https://api.par-baz.ir/api'
             });
             return response.data;
         } catch (error) {
-            throw new Error('Failed to fetch equipments');
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
         }
     };
 
 
-    const useUserEquipments = (equipmentType) => {
-        return useQuery(['userEquipments', equipmentType], () => getUserEquipmentsByType(equipmentType));
+    const useUserEquipments = (equipmentType, isForClub) => {
+        return useQuery(['userEquipments', equipmentType, isForClub], () => getUserEquipmentsByType(equipmentType, isForClub));
     };
 
 

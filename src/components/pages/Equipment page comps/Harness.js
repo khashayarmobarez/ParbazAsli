@@ -9,16 +9,17 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // compos
-import Loader from '../../Loader/Loader';
 
 
 const Harness = (props) => {
 
     const navigate = useNavigate()
 
-    const { data: userEquipmentsData, loading, error } = useUserEquipments(3)
+    const { data: userEquipmentsData, loading, error } = useUserEquipments(3, false)
 
     const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);
@@ -35,12 +36,12 @@ const Harness = (props) => {
 
                 {
                     loading && 
-                    <div className='flex w-full h-[90vh] items-center justify-center'>
-                        <Loader />
-                    </div>
+                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
+                        <CircularProgress /> 
+                    </Box>
                 }
                 {
-                    error && <p>error</p>
+                error && <p className='mt-10'>{error.response.data.ErrorMessages[0].ErrorMessage}</p>
                 }
                 {userEquipmentsData &&
                 userEquipmentsData.data.map(equipment =>
