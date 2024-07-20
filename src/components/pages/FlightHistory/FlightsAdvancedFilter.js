@@ -52,8 +52,8 @@ const FlightsAdvancedFilter = () => {
     
 
     // user equipments data
-    const { data: userWingsData, loading:userWingsLoading, error:userWingsError } = useUserEquipments(2)
-    const { data: userHarnessData, loading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3)
+    const { data: userWingsData, loading:userWingsLoading, error:userWingsError } = useUserEquipments(2,false)
+    const { data: userHarnessData, loading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3,false)
     const { data: userCoachesData, loading:userCoachesLoading, error:userCoachesError } = useAllUsersCoaches()
     const { data: userCoursesData, loading:userCoursesLoading, error:userCoursesError } = useAllUserCoursesForDropdown()
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
