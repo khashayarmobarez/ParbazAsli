@@ -313,7 +313,6 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // get coach courses
-// /Club/GetCoachCourses?coachId=mhc2xu
     const getCoachCourses = async (coachId) => {
 
         const token = Cookies.get('token');

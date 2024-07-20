@@ -16,6 +16,7 @@ import Box from '@mui/material/Box';
 import flightHour from '../../../assets/icons/flightHour.svg'
 import flightQuan from '../../../assets/icons/flightQuantity.svg'
 import clubStudents from '../../../assets/icons/users-Icon.svg'
+import { toast } from 'react-toastify';
 
 // components
 
@@ -27,9 +28,22 @@ const ClubCoachDetails = () => {
     const {  data: coachCoursesDetails, isLoading: coachCourseDetailsLoading, error: coachCourseDetailsError } = useGetCoachCourses(id);
 
 
+    const handleClickDetails = () => {
+
+        toast('صفحه در حال توسعه است ...', {
+            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+            autoClose: 3000,
+            theme: 'dark',
+            style: { width: "350px" }
+        });
+        
+    }
+
+
     return (
         <div className='w-full flex flex-col items-center pt-20'>
-            <div className='w-[90%] flex flex-col items-center'>
+            <div className='w-[90%] flex flex-col items-center gap-y-6'>
 
                 {
                     coachDetailsLoading &&
@@ -117,7 +131,7 @@ const ClubCoachDetails = () => {
                                 </div>
 
                                 <button 
-                                // onClick={handleCourseDetails(course.id)}
+                                onClick={handleClickDetails}
                                 className={`${ButtonStyles.normalButton} self-end`} >
                                     جزئیات  
                                 </button>
