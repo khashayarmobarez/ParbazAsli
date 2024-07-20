@@ -44,16 +44,6 @@ const ClubParachutes = (props) => {
         });
     };
 
-    const handleDisabledButton = () => {
-        toast('در حال طراحی و توسعه...', {
-            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-            autoClose: 3000,
-            theme: 'dark',
-            style: { width: "350px" }
-        });
-    }
-
     return (
         <div className=' flex flex-col gap-y-12 items-center'>
 
@@ -98,7 +88,7 @@ const ClubParachutes = (props) => {
 
             
 
-            <Link to='/club/addParachuteForClub' onClick={handleDisabledButton} className='fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to='/club/addParachuteForClub' className='fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

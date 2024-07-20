@@ -44,16 +44,6 @@ const ClubHarnesses = (props) => {
         });
     };
 
-    const handleDisabledButton = () => {
-        toast('در حال طراحی و توسعه...', {
-            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-            autoClose: 3000,
-            theme: 'dark',
-            style: { width: "350px" }
-        });
-    }
-
     return (
         <div className=' flex flex-col gap-y-12 items-center'>
 
