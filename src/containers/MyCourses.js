@@ -85,7 +85,7 @@ const MyCourses = () => {
 
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                <PageTitle title={'آموزش'} navigateTo={'/profile'} />  
+                <PageTitle title={'دوره'} navigateTo={'/profile'} />  
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 

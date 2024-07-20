@@ -19,8 +19,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
 
 // queries
-import { useAddRegularClubCourse, useAddRetrainingClubCourse } from '../../../Utilities/Services/clubQueries';
-import { useAddCustomCourse, useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
+import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetClubCoaches } from '../../../Utilities/Services/clubQueries';
+import { useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
 import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
 
 // components
@@ -39,11 +39,12 @@ const AddClubCourse = () => {
     // states
     const [selectedClassType, setSelectedClassType] = useState('');
     const [flightCount, setFlightCount] = useState('');
+    const [Coach, setCoach] = useState('')
     
     // states for regular courses
     const [organ, setOrgan] = useState('')
     const [level, setLevel] = useState('')
-
+    
     // states for retraining
     const [selectedSyllabi, setSelectedSyllabi] = useState([]);
     const [syllabusIds, setSyllabusIds] = useState([]);
@@ -68,12 +69,13 @@ const AddClubCourse = () => {
     
     // queries
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
+    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(1,1000);
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level.id);
     const {data: studentData} = useUserLevelById(studentId , selectedClassType.id === 3 ? 1 : level.id , selectedClassType.id , setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularClubCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingClubCourse();
-    const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomCourse();
+    const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomClubCourse();
 
 
     // when the studentId goes under 6 characters reset the errorMessage
@@ -103,6 +105,10 @@ const AddClubCourse = () => {
     // handle flight count input state
     const handleFlightCount = (event) => {
         setFlightCount(event.target.value);
+    };
+
+    const handleSelectCoachChange = (selectedOption) => {
+        setCoach(selectedOption);
     };
 
     const handleSelectOrganChange = (selectedOption) => {
@@ -180,7 +186,7 @@ const AddClubCourse = () => {
     const handlePopUp= (event) => {
         event.preventDefault();
 
-        if(selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
+        if(selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level || !Coach) ) {
                 toast('اطلاعات را کامل وارد کنید', {
                     type: 'error',
                     position: 'top-right',
@@ -189,7 +195,7 @@ const AddClubCourse = () => {
                     style: { width: "90%" }
                 });
                 return;
-        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !selectedSyllabi ) ) {
+        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !selectedSyllabi || !Coach ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -198,7 +204,7 @@ const AddClubCourse = () => {
                 style: { width: "90%" }
             });
             return;
-        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || !selectedSyllabi || !studentsList ) ) {
+        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || !selectedSyllabi || !studentsList || !Coach ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -224,6 +230,7 @@ const AddClubCourse = () => {
                 flightsCount: flightCount,
                 description: description,
                 userIds: studentsList,
+                coachId:Coach.id,
             };
     
             const retrainingformData = {
@@ -232,7 +239,8 @@ const AddClubCourse = () => {
                 description: description,
                 userIds: studentsList,
                 name: courseName,
-                SyllabusIds: syllabusIds
+                SyllabusIds: syllabusIds,
+                coachId:Coach.id,
             };
     
             if (selectedClassType.id === 1) {
@@ -245,7 +253,7 @@ const AddClubCourse = () => {
                             theme: 'dark',
                             style: { width: "90%" }
                         });
-                        navigate('/education');
+                        navigate('/club/clubCourses');
                     },
                 });
             } else if ( selectedClassType.id === 2  ) {
@@ -258,7 +266,7 @@ const AddClubCourse = () => {
                             theme: 'dark',
                             style: { width: "90%" }
                         });
-                        navigate('/education');
+                        navigate('/club/clubCourses');
                     },
                 });
             } 
@@ -272,6 +280,7 @@ const AddClubCourse = () => {
                 description: description,
                 name: courseName,
                 userIds: studentsList,
+                coachId:Coach.id,
             };
 
             console.log(customCourseData)
@@ -285,7 +294,7 @@ const AddClubCourse = () => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
-                    navigate('/education');
+                    navigate('/club/clubCourses');
                 },
                 onError: (error) => {
                     const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
@@ -299,7 +308,7 @@ const AddClubCourse = () => {
                     console.error(error);
                 }
             });
-        }
+        } 
     };
 
     return (
@@ -308,6 +317,16 @@ const AddClubCourse = () => {
             <PageTitle title={'افزودن دوره'} navigateTo={'education/theoryClass'} /> 
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
+
+                {
+                    clubCoachesData && clubCoachesData.data.length > 0 &&
+                    <DropdownInput
+                        options={clubCoachesData.data}
+                        handleSelectChange={handleSelectCoachChange}
+                        selectedOption={Coach}
+                        name={'انتخاب مربی'}
+                    />
+                }
 
                 <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
 
