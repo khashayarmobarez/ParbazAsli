@@ -70,6 +70,35 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
+// get all active Equipment from one type
+    const getUserEquipmentsHistoryByType = async (equipmentType, isForClub) => {
+        try {
+            const token = Cookies.get('token');
+            const response = await axios.get(`${BASE_URL}/Equipment/GetEquipmentHistories?type=${equipmentType}&isForClub=${isForClub}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+
+    const useUserEquipmentsHistory = (equipmentType, isForClub) => {
+        return useQuery(['userEquipments', equipmentType, isForClub], () => getUserEquipmentsHistoryByType(equipmentType, isForClub));
+    };
+
+
+
+
+
 // get an Equipment data
     const getAnEquipmentData = async (equipmentId) => {
         try {
