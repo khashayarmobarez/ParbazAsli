@@ -97,6 +97,9 @@ import ClubParachutes from './components/pages/Club/clubEquipments/ClubParachute
 import ClubHarnesses from './components/pages/Club/clubEquipments/ClubHarnesses';
 import ClubCoachDetails from './components/pages/Club/ClubCoachDetails';
 import AddClubCourse from './components/pages/Club/AddClubCourse';
+import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddClubFlightEquipment';
+import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
+import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
   
 
 
@@ -278,6 +281,9 @@ function App() {
                     <Route path="parachutes" element={<ClubParachutes />} />
                     <Route path="harnesses" element={<ClubHarnesses />} />
                 </Route >
+                <Route path='/club/addFlightEquipmentForClub' element={<AddClubFlightEquipment />} /> 
+                <Route path='/club/addParachuteForClub' element={<AddClubParachute />} />
+                <Route path='/club/addHarnessForClub' element={<AddClubHarness />} />
                 <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
                 <Route path="/club/clubCourses" element={ < ClubCourses  />} />
                 <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
