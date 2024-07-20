@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useGetCoachCourses, useGetCoachDetails } from '../../../Utilities/Services/clubQueries';
+import { useGetCoachCourses, useGetCoachDetails, useTriggerCoachStatus } from '../../../Utilities/Services/clubQueries';
 
 // mui
 import { Avatar } from '@mui/material';
@@ -18,14 +18,16 @@ import flightQuan from '../../../assets/icons/flightQuantity.svg'
 import clubStudents from '../../../assets/icons/users-Icon.svg'
 import { toast } from 'react-toastify';
 
-// components
 
 const ClubCoachDetails = () => {
+
+    const navigate = useNavigate()
 
     const { id } = useParams();
 
     const {  data: coachDetails, isLoading: coachDetailsLoading, error: coachDetailsError } = useGetCoachDetails(id);
     const {  data: coachCoursesDetails, isLoading: coachCourseDetailsLoading, error: coachCourseDetailsError } = useGetCoachCourses(id);
+    const { mutate: triggerCoachStatus, isLoading: triggerCoachStatusLoading } = useTriggerCoachStatus();
 
 
     const handleClickDetails = () => {
@@ -38,6 +40,79 @@ const ClubCoachDetails = () => {
             style: { width: "350px" }
         });
         
+    }
+
+
+    const handleTriggerCoachStatus = (status) => {
+
+        if(status === 'Active' || status === 'Pending') {
+
+            const disableCoachJson = {
+                coachId: coachDetails.data.id,
+                status: 'Disable',
+            };
+
+            triggerCoachStatus(disableCoachJson, {
+                onSuccess: () => {
+                    toast('مربی با موفقیت غیر فعال شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    navigate('/club/clubCoaches');
+                },
+                onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                }
+            });
+
+        } else if (status === 'Disable') {
+
+            const ActivateCoachJson = {
+                coachId: coachDetails.data.id,
+                status: 'Active',
+            };
+
+            triggerCoachStatus(ActivateCoachJson, {
+                onSuccess: () => {
+                    toast('مربی با موفقیت غیر فعال شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    navigate('/club/clubCoaches');
+                },
+                onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                }
+            });
+
+        }
+
     }
 
 
@@ -140,6 +215,26 @@ const ClubCoachDetails = () => {
                         </div>
                         ))
                     }    
+
+                    {/* trigger coach status button */}
+                    {
+                        coachDetails && coachDetails.data.status === 'Disable' &&
+                            <div className='fixed bottom-[3.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                                <button className={`${ButtonStyles.addButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
+                                    <p>درخواست همکاری مجدد </p>
+                                </button>
+                            </div>
+                    }
+
+                    {
+                        coachDetails && coachDetails.data.status === 'Active'  &&
+                            <div className='fixed bottom-[3.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                                <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
+                                    <p>پایان همکاری</p>
+                                </button>
+                            </div>
+                    }
+                    
             </div>
         </div>
     );

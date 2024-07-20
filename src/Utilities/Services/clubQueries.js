@@ -526,4 +526,46 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse };
+
+
+
+
+// handle trigger coach status
+    // /Club/TriggerCoachStatus
+    const PostTriggerCoachStatus = async (course) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Club/TriggerCoachStatus`, course, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useTriggerCoachStatus = () => {
+        return useMutation(PostTriggerCoachStatus, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('coach status triggerd succesfuly:', data);
+            },
+        });
+    }
+
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus };

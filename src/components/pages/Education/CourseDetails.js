@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -13,8 +13,11 @@ import { useACourse, useTriggerCourseStatus } from '../../../Utilities/Services/
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
+import { toast } from 'react-toastify';
 
 const CourseDetails = () => {
+    
+    const navigate = useNavigate()
 
     const { id } = useParams();
 
@@ -48,7 +51,18 @@ const CourseDetails = () => {
             status: status
         }
 
-        triggerCourseStatus(triggerStatusForm);
+        triggerCourseStatus(triggerStatusForm, {
+            onSuccess: () => {
+                toast('دوره شما با موفقیت حذف شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                navigate('/education');
+            },
+        });
     }
 
 
@@ -174,7 +188,7 @@ const CourseDetails = () => {
                         </div>
 
                         <button className={`${ButtonStyles.normalButton} fixed bottom-[3.75rem] w-[90%] text-base`} 
-                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', id)} >
+                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id)} >
                             <p>آرشیو دوره</p>
                         </button>
                     </>

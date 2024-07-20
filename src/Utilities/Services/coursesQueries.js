@@ -217,19 +217,8 @@ const getSyllabiForLevels = async (levelId) => {
 
     const useTriggerCourseStatus = () => {
 
-        const navigate = useNavigate()
 
         return useMutation(postTriggerCourseStatus, {
-            onSuccess: () => {
-                toast('دوره شما با موفقیت تایید شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-                navigate('/education');
-            },
             onError: (error) => {
                 let errorMessage = 'خطایی رخ داده است';
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {

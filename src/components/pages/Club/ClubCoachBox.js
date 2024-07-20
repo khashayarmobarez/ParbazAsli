@@ -13,9 +13,21 @@ const ClubCoachBox = ({ coachData }) => {
         if(coachData.status === 'Active' || coachData.status === 'Disable') {
             navigate(`/club/coachDetails/${id}`)
         } else if(coachData.status === 'Pending') {
-            toast.error('مربی هنوز تایید نشده است')
+            toast('مربی هنوز تایید نشده است', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
         } else if(coachData.status === 'Rejected') {
-            toast.error('مربی عضویت در باشگاه را رد کرده است')
+            toast('مربی عضویت در باشگاه را رد کرده است', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
         }
     }
 

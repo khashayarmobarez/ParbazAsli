@@ -16,7 +16,7 @@ const AddFlight = () => {
 
     const dispatch = useDispatch()
 
-    const { flightCount, flightDuration, courseLevel, clubName, coachName , takeoffTime, landingTime } = useSelector(selectAddFlight)
+    const { flightCount, flightDuration, courseLevel, clubName, coachName , takeoffTime, landingTime, flightType } = useSelector(selectAddFlight)
 
     const today = new Date();
     const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
@@ -97,11 +97,22 @@ const AddFlight = () => {
                         }
 
                         {
-                            coachName &&
+                            coachName && flightType === 'Course' &&
                             <div className='flex flex-col items-start gap-y-1 col-span-12 md:col-span-14'>
                                 <p className=' text-xs pr-2'>نام مربی</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                     <p>{coachName}</p>
+                                </div>
+                            </div>
+                        }
+
+                        {
+                            flightType && flightType !== 'Course' &&
+                            <div className='flex flex-col items-start gap-y-1 col-span-12 md:col-span-14'>
+                                <p className=' text-xs pr-2'>نوع پرواز</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
+                                    <p>{flightType === 'Tandem' && 'تندم'}</p>
+                                    <p>{flightType === 'Solo' && 'سینگل'}</p>
                                 </div>
                             </div>
                         }
