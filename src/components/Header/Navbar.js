@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 // queries 
 import { useUserData } from '../../Utilities/Services/userQueries';
+import { useUnreadNotificationCounts } from '../../Utilities/Services/notificationAndSurveyQueries';
 
 // api
 import { postLogout } from '../../Utilities/Services/AuthenticationApi';
@@ -47,6 +48,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
     const token = Cookies.get('token');
     
     const { data } = useUserData();
+    const {  data: notificationCountsData, isLoading: notificationCountsLoading, error: notificationCountsError } = useUnreadNotificationCounts();
     
     // state to check the width of the device to remove profile picture for desktop size devices 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -180,6 +182,12 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     :
                                     <>
                                         <button >
+                                            {
+                                                notificationCountsData && notificationCountsData.data > 0 &&
+                                                    <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal' style={{background:'var(--red-text)'}}>
+                                                        <p>{notificationCountsData.data}</p>
+                                                    </div>
+                                            }
                                             {currentUrl === '/notifications' ?
                                             <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--yellow-text)', height:'30px',width:'30px'}} />
                                             :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--softer-white)', height:'30px',width:'30px'}} />

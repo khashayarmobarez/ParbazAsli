@@ -36,9 +36,15 @@ const NotifVersionStudentFlightForm = ({notif}) => {
             </div>
             
             <div>
-                <button 
-                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
-                className={`${ButtonStyles.normalButton} w-7 h-10`} >مشاهده</button>
+                {
+                    notif.status === 'Expired' ?
+                    <button 
+                    className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >منقضی شده</button>
+                    :
+                    <button 
+                    onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
+                    className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
+                }
             </div>
 
         </div>

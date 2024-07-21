@@ -6,12 +6,14 @@ import { useNotifications } from '../Utilities/Services/notificationAndSurveyQue
 // components
 import PageTitle from '../components/reuseable/PageTitle';
 import NotifVersionStudentFlightForm from '../components/pages/Notifications/NotifVersionStudentFlightForm';
-import NotifVersionAcceptStudentInCourse from '../components/pages/Notifications/NotifVersionAcceptStudentInCourse';
+import NotifAcceptClub from '../components/pages/Notifications/NotifAcceptClub';
+import NotifAcceptCourse from '../components/pages/Notifications/NotifAcceptCourse';
+import NotifAcceptStudent from '../components/pages/Notifications/NotifAcceptStudent';
 
 
 const Notifications = () => {
 
-    const [pageSize, setPageSize ] = useState(10)
+    const [pageSize, setPageSize ] = useState(20)
 
     const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(1,pageSize);
 
@@ -31,8 +33,16 @@ const Notifications = () => {
                             {   notif.type === 'StudentFlightForm' &&
                                 <NotifVersionStudentFlightForm key={index} notif={notif} />
                             }
-                            {   notif.type === 'StudentFlightForm' &&
-                                <NotifVersionAcceptStudentInCourse key={index} notif={notif} />
+                            {   notif.type === 'AcceptStudentInCourse' &&
+                                <NotifAcceptStudent key={index} notif={notif} />
+                            }
+                            {
+                                notif.type === 'AcceptClub' &&
+                                <NotifAcceptClub key={index} notif={notif} />
+                            }
+                            {
+                                notif.type === 'AcceptCourse' &&
+                                <NotifAcceptCourse key={index} notif={notif} />
                             }
                         </div>
                     ))}

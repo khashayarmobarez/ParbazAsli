@@ -222,9 +222,7 @@ function App() {
                 {/* notifications */}
                 <Route path='/notifications' element={<Notifications />} />
                 {/* notifications for the coach after student added*/}
-                {/* :id = flight id */}
                 <Route path="/addFlight/ReviewStudentsFlight/:id" element={ <ApproveStudentFlight />} />
-                {/* :id = course id */}
                 <Route path="/addFlight/ReviewStudentsFlight/:flightId/syllabuses/:courseId" element={ <Syllabuses />} />
 
                 {/* equipment */}

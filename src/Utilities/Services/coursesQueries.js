@@ -623,4 +623,107 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight}; 
+
+
+    
+// post trigger accept club
+    const postTriggerClubStatus = async (triggerStatusForm) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(
+                `${BASE_URL}/Course/TriggerCoachClubStatus`,
+                triggerStatusForm,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useTriggerClubStatus = () => {
+
+        return useMutation(postTriggerClubStatus, {
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        });
+    };
+
+
+
+
+
+
+
+
+    
+// post trigger student status
+    const postTriggerStudentStatus = async (triggerStatusForm) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(
+                `${BASE_URL}/Course/TriggerStudentStatus`,
+                triggerStatusForm,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useTriggerStudentStatus = () => {
+
+        return useMutation(postTriggerStudentStatus, {
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        });
+    };
+
+
+
+
+
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus}; 
