@@ -320,17 +320,7 @@ function App() {
             </>
           )}
 
-          {/* student view, rendering routes based on the rule of the user */}
-          {/* many of the student components are reused and got from the coach sections */}
-          {userRole === 'student' && isUserAuthenticated === 'authenticated' &&  (
-            <>
-
-              {/* settings */}
-              <Route path='/Settings' element={<Settings userRole={ userRole }  />} />
-              <Route path='/Settings/certificate' element={<RenewCertificate />} />
-
-            </>
-          )}
+          
 
           {/* organization login specific */}
           {userRole === 'organization' && isUserAuthenticated === 'authenticated' &&  (

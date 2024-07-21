@@ -15,6 +15,7 @@ import { useClubCourses, useGetClubCoursesDividers } from '../../../Utilities/Se
 // comnponents
 import PageTitle from '../../reuseable/PageTitle';
 import DropDownLine from '../../reuseable/DropDownLine';
+import { toast } from 'react-toastify';
 
 const ClubCourses = () => {
 
@@ -29,6 +30,16 @@ const ClubCourses = () => {
 
     const { data: clubCourseDividerData, isLoading: clubCourseDividerLoading, error: clubCourseDividerError } = useGetClubCoursesDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useClubCourses(courseType, organizationId, pageNumber);
+
+    const diabledButton = () => {
+        toast('این بخش در حال توسعه است ...', {
+            type: 'success',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+          });
+    }
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
@@ -140,6 +151,7 @@ const ClubCourses = () => {
                                                         </div>
 
                                                         <button
+                                                        onClick={diabledButton}
                                                         className={`${ButtonStyles.normalButton} self-end`} >
                                                             جزئیات  
                                                         </button>
