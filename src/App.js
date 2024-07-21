@@ -50,8 +50,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import Education from './containers/Education';
   import AddCourse from './components/pages/Education/AddCourse';
   import StudentDetails from './components/pages/Education/StudentDetails';
-  import ApproveStudentFlight from './components/Notifications/ApproveStudentFlight';
-  import Syllabuses from './components/pages/AddFlight/Syllabuses';
+  import ApproveStudentFlight from './components/pages/Notifications/ApproveStudentFlight';
+  import Syllabuses from './components/pages/Notifications/Syllabuses';
   import FlightHistory from './containers/FlightHistory';
   import Club from './containers/Club';
   import EditProfile from './containers/EditProfile';
@@ -221,6 +221,11 @@ function App() {
 
                 {/* notifications */}
                 <Route path='/notifications' element={<Notifications />} />
+                {/* notifications for the coach after student added*/}
+                {/* :id = flight id */}
+                <Route path="/addFlight/ReviewStudentsFlight/:id" element={ <ApproveStudentFlight />} />
+                {/* :id = course id */}
+                <Route path="/addFlight/ReviewStudentsFlight/syllabuses/:id" element={ <Syllabuses />} />
 
                 {/* equipment */}
                 <Route path='/equipment' element={<Equipment />} >
@@ -266,7 +271,7 @@ function App() {
                     <Route path="AddTakeoff" element={ <AddTakeoff />} />
                     <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                 </Route>
-                <Route path="addFlight/syllabuses" element={ <Syllabuses />} />
+
 
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory  />} />
@@ -309,9 +314,6 @@ function App() {
           {/* {userRole === 'coach' && ( */}
           {token && isUserAuthenticated === 'authenticated' &&  (
             <>
-
-              {/* notifications */}
-              <Route path='/approveStudentFlight' element={<ApproveStudentFlight />} />
 
               {/* settings */}
               <Route path='/Settings' element={<Settings userRole={ userRole } />} />

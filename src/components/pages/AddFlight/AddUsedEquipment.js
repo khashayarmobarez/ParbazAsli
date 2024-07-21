@@ -26,9 +26,9 @@ const AddUsedEquipment = () => {
     const navigate = useNavigate()
 
     // user equipments data
-    const { data: userParachuteData, loading:userParachuteLoading, error:userParachuteError } = useUserEquipments(1,false)
-    const { data: userWingsData, loading:userWingsLoading, error:userWingsError } = useUserEquipments(2,false)
-    const { data: userHarnessData, loading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3,false)
+    const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipments(1,false)
+    const { data: userWingsData, isLoading:userWingsLoading, error:userWingsError } = useUserEquipments(2,false)
+    const { data: userHarnessData, isLoading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3,false)
 
 
     // redux

@@ -33,7 +33,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     };
 
     const useNotifications = (pageNumber,pageSize) => {
-        return useQuery(['userNotifications'], getNotifications(pageNumber,pageSize));
+        return useQuery(['userNotifications'], () => getNotifications(pageNumber,pageSize));
     }
 
 

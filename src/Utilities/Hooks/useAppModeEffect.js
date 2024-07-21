@@ -30,7 +30,7 @@ const useAppModeEffect = (isDarkMode) => {
         
         // about us and contact us data box
         root.style.setProperty('--about-us-box-color', '  linear-gradient(189.66deg, #131526 32.42%, rgba(57, 60, 84, 0.8) 207.54%)');
-        root.style.setProperty('--about-us-box-shodow', ' 1px -1px 2.6px 0px rgba(235, 224, 224, 0.49), -3px 4px 10.1px 4px rgba(0, 0, 0, 0.25)');
+        root.style.setProperty('--about-us-box-shodow', ' 1px -1px 2.6px 0px rgba(235, 224, 224, 0.29), -3px 4px 10.1px 4px rgba(0, 0, 0, 0.25)');
 
         // speedometer background
         root.style.setProperty('--speedometer-background', 'linear-gradient(195.31deg, #323232 -84.63%, rgba(34, 34, 34, 0.285) 48.09%, rgba(79, 79, 79, 0) 100.99%)');

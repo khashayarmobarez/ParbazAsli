@@ -5,21 +5,15 @@ import { useNotifications } from '../Utilities/Services/notificationAndSurveyQue
 
 // components
 import PageTitle from '../components/reuseable/PageTitle';
-import NotifVersion1 from '../components/pages/Notifications/NotifVersion1';
 import NotifVersion2 from '../components/pages/Notifications/NotifVersion2';
+import NotifVersionStudentFlightForm from '../components/pages/Notifications/NotifVersionStudentFlightForm';
 
 
 const Notifications = () => {
 
     const [pageSize, setPageSize ] = useState(10)
 
-    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useNotifications(1,pageSize);
-
-    useEffect(() => {
-        if(clubCoachesData) {
-            console.log(clubCoachesData)
-        }
-    }, [clubCoachesData])
+    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(1,pageSize);
 
     return (
         <div className='w-full flex flex-col items-center'>
@@ -29,7 +23,16 @@ const Notifications = () => {
                 <PageTitle title={'اعلانات'} paddingRight={'40%'} />
 
                 <div className='w-[90%] flex flex-col space-y-6'>
-                    <NotifVersion1 />
+
+                    {   notificationsData &&
+                        notificationsData.data.map((notif, index) => (
+                        <div className='w-full flex justify-center' key={index}>
+
+                            {   notif.type === 'StudentFlightForm' &&
+                                <NotifVersionStudentFlightForm key={index} notif={notif} />
+                            }
+                        </div>
+                    ))}
                     <NotifVersion2 />
                 </div>
                 

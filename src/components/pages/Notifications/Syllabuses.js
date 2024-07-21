@@ -1,10 +1,14 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import DisableCheckbox from '../../inputs/DisableCheckbox';
 
 const Syllabuses = () => {
+
+    const { id } = useParams()
+    
     return (
         <div className=' py-14 flex flex-col justify-center items-center gap-y-6'>
 

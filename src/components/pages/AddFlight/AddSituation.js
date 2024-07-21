@@ -153,7 +153,7 @@ const AddSituation = () => {
 
                     {
                         provincesData &&
-                        <DropdownInput name={'شهر'} options={provincesData.data} selectedOption={city} handleSelectChange={handleSelectSetCity} />
+                        <DropdownInput name={'استان'} options={provincesData.data} selectedOption={city} handleSelectChange={handleSelectSetCity} />
                     }
 
                     {
