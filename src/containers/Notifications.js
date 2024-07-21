@@ -5,8 +5,8 @@ import { useNotifications } from '../Utilities/Services/notificationAndSurveyQue
 
 // components
 import PageTitle from '../components/reuseable/PageTitle';
-import NotifVersion2 from '../components/pages/Notifications/NotifVersion2';
 import NotifVersionStudentFlightForm from '../components/pages/Notifications/NotifVersionStudentFlightForm';
+import NotifVersionAcceptStudentInCourse from '../components/pages/Notifications/NotifVersionAcceptStudentInCourse';
 
 
 const Notifications = () => {
@@ -31,9 +31,11 @@ const Notifications = () => {
                             {   notif.type === 'StudentFlightForm' &&
                                 <NotifVersionStudentFlightForm key={index} notif={notif} />
                             }
+                            {   notif.type === 'StudentFlightForm' &&
+                                <NotifVersionAcceptStudentInCourse key={index} notif={notif} />
+                            }
                         </div>
                     ))}
-                    <NotifVersion2 />
                 </div>
                 
             </div>

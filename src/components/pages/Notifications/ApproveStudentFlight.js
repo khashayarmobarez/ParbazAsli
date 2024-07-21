@@ -6,10 +6,11 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useUserCourseFlight } from '../../../Utilities/Services/coursesQueries';
+import { useDeclineUserFlight, useUserCourseFlight } from '../../../Utilities/Services/coursesQueries';
 
 // comps
 import PageTitle from '../../reuseable/PageTitle';
+import { toast } from 'react-toastify';
 
 const ApproveStudentFlight = () => {
 
@@ -20,6 +21,7 @@ const ApproveStudentFlight = () => {
     const navigate = useNavigate()
 
     const {  data: UserCourseFlightData, isLoading: UserCourseFlightLoading, error: UserCourseFlightError } = useUserCourseFlight(id);
+    const { mutate: mutateDecline , isLoading: declineLoading, error: declineError} = useDeclineUserFlight();
 
     useEffect(() => {
         if(UserCourseFlightData) {
@@ -28,11 +30,39 @@ const ApproveStudentFlight = () => {
     },[UserCourseFlightData])
 
     const handleSubmit = () => {
-        navigate(`/addFlight/ReviewStudentsFlight/syllabuses/${courseId}`)
+        navigate(`/addFlight/ReviewStudentsFlight/${id}/syllabuses/${courseId}`)
     } 
 
-    const handleDecline = () => {
-        navigate(`/addFlight/ReviewStudentsFlight/syllabuses/${courseId}`)
+    const handleDecline = (event) => {
+
+        event.preventDefault();
+
+        mutateDecline(id, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                toast('پرواز رد صلاحیت شد', {
+                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                });
+                navigate(`/notifications`)
+            },
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                });
+            }
+        })
     } 
 
     return (

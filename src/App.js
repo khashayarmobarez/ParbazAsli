@@ -225,7 +225,7 @@ function App() {
                 {/* :id = flight id */}
                 <Route path="/addFlight/ReviewStudentsFlight/:id" element={ <ApproveStudentFlight />} />
                 {/* :id = course id */}
-                <Route path="/addFlight/ReviewStudentsFlight/syllabuses/:id" element={ <Syllabuses />} />
+                <Route path="/addFlight/ReviewStudentsFlight/:flightId/syllabuses/:courseId" element={ <Syllabuses />} />
 
                 {/* equipment */}
                 <Route path='/equipment' element={<Equipment />} >

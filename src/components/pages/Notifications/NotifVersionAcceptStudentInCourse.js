@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotifVersion2 = () => {
+const NotifVersionAcceptStudentInCourse = () => {
     return (
         <div className=' w-full h-24 rounded-3xl flex items-center justify-between px-6' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)', color:'var(--soft-white) ' }}>
 
@@ -25,4 +25,4 @@ const NotifVersion2 = () => {
     );
 };
 
-export default NotifVersion2;
+export default NotifVersionAcceptStudentInCourse;

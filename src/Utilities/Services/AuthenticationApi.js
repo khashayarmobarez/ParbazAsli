@@ -31,7 +31,7 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, set
 
       // handling level of users authentication
       Cookies.set('isUserAuthenticated', 'authenticated', { expires: Infinity });
-      console.log(token);
+      console.log('user token is valid');
 
       // Check if page has been reloaded after authentication
       // this function fixed a bug that when user is logged in the components won't rerender until the page is reloaded

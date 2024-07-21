@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 // components
-import DisableCheckbox from '../inputs/DisableCheckbox';
 
 const DropDownLineStyle = (props) => {
 
@@ -43,12 +42,6 @@ const DropDownLineStyle = (props) => {
             <div className='flex w-3/5 justify-between'>
                 <p>{id}</p>
                 <p>عنوان سیلابس لورم ایپسوم متن ساختگی</p>
-            </div>
-
-            <div className='h-full flex gap-x-1 items-center'>
-                <DisableCheckbox initialValue={true} />
-                <DisableCheckbox initialValue={false} />
-                <DisableCheckbox initialValue={false} />
             </div>
 
         </div>
