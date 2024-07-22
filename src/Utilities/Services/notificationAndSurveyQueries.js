@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -31,7 +31,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
     };
 
     const useNotifications = (pageNumber,pageSize) => {
-        return useQuery(['userNotifications'], () => getNotifications(pageNumber,pageSize));
+        return useQuery(['userNotifications',pageNumber,pageSize], () => getNotifications(pageNumber,pageSize));
     }
 
 
@@ -74,4 +74,77 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export { useNotifications, useUnreadNotificationCounts }
+
+
+
+
+// check the tandem fight survey availablity
+// no token
+    const getIsSurveyAvailable = async (surveyId) => {
+
+        try {
+        const response = await axios.get(`${BASE_URL}/Survey/IsSurveyAvailable?id=${surveyId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useIsSurveyAvailabe = (surveyId) => {
+        return useQuery(['isSurveyAvailable', surveyId], () => getIsSurveyAvailable(surveyId));
+    }
+
+
+
+
+
+
+
+
+
+// submit tandem passenger survey
+    const uploadSurvey = async (formData) => {
+        const token = Cookies.get('token');
+        
+        try {
+            const response = await axios.post(`${BASE_URL}/Survey/SubmitSurvey`, formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useSubmitSurvey = () => {
+        return useMutation(uploadSurvey);
+    };
+
+
+
+
+
+
+
+
+
+
+export { useNotifications, useUnreadNotificationCounts, useIsSurveyAvailabe, useSubmitSurvey }

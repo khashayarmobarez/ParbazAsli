@@ -100,6 +100,7 @@ import AddClubCourse from './components/pages/Club/AddClubCourse';
 import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddClubFlightEquipment';
 import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
+import TandemSurvey from './components/pages/Notifications/TandemSurvey';
   
 
 
@@ -178,6 +179,8 @@ function App() {
           <Route path='/blogs' element={<Blogs />} />
           <Route path='/blog/:id' element={<BlogDetails />} />
           <Route path='/whyUs' element={<WhyUs />} />
+          {/* tandem flight survey, for passenger */}
+          <Route path="/survey/:id" element={ <TandemSurvey />} />
           
 
 

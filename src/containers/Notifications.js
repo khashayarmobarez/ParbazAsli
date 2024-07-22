@@ -10,6 +10,7 @@ import NotifAcceptClub from '../components/pages/Notifications/NotifAcceptClub';
 import NotifAcceptCourse from '../components/pages/Notifications/NotifAcceptCourse';
 import NotifAcceptStudent from '../components/pages/Notifications/NotifAcceptStudent';
 import RegularTextNotif from '../components/pages/Notifications/RegularTextNotif';
+import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifTandemPassengerSurvey';
 
 
 const Notifications = () => {
@@ -48,6 +49,10 @@ const Notifications = () => {
                             {
                                 notif.type === 'Regular' &&
                                 <RegularTextNotif key={index} notif={notif} />
+                            }
+                            {
+                                notif.type === 'TandemPassenger' &&
+                                <NotifTandemPassengerSurvey key={index} notif={notif} />
                             }
                         </div>
                     ))}
