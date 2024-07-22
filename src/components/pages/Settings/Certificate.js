@@ -7,30 +7,24 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import certifiacte from '../../../assets/icons/certificate-Vector.svg'
 
 
-const Certificate = ({title}) => {
+const Certificate = ({certificateData}) => {
 
     // react-router-dom
     const navigate = useNavigate()
 
     return (
-        <div className=' w-full h-24 rounded-3xl flex items-center justify-between px-6' style={{background:'var(--class-details-bg)', boxShadow:'var(--class-details-boxShadow)', color:'var(--soft-white) ' }}>
-
-            <div className='text-xs flex flex-col justify-center items-start space-y-2'>
+        <div className=' w-full h-16 rounded-full flex items-center justify-between px-6' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)', color:'var(--soft-white) ' }}>
+            
+            <div className=' w-full text-xs flex justify-between items-center'>
 
                 <div className=' flex'>
                     <img src={certifiacte} alt='icon' />
-                    <p>هواپیما کشوری/پیشرفته</p>
+                    <p>{certificateData.organization}</p>
                 </div>
                 <div>
-                    <p>تاریخ 12/1/1403</p>
+                    <p>تاریخ {certificateData.issueDate}</p>
                 </div>
 
-            </div>
-            
-            <div>
-                <button onClick={() => navigate('/Settings/certificate')} type="submit" className={`${ButtonStyles.normalButton} w-32 h-12`}>
-                {title || 'تمدید/ارتقاء'}
-                </button>
             </div>
 
         </div>

@@ -69,7 +69,7 @@ const ApproveStudentFlight = () => {
 
         <div className='pt-14 flex flex-col justify-center items-center gap-y-2'>
 
-            <PageTitle title={'تایید پرواز'} navigateTo={'profile'} paddingRight={'40%'} />  
+            <PageTitle title={'تایید پرواز'} />  
 
             {
                 UserCourseFlightData &&

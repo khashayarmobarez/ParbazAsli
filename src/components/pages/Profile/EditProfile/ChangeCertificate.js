@@ -22,16 +22,20 @@ const ChangeCertificate = () => {
     return (
             <div className='w-[90%] flex flex-col items-center gap-y-6 mt-4'>
                 {
-                    userCertificates && userCertificates.data.map((course) => (
-                        <Certificate title='ثبت تغییرات' />
+                    userCertificates && userCertificates.data.map((certificate) => (
+
+                        <Certificate certificateData={certificate} />
+
                     ))
                 }
-                <Link to='/equipment/addFlightEquipment' className='fixed bottom-24 w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
-                <button className={`${ButtonStyles.addButton} w-[100%]`} >
-                    <AddIcon />
-                    <p>افزودن گواهینامه</p>
-                </button>
+
+                <Link to='/Settings/certificate' className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
+                    <button className={`${ButtonStyles.addButton} w-[100%]`} >
+                        <AddIcon />
+                        <p>افزودن گواهینامه</p>
+                    </button>
                 </Link>
+
             </div>
     );
 };

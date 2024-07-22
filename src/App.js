@@ -305,21 +305,12 @@ function App() {
                 {/* profile */}
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
+                {/* settings */}
+                <Route path='/Settings' element={<Settings userRole={ userRole } />} />
+                <Route path='/Settings/certificate' element={<RenewCertificate />} />
+
               </>
             )}
-
-
-          {/* coach view, rendering routes based on the rule of the user */}
-          {/* {userRole === 'coach' && ( */}
-          {token && isUserAuthenticated === 'authenticated' &&  (
-            <>
-
-              {/* settings */}
-              <Route path='/Settings' element={<Settings userRole={ userRole } />} />
-              <Route path='/Settings/certificate' element={<RenewCertificate />} />
-
-            </>
-          )}
 
           
 
