@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -16,7 +16,9 @@ import Certificate from '../../Settings/Certificate';
 
 const ChangeCertificate = () => {
 
-    const { data: userCertificates, isLoading, error } = useAllUserCertificates(1,10);
+    const [pageSize, setPageSize] = useState(5)
+
+    const { data: userCertificates, isLoading, error } = useAllUserCertificates(1,pageSize);
 
 
     return (
@@ -27,6 +29,15 @@ const ChangeCertificate = () => {
                         <Certificate certificateData={certificate} />
 
                     ))
+                }
+
+                {   
+                    userCertificates && userCertificates.totalCount >= pageSize &&
+                    <p 
+                    onClick={() => setPageSize(pageSize + 5)}
+                    className='w-full' style={{color:'var(--yellow-text)'}}>
+                        مشاهده بیشتر ...
+                    </p>
                 }
 
                 <Link to='/Settings/certificate' className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>

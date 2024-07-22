@@ -13,16 +13,16 @@ const Certificate = ({certificateData}) => {
     const navigate = useNavigate()
 
     return (
-        <div className=' w-full h-16 rounded-full flex items-center justify-between px-6' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)', color:'var(--soft-white) ' }}>
+        <div className=' w-full h-16 rounded-full flex items-center justify-between px-4' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)', color:'var(--soft-white) ' }}>
             
             <div className=' w-full text-xs flex justify-between items-center'>
 
                 <div className=' flex'>
                     <img src={certifiacte} alt='icon' />
-                    <p>{certificateData.organization}</p>
+                    <p>{certificateData.organization} / {certificateData.level}</p>
                 </div>
                 <div>
-                    <p>تاریخ {certificateData.issueDate}</p>
+                    <p>تاریخ {certificateData.expirationDate}</p>
                 </div>
 
             </div>

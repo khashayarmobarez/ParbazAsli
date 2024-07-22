@@ -119,8 +119,7 @@ const Profile = ({userRole}) => {
                         
             </div>
             
-   
-}
+            }
 
         </div>
     );

@@ -1,69 +1,314 @@
-import React, { useState } from 'react';
+import React, {  useRef, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-// assets
-import certificateIcon from '../../../assets/icons/certificate-Vector.svg'
-import calender from '../../../assets/icons/calender-Icon.svg'
-import clipboardCheck from '../../../assets/icons/clipboardCheck.svg'
+// styles
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
-// input options
-import {brandsOptionsData} from '../../../Utilities/Providers/dropdownInputOptions'
+// mui
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { CircularProgress } from '@mui/material';
+
+// queries
+import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../Utilities/Services/queries'
+
+// utilities
+import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // components
-import PageTitle from '../../reuseable/PageTitle';
-import TextInput from '../../inputs/textInput';
 import DropdownInput from '../../inputs/DropDownInput';
+import TextInput from '../../inputs/textInput';
+import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import PageTitle from '../../reuseable/PageTitle';
+
 
 const RenewCertificate = () => {
 
-    // State to manage input values
-    const [clubName, setClubName] = useState('');
-    const [certificateNumber, setCertificateNumber] = useState('');
-    // State for selected option
-    const [selectedOptionOrganization, setSelectedOptionOrganization] = useState('');
-    const [selectedOptionStartDate, setSelectedOptionStartDate] = useState('');
-    const [selectedOptionEndDate, setSelectedOptionEndDate] = useState('');
-    const [selectedOptionLevel, setSelectedOptionLevel] = useState('');
+    const navigate = useNavigate()
+    const { formatDate } = useDateFormat();
 
-    // onChange event handler functions
-    const handleClubNameChange = (event) => {
-        setClubName(event.target.value);
-    };
+    const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
+    const maxFileSize = 10485760;
 
-    const handleCertificateNumberChange = (event) => {
-        setCertificateNumber(event.target.value);
-    };
-
-    // Event handler for option selection
-    const handleSelectChangeOrganization = (event) => {
-        setSelectedOptionOrganization(event.target.value);
-    };
-
-    const handleSelectChangeStartDate = (event) => {
-        setSelectedOptionStartDate(event.target.value);
-    };
+    const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     
-    const handleSelectChangeEndDate = (event) => {
-        setSelectedOptionEndDate(event.target.value);
+    const [organ, setOrgan] = useState('')
+
+    const [level, setLevel] = useState('')
+
+    const [certificateId, setCertificateId] = useState('');
+
+    const [dateStartValue, setDateStartValue] = useState('')    
+
+    const [dateEndValue, setDateEndValue] = useState('')
+
+    const [uploadedFile, setUploadedFile] = useState(null);
+    const fileInputRef = useRef(null);
+
+    const [errMsg, setErrMsg] = useState(null)
+    
+    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
+
+    const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
+
+    const handleSelectOrganChange = (selectedOption) => {
+        setOrgan(selectedOption);
     };
 
-    const handleSelectChangeLevel = (event) => {
-        setSelectedOptionLevel(event.target.value);
+    const handleSelectLevelChange = (selectedOption) => {
+        setLevel(selectedOption);
+    };
+
+    const handleCertificateIdChange = (event) => {
+        setCertificateId(event.target.value);
+    };
+
+    const handleCertificateStartDateChange = (value) => {
+        setDateStartValue(value)
+
+        // function to close the datePicker
+        clickOnRightSide()
+    }
+
+    const handleCertificateEndDateChange = (value) => {
+        setDateEndValue(value)
+
+        // function to close the datePicker
+        clickOnRightSide()
+    }
+
+    // function to close the datePicker
+    const clickOnRightSide = () => {
+        // Create a new mouse event
+        const clickEvent = new MouseEvent('mousedown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            clientX: window.innerWidth - 1, // Right edge of the screen
+            clientY: window.innerHeight / 2 // Middle of the screen vertically
+        });
+
+        // Dispatch the event to the document
+        document.dispatchEvent(clickEvent);
+    };
+
+
+    const handleUploadClick = () => {
+        fileInputRef.current.click();
+      };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            // Check file format
+            if (!allowedFormats.includes(file.type)) {
+                setErrMsg('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
+                return;
+            }
+    
+            // Check file size
+            if (file.size > maxFileSize) {
+                setErrMsg('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
+                return;
+            }
+    
+            // Set the uploaded file if it passes all checks
+            setUploadedFile(file);
+            console.log('Selected file:', file);
+        }
+    };
+
+    // mutate, post data
+    const handleSubmit = (event) => {
+        
+
+        event.preventDefault();
+
+        const formattedStartDate = formatDate(dateStartValue);
+        const formattedEndDate = formatDate(dateEndValue);
+
+        console.log(level,certificateId,formattedStartDate,formattedEndDate,dateStartValue,uploadedFile)
+        
+        const formData = new FormData();
+        formData.append('LevelId', level.id);
+        formData.append('Number', certificateId);
+
+        if (dateStartValue && dateEndValue) {
+            formData.append('IssueDate', formattedStartDate)
+            formData.append('ExpirationDate', formattedEndDate)
+        } else 
+            {
+            formData.append('IssueDate', dateStartValue)
+            formData.append('ExpirationDate', dateEndValue)
+        }
+
+        if (uploadedFile) {
+            formData.append('File', uploadedFile);
+        }
+        
+        mutateCertificate(formData,
+            {
+                onSuccess: () => {
+                    toast('گواهینامه اضافه شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                    navigate('/profile')
+                },
+                onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                }
+            });
+
     };
 
     return (
-        <div className='w-full flex items-center justify-center'>
-            <div className='w-full md:w-[70%] flex flex-col items-center mt-14 gap-y-12'>
-                <PageTitle title={'افزودن گواهینامه'} navigateTo={'profile'} paddingRight={'33%'} /> 
+        <div className='flex flex-col items-center pt-20 pb-[4rem]'>
+            <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
 
-                <div className='w-[90%] flex flex-col gap-y-4'>
-                    <TextInput placeholder={'نام باشگاه'} Type={'text'} onChange={handleClubNameChange}/>
-                    <TextInput placeholder={'شماره گواهینامه'} icon={certificateIcon} Type={'number'} onChange={handleCertificateNumberChange}/>
-                    <DropdownInput name={'انتخاب ارگان'} options={brandsOptionsData} selectedOption={selectedOptionOrganization} handleSelectChange={handleSelectChangeOrganization} />
-                    <DropdownInput name={'تاریخ صدور'} icon={calender} options={brandsOptionsData} selectedOption={selectedOptionStartDate} handleSelectChange={handleSelectChangeStartDate} />
-                    <DropdownInput name={'تاریخ انقضا'} icon={calender} options={brandsOptionsData} selectedOption={selectedOptionEndDate} handleSelectChange={handleSelectChangeEndDate} />
-                    <DropdownInput name={'مقطع'} icon={clipboardCheck} options={brandsOptionsData} selectedOption={selectedOptionLevel} handleSelectChange={handleSelectChangeLevel} />
+                <PageTitle title={'افزودن گواهینامه'} />
+
+                {
+                    isSubmitting &&
+                        <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
+                            <CircularProgress sx={{ color:'var(--yellow-text) '}} /> 
+                            <p>در حال ثبت اطلاعات</p>
+                        </div>
+                }
+
+
+                {/* line and circle of adding flight level */}
+                <div className='w-full flex flex-col gap-y-3 justify-center items-center pt-4'>
+
+
+                    {
+                        organsLoading && 
+                        <div className='w-full min-h-[71vh]'>
+                            <p>Loading authentication settings...</p>
+                        </div>
+                    }
+
+                    {
+                        organsError && 
+                        <div className='w-full min-h-[71vh]'>
+                            <p>Error fetching organization settings</p>
+                        </div>
+                    }
+                    {
+                        organsData &&
+                        <>
+                            <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
+
+                                
+                                <DropdownInput
+                                options={organsData.data}
+                                handleSelectChange={handleSelectOrganChange}
+                                selectedOption={organ}
+                                name={'صدور گواهینامه از'}
+                                />
+                                {
+                                    organ && 
+                                    <>
+                                        {levelsLoading && <p>Loading levels...</p>}
+                                        {levelsError && <p>Error fetching levels</p>}
+                                        {!levelsError && !levelsLoading &&
+                                            <>
+
+
+
+                                                <DropdownInput
+                                                    options={levelsData.data}
+                                                    handleSelectChange={handleSelectLevelChange}
+                                                    selectedOption={level}
+                                                    name={'سطح گواهینامه'}
+                                                />
+                                                
+                                                {/* removing other fill options for starters */}
+                                                {
+                                                    !(level.id === 1) && !(level.id === 7) &&
+                                                    <>
+
+                                                        <TextInput
+                                                        value={certificateId}
+                                                        onChange={handleCertificateIdChange}
+                                                        placeholder={'شماره گواهینامه'}
+                                                        Type={'text'}
+                                                        icon={null} // You can replace `null` with a specific icon if you have one
+                                                        />
+
+                                                        {/* the date picker component comes from equipment section, try moving it into this component */}
+                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'} />
+
+                                                        {/* the date picker component comes from equipment section, try moving it into this component */}
+                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
+
+                                                        {/* upload picture */}
+                                                        <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
+                                                        <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
+                                                        style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+
+                                                            <input
+                                                                type="file"
+                                                                ref={fileInputRef}
+                                                                style={{ display: 'none' }}
+                                                                onChange={handleFileChange}
+                                                            />
+
+                                                            <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem'}} />
+
+                                                            
+                                                            {uploadedFile && (
+                                                                <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center">
+                                                                    {uploadedFile.type.startsWith('image/') && (
+                                                                    <img
+                                                                        src={URL.createObjectURL(uploadedFile)}
+                                                                        alt="Uploaded Preview"
+                                                                        className=" rounded-3xl w-full h-full object-cover"
+                                                                    />
+                                                                    )}
+                                                                </div>
+                                                            )}   
+                                                        </div>
+
+
+
+                                                    </>
+                                                }
+
+                                                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
+                                                onClick={handleSubmit}
+                                                disabled={isSubmitting} >
+                                                    ارسال
+                                                </button>
+
+                                                {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
+                                                {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
+                                                {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
+
+                                            </>
+                                        }
+                                    </>
+                                }
+
+                            </form>
+                        </>
+                    }
+
                 </div>
-
             </div>
         </div>
     );
