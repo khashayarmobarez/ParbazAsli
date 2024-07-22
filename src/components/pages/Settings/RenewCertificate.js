@@ -177,10 +177,12 @@ const RenewCertificate = () => {
     };
 
     return (
-        <div className='flex flex-col items-center pt-20 pb-[4rem]'>
+        <div className='flex flex-col items-center pt-14 pb-[4rem] gap-y-4'>
+
+            <PageTitle title={'افزودن گواهینامه'} />
+
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
 
-                <PageTitle title={'افزودن گواهینامه'} />
 
                 {
                     isSubmitting &&
@@ -215,10 +217,10 @@ const RenewCertificate = () => {
 
                                 
                                 <DropdownInput
-                                options={organsData.data}
-                                handleSelectChange={handleSelectOrganChange}
-                                selectedOption={organ}
-                                name={'صدور گواهینامه از'}
+                                    options={organsData.data}
+                                    handleSelectChange={handleSelectOrganChange}
+                                    selectedOption={organ}
+                                    name={'صدور گواهینامه از'}
                                 />
                                 {
                                     organ && 
