@@ -30,16 +30,13 @@ import FixedInput from '../../../inputs/FixedInput';
 import PasswordInput from '../../../inputs/PasswordInput';
 import InputWithButton from '../../../inputs/InputWithButton';
 import VerificationCodeInput from '../../../reuseable/VerificationCodeInput';
+import ChangePicPopUp from './ChangePicPopUp';
 
 const ChangeProfile = () => {
 
     const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
 
-    useEffect(() => {
-        if(userData) {
-            console.log(userData)
-        }
-    })
+
 
     const { fullName } = userData.data;
 
@@ -114,6 +111,8 @@ const ChangeProfile = () => {
 
                 {/* submit pop up */}
                 <VerificationCodeInput showPopup={showPopup} setShowPopup={setShowPopup} />
+
+                <ChangePicPopUp showPopup={showPicturePopup} setShowPopup={setShowPicturePopup} />
 
             </>
             }

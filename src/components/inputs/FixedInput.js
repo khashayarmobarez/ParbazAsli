@@ -7,8 +7,6 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const FixedInput = ({ textData }) => {
-    // Log textData to verify it's being passed correctly
-    console.log('textData:', textData);
 
     return (
         <div className='w-full'>
