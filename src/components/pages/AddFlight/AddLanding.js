@@ -223,6 +223,7 @@ const AddLanding = () => {
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
+                            navigate('/profile')
                         },
                         onError: (error) => {
                             let errorMessage = 'خطایی رخ داده است';
@@ -256,6 +257,7 @@ const AddLanding = () => {
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
+                            navigate('/profile')
                         },
                         onError: (error) => {
                             let errorMessage = 'خطایی رخ داده است';

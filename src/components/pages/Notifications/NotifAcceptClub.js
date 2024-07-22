@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const NotifAcceptClub = ({notif}) => {
 
-    const {description ,externalId ,title, status} = notif;
+    const {description ,externalId ,title, status, isRead} = notif;
 
     const { mutate: triggerClubStatus, isLoading: triggerClubStatusLoading } = useTriggerClubStatus();
 
@@ -38,8 +38,12 @@ const NotifAcceptClub = ({notif}) => {
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'>
 
-                <div className=' flex'>
-                    <p className='text-base'> {title}</p>
+                <div className=' flex items-center justify-center gap-x-2'>
+                    {
+                        !isRead &&
+                        <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--red-text)'}} />
+                    }
+                    <p className='text-base'>{title}</p>
                 </div>
 
                 <div className=' '>
@@ -53,7 +57,7 @@ const NotifAcceptClub = ({notif}) => {
                 <p style={{color:'var(--yellow-text) '}}>منقضی شده</p>
                 :
                 <div className='flex w-20 justify-between'>
-                    <button type="submit" onClick={(event) => handleTriggerClubStatus( 'active', externalId, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
+                    <button type="submit" onClick={(event) => handleTriggerClubStatus( 'active', externalId, event) } style={{color:'var(--yellow-text)'}} >تایید</button>
                     <button onClick={(event) => handleTriggerClubStatus( 'rejected', externalId, event) } style={{ color: 'var(--red-text)' }}>رد</button>
                 </div>
 

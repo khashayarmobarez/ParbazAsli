@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const NotifAcceptStudent = ({notif}) => {
 
-    const {description ,externalId ,title, status} = notif;
+    const {description ,externalId ,title, status, isRead} = notif;
 
     const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
 
@@ -37,7 +37,11 @@ const NotifAcceptStudent = ({notif}) => {
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'>
 
-                <div className=' flex'>
+                <div className=' flex justify-center items-center gap-x-2'>
+                    {
+                        !isRead &&
+                        <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--red-text)'}} />
+                    }
                     <p className='text-base'> {title}</p>
                 </div>
 

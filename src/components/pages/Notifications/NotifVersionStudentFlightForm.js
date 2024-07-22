@@ -22,7 +22,11 @@ const NotifVersionStudentFlightForm = ({notif}) => {
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'>
 
-                <div className=' flex'>
+                <div className=' flex justify-center items-center gap-x-2'>
+                    {
+                        !notif.isRead &&
+                        <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--red-text)'}} />
+                    }
                     <p className='text-base'>{notif.title}</p>
                 </div>
 

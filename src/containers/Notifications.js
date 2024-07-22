@@ -9,6 +9,7 @@ import NotifVersionStudentFlightForm from '../components/pages/Notifications/Not
 import NotifAcceptClub from '../components/pages/Notifications/NotifAcceptClub';
 import NotifAcceptCourse from '../components/pages/Notifications/NotifAcceptCourse';
 import NotifAcceptStudent from '../components/pages/Notifications/NotifAcceptStudent';
+import RegularTextNotif from '../components/pages/Notifications/RegularTextNotif';
 
 
 const Notifications = () => {
@@ -43,6 +44,10 @@ const Notifications = () => {
                             {
                                 notif.type === 'AcceptCourse' &&
                                 <NotifAcceptCourse key={index} notif={notif} />
+                            }
+                            {
+                                notif.type === 'Regular' &&
+                                <RegularTextNotif key={index} notif={notif} />
                             }
                         </div>
                     ))}
