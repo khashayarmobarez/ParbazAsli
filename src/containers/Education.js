@@ -157,10 +157,10 @@ const Education = () => {
                                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
                                                                 }
                                                                 {course.status === 'Pending' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
+                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                                                 }
                                                                 {course.status === 'Disable' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
                                                                 }
 
                                                             </div>
@@ -193,7 +193,7 @@ const Education = () => {
                                                                 </Box>
                                                             }
                                                             <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--dark-green)'}} />
-                                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--red-text)'}} />
+                                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--notification-red)'}} />
 
                                                         </div>
                                                     </div>

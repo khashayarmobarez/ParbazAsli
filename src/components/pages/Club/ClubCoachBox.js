@@ -43,9 +43,9 @@ const ClubCoachBox = ({ coachData }) => {
                 <p>
                     وضعیت:
                     {coachData.status === 'Active' && <span style={{color:'var(--yellow-text)'}}> فعال</span>}
-                    {coachData.status === 'Pending' && <span style={{color:'var(--yellow-text)'}}> در انتظار تایید</span>}
+                    {coachData.status === 'Pending' && <span style={{color:'var(--red-text)'}}> در انتظار تایید</span>}
                     {coachData.status === 'Disable' && <span style={{color:'var(--low-opacity-white)'}}> غیر فعال</span>}
-                    {coachData.status === 'Rejected' && <span style={{color:'var(--red-text)'}}> رد شده</span>}
+                    {coachData.status === 'Rejected' && <span style={{color:'var(--notification-red)'}}> رد شده</span>}
                 </p>
             </div>
         </>

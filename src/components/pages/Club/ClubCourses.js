@@ -140,7 +140,7 @@ const ClubCourses = () => {
                                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
                                                                 }
                                                                 {course.status === 'Pending' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
+                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                                                 }
                                                                 {course.status === 'Disable' &&
                                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>

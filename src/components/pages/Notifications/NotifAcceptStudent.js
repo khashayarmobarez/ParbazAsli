@@ -57,7 +57,7 @@ const NotifAcceptStudent = ({notif}) => {
                 :
                 <div className='flex w-20 justify-between'>
                     <button type="submit" onClick={(event) => handleTriggerClubStatus( 'active', externalId, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
-                    <button onClick={(event) => handleTriggerClubStatus( 'rejected', externalId, event) } style={{ color: 'var(--red-text)' }}>رد</button>
+                    <button onClick={(event) => handleTriggerClubStatus( 'rejected', externalId, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
                 </div>
 
             }
