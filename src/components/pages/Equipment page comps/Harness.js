@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // queries
-import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
+import { useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
 
 // css classes 
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -20,6 +20,7 @@ const Harness = (props) => {
     const navigate = useNavigate()
 
     const { data: userEquipmentsData, loading, error } = useUserEquipments(3, false)
+    const { data: userEquipmentsHistoryData, HistoryLoading, historyError } = useUserEquipmentsHistory(3, false)
 
     const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);

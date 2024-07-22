@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // query
-import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
+import { useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
@@ -21,6 +21,7 @@ const Parachute = (props) => {
     const navigate = useNavigate()
 
     const { data: userEquipmentsData, loading, error } = useUserEquipments(1, false)
+    const { data: userEquipmentsHistoryData, HistoryLoading, historyError } = useUserEquipmentsHistory(1, false)
 
     const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);

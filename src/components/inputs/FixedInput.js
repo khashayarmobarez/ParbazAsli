@@ -6,14 +6,23 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-const FixedInput = ({test}) => {
+const FixedInput = ({ textData }) => {
+    // Log textData to verify it's being passed correctly
+    console.log('textData:', textData);
+
     return (
         <div className='w-full'>
             <div className='flex relative w-[100%] h-12 px-2'>
-                <span style={{color:'var(--disabled-button-text)'}}> 
+                <span style={{ color: 'var(--disabled-button-text)' }}>
                     <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
                 </span>
-                <input type="text" id={test} disabled placeholder={test} className={`${inputStyles.fixedInput} w-[100%] text-sm font-medium`}  />
+                <input 
+                    type="text" 
+                    id={textData} 
+                    disabled 
+                    placeholder={textData} 
+                    className={`${inputStyles.fixedInput} w-[100%] text-sm font-medium`}  
+                />
             </div>
         </div>
     );

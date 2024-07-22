@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // queries
-import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
+import { useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -19,6 +19,7 @@ const FlightEquipment = () => {
     const navigate = useNavigate()
 
     const { data: userEquipmentsData, loading, error } = useUserEquipments(2, false)
+    const { data: userEquipmentsHistoryData, HistoryLoading, historyError } = useUserEquipmentsHistory(2, false)
 
     const handleEditEquipment = (id) => () => {
         navigate(`/EditEquipment/${id}`);

@@ -35,8 +35,7 @@ const EditProfile = () => {
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
                     <Link ref={buttonRef} to='/editProfile/changeProfile' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'profile' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('profile')}>پروفایل</Link> 
-                    <Link to='/editProfile/changeCertificate' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'certificate' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('certificate')} >گواهینامه</Link> 
-                    <Link to='/editProfile/changeCoach' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'coach' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('coach')} >تغییر مربی</Link> 
+                    <Link to='/editProfile/changeCertificate' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${activeLink === 'certificate' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('certificate')} >گواهینامه</Link> 
                 </div>
 
                 <Outlet />

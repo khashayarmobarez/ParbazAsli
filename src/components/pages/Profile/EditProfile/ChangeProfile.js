@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
@@ -23,6 +23,9 @@ import mail from '../../../../assets/icons/mail-Icon (Stroke).svg';
 import YellowPlus from '../../../../assets/icons/yellowPlus.svg'
 
 // components
+import { useUserData } from '../../../../Utilities/Services/userQueries';
+
+// components
 import FixedInput from '../../../inputs/FixedInput';
 import PasswordInput from '../../../inputs/PasswordInput';
 import InputWithButton from '../../../inputs/InputWithButton';
@@ -30,8 +33,19 @@ import VerificationCodeInput from '../../../reuseable/VerificationCodeInput';
 
 const ChangeProfile = () => {
 
+    const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
+
+    useEffect(() => {
+        if(userData) {
+            console.log(userData)
+        }
+    })
+
+    const { fullName } = userData.data;
+
     // popUp use state
     const [showPopup, setShowPopup] = useState(false);
+    const [showPicturePopup, setShowPicturePopup] = useState(false);
 
     // redux
     const dispatch = useDispatch();
@@ -74,27 +88,28 @@ const ChangeProfile = () => {
             data && 
             <>
                 {/* should an onClick be added to this div for changing profile picture */}
-                <div className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                    <Avatar alt="Remy Sharp" src={data.data.thumbnailUrl} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                <div onClick={() => setShowPicturePopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
+                    <Avatar alt={userData.data.fullName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
                     <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
-                    <img className=' w-6 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
+                    <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                 </div>
-
-                <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
-                    <FixedInput test={'محمود'} />
-                    <FixedInput test={'شیرازی‌نیا'} />
-                    <FixedInput test={'کد ملی'} /> 
-                    <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
-                    <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
-                    <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
-                    {!passwordsMatch() &&
-                        <p>Passwords do not match!</p>
-                    }
-                    <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
-                    <div className='md:col-span-2 md:flex md:justify-center'>
-                        <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button> 
+                {
+                    userData &&
+                    <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
+                        <FixedInput textData={fullName} />
+                        {/* <FixedInput test={'شیرازی‌نیا'} /> */}
+                        <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
+                        <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
+                        <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
+                        {!passwordsMatch() &&
+                            <p>Passwords do not match!</p>
+                        }
+                        <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
+                        <div className='md:col-span-2 md:flex md:justify-center'>
+                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button> 
+                        </div>
                     </div>
-                </div>
+                }
                 
 
                 {/* submit pop up */}
