@@ -55,6 +55,8 @@ const AddEmail = () => {
 
     const [showPopUpSubmit, setShowPopupSubmit] = useState(false)
 
+    const [Submitloading ,setSubmitLoading] = useState(false)
+
     const [codeRemainingTime, setCodeRemainingTime] = useState(null)
     
     const [errMsg, setErrMsg] = useState('');
@@ -70,11 +72,15 @@ const AddEmail = () => {
     const handlePopUp = async(e) => {
 
         e.preventDefault();
+
+        
         if (!validEmail) { 
             setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
             return;
         }
         try {
+
+            setSubmitLoading(true)
             
             const requestBody = {
                 username: email,
@@ -89,6 +95,7 @@ const AddEmail = () => {
     
             // Check if the request was successful
             if (response.data.isSuccess) {
+                setSubmitLoading(false)
                 // Handle the response data
                 console.log('Phone number code sent successfully');
                 console.log('Remaining time span:', response.data.data.remainTimeSpanInSeconds);
@@ -100,6 +107,7 @@ const AddEmail = () => {
                 // Handle other scenarios if needed
             }
         } catch (err) {
+            setSubmitLoading(false)
             // Handle errors
             if (!err?.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
@@ -247,8 +255,9 @@ const AddEmail = () => {
                     />
 
                     <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
-                            onClick={handlePopUp} 
-                            >
+                    onClick={handlePopUp} 
+                    disabled={Submitloading}
+                    >
                             تایید
                     </button>
 
