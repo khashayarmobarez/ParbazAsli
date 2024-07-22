@@ -57,7 +57,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import EditProfile from './containers/EditProfile';
   import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
   import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
-  import ChangeCoach from './components/pages/Profile/EditProfile/ChangeCoach';
 // addFlightComponents
   import AddFlight from './containers/AddFlight';
     import UploadIgc from './components/pages/AddFlight/UploadIgc';
@@ -301,7 +300,6 @@ function App() {
                     <Route index element={<ChangeProfile />} />
                     <Route path="changeProfile" element={<ChangeProfile />} />
                     <Route path="changeCertificate" element={<ChangeCertificate />} />
-                    <Route path="changeCoach" element={<ChangeCoach />} />
                 </Route>
 
                 {/* profile */}

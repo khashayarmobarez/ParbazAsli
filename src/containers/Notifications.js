@@ -15,7 +15,7 @@ import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifT
 
 const Notifications = () => {
 
-    const [pageSize, setPageSize ] = useState(20)
+    const [pageSize, setPageSize ] = useState(6)
 
     const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(1,pageSize);
 
@@ -57,6 +57,14 @@ const Notifications = () => {
                         </div>
                     ))}
                 </div>
+
+                {
+                    <p 
+                    onClick={() => setPageSize(pageSize + 6)}
+                    className='w-full' style={{color:'var(--yellow-text)'}}>
+                        مشاهده بیشتر ...
+                    </p>
+                }
                 
             </div>
             

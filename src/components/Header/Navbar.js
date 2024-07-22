@@ -147,7 +147,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                         {
                                         // (windowWidth < 768 && userRole && userRole !== '') &&
                                         (windowWidth < 768 && token) && data &&
-                                        <Avatar alt={data.data.fullName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
+                                        <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
                                         }
                                         <ul className={`${!token ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-101`}>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>

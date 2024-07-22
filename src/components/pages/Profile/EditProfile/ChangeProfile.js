@@ -37,16 +37,13 @@ const ChangeProfile = () => {
     const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
 
 
-
-    const { fullName } = userData.data;
-
     // popUp use state
     const [showPopup, setShowPopup] = useState(false);
     const [showPicturePopup, setShowPicturePopup] = useState(false);
 
     // redux
     const dispatch = useDispatch();
-    const { password1, password2 } = useSelector(selectSettings );
+    const { password1, password2 } = useSelector(selectSettings);
 
     const handlePassword1Change = (event) => {
         dispatch(setPassword1(event.target.value));
@@ -86,14 +83,15 @@ const ChangeProfile = () => {
             <>
                 {/* should an onClick be added to this div for changing profile picture */}
                 <div onClick={() => setShowPicturePopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                    <Avatar alt={userData.data.fullName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                    <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
                     <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
                     <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                 </div>
                 {
-                    userData &&
+                    userData && userData.data &&
                     <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
-                        <FixedInput textData={fullName} />
+                        <FixedInput textData={userData.data.firstName} />
+                        <FixedInput textData={userData.data.lastName} />
                         {/* <FixedInput test={'شیرازی‌نیا'} /> */}
                         <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
                         <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>

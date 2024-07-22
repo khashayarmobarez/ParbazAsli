@@ -47,13 +47,13 @@ const UserDataBox = () => {
                     <div className='flex flex-col justify-center items-center gap-y-2 md:flex-row md:w-[38%] md:justify-between'>
 
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt={data.data.fullName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                            <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
                             <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
                             <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                         </div>
 
                         <div className=' space-y-1 md:space-y-5 flex flex-col items-center' >
-                            <p className=' font-normal text-base w-36'>{data.data.fullName}</p>
+                            <p className=' font-normal text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data.data.levelName &&
                                 <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>{data.data.levelName} </p>
                             }

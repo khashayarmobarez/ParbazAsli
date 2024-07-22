@@ -21,7 +21,7 @@ const PasswordInput = ({placeHolder, value, onChange}) => {
   };
 
   return (
-    <div className="password-input flex relative w-[100%] h-12 px-2">
+    <div className="password-input flex relative w-[100%] h-12 px-2 rounded-2xl">
       <span style={{color:'var(--disabled-button-text)'}}> 
           <img src={keyIcon} alt='icon' className=' absolute mt-4 mr-2'/>
       </span>

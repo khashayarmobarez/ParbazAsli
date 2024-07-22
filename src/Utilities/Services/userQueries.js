@@ -161,4 +161,37 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches};
+
+
+
+
+// get all user certificates
+    const getAllUserCertificates = async (pageNumber, pageSize) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Certificate/GetAllCertificates?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAllUserCertificates = (pageNumber, pageSize) => {
+        return useQuery(['AllUserCertificates', pageNumber, pageSize], () => getAllUserCertificates(pageNumber, pageSize));
+    }
+
+
+
+
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates};
