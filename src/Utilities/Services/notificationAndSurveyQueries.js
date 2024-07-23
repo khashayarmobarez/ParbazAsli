@@ -61,12 +61,8 @@ const BASE_URL = 'https://api.par-baz.ir/api'
         return response.data;
 
         } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
                 throw error;
             }
-        }
 
     };
 
@@ -129,13 +125,8 @@ const BASE_URL = 'https://api.par-baz.ir/api'
             });
             return response.data;
         } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
                 throw error;
             }
-        }
-
     };
 
     const useSubmitSurvey = () => {

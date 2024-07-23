@@ -6,18 +6,12 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // mui
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 
-// queries
-import { useUserDetails } from '../../../Utilities/Services/queries';
-
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import SearchInput from '../../inputs/SearchInput';
 import WorldMapFlightHistory from '../../pages/FlightHistory/WorldMapFlightHistory';
 
 const PilotsHistory = () => {
-
-    // react query
-    const { data, isLoading, error } = useUserDetails();
 
     // to set which button is active and style it
     const [activeLink, setActiveLink] = useState('entertaiment'); // State to track active link
@@ -46,16 +40,6 @@ const PilotsHistory = () => {
                 </div>
 
                 <div className='w-[90%] mt-6 flex flex-col gap-y-8'>
-
-                    {
-                        isLoading && <h2 className='text-white mt-32'>is loading</h2>
-                    }
-
-                    {
-                        error && <h3>{error.message}</h3>
-                    }
-                    {
-                        data && 
                         <div className='w-full flex flex-col justify-center items-center px-1 gap-y-4'>
                             
                             <div className='w-full flex flex-col gap-y-2 mb-[-2rem]'>
@@ -84,7 +68,6 @@ const PilotsHistory = () => {
                             </div>
 
                         </div>
-                    }
                 </div>
 
             </div>

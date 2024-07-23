@@ -7,14 +7,9 @@ import Cookies from 'js-cookie';
 // import axiosInstance from "./axiosConfig";
 
 
-const BASE_Test_URL = 'https://jsonplaceholder.typicode.com/photos'
 const BASE_URL = 'https://api.par-baz.ir/api'
 
 
-// test query
-    const useUserDetails = () => {
-        return useQuery(['user'], () => axios.get(`${BASE_Test_URL}/5`));
-    };
 
 
 
@@ -270,6 +265,7 @@ const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
 
 
 
+
   
 
-export { useUserDetails , useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById};
+export { useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById};

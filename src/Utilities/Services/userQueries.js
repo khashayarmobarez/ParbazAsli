@@ -24,12 +24,8 @@ const BASE_URL = 'https://api.par-baz.ir/api'
         });
         return response.data;
     } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
                 throw error;
             }
-        }
     };
 
     const useUserData = () => {
@@ -194,4 +190,59 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates};
+
+
+// request change phone number to get verification code query
+    const postSendCodeToChangePhoneNumber = async (newPhoneNumber) => {
+        const token = Cookies.get('token');
+        try {
+            const response = await axios.post(`${BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneNumber, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+                throw error;
+        }
+
+    };
+
+    const useSendVerificattionCodeToChangePhoneNumber = () => {
+        return useMutation(postSendCodeToChangePhoneNumber);
+    }
+
+
+
+
+
+
+
+
+
+// handle final submit for changing phone number
+    const postChangePhoneNumber = async (newPhoneNumber) => {
+        const token = Cookies.get('token');
+        try {
+            const response = await axios.post(`${BASE_URL}/user/ChangePhoneNumber`, newPhoneNumber, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+                throw error;
+        }
+
+    };
+
+    const useChangePhoneNumber = () => {
+        return useMutation(postChangePhoneNumber);
+    }
+
+
+
+
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChangePhoneNumber , useChangePhoneNumber};

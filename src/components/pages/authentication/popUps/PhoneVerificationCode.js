@@ -99,7 +99,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                     {inputRefs.current.map((ref, index) => (
                         <input
                             style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid ', background: 'transparent'}}
-                            className="text-2xl rounded-none shadow-none w-10 flex p-2 text-center border"
+                            className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                             key={index}
                             type="text"
                             maxLength={1}
@@ -109,14 +109,13 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                             onFocus={handleFocus}
                             onKeyDown={(e) => handleKeyDown(e, index)}
                             onPaste={handlePaste}
-                            disabled={isLoading}
                         />
                     ))}
                 </div>
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
-                <button  className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit}>ارسال</button>
+                <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32`} onClick={handleSubmit}>ارسال</button>
                 <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کتید</p>
-                <p className={waitNotif ? "text-light-yellow mt-1" : "hidden"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
+                <p className={isLoading ? "text-light-yellow mt-1" : "hidden"} aria-live="assertive">  ... صبر کتید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "text-sm text-[#ED553B]" : "hidden"} aria-live="assertive"> {errMsg}</p>
 
             </form>
