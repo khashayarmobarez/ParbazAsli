@@ -405,7 +405,7 @@ const SignUp = () => {
 
 
                         {/* <p ref={errRef} className={errMsg ? `text-[#ED553B]` : "hidden"} aria-live="assertive">{errMsg}</p> */}
-                        <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کتید</p>
+                        <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کنید</p>
 
                     </form>
 

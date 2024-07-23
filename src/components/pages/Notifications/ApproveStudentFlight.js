@@ -247,7 +247,7 @@ const ApproveStudentFlight = () => {
                             
                             <div className='w-full flex justify-around'>
 
-                                <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>نایید</button>
+                                <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>تایید</button>
 
                                 <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-36 `}>رد پرواز</button>
 
