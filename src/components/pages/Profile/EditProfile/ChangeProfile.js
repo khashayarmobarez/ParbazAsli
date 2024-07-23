@@ -32,21 +32,32 @@ import InputWithButton from '../../../inputs/InputWithButton';
 import VerificationCodeInput from '../../../reuseable/VerificationCodeInput';
 import ChangePicPopUp from './ChangePicPopUp';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const ChangeProfile = () => {
 
+    // popUp use state
+    const [showPopupType, setShowPopupType] = useState(false);
+    const [LoadingStatus, setLoadingStatus] = useState(false);
+    const [codeRemainingTime, setCodeRemainingTime] = useState(null)
+    // phoneNumber states
+    const [phoneNumber, setPhoneNumber] = useState('')
+    
+    // redux states
+    const dispatch = useDispatch();
+    const { password1, password2 } = useSelector(selectSettings);
+    
+    // queries
     const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
 
 
-    // popUp use state
-    const [showPopup, setShowPopup] = useState(false);
-    const [showPicturePopup, setShowPicturePopup] = useState(false);
+    const changePhoneNumber = async(e) => {
 
-    // redux
-    const dispatch = useDispatch();
-    const { password1, password2 } = useSelector(selectSettings);
-
-    const changePhoneNumber = () => {
+        e.preventDefault();
+        // if (!phoneNumber) { 
+        //     setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
+        //     return;
+        // }
         toast('در حال توسعه', {
             type: 'error',
             position: 'top-right',
@@ -54,6 +65,69 @@ const ChangeProfile = () => {
             theme: 'dark',
             style: { width: "90%" }
         });
+
+        try {
+
+            setLoadingStatus(true)
+            
+            const requestBody = {
+                username: phone,
+                type: 1
+            };
+
+            console.log(requestBody)
+    
+            // Send a POST request to the endpoint with the specified body
+            const response = await axios.post(
+                'https://api.par-baz.ir/api/Auth/SendVerificationCode',
+                requestBody
+            );
+    
+            // Check if the request was successful
+            if (response.data.isSuccess) {
+                setLoadingStatus(false)
+                // Handle the response data
+                setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
+                setShowPopupType('')
+                // Update UI or perform any additional actions based on the response
+            } else {
+                setLoadingStatus(false)
+                console.error('Failed to send phone number code');
+                // Handle other scenarios if needed
+            }
+        } catch (err) {
+            // Handle errors
+            if (!err?.response) {
+                setLoadingStatus(false)
+                setShowPopupType('')
+                toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            } else if (err.response?.status === 409) {
+                setLoadingStatus(false)
+                setShowPopupType('')
+                toast('شماره تلفن قبلا استفاده شده', {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            } else {
+                setLoadingStatus(false)
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        }
     }
 
     const changeEmail = () => {
@@ -80,12 +154,7 @@ const ChangeProfile = () => {
         return password1 === password2;
     };
 
-    //    Event handler for form submission
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setShowPopup(true);
-        // Here you can handle form submission, such as sending data to a backend server
-    };
+    
 
     const { data, isLoading, error, isFetching } = useUserDetails();
 
@@ -100,40 +169,32 @@ const ChangeProfile = () => {
             }
 
             {
-            data && 
-            <>
-                {/* should an onClick be added to this div for changing profile picture */}
-                <div onClick={() => setShowPicturePopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                    <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                    <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
-                    <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
-                </div>
-                {
-                    userData && userData.data &&
-                    <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
-                        <FixedInput textData={userData.data.firstName} />
-                        <FixedInput textData={userData.data.lastName} />
-                        {/* <FixedInput test={'شیرازی‌نیا'} /> */}
-                        <InputWithButton Type={'number'} icon={phone} onSubmit={changePhoneNumber} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
-                        <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
-                        <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
-                        {!passwordsMatch() &&
-                            <p>Passwords do not match!</p>
-                        }
-                        <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmail} buttonText={'تایید'} placeH={'example@gmail.com'} />
-                        <div className='md:col-span-2 md:flex md:justify-center'>
-                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button> 
+                data && 
+                    <>
+                        {/* should an onClick be added to this div for changing profile picture */}
+                        <div onClick={() => setShowPopupType('changePicture')} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
+                            <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
+                            <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                         </div>
-                    </div>
-                }
-                
+                        {
+                            userData && userData.data &&
+                            <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
+                                <FixedInput textData={userData.data.firstName} />
+                                <FixedInput textData={userData.data.lastName} />
+                                <InputWithButton Type={'number'} icon={phone} onSubmit={changePhoneNumber} buttonText={'دریافت کد'} placeH={userData.data.phoneNumber} onChange={phoneNumberChangeHandler} />
+                                {!passwordsMatch() &&
+                                    <p>Passwords do not match!</p>
+                                }
+                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmail} buttonText={'تایید'} placeH={userData.data.email} />
+                                <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
+                                <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
+                            </div>
+                        }
 
-                {/* submit pop up */}
-                <VerificationCodeInput showPopup={showPopup} setShowPopup={setShowPopup} />
+                        <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
 
-                <ChangePicPopUp showPopup={showPicturePopup} setShowPopup={setShowPicturePopup} />
-
-            </>
+                    </>
             }
         </div>
     );

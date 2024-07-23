@@ -277,7 +277,7 @@ const SignUp = () => {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
                 toast('مشکلی رخ داده است, دوباره تلاش کنید', {
                     type: 'error', 
-                    position: 'top-right', 
+                    position: 'top-right',
                     autoClose: 5000,
                     theme: 'dark',
                     style: { width: "90%" }

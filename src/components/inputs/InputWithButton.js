@@ -29,7 +29,7 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                     onChange={onChange}
                     id={id}
                     placeholder={placeH}
-                    className={`w-[100%] text-sm font-medium pr-8 rounded-r-2xl rounded-l-none`}
+                    className={`w-[100%] text-xs font-medium pr-8 rounded-r-2xl rounded-l-none`}
                     style={{
                         background: 'var(--dark-input-bg)',
                         boxShadow: 'var(--dark-input-boxShadow)',
