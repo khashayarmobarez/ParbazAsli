@@ -718,6 +718,7 @@ const getSyllabiForLevels = async (levelId) => {
                     theme: 'dark',
                     style: { width: "90%" }
                 });
+                dsa
             }
         });
     };
