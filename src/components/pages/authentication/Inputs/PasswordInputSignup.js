@@ -100,13 +100,20 @@
               )}
             </span>
           </div>
-          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} self-start text-start`}>
+          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} self-start text-start`}
+          style={{color:'var(--notification-red)'}}>
             <InfoOutlinedIcon />
-            پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
-            {  passwordRequireDigit && (<>رمز عبور باید حداقل شامل یک عدد باشد<br /></>)}
-            {  passwordRequireUppercase && (<>رمز عبور باید حداقل شامل یک حرف بزرگ باشد<br /></>)}
-            {  passwordRequireLowercase && (<>رمز عبور باید حداقل شامل یک حرف کوچک باشد<br /></>)}
-            {  passwordRequireNonAlphanumeric && (<>رمز عبور باید حداقل شامل یک کارکتر ویژه باشد<br /></>)}
+            {
+              value.length < passwordMinLength &&
+              value.length > passwordMaxLength &&
+                <>
+                  پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
+                </>
+            }
+            {  passwordRequireDigit && !(/\d/.test(value)) && (<>رمز عبور باید حداقل شامل یک عدد باشد<br /></>) }
+            {  passwordRequireUppercase && !(/[A-Z]/.test(value)) && (<>رمز عبور باید حداقل شامل یک حرف بزرگ باشد<br /></>) }
+            {  passwordRequireLowercase && !(/[a-z]/.test(value)) && (<>رمز عبور باید حداقل شامل یک حرف کوچک باشد<br /></>) }
+            {  passwordRequireNonAlphanumeric && !(/[^\w\s]/.test(value)) && (<>رمز عبور باید حداقل شامل یک کارکتر ویژه باشد<br /></>)  }
           </p>
         </>
       );

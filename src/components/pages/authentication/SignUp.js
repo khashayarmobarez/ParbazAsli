@@ -12,18 +12,16 @@ import { selectAuthSettings, getAuthSettings } from '../../../Utilities/ReduxToo
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
-import CircularProgress from '@mui/material/CircularProgress';
+import { Box, CircularProgress } from '@mui/material';
 
 // components
 import UserNameInputSignup from './Inputs/UserNameInputSignup';
 import UserLastNameInputSignup from './Inputs/UserLastNameInputSignup';
 import PasswordInputSignup from './Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
-    // import NationalCodeInput from './Inputs/NationalCodeInput';
 import PhoneInputSignup from './Inputs/PhoneInputSignup';
 import Checkbox from './Inputs/CheckBox';
 import PhoneVerificationCode from './popUps/PhoneVerificationCode';
-
 
 // regex 
 const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
@@ -301,15 +299,17 @@ const SignUp = () => {
     return (
         <section className='w-full min-h-[70vh] flex flex-col'>
 
-            {loading && 
-                <div className='w-full min-h-[71vh]'>
-                    <p>Loading authentication settings...</p>
-                </div>
+            {
+            loading && 
+                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'6rem' }}>
+                    <CircularProgress /> 
+                </Box>
             }
 
-            {error && 
+            {
+            error && 
                 <div className='w-full min-h-[71vh]'>
-                    <p>Error fetching authentication settings: {error}</p>
+                    <p style={{color:'var(--notification-red)'}}>مشکلی پیش آماده بعدا دوباره تلاش کنید</p>
                 </div>
             }
             

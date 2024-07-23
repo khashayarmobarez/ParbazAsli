@@ -48,7 +48,8 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
           placeholder="ایمیل"
         />
       </div>
-      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} self-start text-start`}>
+      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} self-start text-start`}
+      style={{color:'var(--notification-red)'}}>
         <InfoOutlinedIcon /> لطفا یک آدرس ایمیل معتبر وارد کنید.
       </p>
     </div>

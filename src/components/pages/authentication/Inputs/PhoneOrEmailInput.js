@@ -23,9 +23,19 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
     setValidInput(isValidPhone || isValidEmail);
   }, [value]);
 
+  const persianToEnglishNumber = (input) => {
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    return input.replace(/[\u06F0-\u06F9]/g, (char) => {
+      return englishNumbers[persianNumbers.indexOf(char)];
+    });
+  };
+
   const handleInputChange = (event) => {
-    onChange(event);
-    setFilled(event.target.value.trim() !== '');
+    let newValue = persianToEnglishNumber(event.target.value);
+    onChange({ ...event, target: { ...event.target, value: newValue } });
+    setFilled(newValue.trim() !== '');
   };
 
   return (
@@ -59,9 +69,9 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
           placeholder="ایمیل یا شماره موبایل"
         />
       </div>
-      <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}>
+      <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}
+      style={{color:'var(--notification-red)'}}>
         <InfoOutlinedIcon /> لطفاً یک شماره موبایل معتبر (شروع با 09 و 11 رقمی) یا یک ایمیل معتبر وارد کنید.
-        <br/> <InfoOutlinedIcon /> شماره ی تلفن را حتما با اعداد انگلیسی وارد کنید
       </p>
     </div>
   );

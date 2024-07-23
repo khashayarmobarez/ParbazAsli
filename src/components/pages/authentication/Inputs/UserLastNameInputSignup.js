@@ -48,7 +48,8 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
           placeholder="نام خانوادگی"
         />
       </div>
-      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} self-start text-start`}>
+      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} self-start text-start`}
+      style={{color:'var(--notification-red)'}}>
         <InfoOutlinedIcon />
         3 تا 24 کاراکتر<br />
         با حروف فارسی بنویسید

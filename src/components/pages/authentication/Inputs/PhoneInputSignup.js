@@ -15,9 +15,19 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
     setValidPhone(result);
   }, [value]);
 
+  const persianToEnglishNumber = (input) => {
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    return input.replace(/[\u06F0-\u06F9]/g, (char) => {
+      return englishNumbers[persianNumbers.indexOf(char)];
+    });
+  };
+
   const handleInputChange = (event) => {
-    onChange(event);
-    setFilled(event.target.value.trim() !== '');
+    let newValue = persianToEnglishNumber(event.target.value);
+    onChange({ ...event, target: { ...event.target, value: newValue } });
+    setFilled(newValue.trim() !== '');
   };
 
   return (
@@ -48,9 +58,9 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
           placeholder="شماره موبایل"
         />
       </div>
-      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} self-start text-start`}>
+      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} self-start text-start`}
+      style={{color:'var(--notification-red)'}}>
         <InfoOutlinedIcon /> شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
-        <br/> <InfoOutlinedIcon /> شماره ی تلفن را حتما با اعداد انگلیسی وارد کنید
       </p>
     </div>
   );
