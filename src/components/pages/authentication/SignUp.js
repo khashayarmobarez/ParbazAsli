@@ -232,7 +232,6 @@ const SignUp = () => {
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !code) { 
-            setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
             toast('اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید', {
                 type: 'error', 
                 position: 'top-right', 
@@ -411,7 +410,7 @@ const SignUp = () => {
                     </form>
 
                     <PhoneVerificationCode showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}
-                    handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={phoneNumberCodeLength} />
+                    handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={phoneNumberCodeLength} isLoading={submitLoading} />
                 </>
 
             )}
