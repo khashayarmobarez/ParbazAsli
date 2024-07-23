@@ -270,7 +270,6 @@ const SignUp = () => {
                     // Save the token in a cookie
                     Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
                     // navigate the user to its page
-                    navigate('/profile');
                     window.location.reload()
             } else {
                 console.error('Registration failed');

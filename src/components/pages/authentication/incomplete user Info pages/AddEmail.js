@@ -36,7 +36,7 @@ const AddEmail = () => {
     useEffect(() => {
         dispatch(getAuthSettings());
         console.log(authSettings.settings)
-      }, [dispatch]);
+    }, [dispatch]);
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
     
