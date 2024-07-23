@@ -52,6 +52,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur 
       style={{color:'var(--notification-red)'}}>
         <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
         3 تا 24 کاراکتر<br />
+        <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
         با حروف فارسی بنویسید
       </p>
     </div>

@@ -71,7 +71,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
       </div>
       <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}
       style={{color:'var(--notification-red)'}}>
-        <InfoOutlinedIcon /> لطفاً یک شماره موبایل معتبر (شروع با 09 و 11 رقمی) یا یک ایمیل معتبر وارد کنید.
+        <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> لطفاً یک شماره موبایل معتبر (شروع با 09 و 11 رقمی) یا یک ایمیل معتبر وارد کنید.
       </p>
     </div>
   );

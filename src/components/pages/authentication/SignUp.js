@@ -73,6 +73,7 @@ const SignUp = () => {
     const [termsChecked, setTermsChecked] = useState(false);
 
     const [validName, setValidName] = useState(false);
+    const [validLastName, setValidLastName] = useState(false);
     const [validPwd, setValidPwd] = useState(false);
     const [validMatch, setValidMatch] = useState(false)
     const [validPhone, setValidPhone] = useState(false);
@@ -102,7 +103,8 @@ const SignUp = () => {
 
     useEffect(() => {
         setValidName(USER_REGEX.test(user));
-      }, [user]);
+        setValidLastName(USER_REGEX.test(userLastName));
+      }, [user, userLastName]);
       
     useEffect(() => {
     const isValid =
@@ -131,10 +133,17 @@ const SignUp = () => {
     const handlePopUp = async(e) => {
 
         e.preventDefault();
-        if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked) { 
-            setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
+        if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !validLastName) { 
+            toast("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید", {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+            });
             return;
         }
+
         try {
 
             setSubmitLoading(true)
