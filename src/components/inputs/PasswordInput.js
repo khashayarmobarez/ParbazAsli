@@ -29,7 +29,7 @@ const PasswordInput = ({placeHolder, value, onChange}) => {
         type={showPassword ? 'text' : 'password'}
         value={value}
         onChange={onChange}
-        className={`${inputStyles.passwordInput} w-[100%] text-sm font-sm`}
+        className={`${inputStyles.passwordInput} w-[100%] text-sm font-sm rounded-2xl`}
         placeholder={placeHolder}
       />
       {/* <button>Show/Hide Password</button> */}

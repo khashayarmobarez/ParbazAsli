@@ -31,6 +31,7 @@ import PasswordInput from '../../../inputs/PasswordInput';
 import InputWithButton from '../../../inputs/InputWithButton';
 import VerificationCodeInput from '../../../reuseable/VerificationCodeInput';
 import ChangePicPopUp from './ChangePicPopUp';
+import { toast } from 'react-toastify';
 
 const ChangeProfile = () => {
 
@@ -44,6 +45,26 @@ const ChangeProfile = () => {
     // redux
     const dispatch = useDispatch();
     const { password1, password2 } = useSelector(selectSettings);
+
+    const changePhoneNumber = () => {
+        toast('در حال توسعه', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+    }
+
+    const changeEmail = () => {
+        toast('در حال توسعه', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+    }
 
     const handlePassword1Change = (event) => {
         dispatch(setPassword1(event.target.value));
@@ -93,13 +114,13 @@ const ChangeProfile = () => {
                         <FixedInput textData={userData.data.firstName} />
                         <FixedInput textData={userData.data.lastName} />
                         {/* <FixedInput test={'شیرازی‌نیا'} /> */}
-                        <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
+                        <InputWithButton Type={'number'} icon={phone} onSubmit={changePhoneNumber} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
                         <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
                         <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
                         {!passwordsMatch() &&
                             <p>Passwords do not match!</p>
                         }
-                        <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
+                        <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmail} buttonText={'تایید'} placeH={'example@gmail.com'} />
                         <div className='md:col-span-2 md:flex md:justify-center'>
                             <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36`}>ثبت </button> 
                         </div>
