@@ -15,7 +15,7 @@ import { selectSettings, setPassword1, setPassword2 } from '../../../../Utilitie
 import { selectAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
 // queries 
-import { useChangePhoneNumber, useSendVerificattionCodeToChangePhoneNumber, useUserData } from '../../../../Utilities/Services/userQueries';
+import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange, useUserData } from '../../../../Utilities/Services/userQueries';
 
 // mui
 import { Avatar } from '@mui/material';
@@ -47,16 +47,23 @@ const ChangeProfile = () => {
         passwordRequireDigit,
         passwordRequireUppercase,
         passwordRequireLowercase,
+        emailCodeLength,
         phoneNumberCodeLength,
     } = authSettings.settings;
 
     // popUp use state
     const [showPopupType, setShowPopupType] = useState('');
     const [LoadingStatus, setLoadingStatus] = useState(false);
-    const [codeRemainingTime, setCodeRemainingTime] = useState(null)
-    const [phoneNumberCode, setPhoneNumberCode] = useState('')
+
     // phoneNumber states
+    const [phoneNumberCode, setPhoneNumberCode] = useState('')
+    const [codeRemainingTimePhone, setCodeRemainingTimePhone] = useState(null)
     const [phoneNumber, setPhoneNumber] = useState('')
+    
+    // email states
+    const [email, setEmail] = useState('')
+    const [codeRemainingTimeEmail, setCodeRemainingTimeEmail] = useState(null)
+    const [emailCode, setEmailCode] = useState('')
     
     // redux states
     const dispatch = useDispatch();
@@ -64,12 +71,19 @@ const ChangeProfile = () => {
     
     // queries
     const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
-    const { mutate: mutateCodeRequestForPhone} = useSendVerificattionCodeToChangePhoneNumber();
+    const { mutate: mutateCodeRequestToChange} = useSendVerificattionCodeToChange();
     const { mutate: mutateChangePhone } = useChangePhoneNumber();
+    const { mutate: mutateChangeEmail } = useChangeEmail();
+
 
     const changePhoneNumberHandler = (e) => {
         setPhoneNumber(e.target.value)
     }
+
+    const changeEmailHandler = (e) => {
+        setEmail(e.target.value)
+    }
+
 
     const changePhoneNumberPopUp = async(e) => {
 
@@ -89,16 +103,15 @@ const ChangeProfile = () => {
         
         const requestBody = {
             username: phoneNumber,
-            type: 1
         };
 
         console.log(requestBody)
 
-        mutateCodeRequestForPhone(requestBody,{
+        mutateCodeRequestToChange(requestBody,{
             onSuccess: (data) => {
                 setLoadingStatus(false)
                 setShowPopupType('confirmPhone')
-                setCodeRemainingTime(data.data.remainTimeSpanInSeconds)
+                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds)
                 toast('کد تایید برای شما ارسال شد', {
                     type: 'success',
                     position: 'top-right',
@@ -169,16 +182,101 @@ const ChangeProfile = () => {
     }
 
 
+    const changeEmailPopUp = async(e) => {
 
-    const changeEmailPopUp = () => {
-        toast('در حال توسعه', {
-            type: 'error',
-            position: 'top-right',
-            autoClose: 5000,
-            theme: 'dark',
-            style: { width: "90%" }
-        });
+        if (!email) { 
+            toast('ایمیل خود را وارد کنید ', {
+                type: 'error', 
+                position: 'top-right', 
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
+
+
+        setLoadingStatus(true)
+        
+        const requestBody = {
+            username: email,
+        };
+
+        mutateCodeRequestToChange(requestBody,{
+            onSuccess: (data) => {
+                setLoadingStatus(false)
+                setShowPopupType('confirmEmail')
+                setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds)
+                toast('کد تایید برای شما ارسال شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            },
+            onError: (err) => {
+                setLoadingStatus(false)
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        })
     }
+
+
+
+    const handleFinalEmailSubmission = () => {
+        
+        if(emailCode.length !== emailCodeLength) {
+            toast('کد تایید باید ۶ رقمی باشد', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
+
+        setLoadingStatus(true)
+
+        const requestBody = {
+            email: email,
+            code: emailCode
+        }
+
+        mutateChangeEmail(requestBody, {
+            onSuccess: (data) => {
+                setLoadingStatus(false)
+                setShowPopupType('')
+                toast('ایمیل شما با موفقیت تغییر یافت', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            },
+            onError: (err) => {
+                setLoadingStatus(false)
+                setShowPopupType('')
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error',
+                    position: 'top-right',  
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        })
+    }
+
+
 
     const handlePassword1Change = (event) => {
         dispatch(setPassword1(event.target.value));
@@ -214,7 +312,7 @@ const ChangeProfile = () => {
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
                                 <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'دریافت کد'} placeH={userData.data.phoneNumber} onChange={changePhoneNumberHandler} />
-                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'احراز'} placeH={userData.data.email} />
+                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'احراز'} placeH={userData.data.email} onChange={changeEmailHandler} />
                                 <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
                                 <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
                                 {!passwordsMatch() &&
@@ -225,8 +323,11 @@ const ChangeProfile = () => {
 
                         <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
 
-                        <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmPhone'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTime} code={phoneNumberCode} setCode={setPhoneNumberCode}
+                        <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmPhone'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimePhone} code={phoneNumberCode} setCode={setPhoneNumberCode}
                         handleFinalSubmit={handleFinalPhoneSubmission} codeLength={phoneNumberCodeLength} />
+
+                        <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
+                        handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} />
 
                     </>
             }

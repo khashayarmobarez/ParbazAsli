@@ -193,10 +193,10 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 // request change phone number to get verification code query
-    const postSendCodeToChangePhoneNumber = async (newPhoneNumber) => {
+    const postSendCodeToChangePhoneNumber = async (newPhoneOrEmail) => {
         const token = Cookies.get('token');
         try {
-            const response = await axios.post(`${BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneNumber, {
+            const response = await axios.post(`${BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneOrEmail, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
     };
 
-    const useSendVerificattionCodeToChangePhoneNumber = () => {
+    const useSendVerificattionCodeToChange = () => {
         return useMutation(postSendCodeToChangePhoneNumber);
     }
 
@@ -245,4 +245,33 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChangePhoneNumber , useChangePhoneNumber};
+
+
+
+
+
+// handle final submit for changing phone number
+    const postChangeEmail = async (newEmail) => {
+        const token = Cookies.get('token');
+        try {
+            const response = await axios.post(`${BASE_URL}/user/ChangeEmail`, newEmail, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+                throw error;
+        }
+
+    };
+
+    const useChangeEmail = () => {
+        return useMutation(postChangeEmail);
+    }
+
+
+
+
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChange , useChangePhoneNumber, useChangeEmail};

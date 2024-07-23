@@ -12,7 +12,7 @@ const initialState = {
         passwordRequireUppercase: '',
         passwordRequireLowercase: '',   
         phoneNumberCodeLength: 4,
-        emailCodeLength: ''
+        emailCodeLength: 6
     }
 };
 
