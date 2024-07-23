@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+// redux
+import { getAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
+import { useDispatch } from 'react-redux';
+
+// queries
+import { useChangePassword } from '../../../../Utilities/Services/userQueries';
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,8 +15,15 @@ import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import PasswordInputSignup from '../../authentication/Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from '../../authentication/Inputs/ConfirmPassInputSignup';
+import PasswordInputLogin from '../../authentication/Inputs/PasswordInputLogin';
+import { toast } from 'react-toastify';
 
 const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
+
+    const dispatch = useDispatch();
+
+    const [oldpwd, setOldPwd] = useState('');
+    const [oldpwdFocus, setOldPwdFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [pwdFocus, setPwdFocus] = useState(false);
@@ -17,14 +31,79 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
     const [matchPwd, setMatchPwd] = useState('');
     const [matchFocus, setMatchFocus] = useState(false);
 
+    const { mutate: changePass, isLoading: changePassLoading } = useChangePassword();
+
+    useEffect(() => {
+        dispatch(getAuthSettings());
+    }, [dispatch]);
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(pwd !== matchPwd) {
+            toast('رمز عبور جدید با تکرارش باید یکسان باشد', {
+                type: 'error', 
+                position: 'top-right', 
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
+
+        const data = {
+            oldPassword: oldpwd,
+            password: pwd,
+            confirmPassword: pwd,
+        }
+
+        changePass(data , {
+            onSuccess: (data) => {
+                toast('رمز عبور با موفقیت تغییر یافت', {
+                    type: 'success', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                setShowPopUp(false);
+            },
+            onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                });
+            }
+        }
+        )
+
+
+    }
+
     return (
         <div className={` w-full h-full backdrop-blur-sm fixed inset-0 flex items-center justify-center z-50 ${showPopUp ? 'visible' : 'invisible'}`}>
 
-            <form className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] gap-y-2 flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}>
+            <form className={`${boxStyles.containerChangeOwnership} w-[90%] h-auto gap-y-4 md:w-[454px] flex flex-col items-center relative bg-white px-5 pt-14 pb-6 rounded-lg shadow-lg`}>
                 
                 <CloseIcon
                     onClick={() => setShowPopUp(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
+                />
+
+                <PasswordInputLogin
+                    onChange={(e) => setOldPwd(e.target.value)}
+                    value={oldpwd}
+                    focus={oldpwdFocus}
+                    onFocus={() => setOldPwdFocus(true)}
+                    onBlur={() => setOldPwdFocus(false)}
                 />
 
                 <PasswordInputSignup    
@@ -45,9 +124,9 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                 />
 
 
-                <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
+                <button type="submit" disabled={changePassLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
                 onClick={handleSubmit} >
-                    {isLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
+                    {changePassLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
                 </button>
 
                 {/* {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
@@ -56,7 +135,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
             </form>
             
         </div>
-    );
+        );
 };
 
 export default ChangePasswordPopUp;

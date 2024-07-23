@@ -32,6 +32,7 @@ import InputWithButton from '../../../inputs/InputWithButton';
 import VerificationCodeInput from '../../../reuseable/VerificationCodeInput';
 import ChangePicPopUp from './ChangePicPopUp';
 import PhoneVerificationCode from '../../authentication/popUps/PhoneVerificationCode';
+import ChangePasswordPopUp from './ChangePasswordPopUp';
 
 const ChangeProfile = () => {
 
@@ -313,13 +314,15 @@ const ChangeProfile = () => {
                                 <FixedInput textData={userData.data.lastName} />
                                 <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'دریافت کد'} placeH={userData.data.phoneNumber} onChange={changePhoneNumberHandler} />
                                 <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'احراز'} placeH={userData.data.email} onChange={changeEmailHandler} />
-                                <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
-                                <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
-                                {!passwordsMatch() &&
-                                    <p>Passwords do not match!</p>
-                                }
+
+                                <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
+                                onClick={() => setShowPopupType('changePassword')}>
+                                    تغییر رمز عبور
+                                </button>
+
                             </div>
                         }
+                        
 
                         <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
 
@@ -328,6 +331,8 @@ const ChangeProfile = () => {
 
                         <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
                         handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} />
+
+                        <ChangePasswordPopUp showPopUp={showPopupType === 'changePassword'} setShowPopUp={setShowPopupType} />
 
                     </>
             }

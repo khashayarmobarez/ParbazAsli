@@ -50,7 +50,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
             setMatchFocus(false);
             onBlur();
           }}
-          placeholder="تکرار رمز عبور"
+          placeholder="تکرار رمز عبور جدید"
         />
         <span onClick={togglePasswordVisibility} style={{ color: '#cacaca' }}>
           {showPassword ? (

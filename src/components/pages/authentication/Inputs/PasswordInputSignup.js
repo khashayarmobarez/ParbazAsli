@@ -89,7 +89,7 @@
                 setPwdFocus(false);
                 onBlur();
               }}
-              placeholder="رمز عبور"
+              placeholder="رمز عبور جدید"
               autoComplete="new-password" 
             />
             <span onClick={togglePasswordVisibility} style={{ color: '#cacaca' }}>

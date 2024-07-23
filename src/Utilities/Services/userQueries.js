@@ -274,4 +274,42 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChange , useChangePhoneNumber, useChangeEmail};
+
+
+
+
+
+
+
+
+// handle final submit for change password
+// /User/ChangePassword
+    const postChangePassword = async (newPassword) => {
+        const token = Cookies.get('token');
+        try {
+            const response = await axios.post(`${BASE_URL}/User/ChangePassword`, newPassword, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+                throw error;
+        }
+
+    }
+
+
+    const useChangePassword = () => {
+        return useMutation(postChangePassword);
+    }
+
+
+
+
+
+
+
+
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChange , useChangePhoneNumber, useChangeEmail, useChangePassword};
