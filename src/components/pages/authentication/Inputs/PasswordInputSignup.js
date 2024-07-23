@@ -104,8 +104,7 @@
           style={{color:'var(--notification-red)'}}>
             <InfoOutlinedIcon />
             {
-              value.length < passwordMinLength &&
-              value.length > passwordMaxLength &&
+              (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
                 <>
                   پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
                 </>
