@@ -172,7 +172,8 @@ const AddEmail = () => {
                 // Handle successful add email 
                     // check the level of users authentication
                     await postIsUserAuthenticated(token, navigate, isUserAuthenticated);
-                    navigate('/addCertificate')
+                    
+                    window.location.reload();
             } else {
                 console.error('Registration failed');
                 setErrMsg('ثبت ایمیل ناموفق');

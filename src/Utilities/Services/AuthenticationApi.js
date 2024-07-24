@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 
 const BASE_URL = 'https://api.par-baz.ir/api'
 
+
+
 const fetchAuthSettings = async () => {
     try {
         const response = await axios.get(`${BASE_URL}/Auth/GetAuthenticationSettings`);
@@ -14,6 +16,8 @@ const fetchAuthSettings = async () => {
         throw error;
         }
 };
+
+
 
 const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, setIsPageReloaded) => {
   try {
@@ -66,21 +70,18 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, set
           case 'email':
             console.log('ایمیل خود را وارد کنید.');
             Cookies.set('isUserAuthenticated', 'noEmail', { expires: Infinity });
-            navigate('/addEmail')
             console.log(isUserAuthenticated)
             break;
 
           case 'certificate':
             console.log('Certificate must be added');
             Cookies.set('isUserAuthenticated', 'noCertificate', { expires: Infinity });
-            navigate('/addCertificate')
             console.log(isUserAuthenticated)
             break;
 
           case 'adminPending':
             console.log('Wait for admins to approve your account');
             Cookies.set('isUserAuthenticated', 'noAdminApprovment', { expires: Infinity });
-            navigate('/adminPending')
             console.log(isUserAuthenticated)
             break;
 

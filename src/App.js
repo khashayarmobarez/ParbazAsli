@@ -146,7 +146,7 @@ function App() {
       setTimeout(() => {
         window.location.reload();
         setIsPageReloaded(false); // Reset state after reload
-      }, 50); // (50 milliseconds)
+      }, 50); // (500 milliseconds)
     }
   }, [isPageReloaded]);
           
@@ -192,31 +192,27 @@ function App() {
           </>
           }
 
-          {/* add email, certificate and admin approval routes */}
-            {token && isUserAuthenticated === 'noEmail' &&
+           {/* add email, certificate and admin approval routes */}
+          {token && isUserAuthenticated === 'noEmail' && (
             <>
               <Route path='/addEmail' element={<AddEmail />} />
               <Route path='*' element={<Navigate to="/addEmail" replace />} />
-            </> 
-            }
+            </>
+          )}
 
-            {token  && isUserAuthenticated === 'noCertificate' &&
+          {token && isUserAuthenticated === 'noCertificate' && (
             <>
               <Route path='/addCertificate' element={<AddCertificate />} />
               <Route path='*' element={<Navigate to="/addCertificate" replace />} />
-            </> 
-            }
+            </>
+          )}
 
-            {token  && isUserAuthenticated === 'noAdminApprovment' &&
+          {token && isUserAuthenticated === 'noAdminApprovment' && (
             <>
               <Route path='/adminPending' element={<AdminPending />} />
               <Route path='*' element={<Navigate to="/adminPending" replace />} />
-            </> 
-            }
-
-
-
-          {/* same components for coach and student  */}
+            </>
+          )}
             {token  && isUserAuthenticated === 'authenticated' && (
               <>
                 <Route path='/profile' element={<Profile userRole={ userRole } />} />

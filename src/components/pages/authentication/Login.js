@@ -131,10 +131,9 @@ const Login = () => {
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
 
-                // Navigate the user to the dashboard
-                navigate('/profile');
-
                 await postIsUserAuthenticated(response.data.data.token, navigate, isUserAuthenticated);
+
+                window.location.reload();
             } else {
                 console.error('Login failed');
                 setErrMsg('Login failed');

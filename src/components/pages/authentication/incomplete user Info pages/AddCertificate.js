@@ -1,4 +1,7 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Cookies from 'js-cookie';
+import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
+import { useNavigate } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
@@ -21,6 +24,10 @@ import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/D
 
 const AddCertificate = () => {
 
+    const navigate = useNavigate();
+
+    const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+
     const { formatDate } = useDateFormat();
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
@@ -42,6 +49,12 @@ const AddCertificate = () => {
     const fileInputRef = useRef(null);
 
     const [errMsg, setErrMsg] = useState(null)
+
+    if(isUserAuthenticated !== 'noCertificate') {
+        // reload
+        window.location.reload();
+    }
+
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
 
@@ -142,7 +155,17 @@ const AddCertificate = () => {
             formData.append('File', uploadedFile);
         }
         
-        mutateCertificate(formData);
+        mutateCertificate(formData, {
+            onSuccess: async (data) => {
+            await postIsUserAuthenticated(data.response.data.data.token, navigate, isUserAuthenticated);
+            console.log(data);
+            window.location.reload();
+            navigate('/addEmail');
+            },
+            onError: (error) => {
+                console.error('Error adding certificate:', error);
+            },
+        });
 
     };
 

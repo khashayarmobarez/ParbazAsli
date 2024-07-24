@@ -22,6 +22,7 @@ import ConfirmPassInputSignup from './Inputs/ConfirmPassInputSignup';
 import PhoneInputSignup from './Inputs/PhoneInputSignup';
 import Checkbox from './Inputs/CheckBox';
 import PhoneVerificationCode from './popUps/PhoneVerificationCode';
+import { postIsUserAuthenticated } from '../../../Utilities/Services/AuthenticationApi';
 
 // regex 
 const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
@@ -35,6 +36,8 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    const isUserAuthenticated = Cookies.get('isUserAuthenticated')
 
     const authSettings = useSelector(selectAuthSettings);
     const {
@@ -270,6 +273,8 @@ const SignUp = () => {
                     // Save the token in a cookie
                     Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
                     // navigate the user to its page
+                    await postIsUserAuthenticated(response.data.data.token, navigate, isUserAuthenticated);
+                    
                     window.location.reload()
             } else {
                 console.error('Registration failed');
