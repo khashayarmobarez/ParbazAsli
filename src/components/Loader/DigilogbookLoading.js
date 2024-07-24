@@ -2,8 +2,8 @@ import React from 'react';
 
 import loadStyle from './DigilogbookLoading.module.css';
 
-import digilogbook from '../../../assets/loading/digilogbookSvg.svg';
-import feather from '../../../assets/loading/featherSvg.svg';
+import digilogbook from '../../assets/loading/digilogbookSvg.svg';
+import feather from '../../assets/loading/featherSvg.svg';
 
 const DigilogbookLoading = () => {
     return (

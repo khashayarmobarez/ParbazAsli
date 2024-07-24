@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import mailIcon from '../../../assets/icons/mail-Icon (Stroke).svg'
 
 // components
-import DigilogbookLoading from '../../Loader/digilogbookLoader/DigilogbookLoading';
+import DigilogbookLoading from '../../Loader/DigilogbookLoading';
 
 
 

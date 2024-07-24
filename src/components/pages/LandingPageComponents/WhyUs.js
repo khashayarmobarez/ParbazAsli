@@ -12,7 +12,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 // components
-import DigilogbookLoading from '../../Loader/digilogbookLoader/DigilogbookLoading';
+import DigilogbookLoading from '../../Loader/DigilogbookLoading';
 
 const WhyUs = () => {
     

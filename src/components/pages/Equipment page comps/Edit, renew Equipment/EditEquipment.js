@@ -25,7 +25,7 @@ import PageTitle from '../../../reuseable/PageTitle';
 import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
 import TextInput from '../../../inputs/textInput';
 import UploadFileInput from '../../../inputs/UploadFileInput';
-import DigilogbookLoading from '../../../Loader/digilogbookLoader/DigilogbookLoading';
+import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
 
 const EditEquipment = () => {
     const navigate = useNavigate()

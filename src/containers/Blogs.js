@@ -9,7 +9,7 @@ import arrow from '../assets/icons/Right Arrow Button.svg'
 // components
 import BlogBlock from '../components/pages/Blogs/BlogBlock';
 import PageTitle from '../components/reuseable/PageTitle';
-import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
+import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
 
 
 const Blogs = () => {

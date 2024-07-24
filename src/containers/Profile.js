@@ -22,7 +22,7 @@ import pencil from '../assets/icons/pencil-alt.svg'
 import UserDataBox from '../components/pages/Profile/UserDataBox';
 import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
 import UserCoursesSlider from '../components/pages/Profile/UserCoursesSlider';
-import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
+import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
 
 
 

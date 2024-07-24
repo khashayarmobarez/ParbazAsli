@@ -22,7 +22,7 @@ import { useLandingPage } from '../Utilities/Services/queries';
 
 // components 
 import ArticleSwiper from '../components/pages/LandingPageComponents/ArticleSwiper';
-import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
+import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
 
 const LandingPage = () => {
 
