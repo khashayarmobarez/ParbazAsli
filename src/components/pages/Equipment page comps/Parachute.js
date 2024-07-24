@@ -13,7 +13,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // comps
-import Loader from '../../Loader/Loader';
 
 
 const Parachute = (props) => {

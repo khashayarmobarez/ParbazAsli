@@ -22,7 +22,6 @@ import pencil from '../assets/icons/pencil-alt.svg'
 import UserDataBox from '../components/pages/Profile/UserDataBox';
 import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
 import UserCoursesSlider from '../components/pages/Profile/UserCoursesSlider';
-import Loader from '../components/Loader/Loader';
 import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
 
 
@@ -40,9 +39,7 @@ const Profile = ({userRole}) => {
 
             {
                 isLoading && 
-                <div className='flex w-full h-[90vh] items-center justify-center'>
-                    <Loader />
-                </div>
+                <DigilogbookLoading />
             }
 
             {
@@ -124,7 +121,6 @@ const Profile = ({userRole}) => {
             </div>
             
         }
-        <DigilogbookLoading />
 
         </div>
     );

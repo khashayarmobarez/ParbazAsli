@@ -12,7 +12,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 // components
-import Loader from '../../Loader/Loader';
+import DigilogbookLoading from '../../Loader/digilogbookLoader/DigilogbookLoading';
 
 const WhyUs = () => {
     
@@ -35,9 +35,7 @@ const WhyUs = () => {
 
                 {
                 isLoading && isFetching && 
-                    <div className='flex w-full h-[95vh] items-center justify-center'>
-                        <Loader />
-                    </div>
+                    <DigilogbookLoading />
                 }
 
                 {

@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import mailIcon from '../../../assets/icons/mail-Icon (Stroke).svg'
 
 // components
-import Loader from '../../Loader/Loader';
+import DigilogbookLoading from '../../Loader/digilogbookLoader/DigilogbookLoading';
 
 
 
@@ -42,9 +42,7 @@ const BlogDetails = () => {
         <div className='w-full flex flex-col mt-14 items-center gap-y-8 pb-10 '>
             {
                 isLoading && isFetching && 
-                <div className='flex w-full h-[95vh] items-center justify-center'>
-                    <Loader />
-                </div>
+                <DigilogbookLoading />
             }
 
             {

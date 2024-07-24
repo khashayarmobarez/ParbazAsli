@@ -22,7 +22,7 @@ import { useLandingPage } from '../Utilities/Services/queries';
 
 // components 
 import ArticleSwiper from '../components/pages/LandingPageComponents/ArticleSwiper';
-import Loader from '../components/Loader/Loader';
+import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
 
 const LandingPage = () => {
 
@@ -43,9 +43,7 @@ const LandingPage = () => {
 
             {
                 (isLoading || isFetching) && 
-                <div className='flex w-full h-[95vh] items-center justify-center'>
-                    <Loader />
-                </div>
+                    <DigilogbookLoading />
                 // <h2 className=' text-white h-[100vh] w-full text-center'>is loading...</h2>
             }
 

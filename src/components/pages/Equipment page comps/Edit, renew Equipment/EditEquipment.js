@@ -22,10 +22,10 @@ import Cube from '../../../../assets/icons/3dCube.svg'
 
 // comps
 import PageTitle from '../../../reuseable/PageTitle';
-import Loader from '../../../Loader/Loader';
 import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
 import TextInput from '../../../inputs/textInput';
 import UploadFileInput from '../../../inputs/UploadFileInput';
+import DigilogbookLoading from '../../../Loader/digilogbookLoader/DigilogbookLoading';
 
 const EditEquipment = () => {
     const navigate = useNavigate()
@@ -146,9 +146,7 @@ const EditEquipment = () => {
 
                 {
                 loading &&  
-                <div className='flex w-full min-h-[95vh] items-center justify-center'>
-                    <Loader />
-                </div>
+                <DigilogbookLoading />
                 }
 
                 {

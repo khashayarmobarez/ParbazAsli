@@ -7,9 +7,9 @@ import { useBlogs } from '../Utilities/Services/queries';
 import arrow from '../assets/icons/Right Arrow Button.svg'
 
 // components
-import Loader from '../components/Loader/Loader';
 import BlogBlock from '../components/pages/Blogs/BlogBlock';
 import PageTitle from '../components/reuseable/PageTitle';
+import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
 
 
 const Blogs = () => {
@@ -28,9 +28,7 @@ const Blogs = () => {
             <PageTitle title={'بلاگ و مقالات'} />
             {
                 isLoading && isFetching && 
-                <div className='flex w-full h-[95vh] items-center justify-center'>
-                    <Loader />
-                </div>
+                    <DigilogbookLoading />
             }
 
             {
