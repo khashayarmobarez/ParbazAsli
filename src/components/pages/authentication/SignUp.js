@@ -160,7 +160,7 @@ const SignUp = () => {
     
             // Send a POST request to the endpoint with the specified body
             const response = await axios.post(
-                'https://api.par-baz.ir/api/Auth/SendVerificationCode',
+                'https://api.digilogbook.ir/api/Auth/SendVerificationCode',
                 requestBody
             );
     
@@ -258,7 +258,7 @@ const SignUp = () => {
             }
 
             const response = await axios.post(
-                'https://api.par-baz.ir/api/Auth/Register',
+                'https://api.digilogbook.ir/api/Auth/Register',
                 requestBody
             );
 

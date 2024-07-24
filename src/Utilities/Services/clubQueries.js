@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const BASE_URL = 'https://api.par-baz.ir/api'
+const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
@@ -492,7 +492,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-    // add custom course query https://api.par-baz.ir/api/Course/AddCustomCourse
+    // add custom course query
         const addCustomCLubCourse = async (course) => {
             const token = Cookies.get('token');
 

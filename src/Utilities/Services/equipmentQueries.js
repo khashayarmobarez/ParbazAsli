@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const BASE_URL = 'https://api.par-baz.ir/api'
+const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // post equipment
@@ -162,7 +162,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-// post Edit Equipments https://api.par-baz.ir/api/Equipment/EditEquipment
+// post Edit Equipments
     const postEditEquipment = async (formData) => {
         const token = Cookies.get('token');
         const response = await axios.post(`${BASE_URL}/Equipment/EditEquipment`, formData, {

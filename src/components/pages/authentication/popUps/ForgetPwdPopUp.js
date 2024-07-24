@@ -131,7 +131,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         
                 // Send a POST request to the endpoint with the specified body
                 const response = await axios.post(
-                    'https://api.par-baz.ir/api/Auth/SendVerificationCode',
+                    'https://api.digilogbook.ir/api/Auth/SendVerificationCode',
                     requestBody
                 );
         
@@ -197,7 +197,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             };
     
             const response = await axios.post(
-                'https://api.par-baz.ir/api/Auth/ForgotPassword',
+                'https://api.digilogbook.ir/api/Auth/ForgotPassword',
                 requestBody
             );
     

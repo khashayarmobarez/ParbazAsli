@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
-const BASE_URL = 'https://api.par-baz.ir/api'
+const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // get Syllabi by level id
@@ -36,7 +36,7 @@ const getSyllabiForLevels = async (levelId) => {
 
   
 
-// add regular course query https://api.par-baz.ir/api/Course/AddRegularCourse
+// add regular course query
     const addRegularCourse = async (course) => {
         const token = Cookies.get('token');
         const response = await axios.post(`${BASE_URL}/Course/AddRegularCourse`, course, {
@@ -67,7 +67,7 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-// add retraining course query https://api.par-baz.ir/api/Course/AddRetrainingCourse
+// add retraining course query
     const addRetrainingCourse = async (course) => {
         const token = Cookies.get('token');
         const response = await axios.post(`${BASE_URL}/Course/AddRetrainingCourse`, course, {
@@ -97,7 +97,7 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-// add custom course query https://api.par-baz.ir/api/Course/AddCustomCourse
+// add custom course query 
     const addCustomCourse = async (course) => {
         const token = Cookies.get('token');
         const response = await axios.post(`${BASE_URL}/Course/AddCustomCourse`, course, {

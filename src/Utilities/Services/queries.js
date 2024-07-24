@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 // import axiosInstance from "./axiosConfig";
 
 
-const BASE_URL = 'https://api.par-baz.ir/api'
+const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
@@ -232,7 +232,7 @@ const BASE_URL = 'https://api.par-baz.ir/api'
 
 
 
-// get another user for adding level https://api.par-baz.ir/api/User/GetAnotherUserForAddingCourse?userId=890soq&levelId=4&courseType=retraining
+// get another user for adding level
 const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) => {
   try {
     const token = Cookies.get('token');

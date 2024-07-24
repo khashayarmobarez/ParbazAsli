@@ -1,0 +1,57 @@
+.digilogbook {
+    position: absolute;
+    z-index: 10;
+    width: 80%;
+    /* Add other styles as needed */
+    /* background-color: beige; */
+}
+
+.feather {
+    position: absolute;
+    width: 80%;
+    margin-top: -2px;
+    /* Add other styles as needed */
+    animation: rotateFeather 4s infinite ease-in-out;
+    transform-origin: center;
+    /* background-color: aqua; */
+}
+
+@keyframes rotateFeather {
+    0% {
+        transform: rotate(0deg);
+    }
+    /* every 2nd 180 steps   */
+    6.25% {
+        /* margin-top: -6px; */
+    }
+    12.5% {
+        /* margin-top: 4px; */
+    }
+    18.75% {
+        /* margin-top: -6px; */
+    }
+    25% {
+        /* margin-top: 4px; */
+    }
+    31.25% {
+        /* margin-top: -6px; */
+    }
+    37.5% {
+        /* margin-top: 4px; */
+    }
+    43.75% {
+        /* margin-top: -6px; */
+    }
+    50% {
+        transform: rotate(1440deg);
+        /* margin-top: -6px; */
+    }
+    75% {
+        transform: rotate(1440deg);
+        /* margin-top: -6px; */
+    }
+    100% {
+        transform: rotate(1440deg);
+        /* margin-top: -6px; */
+    }
+}

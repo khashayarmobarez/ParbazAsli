@@ -23,6 +23,7 @@ import UserDataBox from '../components/pages/Profile/UserDataBox';
 import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
 import UserCoursesSlider from '../components/pages/Profile/UserCoursesSlider';
 import Loader from '../components/Loader/Loader';
+import DigilogbookLoading from '../components/Loader/digilogbookLoader/DigilogbookLoading';
 
 
 
@@ -116,11 +117,14 @@ const Profile = ({userRole}) => {
                     data.data.userCourses && data.data.userCourses.length > 0 && 
                         <UserCoursesSlider coursesData={data.data.userCourses} />
                     }
+
+
                         
                         
             </div>
             
-            }
+        }
+        <DigilogbookLoading />
 
         </div>
     );

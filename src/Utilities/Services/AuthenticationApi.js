@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 
 
-const BASE_URL = 'https://api.par-baz.ir/api'
+const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
@@ -103,7 +103,7 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, set
 const postLogout = async (token) => {
   try {
     const response = await axios.post(
-      'https://api.par-baz.ir/api/Auth/Logout',
+      'https://api.digilogbook.ir/api/Auth/Logout',
       {},
       {
         headers: {
