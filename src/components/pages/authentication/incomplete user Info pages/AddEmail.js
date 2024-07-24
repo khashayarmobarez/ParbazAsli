@@ -18,6 +18,7 @@ import EmailInputSignup from '../Inputs/EmailInputSignUp';
 import PhoneVerificationCode from '../popUps/PhoneVerificationCode';
 import UserDataBox from '../../Profile/UserDataBox';
 import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
+import { toast } from 'react-toastify';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -76,7 +77,13 @@ const AddEmail = () => {
 
         
         if (!validEmail) { 
-            setErrMsg("فرم را کامل نموده و سپس تایید را بزنید");
+            toast("فرم را کامل نموده و سپس تایید را بزنید", {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
             return;
         }
         try {
@@ -98,25 +105,37 @@ const AddEmail = () => {
             if (response.data.isSuccess) {
                 setSubmitLoading(false)
                 // Handle the response data
-                console.log('Phone number code sent successfully');
-                console.log('Remaining time span:', response.data.data.remainTimeSpanInSeconds);
                 setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
                 setShowPopupSubmit(true)
                 // Update UI or perform any additional actions based on the response
-            } else {
-                console.error('Failed to send phone number code');
-                // Handle other scenarios if needed
-            }
+            } 
         } catch (err) {
             setSubmitLoading(false)
             // Handle errors
             if (!err?.response) {
-                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+                toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             } else if (err.response?.status === 409) {
-                setErrMsg('شماره تلفن قبلا استفاده شده');
+                toast('شماره تلفن قبلا استفاده شده', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             } else {
-                console.log(err)
-                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             }
         }
     
@@ -145,7 +164,13 @@ const AddEmail = () => {
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if ( !validEmail || !code) { 
-            setErrMsg("اشکالی در اطلاعات وارد شده وجود دارد");
+            toast("اشکالی در اطلاعات وارد شده وجود دارد", {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
             return;
         }
         try {
@@ -179,15 +204,33 @@ const AddEmail = () => {
                     window.location.reload();
             } else {
                 console.error('Registration failed');
-                setErrMsg('ثبت ایمیل ناموفق');
+                toast('ثبت ایمیل ناموفق', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             }
         } catch (err) {
             setSubmitLoading(false)
             if (!err?.response) {
-                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+                toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             } else {
                 console.log(err);
-                setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
             }
         }
     };

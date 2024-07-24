@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
 import { useNavigate } from 'react-router-dom';
@@ -52,15 +52,25 @@ const AddCertificate = () => {
 
     const [errMsg, setErrMsg] = useState(null)
 
-    if(isUserAuthenticated !== 'noCertificate') {
-        // reload
-        window.location.reload();
-    }
-
+    
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
-
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
+    
+    // if(isUserAuthenticated !== 'noCertificate') {
+    //     // reload
+    //     window.location.reload();
+    // }
+    
+    // clear the other states if organ changes
+    useEffect(() => {
+        setLevel('')
+        setCertificateId('')
+        setDateStartValue('')
+        setDateEndValue('')
+        setUploadedFile(null)
+    }, [organ])
+
 
     const handleSelectOrganChange = (selectedOption) => {
         setOrgan(selectedOption);
@@ -316,7 +326,6 @@ const AddCertificate = () => {
                                                 </button>
 
                                                 {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
-                                                {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
                                                 {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
 
                                             </>
