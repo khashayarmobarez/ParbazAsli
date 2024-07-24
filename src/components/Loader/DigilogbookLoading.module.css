@@ -30,12 +30,12 @@
         transform: rotate(0deg);
     }
     50% {
-        transform: rotate(1080deg);
+        transform: rotate(720deg);
     }
     75% {
-        transform: rotate(1080deg);
+        transform: rotate(720deg);
     }
     100% {
-        transform: rotate(1080deg);
+        transform: rotate(720deg);
     }
 }

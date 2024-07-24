@@ -23,11 +23,6 @@ const AdminPending = () => {
                 
                 <UserDataBox />
 
-                <div className='w-full flex flex-col gap-y-2'>
-                    <p style={{color:'var(--red-text)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
-                    <p className='text-sm text-right' style={{color:'var(--yellow-text)'}}>اول ارگان خود را انتخاب کرده سپس اطلاعات گواهینامه ی خود را کامل کنید.</p>
-                </div>
-
 
                 {/* line and circle of adding flight level */}
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
@@ -59,7 +54,7 @@ const AdminPending = () => {
                 </div>
 
                 <p className=' text-xl'>در انتظار تایید...</p>
-                <p className=' text-base'>کمی صبر کرده تا اطلاعات شما بازدید و صحت ان توسط همکاران ما تایید شود </p>
+                <p className=' text-base'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
 
             </div>
         </div>

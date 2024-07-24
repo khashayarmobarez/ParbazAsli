@@ -205,8 +205,8 @@ function App() {
                 </Route>
             </>
           )}
-  
-  <Route path='/addCertificate' element={<AddCertificate />} />
+
+
           {token && isUserAuthenticated === 'noCertificate' && (
             <>
               <Route path='/addCertificate' element={<AddCertificate />} />
@@ -220,6 +220,7 @@ function App() {
             </>
           )}
 
+<Route path='/adminPending' element={<AdminPending />} />
           {token && isUserAuthenticated === 'noAdminApprovment' && (
             <>
               <Route path='/adminPending' element={<AdminPending />} />
