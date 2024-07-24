@@ -8,11 +8,11 @@
 
 .feather {
     position: absolute;
-    width: 80%;
-    margin-top: -2px;
+    width: 75%;
+    margin-top: -5px;
     /* Add other styles as needed */
     animation: rotateFeather 4s infinite ease-in-out;
-    transform-origin: center;
+    transform-origin: 49.9% 52.5%;
     /* background-color: aqua; */
 }
 
@@ -20,38 +20,13 @@
     0% {
         transform: rotate(0deg);
     }
-    /* every 2nd 180 steps   */
-    6.25% {
-        /* margin-top: -6px; */
-    }
-    12.5% {
-        /* margin-top: 4px; */
-    }
-    18.75% {
-        /* margin-top: -6px; */
-    }
-    25% {
-        /* margin-top: 4px; */
-    }
-    31.25% {
-        /* margin-top: -6px; */
-    }
-    37.5% {
-        /* margin-top: 4px; */
-    }
-    43.75% {
-        /* margin-top: -6px; */
-    }
     50% {
-        transform: rotate(1440deg);
-        /* margin-top: -6px; */
+        transform: rotate(1800deg);
     }
     75% {
-        transform: rotate(1440deg);
-        /* margin-top: -6px; */
+        transform: rotate(1800deg);
     }
     100% {
-        transform: rotate(1440deg);
-        /* margin-top: -6px; */
+        transform: rotate(1800deg);
     }
 }
