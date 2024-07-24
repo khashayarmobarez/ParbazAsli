@@ -278,21 +278,6 @@ const ChangeProfile = () => {
     }
 
 
-
-    const handlePassword1Change = (event) => {
-        dispatch(setPassword1(event.target.value));
-    };
-
-    const handlePassword2Change = (event) => {
-        dispatch(setPassword2(event.target.value));
-    };
-
-
-    // Function to check if the passwords match
-    const passwordsMatch = () => {
-        return password1 === password2;
-    };
-
     
 
     return (

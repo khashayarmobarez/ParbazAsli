@@ -149,6 +149,7 @@ const AddEmail = () => {
             return;
         }
         try {
+            setSubmitLoading(true)
             console.log(email)
             console.log(code)
             const requestBody = {
@@ -169,6 +170,7 @@ const AddEmail = () => {
 
             // succesful registeration
             if (response.data.isSuccess) {
+                setSubmitLoading(false)
                 console.log('email adding successful');
                 // Handle successful add email 
                     // check the level of users authentication
@@ -180,6 +182,7 @@ const AddEmail = () => {
                 setErrMsg('ثبت ایمیل ناموفق');
             }
         } catch (err) {
+            setSubmitLoading(false)
             if (!err?.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
             } else {
@@ -267,7 +270,7 @@ const AddEmail = () => {
                     }
 
                     <PhoneVerificationCode showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}
-                            handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={emailCodeLength} />
+                            handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={emailCodeLength} isLoading={Submitloading} />
                 </>
             }
             </div>

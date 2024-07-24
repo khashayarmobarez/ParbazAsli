@@ -51,10 +51,10 @@ const AddCertificate = () => {
 
     const [errMsg, setErrMsg] = useState(null)
 
-    // if(isUserAuthenticated !== 'noCertificate') {
-    //     // reload
-    //     window.location.reload();
-    // }
+    if(isUserAuthenticated !== 'noCertificate') {
+        // reload
+        window.location.reload();
+    }
 
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
