@@ -31,7 +31,6 @@ const PracticalFlightHistoryBox = (props) => {
         // for changing the text color
         setIsClicked(!isClicked);
     }
-
     return (
     <div className='flex flex-col gap-y-4'>
 
@@ -41,9 +40,9 @@ const PracticalFlightHistoryBox = (props) => {
                     flightBaseData &&
                     <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`} 
                     style={{ color: isExpanded && fullFlightData ? 'var(--yellow-text)' : '' }}>
-                        <p>{flightBaseData.takeOffDateAndFlightDuration}</p>
-                        <p>{flightBaseData.city}</p>
-                        <p>{flightBaseData.site}</p>
+                        <p>{flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}</p>
+                        <p>{flightBaseData.city && flightBaseData.city}</p>
+                        <p>{flightBaseData.site && flightBaseData.site}</p>
                         <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                             <img src={clipboard} alt='icon' />
                         </button>
@@ -211,7 +210,8 @@ const PracticalFlightHistoryBox = (props) => {
 
                             </div>
 
-                            {
+                            {   
+                                fullFlightData.data.syllabi &&
                                 fullFlightData.data.syllabi.length > 0 &&
                                     <div className=' grid grid-cols-1 gap-x-4 gap-y-2 w-full px-4 text-sm'>
                                         <p className=' text-xs pr-2 text-right'>سر فصل های پرواز</p>
@@ -219,7 +219,7 @@ const PracticalFlightHistoryBox = (props) => {
                                             fullFlightData.data.syllabi.map((syllabus, index) => (
                                             <div key={index} className='flex flex-col items-start gap-y-3'>
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                    <p>{syllabus}</p>
+                                                    <p>{syllabus.description}</p>
                                                 </div>
                                             </div>
                                             ))

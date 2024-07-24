@@ -57,10 +57,10 @@ const AddCertificate = () => {
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
     
-    // if(isUserAuthenticated !== 'noCertificate') {
-    //     // reload
-    //     window.location.reload();
-    // }
+    if(isUserAuthenticated !== 'noCertificate') {
+        // reload
+        window.location.reload();
+    }
     
     // clear the other states if organ changes
     useEffect(() => {
@@ -227,7 +227,7 @@ const AddCertificate = () => {
 
                     {
                         organsLoading && 
-                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'6rem' }}>
+                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'3rem' }}>
                             <CircularProgress /> 
                         </Box>
                     }
@@ -253,8 +253,11 @@ const AddCertificate = () => {
                                 {
                                     organ && 
                                     <>
-                                        {levelsLoading && <p>Loading levels...</p>}
-                                        {levelsError && <p>Error fetching levels</p>}
+                                        {levelsLoading && 
+                                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'6rem' }}>
+                                            <CircularProgress /> 
+                                        </Box>}
+                                        {levelsError && <p>مشکلی پیش آمده</p>}
                                         {!levelsError && !levelsLoading &&
                                             <>
 
