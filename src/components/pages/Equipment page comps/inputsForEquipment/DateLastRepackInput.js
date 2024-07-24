@@ -8,6 +8,7 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 import Calender from '../../../../assets/icons/calender-Icon.svg'
 
 const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH }) => {
+
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
 
