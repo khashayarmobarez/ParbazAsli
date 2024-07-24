@@ -8,6 +8,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { Box, CircularProgress } from '@mui/material';
 
 // queries
 import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../../Utilities/Services/queries'
@@ -216,9 +217,9 @@ const AddCertificate = () => {
 
                     {
                         organsLoading && 
-                        <div className='w-full min-h-[71vh]'>
-                            <p>Loading authentication settings...</p>
-                        </div>
+                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'6rem' }}>
+                            <CircularProgress /> 
+                        </Box>
                     }
 
                     {

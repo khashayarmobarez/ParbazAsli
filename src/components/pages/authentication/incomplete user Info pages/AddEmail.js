@@ -196,12 +196,13 @@ const AddEmail = () => {
 
     return (
         <div className=' w-full h-full flex flex-col items-center pt-20 pb-[4rem]'>
-        {loading && 
-            <DigilogbookLoading />
-        }
+            
+            {
+            loading && 
+                <DigilogbookLoading />
+            }
+
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
-
-
 
             {error && 
                 <div className='w-full min-h-[71vh]'>
@@ -270,7 +271,7 @@ const AddEmail = () => {
                     }
 
                     <PhoneVerificationCode showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}
-                            handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={emailCodeLength} isLoading={Submitloading} />
+                    handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={emailCodeLength} isLoading={Submitloading} />
                 </>
             }
             </div>
