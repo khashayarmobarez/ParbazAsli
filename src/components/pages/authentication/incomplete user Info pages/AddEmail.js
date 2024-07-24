@@ -17,6 +17,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import EmailInputSignup from '../Inputs/EmailInputSignUp';
 import PhoneVerificationCode from '../popUps/PhoneVerificationCode';
 import UserDataBox from '../../Profile/UserDataBox';
+import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -75,7 +76,7 @@ const AddEmail = () => {
 
         
         if (!validEmail) { 
-            setErrMsg("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید");
+            setErrMsg("فرم را کامل نموده و سپس تایید را بزنید");
             return;
         }
         try {
@@ -191,15 +192,13 @@ const AddEmail = () => {
 
 
     return (
-        <div className='flex flex-col items-center pt-20 pb-[4rem]'>
+        <div className=' w-full h-full flex flex-col items-center pt-20 pb-[4rem]'>
+        {loading && 
+            <DigilogbookLoading />
+        }
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
 
 
-            {loading && 
-                <div className='w-full min-h-[71vh]'>
-                    <p>Loading authentication settings...</p>
-                </div>
-            }
 
             {error && 
                 <div className='w-full min-h-[71vh]'>

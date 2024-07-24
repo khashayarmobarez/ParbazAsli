@@ -16,17 +16,26 @@
     /* background-color: aqua; */
 }
 
+@media (min-width: 760px) {
+    .digilogbook {
+        width: 20%;
+    }
+
+    .feather {
+        width: 15%;
+    }
+}
 @keyframes rotateFeather {
     0% {
         transform: rotate(0deg);
     }
     50% {
-        transform: rotate(1800deg);
+        transform: rotate(1440deg);
     }
     75% {
-        transform: rotate(1800deg);
+        transform: rotate(1440deg);
     }
     100% {
-        transform: rotate(1800deg);
+        transform: rotate(1440deg);
     }
 }

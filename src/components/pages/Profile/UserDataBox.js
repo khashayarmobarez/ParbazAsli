@@ -9,6 +9,8 @@ import GradientStyles from '../../../styles/gradients/Gradient.module.css'
 
 // mui
 import { Avatar } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // assets
 import flightHour from '../../../assets/icons/flightHour.svg'
@@ -32,7 +34,10 @@ const UserDataBox = () => {
     return (
         <>
             {
-                isLoading && <h2 className=' text-white h-[20vh] flex justify-center items-center'>is loading...</h2>
+                isLoading && 
+                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                    <CircularProgress /> 
+                </Box>
             }
 
             {

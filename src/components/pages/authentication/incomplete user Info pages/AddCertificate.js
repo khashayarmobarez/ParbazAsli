@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,7 @@ import UserDataBox from '../../Profile/UserDataBox';
 import DropdownInput from '../../../inputs/DropDownInput';
 import TextInput from '../../../inputs/textInput';
 import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
 
 
 const AddCertificate = () => {
@@ -50,10 +51,10 @@ const AddCertificate = () => {
 
     const [errMsg, setErrMsg] = useState(null)
 
-    if(isUserAuthenticated !== 'noCertificate') {
-        // reload
-        window.location.reload();
-    }
+    // if(isUserAuthenticated !== 'noCertificate') {
+    //     // reload
+    //     window.location.reload();
+    // }
 
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
@@ -171,7 +172,12 @@ const AddCertificate = () => {
 
     return (
         <div className='flex flex-col items-center pt-20 pb-[4rem]'>
+                {
+                    organsLoading &&
+                    <DigilogbookLoading />
+                }
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
+
 
                 <UserDataBox />
                 
@@ -218,7 +224,7 @@ const AddCertificate = () => {
                     {
                         organsError && 
                         <div className='w-full min-h-[71vh]'>
-                            <p>Error fetching organization settings</p>
+                            <p>مشکلی رخ داده است</p>
                         </div>
                     }
                     {
@@ -252,7 +258,7 @@ const AddCertificate = () => {
                                                 
                                                 {/* removing other fill options for starters */}
                                                 {
-                                                    !(level.id === 1) && !(level.id === 7) &&
+                                                    !(level.id === 1) && !(level.id === 7) && level && 
                                                     <>
 
                                                         <TextInput
@@ -264,10 +270,10 @@ const AddCertificate = () => {
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'} />
+                                                        <DateLastRepackInput name={'تاریخ صدور'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'} />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
+                                                        <DateLastRepackInput name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
 
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>

@@ -9,7 +9,7 @@ import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const PHONE_REGEX = /^09\d{9}$/;
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
 
@@ -71,7 +71,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
       </div>
       <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}
       style={{color:'var(--notification-red)'}}>
-        <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> لطفاً یک شماره موبایل معتبر (شروع با 09 و 11 رقمی) یا یک ایمیل معتبر وارد کنید.
+        <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> نام کاربری معتبر نمی باشد
       </p>
     </div>
   );

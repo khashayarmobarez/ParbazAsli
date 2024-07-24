@@ -31,7 +31,14 @@ const LandingPage = () => {
     // number of the image shown on the 'how to log flight' section
     const [ howToLogPictureNumber, setHowToLogPictureNumber ] = useState(0)
     
-    const { data, isLoading, error, isFetching, isError } = useLandingPage();
+    const { data, isLoading, error, isError } = useLandingPage();
+
+    const [introductionLoading, setIntroductionLoading] = useState(true);
+
+    // function to disable the first loading after 3 seconds
+    setTimeout(() => {
+        setIntroductionLoading(false)
+    }, 2500);
 
     const [loadingS1, setLoadingS1] = useState(true);
     const [loadingS2, setLoadingS2] = useState(true);
@@ -42,16 +49,21 @@ const LandingPage = () => {
         <div className='w-full flex flex-col mt-14 py-4 '>
 
             {
-                (isLoading || isFetching) && 
-                    <DigilogbookLoading />
+                introductionLoading &&
+                <DigilogbookLoading />
+            }
+
+            {
+                isLoading && !introductionLoading &&
+                <DigilogbookLoading />
                 // <h2 className=' text-white h-[100vh] w-full text-center'>is loading...</h2>
             }
 
             {
-                isError && <h3 className='flex w-full h-[95vh] items-center justify-center'>{error.message}</h3>
+                isError && !introductionLoading && <h3 className='flex w-full h-[95vh] items-center justify-center'>{error.message}</h3>
             }
             {
-                data &&
+                data && !introductionLoading &&
                 <div className='w-full flex flex-col items-center'>
 
                     {/* first slide */}

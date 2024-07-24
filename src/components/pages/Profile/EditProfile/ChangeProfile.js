@@ -303,9 +303,9 @@ const ChangeProfile = () => {
                     <>
                         {/* should an onClick be added to this div for changing profile picture */}
                         <div onClick={() => setShowPopupType('changePicture')} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
-                            <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
+                            <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'98px', width:'98px', zIndex:'0'}}/>
+                            <div className='w-[105px] h-[105px] mt-[-99px]  rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
+                            <img className=' w-7 absolute mt-20 ml-16 ' src={YellowPlus} alt='icon' />
                         </div>
                         {
                             userData && userData.data &&

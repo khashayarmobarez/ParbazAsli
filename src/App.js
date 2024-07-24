@@ -197,13 +197,26 @@ function App() {
             <>
               <Route path='/addEmail' element={<AddEmail />} />
               <Route path='*' element={<Navigate to="/addEmail" replace />} />
+              {/* edit profile */}
+              <Route path='/editProfile' element={<EditProfile />}>
+                    <Route index element={<ChangeProfile />} />
+                    <Route path="changeProfile" element={<ChangeProfile />} />
+                    <Route path="changeCertificate" element={<ChangeCertificate />} />
+                </Route>
             </>
           )}
 
+<Route path='/addCertificate' element={<AddCertificate />} />
           {token && isUserAuthenticated === 'noCertificate' && (
             <>
               <Route path='/addCertificate' element={<AddCertificate />} />
               <Route path='*' element={<Navigate to="/addCertificate" replace />} />
+              {/* edit profile */}
+              <Route path='/editProfile' element={<EditProfile />}>
+                <Route index element={<ChangeProfile />} />
+                <Route path="changeProfile" element={<ChangeProfile />} />
+                <Route path="changeCertificate" element={<ChangeCertificate />} />
+              </Route>
             </>
           )}
 
@@ -211,6 +224,12 @@ function App() {
             <>
               <Route path='/adminPending' element={<AdminPending />} />
               <Route path='*' element={<Navigate to="/adminPending" replace />} />
+              {/* edit profile */}
+              <Route path='/editProfile' element={<EditProfile />}>
+                <Route index element={<ChangeProfile />} />
+                <Route path="changeProfile" element={<ChangeProfile />} />
+                <Route path="changeCertificate" element={<ChangeCertificate />} />
+              </Route>
             </>
           )}
             {token  && isUserAuthenticated === 'authenticated' && (

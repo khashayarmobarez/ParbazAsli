@@ -92,10 +92,11 @@ const Login = () => {
 
             setSubmitLoading(true)
 
+
             const requestBody = {
                 username: userInput,
                 password: pwd,
-                rememberMe: true
+                rememberMe: termsChecked
             };
 
             const response = await axios.post(
