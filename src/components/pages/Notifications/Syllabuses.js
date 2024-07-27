@@ -136,7 +136,7 @@ const Syllabuses = () => {
                         </div>
                     ))
                 }
-                <div className='w-full flex justify-around mt-8'>
+                <div className='w-full flex justify-around mt-8' >
 
                     <button disabled={isSubmitting} onClick={handleSubmit} type='submit' className={`${ButtonStyles.addButton} w-32 `}>
                         ثبت نهایی
