@@ -30,6 +30,7 @@ import MultipleSelect from '../../inputs/MultipleSelect';
 import TextInput from '../../inputs/textInput';
 import NumberInput from '../../inputs/NumberInput';
 import DescriptionInput from '../../inputs/DescriptionInput';
+import SearchMultipleSelect from '../../inputs/SearchMultipleSelect';
 
 const AddClubCourse = () => {
 
@@ -382,12 +383,13 @@ const AddClubCourse = () => {
                                 {
                                     syllabiData && selectedClassType.id === 2 && 
                                     <>
-                                        <MultipleSelect
-                                            name={'سیلابس ها'}
+                                        <SearchMultipleSelect
                                             options={syllabiData.data}
                                             selectedOptions={selectedSyllabi}
                                             handleSelectChange={handleSelectChangeSyllabi}
+                                            name="سیلابس ها"
                                             handleRemove={handleRemoveSyllabi}
+                                            isForSyllabi={true}
                                         />
 
                                         <TextInput

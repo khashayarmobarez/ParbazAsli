@@ -44,3 +44,24 @@ const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, h
 };
 
 export default MultipleSelect;
+
+// Usage
+
+
+// const handleSelectChangeSyllabi = (newSelectedOptions) => {
+//   setSelectedSyllabi(newSelectedOptions);
+//   setSyllabusIds(newSelectedOptions.map(option => option.id));
+// };
+
+// const handleRemoveSyllabi = (dataToRemove) => {
+  //   setSelectedSyllabi(selectedSyllabi.filter(data => data.id !== dataToRemove.id));
+  //   setSyllabusIds(prev => prev.filter(id => id !== dataToRemove.id));
+// };
+
+{/* <MultipleSelect
+  name={'سیلابس ها'}
+  options={syllabiData.data}
+  selectedOptions={selectedSyllabi}
+  handleSelectChange={handleSelectChangeSyllabi}
+  handleRemove={handleRemoveSyllabi}
+/> */}

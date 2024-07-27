@@ -30,6 +30,7 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 import NumberInput from '../../inputs/NumberInput';
+import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 
 
 const AddParachute = () => {
@@ -297,7 +298,13 @@ const AddParachute = () => {
                     <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
 
                       {/* brand input */}
-                      <DropdownInput name={'برند'} options={brandsData.data} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
+                      <SearchInputWithDropdown
+                          className='col-span-1'
+                          options={brandsData.data}
+                          selectedOption={selectedOptionBrand}
+                          handleSelectChange={handleSelectChangeBrand}
+                          name={'برند'}
+                      />
                       
                       {/* aircraft model input */}
                       <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />

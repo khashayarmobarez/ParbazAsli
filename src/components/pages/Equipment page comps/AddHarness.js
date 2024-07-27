@@ -27,6 +27,7 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 // input options
 import PageTitle from '../../reuseable/PageTitle';
 import NumberInput from '../../inputs/NumberInput';
+import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 
 const AddHarness = () => {
 
@@ -220,11 +221,11 @@ const AddHarness = () => {
                   <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                     
                     {/* brand input */}
-                    <DropdownInput
-                      name={'برند'}
-                      options={brandsData.data}
-                      selectedOption={brand}
-                      handleSelectChange={handleBrandChange}
+                    <SearchInputWithDropdown
+                        options={brandsData.data}
+                        selectedOption={brand}
+                        handleSelectChange={handleBrandChange}
+                        name={'برند'}
                     />
                     
                     <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />

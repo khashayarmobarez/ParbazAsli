@@ -28,8 +28,7 @@ import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
 import NumberInput from '../../inputs/NumberInput';
 import DescriptionInput from '../../inputs/DescriptionInput';
-import MultipleSelect from '../../inputs/MultipleSelect';
-import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
+import SearchMultipleSelect from '../../inputs/SearchMultipleSelect';
 
 const AddCourse = () => {
 
@@ -409,15 +408,25 @@ const AddCourse = () => {
                                     </>
                                 }
 
+                                {/* دوره های بازاموزی */}
                                 {
                                     syllabiData && selectedClassType.id === 2 && 
                                     <>
-                                        <MultipleSelect
+                                        {/* <MultipleSelect
                                             name={'سیلابس ها'}
                                             options={syllabiData.data}
                                             selectedOptions={selectedSyllabi}
                                             handleSelectChange={handleSelectChangeSyllabi}
                                             handleRemove={handleRemoveSyllabi}
+                                        /> */}
+
+                                        <SearchMultipleSelect
+                                            options={syllabiData.data}
+                                            selectedOptions={selectedSyllabi}
+                                            handleSelectChange={handleSelectChangeSyllabi}
+                                            name="سیلابس ها"
+                                            handleRemove={handleRemoveSyllabi}
+                                            isForSyllabi={true}
                                         />
 
                                         <TextInput

@@ -19,7 +19,7 @@ const Parachute = (props) => {
 
     const navigate = useNavigate()
 
-    const { data: userEquipmentsData, loading, error } = useUserEquipments(1, false)
+    const { data: userEquipmentsData, isLoading, error } = useUserEquipments(1, false)
     const { data: userEquipmentsHistoryData, HistoryLoading, historyError } = useUserEquipmentsHistory(1, false)
 
     const handleEditEquipment = (id) => () => {
@@ -35,7 +35,7 @@ const Parachute = (props) => {
 
             <div className='w-full flex flex-col gap-y-4 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
             {
-                loading && 
+                isLoading && 
                 <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
                     <CircularProgress /> 
                 </Box>
@@ -45,6 +45,7 @@ const Parachute = (props) => {
             }
             {
             userEquipmentsData &&
+            userEquipmentsData.data &&
             userEquipmentsData.data.map(equipment =>
                     <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
