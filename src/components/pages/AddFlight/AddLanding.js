@@ -21,7 +21,7 @@ import { useAddCourseFlight, useAddSoloFlight, useAddTandemFlight } from '../../
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // mui
 import { CircularProgress } from '@mui/material';
@@ -32,6 +32,7 @@ import TextInput from '../../inputs/textInput';
 import SubmitForm from '../../reuseable/SubmitForm';
 import TimeInput from '../../inputs/TimeInput';
 import NumberInput from '../../inputs/NumberInput';
+import DescriptionInput from '../../inputs/DescriptionInput';
 
 const AddLanding = () => {
 
@@ -44,7 +45,7 @@ const AddLanding = () => {
 
     // redux
     const { landingTime, landingWindSpeed, landingWindDirection , passengerPhoneNumber
-    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId
+    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description
     } = useSelector(selectAddFlight)
 
     // states, submit pop up control
@@ -80,6 +81,11 @@ const AddLanding = () => {
     const handlePassengerPhoneNum = (event) => {
         dispatch(updatePassengerPhoneNumber(event.target.value));
       };
+
+    // handle Description input state
+    const handleDescription = (event) => {
+        dispatch(updateDescription(event.target.value))
+    };
 
 
 
@@ -154,12 +160,16 @@ const AddLanding = () => {
             formData.append('landingTime', formatedLandingTime);
             formData.append('landingWindSpeedInKmh', landingWindSpeedInKmh);
             formData.append('landingWindDirection', landingWindDirection.id);
+            if(flightType === 'Solo') {
+                formData.append('description', description);
+            }
             if(flightType === 'Course') {
                 formData.append('userCourseId', courseId);
             }
             if(flightType === 'Tandem') {
                 formData.append('passengerPhoneNumber', passengerPhoneNumber);
                 formData.append('passengerHarnessId', passengerHarness.id);
+                formData.append('description', description);
             }
 
         } else {
@@ -359,6 +369,19 @@ const AddLanding = () => {
 
                     {flightType === 'Tandem' && 
                     <TextInput value={passengerPhoneNumber} onChange={handlePassengerPhoneNum} placeholder='درج شماره تماس مسافر' />
+                    }
+
+                    {/* description input */}
+                    {
+                        (flightType === 'Tandem' ||  flightType === 'Solo') &&
+                        <div className='w-full flex flex-col gap-y-2'>
+                            <h1 className=' self-start'>توضیحات و مانورها</h1>
+                            <DescriptionInput
+                                value={description}
+                                onChange={handleDescription}
+                                placeholder='توضیحات پرواز را اینجا بنویسید ...'
+                            />
+                        </div>
                     }
 
                 </form>

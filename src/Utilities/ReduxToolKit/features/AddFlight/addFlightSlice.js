@@ -25,6 +25,7 @@ const initialState = {
     landingWindDirection :'', 
     // passenger phone number for tandem flights
     passengerPhoneNumber:'',
+    description:'',
     // syllabi for only sollo flights
     syllabi:[],
 
@@ -118,13 +119,16 @@ const initialState = {
       },
       updateCoachName: (state, action) => {
         state.coachName = action.payload
-      }
+      },
+      updateDescription: (state, action) => {
+        state.description = action.payload
+      },
     },
   });
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;

@@ -23,6 +23,7 @@ const Syllabuses = () => {
     const { mutate: mutateAccept , isLoading: isSubmitting, error: submitError} = useAcceptUserFlight();
 
     const [counters, setCounters] = useState([]);
+    const [description, setDescription] = useState([])
 
     useEffect(() => {
         if (syllabiDataPractical) {
@@ -68,6 +69,7 @@ const Syllabuses = () => {
         const submitData = {
             flightId: flightId,
             syllabi: updatedSyllabi,
+            description: description
         }
 
         mutateAccept(submitData, {
