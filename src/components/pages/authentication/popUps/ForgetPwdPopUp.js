@@ -89,6 +89,9 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     const [codeRemainingTime, setCodeRemainingTime] = useState(null)
     const [errMsg, setErrMsg] = useState('');
+    const [submitLoading, setSubmitLoading] = useState(false)
+
+    
 
     useEffect(() => {
         dispatch(getAuthSettings());
@@ -114,6 +117,20 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         setValidMatch(pwd === matchPwd);
         }, [pwd, matchPwd,  passwordMinLength, passwordMaxLength, passwordRequireNonAlphanumeric, passwordRequireDigit, passwordRequireUppercase, passwordRequireLowercase]);
     
+
+        const persianToEnglishNumber = (input) => {
+            const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            
+            return input.replace(/[\u06F0-\u06F9]/g, (char) => {
+                return englishNumbers[persianNumbers.indexOf(char)];
+            });
+        };
+          
+        const phoneOrEmailInputHandler = (e) => {
+        const convertedValue = persianToEnglishNumber(e.target.value);
+        setInput(convertedValue);
+        };
 
         // send code handler
         const sendCodeHandler = async(e) => {
@@ -189,6 +206,9 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         }
         
         try {
+
+            setSubmitLoading(true);
+
             const requestBody = {
                 "username": input,
                 "password": pwd,
@@ -203,8 +223,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     
             // Check if response exists and handle successful password change
             if (response && response.data && response.data.isSuccess) {
-                console.log('Password change successful');
-                console.log(response.data);
+                setSubmitLoading(false);
                 
                 // Handle successful password change
                 setShowPopup(false);
@@ -214,6 +233,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 setErrMsg('ناموفق');
             }
         } catch (err) {
+            setSubmitLoading(false);
             // Improved error handling
             if (!err.response) {
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
@@ -259,7 +279,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                             buttonText={'دریافت کد'}
                             placeH={'شماره موبایل یا ایمیل'}
                             inputRef={userRef}
-                            onChange={(e) => setInput(e.target.value)}
+                            onChange={phoneOrEmailInputHandler}
                             value={input}
                             focus={inputFocus}
                             onFocus={() => setInputFocus(true)}
@@ -295,12 +315,16 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                         onBlur={() => setMatchFocus(false)}
                                     />
 
-                                    <button  className={`${ButtonStyles.addButton} w-32`} onClick={handlePassChangeFinalSubmit}>ارسال</button>
+                                    <button  className={`${ButtonStyles.addButton} w-32 ${submitLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
+                                    disabled={submitLoading}
+                                    onClick={handlePassChangeFinalSubmit}>
+                                        تایید
+                                    </button>
                                 </>
                             )
                         }
                         
-                        <p className={`${codeRemainingTime ? "text-light-yellow" : "hidden"} `} aria-live="assertive">اگر کد را دریافت نکردین برای دریافت دوباره ی کد لطفا {codeRemainingTime} صبر کنید</p>
+                        <p className={`${codeRemainingTime ? "text-light-yellow" : "hidden"} `} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
                         <p className={errMsg ? "text-[#ED553B] text-sm" : "offscreen"} aria-live="assertive"> {errMsg}</p>
                         {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کنید اطلاعات در حال بارگذاری می باشد</p> */}
 

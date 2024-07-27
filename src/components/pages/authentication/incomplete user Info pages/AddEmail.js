@@ -305,11 +305,11 @@ const AddEmail = () => {
                     onClick={handlePopUp} 
                     disabled={Submitloading}
                     >
-                            تایید
+                            ثبت
                     </button>
 
                     {
-                        errMsg &&
+                        errMsg && 
                         <p style={{color:'var(--red-text)'}}>{errMsg}</p>
                     }
 
