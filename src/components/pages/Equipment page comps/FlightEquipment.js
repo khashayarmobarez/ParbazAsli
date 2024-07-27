@@ -11,6 +11,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 // comps
 
@@ -35,9 +36,7 @@ const FlightEquipment = () => {
             <div className='w-full flex flex-col gap-y-4 pb-10 items-center md:grid md:grid-cols-2 md:gap-6'>
                 {
                     isLoading && 
-                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                        <CircularProgress /> 
-                    </Box>
+                    <CircularProgressLoader/>
                 }
                 {
                     error && <p className='mt-10'>{error.response.data.ErrorMessages[0].ErrorMessage}</p>

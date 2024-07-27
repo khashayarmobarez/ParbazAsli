@@ -27,6 +27,7 @@ import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import NumberInput from '../../inputs/NumberInput';
 import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 
 const AddFlightEquipment = () => {
@@ -231,6 +232,11 @@ const AddFlightEquipment = () => {
             <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%]'>
 
               <PageTitle title={'افزودن وسیله پروازی'}  />  
+
+              {
+                brandsIsLoading && WClassesIsLoading &&
+                <CircularProgressLoader/>
+              }
 
               {
                 brandsData && wingsClasses &&

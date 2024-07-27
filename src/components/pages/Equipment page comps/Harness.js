@@ -11,6 +11,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 // compos
 
@@ -37,9 +38,7 @@ const Harness = (props) => {
 
                 {
                     isLoading && 
-                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                        <CircularProgress /> 
-                    </Box>
+                    <CircularProgressLoader/>
                 }
                 {
                 error && <p className='mt-10'>{error.response.data.ErrorMessages[0].ErrorMessage}</p>

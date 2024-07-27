@@ -31,6 +31,7 @@ import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 import NumberInput from '../../inputs/NumberInput';
 import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 
 const AddParachute = () => {
@@ -285,7 +286,11 @@ const AddParachute = () => {
 
           <div className='w-full flex flex-col items-center gap-y-5 md:w-[75%]'>
 
-            <PageTitle title={'افزودن چتر کمکی'}  />  
+            <PageTitle title={'افزودن چتر کمکی'}  /> 
+
+            {brandsIsLoading &&
+              <CircularProgressLoader/>
+            } 
 
             {
               brandsData &&
