@@ -12,6 +12,7 @@ import minus from '../../../assets/icons/minusButton.png'
 import PageTitle from '../../reuseable/PageTitle';
 import { useAcceptUserFlight, useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
+import DescriptionInput from '../../inputs/DescriptionInput';
 
 const Syllabuses = () => {
 
@@ -44,6 +45,11 @@ const Syllabuses = () => {
             newCounters[index] -= 1;
         }
         setCounters(newCounters);
+    };
+    
+    // handle Description input state
+    const handleDescription = (event) => {
+        setDescription(event.target.value);
     };
 
     const handleReset = (event) => {
@@ -104,6 +110,17 @@ const Syllabuses = () => {
             <PageTitle title={'سیلابس‌ها'} />
             
             <form className='w-[90%] flex flex-col gap-y-4'>
+
+                {/* description input */}
+                <div className='w-full flex flex-col gap-y-2'>
+                    <h1 className=' self-center'>توضیحات </h1>
+                    <DescriptionInput
+                        value={description}
+                        onChange={handleDescription}
+                        placeholder='وارد کنید...'
+                    />
+                </div>
+
                 {
                     syllabiDataPractical && syllabiDataPractical.data.map((syllabus, index) => (
                         <div key={syllabus.id} className='flex h-12 items-center justify-between px-4 rounded-2xl text-[10px] w-full'
@@ -136,6 +153,7 @@ const Syllabuses = () => {
                         </div>
                     ))
                 }
+
                 <div className='w-full flex justify-around mt-8' >
 
                     <button disabled={isSubmitting} onClick={handleSubmit} type='submit' className={`${ButtonStyles.addButton} w-32 `}>
