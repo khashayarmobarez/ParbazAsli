@@ -212,9 +212,12 @@ const EditEquipment = () => {
                                 {
                                     wingType && 
                                     <div className='flex flex-col items-start gap-y-2'>
-                                        <p className=' text-sm'>مدل بال پروازی</p>
+                                        <p className=' text-sm'>نوع بال پروازی</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                            <p>{wingType}</p>
+                                            <p>
+                                                {wingType === 'Single' && 'تک نفره'}
+                                                {wingType === 'Tandem' && 'دو نفره'}
+                                            </p>
                                         </div>
                                     </div>
                                 }
@@ -242,7 +245,7 @@ const EditEquipment = () => {
                                 {
                                     packerFullName &&
                                     <div className='flex flex-col items-start gap-y-2'>
-                                        <p className=' text-sm'>نام بسته بند</p>
+                                        <p className=' text-sm'>نام بسته بندی کننده</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                             <p>{packerFullName}</p>
                                         </div>
