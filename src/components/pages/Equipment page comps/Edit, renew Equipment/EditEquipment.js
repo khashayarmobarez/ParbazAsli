@@ -108,7 +108,7 @@ const EditEquipment = () => {
         }
         formData.append('equipmentId', id);
 
-        if((packageDate && lastPackerId) || (equipmentSerial && selectedFile)) {
+        if((packageDate) || (equipmentSerial && selectedFile)) {
             editEquipment(formData, {
                 onSuccess: () => {
                     toast('تغییرات وسیله پروازی شما اعمال شد', {
