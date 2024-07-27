@@ -39,7 +39,7 @@ const EditEquipment = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     
     const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id)
-    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber} = EquipmentData?.data || {};
+    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     // useEditEquipment for submitting the form
     const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
@@ -218,6 +218,46 @@ const EditEquipment = () => {
                                         </div>
                                     </div>
                                 }
+
+                                {
+                                    year &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>سال ساخت</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{year}</p>
+                                        </div>
+                                    </div>
+                                }
+
+                                {
+                                    serialNumber &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>سریال وسیله</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{serialNumber}</p>
+                                        </div>
+                                    </div>
+                                }
+
+                                {
+                                    packerFullName &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>نام بسته بند</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{packerFullName}</p>
+                                        </div>
+                                    </div>
+                                }
+
+                                {
+                                    lastPackingDateTime &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>تاریخ آخرین بسته بندی</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{lastPackingDateTime}</p>
+                                        </div>
+                                    </div>
+                                }  
 
                             </div>
 
