@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
+
+// button
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // components
 import UserDataBox from '../../Profile/UserDataBox';
 
 const AdminPending = () => {
+
+    const isUserAuthenticated = Cookies.get('isUserAuthenticated')
 
     // useEffect to set up the interval
     useEffect(() => {
@@ -16,6 +22,21 @@ const AdminPending = () => {
         // Cleanup function to clear the interval
         return () => clearInterval(intervalId);
     }, []);
+
+
+    // check the status of the user authentication every 2 seconds
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const isUserAuthenticated = Cookies.get('isUserAuthenticated');
+            if(isUserAuthenticated !== 'noAdminApprovment') {
+                // reload
+                window.location.reload();
+            }
+        }, 3000); // 3000 milliseconds = 3 seconds
+
+        // Cleanup function to clear the interval
+        return () => clearInterval(intervalId);
+    }, [isUserAuthenticated]);
 
     return (
         <div className='flex flex-col items-center pt-20 pb-[4rem]'>
@@ -55,6 +76,12 @@ const AdminPending = () => {
 
                 <p className=' text-xl'>در انتظار تایید...</p>
                 <p className=' text-base'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
+
+                <button className={`${ButtonStyles.normalButton} w-20 self-center mt-8`}
+                onClick={() => window.location.reload()}>
+                    تازه سازی
+                </button>
+
 
             </div>
         </div>

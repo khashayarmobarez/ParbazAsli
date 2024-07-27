@@ -76,9 +76,18 @@ const ChangeProfile = () => {
     const { mutate: mutateChangePhone } = useChangePhoneNumber();
     const { mutate: mutateChangeEmail } = useChangeEmail();
 
+    const persianToEnglishNumber = (input) => {
+        const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        
+        return input.replace(/[\u06F0-\u06F9]/g, (char) => {
+            return englishNumbers[persianNumbers.indexOf(char)];
+        });
+    };
 
     const changePhoneNumberHandler = (e) => {
-        setPhoneNumber(e.target.value)
+        const convertedValue = persianToEnglishNumber(e.target.value);
+        setPhoneNumber(convertedValue);
     }
 
     const changeEmailHandler = (e) => {
@@ -297,8 +306,8 @@ const ChangeProfile = () => {
                             <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
-                                <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'دریافت کد'} placeH={userData.data.phoneNumber} onChange={changePhoneNumberHandler} />
-                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'احراز'} placeH={userData.data.email} onChange={changeEmailHandler} />
+                                <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
 
                                 <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
                                 onClick={() => setShowPopupType('changePassword')}>

@@ -192,6 +192,13 @@ function App() {
           </>
           }
 
+          {token &&
+          <>
+            {/* notifications */}
+            <Route path='/notifications' element={<Notifications />} />
+          </>
+          }
+
            {/* add email, certificate and admin approval routes */}
           {token && isUserAuthenticated === 'noEmail' && (
             <>
@@ -220,7 +227,6 @@ function App() {
             </>
           )}
 
-<Route path='/adminPending' element={<AdminPending />} />
           {token && isUserAuthenticated === 'noAdminApprovment' && (
             <>
               <Route path='/adminPending' element={<AdminPending />} />

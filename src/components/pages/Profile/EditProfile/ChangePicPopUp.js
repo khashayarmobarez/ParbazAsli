@@ -144,7 +144,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup}) => {
 
                 </div>
 
-                {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
+                {errMsg && <p style={{ color: 'red' }}>{errMsg}</p>}
                 {submitError && <p style={{ color: 'red' }}>{submitError.message}</p>}
                 {/* {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>} */}
             </form>
