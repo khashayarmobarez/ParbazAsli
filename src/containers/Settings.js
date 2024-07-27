@@ -96,8 +96,8 @@ const Settings = ({ userRole }) => {
                     {
                         DropDown === 'dropDown3' &&
                         <div className='w-full flex flex-col items-center gap-y-6'>
-                            <Certificate />
-                            <Certificate />
+                            {/* <Certificate />
+                            <Certificate /> */}
                             <button type='submit' className={`${ButtonStyles.addButton} w-full mt-2`}>
                                 <AddIcon sx={{width:'20.5px'}} />
                                 <p className=' font-medium text-sm'>افزودن گواهینامه</p>
