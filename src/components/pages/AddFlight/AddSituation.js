@@ -22,6 +22,7 @@ import { updateCity, updateSight,updateClouds,updateCountry } from '../../../Uti
 
 // components
 import DropdownInput from '../../inputs/DropDownInput';
+import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 
 const AddSituation = () => {
 
@@ -153,7 +154,12 @@ const AddSituation = () => {
 
                     {
                         provincesData &&
-                        <DropdownInput name={'استان'} options={provincesData.data} selectedOption={city} handleSelectChange={handleSelectSetCity} />
+                        <SearchInputWithDropdown
+                            options={provincesData.data}
+                            selectedOption={city}
+                            handleSelectChange={handleSelectSetCity}
+                            name="استان"
+                        />
                     }
 
                     {

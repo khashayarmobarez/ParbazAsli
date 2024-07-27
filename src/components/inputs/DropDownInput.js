@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
@@ -9,6 +9,7 @@ import Cube from '../../assets/icons/3dCube.svg';
 
 const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon }) => {
   const [filled, setFilled] = useState(false);
+  const selectRef = useRef(null); // Create a ref for the select element
 
   const handleInputChange = (event) => {
     setFilled(event.target.value !== '');
@@ -26,13 +27,21 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
     handleSelectChange(selected);
   };
 
+  const handleIconClick = () => {
+    if (selectRef.current) {
+      selectRef.current.click(); // Simulate a click on the select element
+      selectRef.current.focus(); // Also focus the element (for accessibility)
+    }
+  };
+
   return (
     <div className="flex relative w-[100%] h-12 rounded-xl">
       <span>
         <img src={icon || Cube} alt="icon" className="absolute mt-3 mr-2 w-5" />
       </span>
       <select
-        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} w-[100%]`}
+        ref={selectRef}
+        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} w-full`} // Add right padding
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={handleChange}
@@ -42,8 +51,8 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}
       </select>
-      <span>
-        <ArrowBackIosNewIcon sx={{ position: 'absolute', transform: 'rotate(-90deg)', margin: '0.8rem -2rem 0 0rem' }} />
+      <span onClick={handleIconClick} className="absolute left-3  h-full flex items-center pr-2 cursor-pointer pointer-events-none">
+        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
     </div>
   );

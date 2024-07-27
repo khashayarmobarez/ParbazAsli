@@ -29,6 +29,7 @@ import TextInput from '../../inputs/textInput';
 import NumberInput from '../../inputs/NumberInput';
 import DescriptionInput from '../../inputs/DescriptionInput';
 import MultipleSelect from '../../inputs/MultipleSelect';
+import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 
 const AddCourse = () => {
 
@@ -357,6 +358,7 @@ const AddCourse = () => {
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
                 <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+
 
                 {selectedClassType && 
                     <>
