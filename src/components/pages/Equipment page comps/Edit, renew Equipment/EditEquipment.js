@@ -108,30 +108,41 @@ const EditEquipment = () => {
         }
         formData.append('equipmentId', id);
 
-        editEquipment(formData, {
-            onSuccess: () => {
-                toast('تغییرات وسیله پروازی شما اعمال شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-                navigate('/equipment');
-                },
-                onError: (error) => {
-                    const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
-                    toast(errorMessage, {
-                        type: 'error',
+        if((packageDate && lastPackerId) || (equipmentSerial && selectedFile)) {
+            editEquipment(formData, {
+                onSuccess: () => {
+                    toast('تغییرات وسیله پروازی شما اعمال شد', {
+                        type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
                         theme: 'dark',
                         style: { width: "90%" }
                     });
-                    console.error(error);
-                    setShowPopup(false);
-                }
-        });
+                    navigate('/equipment');
+                    },
+                    onError: (error) => {
+                        const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                        toast(errorMessage, {
+                            type: 'error',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: "90%" }
+                        });
+                        console.error(error);
+                        setShowPopup(false);
+                    }
+            })
+        } else {
+            toast('لطفا اطلاعات مورد نیاز را پر کنید', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            setShowPopup(false);
+        }
 
     }
 
@@ -143,8 +154,7 @@ const EditEquipment = () => {
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
                 <PageTitle 
-                title={EquipmentData && (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') ? 'ویرایش وسیله' : 'جزئیات وسیله'} 
-                navigateTo={'profile'} />  
+                title={EquipmentData && (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') ? 'ویرایش وسیله' : 'جزئیات وسیله'} />  
 
                 {
                     EquipmentDataLoading && 
