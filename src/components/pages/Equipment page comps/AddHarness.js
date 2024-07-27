@@ -233,7 +233,7 @@ const AddHarness = () => {
                         name={'برند'}
                     />
                     
-                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />
+                    <TextInput placeholder='مدل' value={aircraft} onChange={handleAircraftChange}  />
 
                     {/* size input */}
                     <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
@@ -252,7 +252,12 @@ const AddHarness = () => {
 
                   </div>
 
-                  <p className=' self-start md:self-center'>ثبت سریال هارنس (اختیاری)</p>
+                  <div className='w-full flex flex-col text-start gap-y-1'>
+                    <p className=' self-start md:self-center'>ثبت سریال هارنس (اختیاری)</p>
+                    <p className=' text-xs self-start text-start '>با پرکردن این فیلد و سینک کردن سریال هارنس به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                      <br/>
+                    در صورت مفقودی هارنس ما را از طریق تیکت مطلع سازید.</p>
+                  </div>
 
                   {/* Serial number input */}
                   <TextInput
@@ -265,8 +270,11 @@ const AddHarness = () => {
 
                   {/* for uploading pictures */}
                   <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                  <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                  
 
-                  <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
+                  <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-2`} >ثبت</button>
+                  
                 </form>
               </>
             }

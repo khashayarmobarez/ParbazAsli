@@ -26,19 +26,21 @@ import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
 import TextInput from '../../../inputs/textInput';
 import UploadFileInput from '../../../inputs/UploadFileInput';
 import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const EditEquipment = () => {
     const navigate = useNavigate()
     const { id } = useParams();
-    const { data: EquipmentData, loading, error } = useAnEquipment(id)
-    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass } = EquipmentData?.data || {};
+
     const [showPopup, setShowPopup] = useState(false);
     const [packageDate, setPackageDate] = useState('')
     const [lastPackerId, setLastPackerId] = useState('');
     const [equipmentSerial, setEquipmentSerial] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    
+    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id)
+    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
-
     // useEditEquipment for submitting the form
     const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
     
@@ -145,8 +147,8 @@ const EditEquipment = () => {
                 navigateTo={'profile'} />  
 
                 {
-                loading &&  
-                <DigilogbookLoading />
+                    EquipmentDataLoading && 
+                    <CircularProgressLoader/>
                 }
 
                 {
@@ -207,6 +209,16 @@ const EditEquipment = () => {
                                     </div>
                                 }
 
+                                {
+                                    wingType && 
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>مدل بال پروازی</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{wingType}</p>
+                                        </div>
+                                    </div>
+                                }
+
                             </div>
 
                             {/* to check if the equipment is editable  */}
@@ -221,6 +233,36 @@ const EditEquipment = () => {
 
                                             {EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') &&
                                             <>
+                                                {/* parachute serial explanation */}
+                                                {
+                                                    EquipmentData.data.equipmentType === 'Parachute' &&
+                                                    <div className='w-full flex flex-col text-start gap-y-1'>
+                                                        <p className=' self-start md:self-center'>ثبت سریال چتر</p>
+                                                        <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
+                                                        در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
+                                                    </div>
+                                                }
+                                                {
+                                                    EquipmentData.data.equipmentType === 'Wing' &&
+                                                    <div className='w-full flex flex-col text-start gap-y-1'>
+                                                        <p className=' self-start md:self-center'>ثبت سریال بال </p>
+                                                        <p className=' text-xs text-right'>
+                                                        با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                                                        <br/>
+                                                        در صورت مفقودی بال ما را از طریق تیکت مطلع سازید.
+                                                        </p>
+                                                    </div>
+                                                }
+                                                {
+                                                    EquipmentData.data.equipmentType === 'Harness' &&
+                                                    <div className='w-full flex flex-col text-start gap-y-1'>
+                                                        <p className=' self-start md:self-center'>ثبت سریال هارنس</p>
+                                                        <p className=' text-xs self-start text-start '>با پرکردن این فیلد و سینک کردن سریال هارنس به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                                                        <br/>
+                                                        در صورت مفقودی هارنس ما را از طریق تیکت مطلع سازید.</p>
+                                                    </div>
+                                                }
+
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
                                                 icon={Cube}
@@ -232,6 +274,7 @@ const EditEquipment = () => {
 
                                                 {/* for uploading pictures */}
                                                 <UploadFileInput name={'سریال چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                                <p className=' text-xs mt-[-0.5rem]'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
                                             </>
                                             }
                                             

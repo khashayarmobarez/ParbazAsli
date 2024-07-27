@@ -231,7 +231,7 @@ const AddFlightEquipment = () => {
 
             <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%]'>
 
-              <PageTitle title={'افزودن وسیله پروازی'}  />  
+              <PageTitle title={'افزودن بال'}  />  
 
               {
                 brandsIsLoading && WClassesIsLoading &&
@@ -258,7 +258,7 @@ const AddFlightEquipment = () => {
                         />
                         
                         {/* aircraft model input */}
-                        <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل وسیله پروازی' />
+                        <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل' />
 
                         {/* class input */}
                         <DropdownInput
@@ -296,7 +296,14 @@ const AddFlightEquipment = () => {
 
                       </div>
 
-                      <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>
+                      <div className='w-full flex flex-col text-start gap-y-1'>
+                        <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>
+                        <p className=' text-xs text-right'>
+                          با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                          <br/>
+                          در صورت مفقودی بال ما را از طریق تیکت مطلع سازید.
+                        </p>
+                      </div>
                         <TextInput
                           icon={Cube}
                           className='col-span-1'
@@ -308,7 +315,7 @@ const AddFlightEquipment = () => {
                       {/* for uploading pictures */}
                       <div className='w-full flex flex-col items-start space-y-3'>
                         <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                        <p className=' text-xs'>*فرمت‌های مجاز فایل JPEG,JPG,Png</p>
+                        <p className=' text-xs'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
                       </div>
 
 

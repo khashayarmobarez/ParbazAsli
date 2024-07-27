@@ -21,6 +21,7 @@ import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 import PageTitle from '../../reuseable/PageTitle';
 import TextInput from '../../inputs/textInput';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 
 const PossessionTransitionEquipment = () => {
@@ -28,7 +29,7 @@ const PossessionTransitionEquipment = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     
-    const { data: EquipmentData, loading, error } = useAnEquipment(id)
+    const { data: EquipmentData, isLoading, error } = useAnEquipment(id)
 
     useEffect(() => {
         if (EquipmentData && EquipmentData.data) {
@@ -191,9 +192,9 @@ const PossessionTransitionEquipment = () => {
 
                 <PageTitle title={'انتقال مالکیت وسیله'}/>
 
-                {loading && <p>loading...</p>}
+                {isLoading && <CircularProgressLoader/>}
 
-                {error && <p>error</p>}
+                {error && <p>مشکلی رخ داده است، دوباره تلاش کنید</p>}
 
                 {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Accepted' &&
                     <>

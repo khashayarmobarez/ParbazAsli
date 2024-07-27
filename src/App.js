@@ -351,15 +351,20 @@ function App() {
             </>
           )}
 
-          </Routes>
+          </Routes>                                                                                                                                                                                                                                                                                         <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p>
+          
         
         {/* footer section */}
         {/* based on if the user is signed in or not */}
-        {!token && <FooterLanding /> }
         <Footer userRole = { userRole } />
+        {!token && 
+          <>
+            <FooterLanding />
+            <p className=' text-lg text-center flex justify-center items-center py-2 bg-[var(--diffrential-blue)]'> تمام حقوق این وبسایت متعلق به شرکت بنیان پیشتازان پرباز (دیجی لاگ بوک) می باشد&copy;</p>
+          </>
+        }
 
-        <ToastContainer/>                                                                                                                                                                                                                                                                      <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p>
-        
+        <ToastContainer/>                                                                                                                                                                                                                                                                      
       </div>
 
     </QueryClientProvider>

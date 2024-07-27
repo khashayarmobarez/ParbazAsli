@@ -312,7 +312,7 @@ const AddParachute = () => {
                       />
                       
                       {/* aircraft model input */}
-                      <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
+                      <TextInput placeholder='مدل' value={aircraft} onChange={handleTextInputAircraft}  />
 
                       {/* size input */}
                       <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
@@ -350,7 +350,11 @@ const AddParachute = () => {
                     
                     </div>
 
-                    <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
+                    <div className='w-full flex flex-col text-start gap-y-1'>
+                      <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
+                      <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
+                      در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
+                    </div>
   
                         {/* Serial Number input */}
                         <TextInput
@@ -365,8 +369,9 @@ const AddParachute = () => {
 
                     {/* for uploading pictures */}
                     <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                    <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
 
-                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-2`}>ثبت</button>
 
                 </form>
               </>

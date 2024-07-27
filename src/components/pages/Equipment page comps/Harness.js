@@ -55,7 +55,7 @@ const Harness = (props) => {
 
                             <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
 
-                                <button className={`${ButtonStyles.normalButton} text-[var(--yellow-text)]`} onClick={handleEditEquipment(equipment.id)} >
+                                <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
                                     {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
                                     'ویرایش'
                                     :
