@@ -3,23 +3,15 @@ import React, { useState } from 'react';
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
-// redux
-import { useDispatch, useSelector } from 'react-redux';
-import { selectSettings, setPassword1, setPassword2 } from '../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
-
-// mui 
-import AddIcon from '@mui/icons-material/Add';
-
-
-
 // assets
 import SettIcon from '../assets/icons/Icon-settings.svg'
 import userIcon from '../assets/icons/user-Icon.svg'
 import certificateIcon from '../assets/icons/certificate-Vector.svg'
 import usersIcon from '../assets/icons/users-Icon.svg'
-import phone from '../assets/icons/phone-Icon (Stroke).svg';
-import mail from '../assets/icons/mail-Icon (Stroke).svg';
 import dateIcon from '../assets/icons/calender-Icon.svg';
+
+// queries
+import { useClubStatus } from '../Utilities/Services/clubQueries';
 
 // components
 import PageTitle from '../components/reuseable/PageTitle';
@@ -30,30 +22,15 @@ import EditUserSettings from '../components/pages/Settings/EditUserSettings';
 import CertificateSettings from '../components/pages/Settings/CertificateSettings';
 
 
-const Settings = ({ userRole }) => {
+const Settings = () => {
 
     
     // controlling  items drop down
     const [DropDown, setDropDown] = useState('')
-    
-    // redux
-    const dispatch = useDispatch();
-    const { password1, password2 } = useSelector(selectSettings );
 
+    // clubstatus could be NotAdded, Pending, Accepted
+    const { data: clubStatus , loading: clubStatusLoading } = useClubStatus();
 
-    const handlePassword1Change = (event) => {
-        dispatch(setPassword1(event.target.value));
-    };
-
-    const handlePassword2Change = (event) => {
-        dispatch(setPassword2(event.target.value));
-    };
-
-
-    // Function to check if the passwords match
-    const passwordsMatch = () => {
-        return password1 === password2;
-    };
     
 
     return (
@@ -77,7 +54,7 @@ const Settings = ({ userRole }) => {
                         DropDown === 'dropDown2' &&
                             <EditUserSettings />
                     }
-            </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
+                </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
                                                                                                                                                                                                                                                                                                                          
                 <div className='w-[90%] flex flex-col items-center gap-y-4'>
                     <DropDownLine  title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClick={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
@@ -104,19 +81,22 @@ const Settings = ({ userRole }) => {
                     }
                 </div> */}
 
-                { userRole === 'coach' &&
-                <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
-                    {
-                        DropDown === 'dropDown5' &&
-                        <div className='w-full flex flex-col items-center gap-y-4'>
-                            <TextInput placeholder={'نام باشگاه'} Type={'number'}/>
-                            <TextInput icon={dateIcon} placeholder={'کد ثبت'} Type={'number'}/>
-                            <TextInput  placeholder={'سال تاسیس'} Type={'number'}/>
-                            <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                {   clubStatus &&
+                    clubStatus.data !== 'Accepted' &&
+                        <div className='w-[90%] flex flex-col items-center gap-y-6'>
+                            <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
+                            {   
+                                clubStatus &&
+                                clubStatus.data === 'NotAdded' &&
+                                DropDown === 'dropDown5' &&
+                                <div className='w-full flex flex-col items-center gap-y-4'>
+                                    <TextInput placeholder={'نام باشگاه'} Type={'number'}/>
+                                    <TextInput icon={dateIcon} placeholder={'کد ثبت'} Type={'number'}/>
+                                    <TextInput  placeholder={'سال تاسیس'} Type={'number'}/>
+                                    <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
+                                </div>
+                            }
                         </div>
-                    }
-                </div>
                 }
                     
 

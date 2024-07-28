@@ -328,7 +328,7 @@ function App() {
                 <Route path='*' element={<Navigate to="/profile" replace />} />
 
                 {/* settings */}
-                <Route path='/Settings' element={<Settings userRole={ userRole } />} />
+                <Route path='/Settings' element={<Settings />} />
                 <Route path='/Settings/certificate' element={<RenewCertificate />} />
 
               </>
