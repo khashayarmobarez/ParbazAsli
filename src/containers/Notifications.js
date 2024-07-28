@@ -19,7 +19,7 @@ const Notifications = () => {
 
     const [allNotifications, setAllNotifications] = useState([]);
 
-    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(PageNumber,6);
+    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(PageNumber,7);
 
     useEffect(() => {
         if (notificationsData && notificationsData.data) {
