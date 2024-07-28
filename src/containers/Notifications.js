@@ -15,9 +15,22 @@ import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifT
 
 const Notifications = () => {
 
-    const [pageSize, setPageSize ] = useState(6)
+    const [PageNumber, setPageNumber ] = useState(1)
 
-    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(1,pageSize);
+    const [allNotifications, setAllNotifications] = useState([]);
+
+    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(PageNumber,6);
+
+    useEffect(() => {
+        if (notificationsData && notificationsData.data) {
+            setAllNotifications(prevNotifications => [...prevNotifications, ...notificationsData.data]);
+        }
+    }, [notificationsData]);
+
+    const handleSeeMore = () => {
+        setPageNumber(prevPageNumber => prevPageNumber + 1);
+    };
+
 
     return (
         <div className='w-full flex flex-col items-center'>
@@ -29,7 +42,9 @@ const Notifications = () => {
                 <div className='w-[90%] flex flex-col space-y-6'>
 
                     {   notificationsData &&
-                        notificationsData.data.map((notif, index) => (
+                        notificationsData.data &&
+                        allNotifications &&
+                        allNotifications.map((notif, index) => (
                         <div className='w-full flex justify-center' key={index}>
 
                             {   notif.type === 'StudentFlightForm' &&
@@ -60,7 +75,7 @@ const Notifications = () => {
 
                 {
                     <p 
-                    onClick={() => setPageSize(pageSize + 6)}
+                    onClick={handleSeeMore}
                     className='w-full' style={{color:'var(--yellow-text)'}}>
                         مشاهده بیشتر ...
                     </p>
