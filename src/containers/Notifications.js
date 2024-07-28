@@ -73,7 +73,7 @@ const Notifications = () => {
                     ))}
                 </div>
 
-                {
+                {   notificationsData && notificationsData.totalCount > 7 && notificationsData.currentPage !== notificationsData.totalPagesCount &&
                     <p 
                     onClick={handleSeeMore}
                     className='w-full' style={{color:'var(--yellow-text)'}}>

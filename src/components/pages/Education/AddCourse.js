@@ -47,11 +47,17 @@ const AddCourse = () => {
     const [selectedSyllabi, setSelectedSyllabi] = useState([]);
     const [syllabusIds, setSyllabusIds] = useState([]);
     const [courseName, setCourseName] = useState('')
+
     
     // states for retraining
     const [customCourseTheory, setCustomCourseTheory] = useState('');
     const [customCoursePractical, setCustomCoursePractical] = useState('');
     const [customCourses, setCustomCourses] = useState([]);
+    
+    useEffect(() => {
+        if(customCourses)
+        console.log(customCourses)
+    },[customCourses])
 
     // added students 
     const [studentsList, setStudentsList] = useState([]); 
@@ -98,7 +104,22 @@ const AddCourse = () => {
         setCourseName('')
         setDescription('')
         setCustomCourses([])
+        setStudentsData([])
+        setStudentsList([])
     },[selectedClassType])
+
+
+    useEffect(() => {
+        setLevel('')
+        setFlightCount('')
+        setSelectedSyllabi([])
+        setSyllabusIds([])
+        setCourseName('')
+        setDescription('')
+        setCustomCourses([])
+        setStudentsData([])
+        setStudentsList([])
+    },[organ])
 
 
     useEffect(() => {
@@ -108,6 +129,8 @@ const AddCourse = () => {
         setCourseName('')
         setDescription('')
         setCustomCourses([])
+        setStudentsData([])
+        setStudentsList([])
     },[level])
 
 
@@ -177,10 +200,11 @@ const AddCourse = () => {
     };
     
     const handleAddCustomCourse = (type) => {
+        const lastAddedCourse = customCourses[customCourses.length - 1];
         const newCourse = {
             type,
             description: type === 1 ? customCourseTheory : customCoursePractical,
-            order: customCourses.length + 1
+            order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
         };
         setCustomCourses([...customCourses, newCourse]);
         if (type === 1) {
@@ -189,9 +213,11 @@ const AddCourse = () => {
             setCustomCoursePractical('');
         }
     };
+
     
-    const handleRemoveCustomCourse = (index) => {
-        setCustomCourses(customCourses.filter((_, i) => i !== index));
+    
+    const handleRemoveCustomCourse = (order) => {
+        setCustomCourses(customCourses.filter(course => course.order !== order));
     };
 
     const handlePopUp= (event) => {
@@ -206,7 +232,7 @@ const AddCourse = () => {
                     style: { width: "90%" }
                 });
                 return;
-        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !selectedSyllabi ) ) {
+        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || selectedSyllabi.length < 1 ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -215,7 +241,7 @@ const AddCourse = () => {
                 style: { width: "90%" }
             });
             return;
-        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || !selectedSyllabi || !studentsList ) ) {
+        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || customCourses.length < 1 || studentsList.length < 1 ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -352,7 +378,7 @@ const AddCourse = () => {
     return (
         <div className='flex flex-col items-center mt-14 gap-y-8'>
             
-            <PageTitle title={'افزودن دوره'} navigateTo={'education/theoryClass'} /> 
+            <PageTitle title={'افزودن دوره'} /> 
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
@@ -396,7 +422,6 @@ const AddCourse = () => {
                                         {levelsError && <p>Error fetching levels</p>}
                                         {!levelsError && !levelsLoading &&
                                             <>
-
                                                 <DropdownInput
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
@@ -463,6 +488,17 @@ const AddCourse = () => {
                                     </span>
                                 </div>
 
+                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
+                                    {customCourses
+                                    .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
+                                    .map((course) => (
+                                        <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
+                                            <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <ClearIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                        </li>
+                                    ))}
+                                </ul>
+
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
                                         <TextInput value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
@@ -476,10 +512,12 @@ const AddCourse = () => {
                                 </div>
 
                                 <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
-                                    {customCourses.map((course, index) => (
-                                        <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
+                                    {customCourses
+                                    .filter(course => course.type === 2) // Filter for practical courses (type 2)
+                                    .map((course) => (
+                                        <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
                                             <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <ClearIcon onClick={() => handleRemoveCustomCourse(index)} />
+                                            <ClearIcon onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>
@@ -517,10 +555,13 @@ const AddCourse = () => {
                                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
                                         </span>
                                     </div>
+                                    {studentsData.length < 1 &&
+                                        <p className='text-start text-sm'>بعد از نوشتن کد کاربری هنرجویانتان داخل کادر،برای اضافه کردن آن ها به نوبت، بر روی دکمه مثبت روبرو کلیک کنید </p>
+                                    }
                                 </div>
 
                                 <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
-                                    {studentsData?.map((student) => (
+                                    {studentsData && studentsData?.map((student) => (
                                         <li key={student.id} className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                                             <p className=' text-sm mx-1' >{student.name}</p>
                                             <ClearIcon onClick={() => handleRemoveStudent(student)} />
