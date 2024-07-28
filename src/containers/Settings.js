@@ -20,6 +20,7 @@ import WebColorMode from '../components/pages/Settings/WebColorMode';
 import TextInput from '../components/inputs/textInput';
 import EditUserSettings from '../components/pages/Settings/EditUserSettings';
 import CertificateSettings from '../components/pages/Settings/CertificateSettings';
+import AddClub from '../components/pages/Club/AddClub';
 
 
 const Settings = () => {
@@ -82,19 +83,19 @@ const Settings = () => {
                 </div> */}
 
                 {   clubStatus &&
-                    clubStatus.data !== 'Accepted' &&
-                        <div className='w-[90%] flex flex-col items-center gap-y-6'>
+                    clubStatus.data === 'Accepted' &&
+                        <div className='w-[90%] flex flex-col items-center'>
                             <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
                             {   
-                                clubStatus &&
-                                clubStatus.data === 'NotAdded' &&
                                 DropDown === 'dropDown5' &&
-                                <div className='w-full flex flex-col items-center gap-y-4'>
-                                    <TextInput placeholder={'نام باشگاه'} Type={'number'}/>
-                                    <TextInput icon={dateIcon} placeholder={'کد ثبت'} Type={'number'}/>
-                                    <TextInput  placeholder={'سال تاسیس'} Type={'number'}/>
-                                    <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
-                                </div>
+                                <>
+                                    {
+                                        clubStatus.data !== 'NotAdded' ?
+                                        <AddClub isForSetting={true} />
+                                        :
+                                        ''
+                                    }
+                                </>
                             }
                         </div>
                 }

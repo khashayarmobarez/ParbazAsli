@@ -23,7 +23,7 @@ import TextInput from '../../inputs/textInput';
 import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 
 
-const AddClub = () => {
+const AddClub = ({isForSetting}) => {
     
     const { formatDate } = useDateFormat();
 
@@ -144,7 +144,7 @@ const AddClub = () => {
         event.preventDefault();
 
 
-        if(!clubName || !licenseNumber || !foundationDate || !expirationDate || !uploadedLicense || !uploadedProfilePic) {
+        if(!clubName || !licenseNumber || !foundationDate || !expirationDate || !uploadedLicense) {
             toast('لطفا تمامی فیلد ها را پر کنید', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
@@ -161,7 +161,7 @@ const AddClub = () => {
             formData.append('FoundationDate', foundationDate);
             formData.append('ExpirationDate', expirationDate);
             formData.append('licenseImage', uploadedLicense);
-            formData.append('profileImage', uploadedProfilePic);
+            uploadedProfilePic && formData.append('profileImage', uploadedProfilePic);
 
 
             mutateClub(formData, {
@@ -202,7 +202,10 @@ const AddClub = () => {
 
     return (
         <>
-            <PageTitle title='باشگاه' />
+            {
+                isForSetting !== true &&
+                <PageTitle title='باشگاه' />
+            }
 
             {
              mutateClubLoading &&
@@ -212,7 +215,7 @@ const AddClub = () => {
                 </div>
             }
 
-            <form className='w-[90%] flex flex-col items-center pt-8 gap-y-6'>
+            <form className={`w-[90%] flex flex-col items-center ${isForSetting !== true && 'pt-8'} gap-y-6`}>
 
                 {/* upload picture */}
                 <div onClick={handleUploadClick} className='w-28 h-28 self-center flex justify-center items-center border-dashed border-2 rounded-full'
@@ -299,7 +302,7 @@ const AddClub = () => {
                 <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
                 onClick={handleSubmit}
                 disabled={mutateClubLoading} >
-                    ارسال
+                    ثبت
                 </button>
 
             </form>
