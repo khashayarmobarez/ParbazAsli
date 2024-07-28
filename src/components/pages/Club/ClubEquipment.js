@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 // styles and assets
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -9,15 +9,8 @@ import PageTitle from '../../../components/reuseable/PageTitle';
 
 const ClubEquipment = () => {
 
-    // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState(''); // State to track active link
-    
-    // function to click with useRef on one of the buttons when page renders
-    const ref = useRef(null);
-    useEffect(() => {
-        ref.current.click();
-        }
-    , []);
+    const location = useLocation();
+
 
      // Empty dependency array ensures the effect runs only once after initial render
 
@@ -27,13 +20,13 @@ const ClubEquipment = () => {
 
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6'>
 
-                <PageTitle title={'تجهیزات'} navigateTo={'/profile'} />  
+                <PageTitle title={'تجهیزات'} />  
                 
                 {/* buttons */}
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
-                    <Link ref={ref} to='/club/clubEquipment/flightEquipments' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'flight' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('flight')}>بال</Link> 
-                    <Link to='/club/clubEquipment/parachutes' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'parachute' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('parachute')} >چتر کمکی</Link> 
-                    <Link to='/club/clubEquipment/harnesses' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'harness' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('harness')} >هارنس</Link> 
+                    <Link to='/club/clubEquipment/flightEquipments' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/club/clubEquipment/flightEquipments' ? ButtonStyles.activeYellow : ''}`} >بال</Link> 
+                    <Link to='/club/clubEquipment/parachutes' className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === '/club/clubEquipment/parachutes' ? ButtonStyles.activeYellow : ''}`}  >چتر کمکی</Link> 
+                    <Link to='/club/clubEquipment/harnesses'     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/club/clubEquipment/harnesses' ? ButtonStyles.activeYellow : ''}`}  >هارنس</Link> 
                 </div>
 
 

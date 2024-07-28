@@ -360,7 +360,7 @@ function App() {
         {!token && 
           <>
             <FooterLanding />
-            <p className=' text-lg text-center flex justify-center items-center py-2 bg-[var(--diffrential-blue)]'> تمام حقوق این وبسایت متعلق به شرکت بنیان پیشتازان پرباز (دیجی لاگ بوک) می باشد&copy;</p>
+            <p className=' text-sm md:text-lg text-center flex justify-center items-center py-2 bg-[var(--diffrential-blue)]'> تمام حقوق این وبسایت متعلق به شرکت بنیان پیشتازان پرباز (دیجی لاگ بوک) می باشد&copy;</p>
           </>
         }
 

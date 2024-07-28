@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -16,28 +16,14 @@ import PageTitle from '../../reuseable/PageTitle';
 
 const MyCourseDetails = () => {
 
+    const location = useLocation();
+
     const { id } = useParams();
 
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useAUserCourse(id);
 
     // const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
-    // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState('practical'); // State to track active link
-
-
-    // Ref to the button element
-    const buttonRef = useRef(null);
-
-
-    // Effect to click the button when the page is mounted
-    useEffect(() => {
-        // Check if the button ref exists and it has a current property
-        if (buttonRef.current) {
-        // Programmatically click the button
-        buttonRef.current.click();
-        }
-    }, []);
 
     // const handleTriggerCourseStatus = (event ,status ,id) => {
 
@@ -164,9 +150,9 @@ const MyCourseDetails = () => {
 
                     
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
-                            <Link ref={buttonRef} to={`/MyCourses/courseDetails/${id}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'practical' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('practical')}>عملی</Link> 
-                            <Link to={`/MyCourses/courseDetails/${id}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'theory' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('theory')} >تئوری</Link> 
-                            <Link to={`/MyCourses/courseDetails/${id}/mySyllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabi' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabi')} >وضعیت من</Link>
+                            <Link to={`/MyCourses/courseDetails/${id}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/MyCourses/courseDetails/${id}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
+                            <Link to={`/MyCourses/courseDetails/${id}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/MyCourses/courseDetails/${id}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
+                            <Link to={`/MyCourses/courseDetails/${id}/mySyllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/MyCourses/courseDetails/${id}/mySyllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
                         </div>
 
                         <div className='w-[90%]'>

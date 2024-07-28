@@ -10,6 +10,8 @@ import { selectSettings, setPassword1, setPassword2 } from '../Utilities/ReduxTo
 // mui 
 import AddIcon from '@mui/icons-material/Add';
 
+
+
 // assets
 import SettIcon from '../assets/icons/Icon-settings.svg'
 import userIcon from '../assets/icons/user-Icon.svg'
@@ -23,21 +25,20 @@ import dateIcon from '../assets/icons/calender-Icon.svg';
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import WebColorMode from '../components/pages/Settings/WebColorMode';
-import FixedInput from '../components/inputs/FixedInput';
-import PasswordInput from '../components/inputs/PasswordInput';
-import InputWithButton from '../components/inputs/InputWithButton';
-import Certificate from '../components/pages/Settings/Certificate';
 import TextInput from '../components/inputs/textInput';
+import EditUserSettings from '../components/pages/Settings/EditUserSettings';
 
 
 const Settings = ({ userRole }) => {
 
+    
     // controlling  items drop down
     const [DropDown, setDropDown] = useState('')
-
+    
     // redux
     const dispatch = useDispatch();
     const { password1, password2 } = useSelector(selectSettings );
+
 
     const handlePassword1Change = (event) => {
         dispatch(setPassword1(event.target.value));
@@ -73,21 +74,7 @@ const Settings = ({ userRole }) => {
                     <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClick={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
                     {
                         DropDown === 'dropDown2' &&
-                        <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
-                            <FixedInput test={'محمود'} />
-                            <FixedInput test={'شیرازی‌نیا'} />
-                            <FixedInput test={'کد ملی'} /> 
-                            <InputWithButton Type={'number'} icon={phone} buttonText={'دریافت کد'} placeH={'24** *** 0912'} />
-                            <PasswordInput placeHolder={'رمز عبور جدید را وارد کنید'} value={password1} onChange={handlePassword1Change}/>
-                            <PasswordInput placeHolder={'رمز عبور جدید را دوباره وارد کنید'} value={password2} onChange={handlePassword2Change}/>
-                            {!passwordsMatch() &&
-                                <p>Passwords do not match!</p>
-                            }
-                            <InputWithButton Type={'text'} icon={mail} buttonText={'تایید'} placeH={'example@gmail.com'} />
-                            <div className='md:col-span-2 md:flex md:justify-center'>
-                                <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
-                            </div>
-                        </div>
+                            <EditUserSettings />
                     }
             </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
                                                                                                                                                                                                                                                                                                                          

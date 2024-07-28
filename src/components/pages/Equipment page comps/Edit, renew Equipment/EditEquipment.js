@@ -98,9 +98,9 @@ const EditEquipment = () => {
         const formData = new FormData();
 
         const formattedPackedDate = formatDate(packageDate) + " 00:00";
-        if(equipmentType === "Parachute" && packageDate && lastPackerId) {
+        if(equipmentType === "Parachute" && packageDate) {
             formData.append('lastPackingDateTime', formattedPackedDate);
-            formData.append('lastPackerId', lastPackerId);
+            lastPackerId && formData.append('lastPackerId', lastPackerId);
         }
         if(equipmentSerial && selectedFile) {
             formData.append('serialNumber', equipmentSerial);
@@ -282,7 +282,7 @@ const EditEquipment = () => {
 
                                     <div className='flex flex-col items-start gap-y-5'>
 
-                                            <h3 className=' text-[#ED553B] text-xl'>ویرایش اطلاعات</h3>
+                                            <h3 className=' text-[#ED553B] text-xl'>ویرایش اطلاعات{equipmentType === "Parachute" && '(تمدید چتر)'}</h3>
 
                                             {EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') &&
                                             <>
@@ -345,7 +345,7 @@ const EditEquipment = () => {
                                                     className='col-span-1'
                                                     value={lastPackerId}
                                                     onChange={handleTextInputLastPackerId}
-                                                    placeholder='شناسه آخرین بسته‌بندی کننده'
+                                                    placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
                                                     />
                                                     {userByIdData &&
                                                     <div className='flex gap-x-1 text-[#A5E65E]'>

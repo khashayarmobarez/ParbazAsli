@@ -38,7 +38,7 @@ const Club = () => {
                         <ClubData />
 
                         <div className='w-full flex justify-around'>
-                            <Link to='/club/clubEquipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                            <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                                 <img src={pencil} alt='icon' className='w-[56%]'/>
                                 <p>تجهیزات</p>
                             </Link>

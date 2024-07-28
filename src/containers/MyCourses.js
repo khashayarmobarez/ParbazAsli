@@ -58,7 +58,7 @@ const MyCourses = () => {
     }
 
     const handleCourseDetails = (id) => () => {
-        navigate(`/MyCourses/courseDetails/${id}`);
+        navigate(`/MyCourses/courseDetails/${id}/practical`);
     };
 
 

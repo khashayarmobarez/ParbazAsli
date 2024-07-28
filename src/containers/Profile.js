@@ -79,7 +79,7 @@ const Profile = ({userRole}) => {
                     <div className={`flex justify-around w-full md:absolute md:left-0 md:top-28 md:flex-col md:w-28 md:h-[24rem]
                         ${!data.data.hasCoach && 'px-12'}`}>
 
-                        <Link to='/equipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
+                        <Link to='/equipment/flightEquipment' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-[#A5E65E] text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>تجهیزات</p>
                         </Link>

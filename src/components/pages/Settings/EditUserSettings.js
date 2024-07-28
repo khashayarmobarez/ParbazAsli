@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 // styles
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
-
-// redux
-import { useDispatch, useSelector } from 'react-redux';
-import { selectSettings, setPassword1, setPassword2 } from '../../../../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
-import { selectAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
-
-// queries 
-import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange, useUserData } from '../../../../Utilities/Services/userQueries';
-
-// mui
-import { Avatar } from '@mui/material';
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import phoneIcon from '../../../../assets/icons/phone-Icon (Stroke).svg';
-import mail from '../../../../assets/icons/mail-Icon (Stroke).svg';
-import YellowPlus from '../../../../assets/icons/yellowPlus.svg'
+import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg';
+import mail from '../../../assets/icons/mail-Icon (Stroke).svg';
+
+// redux
+import { useSelector } from 'react-redux';
+import { selectAuthSettings } from '../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
+
+// queries
+import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange, useUserData } from '../../../Utilities/Services/userQueries';
 
 // components
-import FixedInput from '../../../inputs/FixedInput';
-import InputWithButton from '../../../inputs/InputWithButton';
-import ChangePicPopUp from './ChangePicPopUp';
-import PhoneVerificationCode from '../../authentication/popUps/PhoneVerificationCode';
-import ChangePasswordPopUp from './ChangePasswordPopUp';
+import FixedInput from '../../inputs/FixedInput';
+import InputWithButton from '../../inputs/InputWithButton';
+import ChangePicPopUp from '../Profile/EditProfile/ChangePicPopUp';
+import PhoneVerificationCode from '../authentication/popUps/PhoneVerificationCode';
+import ChangePasswordPopUp from '../Profile/EditProfile/ChangePasswordPopUp';
 
-const ChangeProfile = () => {
+const EditUserSettings = () => {
 
     const authSettings = useSelector(selectAuthSettings);
     const {
@@ -58,7 +53,7 @@ const ChangeProfile = () => {
     const [email, setEmail] = useState('')
     const [codeRemainingTimeEmail, setCodeRemainingTimeEmail] = useState(null)
     const [emailCode, setEmailCode] = useState('')
-    
+
     // queries
     const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
     const { mutate: mutateCodeRequestToChange} = useSendVerificattionCodeToChange();
@@ -83,57 +78,6 @@ const ChangeProfile = () => {
         setEmail(e.target.value)
     }
 
-
-    const changePhoneNumberPopUp = async(e) => {
-
-        if (!phoneNumber) { 
-            toast('شماره تلفن خود را وارد کنید ', {
-                type: 'error', 
-                position: 'top-right', 
-                autoClose: 5000,
-                theme: 'dark',
-                style: { width: "90%" }
-            });
-            return;
-        }
-
-
-        setLoadingStatus(true)
-        
-        const requestBody = {
-            username: phoneNumber,
-        };
-
-        console.log(requestBody)
-
-        mutateCodeRequestToChange(requestBody,{
-            onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('confirmPhone')
-                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds)
-                toast('کد تایید برای شما ارسال شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-            },
-            onError: (err) => {
-                setLoadingStatus(false)
-                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-            }
-        })
-    }
-
-
-    
     const handleFinalPhoneSubmission = () => {
         
         if(phoneNumberCode.length !== phoneNumberCodeLength) {
@@ -227,6 +171,54 @@ const ChangeProfile = () => {
         })
     }
 
+    const changePhoneNumberPopUp = async(e) => {
+
+        if (!phoneNumber) { 
+            toast('شماره تلفن خود را وارد کنید ', {
+                type: 'error', 
+                position: 'top-right', 
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
+
+
+        setLoadingStatus(true)
+        
+        const requestBody = {
+            username: phoneNumber,
+        };
+
+        console.log(requestBody)
+
+        mutateCodeRequestToChange(requestBody,{
+            onSuccess: (data) => {
+                setLoadingStatus(false)
+                setShowPopupType('confirmPhone')
+                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds)
+                toast('کد تایید برای شما ارسال شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            },
+            onError: (err) => {
+                setLoadingStatus(false)
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error', 
+                    position: 'top-right', 
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+            }
+        })
+    }
+
 
 
     const handleFinalEmailSubmission = () => {
@@ -275,52 +267,30 @@ const ChangeProfile = () => {
         })
     }
 
+    if(userData && userData.data) return (
+        <div className='w-full flex flex-col'>
+            <div className='flex flex-col w-full space-y-4 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
+                <FixedInput textData={userData.data.firstName} />
+                <FixedInput textData={userData.data.lastName} />
+                <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
 
-    
+                <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
+                onClick={() => setShowPopupType('changePassword')}>
+                    تغییر رمز عبور
+                </button>
+            </div>
+            <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
 
-    return (
-        <div className='w-[90%] flex flex-col items-center gap-y-4'>
+            <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmPhone'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimePhone} code={phoneNumberCode} setCode={setPhoneNumberCode}
+            handleFinalSubmit={handleFinalPhoneSubmission} codeLength={phoneNumberCodeLength} />
 
-            {
-                userData && 
-                    <>
-                        {/* should an onClick be added to this div for changing profile picture */}
-                        <div onClick={() => setShowPopupType('changePicture')} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'98px', width:'98px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px]  rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
-                            <img className=' w-7 absolute mt-20 ml-16 ' src={YellowPlus} alt='icon' />
-                        </div>
-                        {
-                            userData && userData.data &&
-                            <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
-                                <FixedInput textData={userData.data.firstName} />
-                                <FixedInput textData={userData.data.lastName} />
-                                <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
-                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
+            <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
+            handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} />
 
-                                <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
-                                onClick={() => setShowPopupType('changePassword')}>
-                                    تغییر رمز عبور
-                                </button>
-
-                            </div>
-                        }
-                        
-
-                        <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
-
-                        <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmPhone'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimePhone} code={phoneNumberCode} setCode={setPhoneNumberCode}
-                        handleFinalSubmit={handleFinalPhoneSubmission} codeLength={phoneNumberCodeLength} />
-
-                        <PhoneVerificationCode isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
-                        handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} />
-
-                        <ChangePasswordPopUp showPopUp={showPopupType === 'changePassword'} setShowPopUp={setShowPopupType} />
-
-                    </>
-            }
+            <ChangePasswordPopUp showPopUp={showPopupType === 'changePassword'} setShowPopUp={setShowPopupType} />
         </div>
     );
 };
 
-export default ChangeProfile;
+export default EditUserSettings;
