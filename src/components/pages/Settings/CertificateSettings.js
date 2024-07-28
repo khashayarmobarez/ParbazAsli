@@ -12,6 +12,7 @@ import { useAllUserCertificates } from '../../../Utilities/Services/userQueries'
 
 // components
 import Certificate from './Certificate';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 const CertificateSettings = () => {
 
@@ -27,6 +28,11 @@ const CertificateSettings = () => {
                         <Certificate certificateData={certificate} />
 
                     ))
+                }
+
+                {
+                    isLoading &&
+                    <CircularProgressLoader />
                 }
 
                 {   
