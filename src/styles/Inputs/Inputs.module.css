@@ -8,7 +8,7 @@
 /* for add new vehicle component */
 .inputDropdown {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 1px solid var(--input-border);
+    border: 0.5px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 2.2rem 0 0;
@@ -28,7 +28,7 @@
 /* for add new vehicle component  */
 .inputText2 {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 1px solid var(--input-border);
+    border: 0.5px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     border-radius: 0.75rem;
@@ -39,13 +39,13 @@
 }
 
 .inputFilledBorder {
-    border: 1px solid #7d906b;
+    border: 0.5px solid #7d906b;
 }
 
 /* fixed Input */
 .fixedInput {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 1px solid var(--input-border);
+    border: 0.5px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 2rem 0 0;
@@ -59,7 +59,7 @@
 /* password Input */
 .passwordInput {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 1px solid var(--input-border);
+    border: 0.5px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 2rem 0 0;
@@ -107,7 +107,7 @@
 /* date input */
 .dateContainer {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 1px solid var(--input-border);
+    border: 0.5px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     border-radius: 0.75rem;
     position: relative;
@@ -135,5 +135,5 @@
 
 .searchedBaseOnButton {
     background: linear-gradient(105.63deg, #181A2D 28.16%, rgba(137, 137, 142, 0) 424.09%);
-    box-shadow: 2px 2px 7.800000190734863px 2px rgba(211, 203, 203, 0.25) inset;
+    box-shadow: 2px 2px 7.8px 2px rgba(211, 203, 203, 0.25) inset;
 }

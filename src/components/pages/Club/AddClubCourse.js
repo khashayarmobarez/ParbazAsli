@@ -19,7 +19,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
 
 // queries
-import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetClubCoaches } from '../../../Utilities/Services/clubQueries';
+import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetActiveClubCoaches, useGetClubCoaches } from '../../../Utilities/Services/clubQueries';
 import { useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
 import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
 
@@ -43,6 +43,7 @@ const AddClubCourse = () => {
     const [Coach, setCoach] = useState('')
     
     // states for regular courses
+    const [coach, setCoach] = useState('')
     const [organ, setOrgan] = useState('')
     const [level, setLevel] = useState('')
     
@@ -69,6 +70,7 @@ const AddClubCourse = () => {
     const [showPopup, setShowPopup] = useState(false)
     
     // queries
+    const { data: coachNamesData, isLoading: coachNamesLoading, error: coachNamesError } = useGetActiveClubCoaches();
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(1,1000);
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ.id);
