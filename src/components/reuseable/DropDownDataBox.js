@@ -33,7 +33,6 @@ const DropDownDataStudent = (props) => {
             </div>
 
             <div className='flex gap-x-3 justify-center'>
-                {percent !== null && <p className={`${isExpanded && 'mt-2'} text-xs`}>{percent}%</p>}
                 <span className={`transition-transform duration-300 transform ${isExpanded ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
                     <ArrowBackIosIcon />
                 </span>
