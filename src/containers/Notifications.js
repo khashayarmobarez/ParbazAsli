@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // queries
 import { useNotifications } from '../Utilities/Services/notificationAndSurveyQueries';
@@ -15,6 +16,8 @@ import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifT
 
 const Notifications = () => {
 
+    const location = useLocation();
+
     const [PageNumber, setPageNumber ] = useState(1)
 
     const [allNotifications, setAllNotifications] = useState([]);
@@ -26,6 +29,11 @@ const Notifications = () => {
             setAllNotifications(prevNotifications => [...prevNotifications, ...notificationsData.data]);
         }
     }, [notificationsData]);
+
+    // reset all notification when user changes location
+    useEffect(() => {
+        setAllNotifications([]);
+    }, [location]);
 
     const handleSeeMore = () => {
         setPageNumber(prevPageNumber => prevPageNumber + 1);

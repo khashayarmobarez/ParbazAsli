@@ -27,18 +27,18 @@ const Education = () => {
     const navigate = useNavigate()
 
     // courseData
-    const [courseType, setCourseType] = useState('')
-    const [organizationId, setOrganizationId] = useState('')
+    const [courseType, setCourseType] = useState('Regular')
+    const [organizationId, setOrganizationId] = useState('1')
     const [pageNumber, setPageNumber] = useState(1)
     
-    const [DropDown, setDropDown] = useState('')
+    const [DropDown, setDropDown] = useState('dropDown0')
 
     // queries
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
-    
+    // clicks on the f
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
@@ -74,7 +74,6 @@ const Education = () => {
         triggerCourseStatus(triggerStatusForm,
             {
                 onSuccess: () => {
-                    setDropDown('')
                     if(status === 'active') {
                         toast('دوره تایید شد', {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
