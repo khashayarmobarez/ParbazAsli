@@ -22,13 +22,24 @@ const NotifAcceptClub = ({notif}) => {
         triggerClubStatus(triggerStatusForm,{
             onSuccess: (data) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
-                toast('باشگاه تایید شد', {
-                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 3000,
-                    theme: 'dark',
-                    style: { width: "350px" }
-                });
+                if(status === 'Active') {
+                    toast('باشگاه تایید شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                } else {
+                    toast('باشگاه رد شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                }
+                window.location.reload();
             },
         });
     }

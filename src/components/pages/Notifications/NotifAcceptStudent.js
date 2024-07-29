@@ -21,13 +21,24 @@ const NotifAcceptStudent = ({notif}) => {
 
         triggerStudentStatus(triggerStatusForm,{
             onSuccess: (data) => {
-                toast('هنرجو تایید شد', {
-                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', 
-                    autoClose: 3000,
-                    theme: 'dark',
-                    style: { width: "350px" }
-                });
+                if(status === 'active') {
+                    toast('هنرجو تایید شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', 
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                } else {
+                    toast('هنرجو رد شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right',
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                }
+                window.location.reload();
             },
         });
     }
