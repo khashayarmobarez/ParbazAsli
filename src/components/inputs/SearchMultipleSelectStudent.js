@@ -51,7 +51,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
   const handleIconClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
-      setIsOpen(true);
+      setIsOpen(!isOpen);
     }
   };
 
@@ -85,7 +85,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
             <div className='flex flex-col w-full items-center justify-center '>
               <li
                 key={option.id}
-                className="px-4 py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
                 {option.name} - {option.status}

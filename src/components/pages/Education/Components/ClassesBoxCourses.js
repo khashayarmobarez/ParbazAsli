@@ -76,14 +76,14 @@ const ClassesBoxCourses = (props) => {
                             <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>نام دوره</p>
+                                    <p className=' text-sm'>نام</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.name}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>طول دوره</p>
+                                    <p className=' text-sm'>مدت زمان</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.classDurationInMinutes} دقیقه</p>
                                     </div>

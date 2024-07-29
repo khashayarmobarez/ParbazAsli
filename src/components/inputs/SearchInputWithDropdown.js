@@ -49,7 +49,8 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
   const handleIconClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
-      setIsOpen(true);
+      setIsOpen(!isOpen);
+      
     }
   };
 
@@ -80,7 +81,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
             <div className='flex flex-col w-full items-center justify-center '>
               <li
                 key={option.id}
-                className="px-4 py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
                 {option.name}

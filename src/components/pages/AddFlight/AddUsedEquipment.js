@@ -53,19 +53,40 @@ const AddUsedEquipment = () => {
 
     const handleSelectSetWing = (selectedOption) => {
         dispatch(updateWing(selectedOption));
-      };
+    };
 
     const handleSelectSetHarness = (selectedOption) => {
+        if(selectedOption === passengerHarness) {
+            toast('هارنس شما نمی تواند با هارنس مسافر یکی باشد', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+                });
+            return;
+        }
         dispatch(updateHarness(selectedOption));
-      };
+    };
 
     const handleSelectSetPassengerHarness = (selectedOption) => {
+        if(selectedOption === harness) {
+            toast('هارنس مسافر نمی تواند با هارنس شما یکی باشد', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+                });
+            return;
+        }
+
         dispatch(updatePassengerHarness(selectedOption));
-      };
+    };
 
     const handleSelectSetParachute = (selectedOption) => {
         dispatch(updateParachute(selectedOption));
-      };
+    };
 
 
 
@@ -174,7 +195,12 @@ const AddUsedEquipment = () => {
                     {
                         userWingsData && userHarnessData && userParachuteData && 
                         <>
-                            <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+
+                            {   flightType === 'Tandem' ?
+                                <DropdownInputForEquipment name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                :
+                                <DropdownInputForEquipment name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                            }
 
                             <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
 

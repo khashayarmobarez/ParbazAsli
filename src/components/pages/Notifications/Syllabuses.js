@@ -76,33 +76,42 @@ const Syllabuses = () => {
                 syllabi: updatedSyllabi,
                 description: description
             };
-    
+            if(updatedSyllabi.length > 0) {
             // Submit the data
-            mutateAccept(submitData, {
-                onSuccess: () => {
-                    toast('پرواز با موفقیت تایید شد', {
-                        type: 'success',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: 'dark',
-                        style: { width: '90%' }
-                    });
-                    navigate('/notifications');
-                },
-                onError: (error) => {
-                    let errorMessage = 'خطایی رخ داده است';
-                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                mutateAccept(submitData, {
+                    onSuccess: () => {
+                        toast('پرواز با موفقیت تایید شد', {
+                            type: 'success',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: '90%' }
+                        });
+                        navigate('/notifications');
+                    },
+                    onError: (error) => {
+                        let errorMessage = 'خطایی رخ داده است';
+                        if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                            errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                        }
+                        toast(errorMessage, {
+                            type: 'error',
+                            position: 'top-right',
+                            autoClose: 3000,
+                            theme: 'dark',
+                            style: { width: '350px' },
+                        });
                     }
-                    toast(errorMessage, {
-                        type: 'error',
-                        position: 'top-right',
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: '350px' },
-                    });
-                }
-            });
+                });
+            } else {
+                toast('لطفا حداقل یک سیلابس را تکمیل کنید', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: '350px' },
+                });
+            }
         }
     };
     

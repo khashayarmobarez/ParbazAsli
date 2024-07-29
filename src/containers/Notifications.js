@@ -22,18 +22,19 @@ const Notifications = () => {
 
     const [allNotifications, setAllNotifications] = useState([]);
 
-    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError } = useNotifications(PageNumber,7);
+    const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError, refetch: refetchNotifications } = useNotifications(PageNumber,7);
+
+    useEffect(() => {
+        setAllNotifications([]);
+    }, [location]);
 
     useEffect(() => {
         if (notificationsData && notificationsData.data) {
             setAllNotifications(prevNotifications => [...prevNotifications, ...notificationsData.data]);
         }
-    }, [notificationsData]);
+    }, [notificationsData, location]);
 
     // reset all notification when user changes location
-    useEffect(() => {
-        setAllNotifications([]);
-    }, [location]);
 
     const handleSeeMore = () => {
         setPageNumber(prevPageNumber => prevPageNumber + 1);
