@@ -205,7 +205,7 @@ const AddClass = () => {
         <div className='w-full pt-14 flex justify-center '>
             <div className='w-[90%] flex flex-col items-center min-h-[100vh] gap-y-4'>
 
-                <PageTitle title={'افزودن کلاس'} navigateTo={'/profile'} />
+                <PageTitle title={'افزودن کلاس'} />
 
                 {
                     syllabiDataTheory && courseStudents &&

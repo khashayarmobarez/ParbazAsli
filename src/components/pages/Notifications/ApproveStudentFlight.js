@@ -8,6 +8,12 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // queries
 import { useDeclineUserFlight, useUserCourseFlight } from '../../../Utilities/Services/coursesQueries';
 
+// mui
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+// assets
+import arrow from '../../../assets/icons/Right Arrow Button.svg'
+
 // comps
 import PageTitle from '../../reuseable/PageTitle';
 import { toast } from 'react-toastify';
@@ -247,7 +253,7 @@ const ApproveStudentFlight = () => {
                             
                             <div className='w-full flex justify-around'>
 
-                                <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>تایید</button>
+                                <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 flex`}><ArrowForwardIosIcon sx={{position:'absolute', marginLeft:'7.5rem'}} />تایید</button>
 
                                 <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-36 `}>رد پرواز</button>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 // styles and assets
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -10,6 +10,7 @@ import PageTitle from '../components/reuseable/PageTitle';
 const Equipment = () => {
 
     const location = useLocation();
+
 
     return (
         <div className=' flex flex-col mt-14 items-center '>

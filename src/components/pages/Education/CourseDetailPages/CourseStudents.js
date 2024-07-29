@@ -118,6 +118,11 @@ const CourseStudents = () => {
             }
 
             {
+                studentsData && studentsData.totalCount < 1 &&
+                <p className='w-full text-center pb-6'>هنرجویی به دوره اضافه نشده</p>
+            }
+
+            {
                 studentsData && 
                 <div className='w-full flex flex-col items-center gap-y-6'>
                     {studentsData.data?.map((student) => (
@@ -131,9 +136,10 @@ const CourseStudents = () => {
                                 <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
                                 sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                             </Box> */}
-                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <div/>
+                            {/* <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                                 <img src={clipboard} alt='icon' />
-                            </button>
+                            </button> */}
                         </div>
                     ))}
                     {
@@ -152,7 +158,7 @@ const CourseStudents = () => {
                             <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                         }
                         {
-                            aCourseData && aCourseData.data.clubName !== '' &&
+                            aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
@@ -196,8 +202,8 @@ const CourseStudents = () => {
                                             </button>
                                         </div>
                                     ))}
-                                    {
-                                        studentsData.totalPagesCount < pageNumber &&
+                                    {   studentsHistoryData &&
+                                        studentsData.totalPagesCount < studentsData.currentPage && 
                                         <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
                                     }
                                 </div>

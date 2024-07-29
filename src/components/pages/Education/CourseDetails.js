@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -18,29 +18,13 @@ import { toast } from 'react-toastify';
 const CourseDetails = () => {
     
     const navigate = useNavigate()
+    const location = useLocation()
 
     const { id } = useParams();
 
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id);
 
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
-
-    // to set which button is active and style it
-    const [activeLink, setActiveLink] = useState('students'); // State to track active link
-
-
-    // Ref to the button element
-    const buttonRef = useRef(null);
-
-
-    // Effect to click the button when the page is mounted
-    useEffect(() => {
-        // Check if the button ref exists and it has a current property
-        if (buttonRef.current) {
-        // Programmatically click the button
-        buttonRef.current.click();
-        }
-    }, []);
 
     const handleTriggerCourseStatus = (event ,status ,id) => {
 
@@ -53,14 +37,36 @@ const CourseDetails = () => {
 
         triggerCourseStatus(triggerStatusForm, {
             onSuccess: () => {
-                toast('دوره شما با موفقیت حذف شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-                navigate('/education');
+                if(status === 'Active') {
+                    toast('دوره شما با موفقیت فعال شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    refetchCourseData()
+                } else if(status === 'Disable') {
+                    toast('دوره با موفقیت غیرفعال شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    refetchCourseData()
+
+                } else if(status === 'Rejected') {
+                    toast('دوره با موفقیت رد شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    refetchCourseData()
+                    navigate('/education')
+                }
             },
         });
     }
@@ -71,7 +77,7 @@ const CourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'آموزش'} navigateTo={'/education'} /> 
+                <PageTitle title={'آموزش'} /> 
 
                 {
                     courseDataLoading &&
@@ -178,19 +184,55 @@ const CourseDetails = () => {
 
                     
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
-                            <Link ref={buttonRef} to={`/education/courseDetails/${id}/students`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'students' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('students')}>هنرجویان</Link> 
-                            <Link to={`/education/courseDetails/${id}/classes`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'classes' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('classes')} >کلاس تئوری</Link> 
-                            <Link to={`/education/courseDetails/${id}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'syllabi' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('syllabi')} >سیلابس</Link>
+                            <Link 
+                                to={`/education/courseDetails/${id}/students`} 
+                                className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/${id}/students` ? ButtonStyles.activeYellow : ''} `} >
+                                هنرجویان
+                            </Link> 
+                            <Link 
+                                to={aCourseData.data.status === 'Pending' ? '#' : `/education/courseDetails/${id}/classes`} 
+                                className={`${ButtonStyles.ThreeStickedButtonButton} ${aCourseData.data.status === 'Pending' && 'opacity-55'} ${location.pathname === `/education/courseDetails/${id}/classes` ? ButtonStyles.activeYellow : ''}`} >
+                                کلاس تئوری
+                            </Link> 
+                            <Link 
+                                to={`/education/courseDetails/${id}/syllabi`}  
+                                className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${location.pathname === `/education/courseDetails/${id}/syllabi` ? ButtonStyles.activeYellow : ''} `} >
+                                سیلابس
+                            </Link>
                         </div>
 
                         <div className='w-[90%]'>
                             <Outlet />
                         </div>
-
-                        <button className={`${ButtonStyles.normalButton} fixed bottom-[3.75rem] w-[90%] text-base`} 
-                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id)} >
-                            <p>آرشیو دوره</p>
-                        </button>
+                        
+                        {
+                            aCourseData.data.status === 'Active' &&
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-[25%] text-base`} 
+                            onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id)} >
+                                <p>غیر فعال سازی</p>
+                            </button>
+                        }
+                        
+                        {
+                            aCourseData.data.status === 'Disable' &&
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-[25%] text-base`} 
+                                onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
+                                <p>فعال سازی</p>
+                            </button>
+                        }
+                        {
+                            aCourseData.data.status === 'Pending' &&
+                                <div className='w-[90%] md:w-[25%] fixed bottom-16 flex justify-between'>
+                                    <button className={`${ButtonStyles.addButton} w-[45%] text-base`} 
+                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
+                                        <p>تایید</p>
+                                    </button>
+                                    <button className={`${ButtonStyles.normalButton} w-[45%] text-base`} 
+                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Rejected', id)} >
+                                        <p>رد</p>
+                                    </button>
+                                </div>
+                        }
                     </>
                 }
 

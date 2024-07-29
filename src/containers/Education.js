@@ -49,7 +49,7 @@ const Education = () => {
     }
 
     const handleCourseDetails = (id) => () => {
-        navigate(`/education/courseDetails/${id}`);
+        navigate(`/education/courseDetails/${id}/students`);
     };
 
 

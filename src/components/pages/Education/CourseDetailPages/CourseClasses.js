@@ -25,7 +25,11 @@ const CourseClasses = () => {
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
 
-            {classesData && 
+            {classesData && classesData.data.classesCount === 0 &&
+                <p className='w-full text-center'>کلاسی اضافه نشده است</p>
+            }
+            
+            {classesData && classesData.data.classesCount > 0 &&
             <>
                 <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-10'>
                     
@@ -62,7 +66,7 @@ const CourseClasses = () => {
             
 
             <button onClick={() => navigate(`/education/${id}/AddClass`)} 
-            className={`${ButtonStyles.addButton} fixed bottom-28 w-[90%]`} >
+            className={`${ButtonStyles.addButton} fixed bottom-[7.2rem] w-[90%]`} >
                 <AddIcon />
                 <p>افزودن کلاس جدید</p>
             </button>
