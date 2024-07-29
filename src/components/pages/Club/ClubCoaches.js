@@ -102,7 +102,7 @@ const ClubCoaches = () => {
                 <PageTitle  title='مربیان' />
 
                 <DropDownLine  
-                    onClick={() => handleDropDownClick('activeCoaches')}
+                    onClickActivation={() => handleDropDownClick('activeCoaches')}
                     title={'مربیان'} 
                     dropDown={'activeCoaches'} 
                     isActive={DropDown === `activeCoaches`}  
@@ -129,7 +129,7 @@ const ClubCoaches = () => {
                 }
 
                 <DropDownLine  
-                    onClick={() => handleDropDownClick('PreviousCoaches')}
+                    onClickActivation={() => handleDropDownClick('PreviousCoaches')}
                     title={'مربیان سابق'} 
                     dropDown={'PreviousCoaches'} 
                     isActive={DropDown === `PreviousCoaches`}  

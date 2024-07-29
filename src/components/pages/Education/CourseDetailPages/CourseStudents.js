@@ -172,7 +172,7 @@ const CourseStudents = () => {
                         studentsHistoryData && studentsHistoryData && studentsHistoryData.data.length > 0 &&
                         <div  className='w-full flex flex-col items-center gap-y-4'>
                             <DropDownLine  
-                                onClick={() => setDropDownHistory(!DropDownHistory)}
+                                onClickActivation={() => setDropDownHistory(!DropDownHistory)}
                                 title={'هنر جویان سابق'} 
                                 dropDown={DropDownHistory} 
                                 isActive={DropDownHistory === true}  

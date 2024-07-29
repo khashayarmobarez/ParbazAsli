@@ -3,9 +3,9 @@ import React from 'react';
 // mui
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const DropDownLine = ({title, isActive, onClick, icon, textWidth}) => {
+const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivation}) => {
     return (
-        <div className='flex justify-between w-full'>
+        <div className='flex justify-between w-full' onClick={onClickActivation}>
             
             <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 

@@ -42,7 +42,7 @@ const Settings = () => {
                 <PageTitle title={'تنظیمات'} navigateTo={'profile'} paddingRight={'40%'} /> 
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClick={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
+                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClickActivation={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
                     {
                         DropDown === 'dropDown1' &&
                         <WebColorMode />
@@ -50,7 +50,7 @@ const Settings = () => {
                 </div>
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClick={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
+                    <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClickActivation={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
                     {
                         DropDown === 'dropDown2' &&
                             <EditUserSettings />
@@ -58,7 +58,7 @@ const Settings = () => {
                 </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
                                                                                                                                                                                                                                                                                                                          
                 <div className='w-[90%] flex flex-col items-center gap-y-4'>
-                    <DropDownLine  title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClick={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
+                    <DropDownLine  title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClickActivation={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
                     {
                         DropDown === 'dropDown3' &&
                         <div className='w-full flex flex-col items-center gap-y-6'>
@@ -68,7 +68,7 @@ const Settings = () => {
                 </div>
 
                 {/* <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='تغییر مربی' icon={moneyIcon} dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClick={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
+                    <DropDownLine  title='تغییر مربی' icon={moneyIcon} dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClickActivation={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
                     {
                         DropDown === 'dropDown4' &&
                         <div className='w-full flex flex-col items-center px-3 text-sm gap-y-6' style={{color:'var(--soft-white)'}}>
@@ -85,7 +85,7 @@ const Settings = () => {
                 {   clubStatus &&
                     clubStatus.data === 'Accepted' &&
                         <div className='w-[90%] flex flex-col items-center'>
-                            <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClick={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
+                            <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClickActivation={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
                             {   
                                 DropDown === 'dropDown5' &&
                                 <>

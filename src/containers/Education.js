@@ -102,7 +102,7 @@ const Education = () => {
                     courseDividerData.data.map((course, index) => (
                         <div key={index} className='w-full flex flex-col items-center gap-y-4'>
                             <DropDownLine  
-                                onClick={() => handleDropDownClick(index, course)}
+                                onClickActivation={() => handleDropDownClick(index, course)}
                                 title={course.name} 
                                 dropDown={DropDown} 
                                 isActive={DropDown === `dropDown${index}`}  
