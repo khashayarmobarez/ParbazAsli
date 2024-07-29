@@ -25,6 +25,7 @@ import DropDownLine from '../components/reuseable/DropDownLine';
 import { useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
 import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 import { LinearProgress } from '@mui/material';
+import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
 
 
 
@@ -90,9 +91,7 @@ const MyCourses = () => {
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
                 {courseDividerLoading &&
-                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                    <CircularProgress /> 
-                </Box>
+                <CircularProgressLoader />
                 }
 
                 {courseDividerError &&

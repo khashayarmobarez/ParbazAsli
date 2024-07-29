@@ -29,6 +29,7 @@ import TextInput from '../../inputs/textInput';
 import NumberInput from '../../inputs/NumberInput';
 import DescriptionInput from '../../inputs/DescriptionInput';
 import SearchMultipleSelect from '../../inputs/SearchMultipleSelect';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 const AddCourse = () => {
 
@@ -389,11 +390,7 @@ const AddCourse = () => {
                     <>
                         {
                             organsLoading && 
-                            <div className='w-full min-h-[71vh]'>
-                                <p> 
-                                    در حال دریافت اطلاعات سازمان ها...    
-                                </p>
-                            </div>
+                            <CircularProgressLoader />
                         }
 
                         {

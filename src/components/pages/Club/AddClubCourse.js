@@ -10,6 +10,7 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 // assets
 import AddIcon from '@mui/icons-material/Add';
 import Cube from '../../../assets/icons/3dCube.svg';
+import attention from '../../../assets/icons/attention.svg';
 
 // mui
 import ClearIcon from '@mui/icons-material/Clear';
@@ -19,18 +20,18 @@ import CloseIcon from '@mui/icons-material/Close';
 import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
 
 // queries
-import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetActiveClubCoaches, useGetClubCoaches } from '../../../Utilities/Services/clubQueries';
+import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetActiveClubCoaches } from '../../../Utilities/Services/clubQueries';
 import { useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
 import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import DropdownInput from '../../inputs/DropDownInput';
-import MultipleSelect from '../../inputs/MultipleSelect';
 import TextInput from '../../inputs/textInput';
 import NumberInput from '../../inputs/NumberInput';
 import DescriptionInput from '../../inputs/DescriptionInput';
 import SearchMultipleSelect from '../../inputs/SearchMultipleSelect';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 const AddClubCourse = () => {
 
@@ -43,7 +44,6 @@ const AddClubCourse = () => {
     const [Coach, setCoach] = useState('')
     
     // states for regular courses
-    const [coach, setCoach] = useState('')
     const [organ, setOrgan] = useState('')
     const [level, setLevel] = useState('')
     
@@ -72,7 +72,6 @@ const AddClubCourse = () => {
     // queries
     const { data: coachNamesData, isLoading: coachNamesLoading, error: coachNamesError } = useGetActiveClubCoaches();
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
-    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(1,1000);
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level.id);
     const {data: studentData} = useUserLevelById(studentId , selectedClassType.id === 3 ? 1 : level.id , selectedClassType.id , setErrorMessage);
@@ -349,16 +348,32 @@ const AddClubCourse = () => {
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
                 {
-                    clubCoachesData && clubCoachesData.data.length > 0 &&
+                coachNamesLoading &&
+                <CircularProgressLoader />
+                }
+
+                {
+                    coachNamesData && coachNamesData.data.length < 1 &&
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
+                        <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
+                        <p>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                    </div>
+                }
+
+                {
+                    coachNamesData && coachNamesData.data.length > 0 &&
                     <DropdownInput
-                        options={clubCoachesData.data}
+                        options={coachNamesData.data}
                         handleSelectChange={handleSelectCoachChange}
                         selectedOption={Coach}
                         name={'انتخاب مربی'}
                     />
                 }
 
-                <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                {
+                    coachNamesData.data.length > 0 &&
+                        <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                }
 
                 {selectedClassType && 
                     <>

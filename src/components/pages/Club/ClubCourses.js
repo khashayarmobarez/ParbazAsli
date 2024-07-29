@@ -16,6 +16,7 @@ import { useClubCourses, useGetClubCoursesDividers } from '../../../Utilities/Se
 import PageTitle from '../../reuseable/PageTitle';
 import DropDownLine from '../../reuseable/DropDownLine';
 import { toast } from 'react-toastify';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 const ClubCourses = () => {
 
@@ -66,10 +67,9 @@ const ClubCourses = () => {
 
             <div className='w-[90%] flex flex-col items-center' >
 
-                {clubCourseDividerLoading &&
-                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                        <CircularProgress /> 
-                    </Box>
+                {
+                clubCourseDividerLoading &&
+                    <CircularProgressLoader />
                 }
 
                 {clubCourseDividerError &&
