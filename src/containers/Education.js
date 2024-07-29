@@ -151,16 +151,20 @@ const Education = () => {
                                                             <p>تعداد پرواز: {course.flightsCount}</p>
 
                                                             <div className='flex gap-x-1'>
-                                                                <p>وضعیت: {course.status}</p>
+                                                                <p>وضعیت:
+                                                                    {course.status === 'Active' && ' فعال'}
+                                                                    {course.status === 'Pending' && ' در انتظار تایید'}
+                                                                    {course.status === 'Disable' && ' غیر فعال'}
+                                                                </p>
 
                                                                 {course.status === 'Active' && 
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
                                                                 }
                                                                 {course.status === 'Pending' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                                                 }
                                                                 {course.status === 'Disable' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
                                                                 }
 
                                                             </div>
