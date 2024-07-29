@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 //  Queries
 
@@ -34,7 +35,7 @@ const Education = () => {
 
     // queries
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
-    const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useCourses(courseType, organizationId, pageNumber);
+    const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
     
@@ -70,7 +71,32 @@ const Education = () => {
             status: status
         }
 
-        triggerCourseStatus(triggerStatusForm);
+        triggerCourseStatus(triggerStatusForm,
+            {
+                onSuccess: () => {
+                    setDropDown('')
+                    if(status === 'active') {
+                        toast('دوره تایید شد', {
+                            type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            autoClose: 3000,
+                            theme: 'dark',
+                            style: { width: "350px" }
+                        });
+                        courseDataRefetch()
+                    } else {
+                        toast('دوره رد شد', {
+                            type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            autoClose: 3000,
+                            theme: 'dark',
+                            style: { width: "350px" }
+                        });
+                        courseDataRefetch()
+                    }
+                }
+            }
+        );
     }
 
 
