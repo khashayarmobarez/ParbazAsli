@@ -18,8 +18,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import PageTitle from '../../../reuseable/PageTitle';
 import TextInput from '../../../inputs/textInput';
 import TimeInput from '../../../inputs/TimeInput';
-import MultipleSelect from '../../../inputs/MultipleSelect';
 import SearchMultipleSelectStudent from '../../../inputs/SearchMultipleSelectStudent';
+import SearchMultipleSelect from '../../../inputs/SearchMultipleSelect';
 
 const AddClass = () => {
 
@@ -202,15 +202,17 @@ const AddClass = () => {
 
 
     return (
-        <div className='w-full pt-14 flex justify-center '>
+        <div className='w-full pt-14 flex flex-col justify-center items-center gap-y-8'>
+            
+            <PageTitle title={'افزودن کلاس'} />
+
             <div className='w-[90%] flex flex-col items-center min-h-[100vh] gap-y-4'>
 
-                <PageTitle title={'افزودن کلاس'} />
 
                 {
                     syllabiDataTheory && courseStudents &&
 
-                    <form className='w-[90%] flex flex-col items-center gap-y-4'>
+                    <form className='w-full flex flex-col items-center gap-y-4'>
 
                         <TextInput
                         value={ClassName}
@@ -240,7 +242,7 @@ const AddClass = () => {
                             }
                         </div>
 
-                        <MultipleSelect
+                        < SearchMultipleSelect
                             name={'سیلابس ها'}
                             options={syllabiDataTheory.data}
                             selectedOptions={selectedSyllabi}
