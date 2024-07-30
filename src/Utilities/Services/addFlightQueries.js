@@ -82,7 +82,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Province/GetProvincesByCountryId?countryId=${countryId}`, {
+        const response = await axios.get(`${BASE_URL}/Province/GetProvinces?${countryId && `countryId=${countryId}`}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -101,13 +101,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     };
 
     const useProvincesByCountryId = (countryId) => {
-        return useQuery(['getProvincesByCountryId', countryId], () => {
-            if (countryId) {
-                return getProvincesByCountryId(countryId);
-            } else {
-                return 1;
-            }
-        });
+        return useQuery(['getProvincesByCountryId', countryId], () => getProvincesByCountryId(countryId));
     }
 
 
@@ -121,7 +115,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Site/GetSitesByProvinceId?provinceId=${provinceId}`, {
+        const response = await axios.get(`${BASE_URL}/Site/GetSites?${provinceId && `provinceId=${provinceId}`}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -140,11 +134,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     };
 
     const useSitesByProvinceId = (provinceId) => {
-        return useQuery(['getSitesByProvinceId', provinceId], () => {
-            if (provinceId) {
-                return getSitesByProvinceId(provinceId);
-            }
-        });
+        return useQuery(['getSitesByProvinceId', provinceId], () =>  getSitesByProvinceId(provinceId));
     }
 
 

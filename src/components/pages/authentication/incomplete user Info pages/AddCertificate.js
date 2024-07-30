@@ -54,7 +54,7 @@ const AddCertificate = () => {
 
     
     
-    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
+    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ && organ.id);
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
     
     if(isUserAuthenticated !== 'noCertificate') {

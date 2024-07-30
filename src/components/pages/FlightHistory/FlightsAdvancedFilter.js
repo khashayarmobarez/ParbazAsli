@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // redux
@@ -27,6 +27,7 @@ import DropdownInputForEquipment from '../AddFlight/Components/DropDownInputForE
 import DropdownInput from '../../inputs/DropDownInput';
 import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
+import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 
 
 const FlightsAdvancedFilter = () => {
@@ -57,9 +58,8 @@ const FlightsAdvancedFilter = () => {
     const { data: userCoachesData, loading:userCoachesLoading, error:userCoachesError } = useAllUsersCoaches()
     const { data: userCoursesData, loading:userCoursesLoading, error:userCoursesError } = useAllUserCoursesForDropdown()
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
-    const { data: provincesData, loading:provincesLoading, error:provincesError } = useProvincesByCountryId(countryFilter.id)
-    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError } = useSitesByProvinceId(provinceFilter.id)
-
+    const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter && countryFilter.id)
+    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter && provinceFilter.id)
 
     const handleSelectCourseFilter = (selectedOption) => {
         dispatch(updateCourseFilter(selectedOption));
@@ -173,12 +173,12 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 countryFilter && countriesData && provincesData &&
-                                <DropdownInput name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
+                                <SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
                             }
 
                             {
                                 flightSitesData &&
-                                <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
+                                <SearchInputWithDropdown name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
                             }
 
                             <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
