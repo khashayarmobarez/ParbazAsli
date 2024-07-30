@@ -123,12 +123,34 @@ const initialState = {
       updateDescription: (state, action) => {
         state.description = action.payload
       },
+      resetFlightDataExceptType(state) {
+        state.courseId = '';
+        state.flightCount = 0;
+        state.courseLevel = '';
+        state.clubName = '';
+        state.coachName = '';
+        state.description = '';
+        state.takeoffTime = '';
+        state.takeoffType = '';
+        state.takeoffWindSpeed = '';
+        state.takeoffwindDirection = '';
+        state.landingTime = '';
+        state.landingWindSpeed = '';
+        state.landingWindDirection = '';
+        state.passengerPhoneNumber = '';
+        state.passengerHarness = '';
+        state.parachute = '';
+        state.harness = '';
+        state.wing = '';
+        state.syllabi = [];
+        
+      },
     },
   });
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;

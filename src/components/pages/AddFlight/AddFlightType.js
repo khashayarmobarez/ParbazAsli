@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
@@ -13,7 +13,7 @@ import PageTitle from '../../reuseable/PageTitle';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 
 const AddFlightType = () => {
@@ -21,10 +21,19 @@ const AddFlightType = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    // redux, the first line are this page datas and the second line is for checking the form to be complete
+    const { flightType } = useSelector(selectAddFlight)
+
+    const flightTypeRef = useRef(flightType)
+
     const { data: flightTypesData, loading:flightTypesLoading, error:flightTypesError } = useFlightTypes()
     
 
     const handleSelectSetFlightType = (flightType) => {
+
+        if( flightType.type !== flightTypeRef.current) {
+            dispatch(resetFlightDataExceptType());
+        }
 
         dispatch(updateFlightType(flightType.type));
         dispatch(updateFlightCount(flightType.flightsCount));
@@ -41,9 +50,9 @@ const AddFlightType = () => {
         }
 
         navigate('/addFlight/UploadIgc')
-
-        console.log(flightType)
     };
+
+
 
     return (
         <div className='flex flex-col items-center pt-14 pb-24'>

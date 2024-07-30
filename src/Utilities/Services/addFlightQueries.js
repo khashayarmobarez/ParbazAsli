@@ -104,6 +104,8 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         return useQuery(['getProvincesByCountryId', countryId], () => {
             if (countryId) {
                 return getProvincesByCountryId(countryId);
+            } else {
+                return 1;
             }
         });
     }

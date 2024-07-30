@@ -199,7 +199,7 @@ const AddLanding = () => {
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
-                            navigate('/profile')
+                            navigate('/flightHistory')
                         },
                         onError: (error) => {
                             let errorMessage = 'خطایی رخ داده است';
@@ -233,7 +233,7 @@ const AddLanding = () => {
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
-                            navigate('/profile')
+                            navigate('/flightHistory')
                         },
                         onError: (error) => {
                             let errorMessage = 'خطایی رخ داده است';
@@ -267,7 +267,7 @@ const AddLanding = () => {
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
-                            navigate('/profile')
+                            navigate('/flightHistory')
                         },
                         onError: (error) => {
                             let errorMessage = 'خطایی رخ داده است';
