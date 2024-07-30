@@ -172,7 +172,7 @@ const FlightsAdvancedFilter = () => {
                             }
 
                             {
-                                countryFilter && countriesData && provincesData &&
+                                provincesData &&
                                 <SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
                             }
 
