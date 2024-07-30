@@ -58,14 +58,26 @@ const FlightsAdvancedFilter = () => {
     const { data: userCoachesData, loading:userCoachesLoading, error:userCoachesError } = useAllUsersCoaches()
     const { data: userCoursesData, loading:userCoursesLoading, error:userCoursesError } = useAllUserCoursesForDropdown()
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
-    const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter && countryFilter.id)
-    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter && provinceFilter.id,countryFilter && countryFilter.id)
+    const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter ? countryFilter.id : '')
+    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter ? provinceFilter.id : '')
 
 
     useEffect(() => {
-            refetchProvinces()
-            refetchSites()
-    }, [countryFilter, provinceFilter, refetchProvinces, refetchSites])
+        if (provincesData && flightSitesData) {
+          refetchProvinces();
+          dispatch(updateProvinceFilter(null)); // Clear province filter
+          dispatch(updateSiteFilter(null)); // Clear site filter
+        //   console.log(provincesData)
+          console.log(flightSitesData)
+        }
+      }, [countryFilter,provincesData,flightSitesData, refetchProvinces, dispatch]);
+
+      useEffect(() => {
+        if (provinceFilter) {
+          refetchSites();
+          dispatch(updateSiteFilter(null)); // Clear site filter
+        }
+      }, [provinceFilter, refetchSites, dispatch]);
 
     const handleSelectCourseFilter = (selectedOption) => {
         dispatch(updateCourseFilter(selectedOption));
@@ -93,6 +105,9 @@ const FlightsAdvancedFilter = () => {
 
     const handleSelectSetCountryFilter = (selectedOption) => {
         dispatch(updateCountryFilter(selectedOption));
+        refetchProvinces();
+        dispatch(updateProvinceFilter('')); // Clear province filter
+        dispatch(updateSiteFilter('')); // Clear site filter
     };
 
     const handleSelectSetCityFilter = (selectedOption) => {
@@ -179,12 +194,12 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 provincesData && !provincesLoading &&
-                                <SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
+                                (<SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
                             }
 
                             {
                                 flightSitesData && !flightSitesLoading &&
-                                <SearchInputWithDropdown name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
+                                (<SearchInputWithDropdown name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
                             <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />

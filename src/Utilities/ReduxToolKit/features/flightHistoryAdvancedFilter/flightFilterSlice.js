@@ -32,6 +32,9 @@ const flightFilterSlice = createSlice({
         },
         updateCountryFilter: (state, action) => {
             state.countryFilter = action.payload;
+            // Clear dependent filters when country changes
+            state.provinceFilter = null;
+            state.siteFilter = null;
         },
         updateProvinceFilter: (state, action) => {
             state.provinceFilter = action.payload;

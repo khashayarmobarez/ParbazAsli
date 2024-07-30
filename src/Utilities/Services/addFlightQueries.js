@@ -67,7 +67,10 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
     const useCountries = () => {
-        return useQuery(['getCountries'], getCountries);
+        return useQuery(['getCountries'], getCountries, {
+            cacheTime: 0,
+            staleTime: Infinity,
+        });
     }
 
 
@@ -101,7 +104,10 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     };
 
     const useProvincesByCountryId = (countryId) => {
-        return useQuery(['getProvincesByCountryId', countryId], () => getProvincesByCountryId(countryId));
+        return useQuery(['getProvincesByCountryId', countryId], () => getProvincesByCountryId(countryId), {
+            cacheTime: 0,
+            staleTime: Infinity,
+        });
     }
 
 
