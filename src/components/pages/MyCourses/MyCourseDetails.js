@@ -65,16 +65,20 @@ const MyCourseDetails = () => {
                             <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نام دوره</p>
+                                    <p className=' text-xs pr-2'>نام</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>{aCourseData.data.name}</p>
                                     </div>
                                 </div>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نوع دوره</p>
+                                    <p className=' text-xs pr-2'>نوع</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                        <p>{aCourseData.data.type}</p>
+                                        <p>
+                                            {aCourseData.data.type === 'Regular' && <p>مطابق سیلابس</p> }
+                                            {aCourseData.data.type === 'Retraining' && <p>بازآموزی</p> }
+                                            {aCourseData.data.type === 'Custom' && <p>شخصی‌سازی شده</p> }
+                                        </p>
                                     </div>
                                 </div>
 

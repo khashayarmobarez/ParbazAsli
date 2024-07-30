@@ -95,7 +95,7 @@ const AddUsedEquipment = () => {
 
     const handleNextPageButton = () => {
 
-        if(wing.id && harness.id && parachute.id) {
+        if(wing.id && harness.id && parachute.id && (flightType === 'Tandem' ? passengerHarness.id : true)) {
             navigate('/addFlight/AddSituation')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {

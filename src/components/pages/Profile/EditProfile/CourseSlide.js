@@ -53,7 +53,7 @@ const CourseSlide = ({courseData}) => {
                     }
                 </div>
                 <button
-                onClick={() => navigate(`/MyCourses/courseDetails/${courseData.id}`) }
+                onClick={() => navigate(`/MyCourses/courseDetails/${courseData.id}/practical`) }
                 className={`${ButtonStyles.normalButton} self-end`} >
                     جزئیات  
                 </button>

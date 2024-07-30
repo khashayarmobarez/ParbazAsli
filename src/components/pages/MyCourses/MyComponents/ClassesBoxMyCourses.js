@@ -50,13 +50,13 @@ const ClassesBoxMyCourses = (props) => {
                     classData &&
                     <>
                         {/* classesInput */}
-                        <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                             <span>
                                 <AutoStoriesOutlinedIcon />
                             </span>
                             <p>{classData.name}</p>
                             <p>{formatedDuration}</p>
-                            <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                                 <img src={clipboard} alt='icon' />
                             </button>
                         </div>

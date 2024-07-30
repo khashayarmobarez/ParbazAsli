@@ -56,10 +56,13 @@ const AddSituation = () => {
 
     const handleSelectSetCountry = (selectedOption) => {
         dispatch(updateCountry(selectedOption));
+        dispatch(updateCity(''));
+        dispatch(updateSight(''));
     };
 
     const handleSelectSetCity = (selectedOption) => {
         dispatch(updateCity(selectedOption));
+        dispatch(updateSight(''));
     };
 
     const handleSelectSetSight = (selectedOption) => {
@@ -153,7 +156,7 @@ const AddSituation = () => {
                     }
 
                     {
-                        provincesData &&
+                        provincesData && country && country.id &&
                         <SearchInputWithDropdown
                             options={provincesData.data}
                             selectedOption={city}
@@ -163,7 +166,7 @@ const AddSituation = () => {
                     }
 
                     {
-                        flightSitesData &&
+                        flightSitesData && city && city.id &&
                         <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight} />
                     }
 

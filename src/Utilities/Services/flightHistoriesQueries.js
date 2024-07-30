@@ -9,8 +9,8 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getUserFlights = async (pageNumber, pageSize, courseId, wingId, harnessId, siteId, typeId, fromData, toData, coachUserId, status, countryId ,provinceId) => {
         const token = Cookies.get('token');
 
-        try {
-            const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}${courseId && `userCourseId=${courseId}&`}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${typeId}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}${countryId && `&countryId=${countryId}`}${provinceId && `&provinceId=${provinceId}`}`,
+        try {   
+            const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}userCourseId=${courseId}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${typeId}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}${countryId  && `&countryId=${countryId}`}${provinceId && `&provinceId=${provinceId}`}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

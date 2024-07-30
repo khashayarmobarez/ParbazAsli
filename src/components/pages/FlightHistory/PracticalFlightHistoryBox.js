@@ -38,12 +38,12 @@ const PracticalFlightHistoryBox = (props) => {
                 {/* classesInput */}
                 {
                     flightBaseData &&
-                    <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`} 
+                    <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`} 
                     style={{ color: isExpanded && fullFlightData ? 'var(--yellow-text)' : '' }}>
                         <p>{flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}</p>
                         <p>{flightBaseData.city && flightBaseData.city}</p>
                         <p>{flightBaseData.site && flightBaseData.site}</p>
-                        <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                        <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                             <img src={clipboard} alt='icon' />
                         </button>
                     </div>
@@ -202,7 +202,25 @@ const PracticalFlightHistoryBox = (props) => {
                                     <div className='flex flex-col items-start gap-y-3'>
                                         <p className=' text-xs pr-2'>وضعیت پرواز</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                            <p>{fullFlightData.data.status}</p>
+                                            {
+                                                fullFlightData.data.status === 'Active' && 
+                                                <>
+                                                    <p>فعال</p>
+                                                    <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                </>
+                                            }
+                                            {fullFlightData.data.status === 'Pending' &&
+                                                <>
+                                                    <p>در انتظار تایید</p>
+                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                </>
+                                            }
+                                            {fullFlightData.data.status === 'Disable' &&
+                                                <>
+                                                    <p>غیرفعال</p>
+                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                </>
+                                            }
                                         </div>
                                     </div>
                                 }
@@ -236,9 +254,11 @@ const PracticalFlightHistoryBox = (props) => {
 
                         </div>
 
-                        <div className='w-full'>
-                            <button className={`${ButtonStyles.normalButton} text-sm`}>مشاهده IGC</button>
-                        </div>
+                        {fullFlightData.data.igcFile &&
+                            <div className='w-full'>
+                                <button onClick={() => window.open(fullFlightData.data.igcFile, '_blank')} className={`${ButtonStyles.normalButton} text-sm`}>مشاهده IGC</button>
+                            </div>
+                        }
 
                     </div>
 

@@ -72,7 +72,8 @@ const FilterVariables = () => {
         <div className='w-full flex'>
             <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
 
-                {
+                {   
+                    courseFilter &&
                     courseFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{courseFilter.name}</p>
@@ -80,7 +81,8 @@ const FilterVariables = () => {
                         </li>
                 }
 
-                {
+                {   
+                    wingFilter &&
                     wingFilter.brand &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{wingFilter.brand} - {wingFilter.model}</p>
@@ -89,6 +91,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    harnessFilter &&
                     harnessFilter.brand &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{harnessFilter.brand} - {harnessFilter.model}</p>
@@ -97,6 +100,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    countryFilter &&
                     countryFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{countryFilter.name}</p>
@@ -105,6 +109,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    provinceFilter &&
                     provinceFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{provinceFilter.name}</p>
@@ -113,6 +118,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    siteFilter &&
                     siteFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{siteFilter.name}</p>
@@ -121,6 +127,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    flightTypeFilter &&
                     flightTypeFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{flightTypeFilter.name}</p>
@@ -129,6 +136,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    coachNameFilter &&
                     coachNameFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{coachNameFilter.name}</p>
@@ -137,6 +145,7 @@ const FilterVariables = () => {
                 }
 
                 {
+                    flightStatusFilter &&
                     flightStatusFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{flightStatusFilter.name}</p>

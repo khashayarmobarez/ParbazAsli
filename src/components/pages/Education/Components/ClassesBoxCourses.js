@@ -59,7 +59,7 @@ const ClassesBoxCourses = (props) => {
                     classData &&
                     <>
                         {/* classesInput */}
-                        <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                             <span>
                                 <AutoStoriesOutlinedIcon />
                             </span>
