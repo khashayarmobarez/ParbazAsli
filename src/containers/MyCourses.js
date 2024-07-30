@@ -63,8 +63,12 @@ const MyCourses = () => {
     };
 
 
-    const handlePageNumber = () => {
+    const handleNextPageNumber = () => {
         setPageNumber(prev => prev + 1)
+    }
+
+    const handleLastPageNumber = () => {
+        setPageNumber(prev => prev - 1)
     }
 
 
@@ -200,12 +204,20 @@ const MyCourses = () => {
                                         ))
                                     }
 
+                                    {
+                                    courseData && courseData.totalPagesCount > 1 &&
+                                        <div className='w-full flex justify-between mt-2'>
+                                            <p onClick={handleNextPageNumber} className='' style={{color:'var(--yellow-text)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
+                                            <p onClick={handleLastPageNumber} className='' style={{color:'var(--yellow-text)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
+                                        </div>
+                                    }   
                                 </div>
-                            }
+
+                                }
+                                
                         </div>
                     ))
                 }
-
 
                 </div>
 
