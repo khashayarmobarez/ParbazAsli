@@ -40,7 +40,7 @@ const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange
           handleSelectChange(selected);
         }}
       >
-        <option value="" disabled>
+        <option value="" className='w-full'>
           {name}
         </option>
         {options?.map((option) => (

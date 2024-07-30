@@ -49,7 +49,7 @@ const FlightHistory = () => {
     // react query
     const { 
         data: userFlights, isLoading: userFlightsLoading
-    } = useUserFlights(pageNumber,10, courseFilter.id , wingFilter.id, harnessFilter.id, siteFilter.id, flightTypeFilter.id, fromDateFilter, toDateFilter, coachNameFilter.id, flightStatusFilter.id , countryFilter.id , provinceFilter.id);
+    } = useUserFlights(pageNumber,10, courseFilter && courseFilter.id , wingFilter && wingFilter.id, harnessFilter && harnessFilter.id, siteFilter && siteFilter.id, flightTypeFilter && flightTypeFilter.id, fromDateFilter && fromDateFilter, toDateFilter, coachNameFilter && coachNameFilter.id, flightStatusFilter && flightStatusFilter.id , countryFilter && countryFilter.id , provinceFilter && provinceFilter.id);
 
 
     // increase the page number by 1 

@@ -35,7 +35,7 @@ const AddSituation = () => {
 
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
     const { data: provincesData, loading:provincesLoading, error:provincesError } = useProvincesByCountryId(country && country.id)
-    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError } = useSitesByProvinceId(city && city.id)
+    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError } = useSitesByProvinceId(city && city.id, country && country.id)
     // useCloudTypes
     const { data: cloudTypesData, loading:cloudTypesLoading, error:cloudTypesError } = useCloudTypes()
 

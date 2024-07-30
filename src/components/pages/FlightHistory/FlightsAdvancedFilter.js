@@ -59,7 +59,13 @@ const FlightsAdvancedFilter = () => {
     const { data: userCoursesData, loading:userCoursesLoading, error:userCoursesError } = useAllUserCoursesForDropdown()
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
     const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter && countryFilter.id)
-    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter && provinceFilter.id)
+    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter && provinceFilter.id,countryFilter && countryFilter.id)
+
+
+    useEffect(() => {
+            refetchProvinces()
+            refetchSites()
+    }, [countryFilter, provinceFilter, refetchProvinces, refetchSites])
 
     const handleSelectCourseFilter = (selectedOption) => {
         dispatch(updateCourseFilter(selectedOption));
@@ -167,17 +173,17 @@ const FlightsAdvancedFilter = () => {
                             }
 
                             {
-                                countriesData &&
+                                countriesData && 
                                 <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
                             }
 
                             {
-                                provincesData &&
+                                provincesData && !provincesLoading &&
                                 <SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />
                             }
 
                             {
-                                flightSitesData &&
+                                flightSitesData && !flightSitesLoading &&
                                 <SearchInputWithDropdown name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />
                             }
 
