@@ -15,18 +15,24 @@ import { useClubStatus } from '../Utilities/Services/clubQueries';
 import ClubData from '../components/pages/Club/ClubData';
 import AddClub from '../components/pages/Club/AddClub';
 import PendingClubSubmission from '../components/pages/Club/PendingClubSubmission';
+import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
 // import ClubMemberCoach from '../components/pages/Club/ClubMemberCoach';
 // import StudentClubs from '../components/pages/Club/StudentClubs';
 
 const Club = () => {
 
     // clubstatus could be NotAdded, Pending, Accepted
-    const {data:clubStatus , loading: clubStatusLoading, error} = useClubStatus();
+    const {data:clubStatus , isLoading: clubStatusLoading, error} = useClubStatus();
 
 
     return (
         <div className='pt-14 flex justify-center w-full'>
+
             <div className='w-full md:w-[75%] flex flex-col items-center'>
+                {
+                    clubStatusLoading && 
+                    <CircularProgressLoader/>
+                }
 
                 {clubStatus && clubStatus.data === 'NotAdded' && <AddClub />}
 

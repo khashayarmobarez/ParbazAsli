@@ -74,7 +74,7 @@ const AddClubCourse = () => {
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level && level.id);
-    const {data: studentData} = useUserLevelById(studentId && studentId , selectedClassType.id === 3 ? 1 : level && level.id , selectedClassType && selectedClassType.id , setErrorMessage);
+    const { data: studentData } = useUserLevelById(studentId && studentId, selectedClassType.id === 3 ? 1 : level && level.id, selectedClassType && selectedClassType.id, setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularClubCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingClubCourse();
     const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomClubCourse();
@@ -163,12 +163,12 @@ const AddClubCourse = () => {
     
     const handleAddStudent = () => {
         if (studentId.trim() && studentData?.data) {
-            const newStudent = { id: studentId, name: studentData.data.fullName };
-            setStudentsList(prev => [...prev, studentId]);
-            setStudentsData(prev => [...prev, newStudent]);
-            setStudentId('');
+          const newStudent = { id: studentId, name: studentData.data.fullName };
+          setStudentsList((prev) => [...prev, studentId]);
+          setStudentsData((prev) => [...prev, newStudent]);
+          setStudentId('');
         }
-    };
+      };
     
     const handleRemoveStudent = (studentToRemove) => {
         setStudentsList(prev => prev.filter(student => student !== studentToRemove.id));
@@ -371,7 +371,7 @@ const AddClubCourse = () => {
                 }
 
                 {
-                    coachNamesData.data.length > 0 &&
+                    coachNamesData && coachNamesData.data.length > 0 &&
                         <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
                 }
 
@@ -516,7 +516,7 @@ const AddClubCourse = () => {
 
                                 {/* add students */}
                                 <div className='w-full flex flex-col gap-y-1'>
-                                    { studentData && 
+                                    { studentData && studentData.data &&
                                         <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
                                     }
                                     {errorMessage &&

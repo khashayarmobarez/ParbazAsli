@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // mui 
@@ -8,6 +8,9 @@ import AddIcon from '@mui/icons-material/Add';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+
+// assets
+import attention from '../../../assets/icons/attention.svg';
 
 // queries
 import { useClubCourses, useGetClubCoursesDividers } from '../../../Utilities/Services/clubQueries';
@@ -31,6 +34,17 @@ const ClubCourses = () => {
 
     const { data: clubCourseDividerData, isLoading: clubCourseDividerLoading, error: clubCourseDividerError } = useGetClubCoursesDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useClubCourses(courseType, organizationId, pageNumber);
+
+    // open the first drop down when the users comes in
+    // to set the first state for dropdown 
+    useEffect(() => {
+        if(clubCourseDividerData && clubCourseDividerData.data.length > 0) {
+            setDropDown('dropDown0')
+            setCourseType(clubCourseDividerData.data[0].courseType)
+            setOrganizationId(clubCourseDividerData.data[0].organizationId)
+        }
+    }, [clubCourseDividerData])
+
 
     const diabledButton = () => {
         toast('این بخش در حال توسعه است ...', {
@@ -74,6 +88,13 @@ const ClubCourses = () => {
 
                 {clubCourseDividerError &&
                     <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                }
+
+                {clubCourseDividerData && clubCourseDividerData.data.length < 1 &&
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
+                        <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
+                        <p>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                    </div>
                 }
 
                 {
@@ -134,17 +155,27 @@ const ClubCourses = () => {
                                                             <p>تعداد پرواز: {course.flightsCount}</p>
 
                                                             <div className='flex gap-x-1'>
-                                                                <p>وضعیت: {course.status}</p>
-
-                                                                {course.status === 'Active' && 
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                                                }
-                                                                {course.status === 'Pending' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                                }
-                                                                {course.status === 'Disable' &&
-                                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                                }
+                                                                <p className='flex'>
+                                                                    وضعیت:  
+                                                                    {course.status === 'Active' && 
+                                                                        <>
+                                                                            <p> فعال</p>
+                                                                            <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                                        </>
+                                                                    }
+                                                                    {course.status === 'Pending' &&
+                                                                        <>
+                                                                            <p> در انتظار تایید</p>
+                                                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                        </>
+                                                                    }
+                                                                    {course.status === 'Disable' &&
+                                                                        <>
+                                                                            <p> غیرفعال</p>
+                                                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                        </>
+                                                                    }
+                                                                </p>
 
                                                             </div>
 

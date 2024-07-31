@@ -497,7 +497,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
             const token = Cookies.get('token');
 
             try {
-                const response = await axios.post(`${BASE_URL}/Course/AddCustomCourse`, course, {
+                const response = await axios.post(`${BASE_URL}/Club/AddCustomClubCourse`, course, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',

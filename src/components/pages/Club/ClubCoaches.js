@@ -30,7 +30,7 @@ const ClubCoaches = () => {
     
     const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(1,pageSize);
     const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading, error: coachesPreviousDataError } = useGetClubCoachesHistory(1,pageSize);
-    const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId);
+    const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId && coachId);
     const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
 
 
@@ -108,7 +108,7 @@ const ClubCoaches = () => {
                     isActive={DropDown === `activeCoaches`}  
                 />
 
-                {DropDown === `activeCoaches` && 
+                {DropDown === `activeCoaches` &&  clubCoachesData &&
                     <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
                     {/* map clubCoachesData */}
                         {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
@@ -135,7 +135,7 @@ const ClubCoaches = () => {
                     isActive={DropDown === `PreviousCoaches`}  
                 />
 
-                {DropDown === `PreviousCoaches` && 
+                {DropDown === `PreviousCoaches` && clubCoachesPreviousData &&
                     <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
                     {/* map clubCoachesData */}
                         {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0 && !coachesPreviousDataLoading) ?
