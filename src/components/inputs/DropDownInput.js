@@ -46,7 +46,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
         value={selectedOption ? selectedOption.id : ''}
         onChange={handleChange}
       >
-        <option value="" className='w-full' disabled>{name}</option>
+        <option value="" className='w-full'>{name}</option>
         {options?.map((option) => (
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}

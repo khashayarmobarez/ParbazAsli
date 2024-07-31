@@ -71,10 +71,10 @@ const FlightHistory = () => {
                         >
                             فیلتر جست‌وجو
                         </button>
-
-                        {(courseFilter.id || wingFilter.id || harnessFilter.id || (countryFilter && countryFilter.id) || provinceFilter.id || siteFilter.id || flightTypeFilter.id || coachNameFilter.id || flightStatusFilter.id || fromDateFilter || toDateFilter) && (
-                            <FilterVariables />
-                        )}
+ 
+                        <FilterVariables />
+                        {/* {(courseFilter.id || wingFilter.id || harnessFilter.id || (countryFilter && countryFilter.id) || provinceFilter.id || siteFilter.id || flightTypeFilter.id || coachNameFilter.id || flightStatusFilter.id || fromDateFilter || toDateFilter) && (
+                        )} */}
 
                         {userFlightsLoading && (
                             <Box sx={{ display: 'flex', width: 'full', justifyContent: 'center', marginTop: '10rem' }}>

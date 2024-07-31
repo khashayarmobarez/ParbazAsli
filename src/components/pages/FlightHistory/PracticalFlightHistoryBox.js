@@ -203,9 +203,9 @@ const PracticalFlightHistoryBox = (props) => {
                                         <p className=' text-xs pr-2'>وضعیت پرواز</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                             {
-                                                fullFlightData.data.status === 'Active' && 
+                                                fullFlightData.data.status === 'Accepted' && 
                                                 <>
-                                                    <p>فعال</p>
+                                                    <p>تایید شده</p>
                                                     <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
                                                 </>
                                             }
@@ -215,9 +215,9 @@ const PracticalFlightHistoryBox = (props) => {
                                                     <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                                 </>
                                             }
-                                            {fullFlightData.data.status === 'Disable' &&
+                                            {fullFlightData.data.status === 'Rejected' &&
                                                 <>
-                                                    <p>غیرفعال</p>
+                                                    <p>رد شده</p>
                                                     <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                                 </>
                                             }
@@ -256,7 +256,7 @@ const PracticalFlightHistoryBox = (props) => {
 
                         {fullFlightData.data.igcFile &&
                             <div className='w-full'>
-                                <button onClick={() => window.open(fullFlightData.data.igcFile, '_blank')} className={`${ButtonStyles.normalButton} text-sm`}>مشاهده IGC</button>
+                                <button onClick={() => window.open(fullFlightData.data.igcFile.path, '_blank')} className={`${ButtonStyles.normalButton} text-sm`}>مشاهده IGC</button>
                             </div>
                         }
 

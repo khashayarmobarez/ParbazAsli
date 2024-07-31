@@ -19,6 +19,7 @@
     "axios": "^1.6.7",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.11",
+    "jalaali-js": "^1.2.7",
     "js-cookie": "^3.0.5",
     "postcss": "^8.4.35",
     "primereact": "^10.5.1",

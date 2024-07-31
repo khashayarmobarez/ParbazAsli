@@ -47,8 +47,8 @@ const FlightsAdvancedFilter = () => {
         flightTypeFilter,
         coachNameFilter,
         flightStatusFilter,
-        // fromDateFilter,
-        // toDateFilter
+        fromDateFilter,
+        toDateFilter
     } = useSelector(selectFlightFilter)
     
 
@@ -60,7 +60,7 @@ const FlightsAdvancedFilter = () => {
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
     const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter ? countryFilter.id : '')
     const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter  && provinceFilter.id, countryFilter && countryFilter.id)
-
+    
 
 
     const handleSelectCourseFilter = (selectedOption) => {
@@ -89,8 +89,8 @@ const FlightsAdvancedFilter = () => {
 
     const handleSelectSetCountryFilter = (selectedOption) => {
         dispatch(updateCountryFilter(selectedOption));
-        dispatch(updateProvinceFilter('')); // Clear province filter
-        dispatch(updateSiteFilter('')); // Clear site filter
+        dispatch(updateProvinceFilter({name:'',id:''})); // Clear province filter
+        dispatch(updateSiteFilter({name:'',id:''})); // Clear site filter
     };
 
     const handleSelectSetCityFilter = (selectedOption) => {
@@ -134,6 +134,12 @@ const FlightsAdvancedFilter = () => {
         // Dispatch the event to the document
         document.dispatchEvent(clickEvent);
     };
+
+
+    useEffect(() => {
+        console.log(fromDateFilter, toDateFilter)
+    }
+    , [fromDateFilter, toDateFilter])
 
 
 
@@ -181,7 +187,7 @@ const FlightsAdvancedFilter = () => {
                             }
 
                             {
-                                flightSitesData && !flightSitesLoading && provinceFilter &&
+                                flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
                                 (<SearchInputWithDropdown name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 

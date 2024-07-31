@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import jalaali from 'jalaali-js';
 
 // redux
 import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
@@ -25,6 +26,16 @@ const FilterVariables = () => {
         fromDateFilter,
         toDateFilter
     } = useSelector(selectFlightFilter)
+
+    function gregorianToShamsi(dateString) {
+        if (!dateString) return '';
+        const [month, day, year] = dateString.split('/').map(Number);
+        const { jy, jm, jd } = jalaali.toJalaali(year, month, day);
+        return `${jy}/${jm}/${jd}`;
+    }
+
+    const shamsifromDateDate = fromDateFilter ? gregorianToShamsi(fromDateFilter) : '';
+    const shamsiToDateDate = toDateFilter ? gregorianToShamsi(toDateFilter) : '';
 
 
     const handleRemoveFilter = (filter) => {
@@ -66,7 +77,7 @@ const FilterVariables = () => {
                 break;
         }
     }
-        
+   
     
     return (
         <div className='w-full flex'>
@@ -102,6 +113,8 @@ const FilterVariables = () => {
                 {
                     countryFilter &&
                     countryFilter.name &&
+                    !provinceFilter.name &&
+                    !siteFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{countryFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('countryFilter')} />
@@ -111,6 +124,7 @@ const FilterVariables = () => {
                 {
                     provinceFilter &&
                     provinceFilter.name &&
+                    !siteFilter.name &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{provinceFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('provinceFilter')} />
@@ -154,17 +168,17 @@ const FilterVariables = () => {
                 }
 
                 {
-                    fromDateFilter &&
+                    shamsifromDateDate &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
-                            <p className=' text-xs mx-1' >{fromDateFilter}</p>
+                            <p className=' text-xs mx-1' >{shamsifromDateDate}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('fromDateFilter')} />
                         </li>
                 }
 
                 {
-                    toDateFilter &&
+                    shamsiToDateDate &&
                         <li className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
-                            <p className=' text-xs mx-1' >{toDateFilter}</p>
+                            <p className=' text-xs mx-1' >{shamsiToDateDate}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('toDateFilter')} />
                         </li>
                 }

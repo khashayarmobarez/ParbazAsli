@@ -27,18 +27,25 @@ const Education = () => {
     const navigate = useNavigate()
 
     // courseData
-    const [courseType, setCourseType] = useState('Regular')
-    const [organizationId, setOrganizationId] = useState('1')
+    const [courseType, setCourseType] = useState('')
+    const [organizationId, setOrganizationId] = useState('')
     const [pageNumber, setPageNumber] = useState(1)
     
-    const [DropDown, setDropDown] = useState('dropDown0')
+    const [DropDown, setDropDown] = useState('')
 
     // queries
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
-    // clicks on the f
+    // to set the first state for dropdown 
+    useEffect(() => {
+        if(courseDividerData && courseDividerData.data.length > 0) {
+            setDropDown('dropDown0')
+            setCourseType(courseDividerData.data[0].courseType)
+            setOrganizationId(courseDividerData.data[0].organizationId)
+        }
+    }, [courseDividerData])
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
