@@ -128,15 +128,15 @@ const MyCourseDetails = () => {
                                                 <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
                                             </>
                                         }
-                                        {aCourseData.data.status === 'Pending' &&
+                                        {aCourseData.data.status === 'Canceled' &&
                                             <>
-                                                <p>در انتظار تایید</p>
+                                                <p>لغو شده</p>
                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                             </>
                                         }
-                                        {aCourseData.data.status === 'Disable' &&
+                                        {aCourseData.data.status === 'Finished' &&
                                             <>
-                                                <p>غیرفعال</p>
+                                                <p>تمام شده</p>
                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                             </>
                                         }

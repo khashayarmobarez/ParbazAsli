@@ -171,6 +171,24 @@ const MyCourses = () => {
                                                             { courseData.coach &&
                                                                 <p>مربی: {courseData.coach}</p>
                                                             }
+                                                            <div className='flex gap-x-1'>
+                                                                <p>وضعیت:
+                                                                    {courseData.status === 'Active' && ' فعال'}
+                                                                    {courseData.status === 'Finished' && ' تمام شده'}
+                                                                    {courseData.status === 'Canceled' && ' لغو شده'}
+                                                                </p>
+
+                                                                {courseData.status === 'Active' && 
+                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                                }
+                                                                {courseData.status === 'Finished' &&
+                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                }
+                                                                {courseData.status === 'Canceled' &&
+                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                                                }
+
+                                                            </div>
                                                         </div>
                                                         <button onClick={handleCourseDetails(courseData.id)} className={`${ButtonStyles.normalButton} self-end`} >
                                                             جزئیات  
