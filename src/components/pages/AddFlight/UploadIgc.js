@@ -41,9 +41,18 @@ const UploadIgc = () => {
 
 
     const handleFileSelect = (event) => {
-        const file = event.target.files[0]; // Access the selected file
-        dispatch(updateIgcFile(file));; // Update the state with the selected file
-      };
+        const file = event.target.files[0];
+        if (file) {
+            const serializableFile = {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            lastModified: file.lastModified
+            };
+            console.log(serializableFile)
+            dispatch(updateIgcFile(serializableFile));
+        }
+    };
 
     const handleButtonClick = () => {
         fileInputRef.current.click(); // Programmatically trigger file input
@@ -73,7 +82,7 @@ const UploadIgc = () => {
                     onChange={handleFileSelect}
                     type="file"
                     accept=".igc"
-                    className="hidden" // Hide the file input
+                    className="hidden"
                 />
 
                 <button className={ButtonStyles.normalButton} onClick={handleButtonClick}>آپلود IGC</button>
