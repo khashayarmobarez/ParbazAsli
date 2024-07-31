@@ -24,7 +24,7 @@ const TimeInput = ({ value, onChange, placeholder, icon }) => {
       <span>
           <img src={clockIcon} alt='icon' className='absolute w-6 mt-[12px] mr-[8px] z-10' style={{ fill: 'white' }} />
       </span>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} >
         <MobileTimePicker
           sx={{
             width: '100%',
@@ -55,15 +55,15 @@ const TimeInput = ({ value, onChange, placeholder, icon }) => {
           ampm={false}
           value={selectedTime}
           onChange={handleTimeChange}
-          placeholder={'گزینه‌ی‌زمان'}
           renderInput={(params) => (
             <TextField 
               {...params}
               variant="standard"
+              
               // Directly setting the placeholder here
               InputProps={{
                 ...params.InputProps,
-                placeholder: 'گزینه‌ی‌زمان', // Override the default placeholder
+                placeholder:"hdsdsh:mm",// Override the default placeholder
               }}
               sx={{
                 width: '100%',
@@ -77,6 +77,7 @@ const TimeInput = ({ value, onChange, placeholder, icon }) => {
                   },
                 },
               }}
+              label="گزینه‌ی‌زمان"
             />
           )}
         />

@@ -561,7 +561,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Course/RejectUserCourseFlight?flightId=${flightId}`, {}, {
+            const response = await axios.post(`${BASE_URL}/Course/RejectStudentFlight?flightId=${flightId}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -597,7 +597,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Course/AcceptUserCourseFlight`, submitData, {
+            const response = await axios.post(`${BASE_URL}/Course/AcceptStudentFlight`, submitData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',

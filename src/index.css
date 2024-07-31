@@ -17,6 +17,29 @@ code {
   monospace;
 }
 
+/* choose hour face */
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  direction: ltr;
+}
+
+.css-1g7nc1s-MuiPickersLayout-root {
+  background-color: var(--primary-light);
+  
+}
+
+/* .css-1q48g88-MuiPickersToolbar-root-MuiTimePickerToolbar-root {
+  background-color: var(--corn-flower-blue);
+}
+
+.css-ku1d3k-MuiTimeClock-root {
+  background-color: var(--corn-flower-blue);
+}
+
+.css-knqc4i-MuiDialogActions-root {
+  background-color: var(--corn-flower-blue);
+} */
+
+
 :root {
   /* Defined global colors using CSS custom properties */
   --accent-normal: #A5E65E; /* Green-light */
