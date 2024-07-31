@@ -1,4 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+
+// to proccess igc file
+export const processAndUpdateIgcFile = createAsyncThunk(
+  'addFlight/processAndUpdateIgcFile',
+  async (file, thunkAPI) => {
+    const serializableFile = {
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      lastModified: file.lastModified
+    };
+
+    // Read file contents
+    const text = await file.text();
+    
+    // Process the text content of the IGC file here
+    // For example, you might parse it and extract relevant data
+    
+    return { 
+      fileInfo: serializableFile,
+      content: text // or processed content
+    };
+  }
+);
 
 
 const initialState = {

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { processAndUpdateIgcFile, selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateIgcFile } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // assets
@@ -40,17 +40,12 @@ const UploadIgc = () => {
     }, [ flightType, navigate])
 
 
+    // In your component
     const handleFileSelect = (event) => {
         const file = event.target.files[0];
         if (file) {
-            const serializableFile = {
-            name: file.name,
-            size: file.size,
-            type: file.type,
-            lastModified: file.lastModified
-            };
-            console.log(serializableFile)
-            dispatch(updateIgcFile(serializableFile));
+        dispatch(processAndUpdateIgcFile(file));
+        console.log('file', file)
         }
     };
 
@@ -88,6 +83,7 @@ const UploadIgc = () => {
                 <button className={ButtonStyles.normalButton} onClick={handleButtonClick}>آپلود IGC</button>
 
             </div>
+            <p>{igcFile && igcFile.name}</p>
         </>
     );
 };
