@@ -20,6 +20,7 @@ import { useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilit
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
+import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
 
 
 const Education = () => {
@@ -116,9 +117,7 @@ const Education = () => {
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
                 {courseDividerLoading &&
-                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                        <CircularProgress /> 
-                    </Box>
+                        <CircularProgressLoader /> 
                 }
 
                 {courseDividerError &&
