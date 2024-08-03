@@ -46,7 +46,7 @@ const UserDataBox = () => {
             
             {
                 data && 
-                    <div className={`${boxStyles.containerDarkmode} flex items-center w-full justify-around py-3 rounded-3xl md:h-[200px] md:py-5 md:px-2 `}>
+                    <div className={`${boxStyles.containerDarkmode} flex items-center w-full justify-around py-4 rounded-3xl md:h-[200px] md:py-5 md:px-2 `}>
 
                     {/* picture, name and code  */}
                     <div className='flex flex-col justify-center items-center gap-y-2 md:flex-row md:w-[38%] md:justify-between'>
@@ -57,7 +57,7 @@ const UserDataBox = () => {
                             <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                         </div>
 
-                        <div className=' space-y-1 md:space-y-5 flex flex-col items-center' >
+                        <div className=' gap-y-[8px] md:space-y-5 flex flex-col items-center' >
                             <p className=' font-normal text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data.data.levelName &&
                                 <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>{data.data.levelName} </p>
@@ -71,19 +71,19 @@ const UserDataBox = () => {
 
                         <div className=' gap-y-2 flex flex-col items-center md:space-y-5'>
 
-                            <div className=' flex justify-center items-start w-[80%]' >
+                            <div className=' flex justify-center items-center w-[80%]' >
                                 <img src={flightQuan} alt='icon'/>
                                 <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.flightCount} تعداد پرواز</p>
                             </div> 
 
-                            <div className=' flex justify-between items-start w-[80%]' >
+                            <div className=' flex justify-between items-center w-[80%]' >
                                 <img src={flightHour} alt='icon'/>
                                 <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.flightHours} ساعت پرواز</p>
                             </div>
                             
                             {/* condition based on coach  */}
                             { data.data.coachingHours >= 0 &&
-                                <div className=' flex justify-between items-start w-[80%]' >
+                                <div className=' flex justify-between items-center w-[80%]' >
                                     <img src={flightHour} alt='icon'/>
                                     <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.coachingHours} ساعت مربیگری</p>
                                 </div>

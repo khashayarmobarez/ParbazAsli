@@ -3,6 +3,9 @@ import Cookies from 'js-cookie';
 import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
 import { useNavigate } from 'react-router-dom';
 
+// assets 
+import certificateIcon from '../../../../assets/icons/certificate-Vector.svg'
+
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
@@ -57,10 +60,10 @@ const AddCertificate = () => {
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ && organ.id);
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
     
-    if(isUserAuthenticated !== 'noCertificate') {
+    // if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();
-    }
+    //     window.location.reload();
+    // }
     
     // clear the other states if organ changes
     useEffect(() => {
@@ -249,6 +252,7 @@ const AddCertificate = () => {
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
                                 name={'صدور گواهینامه از'}
+                                icon={certificateIcon}
                                 />
                                 {
                                     organ && 
@@ -268,6 +272,7 @@ const AddCertificate = () => {
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
                                                     name={'سطح گواهینامه'}
+                                                    icon={certificateIcon}
                                                 />
                                                 
                                                 {/* removing other fill options for starters */}
@@ -278,16 +283,16 @@ const AddCertificate = () => {
                                                         <TextInput
                                                         value={certificateId}
                                                         onChange={handleCertificateIdChange}
-                                                        placeholder={'شماره گواهینامه'}
+                                                        placeholder={'مقطع گواهینامه'}
                                                         Type={'text'}
-                                                        icon={null} // You can replace `null` with a specific icon if you have one
+                                                        icon={certificateIcon} // You can replace `null` with a specific icon if you have one
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput name={'تاریخ صدور'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'} />
+                                                        <DateLastRepackInput icon={certificateIcon} name={'تاریخ صدور'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'}  />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
+                                                        <DateLastRepackInput icon={certificateIcon} name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
 
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
@@ -318,6 +323,9 @@ const AddCertificate = () => {
                                                         </div>
 
 
+                                                        <p className='text-sm w-[85%] self-center'>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
+                                                        حجم عکس نباید بیشتر از 10 مگابایت باشد</p>
+
 
                                                     </>
                                                 }
@@ -325,7 +333,7 @@ const AddCertificate = () => {
                                                 <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-24 self-center mt-4`}
                                                 onClick={handleSubmit}
                                                 disabled={isSubmitting} >
-                                                    تایید
+                                                    ثبت
                                                 </button>
 
                                                 {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}

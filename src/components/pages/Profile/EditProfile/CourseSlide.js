@@ -51,6 +51,13 @@ const CourseSlide = ({courseData}) => {
                     { courseData.coach &&
                         <p>مربی: {courseData.coach}</p>
                     }
+                    { courseData.coach &&
+                        <p>نوع دوره:  
+                            {courseData.type === 'Retraining' && ' بازآموزی '}
+                            {courseData.type === 'Course' && ' آموزشی'}
+                            {courseData.type === 'Custom' && ' شخصی سازی شده'}
+                        </p>
+                    }
                 </div>
                 <button
                 onClick={() => navigate(`/MyCourses/courseDetails/${courseData.id}/practical`) }

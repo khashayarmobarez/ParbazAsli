@@ -7,7 +7,7 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 // assets
 import Calender from '../../../../assets/icons/calender-Icon.svg'
 
-const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH }) => {
+const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon }) => {
 
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
@@ -23,7 +23,7 @@ const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, pos
   return (
     <div className='w-full flex'>
         <span> 
-            <img src={Calender} alt='icon' className=' absolute mt-3.5 mr-2 w-5' />
+            <img src={icon ? icon : Calender} alt='icon' className=' absolute mt-3.5 mr-2 w-6' />
         </span>
         <DatePicker
             onChange={(e) => handleChange(e.value)}
