@@ -138,7 +138,7 @@ const ClubCoachDetails = () => {
 
                         <div className='w-full flex items-center justify-between gap-y-4 bg'>
 
-                            <Avatar src={coachDetails.data.profilePicture.path} alt="Remy Sharp" sx={{height:'100px', width:'100px', zIndex:'0'}} />
+                            <Avatar src={coachDetails.data.profilePicture} alt="Remy Sharp" sx={{height:'100px', width:'100px', zIndex:'0'}} />
 
                             <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
 
