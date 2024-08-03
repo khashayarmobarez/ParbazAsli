@@ -31,7 +31,7 @@ const SyllabiList = () => {
 
                 {
                     organsData &&
-                    <OrgansSlider organs={organsData.data} />
+                    <OrgansSlider organs={organsData.data} setOrgan={setOrgan} organ={organ} />
                 }
 
             </div>
