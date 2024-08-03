@@ -54,7 +54,7 @@ const CourseSlide = ({courseData}) => {
                     { courseData.coach &&
                         <p>نوع دوره:  
                             {courseData.type === 'Retraining' && ' بازآموزی '}
-                            {courseData.type === 'Course' && ' آموزشی'}
+                            {courseData.type === 'Regular' && ' آموزشی'}
                             {courseData.type === 'Custom' && ' شخصی سازی شده'}
                         </p>
                     }

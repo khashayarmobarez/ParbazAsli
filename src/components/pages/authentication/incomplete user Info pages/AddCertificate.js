@@ -60,10 +60,10 @@ const AddCertificate = () => {
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ && organ.id);
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
     
-    // if(isUserAuthenticated !== 'noCertificate') {
+    if(isUserAuthenticated !== 'noCertificate') {
         // reload
-    //     window.location.reload();
-    // }
+        window.location.reload();
+    }
     
     // clear the other states if organ changes
     useEffect(() => {
@@ -271,7 +271,7 @@ const AddCertificate = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    name={'سطح گواهینامه'}
+                                                    name={'مقطع گواهینامه'}
                                                     icon={certificateIcon}
                                                 />
                                                 
@@ -283,7 +283,7 @@ const AddCertificate = () => {
                                                         <TextInput
                                                         value={certificateId}
                                                         onChange={handleCertificateIdChange}
-                                                        placeholder={'مقطع گواهینامه'}
+                                                        placeholder={'شماره گواهینامه'}
                                                         Type={'text'}
                                                         icon={certificateIcon} // You can replace `null` with a specific icon if you have one
                                                         />
