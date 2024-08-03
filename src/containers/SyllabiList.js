@@ -7,6 +7,7 @@ import CircularProgressLoader from '../components/Loader/CircularProgressLoader'
 // comps
 import PageTitle from '../components/reuseable/PageTitle';
 import OrgansSlider from '../components/pages/SyllabiList/OrgansSlider';
+import { useSyllabiForLevels } from '../Utilities/Services/coursesQueries';
 
 const SyllabiList = () => {
 
@@ -17,6 +18,9 @@ const SyllabiList = () => {
     // queries
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
+    const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level && level.id);
+
+    
 
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
@@ -25,13 +29,18 @@ const SyllabiList = () => {
 
                 <PageTitle title={'سرفصل ها'} navigateTo={'/profile'} /> 
 
-                {organsLoading &&
+                {
+                    organsLoading &&
                         <CircularProgressLoader /> 
                 }
 
                 {
                     organsData &&
-                    <OrgansSlider organs={organsData.data} setOrgan={setOrgan} organ={organ} />
+                    <>
+                        <OrgansSlider organs={organsData.data} setOrgan={setOrgan} theOrgan={organ} />
+
+                        
+                    </>
                 }
 
             </div>

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import arrow from '../../../assets/icons/Right Arrow Button.svg'
 
-const OrgansSlider = ({organs}) => {
+const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
 
-    const [organ, setOrgan] = useState()
 
     // setting the first item from organs on organ state
     useEffect(() => {
@@ -14,7 +13,7 @@ const OrgansSlider = ({organs}) => {
 
     // setting the next organ on organ state
     const handleNextOrgan = () => {
-        const index = organs.indexOf(organ)
+        const index = organs.indexOf(theOrgan)
         if (index < organs.length - 1) {
             setOrgan(organs[index + 1])
         } else {
@@ -24,7 +23,7 @@ const OrgansSlider = ({organs}) => {
 
     // setting the previous organ on organ state
     const handlePrevOrgan = () => {
-        const index = organs.indexOf(organ)
+        const index = organs.indexOf(theOrgan)
         if (index > 0) {
             setOrgan(organs[index - 1])
         } else {
@@ -40,8 +39,8 @@ const OrgansSlider = ({organs}) => {
                 <img className='w-full' alt='next and prev' src={arrow} />
             </button>
 
-            {organ &&
-                <h1 className='text-sm font-medium text-[var(--yellow-text)]'>{organ.name}</h1>
+            {theOrgan &&
+                <h1 className='text-sm font-medium text-[var(--yellow-text)]'>{theOrgan.name}</h1>
             }
 
             <button onClick={handleNextOrgan} className='w-8 h-8'>

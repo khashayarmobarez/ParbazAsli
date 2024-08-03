@@ -113,7 +113,10 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                     ))}
                 </div>
 
-                <p onClick={handleResendCode} className="text-light-yellow mt-8" aria-live="assertive">ارسال مجدد</p>
+                {
+                    codeRemainingTime < 1 &&
+                        <p onClick={handleResendCode} className="text-light-yellow mt-8" aria-live="assertive">ارسال مجدد</p>
+                }
 
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
                 <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32 mt-6 mb-4`} onClick={handleSubmit}>ثبت</button>
