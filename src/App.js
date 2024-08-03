@@ -100,6 +100,7 @@ import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddCl
 import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
 import TandemSurvey from './components/pages/Notifications/TandemSurvey';
+import SyllabiList from './containers/SyllabiList';
   
 
 
@@ -284,6 +285,9 @@ function App() {
                   <Route path="theory" element={<TheoryMyCourse />} />
                   <Route path="mySyllabi" element={<MySyllabiMyCourse />} />
                 </Route>
+
+                {/* syllabi list */}
+                <Route path='/syllabi' element={<SyllabiList  />} /> 
 
                 {/* add flight */}
                 <Route path="/addFlight/AddFlightType" element={ <AddFlightType />} />
