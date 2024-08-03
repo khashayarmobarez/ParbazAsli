@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css';
 
-const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength }) => {
+const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode }) => {
 
     const [ waitNotif, setWaitNotif ] = useState('')
 
@@ -88,13 +88,13 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     return (
         <div className={` w-full fixed inset-0 flex items-center justify-center ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-[280px] flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
             >
                 <CloseIcon
                     onClick={() => setShowPopup(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
-                <h3 className="text-[#ED553B] text-xl">تاییدیه</h3>
+                <h3 className="text-[var(--yellow-text)] text-xl">کد تایید</h3>
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                     {inputRefs.current.map((ref, index) => (
                         <input
@@ -112,8 +112,11 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                         />
                     ))}
                 </div>
+
+                <p onClick={handleResendCode} className="text-light-yellow mt-8" aria-live="assertive">ارسال مجدد</p>
+
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
-                <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32`} onClick={handleSubmit}>تایید</button>
+                <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32 mt-6 mb-4`} onClick={handleSubmit}>ثبت</button>
                 <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
                 <p className={isLoading ? "text-light-yellow mt-1" : "hidden"} aria-live="assertive">  ... صبر کنید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "text-sm text-[#ED553B]" : "hidden"} aria-live="assertive"> {errMsg}</p>

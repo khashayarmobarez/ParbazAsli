@@ -199,8 +199,8 @@ function App() {
           </>
           }
 
-
-           {/* add email, certificate and admin approval routes */}
+          <Route path='/addEmail' element={<AddEmail />} />
+          {/* add email, certificate and admin approval routes */}
           {token && isUserAuthenticated === 'noEmail' && (
             <>
               <Route path='/addEmail' element={<AddEmail />} />
@@ -215,7 +215,7 @@ function App() {
           )}
 
 
-          <Route path='/addCertificate' element={<AddCertificate />} />
+          
           {token && isUserAuthenticated === 'noCertificate' && (
             <>
               <Route path='/addCertificate' element={<AddCertificate />} />

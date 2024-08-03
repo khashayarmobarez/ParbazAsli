@@ -107,6 +107,13 @@ const AddEmail = () => {
                 // Handle the response data
                 setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
                 setShowPopupSubmit(true)
+                toast('کد با موفقیت ارسال شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
                 // Update UI or perform any additional actions based on the response
             } 
         } catch (err) {
@@ -313,7 +320,7 @@ const AddEmail = () => {
                         <p style={{color:'var(--red-text)'}}>{errMsg}</p>
                     }
 
-                    <PhoneVerificationCode showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}
+                    <PhoneVerificationCode handleResendCode={handlePopUp} showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}
                     handleFinalSubmit={handleFinalSubmit} errMsg={errMsg} codeLength={emailCodeLength} isLoading={Submitloading} />
                 </>
             }

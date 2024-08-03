@@ -40,8 +40,8 @@ const SpeedoMeter = (props) => {
 
         <div className='flex flex-col justify-center items-center space-y-4'>
             <p className=' font-normal text-sm mr-2 '>آخرین بسته بندی چتر کمکی</p>
-            <p className=' font-normal text-sm mr-2 '>{parachuteData.lastPackingDateTime}</p>
-            <p className=' font-normal text-xs mr-2 '>{parachuteData.remainingTimeToRepackInDays} روز تا نیاز مجدد به بسته بندی </p> 
+            <p className=' font-light text-sm mr-2'>{parachuteData.lastPackingDateTime}</p>
+            <p className=' font-normal text-xs mr-2 text-[var(--low-opacity-white)]'>{parachuteData.remainingTimeToRepackInDays} روز تا نیاز به بسته بندی مجدد</p> 
         </div>
 
         <div className='w-[143px] h-[143px] flex flex-col justify-center items-center mb-[-0.5rem]'>

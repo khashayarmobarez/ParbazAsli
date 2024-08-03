@@ -60,7 +60,7 @@ const UserDataBox = () => {
                         <div className=' gap-y-[8px] md:space-y-5 flex flex-col items-center' >
                             <p className=' font-normal text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data.data.levelName &&
-                                <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>{data.data.levelName} </p>
+                                <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>گواهینامه {data.data.levelName} </p>
                             }
                             <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>کد کاربری: {data.data.userId}</p>
                         </div>
