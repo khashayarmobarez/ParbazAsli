@@ -43,14 +43,10 @@ const EditEquipment = () => {
     const { data: userByIdData } = useUserById(lastPackerId)
     // useEditEquipment for submitting the form
     const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
-    
-    useEffect(() => {
-        console.log(EquipmentData)
-    },[EquipmentData])
+
 
     const handlePackageDate = (date) => {
         setPackageDate(date);
-        console.log(date)
 
         clickOnRightSide()
     }
@@ -173,42 +169,56 @@ const EditEquipment = () => {
 
                         <form className={` w-[90%] rounded-xl flex flex-col gap-y-6`}>
 
-                            <div className=' grid grid-cols-2 gap-x-2 gap-y-4 w-full text-[var(--low-opacity-white) ] '>
+                            <div className=' grid grid-cols-2 gap-x-2 gap-y-4 w-full'>
 
-                                <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>برند</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{brand}</p>
+                                {brand &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>برند</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{brand}</p>
+                                            </div>
                                     </div>
-                                </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>مدل</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{model}</p>
+                                {
+                                    model &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>مدل</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{model}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>تعداد پرواز ها</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{flightCount}</p>
-                                    </div>
-                                </div>
+                                {
+                                    flightCount >= 0 && flightCount !== null &&
+                                        <div className='flex flex-col items-start gap-y-2'>
+                                            <p className=' text-sm'>تعداد پرواز ها</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{flightCount}</p>
+                                            </div>
+                                        </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-2'>
+                                { 
+                                size &&
+                                    <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>سایز</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{size}</p>
                                     </div>
                                 </div>
+                                }
 
-                                <div className='flex flex-col items-start gap-y-2'>
+                                {
+                                flightHours >= 0 && flightHours !== null &&
+                                    <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>حدود ساعت پرواز</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{flightHours}</p>
                                     </div>
                                 </div>
+                                }
 
                                 {wingClass &&
                                     <div className='flex flex-col items-start gap-y-2'>
@@ -282,15 +292,13 @@ const EditEquipment = () => {
 
                                     <div className='flex flex-col items-start gap-y-5'>
 
-                                            <h3 className=' text-[#ED553B] text-xl'>ویرایش اطلاعات{equipmentType === "Parachute" && '(تمدید چتر)'}</h3>
-
                                             {EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') &&
                                             <>
                                                 {/* parachute serial explanation */}
                                                 {
                                                     EquipmentData.data.equipmentType === 'Parachute' &&
                                                     <div className='w-full flex flex-col text-start gap-y-1'>
-                                                        <p className=' self-start md:self-center'>ثبت سریال چتر</p>
+                                                        <p className=' self-start md:self-center'>ثبت سریال چتر کمکی</p>
                                                         <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
                                                         در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
                                                     </div>
@@ -334,6 +342,10 @@ const EditEquipment = () => {
 
                                             {equipmentType === "Parachute" &&
                                             <>
+
+                                                <h3 className=' text-[var(--softer-white)] text-sm mt-1 mb-[-10px]'>
+                                                    تمدید چتر کمکی
+                                                </h3>
 
                                                 {/* Last package date input */}
                                                 <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />

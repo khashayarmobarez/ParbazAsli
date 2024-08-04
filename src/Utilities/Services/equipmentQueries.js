@@ -92,7 +92,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
     const useUserEquipmentsHistory = (equipmentType, isForClub) => {
-        return useQuery(['userEquipments', equipmentType, isForClub], () => getUserEquipmentsHistoryByType(equipmentType, isForClub));
+        return useQuery(['userEquipmentsHistory', equipmentType, isForClub], () => getUserEquipmentsHistoryByType(equipmentType, isForClub));
     };
 
 
@@ -162,6 +162,31 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
+// return euipment mutation
+    const returnEquipment = async (formBody) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/Equipment/ReturnEquipment`, formBody, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        });
+    
+        if (response.status !== 200) {
+        throw new Error('Failed to return equipment');
+        }
+    
+        return response.data;
+    }
+
+    const useReturnEquipment = () => {
+        return useMutation(returnEquipment);
+    }
+
+
+
+
+
 // post Edit Equipments
     const postEditEquipment = async (formData) => {
         const token = Cookies.get('token');
@@ -197,4 +222,4 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory };
+export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory, useReturnEquipment };
