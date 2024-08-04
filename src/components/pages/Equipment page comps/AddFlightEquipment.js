@@ -297,7 +297,7 @@ const AddFlightEquipment = () => {
                       </div>
 
                       <div className='w-full flex flex-col text-start gap-y-1'>
-                        <p className=' self-start md:self-center'>ثبت سریال بال (اختیاری)</p>
+                        <p className=' self-start md:self-center text-[var(--primary-light)]'>ثبت سریال بال (اختیاری)</p>
                         <p className=' text-xs text-right'>
                           با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
                           <br/>

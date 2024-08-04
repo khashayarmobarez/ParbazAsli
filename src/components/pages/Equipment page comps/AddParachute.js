@@ -351,7 +351,7 @@ const AddParachute = () => {
                     </div>
 
                     <div className='w-full flex flex-col text-start gap-y-1'>
-                      <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
+                      <p className=' self-start md:self-center text-[var(--primary-light)]'>ثبت سریال چتر کمکی (اختیاری)</p>
                       <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
                       در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
                     </div>

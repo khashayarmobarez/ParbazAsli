@@ -112,6 +112,7 @@ const MyCourses = () => {
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
                         <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
                         <p>در انتظار مربی...</p>
+                        <p className='mt-5'>هنوز دوره‌ای برای شما افزوده نشده است!</p>
                     </div>
                 }
 
