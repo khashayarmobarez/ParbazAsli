@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-//  Queries
+// styles
+import boxStyles from '../styles/Boxes/DataBox.module.css'
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
@@ -15,12 +16,14 @@ import Box from '@mui/material/Box';
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
+import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
+import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
+import FixedInput from '../components/inputs/FixedInput';
 
 
 const Education = () => {
@@ -35,6 +38,7 @@ const Education = () => {
     const [DropDown, setDropDown] = useState('')
 
     // queries
+    const { data: courseCountsData, isLoading: courseCountsLoading, error: courseCountsError } = useCourseCounts();
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
@@ -116,7 +120,7 @@ const Education = () => {
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
-                {courseDividerLoading &&
+                {courseDividerLoading && courseCountsLoading &&
                         <CircularProgressLoader /> 
                 }
 
@@ -127,6 +131,26 @@ const Education = () => {
                 {
                     !courseDividerData && !courseDividerLoading && !courseDividerError &&
                     <p className='h-60vh w-full text-center flex justify-center items-center'> دوره ای اضافه نشده</p>
+                }
+
+                {courseCountsData && 
+                <div className='flex w-full justify-between gap-x-2'>
+                    
+                        <div className='w-full flex flex-col items-center gap-y-2'>
+                            <p className=' text-xs'>دوره های فعال</p>
+                            <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                <p>{courseCountsData.data.activeCourseCounts}</p>
+                            </div>
+                        </div>
+
+                        <div className='w-full flex flex-col items-center gap-y-2'>
+                            <p className=' text-xs'>دوره‌های غیر فعال شده</p>
+                            <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                <p>{courseCountsData.data.activeCourseCounts}</p>
+                            </div>
+                        </div>
+
+                </div>
                 }
 
                 {courseDividerData && courseDividerData.data.length > 0 &&
@@ -143,9 +167,7 @@ const Education = () => {
                                 <div className='w-full flex flex-col gap-y-4'>
 
                                     {courseDataLoading && 
-                                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                            <CircularProgress /> 
-                                        </Box>
+                                        < DigilogbookLoading/>
                                     }
 
                                     {
@@ -211,24 +233,30 @@ const Education = () => {
 
                                                 {/* Trigger course status */}
                                                 {course.status === 'Pending' &&
-                                                    <div className='w-full min-h-14 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                                    style={{background: '#262941',
+                                                    <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
+                                                    style={{background: 'var(--syllabus-data-boxes-bg)',
                                                         boxShadow: 'var(--organs-coachData-boxShadow)'}}>
 
-                                                        <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
-                                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                        <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
+                                                            <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
                                                             <p >آیا این دوره مورد تایید شما است؟</p>
                                                         </div>
 
-                                                        <div className='flex gap-x-4 items-center px-6'>
+                                                        <div className='flex gap-x-6 items-center px-2'>
 
                                                             {triggerCourseStatusLoading && 
                                                                 <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
                                                                     <CircularProgress sx={{width:'1rem'}} /> 
                                                                 </Box>
                                                             }
-                                                            <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--dark-green)'}} />
-                                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--notification-red)'}} />
+                                                            
+                                                            <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                                                تایید
+                                                            </p>
+
+                                                            <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} className='text-[var(--red-text)] text-sm font-medium' >
+                                                                رد
+                                                            </p>
 
                                                         </div>
                                                     </div>
