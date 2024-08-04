@@ -159,12 +159,25 @@ const Harness = (props) => {
                             isActive={DropDownForTemporary === 'Temporary'}  
                         />
                 }
+                {/* temporary */}
+                {
+                    userEquipmentsData &&
+                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').length > 0 &&
+                        <DropDownLine  
+                        onClickActivation={() => handleTemporaryDropDownClick('Temporary')}
+                            title={'موقت'} 
+                            dropDown={DropDownForTemporary} 
+                            isActive={DropDownForTemporary === 'Temporary'}  
+                        />
+                }
                 {
                     DropDownForTemporary === 'Temporary' &&
                     userEquipmentsData &&
                     userEquipmentsData.data &&
                     userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
                             <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+
+                                <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
                                     <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
@@ -204,9 +217,9 @@ const Harness = (props) => {
                     userEquipmentsHistoryData &&
                     userEquipmentsHistoryData.data &&
                     userEquipmentsHistoryData.data.map(equipment =>
-                            <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                            <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
-                                <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
+                                <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
                                     <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
                                     <p> شماره سریال: {equipment.serialNumber}</p>
                                 </div>

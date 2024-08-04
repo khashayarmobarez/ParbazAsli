@@ -286,7 +286,7 @@ const EditEquipment = () => {
 
                             {/* to check if the equipment is editable  */}
                             { 
-                            (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') &&
+                            (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') && EquipmentData.data.isExpired !== true &&
                             <>  
                                 <div id='no grid list' className='flex flex-col gap-y-5'>
 

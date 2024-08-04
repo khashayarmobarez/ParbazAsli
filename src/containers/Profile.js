@@ -27,7 +27,7 @@ import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
 
 
 
-const Profile = ({userRole}) => {
+const Profile = () => {
 
     const navigate = useNavigate()
 
