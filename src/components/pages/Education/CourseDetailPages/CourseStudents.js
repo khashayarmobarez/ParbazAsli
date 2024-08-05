@@ -18,7 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 
 // queries
-import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse } from '../../../../Utilities/Services/coursesQueries';
+import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../../Utilities/Services/coursesQueries';
 
 // components
 import TextInput from '../../../inputs/textInput';
@@ -34,13 +34,18 @@ const CourseStudents = () => {
     const [DropDownHistory, setDropDownHistory] = useState(false);
     const [DropDownActive, setDropDownActive] = useState(true);
 
+    // show student options
+    const [showActiveStudentOptions, setShowActiveStudentOptions] = useState(false);
+    const [showHistoryStudentOptions, setShowHistoryStudentOptions] = useState(false);
+
     // add student
     const [studentId, setStudentId] = useState('');
 
     const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id,pageNumber);
-    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError } = useACourseHistoryStudents(id,historyPageNumber);
+    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id,historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
+    const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
 
     // post student to course
     const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToCourse();
@@ -70,6 +75,59 @@ const CourseStudents = () => {
     const handleInputStudentId = (event) => {
         setStudentId(event.target.value);
     };
+
+    const handleTriggerStudentStatus = (status ,id, event) => {
+
+        event.preventDefault();
+
+        const triggerStatusForm = {
+            userCourseId: id,
+            status: status
+        }
+
+        triggerStudentStatus(triggerStatusForm,{
+            onSuccess: (data) => {
+                if(status === 'Active') {
+                    toast('هنرجو تایید شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', 
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                }
+                else if(status === 'Canceled') {
+                    toast('هنرجو از دوره حذف شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right',
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                } else if(status === 'Completed') {
+                    toast( 'اتمام دوره ی هنرجو تایید شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right',
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                } else if(status === 'CoachRejected') {
+                    toast( 'هنرجو رد شد', {
+                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right',
+                        autoClose: 3000,
+                        theme: 'dark',
+                        style: { width: "350px" }
+                    });
+                }
+                setShowHistoryStudentOptions('')
+                setShowActiveStudentOptions('')
+                refetchStudentdata();
+                refetchStudentHistorydata();
+            },
+        });
+    }
 
     // handle add student
     const handleAddStudnetToCourse = () => {
@@ -136,14 +194,17 @@ const CourseStudents = () => {
             {
                 studentsData && !studentsDataLoading &&
                 <div className='w-full flex flex-col items-center gap-y-6'>
-                    <DropDownLine  
-                        onClickActivation={() => setDropDownActive(!DropDownActive)}
-                        title={'هنر جویان'} 
-                        dropDown={DropDownActive} 
-                        isActive={DropDownActive === true}  
-                    />
+                    {
+                        studentsData.totalCount > 0 &&
+                        <DropDownLine  
+                            onClickActivation={() => setDropDownActive(!DropDownActive)}
+                            title={'هنر جویان'} 
+                            dropDown={DropDownActive} 
+                            isActive={DropDownActive === true}  
+                        />
+                    }
                     {DropDownActive && studentsData.data?.map((student) => (
-                        <div className='flex flex-col w-full '>
+                        <div className='flex flex-col w-full mb-2'>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
                                 <span>
                                     <PersonOutlineOutlinedIcon />
@@ -160,17 +221,67 @@ const CourseStudents = () => {
                                 </Box> */}
                                 <div/>
                                 {student.status !== 'CoachPending' &&
-                                <button className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
+                                <button 
+                                onClick={() => setShowActiveStudentOptions(
+                                    showActiveStudentOptions === student.id ?
+                                    ''
+                                    :
+                                    student.id
+                                )}
+                                className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
                                     <MoreVertIcon  />
                                 </button>
                                 }
 
                             </div>
-                            {/* <div className=' w-full flex justify-end mt-[-1rem] h-10'>
-                                <div className='w-1/3 h-full bg-[var(--diffrential-blue)]'>
+                            {
+                                aCourseData.data.status === 'Active' && student.status === 'CoachPending' &&
+                                <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
+                                style={{background: 'var(--syllabus-data-boxes-bg)',
+                                    boxShadow: 'var(--organs-coachData-boxShadow)'}}>
 
+                                    <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
+                                        <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                        <p >آیا این هنرجو مورد تایید شما است؟</p>
+                                    </div>
+
+                                    <div className='flex gap-x-6 items-center px-2'>
+
+                                        {triggerStudentStatusLoading && 
+                                            <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                                                <CircularProgress sx={{width:'1rem'}} /> 
+                                            </Box>
+                                        }
+                                        
+                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'Active', student.id, event)} className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                            تایید
+                                        </p>
+
+                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'CoachRejected', student.id, event)} className='text-[var(--red-text)] text-sm font-medium' >
+                                            رد
+                                        </p>
+
+                                    </div>
+                                </div>                                
+                            }
+                            {
+                                student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
+                                <div className=' w-full flex justify-end mt-[-0.3rem] h-24'>
+                                    <div className='w-full h-full bg-[var(--diffrential-blue)] rounded-lg pt-1'>
+                                        <p
+                                            onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
+                                            className=' text-center py-3 active:bg-[var(--yellow-text)]'
+                                            >
+                                                اتمام دوره 
+                                        </p>
+                                        <div className='w-full h-[1px] bg-text-color'/>
+                                        <p className=' text-center py-3 active:bg-[var(--yellow-text)]'
+                                        onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
+                                            لغو دوره
+                                        </p>
+                                    </div>
                                 </div>
-                            </div> */}
+                            }
                         </div>
                     ))}
                     {studentsData && studentsData.totalPagesCount > 1 && (
@@ -243,28 +354,50 @@ const CourseStudents = () => {
                             />
 
                             {DropDownHistory &&
-                                <div className='w-full flex flex-col items-center gap-y-6'>
+                                <div className='w-full flex flex-col items-center gap-y-4'>
                                     {studentsHistoryData.data?.map((student) => (
-                                        <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
-                                            <span>
-                                                <PersonOutlineOutlinedIcon />
-                                            </span>
-                                            <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
-                                            <p>{student.name}</p>
-                                            <p className='text-[var(--low-opacity-white)]'>وضعیت: 
-                                                {student.status === 'Completed' && <span className='text-[var(--yellow-text)] '> تمام شده</span>}
-                                                {student.status === 'Canceled' && <span className='text-[var(--red-text)]'> لغو شده</span>}
-                                            </p>
-                                            <div/>
-                                            {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
-                                                <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
-                                                sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
-                                            </Box> */}
+                                        <div className='flex flex-col w-full '>
+                                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                                                <span>
+                                                    <PersonOutlineOutlinedIcon />
+                                                </span>
+                                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
+                                                <p>{student.name}</p>
+                                                <p className='text-[var(--low-opacity-white)]'>وضعیت: 
+                                                    {student.status === 'Completed' && <span className='text-[var(--yellow-text)] '> تمام شده</span>}
+                                                    {student.status === 'Canceled' && <span className='text-[var(--red-text)]'> لغو شده</span>}
+                                                </p>
+                                                <div/>
+                                                {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
+                                                    <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
+                                                    sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
+                                                </Box> */}
+                                                {
+                                                    student.status !== 'Completed' &&
+                                                    <button 
+                                                    onClick={
+                                                        () => setShowHistoryStudentOptions(showHistoryStudentOptions === student.id ?
+                                                            ''
+                                                            :
+                                                            student.id
+                                                        )}
+                                                    // onClick={() => navigate('/education/StudentDetails')}
+                                                    className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}
+                                                    >
+                                                        <MoreVertIcon  />
+                                                    </button>
+                                                }
+                                            </div>
                                             {
-                                                student.status !== 'Completed' &&
-                                                <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
-                                                    <MoreVertIcon  />
-                                                </button>
+                                                student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
+                                                <div className=' w-full flex justify-end mt-[-0.3rem] h-12'>
+                                                    <div className='w-full h-full bg-[var(--diffrential-blue)] active:bg-[var(--yellow-text)] rounded-lg pt-1'>
+                                                        <p className=' text-center py-3 active:bg-[var(--yellow-text)]'
+                                                        onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
+                                                            بازگردانی به دوره
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             }
                                         </div>
                                     ))}

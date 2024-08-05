@@ -81,7 +81,7 @@ const CourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'آموزش'} /> 
+                <PageTitle title={'جزئیات دوره'} navigateTo={'/education'} /> 
 
                 {
                     courseDataLoading &&

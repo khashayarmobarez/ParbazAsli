@@ -10,7 +10,7 @@ const NotifAcceptStudent = ({notif}) => {
 
     const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
 
-    const handleTriggerClubStatus = (status ,id, event) => {
+    const handleTriggerStudentStatus = (status ,id, event) => {
 
         event.preventDefault();
 
@@ -67,8 +67,8 @@ const NotifAcceptStudent = ({notif}) => {
                 <p style={{color:'var(--yellow-text) '}}>منقضی شده</p>
                 :
                 <div className='flex w-20 justify-between'>
-                    <button type="submit" disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerClubStatus( 'active', externalId, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
-                    <button disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerClubStatus( 'rejected', externalId, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
+                    <button type="submit" disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerStudentStatus( 'active', externalId, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
+                    <button disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerStudentStatus( 'coachRejected', externalId, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
                 </div>
 
             }

@@ -1,5 +1,5 @@
 .container {
-    background: var(--class-details-bg);
+    background: var(--class-details-bg),var(--bg-color);
     box-shadow: var(--class-details-boxShadow)
 }
 
