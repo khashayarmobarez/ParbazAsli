@@ -283,7 +283,7 @@ const AddClass = () => {
                                 className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                 onClick={() => handleAddguestStudent()}
                             >
-                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
                             </span>
                         </div>
 

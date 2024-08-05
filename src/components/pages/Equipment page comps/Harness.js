@@ -126,7 +126,7 @@ const Harness = (props) => {
                             <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                    <p> برند {equipment.brand} / مدل {equipment.model}</p>
                                     <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                 </div>
 
@@ -180,7 +180,7 @@ const Harness = (props) => {
                                 <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                    <p> برند {equipment.brand} / مدل {equipment.model}</p>
                                     <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                 </div>
 
@@ -220,7 +220,7 @@ const Harness = (props) => {
                             <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
                                 <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                    <p> برند {equipment.brand} / مدل {equipment.model}</p>
                                     <p> شماره سریال: {equipment.serialNumber}</p>
                                 </div>
 
