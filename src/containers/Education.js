@@ -22,8 +22,7 @@ import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
-import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
-import FixedInput from '../components/inputs/FixedInput';
+
 
 
 const Education = () => {
@@ -167,7 +166,7 @@ const Education = () => {
                                 <div className='w-full flex flex-col gap-y-4'>
 
                                     {courseDataLoading && 
-                                        < DigilogbookLoading/>
+                                        <CircularProgressLoader />
                                     }
 
                                     {
@@ -181,54 +180,77 @@ const Education = () => {
 
                                                 <div
                                                 key={course.id}
-                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs"
+                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs"
                                                 style={{
                                                     background: 'var(--organs-coachData-bg) var(--bg-color)',
                                                     boxShadow: 'var(--organs-coachData-boxShadow)'
                                                 }}
                                                 >
-                                                    <h1 className='text-base'>{course.name}</h1>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                    
+                                                        <h1 className='text-base'>{course.name}</h1>
+
+                                                        <div className='flex gap-x-1'>
+
+                                                            <p className='text-[var(--low-opacity-white)]'>وضعیت:
+                                                                {course.status === 'Active' && 
+                                                                    <span className='text-[var(--yellow-text)]'> فعال</span>
+                                                                }
+                                                                {course.status === 'Pending' &&
+                                                                    <span className='text-[var(--red-text)]'> در انتظار تایید</span>
+                                                                }
+                                                                {course.status === 'Disable' && 
+                                                                    <span className='text-[var(--notification-red)]'> غیر فعال</span>
+                                                                }
+                                                            </p>
+
+                                                        </div>
+                                                    
+                                                    </div>
 
                                                     <div className='w-full flex justify-between items-center'>
 
-                                                        <div className='flex flex-col text-start gap-y-1'>
+                                                        <div className='flex flex-col text-start gap-y-3'>
+                                                            
+                                                            {
+                                                                course.type === 'Regular' &&
+                                                                <p className='text-sm'>
+                                                                    {course.organization}
+                                                                </p>
+                                                            }
+                                                            {
+                                                                course.type === 'Retraining' &&
+                                                                <p className='text-sm'>
+                                                                    <span className='text-[var(--low-opacity-white)]'>مقطع:</span> {course.level}
+                                                                </p>
+                                                            } 
 
                                                             <p>
-                                                                {course.level} {course.organization && `/ ${course.organization}`}
+                                                                <span className='text-[var(--low-opacity-white)]'>تعداد پرواز: </span>{course.flightsCount}
                                                             </p>
 
                                                             { course.clubName &&
                                                                 <p>باشگاه: {course.clubName}</p>
                                                             }
 
-                                                            <p>تعداد پرواز: {course.flightsCount}</p>
-
-                                                            <div className='flex gap-x-1'>
-                                                                <p>وضعیت:
-                                                                    {course.status === 'Active' && ' فعال'}
-                                                                    {course.status === 'Pending' && ' در انتظار تایید'}
-                                                                    {course.status === 'Disable' && ' غیر فعال'}
-                                                                </p>
-
-                                                                {course.status === 'Active' && 
-                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                                                }
-                                                                {course.status === 'Pending' &&
-                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                                }
-                                                                {course.status === 'Disable' &&
-                                                                    <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
-                                                                }
-
-                                                            </div>
-
                                                         </div>
 
-                                                        <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-end`} >
-                                                            جزئیات  
-                                                        </button>
+                                                        <div className='flex flex-col text-start gap-y-2'>
+                                                            <p>
+                                                                <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                            </p>
+                                                            <p>
+                                                                <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                            </p>
+                                                        </div>
+
 
                                                     </div>
+
+                                                    <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
+                                                        جزئیات  
+                                                    </button>
+
                                                 </div>
 
                                                 {/* Trigger course status */}
