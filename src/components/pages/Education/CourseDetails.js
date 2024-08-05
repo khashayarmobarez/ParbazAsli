@@ -14,6 +14,7 @@ import { useACourse, useTriggerCourseStatus } from '../../../Utilities/Services/
 // components
 import PageTitle from '../../reuseable/PageTitle';
 import { toast } from 'react-toastify';
+import StandardPopup from '../../reuseable/StandardPopup';
 
 const CourseDetails = () => {
     
@@ -21,6 +22,8 @@ const CourseDetails = () => {
     const location = useLocation()
 
     const { id } = useParams();
+
+    const [showPopup, setShowPopup] = useState(false);
 
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id);
 
@@ -210,7 +213,7 @@ const CourseDetails = () => {
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
                             <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
-                            onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id)} >
+                            onClick={() => setShowPopup(true)} >
                                 <p>غیر فعال سازی</p>
                             </button>
                         }
@@ -240,6 +243,16 @@ const CourseDetails = () => {
 
 
             </div>
+
+            <StandardPopup
+            showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading} 
+            handleSubmit={(event) => {
+                !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id);
+                setShowPopup(false);
+            }}
+            topicText='تاییدیه' explanationtext='پس از غیرفعال کردن دوره کاربران فعال این دوره تا پایان دوران دوره خود حق ثبت پرواز دارند ولی کاربر جدیدی به دوره افزوده نمیشود. آیا از غیرفعال کردن این دوره اطمینان دارید؟'
+            submitText='بله' declineText='خیر' />
+
         </div>
     );
 };
