@@ -12,7 +12,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 // assests
 import clipboard from '../../../../assets/icons/clipboard.svg'
+import arrowIcon from '../../../../assets/icons/Right Arrow Button.svg';
 import AddIcon from '@mui/icons-material/Add';
+
 
 // queries
 import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse } from '../../../../Utilities/Services/coursesQueries';
@@ -33,7 +35,7 @@ const CourseStudents = () => {
     // add student
     const [studentId, setStudentId] = useState('');
 
-    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError } = useACourseStudents(id,pageNumber);
+    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id,pageNumber);
     const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError } = useACourseHistoryStudents(id,historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
@@ -42,11 +44,18 @@ const CourseStudents = () => {
     const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToCourse();
     
 
-
-    const handleNextPage = () => {
-        if(studentsData.totalPagesCount === pageNumber) return;
-        console.log('next page')
+    const handleNextPageNumber = () => {
         setPageNumber(prev => prev + 1)
+        setTimeout(() => {
+            refetchStudentdata();
+        }, 100);
+    }
+
+    const handleLastPageNumber = () => {
+        setPageNumber(prev => prev - 1)
+        setTimeout(() => {
+            refetchStudentdata();
+        }, 100);
     }
 
     const handleNextPageHistory = () => {
@@ -123,7 +132,7 @@ const CourseStudents = () => {
             }
 
             {
-                studentsData && 
+                studentsData && !studentsDataLoading &&
                 <div className='w-full flex flex-col items-center gap-y-6'>
                     {studentsData.data?.map((student) => (
                         <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
@@ -142,10 +151,37 @@ const CourseStudents = () => {
                             </button> */}
                         </div>
                     ))}
-                    {
-                        studentsData.totalPagesCount < pageNumber &&
-                        <p onClick={handleNextPage} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
-                    }
+                    {studentsData && studentsData.totalPagesCount > 1 && (
+                        <div className='w-full flex justify-between px-10 items-center'>
+                            <button
+                                className='w-10 justify-self-start'
+                                disabled={studentsData.totalPagesCount === 1 || studentsData.totalPagesCount === pageNumber}
+                                onClick={handleNextPageNumber}
+                            >
+                                <img
+                                    src={arrowIcon}
+                                    alt='arrow'
+                                    className={`${(studentsData.totalPagesCount === 1 || studentsData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                />
+                            </button>
+
+                            <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                صفحه ی {pageNumber}
+                            </p>
+
+                            <button
+                                className='transform rotate-180 w-10 justify-self-end'
+                                disabled={pageNumber === 1}
+                                onClick={handleLastPageNumber}
+                            >
+                                <img
+                                    src={arrowIcon}
+                                    alt='arrow'
+                                    className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                />
+                            </button>
+                        </div>
+                    )}
 
                     <div className='flex flex-col w-full gap-y-2'>
                         { studentNameLoading && studentId.length > 5 &&
