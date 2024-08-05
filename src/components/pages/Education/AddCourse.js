@@ -537,7 +537,7 @@ const AddCourse = () => {
                                     { studentData && 
                                         <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
                                     }
-                                    {studentError && studentId.length > 5 &&
+                                    { studentError && studentId.length > 5 &&
                                         <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                                     }
 

@@ -143,7 +143,7 @@ const Education = () => {
                         </div>
 
                         <div className='w-full flex flex-col items-center gap-y-2'>
-                            <p className=' text-xs'>دوره‌های غیر فعال شده</p>
+                            <p className=' text-xs'>دوره های غیرفعال</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                 <p>{courseCountsData.data.activeCourseCounts}</p>
                             </div>
