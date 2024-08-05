@@ -20,6 +20,7 @@ import TextInput from '../../../inputs/textInput';
 import TimeInput from '../../../inputs/TimeInput';
 import SearchMultipleSelectStudent from '../../../inputs/SearchMultipleSelectStudent';
 import SearchMultipleSelect from '../../../inputs/SearchMultipleSelect';
+import DescriptionInput from '../../../inputs/DescriptionInput';
 
 const AddClass = () => {
 
@@ -39,6 +40,8 @@ const AddClass = () => {
     const [guestStudentId, setGuestStudentId] = useState('');
     const [guestStudentIds, setGuestStudentIds] = useState([]);
     const [guestStudentDatas, setGuestStudentDatas] = useState([]);
+
+    const [description, setDescription] = useState('');
 
 
 
@@ -95,6 +98,10 @@ const AddClass = () => {
         setStudentIds(prev => prev.filter(id => id !== dataToRemove.id));
     };
 
+    const handleDescription = (event) => {
+        setDescription(event.target.value);
+    };
+
 
     const handleStartTimeChange = (newTime) => {
         setStartSelectedTime(newTime);
@@ -143,7 +150,7 @@ const AddClass = () => {
         const classData = {
             "courseId": id,
             "Name": ClassName,
-            "Description": "empty",
+            "Description": description,
             "startTime": startTime,
             "endTime": endTime,
             "userCourseIds": studentIds,
@@ -249,6 +256,15 @@ const AddClass = () => {
                             handleSelectChange={handleSelectChangeSyllabi}
                             handleRemove={handleRemoveSyllabi}
                         />
+
+                        <div className='w-full flex flex-col gap-y-2'>
+                            <h1 className=' self-start'>توضیحات کلاس</h1>
+                            <DescriptionInput
+                                value={description}
+                                onChange={handleDescription}
+                                placeholder='هر متنی را که دوست دارید تایپ کنید...'
+                            />
+                        </div>
 
                         <div className='w-full flex justify-between items-center text-sm gap-x-3 mt-3' style={{color:'var(--soft-white)'}}>
                             <p className='whitespace-nowrap'>هنرجویان</p>
