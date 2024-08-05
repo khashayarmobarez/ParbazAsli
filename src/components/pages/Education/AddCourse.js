@@ -12,7 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Cube from '../../../assets/icons/3dCube.svg';
 
 // mui
-import ClearIcon from '@mui/icons-material/Clear';
+import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 
 // drop down options
@@ -491,7 +491,7 @@ const AddCourse = () => {
                                     .map((course) => (
                                         <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
                                             <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <ClearIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                            <RemoveIcon onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>
@@ -514,7 +514,7 @@ const AddCourse = () => {
                                     .map((course) => (
                                         <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
                                             <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <ClearIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                            <RemoveIcon onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>
@@ -557,11 +557,18 @@ const AddCourse = () => {
                                     }
                                 </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
-                                    {studentsData && studentsData?.map((student) => (
-                                        <li key={student.id} className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
-                                            <p className=' text-sm mx-1' >{student.name}</p>
-                                            <ClearIcon onClick={() => handleRemoveStudent(student)} />
+                                <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                    {studentsData && studentsData?.map((student,index) => (
+                                        <li key={student.id} className=' w-full p-4 rounded-2xl flex justify-between items-center'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                             onClick={() => handleRemoveStudent(student)} />
                                         </li>
                                     ))}
                                 </ul>
