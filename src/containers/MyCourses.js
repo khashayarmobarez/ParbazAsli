@@ -229,15 +229,7 @@ const MyCourses = () => {
                                         ))
                                     }
 
-                                    {/* {
-                                    courseData && courseData.totalPagesCount > 1 &&
-                                        <div className='w-full flex justify-between mt-2'>
-                                            <p onClick={handleNextPageNumber} className='' style={{color:'var(--yellow-text)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
-                                            <p onClick={handleLastPageNumber} className='' style={{color:'var(--yellow-text)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
-                                        </div>
-                                    }    */}
-
-                                    {courseData && courseData.totalPagesCount > 0 && (
+                                    {courseData && courseData.totalPagesCount > 1 && (
                                         <div className='w-full flex justify-between px-10 items-center'>
                                             <button
                                                 className='w-10 justify-self-start'
