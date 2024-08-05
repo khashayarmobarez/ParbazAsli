@@ -145,7 +145,7 @@ const Education = () => {
                         <div className='w-full flex flex-col items-center gap-y-2'>
                             <p className=' text-xs'>دوره های غیرفعال</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                <p>{courseCountsData.data.activeCourseCounts}</p>
+                                <p>{courseCountsData.data.disableCourseCounts}</p>
                             </div>
                         </div>
 
@@ -230,7 +230,9 @@ const Education = () => {
                                                             </p>
 
                                                             { course.clubName &&
-                                                                <p>باشگاه: {course.clubName}</p>
+                                                                <p>
+                                                                    <span className='text-[var(--low-opacity-white)]'>باشگاه: </span> {course.clubName}
+                                                                </p>
                                                             }
 
                                                         </div>
