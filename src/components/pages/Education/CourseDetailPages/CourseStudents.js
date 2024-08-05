@@ -9,6 +9,7 @@ import gradients from '../../../../styles/gradients/Gradient.module.css'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
 import clipboard from '../../../../assets/icons/clipboard.svg'
@@ -31,6 +32,7 @@ const CourseStudents = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [historyPageNumber, sethistoryPageNumber] = useState(1);
     const [DropDownHistory, setDropDownHistory] = useState(false);
+    const [DropDownActive, setDropDownActive] = useState(true);
 
     // add student
     const [studentId, setStudentId] = useState('');
@@ -79,7 +81,7 @@ const CourseStudents = () => {
 
         addStudentToCourse( customCourseData , {
             onSuccess: () => {
-                toast('دوره شما با موفقیت تایید شد', {
+                toast('شاگرد شما با موفقیت اضافه شد', {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -134,21 +136,41 @@ const CourseStudents = () => {
             {
                 studentsData && !studentsDataLoading &&
                 <div className='w-full flex flex-col items-center gap-y-6'>
-                    {studentsData.data?.map((student) => (
-                        <div className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
-                            <span>
-                                <PersonOutlineOutlinedIcon />
-                            </span>
-                            <p>{student.name}</p>
-                            <p>{student.joinDateTime}</p>
-                            {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
-                                <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
-                                sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
-                            </Box> */}
-                            <div/>
-                            {/* <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                                <img src={clipboard} alt='icon' />
-                            </button> */}
+                    <DropDownLine  
+                        onClickActivation={() => setDropDownActive(!DropDownActive)}
+                        title={'هنر جویان'} 
+                        dropDown={DropDownActive} 
+                        isActive={DropDownActive === true}  
+                    />
+                    {DropDownActive && studentsData.data?.map((student) => (
+                        <div className='flex flex-col w-full '>
+                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
+                                <span>
+                                    <PersonOutlineOutlinedIcon />
+                                </span>
+                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
+                                <p>{student.name}</p>
+                                <p className='text-[var(--low-opacity-white)]'>وضعیت: 
+                                    {student.status === 'Active' && <span className='text-[var(--yellow-text)]'> فعال </span>}
+                                    {student.status === 'CoachPending' && <span className='text-[var(--red-text)]'> در انتظار تایید</span>}
+                                </p>
+                                {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
+                                    <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
+                                    sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
+                                </Box> */}
+                                <div/>
+                                {student.status !== 'CoachPending' &&
+                                <button className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
+                                    <MoreVertIcon  />
+                                </button>
+                                }
+
+                            </div>
+                            {/* <div className=' w-full flex justify-end mt-[-1rem] h-10'>
+                                <div className='w-1/3 h-full bg-[var(--diffrential-blue)]'>
+
+                                </div>
+                            </div> */}
                         </div>
                     ))}
                     {studentsData && studentsData.totalPagesCount > 1 && (
@@ -227,15 +249,23 @@ const CourseStudents = () => {
                                             <span>
                                                 <PersonOutlineOutlinedIcon />
                                             </span>
+                                            <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
                                             <p>{student.name}</p>
-                                            <p>{student.joinDateTime}</p>
-                                            <Box sx={{ display: 'flex' , justifyContent:'center' }}>
+                                            <p className='text-[var(--low-opacity-white)]'>وضعیت: 
+                                                {student.status === 'Completed' && <span className='text-[var(--yellow-text)] '> تمام شده</span>}
+                                                {student.status === 'Canceled' && <span className='text-[var(--red-text)]'> لغو شده</span>}
+                                            </p>
+                                            <div/>
+                                            {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                                 <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
                                                 sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
-                                            </Box>
-                                            <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                                                <img src={clipboard} alt='icon' />
-                                            </button>
+                                            </Box> */}
+                                            {
+                                                student.status !== 'Completed' &&
+                                                <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
+                                                    <MoreVertIcon  />
+                                                </button>
+                                            }
                                         </div>
                                     ))}
                                     {   studentsHistoryData &&
