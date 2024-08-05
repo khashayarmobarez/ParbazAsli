@@ -224,7 +224,7 @@ const AddClass = () => {
                         <TextInput
                         value={ClassName}
                         onChange={handleClassName}
-                        placeholder='نام دوره'
+                        placeholder='نام کلاس'
                         />
 
                         <div className='w-full flex flex-col gap-y-2'>

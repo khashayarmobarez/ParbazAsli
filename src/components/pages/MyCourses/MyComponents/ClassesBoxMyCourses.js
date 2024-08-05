@@ -62,7 +62,7 @@ const ClassesBoxMyCourses = (props) => {
                         </div>
 
                         {isExpanded && classDetails &&
-                            <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col pt-10 pb-8`}>
+                            <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col items-center pt-10 pb-8`}>
 
                             <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
             
@@ -101,6 +101,11 @@ const ClassesBoxMyCourses = (props) => {
                                     </div>
                                 </div>  
             
+                            </div>
+
+                            <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
+                                <p>توضیحات کلاس</p>
+                                <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{classDetails.data.description}</p>
                             </div>
             
                             {classDetails.data.syllabi &&

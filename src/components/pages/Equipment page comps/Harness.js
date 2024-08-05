@@ -159,17 +159,6 @@ const Harness = (props) => {
                             isActive={DropDownForTemporary === 'Temporary'}  
                         />
                 }
-                {/* temporary */}
-                {
-                    userEquipmentsData &&
-                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').length > 0 &&
-                        <DropDownLine  
-                        onClickActivation={() => handleTemporaryDropDownClick('Temporary')}
-                            title={'موقت'} 
-                            dropDown={DropDownForTemporary} 
-                            isActive={DropDownForTemporary === 'Temporary'}  
-                        />
-                }
                 {
                     DropDownForTemporary === 'Temporary' &&
                     userEquipmentsData &&

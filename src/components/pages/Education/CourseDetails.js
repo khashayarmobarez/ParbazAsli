@@ -181,8 +181,8 @@ const CourseDetails = () => {
                             </div>
                             
                             <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
-                                        <p>توضیحات درباره دوره</p>
-                                        <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
+                                <p>توضیحات درباره دوره</p>
+                                <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
                             </div>
 
                         </div>
