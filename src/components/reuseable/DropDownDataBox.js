@@ -43,9 +43,9 @@ const DropDownDataStudent = (props) => {
         {
             data && isExpanded &&
             data.map((data,index) => (
-                <div key={data.id}>
-                    <p className={`${isExpanded ? 'block' : 'hidden'} text-right`} >{data.order}. {data.description}</p>
-                    {index !== data.length - 1 && <hr className='w-full border-[1px] border-opacity-50 mt-2' />}
+                <div key={data.id} className='w-full flex justify-start gap-x-8 px-6 h-12 items-center rounded-2xl bg-[var(--syllabus-data-boxes-bg)]'>
+                    <p className={`${isExpanded ? 'block' : 'hidden'}`} >{data.order}</p>
+                    <p className={`${isExpanded ? 'block' : 'hidden'} text-xs`} >{data.description}</p>
                 </div>
             ))
 
