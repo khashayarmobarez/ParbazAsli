@@ -66,7 +66,7 @@ const CourseClasses = () => {
             
 
             <button onClick={() => navigate(`/education/${id}/AddClass`)} 
-            className={`${ButtonStyles.addButton} fixed bottom-[7.2rem] w-[90%]`} >
+            className={`${ButtonStyles.addButton} fixed bottom-[7.2rem] w-[90%] md:w-2/6 z-10`} >
                 <AddIcon />
                 <p>افزودن کلاس جدید</p>
             </button>

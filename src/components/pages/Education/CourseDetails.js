@@ -209,7 +209,7 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-[25%] text-base`} 
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
                             onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id)} >
                                 <p>غیر فعال سازی</p>
                             </button>
@@ -217,14 +217,14 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-[25%] text-base`} 
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
                                 onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                 <p>فعال سازی</p>
                             </button>
                         }
                         {
                             aCourseData.data.status === 'Pending' &&
-                                <div className='w-[90%] md:w-[25%] fixed bottom-16 flex justify-between'>
+                                <div className='w-[90%] md:w-2/6 fixed bottom-16 flex justify-between'>
                                     <button className={`${ButtonStyles.addButton} w-[45%] text-base`} 
                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                         <p>تایید</p>
