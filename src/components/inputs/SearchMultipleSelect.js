@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
+import RemoveIcon from '@mui/icons-material/Remove';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
@@ -95,11 +96,18 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
         </ul>
       )}
 
-      <div className='flex flex-wrap items-center w-full py-0'>
-        {selectedOptions?.map(option => (
-          <div key={option.id} className='p-1 w-full bg-[#282C4C] rounded-xl flex justify-between items-center mt-2'>
-            <p className='text-sm mx-1'>{option.description}{isForSyllabi === true && (option.type === 'Theory' ? ' - تئوری' : ' - عملی')}</p>
-            <ClearIcon onClick={() => handleRemove(option)} className="cursor-pointer" />
+      <div className={`flex flex-wrap items-center w-full ${selectedOptions.length > 0 && 'pt-4'} gap-y-4`}>
+        {selectedOptions?.map((option, index) => (
+          <div key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center'
+          style={{background:  'var(--profile-buttons-background)',
+          boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+            <p className=' text-sm mx-1' >{index + 1}</p>
+            <p className='text-sm px-6 w-full text-start'>{option.description}{isForSyllabi === true && (option.type === 'Theory' ? ' - تئوری' : ' - عملی')}</p>
+            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+            boxShadow: 'var(--profile-buttons-boxShadow)',
+            borderRadius:'0.5rem',
+            color:'var(--red-text)'}}
+            onClick={() => handleRemove(option)} className="cursor-pointer" />
           </div>
         ))}
       </div>

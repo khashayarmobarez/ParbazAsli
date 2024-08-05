@@ -485,13 +485,20 @@ const AddCourse = () => {
                                     </span>
                                 </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
+                                <ul className='w-full py-0 mt-[-1rem] gap-2'>
                                     {customCourses
                                     .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
-                                    .map((course) => (
-                                        <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                            <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <RemoveIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                    .map((course,index) => (
+                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className='text-sm px-6 w-full text-start'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                            onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>
@@ -508,13 +515,20 @@ const AddCourse = () => {
                                     </span>
                                 </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
+                                <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                     {customCourses
                                     .filter(course => course.type === 2) // Filter for practical courses (type 2)
-                                    .map((course) => (
-                                        <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                            <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <RemoveIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                    .map((course,index) => (
+                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className='text-sm px-6 w-full text-start'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                            onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>
@@ -559,7 +573,7 @@ const AddCourse = () => {
 
                                 <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                     {studentsData && studentsData?.map((student,index) => (
-                                        <li key={student.id} className=' w-full p-4 rounded-2xl flex justify-between items-center'
+                                        <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center'
                                         style={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>

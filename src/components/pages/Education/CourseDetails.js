@@ -24,6 +24,7 @@ const CourseDetails = () => {
     const { id } = useParams();
 
     const [showPopup, setShowPopup] = useState(false);
+    const [showExtra, setShowExtra ] = useState(false);
 
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id);
 
@@ -154,36 +155,48 @@ const CourseDetails = () => {
                                     </div>
                                 }
 
-                                <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                    <p className=' text-xs pr-2'>وضعیت</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                        {aCourseData.data.status === 'Active' && 
-                                            <>
-                                                <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                            </>
-                                        }
-                                        {aCourseData.data.status === 'Pending' &&
-                                            <>
-                                                <p>در انتظار تایید</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                            </>
-                                        }
-                                        {aCourseData.data.status === 'Disable' &&
-                                            <>
-                                                <p>غیرفعال</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                            </>
-                                        }
-                                    </div> 
-                                </div>
+                                    {/* show extra version */}
+                                    {
+                                    showExtra &&
+                                        <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
+                                            <p className=' text-xs pr-2'>وضعیت</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
+                                                {aCourseData.data.status === 'Active' && 
+                                                    <>
+                                                        <p>فعال</p>
+                                                        <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                    </>
+                                                }
+                                                {aCourseData.data.status === 'Pending' &&
+                                                    <>
+                                                        <p>در انتظار تایید</p>
+                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                    </>
+                                                }
+                                                {aCourseData.data.status === 'Disable' &&
+                                                    <>
+                                                        <p>غیرفعال</p>
+                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                    </>
+                                                }
+                                            </div> 
+                                        </div>
+                                    }   
+                            </div>
 
-                            </div>
-                            
-                            <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
-                                <p>توضیحات درباره دوره</p>
-                                <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
-                            </div>
+                            {/* show extra version */}
+                            {
+                            showExtra &&       
+                                <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
+                                    <p>توضیحات درباره دوره</p>
+                                    <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
+                                </div>
+                            }   
+
+                            <p onClick={() => setShowExtra(!showExtra)}
+                            className='w-full px-6 text-sm text-[var(--yellow-text)] text-start self-start'>
+                                {showExtra ? 'بستن اطلاعات بیشتر' : 'نمایش اطلاعات بیشتر ...'}
+                            </p>
 
                         </div>
 
