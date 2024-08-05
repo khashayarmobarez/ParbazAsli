@@ -298,7 +298,7 @@ const EditEquipment = () => {
                                                 {
                                                     EquipmentData.data.equipmentType === 'Parachute' &&
                                                     <div className='w-full flex flex-col text-start gap-y-1'>
-                                                        <p className=' self-start md:self-center'>ثبت سریال چتر کمکی</p>
+                                                        <p className=' self-start md:self-center'>ثبت سریال  و تمدید چتر کمکی</p>
                                                         <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
                                                         در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
                                                     </div>
@@ -323,6 +323,10 @@ const EditEquipment = () => {
                                                         در صورت مفقودی هارنس ما را از طریق تیکت مطلع سازید.</p>
                                                     </div>
                                                 }
+
+                                                <h3 className=' text-[var(--softer-white)] text-sm mt-1 mb-[-10px]'>
+                                                    سریال چتر کمکی
+                                                </h3>
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
