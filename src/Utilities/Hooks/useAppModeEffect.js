@@ -19,6 +19,7 @@ const useAppModeEffect = (isDarkMode) => {
         root.style.setProperty('--dark-blue-bg', '#151D2E');
         root.style.setProperty('--diffrential-blue', '#262941');
         root.style.setProperty('--primary-light', '#c0c2cf');
+        root.style.setProperty('--design-background-normal', '#454459');
 
         // overall used colors
         root.style.setProperty('--soft-white', '#F6FDEF');

@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 
 // assets
 import attention from '../assets/icons/attention.svg'
+import arrowIcon from '../assets/icons/Right Arrow Button.svg';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -95,7 +96,7 @@ const MyCourses = () => {
 
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                <PageTitle title={'دوره'} navigateTo={'/profile'} />  
+                <PageTitle title={'دوره‌های من'} navigateTo={'/profile'} />  
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
@@ -228,13 +229,45 @@ const MyCourses = () => {
                                         ))
                                     }
 
-                                    {
+                                    {/* {
                                     courseData && courseData.totalPagesCount > 1 &&
                                         <div className='w-full flex justify-between mt-2'>
                                             <p onClick={handleNextPageNumber} className='' style={{color:'var(--yellow-text)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
                                             <p onClick={handleLastPageNumber} className='' style={{color:'var(--yellow-text)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
                                         </div>
-                                    }   
+                                    }    */}
+
+                                    {courseData && courseData.totalPagesCount > 0 && (
+                                        <div className='w-full flex justify-between px-10 items-center'>
+                                            <button
+                                                className='w-10 justify-self-start'
+                                                disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
+                                                onClick={handleNextPageNumber}
+                                            >
+                                                <img
+                                                    src={arrowIcon}
+                                                    alt='arrow'
+                                                    className={`${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                />
+                                            </button>
+
+                                            <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                صفحه ی {pageNumber}
+                                            </p>
+
+                                            <button
+                                                className='transform rotate-180 w-10 justify-self-end'
+                                                disabled={pageNumber === 1}
+                                                onClick={handleLastPageNumber}
+                                            >
+                                                <img
+                                                    src={arrowIcon}
+                                                    alt='arrow'
+                                                    className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                                />
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
 
                                 }

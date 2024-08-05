@@ -6,7 +6,7 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, LinearProgress } from '@mui/material';
 
 // queries
 import { useAUserCourse } from '../../../Utilities/Services/StudentCoursesQueries';
@@ -60,7 +60,7 @@ const MyCourseDetails = () => {
                 {
                     aCourseData &&
                     <>
-                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-6`}>
+                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-8`}>
 
                             <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
@@ -122,19 +122,22 @@ const MyCourseDetails = () => {
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
                                     <p className=' text-xs pr-2'>وضعیت</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                        {aCourseData.data.status === 'Active' && 
+                                        {
+                                        aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
                                                 <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
                                             </>
                                         }
-                                        {aCourseData.data.status === 'Canceled' &&
+                                        {
+                                        aCourseData.data.status === 'Canceled' &&
                                             <>
                                                 <p>لغو شده</p>
                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                             </>
                                         }
-                                        {aCourseData.data.status === 'Finished' &&
+                                        {
+                                        aCourseData.data.status === 'Finished' &&
                                             <>
                                                 <p>تمام شده</p>
                                                 <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
@@ -144,6 +147,17 @@ const MyCourseDetails = () => {
                                 </div>
 
                             </div>
+                            
+                            <Box sx={{ width: '90%', display:'flex', flexDirection:'column', rowGap:'1rem' }}>
+                                <div className='w-full flex justify-between px-1'>
+                                        <p>درصد پیشرفت</p>
+                                        <p>{aCourseData.data.percent}%</p>
+                                </div>
+                                <LinearProgress variant="determinate" value={aCourseData.data.percent > 3 ? aCourseData.data.percent : aCourseData.data.percent + 3} 
+                                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--design-background-normal)', '& .MuiLinearProgress-bar': {
+                                    borderRadius:'1rem',backgroundColor: 'var(--red-text)' // Change this to your desired color
+                                }}} />
+                            </Box>
                             
                             <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
                                         <p>توضیحات درباره دوره</p>
