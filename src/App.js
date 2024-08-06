@@ -331,7 +331,7 @@ function App() {
                 {/* club education */}
                 <Route path="/club/clubCourses" element={ < ClubCourses  />} />
                 <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
-                <Route path='/education/courseDetails/:id' element={<ClubCourseDetails />} >
+                <Route path='/club/courseDetails/:id' element={<ClubCourseDetails />} >
                   <Route index element={<ClubCourseStudents />} />
                   <Route path="students" element={<ClubCourseStudents />} />
                   <Route path="classes" element={<ClubCourseClasses />} />

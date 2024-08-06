@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // mui 
 import CircularProgress from '@mui/material/CircularProgress';
@@ -18,7 +19,6 @@ import { useClubCourses, useGetClubCoursesDividers } from '../../../../Utilities
 // comnponents
 import PageTitle from '../../../reuseable/PageTitle';
 import DropDownLine from '../../../reuseable/DropDownLine';
-import { toast } from 'react-toastify';
 import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const ClubCourses = () => {
@@ -55,6 +55,10 @@ const ClubCourses = () => {
             style: { width: "90%" }
           });
     }
+
+    const handleClubCourseDetails = (id) => () => {
+        navigate(`/club/courseDetails/${id}/students`);
+    };
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
@@ -182,7 +186,7 @@ const ClubCourses = () => {
                                                         </div>
 
                                                         <button
-                                                        onClick={diabledButton}
+                                                        onClick={handleClubCourseDetails(course.id)}
                                                         className={`${ButtonStyles.normalButton} self-end`} >
                                                             جزئیات  
                                                         </button>

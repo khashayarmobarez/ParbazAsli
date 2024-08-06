@@ -98,15 +98,16 @@ const Parachute = (props) => {
             {
                 error && <p className='mt-10'>{error.response.data.ErrorMessages[0].ErrorMessage}</p>
             }
-            {
+                {
                     userEquipmentsData &&
                     !userEquipmentsData.data[0] &&
-                    <p className=' font-medium'>هیچ تجهیزات فغالی ثبت نشده است</p>
+                    <p className=' font-medium'>هیچ تجهیزات فعالی ثبت نشده است</p>
                 }
 
                 {/* Permanent */}
                 {
                 userEquipmentsData &&
+                userEquipmentsData.data[0] &&
                     <DropDownLine  
                     onClickActivation={() => handleDropDownClick('Permanent')}
                     title={'دائمی'} 

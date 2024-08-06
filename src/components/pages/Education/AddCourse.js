@@ -489,7 +489,7 @@ const AddCourse = () => {
                                     {customCourses
                                     .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
                                     .map((course,index) => (
-                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center'
+                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                         style={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
@@ -519,7 +519,7 @@ const AddCourse = () => {
                                     {customCourses
                                     .filter(course => course.type === 2) // Filter for practical courses (type 2)
                                     .map((course,index) => (
-                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center'
+                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                         style={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
@@ -573,7 +573,7 @@ const AddCourse = () => {
 
                                 <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                     {studentsData && studentsData?.map((student,index) => (
-                                        <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center'
+                                        <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                         style={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>

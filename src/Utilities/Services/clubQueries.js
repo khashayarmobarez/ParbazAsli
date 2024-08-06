@@ -604,4 +604,77 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches };
+
+
+
+
+// get a club course
+    const getClubCourse = async (courseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourse?courseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCourse = (courseId) => {
+        return useQuery(['getClubCourse', courseId], () => getClubCourse(courseId));
+    };
+
+
+
+
+
+
+// triggerclub course status
+// Club/TriggerClubCourseStatus
+    const triggerClubCourseStatus = async () => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${BASE_URL}/Club/TriggerClubCourseStatus`, {}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useTriggerClubCourseStatus = () => {
+        return useMutation(triggerClubCourseStatus, {
+            onSuccess: (data) => {
+                // Handle success, e.g., show a notification, reset the form, etc.
+                console.log('club course status triggerd succesfuly:', data);
+            },
+        });
+    }
+
+
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus };
