@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // redux
-import { useSelector } from 'react-redux';
-import { selectFlightFilter } from '../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFlightFilter, resetAllFilters } from '../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css';
@@ -25,6 +25,8 @@ import PracticalFlightHistoryBox from '../components/pages/FlightHistory/Practic
 import FilterVariables from '../components/pages/FlightHistory/FilterVariables';
 
 const FlightHistory = () => {
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     
     const filterData = useSelector(selectFlightFilter);
@@ -39,7 +41,7 @@ const FlightHistory = () => {
         coachNameFilter = {},
         flightStatusFilter = {},
         fromDateFilter,
-        toDateFilter
+        toDateFilter    
     } = filterData || {};
 
     const [pageNumber, setPageNumber] = useState(1);
@@ -72,6 +74,10 @@ const FlightHistory = () => {
         }
     };
 
+    const handleResetData = () => {
+        dispatch(resetAllFilters());
+    }
+
     return (
         <div className='w-full flex flex-col justify-center items-center'>
             <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-0'>
@@ -88,21 +94,22 @@ const FlightHistory = () => {
                             </button>
                             {
                                 (courseFilter.name||
-                                    wingFilter.brand||
-                                    harnessFilter.brand||
-                                    countryFilter.name||
-                                    provinceFilter.name||
-                                    siteFilter.name||
-                                    flightTypeFilter.name||
-                                    coachNameFilter.name||
-                                    flightStatusFilter.name||
-                                    fromDateFilter||
-                                    toDateFilter) &&
+                                wingFilter.brand||
+                                harnessFilter.brand||
+                                countryFilter.name||
+                                provinceFilter.name||
+                                siteFilter.name||
+                                flightTypeFilter.name||
+                                coachNameFilter.name||
+                                flightStatusFilter.name||
+                                fromDateFilter||
+                                toDateFilter) &&
                                     <button className={`w-12 rounded-xl flex justify-center items-center`}
                                     style={{
                                         background:  'var(--profile-buttons-background),var(--bg-color)',
                                         boxShadow: 'var(--profile-buttons-boxShadow)'
-                                    }}>
+                                    }}
+                                    onClick={handleResetData}>
                                         <img src={eraser} alt='eraser' />
                                     </button>
                             }

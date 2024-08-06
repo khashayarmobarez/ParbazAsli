@@ -57,7 +57,19 @@ const flightFilterSlice = createSlice({
         updateToDateFilter: (state, action) => {
             state.toDateFilter = action.payload;
         },
-        // reset
+        resetAllFilters: (state) => {
+            state.courseFilter = {name:'', id:''};
+            state.wingFilter = {name:'', id:''};
+            state.harnessFilter = {name:'', id:''};
+            state.countryFilter = {name:'', id:''};
+            state.provinceFilter = {name:'', id:''};
+            state.siteFilter = {name:'', id:''};
+            state.flightTypeFilter = {name:'', id:''};
+            state.coachNameFilter = {name:'', id:''};
+            state.flightStatusFilter = {name:'', id:''};
+            state.fromDateFilter = '';
+            state.toDateFilter = '';
+        },
     },
 });
 
@@ -74,6 +86,7 @@ export const {
     updateFlightStatusFilter,
     updateFromDateFilter,
     updateToDateFilter,
+    resetAllFilters
 } = flightFilterSlice.actions;
 
 export default flightFilterSlice.reducer;
