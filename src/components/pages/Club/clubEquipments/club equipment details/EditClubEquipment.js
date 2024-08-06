@@ -103,6 +103,7 @@ const EditClubEquipment = () => {
             formData.append('file', selectedFile);
         }
         formData.append('equipmentId', id);
+        formData.append('isForClub', true);
 
         if((packageDate) || (equipmentSerial && selectedFile)) {
             editEquipment(formData, {

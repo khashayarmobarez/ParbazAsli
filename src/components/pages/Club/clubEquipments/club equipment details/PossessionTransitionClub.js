@@ -146,6 +146,7 @@ const PossessionTransitionClub = () => {
             formData.append("receiverUserId", receiverId);
             formData.append("type", activeLink);
             formData.append("expirationDateTime", formattedDate);
+            formData.append('isForClub', true);
     
             mutateTransitionData(formData, {
                 onSuccess: () => {
