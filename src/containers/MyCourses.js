@@ -161,10 +161,10 @@ const MyCourses = () => {
 
                                                     <div className='w-full flex justify-between text-start text-sm'>
                                                         <div className='flex flex-col justify-between self-start'>
-                                                            { courseData.organization &&
+                                                            { courseData.organization && courseData.type !== 'Regular' &&
                                                                 <p>ارگان: {courseData.organization}</p>
                                                             }
-                                                            { courseData.organization &&
+                                                            { courseData.level && courseData.type !== 'Regular' &&
                                                                 <p>مقطع: {courseData.level}</p>
                                                             }
                                                             { courseData.clubName &&

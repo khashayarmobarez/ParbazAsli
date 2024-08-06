@@ -9,7 +9,7 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
             
             <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 
-                <div className='flex gap-x-3 justify-center'>
+                <div className={`flex gap-x-3 justify-center  ${isActive ? 'text-[var(--yellow-text)]' : 'text-[var(--soft-white)]'}`}>
                     {icon ? 
                     <>
                         <span className='w-4'>
@@ -27,11 +27,11 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
                 </div>
 
                 <div className='w-full'>
-                    <div className='w-full h-[1px]' style={{ background:'var(--soft-white)'}}></div>
+                    <div className={`w-full h-[1px] ${isActive ? 'bg-[var(--yellow-text)]' : 'bg-[var(--soft-white)]'}`} ></div>
                 </div>
 
                 <span onClick={onClick} className={`transition-transform duration-300 transform ${isActive ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
-                    <ArrowBackIosIcon />
+                    <ArrowBackIosIcon sx={{ color: isActive ? 'var(--yellow-text)' : 'var(--soft-white)' }} />
                 </span>
 
             </div>
