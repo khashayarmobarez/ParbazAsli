@@ -202,6 +202,9 @@ const Education = () => {
                                                                 {course.status === 'Disable' && 
                                                                     <span className='text-[var(--notification-red)]'> غیر فعال</span>
                                                                 }
+                                                                {course.status === 'Rejected' && 
+                                                                    <span className='text-[var(--notification-red)]'> رد شده</span>
+                                                                }
                                                             </p>
 
                                                         </div>
@@ -249,9 +252,12 @@ const Education = () => {
 
                                                     </div>
 
-                                                    <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
-                                                        جزئیات  
-                                                    </button>
+                                                    {
+                                                        course.status !== 'Rejected' &&
+                                                            <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
+                                                                جزئیات  
+                                                            </button>
+                                                    }
 
                                                 </div>
 

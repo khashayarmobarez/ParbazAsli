@@ -46,16 +46,6 @@ const ClubCourses = () => {
     }, [clubCourseDividerData])
 
 
-    const diabledButton = () => {
-        toast('این بخش در حال توسعه است ...', {
-            type: 'success',
-            position: 'top-right',
-            autoClose: 5000,
-            theme: 'dark',
-            style: { width: "90%" }
-          });
-    }
-
     const handleClubCourseDetails = (id) => () => {
         navigate(`/club/courseDetails/${id}/students`);
     };
@@ -136,62 +126,85 @@ const ClubCourses = () => {
 
                                                 <div
                                                 key={course.id}
-                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs"
+                                                className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs"
                                                 style={{
                                                     background: 'var(--organs-coachData-bg) var(--bg-color)',
                                                     boxShadow: 'var(--organs-coachData-boxShadow)'
                                                 }}
                                                 >
-                                                    <h1 className='text-base'>{course.name}</h1>
+                                                    <div className='w-full flex justify-between items-center'>
+                                                    
+                                                        <h1 className='text-base'>{course.name}</h1>
+
+                                                        <div className='flex gap-x-1'>
+
+                                                            <p className='text-[var(--low-opacity-white)]'>وضعیت:
+                                                                {course.status === 'Active' && 
+                                                                    <span className='text-[var(--yellow-text)]'> فعال</span>
+                                                                }
+                                                                {course.status === 'Pending' &&
+                                                                    <span className='text-[var(--red-text)]'> در انتظار تایید</span>
+                                                                }
+                                                                {course.status === 'Disable' && 
+                                                                    <span className='text-[var(--notification-red)]'> غیر فعال</span>
+                                                                }
+                                                                {course.status === 'Rejected' && 
+                                                                    <span className='text-[var(--notification-red)]'> رد شده</span>
+                                                                }
+                                                            </p>
+
+                                                        </div>
+                                                    
+                                                    </div>
 
                                                     <div className='w-full flex justify-between items-center'>
 
-                                                        <div className='flex flex-col text-start gap-y-1'>
+                                                        <div className='flex flex-col text-start gap-y-3'>
+                                                            
+                                                            {
+                                                                course.type === 'Regular' &&
+                                                                <p className='text-sm'>
+                                                                    {course.organization}
+                                                                </p>
+                                                            }
+                                                            {
+                                                                course.type === 'Retraining' &&
+                                                                <p className='text-sm'>
+                                                                    <span className='text-[var(--low-opacity-white)]'>مقطع:</span> {course.level}
+                                                                </p>
+                                                            } 
 
                                                             <p>
-                                                                {course.level} {course.organization && `/ ${course.organization}`}
+                                                                <span className='text-[var(--low-opacity-white)]'>تعداد پرواز: </span>{course.flightsCount}
                                                             </p>
 
                                                             { course.clubName &&
-                                                                <p>باشگاه: {course.clubName}</p>
-                                                            }
-
-                                                            <p>تعداد پرواز: {course.flightsCount}</p>
-
-                                                            <div className='flex gap-x-1'>
-                                                                <p className='flex'>
-                                                                    وضعیت:  
-                                                                    {course.status === 'Active' && 
-                                                                        <>
-                                                                            <p> فعال</p>
-                                                                            <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                                                        </>
-                                                                    }
-                                                                    {course.status === 'Pending' &&
-                                                                        <>
-                                                                            <p> در انتظار تایید</p>
-                                                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                                        </>
-                                                                    }
-                                                                    {course.status === 'Disable' &&
-                                                                        <>
-                                                                            <p> غیرفعال</p>
-                                                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                                        </>
-                                                                    }
+                                                                <p>
+                                                                    <span className='text-[var(--low-opacity-white)]'>باشگاه: </span> {course.clubName}
                                                                 </p>
-
-                                                            </div>
+                                                            }
 
                                                         </div>
 
-                                                        <button
-                                                        onClick={handleClubCourseDetails(course.id)}
-                                                        className={`${ButtonStyles.normalButton} self-end`} >
-                                                            جزئیات  
-                                                        </button>
+                                                        <div className='flex flex-col text-start gap-y-2'>
+                                                            <p>
+                                                                <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                            </p>
+                                                            <p>
+                                                                <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                            </p>
+                                                        </div>
+
 
                                                     </div>
+
+                                                    {
+                                                        course.status !== 'Rejected' &&
+                                                            <button onClick={handleClubCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
+                                                                جزئیات  
+                                                            </button>
+                                                    }
+
                                                 </div>
 
                                             </div>
