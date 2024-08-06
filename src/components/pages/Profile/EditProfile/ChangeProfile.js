@@ -84,6 +84,29 @@ const ChangeProfile = () => {
     }
 
 
+    // function to reduce the remaining time every second on codeRemainingTimePhone
+    useEffect(() => {
+        if (codeRemainingTimePhone > 0) {
+            const timer = setInterval(() => {
+                setCodeRemainingTimePhone(prevTime => prevTime - 1);
+            }, 1000);
+            return () => clearInterval(timer);
+        }
+    }, [codeRemainingTimePhone]);
+
+
+    // function to reduce the remaining time every second on codeRemainingTimeEmail
+    useEffect(() => {
+        if (codeRemainingTimeEmail > 0) {
+            const timer = setInterval(() => {
+                setCodeRemainingTimeEmail(prevTime => prevTime - 1);
+            }, 1000);
+            return () => clearInterval(timer);
+        }
+    }, [codeRemainingTimeEmail]);
+
+
+
     const changePhoneNumberPopUp = async(e) => {
 
         if (!phoneNumber) { 

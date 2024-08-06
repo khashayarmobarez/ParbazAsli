@@ -337,7 +337,7 @@ const CourseStudents = () => {
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
                                     </span>
                                 </div>
                         }
@@ -373,7 +373,7 @@ const CourseStudents = () => {
                                                     sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                                                 </Box> */}
                                                 {
-                                                    student.status !== 'Completed' &&
+                                                    student.status !== 'Completed' && aCourseData.data.status === 'Active' &&
                                                     <button 
                                                     onClick={
                                                         () => setShowHistoryStudentOptions(showHistoryStudentOptions === student.id ?

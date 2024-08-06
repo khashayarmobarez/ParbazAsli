@@ -66,7 +66,7 @@ const Profile = () => {
                         :
                         <div className={`${boxStyles.containerDarkmode} rounded-3xl h-28 z-0 w-full flex flex-col justify-between items-center px-2 py-4 `}>
                             <p className=' font-medium text-sm'>چتر و وسایل پروازی خود را اضافه کنید</p>
-                            <button onClick={() => navigate('/equipment')} className={`${ButtonStyles.addButton} w-20`} >
+                            <button onClick={() => navigate('/equipment/addParachute')} className={`${ButtonStyles.addButton} w-20`} >
                                 <AddIcon />
                             </button>
                         </div>
@@ -115,8 +115,6 @@ const Profile = () => {
                         <UserCoursesSlider coursesData={data.data.userCourses} />
                     }
 
-
-                        
                         
             </div>
             

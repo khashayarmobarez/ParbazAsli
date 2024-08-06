@@ -257,14 +257,16 @@ const CourseDetails = () => {
 
             </div>
 
-            <StandardPopup
-            showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading} 
-            handleSubmit={(event) => {
-                !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id);
-                setShowPopup(false);
-            }}
-            topicText='تاییدیه' explanationtext='پس از غیرفعال کردن دوره کاربران فعال این دوره تا پایان دوران دوره خود حق ثبت پرواز دارند ولی کاربر جدیدی به دوره افزوده نمیشود. آیا از غیرفعال کردن این دوره اطمینان دارید؟'
-            submitText='بله' declineText='خیر' />
+            <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-20 backdrop-blur-sm`}>
+                <StandardPopup
+                showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading} 
+                handleSubmit={(event) => {
+                    !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id);
+                    setShowPopup(false);
+                }}
+                topicText='تاییدیه' explanationtext='پس از غیرفعال کردن دوره کاربران فعال این دوره تا پایان دوران دوره خود حق ثبت پرواز دارند ولی کاربر جدیدی به دوره افزوده نمیشود. آیا از غیرفعال کردن این دوره اطمینان دارید؟'
+                submitText='بله' declineText='خیر' />
+            </div>
 
         </div>
     );

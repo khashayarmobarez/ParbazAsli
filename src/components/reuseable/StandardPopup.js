@@ -10,8 +10,8 @@ import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 const StandardPopup = ({ showPopup, setShowPopup, handleSubmit, topicText,explanationtext, submitText, declineText }) => {
     return (
-        <div>
-            <div  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'} z-20 py-8 w-[80%] md:w-[304px] min-h-[280px] gap-y-6 flex flex-col justify-around items-center top-52 right-[10%]`}>
+        <div className={` z-20 w-full h-full ${showPopup ? 'flex' : 'hidden' } `}>
+            <div  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  z-20 py-8 w-[80%] md:w-[304px] min-h-[280px] gap-y-6 flex flex-col justify-around items-center top-52 right-[10%]`}>
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{position:'absolute', top:'1rem', right:'1rem'  }} />
 
