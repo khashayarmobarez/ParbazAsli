@@ -7,19 +7,19 @@ import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import attention from '../../../assets/icons/attention.svg';
+import attention from '../../../../assets/icons/attention.svg';
 
 // queries
-import { useClubCourses, useGetClubCoursesDividers } from '../../../Utilities/Services/clubQueries';
+import { useClubCourses, useGetClubCoursesDividers } from '../../../../Utilities/Services/clubQueries';
 
 // comnponents
-import PageTitle from '../../reuseable/PageTitle';
-import DropDownLine from '../../reuseable/DropDownLine';
+import PageTitle from '../../../reuseable/PageTitle';
+import DropDownLine from '../../../reuseable/DropDownLine';
 import { toast } from 'react-toastify';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const ClubCourses = () => {
 

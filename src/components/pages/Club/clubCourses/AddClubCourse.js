@@ -3,35 +3,35 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // styles
-import GradientStyles from '../../../styles/gradients/Gradient.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
-import Cube from '../../../assets/icons/3dCube.svg';
-import attention from '../../../assets/icons/attention.svg';
+import Cube from '../../../../assets/icons/3dCube.svg';
+import attention from '../../../../assets/icons/attention.svg';
 
 // mui
 import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
 
 // drop down options
-import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
+import { courseTypeOptionData } from '../../../../Utilities/Providers/dropdownInputOptions'
 
 // queries
-import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetActiveClubCoaches } from '../../../Utilities/Services/clubQueries';
-import { useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
-import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
+import { useAddCustomClubCourse, useAddRegularClubCourse, useAddRetrainingClubCourse, useGetActiveClubCoaches } from '../../../../Utilities/Services/clubQueries';
+import { useSyllabiForLevels } from '../../../../Utilities/Services/coursesQueries';
+import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../../Utilities/Services/queries';
 
 // components
-import PageTitle from '../../reuseable/PageTitle';
-import DropdownInput from '../../inputs/DropDownInput';
-import TextInput from '../../inputs/textInput';
-import NumberInput from '../../inputs/NumberInput';
-import DescriptionInput from '../../inputs/DescriptionInput';
-import SearchMultipleSelect from '../../inputs/SearchMultipleSelect';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import PageTitle from '../../../reuseable/PageTitle';
+import DropdownInput from '../../../inputs/DropDownInput';
+import TextInput from '../../../inputs/textInput';
+import NumberInput from '../../../inputs/NumberInput';
+import DescriptionInput from '../../../inputs/DescriptionInput';
+import SearchMultipleSelect from '../../../inputs/SearchMultipleSelect';
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const AddClubCourse = () => {
 

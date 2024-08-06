@@ -90,12 +90,12 @@ import AddFlightType from './components/pages/AddFlight/AddFlightType';
 import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
 import ClubCoaches from './components/pages/Club/ClubCoaches';
 import ClubEquipment from './components/pages/Club/ClubEquipment';
-import ClubCourses from './components/pages/Club/ClubCourses';
+import ClubCourses from './components/pages/Club/clubCourses/ClubCourses';
 import ClubFlightEquipments from './components/pages/Club/clubEquipments/ClubFlightEquipments';
 import ClubParachutes from './components/pages/Club/clubEquipments/ClubParachutes';
 import ClubHarnesses from './components/pages/Club/clubEquipments/ClubHarnesses';
 import ClubCoachDetails from './components/pages/Club/ClubCoachDetails';
-import AddClubCourse from './components/pages/Club/AddClubCourse';
+import AddClubCourse from './components/pages/Club/clubCourses/AddClubCourse';
 import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddClubFlightEquipment';
 import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
@@ -104,6 +104,10 @@ import SyllabiList from './containers/SyllabiList';
 import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
 import EditClubEquipment from './components/pages/Club/clubEquipments/club equipment details/EditClubEquipment';
 import PossessionTransitionClub from './components/pages/Club/clubEquipments/club equipment details/PossessionTransitionClub';
+import ClubCourseDetails from './components/pages/Club/clubCourses/ClubCourseDetails';
+import ClubCourseStudents from './components/pages/Club/clubCourses/ClubCourseStudents';
+import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseClasses';
+import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
   
 
 
@@ -321,11 +325,18 @@ function App() {
                 <Route path='/club/addParachuteForClub' element={<AddClubParachute />} />
                 <Route path='/club/addHarnessForClub' element={<AddClubHarness />} />
                 <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
-                <Route path="/club/clubCourses" element={ < ClubCourses  />} />
-                <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
                 <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
                 <Route path='/EditClubEquipment/:id' element={<EditClubEquipment />} />
                 <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionClub />} />
+                {/* club education */}
+                <Route path="/club/clubCourses" element={ < ClubCourses  />} />
+                <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
+                <Route path='/education/courseDetails/:id' element={<ClubCourseDetails />} >
+                  <Route index element={<ClubCourseStudents />} />
+                  <Route path="students" element={<ClubCourseStudents />} />
+                  <Route path="classes" element={<ClubCourseClasses />} />
+                  <Route path="syllabi" element={<ClubCourseSyllabi />} />
+                </Route> 
 
 
                 {/* edit profile */}
