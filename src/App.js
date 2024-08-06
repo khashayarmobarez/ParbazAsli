@@ -101,6 +101,7 @@ import AddClubParachute from './components/pages/Club/clubEquipments/AddClubPara
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
 import TandemSurvey from './components/pages/Notifications/TandemSurvey';
 import SyllabiList from './containers/SyllabiList';
+import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
   
 
 
@@ -303,6 +304,7 @@ function App() {
                 {/* flight history */}
                 <Route path='/flightHistory' element={<FlightHistory  />} />
                 <Route path='/flightHistory/advancedFilter' element={<FlightsAdvancedFilter  />} />
+                <Route path='/flightHistory/:id' element={<FlightHistoryPage  />} />
 
 
                 {/* club */}

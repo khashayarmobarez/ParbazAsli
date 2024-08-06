@@ -120,11 +120,11 @@ const ApproveStudentFlight = () => {
                                 }
 
                                 {
-                                    UserCourseFlightData.data.takeOffDateTime &&
+                                    UserCourseFlightData.data.takeOffTime &&
                                         <div className='flex flex-col items-start gap-y-3'>
                                             <p className=' text-xs pr-2'>زمان Takeoff</p>
                                             <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data' >
-                                                <p>{UserCourseFlightData.data.takeOffDateTime}</p>
+                                                <p>{UserCourseFlightData.data.takeOffTime}</p>
                                             </div>
                                         </div>
                                 }
@@ -150,11 +150,11 @@ const ApproveStudentFlight = () => {
                                 }
 
                                 {
-                                    UserCourseFlightData.data.landingDateTime &&
+                                    UserCourseFlightData.data.landingTime &&
                                         <div className='flex flex-col items-start gap-y-3'>
                                             <p className=' text-xs pr-2'>زمان Landing</p>
                                             <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data' >
-                                                <p>{UserCourseFlightData.data.landingDateTime}</p>
+                                                <p>{UserCourseFlightData.data.landingTime}</p>
                                             </div>
                                         </div>
                                 }

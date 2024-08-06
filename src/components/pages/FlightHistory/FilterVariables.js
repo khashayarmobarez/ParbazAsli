@@ -80,7 +80,20 @@ const FilterVariables = () => {
    
     
     return (
-        <div className='w-full flex'>
+        <div 
+        className={`w-full flex
+        ${(courseFilter.name||
+            wingFilter.brand||
+            harnessFilter.brand||
+            countryFilter.name||
+            provinceFilter.name||
+            siteFilter.name||
+            flightTypeFilter.name||
+            coachNameFilter.name||
+            flightStatusFilter.name||
+            fromDateFilter||
+            toDateFilter) ? '' : 'hidden' }`}
+        >
             <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
 
                 {   
