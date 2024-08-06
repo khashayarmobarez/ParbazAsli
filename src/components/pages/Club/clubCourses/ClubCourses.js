@@ -87,7 +87,7 @@ const ClubCourses = () => {
                 {clubCourseDividerData && clubCourseDividerData.data.length < 1 &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
                         <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
-                        <p>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                        <p>در حال حاضر دوره ای وجود ندارد</p>
                     </div>
                 }
 
