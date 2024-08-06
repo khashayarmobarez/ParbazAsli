@@ -57,6 +57,7 @@ const flightFilterSlice = createSlice({
         updateToDateFilter: (state, action) => {
             state.toDateFilter = action.payload;
         },
+        // reset
     },
 });
 

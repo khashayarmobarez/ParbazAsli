@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// redux
 import { useSelector } from 'react-redux';
 import { selectFlightFilter } from '../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+
+// styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css';
+
+// icons 
 import arrowIcon from '../assets/icons/Right Arrow Button.svg';
+import eraser from '../assets/icons/eraser 1.svg';
+
+// mui
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+
+// queries
 import { useUserFlights } from '../Utilities/Services/flightHistoriesQueries';
+
+// components
 import PageTitle from '../components/reuseable/PageTitle';
 import PracticalFlightHistoryBox from '../components/pages/FlightHistory/PracticalFlightHistoryBox';
 import FilterVariables from '../components/pages/FlightHistory/FilterVariables';
@@ -65,12 +78,36 @@ const FlightHistory = () => {
                 <PageTitle title={'سوابق پرواز'} navigateTo={'profile'} />
                 <div className='w-[90%] mt-6 flex flex-col'>
                     <div className='w-full flex flex-col justify-center items-center px-1 gap-y-8'>
-                        <button
-                            className={`w-full ${ButtonStyles.normalButton}`}
-                            onClick={() => navigate('/flightHistory/advancedFilter')}
-                        >
-                            فیلتر جست‌وجو
-                        </button>
+
+                        <div className='w-full flex justify-between gap-x-2'>
+                            <button
+                                className={`w-full ${ButtonStyles.normalButton}`}
+                                onClick={() => navigate('/flightHistory/advancedFilter')}
+                            >
+                                فیلتر جست‌وجو
+                            </button>
+                            {
+                                (courseFilter.name||
+                                    wingFilter.brand||
+                                    harnessFilter.brand||
+                                    countryFilter.name||
+                                    provinceFilter.name||
+                                    siteFilter.name||
+                                    flightTypeFilter.name||
+                                    coachNameFilter.name||
+                                    flightStatusFilter.name||
+                                    fromDateFilter||
+                                    toDateFilter) &&
+                                    <button className={`w-12 rounded-xl flex justify-center items-center`}
+                                    style={{
+                                        background:  'var(--profile-buttons-background),var(--bg-color)',
+                                        boxShadow: 'var(--profile-buttons-boxShadow)'
+                                    }}>
+                                        <img src={eraser} alt='eraser' />
+                                    </button>
+                            }
+
+                        </div>
  
                         <FilterVariables />
                         {/* {(courseFilter.id || wingFilter.id || harnessFilter.id || (countryFilter && countryFilter.id) || provinceFilter.id || siteFilter.id || flightTypeFilter.id || coachNameFilter.id || flightStatusFilter.id || fromDateFilter || toDateFilter) && (

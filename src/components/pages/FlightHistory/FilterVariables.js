@@ -77,6 +77,9 @@ const FilterVariables = () => {
                 break;
         }
     }
+
+    // reset all redux data
+
    
     
     return (
