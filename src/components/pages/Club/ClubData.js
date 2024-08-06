@@ -57,7 +57,7 @@ const ClubData = () => {
                         </div> 
                         <div className=' flex justify-between items-start' >
                             <img src={clubStudents} alt='icon'/>
-                            <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.activeStudentsCount} هنرجو آموزشی</p>
+                            <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.activeStudentsCount} هنرجو فعال</p>
                         </div>
 
                     </div>
