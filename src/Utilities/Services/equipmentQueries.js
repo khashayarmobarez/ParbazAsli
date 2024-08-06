@@ -100,10 +100,10 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // get an Equipment data
-    const getAnEquipmentData = async (equipmentId) => {
+    const getAnEquipmentData = async (equipmentId, isForClub) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}`, {
+            const response = await axios.get(`${BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}&isForClub=${isForClub}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -117,8 +117,8 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     };
 
 
-    const useAnEquipment = (equipmentId) => {
-        return useQuery(['anEquipment', equipmentId], () => getAnEquipmentData(equipmentId), {
+    const useAnEquipment = (equipmentId, isForClub) => {
+        return useQuery(['anEquipment', equipmentId, isForClub], () => getAnEquipmentData(equipmentId, isForClub), {
             enabled: !!equipmentId, // only run query if equipmentId is defined
         });
     };

@@ -3,32 +3,32 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // queries
-import { useAnEquipment, useEditEquipment } from '../../../../Utilities/Services/equipmentQueries';
-import { useUserById } from '../../../../Utilities/Services/queries';
+import { useAnEquipment, useEditEquipment } from '../../../../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../../../../Utilities/Services/queries';
 
 // utilities
-import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
+import useDateFormat from '../../../../../Utilities/Hooks/useDateFormat';
 
 // styles
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import Cube from '../../../../assets/icons/3dCube.svg'
+import Cube from '../../../../../assets/icons/3dCube.svg'
 
 // comps
-import PageTitle from '../../../reuseable/PageTitle';
-import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
-import TextInput from '../../../inputs/textInput';
-import UploadFileInput from '../../../inputs/UploadFileInput';
-import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
-import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
+import PageTitle from '../../../../reuseable/PageTitle';
+import DateLastRepackInput from '../../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import TextInput from '../../../../inputs/textInput';
+import UploadFileInput from '../../../../inputs/UploadFileInput';
+import DigilogbookLoading from '../../../../Loader/DigilogbookLoading';
+import CircularProgressLoader from '../../../../Loader/CircularProgressLoader';
 
-const EditEquipment = () => {
+const EditClubEquipment = () => {
     const navigate = useNavigate()
     const { id } = useParams();
 
@@ -38,7 +38,7 @@ const EditEquipment = () => {
     const [equipmentSerial, setEquipmentSerial] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     
-    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, false)
+    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, true)
     const { brand, model, size, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     // useEditEquipment for submitting the form
@@ -410,4 +410,4 @@ const EditEquipment = () => {
     );
 };
 
-export default EditEquipment;
+export default EditClubEquipment;

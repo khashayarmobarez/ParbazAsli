@@ -102,6 +102,8 @@ import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarnes
 import TandemSurvey from './components/pages/Notifications/TandemSurvey';
 import SyllabiList from './containers/SyllabiList';
 import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
+import EditClubEquipment from './components/pages/Club/clubEquipments/club equipment details/EditClubEquipment';
+import PossessionTransitionClub from './components/pages/Club/clubEquipments/club equipment details/PossessionTransitionClub';
   
 
 
@@ -322,6 +324,8 @@ function App() {
                 <Route path="/club/clubCourses" element={ < ClubCourses  />} />
                 <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
                 <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
+                <Route path='/EditClubEquipment/:id' element={<EditClubEquipment />} />
+                <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionClub />} />
 
 
                 {/* edit profile */}

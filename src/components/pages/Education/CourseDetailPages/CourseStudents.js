@@ -204,7 +204,7 @@ const CourseStudents = () => {
                         />
                     }
                     {DropDownActive && studentsData.data?.map((student) => (
-                        <div className='flex flex-col w-full mb-2'>
+                        <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
                                 <span>
                                     <PersonOutlineOutlinedIcon />
@@ -213,7 +213,7 @@ const CourseStudents = () => {
                                 <p>{student.name}</p>
                                 <p className='text-[var(--low-opacity-white)]'>وضعیت: 
                                     {student.status === 'Active' && <span className='text-[var(--yellow-text)]'> فعال </span>}
-                                    {student.status === 'CoachPending' && <span className='text-[var(--red-text)]'> در انتظار تایید</span>}
+                                    {student.status === 'CoachPending' && <span className='text-[var(--text-color)]'> در انتظار تایید</span>}
                                 </p>
                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
@@ -266,16 +266,16 @@ const CourseStudents = () => {
                             }
                             {
                                 student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
-                                <div className=' w-full flex justify-end mt-[-0.3rem] h-24'>
-                                    <div className='w-full h-full bg-[var(--diffrential-blue)] rounded-lg pt-1'>
+                                <div className=' absolute w-full flex justify-end left-[5%] h-32'>
+                                    <div className='w-1/3 h-full bg-[var(--primaryA-dark-hover)] border border-[var(--low-opacity-white)] rounded-lg flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
-                                            className=' text-center py-3 active:bg-[var(--yellow-text)]'
+                                            className='w-full text-center py-3 active:bg-[var(--yellow-text)]'
                                             >
                                                 اتمام دوره 
                                         </p>
-                                        <div className='w-full h-[1px] bg-text-color'/>
-                                        <p className=' text-center py-3 active:bg-[var(--yellow-text)]'
+                                        <div className='w-[90%] h-[2px] bg-[var(--bg-color)]'/>
+                                        <p className=' w-full text-center py-3 active:bg-[var(--yellow-text)]'
                                         onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
                                             لغو دوره
                                         </p>
@@ -343,6 +343,7 @@ const CourseStudents = () => {
                         }
                     </div>
 
+                    {/* history students */}
                     {
                         studentsHistoryData && studentsHistoryData && studentsHistoryData.data.length > 0 &&
                         <div  className='w-full flex flex-col items-center gap-y-4'>
@@ -356,7 +357,7 @@ const CourseStudents = () => {
                             {DropDownHistory &&
                                 <div className='w-full flex flex-col items-center gap-y-4'>
                                     {studentsHistoryData.data?.map((student) => (
-                                        <div className='flex flex-col w-full '>
+                                        <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
                                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                                                 <span>
                                                     <PersonOutlineOutlinedIcon />
@@ -390,8 +391,8 @@ const CourseStudents = () => {
                                             </div>
                                             {
                                                 student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
-                                                <div className=' w-full flex justify-end mt-[-0.3rem] h-12'>
-                                                    <div className='w-full h-full bg-[var(--diffrential-blue)] active:bg-[var(--yellow-text)] rounded-lg pt-1'>
+                                                <div className=' absolute w-full flex justify-end left-[5%] h-24'>
+                                                    <div className='w-1/3 h-full bg-[var(--primaryA-dark-hover)] border border-[var(--low-opacity-white)] rounded-lg flex flex-col items-center justify-end'>
                                                         <p className=' text-center py-3 active:bg-[var(--yellow-text)]'
                                                         onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
                                                             بازگردانی به دوره

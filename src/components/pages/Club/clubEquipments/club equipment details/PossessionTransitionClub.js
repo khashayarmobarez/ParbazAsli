@@ -3,33 +3,33 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../../../styles/Boxes/DataBox.module.css'
 
 // assets
-import Cube from '../../../assets/icons/3dCube.svg'
+import Cube from '../../../../../assets/icons/3dCube.svg'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // utilities and Queries
-import { useAnEquipment, usePossessionTransition } from '../../../Utilities/Services/equipmentQueries';
-import { useUserById } from '../../../Utilities/Services/queries';
-import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
+import { useAnEquipment, usePossessionTransition } from '../../../../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../../../../Utilities/Services/queries';
+import useDateFormat from '../../../../../Utilities/Hooks/useDateFormat';
 
 // comps
-import PageTitle from '../../reuseable/PageTitle';
-import TextInput from '../../inputs/textInput';
-import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import PageTitle from '../../../../reuseable/PageTitle';
+import TextInput from '../../../../inputs/textInput';
+import DateLastRepackInput from './../../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import CircularProgressLoader from '../../../../Loader/CircularProgressLoader';
 
 
-const PossessionTransitionEquipment = () => {
+const PossessionTransitionClub = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
     
-    const { data: EquipmentData, isLoading, error } = useAnEquipment(id, false)
+    const { data: EquipmentData, isLoading, error } = useAnEquipment(id,true)
 
     useEffect(() => {
         if (EquipmentData && EquipmentData.data) {
@@ -271,4 +271,4 @@ const PossessionTransitionEquipment = () => {
     );
 };
 
-export default PossessionTransitionEquipment;
+export default PossessionTransitionClub;

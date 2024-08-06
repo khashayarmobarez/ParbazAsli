@@ -20,7 +20,7 @@ const ClubEquipment = () => {
 
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6'>
 
-                <PageTitle title={'تجهیزات'} />  
+                <PageTitle title={'تجهیزات'} navigateTo={'/club'} />  
                 
                 {/* buttons */}
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
