@@ -170,7 +170,7 @@ const CourseDetails = () => {
                                                 {aCourseData.data.status === 'Pending' &&
                                                     <>
                                                         <p>در انتظار تایید</p>
-                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-color)'}}></div>
                                                     </>
                                                 }
                                                 {aCourseData.data.status === 'Disable' &&
