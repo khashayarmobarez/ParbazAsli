@@ -204,9 +204,41 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 // get users names by id
   const getUserById = async (userId) => {
+    if(userId.length > 5) {
+      try {
+        const token = Cookies.get('token');
+        const response = await axios.get(`${BASE_URL}/User/GetAnotherUser?userId=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+        // console.log(response.data);  
+        return response.data;
+      } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
+        }
+      }
+    } 
+  };
+
+
+  const useUserById = (userId) => {
+    return useQuery(['userById', userId], () => getUserById(userId), {
+        enabled: !!userId, // This ensures the query runs only if organId is not null/undefined
+    });
+  };
+
+
+
+// get another user for adding level
+const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/User/GetAnotherUser?userId=${userId}`, {
+      const response = await axios.get(`${BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -221,36 +253,6 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
           throw error;
       }
     }
-  };
-
-
-  const useUserById = (userId) => {
-    return useQuery(['userById', userId], () => getUserById(userId), {
-        enabled: !!userId, // This ensures the query runs only if organId is not null/undefined
-    });
-  };
-
-
-
-// get another user for adding level
-const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) => {
-  try {
-    const token = Cookies.get('token');
-    const response = await axios.get(`${BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
-    // console.log(response.data);  
-    return response.data;
-  } catch (error) {
-    if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-        window.location.reload();
-    } else {
-        throw error;
-    }
-  }
 };
 
 const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
