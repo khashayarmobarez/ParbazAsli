@@ -16,7 +16,7 @@ const AddFlight = () => {
 
     const dispatch = useDispatch()
 
-    const { flightCount, flightDuration, courseLevel, clubName, coachName , takeoffTime, landingTime, flightType } = useSelector(selectAddFlight)
+    const { flightCount, flightDuration, courseLevel, clubName, coachName , takeoffTime, landingTime, flightType, courseName } = useSelector(selectAddFlight)
 
     const today = new Date();
     const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
@@ -55,7 +55,7 @@ const AddFlight = () => {
                     <div className=' grid grid-cols-12 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
                         <div className='flex w-full flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                            <p className=' text-xs pr-2'>تعداد پرواز</p>
+                            <p className=' text-xs pr-2'>پرواز</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p>{flightCount && flightCount}</p>
                             </div>
@@ -77,11 +77,21 @@ const AddFlight = () => {
                         </div> 
 
                         {
-                            courseLevel && 
-                            <div className='flex flex-col items-start gap-y-1 col-span-6 md:col-span-2'>
-                                <p className=' text-xs pr-2'>مقطع گواهینامه</p>
+                            coachName && flightType === 'Course' &&
+                            <div className='flex flex-col items-start gap-y-1 col-span-12 md:col-span-14'>
+                                <p className=' text-xs pr-2'>نام مربی</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                    <p>{courseLevel}</p> 
+                                    <p>{coachName}</p>
+                                </div>
+                            </div>
+                        }
+
+                        {
+                            courseName && 
+                            <div className='flex flex-col items-start gap-y-1 col-span-6 md:col-span-2'>
+                                <p className=' text-xs pr-2'>نام دوره</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
+                                    <p>{courseName}</p> 
                                 </div>
                             </div>
                         }
@@ -92,16 +102,6 @@ const AddFlight = () => {
                                 <p className=' text-xs pr-2'>نام باشگاه</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data' >
                                     <p>{clubName}</p>
-                                </div>
-                            </div>
-                        }
-
-                        {
-                            coachName && flightType === 'Course' &&
-                            <div className='flex flex-col items-start gap-y-1 col-span-12 md:col-span-14'>
-                                <p className=' text-xs pr-2'>نام مربی</p>
-                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                    <p>{coachName}</p>
                                 </div>
                             </div>
                         }

@@ -60,6 +60,7 @@ const initialState = {
     courseLevel:'',
     clubName:'',
     coachName:'',
+    courseName:'',
   };
 
 
@@ -145,6 +146,9 @@ const initialState = {
       updateCoachName: (state, action) => {
         state.coachName = action.payload
       },
+      updateCourseName: (state, action) => {
+        state.courseName = action.payload
+      },
       updateDescription: (state, action) => {
         state.description = action.payload
       },
@@ -175,7 +179,7 @@ const initialState = {
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;
