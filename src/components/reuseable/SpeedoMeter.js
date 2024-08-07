@@ -18,7 +18,7 @@ const SpeedoMeter = (props) => {
   // Props:
   // - remaining: The remaining time (in days) until parachute renewal
   // - data: The data object containing user information
-  const { remaining, parachuteData } = props;
+  const { remaining, parachuteData, isForClub } = props;
 
   // Function to calculate the color of the progress bar based on the percentage value
   const calcColor = (percent, start, end) => {
@@ -31,7 +31,8 @@ const SpeedoMeter = (props) => {
   };
 
   const handleEditParachute = (id) => () => {
-    navigate(`/EditEquipment/${id}`);
+    if(isForClub) navigate(`/EditClubEquipment/${id}`);
+    else  navigate(`/EditEquipment/${id}`);
   };
 
   return (

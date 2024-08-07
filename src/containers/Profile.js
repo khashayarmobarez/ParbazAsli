@@ -62,7 +62,7 @@ const Profile = () => {
                     {
                     data.data.parachutes && data.data.parachutes.length > 0 ? 
                     
-                        <ParachutesSwiperSlider parachutesData={data.data.parachutes} />
+                        <ParachutesSwiperSlider isForClub={false} parachutesData={data.data.parachutes} />
                         :
                         <div className={`${boxStyles.containerDarkmode} rounded-3xl h-28 z-0 w-full flex flex-col justify-between items-center px-2 py-4 `}>
                             <p className=' font-medium text-sm'>چتر و وسایل پروازی خود را اضافه کنید</p>

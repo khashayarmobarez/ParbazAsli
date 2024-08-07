@@ -9,6 +9,7 @@ import pencil from '../assets/icons/pencil-alt.svg'
 
 // use club status
 import { useClubStatus } from '../Utilities/Services/clubQueries';
+import { useUserEquipments } from '../Utilities/Services/equipmentQueries';
 
 
 // components
@@ -16,6 +17,7 @@ import ClubData from '../components/pages/Club/ClubData';
 import AddClub from '../components/pages/Club/AddClub';
 import PendingClubSubmission from '../components/pages/Club/PendingClubSubmission';
 import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
+import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
 // import ClubMemberCoach from '../components/pages/Club/ClubMemberCoach';
 // import StudentClubs from '../components/pages/Club/StudentClubs';
 
@@ -23,6 +25,8 @@ const Club = () => {
 
     // clubstatus could be NotAdded, Pending, Accepted
     const {data:clubStatus , isLoading: clubStatusLoading, error} = useClubStatus();
+
+    const { data: userEquipmentsData, isLoading, error: equipmentError, refetch: refetchUserEquipmentsData } = useUserEquipments(1, true)
 
 
     return (
@@ -59,6 +63,11 @@ const Club = () => {
                                 <p>مربیان</p>
                             </Link>
                         </div>
+                        
+                        {
+                            userEquipmentsData &&
+                                <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
+                        }
                         
                     </div>
                 }

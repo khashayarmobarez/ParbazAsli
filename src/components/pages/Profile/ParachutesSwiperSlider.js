@@ -9,7 +9,7 @@ import { register } from "swiper/element/bundle";
 register();
 
 
-const ParachutesSwiperSlider = ({parachutesData}) => {
+const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
 
     const isDesktop = useMediaQuery('(min-width:768px)');
 
@@ -84,7 +84,7 @@ const ParachutesSwiperSlider = ({parachutesData}) => {
                     parachutesData.map( parachute => 
 
                       <swiper-slide key={parachute.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
-                          <SpeedoMeter parachuteData={parachute} className='z-10' />
+                          <SpeedoMeter parachuteData={parachute} isForClub={isForClub} className='z-10' />
                       </swiper-slide>
 
                     )
