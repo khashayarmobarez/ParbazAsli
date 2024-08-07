@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 // styles
 import boxStyles from '../styles/Boxes/DataBox.module.css'
 
+// assests 
+import arrowIcon from '../assets/icons/Right Arrow Button.svg';
+
 // mui
 import AddIcon from '@mui/icons-material/Add';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
@@ -297,9 +298,34 @@ const Education = () => {
                                     }
 
                                     {courseData && courseData.totalPagesCount > 1 &&
-                                        <div className='w-full flex justify-between mt-2'>
-                                            <p onClick={handleNextPageNumber} className='' style={{color:'var(--yellow-text)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
-                                            <p onClick={handleLastPageNumber} className='' style={{color:'var(--yellow-text)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
+                                        <div className='w-full flex justify-between px-10 items-center'>
+                                            <button
+                                                className='w-10 justify-self-start'
+                                                disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
+                                                onClick={handleNextPageNumber}
+                                            >
+                                                <img
+                                                    src={arrowIcon}
+                                                    alt='arrow'
+                                                    className={`${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                />
+                                            </button>
+
+                                            <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                صفحه ی {pageNumber}
+                                            </p>
+
+                                            <button
+                                                className='transform rotate-180 w-10 justify-self-end'
+                                                disabled={pageNumber === 1}
+                                                onClick={handleLastPageNumber}
+                                            >
+                                                <img
+                                                    src={arrowIcon}
+                                                    alt='arrow'
+                                                    className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                                />
+                                            </button>
                                         </div>
                                     }
 

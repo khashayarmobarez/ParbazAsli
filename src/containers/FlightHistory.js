@@ -8,7 +8,7 @@ import { selectFlightFilter, resetAllFilters } from '../Utilities/ReduxToolKit/f
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css';
 
-// icons 
+// assets 
 import arrowIcon from '../assets/icons/Right Arrow Button.svg';
 import eraser from '../assets/icons/eraser 1.svg';
 
