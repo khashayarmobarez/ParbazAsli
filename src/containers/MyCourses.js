@@ -151,13 +151,13 @@ const MyCourses = () => {
                                                         
                                                         {/* conditional course name */}
                                                         {courseData.status === 'Active' && <p className='text-base'>{courseData.name}</p>}
-                                                        {courseData.status === 'Finished' && <p className='text-base text-[var(--yellow-text)]'>{courseData.name}(تمام شده)</p>}
+                                                        {courseData.status === 'Completed' && <p className='text-base text-[var(--yellow-text)]'>{courseData.name}(تمام شده)</p>}
                                                         {courseData.status === 'Canceled' && <p className='text-base text-[var(--notification-red)]'>{courseData.name}(لغو شده)</p>}
 
                                                         {/* conditional course percent */}
                                                         <p
                                                         className={`
-                                                            ${courseData.status === 'Finished'&& 'text-[var(--yellow-text)]'}
+                                                            ${courseData.status === 'Completed'&& 'text-[var(--yellow-text)]'}
                                                             ${courseData.status === 'Canceled'&& 'text-[var(--notification-red)]'}
                                                             ${courseData.status === 'Active'&& ''}
                                                         `}
@@ -165,10 +165,22 @@ const MyCourses = () => {
                                                     </div>
 
                                                     <Box sx={{ width: '100%' }}>
-                                                        <LinearProgress variant="determinate" value={courseData.percent + (courseData.percent < 2 ? 2 : 0)} 
-                                                        sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--diffrential-blue)', '& .MuiLinearProgress-bar': {
-                                                            backgroundColor: 'var(--red-text)' // Change this to your desired color
-                                                        }}} />
+                                                        <LinearProgress 
+                                                            variant="determinate" 
+                                                            value={courseData.percent + (courseData.percent < 2 ? 2 : 0)} 
+                                                            sx={{ 
+                                                            height: '1rem', 
+                                                            borderRadius: '1rem', 
+                                                            backgroundColor: 'var(--diffrential-blue)', 
+                                                            '& .MuiLinearProgress-bar': {
+                                                                backgroundColor: 
+                                                                courseData.status === 'Active' ? 'var(--red-text)' :
+                                                                courseData.status === 'Completed' ? 'var(--yellow-text)' :
+                                                                courseData.status === 'Canceled' ? 'var(--notification-red)' :
+                                                                undefined, // Optional: A default value if none of the conditions match
+                                                            }
+                                                            }} 
+                                                        />
                                                     </Box>
 
                                                     <div className='w-full flex justify-between text-start text-sm'>
@@ -200,14 +212,14 @@ const MyCourses = () => {
                                                             {/* <div className='flex gap-x-1'>
                                                                 <p>وضعیت:
                                                                     {courseData.status === 'Active' && ' فعال'}
-                                                                    {courseData.status === 'Finished' && ' تمام شده'}
+                                                                    {courseData.status === 'Completed' && ' تمام شده'}
                                                                     {courseData.status === 'Canceled' && ' لغو شده'}
                                                                 </p>
 
                                                                 {courseData.status === 'Active' && 
                                                                     <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
                                                                 }
-                                                                {courseData.status === 'Finished' &&
+                                                                {courseData.status === 'Completed' &&
                                                                     <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
                                                                 }
                                                                 {courseData.status === 'Canceled' &&
