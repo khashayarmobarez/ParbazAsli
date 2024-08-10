@@ -17,6 +17,10 @@ const FlightHistoryPage = () => {
     const { id } = useParams()
 
     const [DropDown, setDropDown] = useState('')
+    const [DropDownEquipment, setDropDownEquipment] = useState(true)
+    const [DropDownSituation, setDropDownSituation] = useState(true)
+    const [DropDownTakeoff, setDropDownTakeoff] = useState(true)
+    const [DropDownLanding, setDropDownLanding] = useState(true)
     
     const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserFlight(id);
 
@@ -127,15 +131,15 @@ const FlightHistoryPage = () => {
 
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
-                                            onClickActivation={() => handleDropDownClick('Equipment')}
+                                            onClickActivation={() => setDropDownEquipment(!DropDownEquipment)}
                                             title={'مشخصات وسیله پروازی'} 
-                                            dropDown={DropDown} 
-                                            isActive={DropDown === `Equipment`}  
+                                            dropDown={DropDownEquipment} 
+                                            isActive={DropDownEquipment}  
                                         />
                                     </div>
 
                                     {
-                                        DropDown === `Equipment` &&
+                                        DropDownEquipment &&
                                         <>
                                             {
                                                 fullFlightData.data.wing &&
@@ -171,15 +175,15 @@ const FlightHistoryPage = () => {
                                     
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
-                                            onClickActivation={() => handleDropDownClick('Situation')}
+                                            onClickActivation={() => setDropDownSituation(!DropDownSituation)}
                                             title={'موقعیت و شرایط پرواز'} 
-                                            dropDown={DropDown} 
-                                            isActive={DropDown === `Situation`}  
+                                            dropDown={DropDownSituation} 
+                                            isActive={DropDownSituation}  
                                         />
                                     </div>
 
                                     {
-                                        DropDown === `Situation` && 
+                                        DropDownSituation && 
                                         <>
                                             {
                                             fullFlightData.data.country &&
@@ -222,15 +226,15 @@ const FlightHistoryPage = () => {
 
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
-                                            onClickActivation={() => handleDropDownClick('Takeoff')}
+                                            onClickActivation={() => setDropDownTakeoff(!DropDownTakeoff)}
                                             title={'Takeoff'} 
-                                            dropDown={DropDown} 
-                                            isActive={DropDown === `Takeoff`}  
+                                            dropDown={DropDownTakeoff} 
+                                            isActive={DropDownTakeoff}  
                                         />
                                     </div>
 
                                     {
-                                        DropDown === `Takeoff` && 
+                                        DropDownTakeoff && 
                                         <>
                                             {
                                                 fullFlightData.data.takeOffType &&
@@ -277,15 +281,15 @@ const FlightHistoryPage = () => {
 
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
-                                            onClickActivation={() => handleDropDownClick('Landing')}
+                                            onClickActivation={() => setDropDownLanding(!DropDownLanding)}
                                             title={'Landing'} 
-                                            dropDown={DropDown} 
-                                            isActive={DropDown === `Landing`}  
+                                            dropDown={DropDownLanding} 
+                                            isActive={DropDownLanding}  
                                         />
                                     </div>
 
                                     {
-                                        DropDown === `Landing` &&
+                                        DropDownLanding &&
                                         <>
                                             {
                                                 fullFlightData.data.landingWindSpeedInKmh &&
