@@ -19,6 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 // queries
 import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../../Utilities/Services/coursesQueries';
+import { useAddStudentToClubCourse, useGetClubCourse, useGetClubCourseStudents, useGetClubCourseStudentsHistory } from '../../../../Utilities/Services/clubQueries';
 
 // components
 import TextInput from '../../../inputs/textInput';
@@ -41,14 +42,13 @@ const CourseStudents = () => {
     // add student
     const [studentId, setStudentId] = useState('');
 
-    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id,pageNumber);
-    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id,historyPageNumber);
+    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useGetClubCourseStudents(id,pageNumber);
+    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useGetClubCourseStudentsHistory(id,historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
-    const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useGetClubCourse(id);
 
     // post student to course
-    const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToCourse();
+    const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToClubCourse();
     
 
     const handleNextPageNumber = () => {
@@ -76,59 +76,7 @@ const CourseStudents = () => {
         setStudentId(event.target.value);
     };
 
-    const handleTriggerStudentStatus = (status ,id, event) => {
-
-        event.preventDefault();
-
-        const triggerStatusForm = {
-            userCourseId: id,
-            status: status
-        }
-
-        triggerStudentStatus(triggerStatusForm,{
-            onSuccess: (data) => {
-                if(status === 'Active') {
-                    toast('هنرجو تایید شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', 
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: "350px" }
-                    });
-                }
-                else if(status === 'Canceled') {
-                    toast('هنرجو از دوره حذف شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: "350px" }
-                    });
-                } else if(status === 'Completed') {
-                    toast( 'اتمام دوره ی هنرجو تایید شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: "350px" }
-                    });
-                } else if(status === 'CoachRejected') {
-                    toast( 'هنرجو رد شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: "350px" }
-                    });
-                }
-                setShowHistoryStudentOptions('')
-                setShowActiveStudentOptions('')
-                refetchStudentdata();
-                refetchStudentHistorydata();
-            },
-        });
-    }
-
+    
     // handle add student
     const handleAddStudnetToCourse = () => {
 
@@ -220,68 +168,9 @@ const CourseStudents = () => {
                                     sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                                 </Box> */}
                                 <div/>
-                                {student.status !== 'CoachPending' &&
-                                <button 
-                                onClick={() => setShowActiveStudentOptions(
-                                    showActiveStudentOptions === student.id ?
-                                    ''
-                                    :
-                                    student.id
-                                )}
-                                className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
-                                    <MoreVertIcon  />
-                                </button>
-                                }
 
                             </div>
-                            {
-                                aCourseData.data.status === 'Active' && student.status === 'CoachPending' &&
-                                <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                style={{background: 'var(--syllabus-data-boxes-bg)',
-                                    boxShadow: 'var(--organs-coachData-boxShadow)'}}>
 
-                                    <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
-                                        <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
-                                        <p >آیا این هنرجو مورد تایید شما است؟</p>
-                                    </div>
-
-                                    <div className='flex gap-x-6 items-center px-2'>
-
-                                        {triggerStudentStatusLoading && 
-                                            <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                                <CircularProgress sx={{width:'1rem'}} /> 
-                                            </Box>
-                                        }
-                                        
-                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'Active', student.id, event)} className='text-[var(--yellow-text)] text-sm font-medium'  >
-                                            تایید
-                                        </p>
-
-                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'CoachRejected', student.id, event)} className='text-[var(--red-text)] text-sm font-medium' >
-                                            رد
-                                        </p>
-
-                                    </div>
-                                </div>                                
-                            }
-                            {
-                                student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
-                                <div className=' absolute w-full flex justify-end left-[5%] h-32'>
-                                    <div className='w-1/3 h-full bg-[var(--primaryA-dark-hover)] border border-[var(--low-opacity-white)] rounded-lg flex flex-col items-center justify-end'>
-                                        <p
-                                            onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
-                                            className='w-full text-center py-3 active:bg-[var(--yellow-text)]'
-                                            >
-                                                اتمام دوره 
-                                        </p>
-                                        <div className='w-[90%] h-[2px] bg-[var(--bg-color)]'/>
-                                        <p className=' w-full text-center py-3 active:bg-[var(--yellow-text)]'
-                                        onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
-                                            لغو دوره
-                                        </p>
-                                    </div>
-                                </div>
-                            }
                         </div>
                     ))}
                     {studentsData && studentsData.totalPagesCount > 1 && (
@@ -327,7 +216,7 @@ const CourseStudents = () => {
                             <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                         }
                         {
-                            aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
+                            aCourseData && aCourseData.data.status === 'Active' &&
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
@@ -373,36 +262,11 @@ const CourseStudents = () => {
                                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
                                                     sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                                                 </Box> */}
-                                                {
-                                                    student.status !== 'Completed' && aCourseData.data.status === 'Active' &&
-                                                    <button 
-                                                    onClick={
-                                                        () => setShowHistoryStudentOptions(showHistoryStudentOptions === student.id ?
-                                                            ''
-                                                            :
-                                                            student.id
-                                                        )}
-                                                    // onClick={() => navigate('/education/StudentDetails')}
-                                                    className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}
-                                                    >
-                                                        <MoreVertIcon  />
-                                                    </button>
-                                                }
                                             </div>
-                                            {
-                                                student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
-                                                <div className=' absolute w-full flex justify-end left-[5%] h-24'>
-                                                    <div className='w-1/3 h-full bg-[var(--primaryA-dark-hover)] border border-[var(--low-opacity-white)] rounded-lg flex flex-col items-center justify-end'>
-                                                        <p className=' text-center py-3 active:bg-[var(--yellow-text)]'
-                                                        onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
-                                                            بازگردانی به دوره
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            }
                                         </div>
                                     ))}
-                                    {   studentsHistoryData &&
+                                    {   
+                                    studentsHistoryData &&
                                         studentsData.totalPagesCount < studentsData.currentPage && 
                                         <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
                                     }

@@ -604,10 +604,6 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-
-
-
-
 // get a club course
     const getClubCourse = async (courseId) => {
         const token = Cookies.get('token');
@@ -678,11 +674,106 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
+// get club course students
+// /Club/GetClubCourseStudents?courseId=38&pageNumber=1
+    const getClubCourseStudents = async (courseId, pageNumber) => {
+        const token = Cookies.get('token');
 
-    
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCourseStudents = (courseId, pageNumber) => {
+        return useQuery(['getClubCourseStudents', courseId, pageNumber], () => getClubCourseStudents(courseId, pageNumber));
+    };
 
 
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus };
+
+
+
+// get club course hsitory students
+    const getClubCourseStudentsHistory = async (courseId, pageNumber) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCourseStudentsHistory = (courseId, pageNumber) => {
+        return useQuery(['getClubCourseStudentsHistory', courseId, pageNumber], () => getClubCourseStudentsHistory(courseId, pageNumber));
+    };
+
+
+
+
+
+
+
+// get club course 
+// /Club/GetClubCourse?courseId=38
+const addStudentToClubCourse = async (student) => {
+    const token = Cookies.get('token');
+
+    try {
+        const response = await axios.post(`${BASE_URL}/Club/AddStudentToClubCourse`, student, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) { 
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
+        }
+    }
+
+};
+
+
+const useAddStudentToClubCourse = () => {
+    return useMutation(addStudentToClubCourse, {
+        onSuccess: (data) => {
+            // Handle success, e.g., show a notification, reset the form, etc.
+            console.log('Student added to club course successfully:', data);
+        },
+    });
+};
+
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse };
