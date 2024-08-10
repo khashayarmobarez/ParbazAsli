@@ -125,7 +125,7 @@ const Syllabuses = () => {
                     <DescriptionInput
                         value={description}
                         onChange={handleDescription}
-                        placeholder="وارد کنید..."
+                        placeholder="توضیحات پرواز را اینجا بنویسید"
                     />
                 </div>
                 {syllabiDataPractical &&

@@ -215,7 +215,7 @@ const CourseDetails = () => {
                             <Link 
                                 to={`/education/courseDetails/${id}/syllabi`}  
                                 className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${location.pathname === `/education/courseDetails/${id}/syllabi` ? ButtonStyles.activeYellow : ''} `} >
-                                سیلابس
+                                سرفصل‌ها
                             </Link>
                         </div>
 

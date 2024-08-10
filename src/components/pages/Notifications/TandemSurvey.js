@@ -155,7 +155,7 @@ const TandemSurvey = () => {
                             <DescriptionInput
                                 value={description}
                                 onChange={handleDescription}
-                                placeholder='توضیحات را اینجا بنویسید ...'
+                                placeholder='دلیل نمره خود را بنویسید...'
                             />
                         </div>
 
