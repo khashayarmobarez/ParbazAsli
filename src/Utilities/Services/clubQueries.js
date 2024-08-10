@@ -776,4 +776,37 @@ const useAddStudentToClubCourse = () => {
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse };
+
+
+// get club course classes
+// /Club/GetClubCourseClasses?courseId=38
+    const getClubCourseClasses = async (courseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseClasses?courseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCourseClasses = (courseId) => {
+        return useQuery(['getClubCourseClasses', courseId], () => getClubCourseClasses(courseId));
+    };
+
+
+
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses };
