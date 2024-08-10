@@ -639,7 +639,6 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // triggerclub course status
-// Club/TriggerClubCourseStatus
     const triggerClubCourseStatus = async () => {
 
         const token = Cookies.get('token');
@@ -670,6 +669,15 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
             },
         });
     }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -89,9 +89,11 @@ const LandingPage = () => {
                             
                         <div className='flex flex-col items-center justify-start gap-y-8 h-[40%] px-4 md:w-[50%]' >
 
-                            <h1 className=' text-xl font-bold md:text-3xl'>{data.data.data[0].title}</h1>
+                            <h1 className=' text-xl font-bold md:text-3xl'>سامانه ثبت اطلاعات و پروازهای روزانه</h1>
 
-                            <p className='text-sm'>{data.data.data[0].summary}</p>
+                            <p className='text-sm'>
+                            دیجی لاگ بوک به شما کمک می‌کند تا پیشرفت خود را به طور دقیق دنبال کنید. با مشاهده میزان ساعات پرواز، نوع هواپیماهای استفاده شده و چالش‌هایی که با آنها روبرو شده‌اید، می‌توانید ارزیابی دقیقی از توانایی‌ها و نیازهای آموزشی خود داشته باشید.
+                            </p>
 
                             <Link to='/signUpLogin' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
                                 <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
