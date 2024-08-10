@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 // queries
-import { useACourseSyllabi } from '../../../../Utilities/Services/coursesQueries';
+import { useGetClubCourseSyllabi } from '../../../../Utilities/Services/clubQueries';
 
 // components
 import DropDownDataBox from '../../../reuseable/DropDownDataBox';
@@ -11,8 +11,8 @@ import DropDownDataBox from '../../../reuseable/DropDownDataBox';
 const ClubCourseSyllabi = () => {
     const { id } = useParams();
     
-    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
-    const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(id,2);
+    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useGetClubCourseSyllabi(id,1);
+    const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useGetClubCourseSyllabi(id,2);
 
     useEffect(() => {
         if(syllabiDataTheory && syllabiDataPractical) {

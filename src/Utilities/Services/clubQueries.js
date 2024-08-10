@@ -779,7 +779,6 @@ const useAddStudentToClubCourse = () => {
 
 
 // get club course classes
-// /Club/GetClubCourseClasses?courseId=38
     const getClubCourseClasses = async (courseId) => {
         const token = Cookies.get('token');
 
@@ -814,13 +813,34 @@ const useAddStudentToClubCourse = () => {
 
 
 
-//  /Course/GetCourseSyllabi?courseId=38&type=2
-    
+// get club course syllabi
+    const getClubCourseSyllabi = async (courseId, type) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseSyllabi?courseId=${courseId}&type=${type}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    const useGetClubCourseSyllabi = (courseId, type) => {
+        return useQuery(['getClubCourseSyllabi', courseId, type], () => getClubCourseSyllabi(courseId, type));
+    }
 
 
 
 
 
 
-
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses };
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi };

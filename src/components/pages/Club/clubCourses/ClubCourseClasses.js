@@ -15,8 +15,8 @@ import { useGetClubCourseClasses } from '../../../../Utilities/Services/clubQuer
 import ClassesBoxCourses from '../../../pages/Education/Components/ClassesBoxCourses';
 
 const ClubCourseClasses = () => {
+    
     const { id } = useParams();
-    const navigate = useNavigate();
 
     const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useGetClubCourseClasses(id);
     
@@ -61,14 +61,6 @@ const ClubCourseClasses = () => {
                 }
             </>
             }
-
-            
-
-            <button onClick={() => navigate(`/club/${id}/AddClubCourseClass`)} 
-            className={`${ButtonStyles.addButton} fixed bottom-[7.2rem] w-[90%] md:w-2/6 z-10`} >
-                <AddIcon />
-                <p>افزودن کلاس جدید</p>
-            </button>
 
         </div>
     );
