@@ -23,7 +23,7 @@ import boxStyles from '../styles/Boxes/DataBox.module.css'
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
-import { useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
+import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
 import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 import { LinearProgress } from '@mui/material';
 import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
@@ -45,6 +45,9 @@ const MyCourses = () => {
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useUserCourseDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useUserCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
+    // guest classes
+    const { data: guestClassesData, isLoading: guestClassesLoading, error: guestClassesError } = useGuestUserClasses();
+    // const { data: aGuestClassData, isLoading: aGuestClassLoading, error: aGuestClassError } = useAGuestUserClass();
 
     // to set the first state for dropdown 
     useEffect(() => {
@@ -303,6 +306,19 @@ const MyCourses = () => {
                         </div>
                     ))
                 }
+
+                {guestClassesData && guestClassesData.data.length > 0 &&
+                        <div className='w-full flex flex-col items-center gap-y-4'>
+                            <DropDownLine  
+                                // onClickActivation={() => handleDropDownClick(index, course)}
+                                title={'کلاس های مهمان'} 
+                                dropDown={DropDown} 
+                                isActive={DropDown === `dropDownGuest`}
+                            />
+
+                        </div>
+                }
+                        
 
                 </div>
 

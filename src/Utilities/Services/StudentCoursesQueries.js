@@ -229,4 +229,71 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useAllUserCoursesForDropdown };
+
+
+
+// get guest user classes
+// /UserCourse/GetGuestUserClasses
+    const getGuestUserClasses = async (courseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetGuestUserClasses`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGuestUserClasses = () => {
+        return useQuery(['guestUserClasses'], () => getGuestUserClasses());
+    };
+
+
+
+
+
+
+
+
+
+// get a guest user class 
+// i/UserCourse/GetGuestUserClass?guestUserClassId=1
+    const getAGuestUserClass = async (classId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/UserCourse/GetGuestUserClass?guestUserClassId=${classId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAGuestUserClass = (classId) => {
+        return useQuery(['aGuestUserClass', classId], () => getAGuestUserClass(classId));
+    };
+
+
+
+
+
+export { useUserCourseDividers, useUserCourses, useAUserCourse, useAUserCourseSyllabi , useUserCourseClasses, useAUserCourseClass, useAllUserCoursesForDropdown, useGuestUserClasses, useAGuestUserClass };
