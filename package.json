@@ -44,7 +44,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "hiddenLocal": "set PORT=3035&& react-scripts start",
+    "hiddenLocal": "set PORT=3020&& react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
