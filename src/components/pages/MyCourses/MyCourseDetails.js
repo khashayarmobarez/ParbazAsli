@@ -119,6 +119,16 @@ const MyCourseDetails = () => {
                                     </div>
                                 }
 
+                                {
+                                    aCourseData.data.coach &&
+                                    <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
+                                        <p className=' text-xs pr-2'>نام مربی</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
+                                            <p>{aCourseData.data.coach}</p>
+                                        </div>
+                                    </div>
+                                }
+
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
                                     <p className=' text-xs pr-2'>وضعیت</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
@@ -137,10 +147,10 @@ const MyCourseDetails = () => {
                                             </>
                                         }
                                         {
-                                        aCourseData.data.status === 'Finished' &&
+                                        aCourseData.data.status === 'Completed' &&
                                             <>
                                                 <p>تمام شده</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
                                             </>
                                         }
                                     </div> 

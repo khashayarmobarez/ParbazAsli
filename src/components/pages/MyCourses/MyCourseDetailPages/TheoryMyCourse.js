@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // styles
-import dataBox from '../../../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
@@ -36,12 +36,24 @@ const TheoryMyCourse = () => {
 
             {classesData && classesData.data.classesCount > 0 &&
             <>
-            
-                {/* group name of data */}
-                <div className='flex justify-between items-center w-full gap-x-2'>
-                    <h2 className='text-nowrap' >کلاس ها</h2>
-                    <div id='line' className='w-full h-[1px] rounded-xl bg-[#D9D9D9]'></div>
-                </div>
+
+                    <div className='flex w-full justify-between gap-x-2 mb-2'>
+                        
+                            <div className='w-full flex flex-col items-center gap-y-2'>
+                                <p className=' text-xs'>تعداد کلاس های برگزار شده</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                    <p>{classesData.data.classesCount}</p>
+                                </div>
+                            </div>
+
+                            <div className='w-full flex flex-col items-center gap-y-2'>
+                                <p className=' text-xs'>جمع ساعت کلاس ها</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                    <p>{classesData.data.totalClassHours}</p>
+                                </div>
+                            </div>
+
+                    </div>
 
                 {
                     classesData.data.classes.map((classData) => {
