@@ -282,7 +282,7 @@ function App() {
                   <Route path="syllabi" element={<CourseSyllabi />} />
                 </Route> 
                 <Route path='/education/:id/AddClass' element={<AddClass/>} />
-                <Route path='/education/StudentDetails' element={<StudentDetails/>} />
+                <Route path='/education/StudentDetails/:id' element={<StudentDetails/>} />
 
                 {/* my courses */}
                 <Route path='/MyCourses' element={<MyCourses  />} />

@@ -30,15 +30,9 @@ const ClubCoachDetails = () => {
     const { mutate: triggerCoachStatus, isLoading: triggerCoachStatusLoading } = useTriggerCoachStatus();
 
 
-    const handleClickDetails = () => {
+    const handleClickDetails = (id) => {
 
-        toast('صفحه در حال توسعه است ...', {
-            type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-            autoClose: 3000,
-            theme: 'dark',
-            style: { width: "350px" }
-        });
+        navigate(`/club/courseDetails/${id}/students`)
         
     }
 
@@ -206,7 +200,7 @@ const ClubCoachDetails = () => {
                                 </div>
 
                                 <button 
-                                onClick={handleClickDetails}
+                                onClick={() => handleClickDetails(course.id)}
                                 className={`${ButtonStyles.normalButton} self-end`} >
                                     جزئیات  
                                 </button>

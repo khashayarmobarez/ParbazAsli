@@ -155,11 +155,14 @@ const ClubCoaches = () => {
 
                 <div className='flex flex-col w-full gap-y-2 mt-2'>
                     { coachData && 
-                        <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.name}</p>
+                        <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
                     }
-                    {/* {studentDataError &&
-                        <p className='text-[var(--red-text)] self-start'>{studentDataError}</p>
-                    } */}
+                    { coachDataLoading && coachId.length > 5 &&
+                        <p className=' self-start text-[var(--red-text)]'>...در حال جستجوی مربی</p>
+                    }
+                    { coachDataError && coachId.length > 5 &&
+                        <p className=' self-start text-[var(--notification-red)]'>مربی یافت نشد!</p>
+                    }
                     <div className='w-full flex justify-between relative items-center'>
                         <div className='w-[86%] flex flex-col'>
                             <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
