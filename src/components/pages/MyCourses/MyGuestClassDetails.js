@@ -22,7 +22,7 @@ const MyGuestClassDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'جزئیات کلاس'} navigateTo={'/education'} /> 
+                <PageTitle title={'جزئیات کلاس'} navigateTo={'/MyCourses'} /> 
             
                 {
                     courseDataLoading &&
@@ -96,6 +96,19 @@ const MyGuestClassDetails = () => {
                                             <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
                                     </div>
                                 }
+
+                                {aCourseData.data.syllabi &&
+                                    <div className='flex flex-col items-start gap-y-2 col-span-8'>
+                                            <p className=' text-sm'>مباحث مطرح شده</p>
+                                            { 
+                                                aCourseData.data.syllabi.map((syllabus) => (
+                                                    <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
+                                                        <p>{syllabus.description}</p>
+                                                    </div>
+                                                ))
+                                            }
+                                    </div>
+                                }   
 
                             </div>
 
