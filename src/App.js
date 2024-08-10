@@ -108,6 +108,7 @@ import ClubCourseDetails from './components/pages/Club/clubCourses/ClubCourseDet
 import ClubCourseStudents from './components/pages/Club/clubCourses/ClubCourseStudents';
 import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseClasses';
 import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
+import MyGuestClassDetails from './components/pages/MyCourses/MyGuestClassDetails';
   
 
 
@@ -291,6 +292,7 @@ function App() {
                   <Route path="theory" element={<TheoryMyCourse />} />
                   <Route path="mySyllabi" element={<MySyllabiMyCourse />} />
                 </Route>
+                <Route path='/MyCourses/guestClassDetails/:id' element={<MyGuestClassDetails />} />
 
                 {/* syllabi list */}
                 <Route path='/syllabi' element={<SyllabiList  />} /> 

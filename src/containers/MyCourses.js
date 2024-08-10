@@ -71,6 +71,10 @@ const MyCourses = () => {
         navigate(`/MyCourses/courseDetails/${id}/practical`);
     };
 
+    const handleGuestClassDetails = (id) => () => {
+        navigate(`/MyCourses/guestClassDetails/${id}`);
+    };
+
 
     const handleNextPageNumber = () => {
         setPageNumber(prev => prev + 1)
@@ -133,19 +137,19 @@ const MyCourses = () => {
                             {DropDown === `dropDown${index}` && 
                                 <div className='w-full flex flex-col gap-y-4'>
 
-                                    {courseDataLoading && 
+                                    { course.courseType !== 'Guest' && courseDataLoading && 
                                         <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
                                             <CircularProgress /> 
                                         </Box>
                                     }
 
-                                    {courseDataError &&
+                                    { course.courseType !== 'Guest' && courseDataError &&
                                         <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                                     }
 
                                     {
-                                        courseData && courseData.data?.map((courseData) => (
-                                            <div key={courseData.id} className='w-full flex flex-col items-center'>
+                                        course.courseType !== 'Guest' && courseData && courseData.data?.map((courseData, index) => (
+                                            <div key={index} className='w-full flex flex-col items-center'>
 
                                                 <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
 
@@ -268,7 +272,7 @@ const MyCourses = () => {
                                         ))
                                     }
 
-                                    {courseData && courseData.totalPagesCount > 1 && (
+                                    { course.courseType !== 'Guest' && courseData && courseData.totalPagesCount > 1 && (
                                         <div className='w-full flex justify-between px-10 items-center'>
                                             <button
                                                 className='w-10 justify-self-start'
@@ -299,24 +303,45 @@ const MyCourses = () => {
                                             </button>
                                         </div>
                                     )}
+
+                                    {course.courseType === 'Guest' && guestClassesData && guestClassesData.data.map((guestClass, index) => (
+                                        <div key={index} className='w-full flex flex-col items-center'>
+                                            <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
+                                                <div className='w-full flex justify-between text-sm'>
+                                                    <p className='text-base'>{guestClass.name}</p>
+                                                    <p>
+                                                        <span className='text-[var(--low-opacity-white)]'>
+                                                            تاریخ:&nbsp;
+                                                        </span>
+                                                        {guestClass.dateTime}
+                                                    </p>
+                                                </div>
+                                                <div className='w-full flex justify-between items-center text-start text-sm'>
+                                                    { guestClass.classDurationInMinutes &&
+                                                        <p>
+                                                            <span className='text-[var(--low-opacity-white)]'>
+                                                                مدت زمان:&nbsp;
+                                                            </span> 
+                                                            {guestClass.classDurationInMinutes} دقیقه
+                                                        </p>
+                                                    }
+                                                    <button onClick={handleGuestClassDetails(guestClass.id)} className={`${ButtonStyles.normalButton} self-end`} >
+                                                        جزئیات  
+                                                    </button>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    
+                                    ))}      
+
                                 </div>
 
-                                }
+                            }
                                 
                         </div>
                     ))
-                }
-
-                {guestClassesData && guestClassesData.data.length > 0 &&
-                        <div className='w-full flex flex-col items-center gap-y-4'>
-                            <DropDownLine  
-                                // onClickActivation={() => handleDropDownClick(index, course)}
-                                title={'کلاس های مهمان'} 
-                                dropDown={DropDown} 
-                                isActive={DropDown === `dropDownGuest`}
-                            />
-
-                        </div>
                 }
                         
 
