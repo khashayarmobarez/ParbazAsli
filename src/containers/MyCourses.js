@@ -148,8 +148,20 @@ const MyCourses = () => {
 
 
                                                     <div className='w-full flex justify-between'>
-                                                        <p className=' text-base'>{courseData.name}</p>
-                                                        <p>{courseData.percent} %</p>
+                                                        
+                                                        {/* conditional course name */}
+                                                        {courseData.status === 'Active' && <p className='text-base'>{courseData.name}</p>}
+                                                        {courseData.status === 'Finished' && <p className='text-base text-[var(--yellow-text)]'>{courseData.name}(تمام شده)</p>}
+                                                        {courseData.status === 'Canceled' && <p className='text-base text-[var(--notification-red)]'>{courseData.name}(لغو شده)</p>}
+
+                                                        {/* conditional course percent */}
+                                                        <p
+                                                        className={`
+                                                            ${courseData.status === 'Finished'&& 'text-[var(--yellow-text)]'}
+                                                            ${courseData.status === 'Canceled'&& 'text-[var(--notification-red)]'}
+                                                            ${courseData.status === 'Active'&& ''}
+                                                        `}
+                                                        >{courseData.percent}%</p>
                                                     </div>
 
                                                     <Box sx={{ width: '100%' }}>
@@ -162,18 +174,30 @@ const MyCourses = () => {
                                                     <div className='w-full flex justify-between text-start text-sm'>
                                                         <div className='flex flex-col justify-between self-start'>
                                                             { courseData.organization && courseData.type !== 'Regular' &&
-                                                                <p>ارگان: {courseData.organization}</p>
-                                                            }
-                                                            { courseData.level && courseData.type !== 'Regular' &&
-                                                                <p>مقطع: {courseData.level}</p>
+                                                                <p>
+                                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                                        ارگان:&nbsp;
+                                                                    </span>
+                                                                     {courseData.organization}
+                                                                </p>
                                                             }
                                                             { courseData.clubName &&
-                                                                <p>باشگاه: {courseData.clubName}</p>
+                                                                <p>
+                                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                                        باشگاه:&nbsp;
+                                                                    </span>
+                                                                    {courseData.clubName}
+                                                                </p>
                                                             }
                                                             { courseData.coach &&
-                                                                <p>مربی: {courseData.coach}</p>
+                                                                <p>
+                                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                                        مربی:&nbsp;
+                                                                    </span> 
+                                                                    {courseData.coach}
+                                                                </p>
                                                             }
-                                                            <div className='flex gap-x-1'>
+                                                            {/* <div className='flex gap-x-1'>
                                                                 <p>وضعیت:
                                                                     {courseData.status === 'Active' && ' فعال'}
                                                                     {courseData.status === 'Finished' && ' تمام شده'}
@@ -190,7 +214,7 @@ const MyCourses = () => {
                                                                     <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
                                                                 }
 
-                                                            </div>
+                                                            </div> */}
                                                         </div>
                                                         <button onClick={handleCourseDetails(courseData.id)} className={`${ButtonStyles.normalButton} self-end`} >
                                                             جزئیات  

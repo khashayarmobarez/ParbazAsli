@@ -145,7 +145,9 @@ const PossessionTransitionEquipment = () => {
             formData.append("equipmentId", id);
             formData.append("receiverUserId", receiverId);
             formData.append("type", activeLink);
-            formData.append("expirationDateTime", formattedDate);
+            if(activeLink === 'temporary') {
+                formData.append("expirationDateTime", formattedDate);
+            }
     
             mutateTransitionData(formData, {
                 onSuccess: () => {
@@ -158,7 +160,7 @@ const PossessionTransitionEquipment = () => {
                         style: { width: "90%" }
                     });
                     setShowPopup(false);
-                    navigate('/equipment')
+                    navigate('/equipment/flightEquipment')
                 },
                 onError: (error) => {
                     // Code to execute when mutation encounters an error
@@ -175,6 +177,7 @@ const PossessionTransitionEquipment = () => {
             });
         }
 
+        
 
     // Effect to click the button when the page is mounted
     useEffect(() => {
@@ -184,6 +187,7 @@ const PossessionTransitionEquipment = () => {
         buttonRef.current.click();
         }
     }, []);
+
 
     return (
         <div className='w-full flex flex-col justify-start items-center'>
@@ -204,12 +208,6 @@ const PossessionTransitionEquipment = () => {
                         </div>
 
                         <form className='w-[90%] flex flex-col items-center mt-4  gap-y-4'>
-
-                            {/* {activeLink === 'temporary' ? 
-                                <h1 className=' text-xl font-medium text-[var(--yellow-text)]'>انتقال موقت</h1>
-                                :
-                                <h1 className=' text-xl font-medium text-[var(--red-text)]'>انتقال دائمی</h1>
-                            } */}
                             
                             {/* Serial Number input */}
                             <TextInput
@@ -217,7 +215,7 @@ const PossessionTransitionEquipment = () => {
                             className='col-span-1'
                             value={receiverId}
                             onChange={handleTextInputReceiverId}
-                            placeholder='کد کاربری مالک جدید'
+                            placeholder='کد کاربر مقصد'
                             />
                             {userByIdData &&
                                 <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
@@ -233,7 +231,7 @@ const PossessionTransitionEquipment = () => {
                             }
 
                             {activeLink === 'temporary' && 
-                                <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
+                                <DateLastRepackInput name={'تاریخ پایان انتقال قرضی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
                             }
 
                             <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-6`}>ثبت</button>
@@ -243,7 +241,7 @@ const PossessionTransitionEquipment = () => {
 
                         {/* popup */}
                         <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
-                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-[200px] flex flex-col justify-around items-center z-10 md:z-[50]`}>
+                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
                                 <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                             
                                 <div className='w-[80%] flex justify-between'>
