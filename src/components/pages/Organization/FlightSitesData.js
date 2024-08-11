@@ -86,7 +86,7 @@ const FlightSitesData = () => {
     };
 
     return (
-            <div className=' flex flex-col w-full gap-y-4 '>
+            <div className=' flex flex-col w-full gap-y-8 '>
 
                 <div className=' flex flex-col w-full h-auto justify-between gap-x-6 lg:flex-row'>
 
@@ -126,13 +126,15 @@ const FlightSitesData = () => {
 
                 <div className=' w-full flex flex-col justify-between gap-4 lg:grid lg:grid-cols-12 '>
 
-                    <div className=' col-span-8'>
-                        dsa
+                    <div className=' col-span-8 bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)]'>
+                        <p>تعداد پروازهای انجام شده</p>
+                        <p>1</p>
+                        <p>1</p>
                     </div>
                     
                     <div className='w-full flex gap-x-2 col-span-4'>
-                        <DateButtonInput name={'از تاریخ ...'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
-                        <DateButtonInput name={'تا تاریخ ...'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
+                        <DateButtonInput name={'از تاریخ ...'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ ...'} />
+                        <DateButtonInput name={'تا تاریخ ...'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ ...'} />
                     </div>
 
                 </div>
