@@ -118,17 +118,7 @@ const PossessionTransitionEquipment = () => {
                 setShowPopup(true)
             }
         } else {
-            if(!userByIdData) {
-                toast('کاربر مورد نظر یافت نشد', {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: 'dark',
-                    style: { width: "90%" }
-                });
-            } else {
-                setShowPopup(true)
-            }
+            setShowPopup(true)
         }
     }
 

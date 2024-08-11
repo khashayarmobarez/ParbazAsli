@@ -115,7 +115,15 @@ const EditClubEquipment = () => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
-                    navigate('/clubEquipment/flightEquipments');
+
+                    if(equipmentType === "Parachute") {
+                        navigate('/club/clubEquipment/parachutes');
+                    } else if(equipmentType === "Wing") {
+                        navigate('/club/clubEquipment/flightEquipments');
+                    } else if(equipmentType === "Harness") {
+                        navigate('/club/clubEquipment/harnesses');
+                    }
+                    
                     },
                     onError: (error) => {
                         const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;

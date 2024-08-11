@@ -29,11 +29,11 @@ const ClubCourseSyllabi = () => {
             }
             {
                 syllabiDataTheory && syllabiDataTheory.data.length > 0 &&
-                <DropDownDataBox title={"سیلابس تئوری"} data={syllabiDataTheory.data}  />
+                <DropDownDataBox title={"سرفصل‌ها تئوری"} data={syllabiDataTheory.data}  />
             }
             {
                  syllabiDataPractical && syllabiDataPractical.data.length > 0 &&
-                <DropDownDataBox title={"سیلابس عملی"} data={syllabiDataPractical.data} />
+                <DropDownDataBox title={"سرفصل‌ها عملی"} data={syllabiDataPractical.data} />
             }
         </div>
     );

@@ -81,7 +81,7 @@ const ClubCourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={'/education'} /> 
+                <PageTitle title={'جزئیات دوره'} navigateTo={'/club/clubCourses'} /> 
 
                 {
                     courseDataLoading &&
@@ -215,7 +215,7 @@ const ClubCourseDetails = () => {
                             <Link 
                                 to={`/club/courseDetails/${id}/syllabi`}  
                                 className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${location.pathname === `/club/courseDetails/${id}/syllabi` ? ButtonStyles.activeYellow : ''} `} >
-                                سیلابس
+                                سرفصل‌ها
                             </Link>
                         </div>
 
@@ -225,7 +225,7 @@ const ClubCourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
+                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
                             onClick={() => setShowPopup(true)} >
                                 <p>غیر فعال سازی</p>
                             </button>
@@ -233,14 +233,14 @@ const ClubCourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
+                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
                                 onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                 <p>فعال سازی</p>
                             </button>
                         }
                         {
                             aCourseData.data.status === 'Pending' &&
-                                <div className='w-[90%] md:w-2/6 fixed bottom-16 flex justify-between'>
+                                <div className=' z-10 w-[90%] md:w-2/6 fixed bottom-16 flex justify-between'>
                                     <button className={`${ButtonStyles.addButton} w-[45%] text-base`} 
                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                         <p>تایید</p>
