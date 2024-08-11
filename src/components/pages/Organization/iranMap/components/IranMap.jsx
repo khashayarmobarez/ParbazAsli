@@ -46,7 +46,7 @@ const IranMap = () => {
         <div>
           <div
             className={styles.backdrop}
-            onClick={() => setProvinceSelected(false)}
+            // onClick={() => setProvinceSelected(false)}
           ></div>
           <div className={styles.cities}>
             <p>
@@ -68,7 +68,7 @@ const IranMap = () => {
               <div className={styles.select_cities_btns}>
                 <button
                   type="button"
-                  onClick={() => setProvinceSelected(false)}
+                  // onClick={() => setProvinceSelected(false)}
                 >
                   بازگشت
                 </button>
@@ -80,7 +80,7 @@ const IranMap = () => {
       )}
       <div className={styles.container}>
         <div className={styles.map}>
-          <button
+          {/* <button
             className={
               mapZoom
                 ? styles.zoom_btn + " " + styles.zoom_out
@@ -89,7 +89,7 @@ const IranMap = () => {
             onClick={() => {
               setMapZoom(!mapZoom);
             }}
-          />
+          /> */}
           <svg
             className={
               mapZoom ? styles.svg + " " + styles.map_zoom : styles.svg
@@ -112,11 +112,11 @@ const IranMap = () => {
                   d={province.d}
                   onMouseOver={() => setProvinceName(province.name)}
                   onMouseLeave={() => setProvinceName("")}
-                  onClick={() => {
-                    setCities(province.cities);
-                    setProvinceSelected(true);
-                    setProvinceNameOnClick(province.name);
-                  }}
+                  // onClick={() => {
+                  //   setCities(province.cities);
+                  //   setProvinceSelected(true);
+                  //   setProvinceNameOnClick(province.name);
+                  // }}
                 />
               ))}
             </g>
