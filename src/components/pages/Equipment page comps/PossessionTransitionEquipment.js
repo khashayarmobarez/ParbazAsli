@@ -143,7 +143,7 @@ const PossessionTransitionEquipment = () => {
     
     
             formData.append("equipmentId", id);
-            formData.append("receiverUserId", receiverId);
+            formData.append("receiverId", receiverId);
             formData.append("type", activeLink);
             if(activeLink === 'temporary') {
                 formData.append("expirationDateTime", formattedDate);
@@ -215,7 +215,7 @@ const PossessionTransitionEquipment = () => {
                             className='col-span-1'
                             value={receiverId}
                             onChange={handleTextInputReceiverId}
-                            placeholder='کد کاربر مقصد'
+                            placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
                             />
                             {userByIdData &&
                                 <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>

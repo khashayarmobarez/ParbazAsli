@@ -294,7 +294,7 @@ const RenewCertificate = () => {
                                                 <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
                                                 onClick={handleSubmit}
                                                 disabled={isSubmitting} >
-                                                    ارسال
+                                                    تایید
                                                 </button>
 
                                                 {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
