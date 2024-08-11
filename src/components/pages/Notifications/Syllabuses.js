@@ -18,12 +18,6 @@ const Syllabuses = () => {
     const [description, setDescription] = useState('');
 
     useEffect(() => {
-        if(counters) {
-            console.log(counters);
-        }
-    }, [counters]);
-
-    useEffect(() => {
         if (syllabiDataPractical && syllabiDataPractical.data) {
             setCounters(new Array(syllabiDataPractical.data.length).fill(0));
         }

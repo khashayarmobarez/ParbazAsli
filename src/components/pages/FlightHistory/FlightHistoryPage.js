@@ -129,6 +129,7 @@ const FlightHistoryPage = () => {
                                             </div>
                                     }
 
+                                    {/* equipment */}
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
                                             onClickActivation={() => setDropDownEquipment(!DropDownEquipment)}
@@ -173,6 +174,7 @@ const FlightHistoryPage = () => {
                                         </>
                                     }
                                     
+                                    {/* situation */}
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
                                             onClickActivation={() => setDropDownSituation(!DropDownSituation)}
@@ -224,6 +226,7 @@ const FlightHistoryPage = () => {
                                         </>
                                     }
 
+                                    {/* takeoff */}
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
                                             onClickActivation={() => setDropDownTakeoff(!DropDownTakeoff)}
@@ -279,6 +282,7 @@ const FlightHistoryPage = () => {
                                         </>
                                     }
 
+                                    {/* landing */}
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
                                             onClickActivation={() => setDropDownLanding(!DropDownLanding)}
