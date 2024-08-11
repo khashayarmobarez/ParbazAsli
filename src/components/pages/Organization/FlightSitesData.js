@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 // queries
 import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
+import { useCitiesByProvinceId } from '../../../Utilities/Services/organQueries';
 
 // components
 import IranMap from './iranMap/components/IranMap';
@@ -15,10 +16,12 @@ const FlightSitesData = () => {
 
     const [country, setCountry] = useState('')
     const [province, setProvince] = useState('')
+    const [city, setCity] = useState('')
     const [site, setSite] = useState('')
 
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
     const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(country ? country.id : '')
+    const { data: flightCitiesData, loading:flightCitiesLoading, error:flightCitiesError, refetch: refetchCities } = useCitiesByProvinceId(province  && province.id)
     const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(province  && province.id, country && country.id)
 
     const handleSelectSetCountry = (selectedCountry) => {
@@ -27,9 +30,13 @@ const FlightSitesData = () => {
         setSite('')
     }
 
-    const handleSelectSetCity = (selectedProvince) => {
+    const handleSelectSetProvince = (selectedProvince) => {
         setProvince(selectedProvince)
         setSite('')
+    }
+
+    const handleSelectSetCity = (selectedCity) => {
+        setCity(selectedCity)
     }
 
     const handleSelectSetSite = (selectedSite) => {
@@ -50,7 +57,12 @@ const FlightSitesData = () => {
 
                         {
                             provincesData && !provincesLoading && (country && country.id) &&
-                            (<SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={province} handleSelectChange={handleSelectSetCity} />)
+                            (<SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={province} handleSelectChange={handleSelectSetProvince} />)
+                        }
+
+                        {
+                            flightCitiesData && !flightCitiesLoading && province && province.id &&
+                            (<SearchInputWithDropdown name={'شهر'} options={flightCitiesData.data} selectedOption={city} handleSelectChange={handleSelectSetCity} />)
                         }
 
                         {
