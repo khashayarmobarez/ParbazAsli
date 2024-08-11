@@ -17,6 +17,7 @@ import arrow from '../../../assets/icons/Right Arrow Button.svg'
 // comps
 import PageTitle from '../../reuseable/PageTitle';
 import { toast } from 'react-toastify';
+import { useAUserFlight } from '../../../Utilities/Services/flightHistoriesQueries';
 
 const ApproveStudentFlight = () => {
 
@@ -27,6 +28,7 @@ const ApproveStudentFlight = () => {
     const navigate = useNavigate()
 
     const {  data: UserCourseFlightData, isLoading: UserCourseFlightLoading, error: UserCourseFlightError } = useUserCourseFlight(id);
+    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserFlight(id);
     const { mutate: mutateDecline , isLoading: declineLoading, error: declineError} = useDeclineUserFlight();
 
     useEffect(() => {

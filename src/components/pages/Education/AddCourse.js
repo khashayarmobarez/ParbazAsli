@@ -467,11 +467,11 @@ const AddCourse = () => {
                         {selectedClassType.id === 3 && (
                             <>
 
-                                    <TextInput
-                                        value={courseName}
-                                        onChange={handleCourseName}
-                                        placeholder='نام دوره'
-                                    />
+                                <TextInput
+                                    value={courseName}  
+                                    onChange={handleCourseName}
+                                    placeholder='نام دوره'
+                                />
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
