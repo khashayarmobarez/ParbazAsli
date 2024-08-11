@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 const BASE_URL = 'https://api.digilogbook.ir/api'

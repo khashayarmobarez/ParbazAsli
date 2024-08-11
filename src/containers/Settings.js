@@ -83,14 +83,14 @@ const Settings = () => {
                 </div> */}
 
                 {   clubStatus &&
-                    clubStatus.data === 'Accepted' &&
+                    clubStatus.data === 'NotAdded' &&
                         <div className='w-[90%] flex flex-col items-center'>
                             <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClickActivation={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
                             {   
                                 DropDown === 'dropDown5' &&
                                 <>
                                     {
-                                        clubStatus.data !== 'NotAdded' ?
+                                        clubStatus.data === 'NotAdded' ?
                                         <AddClub isForSetting={true} />
                                         :
                                         ''
