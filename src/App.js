@@ -109,6 +109,8 @@ import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseCla
 import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
 import MyGuestClassDetails from './components/pages/MyCourses/MyGuestClassDetails';
 import OrganPilots from './components/pages/Organization/OrganPilots';
+import OrgansData from './components/pages/Organization/Dashboard/OrgansData';
+import OrgansUsersData from './components/pages/Organization/Dashboard/OrgansUsersData';
   
 
 
@@ -366,7 +368,11 @@ function App() {
           {/* organization login specific */}
           {token && userType === 'Organization' && isUserAuthenticated === 'authenticated' &&  (
             <>
-              <Route path='/organizationDashboard' element={<OrganDashboard  />} />
+              <Route path='/organization' element={<OrganDashboard  />} >
+                  <Route index element={<OrgansData />} />
+                  <Route path="OrgansData" element={<OrgansData />} />
+                  <Route path="OrgansUsersData" element={<OrgansUsersData />} />
+              </Route>
 
               <Route path='/organizationCoaches' element={<OrganCoaches  />} />
               <Route path='/organizationCoaches/coachHistory' element={<CoachHistory  />} />
@@ -374,7 +380,7 @@ function App() {
               <Route path='/organizationPilots' element={<OrganPilots  />} />
               <Route path='/organizationPilots/PilotsHistory' element={<PilotsHistory  />} />
 
-              <Route path='*' element={<Navigate to="/organizationDashboard" replace />} />
+              <Route path='*' element={<Navigate to="/organization" replace />} />
             </>
           )}
 

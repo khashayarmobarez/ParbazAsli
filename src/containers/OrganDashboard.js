@@ -9,14 +9,14 @@ import FlightSitesData from '../components/pages/Organization/FlightSitesData';
 
 const OrganDashboard = () => {
     return (
-        <div className='pt-20 flex flex-col w-full items-center'>
+        <div className='py-20 flex flex-col w-full items-center'>
             <div className='flex flex-col w-full md:w-[75%] items-center '>
 
-                <FlightSitesData />
+                {/* <FlightSitesData />
 
                 <DashBoardFlightQuantity />
 
-                <DashboardPilotsQuantiy />
+                <DashboardPilotsQuantiy /> */}
                 
             </div>
         </div>
