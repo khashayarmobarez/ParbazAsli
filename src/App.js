@@ -119,6 +119,7 @@ const queryClient = new QueryClient();
 function App() {
 
   const token = Cookies.get('token') || null;
+  const userType = Cookies.get('userType') || null;
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -237,6 +238,7 @@ function App() {
             </>
           )}
 
+          {/* user pages */}
           {token && isUserAuthenticated === 'noAdminApprovment' && (
             <>
               <Route path='/adminPending' element={<AdminPending />} />
@@ -249,119 +251,120 @@ function App() {
               </Route>
             </>
           )}
-            {token  && isUserAuthenticated === 'authenticated' && (
-              <>
-                <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
-                {/* notifications */}
-                <Route path='/notifications' element={<Notifications />} />
-                {/* notifications for the coach after student added*/}
-                <Route path="/addFlight/ReviewStudentsFlight/:id" element={ <ApproveStudentFlight />} />
-                <Route path="/addFlight/ReviewStudentsFlight/:flightId/syllabuses/:courseId" element={ <Syllabuses />} />
+          {token  && isUserAuthenticated === 'authenticated' && (
+            <>
+              <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
-                {/* equipment */}
-                <Route path='/equipment' element={<Equipment />} >
-                    <Route index element={<FlightEquipment />} />
-                    <Route path="flightEquipment" element={<FlightEquipment />} />
-                    <Route path="parachute" element={<Parachute />} />
-                    <Route path="harness" element={<Harness />} />
-                </Route>
-                <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
-                <Route path='/equipment/addParachute' element={<AddParachute />} />
-                <Route path='/equipment/addHarness' element={<AddHarness />} />
-                <Route path='/EditEquipment/:id' element={<EditEquipment />} />
-                <Route path='/possessionTransitionEquipment/:id' element={<PossessionTransitionEquipment />} />
+              {/* notifications */}
+              <Route path='/notifications' element={<Notifications />} />
+              {/* notifications for the coach after student added*/}
+              <Route path="/addFlight/ReviewStudentsFlight/:id" element={ <ApproveStudentFlight />} />
+              <Route path="/addFlight/ReviewStudentsFlight/:flightId/syllabuses/:courseId" element={ <Syllabuses />} />
 
-                {/* education */}
-                <Route path='/education' element={<Education userRole={ userRole }  />} />
-                <Route path='/education/addClass' element={<AddCourse />} /> 
-                <Route path='/education/courseDetails/:id' element={<CourseDetails />} >
-                  <Route index element={<CourseStudents />} />
-                  <Route path="students" element={<CourseStudents />} />
-                  <Route path="classes" element={<CourseClasses />} />
-                  <Route path="syllabi" element={<CourseSyllabi />} />
-                </Route> 
-                <Route path='/education/:id/AddClass' element={<AddClass/>} />
-                <Route path='/education/StudentDetails/:id' element={<StudentDetails/>} />
+              {/* equipment */}
+              <Route path='/equipment' element={<Equipment />} >
+                  <Route index element={<FlightEquipment />} />
+                  <Route path="flightEquipment" element={<FlightEquipment />} />
+                  <Route path="parachute" element={<Parachute />} />
+                  <Route path="harness" element={<Harness />} />
+              </Route>
+              <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
+              <Route path='/equipment/addParachute' element={<AddParachute />} />
+              <Route path='/equipment/addHarness' element={<AddHarness />} />
+              <Route path='/EditEquipment/:id' element={<EditEquipment />} />
+              <Route path='/possessionTransitionEquipment/:id' element={<PossessionTransitionEquipment />} />
 
-                {/* my courses */}
-                <Route path='/MyCourses' element={<MyCourses  />} />
-                <Route path='/MyCourses/courseDetails/:id' element={<MyCourseDetails />} >
-                  <Route index element={<PracticalMyCourse />} />
-                  <Route path="practical" element={<PracticalMyCourse />} />
-                  <Route path="theory" element={<TheoryMyCourse />} />
-                  <Route path="mySyllabi" element={<MySyllabiMyCourse />} />
-                </Route>
-                <Route path='/MyCourses/guestClassDetails/:id' element={<MyGuestClassDetails />} />
+              {/* education */}
+              <Route path='/education' element={<Education userRole={ userRole }  />} />
+              <Route path='/education/addClass' element={<AddCourse />} /> 
+              <Route path='/education/courseDetails/:id' element={<CourseDetails />} >
+                <Route index element={<CourseStudents />} />
+                <Route path="students" element={<CourseStudents />} />
+                <Route path="classes" element={<CourseClasses />} />
+                <Route path="syllabi" element={<CourseSyllabi />} />
+              </Route> 
+              <Route path='/education/:id/AddClass' element={<AddClass/>} />
+              <Route path='/education/StudentDetails/:id' element={<StudentDetails/>} />
 
-                {/* syllabi list */}
-                <Route path='/syllabi' element={<SyllabiList  />} /> 
+              {/* my courses */}
+              <Route path='/MyCourses' element={<MyCourses  />} />
+              <Route path='/MyCourses/courseDetails/:id' element={<MyCourseDetails />} >
+                <Route index element={<PracticalMyCourse />} />
+                <Route path="practical" element={<PracticalMyCourse />} />
+                <Route path="theory" element={<TheoryMyCourse />} />
+                <Route path="mySyllabi" element={<MySyllabiMyCourse />} />
+              </Route>
+              <Route path='/MyCourses/guestClassDetails/:id' element={<MyGuestClassDetails />} />
 
-                {/* add flight */}
-                <Route path="/addFlight/AddFlightType" element={ <AddFlightType />} />
-                <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
-                    <Route index element={<UploadIgc />} />
-                    <Route path="UploadIgc" element={ <UploadIgc />} />
-                    <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
-                    <Route path="AddSituation" element={ <AddSituation />}  />
-                    <Route path="AddTakeoff" element={ <AddTakeoff />} />
-                    <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
-                </Route>
+              {/* syllabi list */}
+              <Route path='/syllabi' element={<SyllabiList  />} /> 
 
-
-                {/* flight history */}
-                <Route path='/flightHistory' element={<FlightHistory  />} />
-                <Route path='/flightHistory/advancedFilter' element={<FlightsAdvancedFilter  />} />
-                <Route path='/flightHistory/:id' element={<FlightHistoryPage  />} />
+              {/* add flight */}
+              <Route path="/addFlight/AddFlightType" element={ <AddFlightType />} />
+              <Route path='/addFlight' element={<AddFlight userRole={ userRole } />} >
+                  <Route index element={<UploadIgc />} />
+                  <Route path="UploadIgc" element={ <UploadIgc />} />
+                  <Route path="AddUsedEquipment" element={ <AddUsedEquipment />} />
+                  <Route path="AddSituation" element={ <AddSituation />}  />
+                  <Route path="AddTakeoff" element={ <AddTakeoff />} />
+                  <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
+              </Route>
 
 
-                {/* club */}
-                <Route path='/club' element={<Club  />} />
-                <Route path="/club/clubEquipment" element={ < ClubEquipment />} >
-                    <Route index element={<ClubFlightEquipments />} />
-                    <Route path="flightEquipments" element={<ClubFlightEquipments />} />
-                    <Route path="parachutes" element={<ClubParachutes />} />
-                    <Route path="harnesses" element={<ClubHarnesses />} />
-                </Route >
-                <Route path='/club/addFlightEquipmentForClub' element={<AddClubFlightEquipment />} /> 
-                <Route path='/club/addParachuteForClub' element={<AddClubParachute />} />
-                <Route path='/club/addHarnessForClub' element={<AddClubHarness />} />
-                <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
-                <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
-                <Route path='/EditClubEquipment/:id' element={<EditClubEquipment />} />
-                <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionClub />} />
-                {/* club education */}
-                <Route path="/club/clubCourses" element={ < ClubCourses  />} />
-                <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
-                <Route path='/club/courseDetails/:id' element={<ClubCourseDetails />} >
-                  <Route index element={<ClubCourseStudents />} />
-                  <Route path="students" element={<ClubCourseStudents />} />
-                  <Route path="classes" element={<ClubCourseClasses />} />
-                  <Route path="syllabi" element={<ClubCourseSyllabi />} />
-                </Route> 
+              {/* flight history */}
+              <Route path='/flightHistory' element={<FlightHistory  />} />
+              <Route path='/flightHistory/advancedFilter' element={<FlightsAdvancedFilter  />} />
+              <Route path='/flightHistory/:id' element={<FlightHistoryPage  />} />
 
 
-                {/* edit profile */}
-                <Route path='/editProfile' element={<EditProfile />}>
-                    <Route index element={<ChangeProfile />} />
-                    <Route path="changeProfile" element={<ChangeProfile />} />
-                    <Route path="changeCertificate" element={<ChangeCertificate />} />
-                </Route>
+              {/* club */}
+              <Route path='/club' element={<Club  />} />
+              <Route path="/club/clubEquipment" element={ < ClubEquipment />} >
+                  <Route index element={<ClubFlightEquipments />} />
+                  <Route path="flightEquipments" element={<ClubFlightEquipments />} />
+                  <Route path="parachutes" element={<ClubParachutes />} />
+                  <Route path="harnesses" element={<ClubHarnesses />} />
+              </Route >
+              <Route path='/club/addFlightEquipmentForClub' element={<AddClubFlightEquipment />} /> 
+              <Route path='/club/addParachuteForClub' element={<AddClubParachute />} />
+              <Route path='/club/addHarnessForClub' element={<AddClubHarness />} />
+              <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
+              <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
+              <Route path='/EditClubEquipment/:id' element={<EditClubEquipment />} />
+              <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionClub />} />
+              {/* club education */}
+              <Route path="/club/clubCourses" element={ < ClubCourses  />} />
+              <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
+              <Route path='/club/courseDetails/:id' element={<ClubCourseDetails />} >
+                <Route index element={<ClubCourseStudents />} />
+                <Route path="students" element={<ClubCourseStudents />} />
+                <Route path="classes" element={<ClubCourseClasses />} />
+                <Route path="syllabi" element={<ClubCourseSyllabi />} />
+              </Route> 
 
-                {/* profile */}
-                <Route path='*' element={<Navigate to="/profile" replace />} />
 
-                {/* settings */}
-                <Route path='/Settings' element={<Settings />} />
-                <Route path='/Settings/certificate' element={<RenewCertificate />} />
+              {/* edit profile */}
+              <Route path='/editProfile' element={<EditProfile />}>
+                  <Route index element={<ChangeProfile />} />
+                  <Route path="changeProfile" element={<ChangeProfile />} />
+                  <Route path="changeCertificate" element={<ChangeCertificate />} />
+              </Route>
 
-              </>
-            )}
+              {/* profile */}
+              <Route path='*' element={<Navigate to="/profile" replace />} />
+
+              {/* settings */}
+              <Route path='/Settings' element={<Settings />} />
+              <Route path='/Settings/certificate' element={<RenewCertificate />} />
+
+            </>
+          )}
 
           
 
           {/* organization login specific */}
-          {userRole === 'organization' && isUserAuthenticated === 'authenticated' &&  (
+          {userType === 'Organization' && isUserAuthenticated === 'authenticated' &&  (
             <>
               <Route path='/organizationDashboard' element={<OrganDashboard  />} />
 

@@ -131,6 +131,7 @@ const Login = () => {
 
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays });
+                Cookies.set('userType', response.data.data.userType, { expires: response.data.data.loginExpireInDays });
 
                 await postIsUserAuthenticated(response.data.data.token, navigate, isUserAuthenticated);
 
