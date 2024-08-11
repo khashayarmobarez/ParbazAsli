@@ -169,11 +169,7 @@ const Parachute = (props) => {
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
 
                                     <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
-                                        {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
-                                        'ویرایش'
-                                        :
-                                        'جزئیات'
-                                        }
+                                        جزئیات
                                     </button>
 
                                     <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>

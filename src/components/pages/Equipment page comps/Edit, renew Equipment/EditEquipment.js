@@ -114,7 +114,13 @@ const EditEquipment = () => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
-                    navigate('/equipment/parachute');
+                    if(equipmentType === "Parachute") {
+                        navigate('/equipment/parachute');
+                    } else if(equipmentType === "Wing") {
+                        navigate('/equipment/flightEquipment');
+                    } else if(equipmentType === "Harness") {
+                        navigate('/equipment/harness');
+                    }
                     },
                     onError: (error) => {
                         const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;

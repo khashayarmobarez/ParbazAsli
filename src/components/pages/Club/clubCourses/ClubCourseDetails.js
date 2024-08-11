@@ -81,7 +81,7 @@ const ClubCourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={'/club/clubCourses'} /> 
+                <PageTitle title={'جزئیات دوره'} navigateTo={'/club'} /> 
 
                 {
                     courseDataLoading &&
