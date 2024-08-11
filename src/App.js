@@ -252,7 +252,7 @@ function App() {
             </>
           )}
 
-          {token  && isUserAuthenticated === 'authenticated' && (
+          {token && userType === 'User' && isUserAuthenticated === 'authenticated' && (
             <>
               <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
@@ -383,7 +383,7 @@ function App() {
         
         {/* footer section */}
         {/* based on if the user is signed in or not */}
-        <Footer userRole = { userRole } />
+        <Footer userRole = { userType } />
         {!token && 
           <>
             <FooterLanding />

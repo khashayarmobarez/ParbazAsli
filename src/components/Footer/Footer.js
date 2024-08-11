@@ -90,7 +90,7 @@ const Footer = ({ userRole }) => {
         >
             
               {
-                userRole === 'organization' ?
+                userRole === 'Organization' ?
                 <BottomNavigation
                 sx={styles.buttonsContainer}
                 showLabels
