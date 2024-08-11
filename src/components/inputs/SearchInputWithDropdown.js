@@ -56,7 +56,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
 
   return (
     <div className="flex relative w-[100%] h-12 rounded-xl" ref={dropdownRef}>
-      <span>
+      <span className='z-10'>
         <img src={icon || Cube} alt="icon" className="absolute mt-3 mr-3 w-5" />
       </span>
       <input
@@ -70,15 +70,15 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
       />
       <span 
         onClick={handleIconClick} 
-        className="absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+        className="absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
       >
-        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
+        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)',  }} />
       </span>
       {isOpen && (
-        <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+        <ul className="absolute z-30 w-full bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
           
           {filteredOptions.map((option) => (
-            <div key={option.id} className='flex flex-col w-full items-center justify-center '>
+            <div key={option.id} className=' flex flex-col w-full items-center justify-center '>
               <li
                 className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
                 onClick={() => handleOptionClick(option)}

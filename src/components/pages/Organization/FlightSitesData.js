@@ -27,11 +27,13 @@ const FlightSitesData = () => {
     const handleSelectSetCountry = (selectedCountry) => {
         setCountry(selectedCountry)
         setProvince('')
+        setCity('')
         setSite('')
     }
 
     const handleSelectSetProvince = (selectedProvince) => {
         setProvince(selectedProvince)
+        setCity('')
         setSite('')
     }
 
