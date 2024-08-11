@@ -71,7 +71,6 @@ import 'react-toastify/dist/ReactToastify.css';
 // organization components
   import OrganDashboard from './containers/OrganDashboard';
   import OrganCoaches from './components/pages/Organization/OrganCoaches';
-  import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
 import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
@@ -109,6 +108,7 @@ import ClubCourseStudents from './components/pages/Club/clubCourses/ClubCourseSt
 import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseClasses';
 import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
 import MyGuestClassDetails from './components/pages/MyCourses/MyGuestClassDetails';
+import OrganPilots from './components/pages/Organization/OrganPilots';
   
 
 
