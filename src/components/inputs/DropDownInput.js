@@ -51,7 +51,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}
       </select>
-      <span onClick={handleIconClick} className="absolute left-3  h-full flex items-center pr-2 cursor-pointer pointer-events-none">
+      <span onClick={handleIconClick} className="absolute left-3 pb-2  h-full flex items-center pr-2 cursor-pointer pointer-events-none">
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
     </div>
