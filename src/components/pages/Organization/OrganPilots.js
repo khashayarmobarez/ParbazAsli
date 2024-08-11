@@ -2,16 +2,16 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
-import gradients from '../styles/gradients/Gradient.module.css'
+import gradients from '../../../styles/gradients/Gradient.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets 
-import clipboard from '../assets/icons/clipboard.svg'
+import clipboard from '../../../assets/icons/clipboard.svg'
 
 // components
-import SearchInput from '../components/inputs/SearchInput'; 
+import SearchInput from '../../inputs/SearchInput'; 
 
 const OrganPilots = () => {
 

@@ -70,7 +70,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
 // organization components
   import OrganDashboard from './containers/OrganDashboard';
-  import OrganCoaches from './containers/OrganCoaches';
+  import OrganCoaches from './components/pages/Organization/OrganCoaches';
   import OrganPilots from './containers/OrganPilots';
   import PilotsHistory from './components/pages/Organization/PilotsHistory';
   import CoachHistory from './components/pages/Organization/CoachHistory';
@@ -364,7 +364,7 @@ function App() {
           
 
           {/* organization login specific */}
-          {userType === 'Organization' && isUserAuthenticated === 'authenticated' &&  (
+          {token && userType === 'Organization' && isUserAuthenticated === 'authenticated' &&  (
             <>
               <Route path='/organizationDashboard' element={<OrganDashboard  />} />
 
