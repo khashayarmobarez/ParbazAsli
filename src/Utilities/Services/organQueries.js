@@ -46,7 +46,7 @@ const getFlightCounts = async (siteId, provinceId, fromDate, toDate) => {
     const token = Cookies.get('token');
 
     try {
-    const response = await axios.get(`${BASE_URL}/Flight/Organization/GetFlightCounts?${siteId && `siteId=${siteId}&`}${provinceId && `provinceId=${provinceId}&`}${fromDate && `fromDate=${fromDate}&`}${toDate && `toDate=${toDate}&`}`, {
+    const response = await axios.get(`${BASE_URL}/Flight/Organization/GetFlightCount?${siteId && `siteId=${siteId}&`}${provinceId && `provinceId=${provinceId}&`}${fromDate && `fromDate=${fromDate}&`}${toDate && `toDate=${toDate}&`}`, {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',

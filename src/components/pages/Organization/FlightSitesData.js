@@ -9,6 +9,9 @@ import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
 import { useCitiesByProvinceId, useFlightCounts } from '../../../Utilities/Services/organQueries';
 
+// assets
+import eraser from '../../../assets/icons/eraser 1.svg';
+
 // components
 import IranMap from './iranMap/components/IranMap';
 import DropdownInput from '../../inputs/DropDownInput';
@@ -52,6 +55,15 @@ const FlightSitesData = () => {
 
     const handleSelectSetSite = (selectedSite) => {
         setSite(selectedSite)
+    }
+
+    const handleResetData = () => {
+        setCountry('')
+        setProvince('')
+        setCity('')
+        setSite('')
+        setFromDate('')
+        setToDate('')
     }
 
     const handleFlightFromDateFilterChange = (value) => {
@@ -127,15 +139,32 @@ const FlightSitesData = () => {
 
                 <div className=' w-full flex flex-col justify-between gap-4 lg:grid lg:grid-cols-12 '>
 
-                    <div className=' col-span-8 bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)]'>
-                        <p>تعداد پروازهای انجام شده</p>
-                        <p>{flightCountsData && 'fd'}</p>
-                        <p>1</p>
+                    <div className=' col-span-7 bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)] text-xs lg:text-base'>
+                        <p className='text-[var(--yellow-text)]'>تعداد پروازهای انجام شده</p>
+                        <p className='text-[var(--yellow-text)]'>{flightCountsData && flightCountsData.data}</p>
+                        <>
+                            {
+                                !toDate && !fromDate ?
+                                'از تاریخ ابتدا تا کنون'
+                                :
+                                <p>
+                                    {fromDate && `از ${fromDate}`} {toDate && `تا ${toDate}`}
+                                </p>
+                            }
+                        </>
                     </div>
                     
-                    <div className='w-full flex gap-x-2 col-span-4'>
+                    <div className='w-full flex gap-x-2 col-span-5'>
                         <DateButtonInput name={'از تاریخ ...'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ ...'} />
                         <DateButtonInput name={'تا تاریخ ...'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ ...'} />
+                        <button className={`w-24 rounded-2xl flex justify-center items-center`}
+                            style={{
+                                background:  'var(--profile-buttons-background),var(--bg-color)',
+                                boxShadow: 'var(--profile-buttons-boxShadow)'
+                            }}
+                            onClick={handleResetData}>
+                                <img src={eraser} alt='eraser' />
+                        </button>
                     </div>
 
                 </div>
