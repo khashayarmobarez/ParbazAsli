@@ -25,9 +25,7 @@ const FlightSitesData = () => {
 
 
     return (
-        <div className='flex justify-center items-center w-[90%] min-h-20 rounded-2xl px-5 py-7 my-4 gap-x-6' style={{backgroundColor:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
-            
-            <div className=' flex flex-col w-full h-full justify-between gap-x-6 md:flex-row'>
+            <div className=' flex flex-col w-full h-auto justify-between gap-x-6 md:flex-row'>
 
                 
                 {data &&
@@ -44,8 +42,6 @@ const FlightSitesData = () => {
                 </div>
 
             </div>
-    
-        </div>
     );
 };
 
