@@ -46,9 +46,10 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getUnreadNotificationCounts = async () => {
 
         const token = Cookies.get('token');
+        const userType = Cookies.get('userType');
 
-        if (!token) {
-            throw new Error('No token found');
+        if (!token || userType === 'Organization') {
+            throw new Error('No token found or user is not a pilot');
         }
 
         try {

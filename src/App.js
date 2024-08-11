@@ -142,13 +142,15 @@ function App() {
 
   // Check if user is authenticated
   useEffect(() => {
-    const checkUserAuthentication = async () => {
-      const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
-      setIsUserAuthenticated(isAuthenticated);
-    };
+    if(userType === 'User') {
+      const checkUserAuthentication = async () => {
+        const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
+        setIsUserAuthenticated(isAuthenticated);
+      };
 
-    checkUserAuthentication();
-  }, []);
+      checkUserAuthentication();
+    }
+  }, [userType]);
 
 
   // Reload the page after authentication to rerender the components correctly 
@@ -164,10 +166,10 @@ function App() {
           
   // Check if user is authenticated
   useEffect(() => {
-    if (token) {
+    if (token && userType === 'User') {
       postIsUserAuthenticated(token, navigate, isUserAuthenticated, setIsPageReloaded);
     }
-  }, [token, navigate, isUserAuthenticated]);
+  }, [token, navigate, isUserAuthenticated, userType]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -366,7 +368,7 @@ function App() {
           
 
           {/* organization login specific */}
-          {token && userType === 'Organization' && isUserAuthenticated === 'authenticated' &&  (
+          {token && userType === 'Organization' &&  (
             <>
               <Route path='/organization' element={<OrganDashboard  />} >
                   <Route index element={<OrgansData />} />
@@ -380,7 +382,7 @@ function App() {
               <Route path='/organizationPilots' element={<OrganPilots  />} />
               <Route path='/organizationPilots/PilotsHistory' element={<PilotsHistory  />} />
 
-              <Route path='*' element={<Navigate to="/organization" replace />} />
+              <Route path='*' element={<Navigate to="/organization/OrgansData" replace />} />
             </>
           )}
 
