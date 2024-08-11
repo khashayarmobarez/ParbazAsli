@@ -7,7 +7,7 @@ import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // queries
 import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
-import { useCitiesByProvinceId } from '../../../Utilities/Services/organQueries';
+import { useCitiesByProvinceId, useFlightCounts } from '../../../Utilities/Services/organQueries';
 
 // components
 import IranMap from './iranMap/components/IranMap';
@@ -31,6 +31,7 @@ const FlightSitesData = () => {
     const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(country ? country.id : '')
     const { data: flightCitiesData, loading:flightCitiesLoading, error:flightCitiesError, refetch: refetchCities } = useCitiesByProvinceId(province  && province.id)
     const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(province  && province.id, country && country.id)
+    const { data: flightCountsData, loading:flightCountsLoading, error:flightCountsError, refetch: refetchCounts } = useFlightCounts(site && site?.id, province && province?.id, fromDate && fromDate, toDate && toDate)
 
     const handleSelectSetCountry = (selectedCountry) => {
         setCountry(selectedCountry)
@@ -128,7 +129,7 @@ const FlightSitesData = () => {
 
                     <div className=' col-span-8 bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)]'>
                         <p>تعداد پروازهای انجام شده</p>
-                        <p>1</p>
+                        <p>{flightCountsData && 'fd'}</p>
                         <p>1</p>
                     </div>
                     
