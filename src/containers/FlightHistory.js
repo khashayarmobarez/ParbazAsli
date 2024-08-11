@@ -92,27 +92,14 @@ const FlightHistory = () => {
                             >
                                 فیلتر جست‌وجو
                             </button>
-                            {
-                                (courseFilter.name||
-                                wingFilter.brand||
-                                harnessFilter.brand||
-                                countryFilter.name||
-                                provinceFilter.name||
-                                siteFilter.name||
-                                flightTypeFilter.name||
-                                coachNameFilter.name||
-                                flightStatusFilter.name||
-                                fromDateFilter||
-                                toDateFilter) &&
-                                    <button className={`w-12 rounded-xl flex justify-center items-center`}
-                                    style={{
-                                        background:  'var(--profile-buttons-background),var(--bg-color)',
-                                        boxShadow: 'var(--profile-buttons-boxShadow)'
-                                    }}
-                                    onClick={handleResetData}>
-                                        <img src={eraser} alt='eraser' />
-                                    </button>
-                            }
+                            <button className={`w-12 rounded-xl flex justify-center items-center`}
+                            style={{
+                                background:  'var(--profile-buttons-background),var(--bg-color)',
+                                boxShadow: 'var(--profile-buttons-boxShadow)'
+                            }}
+                            onClick={handleResetData}>
+                                <img src={eraser} alt='eraser' />
+                            </button>
 
                         </div>
  

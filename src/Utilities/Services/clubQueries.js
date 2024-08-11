@@ -635,12 +635,12 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // triggerclub course status
-    const triggerClubCourseStatus = async () => {
+    const triggerClubCourseStatus = async (data) => {
 
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Club/TriggerClubCourseStatus`, {}, {
+            const response = await axios.post(`${BASE_URL}/Club/TriggerClubCourseStatus`, data, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',

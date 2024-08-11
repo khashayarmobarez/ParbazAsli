@@ -114,7 +114,7 @@ const EditEquipment = () => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
-                    navigate('/club/clubEquipment/flightEquipments');
+                    navigate('/equipment/parachute');
                     },
                     onError: (error) => {
                         const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
