@@ -166,7 +166,7 @@ const Parachute = (props) => {
                                 <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                    <p> برند {equipment.brand} / مدل {equipment.model}</p>
                                     <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                 </div>
 

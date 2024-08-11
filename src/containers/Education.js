@@ -342,7 +342,7 @@ const Education = () => {
                 <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
                     <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/education/addClass') } >
                         <AddIcon />
-                        <p>افزودن مورد جدید</p>
+                        <p>افزودن دوره جدید</p>
                     </button>
                 </div>
 
