@@ -180,7 +180,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
 
       <div className={`App ${token && 'pb-24'} `}>
-        <Navbar toggleTheme={toggleTheme} userRole={ userRole } />
+        <Navbar toggleTheme={toggleTheme} />
           <Routes>
 
           <Route path='/aboutUs' element={<AboutUs />} />
