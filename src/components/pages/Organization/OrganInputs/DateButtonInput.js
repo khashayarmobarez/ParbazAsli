@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DatePicker } from 'zaman';
 
 // styles
@@ -8,10 +8,15 @@ import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
 // assets
 import Calender from '../../../../assets/icons/calender-Icon.svg'
 
-const DateButtonInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon }) => {
+const DateButtonInput = ({ defaultValue, onChange, value, customShowDateFormat, position = 'right',placeH, icon }) => {
 
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
+
+  useEffect(() => {
+    setSelectedDate(value || '');
+    setFilled(!!value);
+  }, [value]);
 
   const handleChange = (date) => {
     setSelectedDate(date);

@@ -30,6 +30,10 @@ const FlightSitesData = () => {
     const [fromDate, setFromDate] = useState('')
     const [toDate, setToDate] = useState('')
 
+    // here i'm writing some dirty code cause there was no solution
+    // state to stop rendering the dateInput when date changes
+    const [showDateInput, setShowDateInput] = useState(true)
+
     const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
     const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(country ? country.id : '')
     const { data: flightCitiesData, loading:flightCitiesLoading, error:flightCitiesError, refetch: refetchCities } = useCitiesByProvinceId(province  && province.id)
@@ -57,6 +61,7 @@ const FlightSitesData = () => {
         setSite(selectedSite)
     }
 
+    // function to rerender the component
     const handleResetData = () => {
         setCountry('')
         setProvince('')
@@ -64,6 +69,11 @@ const FlightSitesData = () => {
         setSite('')
         setFromDate('')
         setToDate('')
+        setShowDateInput(false)
+        // timeout to stop render and rerender the component
+        setTimeout(() => {
+            setShowDateInput(true)
+        }, 100);
     }
 
     const handleFlightFromDateFilterChange = (value) => {
@@ -137,9 +147,26 @@ const FlightSitesData = () => {
 
                 </div>
 
-                <div className=' w-full flex flex-col justify-between gap-4 lg:grid lg:grid-cols-12 '>
+                <div className=' w-full flex flex-col justify-between gap-4 '>
+                    
+                    <div className='w-full flex gap-x-2'>
+                        { showDateInput &&
+                            <>
+                                <DateButtonInput name={'از تاریخ ...'} value={fromDate} onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ ...'} />
+                                <DateButtonInput name={'تا تاریخ ...'} value={toDate} onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ ...'} />
+                            </>
+                        }
+                        <button className={`w-24 rounded-2xl flex justify-center items-center`}
+                            style={{
+                                background:  'var(--profile-buttons-background),var(--bg-color)',
+                                boxShadow: 'var(--profile-buttons-boxShadow)'
+                            }}
+                            onClick={handleResetData}>
+                                <img src={eraser} alt='eraser' />
+                        </button>
+                    </div>
 
-                    <div className=' col-span-7 bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)] text-xs lg:text-base'>
+                    <div className=' bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)] text-xs lg:text-base'>
                         <p className='text-[var(--yellow-text)]'>تعداد پروازهای انجام شده</p>
                         <p className='text-[var(--yellow-text)]'>{flightCountsData && flightCountsData.data}</p>
                         <>
@@ -152,19 +179,6 @@ const FlightSitesData = () => {
                                 </p>
                             }
                         </>
-                    </div>
-                    
-                    <div className='w-full flex gap-x-2 col-span-5'>
-                        <DateButtonInput name={'از تاریخ ...'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ ...'} />
-                        <DateButtonInput name={'تا تاریخ ...'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ ...'} />
-                        <button className={`w-24 rounded-2xl flex justify-center items-center`}
-                            style={{
-                                background:  'var(--profile-buttons-background),var(--bg-color)',
-                                boxShadow: 'var(--profile-buttons-boxShadow)'
-                            }}
-                            onClick={handleResetData}>
-                                <img src={eraser} alt='eraser' />
-                        </button>
                     </div>
 
                 </div>
