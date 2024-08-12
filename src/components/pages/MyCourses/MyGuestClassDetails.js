@@ -50,11 +50,11 @@ const MyGuestClassDetails = () => {
 
 
                                 {
-                                    aCourseData.data.classDurationInMinutes &&
+                                    aCourseData.data.classDuration &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
                                         <p className=' text-xs pr-2'>مدت زمان</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                            <p>{aCourseData.data.classDurationInMinutes}</p>
+                                            <p>{aCourseData.data.classDuration}</p>
                                         </div>
                                     </div>
                                 }

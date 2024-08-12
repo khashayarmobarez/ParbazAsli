@@ -317,12 +317,12 @@ const MyCourses = () => {
                                                     </p>
                                                 </div>
                                                 <div className='w-full flex justify-between items-center text-start text-sm'>
-                                                    { guestClass.classDurationInMinutes &&
+                                                    { guestClass.classDuration &&
                                                         <p>
                                                             <span className='text-[var(--low-opacity-white)]'>
                                                                 مدت زمان:&nbsp;
                                                             </span> 
-                                                            {guestClass.classDurationInMinutes} دقیقه
+                                                            {guestClass.classDuration}
                                                         </p>
                                                     }
                                                     <button onClick={handleGuestClassDetails(guestClass.id)} className={`${ButtonStyles.normalButton} self-end`} >

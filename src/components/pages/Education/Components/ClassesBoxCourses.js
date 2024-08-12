@@ -63,7 +63,7 @@ const ClassesBoxCourses = (props) => {
                                 <AutoStoriesOutlinedIcon />
                             </span>
                             <p>{classData.name}</p>
-                            <p>{formatedDuration}</p>
+                            <p>{classData.classDuration}</p>
                             <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
                                 <img src={clipboard} alt='icon' />
                             </button>
@@ -84,7 +84,7 @@ const ClassesBoxCourses = (props) => {
                                 <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>مدت زمان</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{classDetails.data.classDurationInMinutes} دقیقه</p>
+                                        <p>{classDetails.data.classDuration}</p>
                                     </div>
                                 </div>
             
