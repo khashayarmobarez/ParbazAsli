@@ -12,7 +12,7 @@ import PageTitle from '../../reuseable/PageTitle';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight, updateCourseName } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight, updateCourseName, updateWingType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 
@@ -36,6 +36,7 @@ const AddFlightType = () => {
         }
 
         dispatch(updateFlightType(flightType.type));
+        dispatch(updateWingType(flightType.wingType));
         dispatch(updateFlightCount(flightType.flightsCount));
 
         if(flightType.type === 'Course') {

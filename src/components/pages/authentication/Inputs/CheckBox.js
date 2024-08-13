@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Checkbox = ({ label, isChecked, onToggle, openTerms }) => {
 
-  const navigate = useNavigate('')
-
   const toggleCheckbox = () => {
     onToggle(!isChecked); // Pass the new checked state to the parent component
   };

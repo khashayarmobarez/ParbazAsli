@@ -39,6 +39,7 @@ const initialState = {
     // cloud cover type id 
     clouds:'',
     flightType:'',
+    wingType:'',
     courseId:'',
     takeoffTime :'',
     takeoffType :'',
@@ -152,6 +153,9 @@ const initialState = {
       updateDescription: (state, action) => {
         state.description = action.payload
       },
+      updateWingType: (state, action) => {
+        state.wingType = action.payload
+      },
       resetFlightDataExceptType(state) {
         state.courseId = '';
         state.flightCount = 0;
@@ -172,14 +176,13 @@ const initialState = {
         state.harness = '';
         state.wing = '';
         state.syllabi = [];
-        
       },
     },
   });
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName, updateWingType
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;

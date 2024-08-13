@@ -33,7 +33,7 @@ const AddUsedEquipment = () => {
 
     // redux
     const {wing, harness, parachute, passengerHarness,
-    flightType} = useSelector(selectAddFlight)
+    flightType, wingType} = useSelector(selectAddFlight)
 
 
     useEffect(() => {
@@ -196,10 +196,14 @@ const AddUsedEquipment = () => {
                         userWingsData && userHarnessData && userParachuteData && 
                         <>
 
-                            {   flightType === 'Tandem' ?
+                            {   wingType === 'Tandem' ?
                                 <DropdownInputForEquipment name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
                                 :
+                                wingType === 'Single' ?
                                 <DropdownInputForEquipment name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                :
+                                <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                
                             }
 
                             <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
