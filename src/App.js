@@ -365,7 +365,7 @@ function App() {
           
 
           {/* organization login specific */}
-          {token && userRole === 'organization' (
+          {/* {token && userRole === 'organization' (
             <>
               <Route path='/organization' element={<OrganDashboard  />} >
                   <Route index element={<OrgansData />} />
@@ -381,7 +381,7 @@ function App() {
 
               <Route path='*' element={<Navigate to="/organization/OrgansData" replace />} />
             </>
-          )}
+          )} */}
 
           </Routes>                                                                                                                                                                                                                                                                                         <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p>
           
