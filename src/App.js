@@ -121,7 +121,6 @@ const queryClient = new QueryClient();
 function App() {
 
   const token = Cookies.get('token') || null;
-  const userType = Cookies.get('userType') || null;
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -142,15 +141,13 @@ function App() {
 
   // Check if user is authenticated
   useEffect(() => {
-    if(userType === 'User') {
       const checkUserAuthentication = async () => {
         const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
         setIsUserAuthenticated(isAuthenticated);
       };
 
       checkUserAuthentication();
-    }
-  }, [userType]);
+  }, []);
 
 
   // Reload the page after authentication to rerender the components correctly 
@@ -166,10 +163,10 @@ function App() {
           
   // Check if user is authenticated
   useEffect(() => {
-    if (token && userType === 'User') {
+    if (token) {
       postIsUserAuthenticated(token, navigate, isUserAuthenticated, setIsPageReloaded);
     }
-  }, [token, navigate, isUserAuthenticated, userType]);
+  }, [token, navigate, isUserAuthenticated]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -256,7 +253,7 @@ function App() {
             </>
           )}
 
-          {token && userType === 'User' && isUserAuthenticated === 'authenticated' && (
+          {token && isUserAuthenticated === 'authenticated' && (
             <>
               <Route path='/profile' element={<Profile userRole={ userRole } />} />
 
@@ -368,7 +365,7 @@ function App() {
           
 
           {/* organization login specific */}
-          {token && userType === 'Organization' &&  (
+          {token && userRole === 'organization' (
             <>
               <Route path='/organization' element={<OrganDashboard  />} >
                   <Route index element={<OrgansData />} />
@@ -391,7 +388,7 @@ function App() {
         
         {/* footer section */}
         {/* based on if the user is signed in or not */}
-        <Footer userRole = { userType } />
+        <Footer userRole = { userRole } />
         {!token && 
           <>
             <FooterLanding />

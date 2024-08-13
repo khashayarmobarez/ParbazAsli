@@ -55,7 +55,7 @@ const MyGuestClassDetails = () => {
                                         <p className=' text-xs pr-2'>مدت زمان</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.classDuration}</p>
-                                        </div>
+                                        </div>  
                                     </div>
                                 }
 

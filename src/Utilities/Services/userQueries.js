@@ -10,11 +10,11 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const fetchUserData = async () => {
 
         const token = Cookies.get('token');
-        const userType = Cookies.get('userType');
+        // const userType = Cookies.get('userType');
 
-        if (!token || userType === 'Organization') {
-            throw new Error('No token found or user is not a pilot');
-        }
+        // if (!token || userType === 'Organization') {
+        //     throw new Error('No token found or user is not a pilot');
+        // }
 
         try {
         const response = await axios.get(`${BASE_URL}/User/GetUser`, {
