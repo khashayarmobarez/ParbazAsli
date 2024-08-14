@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-// mui
-import AddIcon from '@mui/icons-material/Add';
-
 // styles
 import dataBox from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
 import { useGetClubCourseClasses } from '../../../../Utilities/Services/clubQueries';
 
 // components
-import ClassesBoxCourses from '../../../pages/Education/Components/ClassesBoxCourses';
+import ClubCourseClassBox from './components/ClubCourseClassBox';
 
 const ClubCourseClasses = () => {
     
@@ -56,7 +52,7 @@ const ClubCourseClasses = () => {
 
                 {
                     classesData.data.classes.map((classData) => {
-                    return <ClassesBoxCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    return <ClubCourseClassBox title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
             </>
