@@ -36,7 +36,7 @@ const DashBoardFlightQuantity = () => {
                                     <p style={{color:'var(--yellow-text) '}}>هفتگی</p>
                                     <div className='flex items-center justify-center gap-x-3'>
                                         <img  src={calender} alt='icon' />
-                                        <p className='mt-1'>15 آدر 1402</p>
+                                        <p className='mt-1'>15 آذر 1402</p>
                                     </div>
                                 </div>
 
