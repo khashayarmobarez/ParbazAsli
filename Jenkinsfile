@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        CI = false
+    }
+
     stages {
         
         stage('Install') {
