@@ -15,7 +15,7 @@ pipeline {
         
         stage('Add web.config') {
             steps {
-                bat "powershell.exe -Command \"Copy-Item -Path .\\web.config -Destination .\\build\\\""
+                bat "powershell.exe -Command \"Copy-Item -Path ./web.config -Destination ./InsideTest/\""
             }
         }
 
