@@ -37,26 +37,26 @@ const AddCertificate = () => {
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;
-
-    const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
+    
     
     const [organ, setOrgan] = useState('')
-
+    
     const [level, setLevel] = useState('')
-
+    
     const [certificateId, setCertificateId] = useState('');
-
+    
     const [dateStartValue, setDateStartValue] = useState('')    
-
+    
     const [dateEndValue, setDateEndValue] = useState('')
-
+    
     const [uploadedFile, setUploadedFile] = useState(null);
     const fileInputRef = useRef(null);
-
+    
     const [errMsg, setErrMsg] = useState(null)
-
     
     
+    
+    const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ && organ.id);
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
     
