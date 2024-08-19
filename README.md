@@ -1,6 +1,6 @@
 <!-- the development document at the end -->
 
-# Getting Started with Create React App
+# the development document after the npm commands
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -41,32 +41,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# developers
+## this app front end (this project) is developed by khashayar mobarez haghighi for parbaz company
+## the backend of this app is developed by hesam javadi
 
-### Code Splitting
+## warnings before development:
+### 1 - the requests in the navbar:
+    if you intends to change the structure of the requests in the navigation bar, remember to limit them for when user is exploring Landing pages(landing, about us, contact us...) without logging in or technically with out token, now all the requests has been limited to not request if the token doesn't exist
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- ### 2- the color variables:
+    when i started coding this project the documantion about the styling of the project was a mess and also i was a junior without a senior oversight, so the color variables section is a bit problematic, to fix this bug you should go to this location /Utilities/Hooks/useAppModeEffect.js 
+        this section was designed to handle light mode and dark mode but the colors aren't imported correctly, you can fix it in a little bit of time -->
