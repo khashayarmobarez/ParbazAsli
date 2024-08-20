@@ -345,7 +345,7 @@ const CourseStudents = () => {
 
                     {/* history students */}
                     {
-                        studentsHistoryData && studentsHistoryData && studentsHistoryData.data.length > 0 &&
+                        studentsHistoryData && studentsHistoryData.data.length > 0 &&
                         <div  className='w-full flex flex-col items-center gap-y-4'>
                             <DropDownLine  
                                 onClickActivation={() => setDropDownHistory(!DropDownHistory)}
