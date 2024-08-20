@@ -304,11 +304,11 @@ const Education = () => {
                                                 disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
                                                 onClick={handleNextPageNumber}
                                             >
-                                                <img
-                                                    src={arrowIcon}
-                                                    alt='arrow'
-                                                    className={`${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
-                                                />
+                                            <img
+                                                src={arrowIcon}
+                                                alt='arrow'
+                                                className={`${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                            />
                                             </button>
 
                                             <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
