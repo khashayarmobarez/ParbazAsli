@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 // styles
 import boxStyles from '../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // assests 
 import arrowIcon from '../assets/icons/Right Arrow Button.svg';
@@ -13,8 +14,6 @@ import AddIcon from '@mui/icons-material/Add';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
-// styles
-import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // queries
 import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
