@@ -187,10 +187,6 @@ const ClassesBoxCourses = (props) => {
                     </>
                 }
 
-                
-                
-
-
         </div>
     );
 };

@@ -6,9 +6,9 @@ import dataStyles from '../../styles/Boxes/DataBox.module.css'
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const DropDownDataStudent = (props) => {
+const DropDownDataBox = (props) => {
 
-    const{title, data, percent} = props
+    const{ title, data, percent } = props
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -55,4 +55,4 @@ const DropDownDataStudent = (props) => {
     );
 };
 
-export default DropDownDataStudent;
+export default DropDownDataBox;

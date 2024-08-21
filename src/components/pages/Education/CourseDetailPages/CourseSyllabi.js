@@ -15,12 +15,6 @@ const CourseSyllabi = () => {
     const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
     const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(id,2);
 
-    useEffect(() => {
-        if(syllabiDataTheory && syllabiDataPractical) {
-            console.log(syllabiDataTheory)
-            console.log(syllabiDataPractical)
-        }
-    }, [syllabiDataTheory, syllabiDataPractical])
     
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 //  Queries
 
 // mui
-import AddIcon from '@mui/icons-material/Add';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -19,12 +18,12 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 import boxStyles from '../styles/Boxes/DataBox.module.css'
 
 // queries
+import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
+import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 
 // components 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
-import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
-import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
 import { LinearProgress } from '@mui/material';
 import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
 
