@@ -150,12 +150,15 @@ const FlightHistory = () => {
                                     disabled={pageNumber === 1}
                                     onClick={handlePrevPage}
                                 >
-                                    <img
-                                        src={arrowIcon}
-                                        alt='arrow'
-                                        className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
-                                    />
+
+                                <img
+                                    src={arrowIcon}
+                                    alt='arrow'
+                                    className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                />
+
                                 </button>
+                                
                             </div>
                         )}
                     </div>
