@@ -242,7 +242,7 @@ const AddCourse = () => {
                 style: { width: "90%" }
             });
             return;
-        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || customCourses.length < 1 || studentsList.length < 1 ) ) {
+        } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || customCourses.length < 1) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -335,7 +335,7 @@ const AddCourse = () => {
                 });
             } 
 
-        } else if (selectedClassType.id === 3 && studentsList.length > 0 && flightCount) {
+        } else if (selectedClassType.id === 3 && flightCount) {
 
             const customCourseData = {
                 levelId: 1,
