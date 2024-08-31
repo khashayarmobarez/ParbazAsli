@@ -110,69 +110,68 @@ const ClassesBoxCourses = (props) => {
                                 </div>  
             
                             </div>
-
-
-                            <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
-                                <p>توضیحات کلاس</p>
-                                <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{classDetails.data.description}</p>
-                            </div>
-            
-            
-                            <div className=' w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
-                                    <p className=' text-sm'>مباحث مطرح شده</p>
-                                    {
-                                        classDetails.data.syllabi.map((syllabus) => (
-                                            <div key={syllabus.id} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
-                                                <p>{syllabus.description}</p>
-                                            </div>
-                                        ))
-
-                                    }
-                            </div>
             
 
                             {
-                                userRole === 'coach' && !extraData &&
+                                !extraData &&
                                 <div className='w-full flex justify-center px-4 mt-12'>
                                     <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >اطلاعات بیشتر...</button>
                                 </div>
                             }
             
                             { extraData &&
-                                <div id='no grid list' className='w-full flex flex-col gap-y-5 mt-6'>
-            
-                                {
-                                     classDetails.data.userCourses.length > 0 &&
-                                        <div className=' flex flex-col items-start gap-y-2 mx-4'>
-                                                <p className=' text-sm'>هنرجویان</p>
-                                                <div className='w-full flex flex-col gap-y-5'>
-                                                {
-                                                classDetails.data.userCourses.map((student) => (    
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{student.name}</p>
+                                <div id='no grid list' className='w-full items-center flex flex-col gap-y-5 mt-6'>
+
+                                    <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
+                                        <p>توضیحات کلاس</p>
+                                        <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{classDetails.data.description}</p>
+                                    </div>
+                    
+                    
+                                    <div className=' w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
+                                            <p className=' text-sm'>مباحث مطرح شده</p>
+                                            {   classDetails &&
+                                                classDetails.data.syllabi.map((syllabus) => (
+                                                    <div key={syllabus.id} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
+                                                        <p>{syllabus.description}</p>
                                                     </div>
                                                 ))
+
+                                            }
+                                    </div>
+                
+                                    {
+                                        classDetails.data.userCourses.length > 0 &&
+                                            <div className=' flex flex-col items-start gap-y-2 mx-4 w-[90%]'>
+                                                    <p className=' text-sm'>هنرجویان</p>
+                                                    <div className='w-full flex flex-col gap-y-5'>
+                                                    {
+                                                    classDetails.data.userCourses.map((student) => (    
+                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                            <p>{student.name}</p>
+                                                        </div>
+                                                    ))
+                                                    }
+                                                    </div>
+                                            </div>
+                                    }
+
+                
+                                    {classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
+                                        <div className=' flex flex-col items-start gap-y-2 mx-4'>
+                                                <p className=' text-sm'>هنرجویان مهمان</p>
+                                                <div className='w-full flex flex-col gap-y-5'>   
+                                                {
+                                                classDetails.data.guestUsers.map((student) => ( 
+                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                        <p>{student.name}</p>
+                                                    </div>))
                                                 }
                                                 </div>
                                         </div>
-                                }
-
+                                    }
             
-                                {classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
-                                    <div className=' flex flex-col items-start gap-y-2 mx-4'>
-                                            <p className=' text-sm'>هنرجویان مهمان</p>
-                                            <div className='w-full flex flex-col gap-y-5'>   
-                                            {
-                                            classDetails.data.guestUsers.map((student) => ( 
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                    <p>{student.name}</p>
-                                                </div>))
-                                            }
-                                            </div>
-                                    </div>
-                                }
-            
-                            </div>}
+                                </div>}
 
                             {
                                 userRole === 'coach' && extraData &&

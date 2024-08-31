@@ -155,33 +155,29 @@ const CourseDetails = () => {
                                     </div>
                                 }
 
-                                    {/* show extra version */}
-                                    {
-                                    showExtra &&
-                                        <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                            <p className=' text-xs pr-2'>وضعیت</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                                {aCourseData.data.status === 'Active' && 
-                                                    <>
-                                                        <p>فعال</p>
-                                                        <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                                    </>
-                                                }
-                                                {aCourseData.data.status === 'Pending' &&
-                                                    <>
-                                                        <p>در انتظار تایید</p>
-                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-color)'}}></div>
-                                                    </>
-                                                }
-                                                {aCourseData.data.status === 'Disable' &&
-                                                    <>
-                                                        <p>غیرفعال</p>
-                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                    </>
-                                                }
-                                            </div> 
-                                        </div>
-                                    }   
+                                <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
+                                    <p className=' text-xs pr-2'>وضعیت</p>
+                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
+                                        {aCourseData && aCourseData.data.status === 'Active' && 
+                                            <>
+                                                <p>فعال</p>
+                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                            </>
+                                        }
+                                        {aCourseData && aCourseData.data.status === 'Pending' &&
+                                            <>
+                                                <p>در انتظار تایید</p>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-color)'}}></div>
+                                            </>
+                                        }
+                                        {aCourseData && aCourseData.data.status === 'Disable' &&
+                                            <>
+                                                <p>غیرفعال</p>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                            </>
+                                        }
+                                    </div> 
+                                </div> 
                             </div>
 
                             {/* show extra version */}
@@ -225,7 +221,7 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base z-30`} 
                             onClick={() => setShowPopup(true)} >
                                 <p>غیر فعال سازی</p>
                             </button>
