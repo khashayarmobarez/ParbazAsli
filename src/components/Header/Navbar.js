@@ -184,7 +184,6 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
                                             :
                                             <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
-
                                     :
                                     <>
                                         <button >
