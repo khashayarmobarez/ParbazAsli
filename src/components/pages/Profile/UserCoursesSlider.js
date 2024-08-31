@@ -72,7 +72,7 @@ const UserCoursesSlider = ({coursesData}) => {
 
     return (
         <div className='w-full h-60'>
-          <div className='w-full h-full py-2'>
+          <div className='w-full h-full py-2 md:pt-0'>
             
               <swiper-container
                 style={{ height:'14.3rem',...(!isDesktop && { marginRight: '0' }), }}

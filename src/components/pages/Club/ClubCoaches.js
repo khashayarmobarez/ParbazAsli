@@ -23,7 +23,7 @@ const ClubCoaches = () => {
 
     
     const [DropDown, setDropDown] = useState('');
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(10);
     const [pageSizePrevious, setPageSizePrevious ] = useState(10);
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
