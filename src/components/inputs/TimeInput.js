@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TextField } from '@mui/material';
+import { GlobalStyles, TextField } from '@mui/material';
 import dayjs from 'dayjs';
 import clockIcon from '../../assets/icons/flightHour.svg';
 
@@ -18,11 +18,20 @@ const TimeInput = ({ value, onChange, placeholder, icon }) => {
 
   return (
     <div className={`w-full min-h-8 rounded-2xl relative flex`}>
+
+      {/* Global Styles to Force LTR for Picker Dialog */}
+      <GlobalStyles styles={{
+        '.MuiPaper-root': {
+          direction: 'ltr', // Ensure dialog is LTR
+        },
+      }} />
+
       <span>
         <img src={clockIcon} alt='icon' className={`absolute w-6 mt-3 mr-2 z-10`} />
       </span>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <MobileTimePicker
+          
           ampm={false}
           value={selectedTime}
           onChange={handleTimeChange}

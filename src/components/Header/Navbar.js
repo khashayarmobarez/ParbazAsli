@@ -124,6 +124,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                          
             <AppBar  sx={{
                 height:'62px',
+                direction: 'rtl',
                 background: '#131424',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
