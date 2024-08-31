@@ -207,7 +207,7 @@ const AddCourse = () => {
             description: type === 1 ? customCourseTheory : customCoursePractical,
             order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
         };
-        setCustomCourses([...customCourses, newCourse]);
+        newCourse.description && setCustomCourses([...customCourses, newCourse]);
         if (type === 1) {
             setCustomCourseTheory('');
         } else {
@@ -481,7 +481,7 @@ const AddCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(1)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
                                     </span>
                                 </div>
 

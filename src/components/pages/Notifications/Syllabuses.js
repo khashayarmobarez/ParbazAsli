@@ -7,11 +7,16 @@ import PageTitle from '../../reuseable/PageTitle';
 import { useAcceptUserFlight, useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 import DescriptionInput from '../../inputs/DescriptionInput';
+import TextInput from '../../inputs/textInput';
+
+// assets
+import searchIcon from '../../../assets/icons/searchIcon.svg';
 
 const Syllabuses = () => {
     const navigate = useNavigate();
     const { courseId, flightId } = useParams();
     const { data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(courseId, 2);
+    const [searchSyllabus, setSearchSyllabus] = useState('');
     const { mutate: mutateAccept, isLoading: isSubmitting, error: submitError } = useAcceptUserFlight();
 
     const [counters, setCounters] = useState([]);
@@ -54,6 +59,7 @@ const Syllabuses = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         
         if (syllabiDataPractical && syllabiDataPractical.data) {
             // Filter out syllabi where the counter is 0
@@ -110,6 +116,8 @@ const Syllabuses = () => {
     };
     
 
+    const filteredSyllabi = syllabiDataPractical && syllabiDataPractical.data.filter(syllabus => syllabus.description.includes(searchSyllabus));
+
     return (
         <div className="py-14 flex flex-col justify-center items-center gap-y-6">
             <PageTitle title={'سیلابس‌ها'} />
@@ -122,40 +130,48 @@ const Syllabuses = () => {
                         placeholder="توضیحات پرواز را اینجا بنویسید"
                     />
                 </div>
-                {syllabiDataPractical &&
-                    syllabiDataPractical.data.map((syllabus, index) => (
-                        <div
-                            key={syllabus.id}
-                            className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full"
-                            style={{ backgroundColor: 'var(--syllabus-data-boxes-bg)' }}
-                        >
-                            <div className="flex w-full justify-between items-center">
-                                <p>{index + 1}.</p>
-                                <p className='w-[60%]'>{syllabus.description}</p>
-                                <div className="flex items-center justify-between w-24">
-                                    <img
-                                        src={plus}
-                                        alt="icon"
-                                        onClick={() => handleIncrement(index)}
-                                        className="text-white rounded-lg w-8 cursor-pointer"
-                                    />
-                                    <input
-                                        type="number"
-                                        value={counters[index] || 0}
-                                        readOnly
-                                        style={{ backgroundColor: 'transparent' }}
-                                        className="rounded-lg w-4 text-center text-sm"
-                                    />
-                                    <img
-                                        src={minus}
-                                        alt="icon"
-                                        onClick={() => handleDecrement(index)}
-                                        className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}
-                                    />
-                                </div>
+
+                <TextInput
+                value={searchSyllabus}
+                onChange={(e) => setSearchSyllabus(e.target.value)}
+                placeholder='جستجو در سیلابس‌ها' 
+                icon={searchIcon}
+                />
+
+                {filteredSyllabi &&
+                filteredSyllabi.map((syllabus, index) => (
+                    <div
+                        key={syllabus.id}
+                        className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full"
+                        style={{ backgroundColor: 'var(--syllabus-data-boxes-bg)' }}
+                    >
+                        <div className="flex w-full justify-between items-center">
+                            <p>{index + 1}.</p>
+                            <p className='w-[60%]'>{syllabus.description}</p>
+                            <div className="flex items-center justify-between w-24">
+                                <img
+                                    src={plus}
+                                    alt="icon"
+                                    onClick={() => handleIncrement(index)}
+                                    className="text-white rounded-lg w-8 cursor-pointer"
+                                />
+                                <input
+                                    type="number"
+                                    value={counters[index] || 0}
+                                    readOnly
+                                    style={{ backgroundColor: 'transparent' }}
+                                    className="rounded-lg w-4 text-center text-sm"
+                                />
+                                <img
+                                    src={minus}
+                                    alt="icon"
+                                    onClick={() => handleDecrement(index)}
+                                    className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}
+                                />
                             </div>
                         </div>
-                    ))}
+                    </div>
+                ))}
                 <div className="w-full flex justify-around mt-8">
                     <button
                         disabled={isSubmitting}
