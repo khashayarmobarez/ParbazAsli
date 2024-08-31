@@ -26,8 +26,20 @@ const DropDownSyllabiData = (props) => {
 
         <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 border-2 border-opacity-50`}
         style={{
-            borderColor: isExpanded ? 'var(--yellow-border-button)' : 'var(--light-border-button-collapsed)',
-            color: isExpanded ? 'var(--yellow-border-button)' : 'var(--light-border-button-collapsed)',
+            borderColor: isExpanded ? 
+                'var(--yellow-border-button)' 
+                :
+                    percent === 100 ?
+                    'var(--yellow-border-button)'
+                    :
+                    'var(--light-border-button-collapsed)',
+            color: isExpanded ? 
+                'var(--yellow-border-button)' 
+                :
+                    percent === 100 ?
+                    'var(--yellow-border-button)'
+                    :
+                    'var(--light-border-button-collapsed)',
         }}>
 
             <div className='flex' >
@@ -38,7 +50,9 @@ const DropDownSyllabiData = (props) => {
             </div>
 
             <div className='flex gap-x-3 justify-center'>
-                {percent !== null && <p className={`${isExpanded && 'mt-2'} text-xs`}>{percent}%</p>}
+                {percent !== null &&
+                    <p className={`${isExpanded && 'mt-2'} text-xs`}>{percent}%</p>
+                }
                 <span className={`transition-transform duration-300 transform ${isExpanded ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
                     <ArrowBackIosIcon />
                 </span>
@@ -58,8 +72,10 @@ const DropDownSyllabiData = (props) => {
                         data.percent === 100 ?
                         <CheckIcon sx={{color:'var(--yellow-text)', width:'1.2rem', height:'1.2rem'}} />
                         :
-                        <p className={` text-center self-center text-sm`} >{data.percent}%</p>
-
+                            data.percent !== 0 ?
+                            <p className={` text-center self-center text-sm`} >{data.percent}%</p>
+                            :
+                            <div/>
                     }
                 </div>
             ))
