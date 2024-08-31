@@ -46,7 +46,8 @@ const NotifAcceptCourse = ({notif}) => {
     }
 
     return (
-        <div className=' w-full h-20 rounded-3xl flex items-center justify-between px-6' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)', color:'var(--soft-white) ' }}>
+        <div className=' w-full h-20 rounded-3xl flex items-center justify-between px-6'
+        style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'>
 

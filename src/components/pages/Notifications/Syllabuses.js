@@ -132,10 +132,10 @@ const Syllabuses = () => {
                 </div>
 
                 <TextInput
-                value={searchSyllabus}
-                onChange={(e) => setSearchSyllabus(e.target.value)}
-                placeholder='جستجو در سیلابس‌ها' 
-                icon={searchIcon}
+                    value={searchSyllabus}
+                    onChange={(e) => setSearchSyllabus(e.target.value)}
+                    placeholder='جستجو در سیلابس‌ها' 
+                    icon={searchIcon}
                 />
 
                 {filteredSyllabi &&

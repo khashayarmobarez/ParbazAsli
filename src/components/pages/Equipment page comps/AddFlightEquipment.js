@@ -291,7 +291,7 @@ const AddFlightEquipment = () => {
                         <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
                         
                         {/* flight hour model input */}
-                        <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت پرواز' />
+                        <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد این وسیله' />
                       
 
                       </div>
