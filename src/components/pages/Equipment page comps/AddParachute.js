@@ -324,7 +324,7 @@ const AddParachute = () => {
                       <NumberInput
                         icon={Cube}
                         className='col-span-1'
-                        value={year}
+                        value={year}  
                         onChange={handleTextInputYear}
                         placeholder='سال ساخت'
                       />

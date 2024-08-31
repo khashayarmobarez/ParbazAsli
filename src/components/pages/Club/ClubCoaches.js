@@ -97,9 +97,11 @@ const ClubCoaches = () => {
 
     return (
         <div className='w-full flex flex-col justify-center items-center pt-14'>
-            <div className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <PageTitle  title='مربیان' />
+            <PageTitle  title='مربیان' />
+
+            <div className='w-[90%] flex flex-col items-center gap-y-6 mt-6 '>
+
 
                 <DropDownLine  
                     onClickActivation={() => handleDropDownClick('activeCoaches')}
