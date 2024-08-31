@@ -25,6 +25,7 @@ const ClassesBoxMyCourses = (props) => {
     const { classData } = props
 
     const [isExpanded, setIsExpanded] = useState(false)
+    const [extra, setExtra] = useState(false)
 
     const [formatedDuration, setFormatedDuration] = useState('')
 
@@ -103,23 +104,32 @@ const ClassesBoxMyCourses = (props) => {
             
                             </div>
 
-                            <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
-                                <p>توضیحات کلاس</p>
-                                <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{classDetails.data.description}</p>
-                            </div>
-            
-                            {classDetails.data.syllabi &&
-                                <div className='flex flex-col items-start gap-y-2 mx-4 mt-7'>
-                                        <p className=' text-sm'>مباحث مطرح شده</p>
-                                        { 
-                                            classDetails.data.syllabi.map((syllabus) => (
-                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
-                                                    <p>{syllabus.description}</p>
-                                                </div>
-                                            ))
+                            {
+                                !extra &&
+                                <p onClick={() => setExtra(true)} className='text-[var(--yellow-text)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
+                            }
 
-                                        }
-                                </div>
+                            {
+                                extra &&
+                                <>
+                                    <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
+                                        <p>توضیحات کلاس</p>
+                                        <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{classDetails.data.description}</p>
+                                    </div>
+                    
+                                    {classDetails.data.syllabi &&
+                                        <div className='w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
+                                                <p className=' text-sm'>مباحث مطرح شده</p>
+                                                { 
+                                                    classDetails.data.syllabi.map((syllabus) => (
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 py-2 w-full min-h-12 rounded-xl`} id='data'>
+                                                            <p>{syllabus.description}</p>
+                                                        </div>
+                                                    ))
+                                                }
+                                        </div>
+                                    }
+                                </>
                             }
             
             
