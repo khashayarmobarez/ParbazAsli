@@ -56,7 +56,7 @@ const Profile = () => {
 
 
                     {/* first data box  */}
-                    <UserDataBox />
+                    <UserDataBox hasCoach={data.data.hasCoach} />
 
                     {/* parachute renewal box*/}
                     {

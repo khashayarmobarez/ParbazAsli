@@ -25,7 +25,7 @@ import ChangePicPopUp from './EditProfile/ChangePicPopUp'
 
 
 
-const UserDataBox = () => {
+const UserDataBox = ({hasCoach}) => {
 
     const { data, isLoading, error } = useUserData();
 
@@ -82,11 +82,13 @@ const UserDataBox = () => {
                             </div>
                             
                             {/* condition based on coach  */}
-                            { data.data.coachingHours >= 0 &&
+                            { (data.data.coachingHours >= 0 && hasCoach) ?
                                 <div className=' flex justify-between items-center w-[80%]' >
                                     <img src={flightHour} alt='icon'/>
                                     <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.coachingHours} ساعت مربیگری</p>
                                 </div>
+                                :
+                                <div/>
                             }
 
 
