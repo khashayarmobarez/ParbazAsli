@@ -84,7 +84,7 @@ const FilterVariables = () => {
     
     return (
         <div className={`w-full flex`} >
-            <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
+            <ul className=' w-full py-0 -mt-6 -mb-4 grid grid-cols-3 gap-2'>
 
                 {   
                     courseFilter &&
