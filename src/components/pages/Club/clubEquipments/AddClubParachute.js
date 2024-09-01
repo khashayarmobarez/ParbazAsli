@@ -30,6 +30,7 @@ import UploadFileInput from '../../../inputs/UploadFileInput';
 import PageTitle from '../../../reuseable/PageTitle';
 import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import NumberInput from '../../../inputs/NumberInput';
+import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 
 
 const AddParachute = () => {
@@ -49,6 +50,8 @@ const AddParachute = () => {
   
   // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
+  const [showCustomBrandInput, setShowCustomBrandInput] = useState('');
+  const [customBrand, setCustomBrand] = useState('')
   const [minimumWeightCapacity, setMinimumWeightCapacity] = useState('');
   const [maximumWeightCapacity, setMaximumWeightCapacity] = useState('');
   const [flightHour, setFlightHour] = useState('');
@@ -100,6 +103,13 @@ const AddParachute = () => {
   // Event handler for option selection
   const handleSelectChangeBrand = (selectedOption) => {
     setSelectedOptionBrand(selectedOption);
+    setCustomBrand('');
+  };
+
+  // Event handler for custom brand input
+  const handleCustomBrand = (event) => {
+    setCustomBrand(event.target.value);
+    setSelectedOptionBrand('');
   };
 
   // Event handlers for weight capacity
@@ -203,7 +213,7 @@ const AddParachute = () => {
       return;
     }
 
-    if (!selectedOptionBrand || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year) {
+    if (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year) {
       toast('تمامی فیلدهای الزامی را پر کنید', {
           type: 'error',
           position: 'top-right',
@@ -231,7 +241,7 @@ const AddParachute = () => {
   // Event submision
   const handleSubmit = (event) => {
 
-      if(selectedOptionBrand || serialNumber || aircraft || minimumWeightCapacity || maximumWeightCapacity || packageDate || flightHour || year ) {
+      if( serialNumber || aircraft || minimumWeightCapacity || maximumWeightCapacity || packageDate || flightHour || year ) {
 
         event.preventDefault();
         const formattedPackedDate = formatDate(packageDate) + " 00:00";
@@ -239,7 +249,8 @@ const AddParachute = () => {
         const formData = new FormData();
         // type 1 for parachute
         formData.append('Type', 1);
-        formData.append('brandId', selectedOptionBrand.id);
+        !showCustomBrandInput && formData.append('brandId', selectedOptionBrand.id);
+        showCustomBrandInput && formData.append('brandName', customBrand);
         formData.append('file', selectedFile);
         formData.append('serialNumber', serialNumber);
         formData.append('Model', aircraft);
@@ -304,9 +315,23 @@ const AddParachute = () => {
 
                     <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
 
-                      {/* brand input */}
-                      <DropdownInput name={'برند'} options={brandsData.data} selectedOption={selectedOptionBrand} handleSelectChange={handleSelectChangeBrand} />
-                      
+                      {/* brand input / custom brand input */}
+                      <BrandsSearchInputWithDropdown
+                          showCustomBrandInput={showCustomBrandInput}
+                          setShowCustomBrandInput={setShowCustomBrandInput}
+                          className='col-span-1'
+                          options={brandsData.data}
+                          selectedOption={selectedOptionBrand}
+                          handleSelectChange={handleSelectChangeBrand}
+                          name={'برند'}
+                      />
+
+                      {/* show custom brand input */}
+                      {
+                        showCustomBrandInput &&
+                          <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' />
+                      }
+
                       {/* aircraft model input */}
                       <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
 

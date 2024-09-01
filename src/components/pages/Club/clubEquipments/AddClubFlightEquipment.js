@@ -26,6 +26,7 @@ import TextInput from '../../../inputs/textInput';
 import UploadFileInput from '../../../inputs/UploadFileInput';
 import PageTitle from '../../../reuseable/PageTitle';
 import NumberInput from '../../../inputs/NumberInput';
+import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 
 
 const AddClubFlightEquipment = () => {
@@ -37,6 +38,8 @@ const AddClubFlightEquipment = () => {
 
     // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
+  const [showCustomBrandInput, setShowCustomBrandInput] = useState('');
+  const [customBrand, setCustomBrand] = useState('')
   const [selectedOptionClass, setSelectedOptionClass] = useState('');
   const [selectedOptionType, setSelectedOptionType] = useState('');
 
@@ -76,6 +79,13 @@ const AddClubFlightEquipment = () => {
   // Event handler for option selection
   const handleSelectChangeBrand = (selectedOption) => {
     setSelectedOptionBrand(selectedOption);
+    setCustomBrand('');
+  };
+
+  // Event handler for custom brand input
+  const handleCustomBrand = (event) => {
+    setCustomBrand(event.target.value);
+    setSelectedOptionBrand('');
   };
 
   const handleSelectChangeClass = (selectedOption) => {
@@ -150,7 +160,7 @@ const AddClubFlightEquipment = () => {
           return;
       }
 
-      if (!selectedOptionBrand || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
+      if (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
           toast('تمامی فیلدها را پر کنید', {
               type: 'error',
               position: 'top-right',
@@ -186,7 +196,8 @@ const AddClubFlightEquipment = () => {
         const formData = new FormData();
         // type 1 for Hamutate Harness
         formData.append('Type', 2);
-        formData.append('brandId', selectedOptionBrand.id);
+        !showCustomBrandInput && formData.append('brandId', selectedOptionBrand.id);
+        showCustomBrandInput && formData.append('brandName', customBrand);
         formData.append('file', selectedFile);
         formData.append('serialNumber', serialNumber);
         formData.append('Model', aircraft);
@@ -249,17 +260,22 @@ const AddClubFlightEquipment = () => {
 
                       <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                       
-                        {/* brand input */}
-                        <DropdownInput
-                          className='col-span-1'
-                          name={'برند'}
-                          options={brandsData.data}
-                          selectedOption={selectedOptionBrand}
-                          handleSelectChange={handleSelectChangeBrand}
+                        {/* brand input / custom brand input */}
+                        <BrandsSearchInputWithDropdown
+                            showCustomBrandInput={showCustomBrandInput}
+                            setShowCustomBrandInput={setShowCustomBrandInput}
+                            className='col-span-1'
+                            options={brandsData.data}
+                            selectedOption={selectedOptionBrand}
+                            handleSelectChange={handleSelectChangeBrand}
+                            name={'برند'}
                         />
-                        
-                        {/* aircraft model input */}
-                        <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل وسیله پروازی' />
+
+                        {/* show custom brand input */}
+                        {
+                          showCustomBrandInput &&
+                            <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' />
+                        }
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>

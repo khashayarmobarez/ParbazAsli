@@ -27,6 +27,7 @@ import UploadFileInput from '../../../inputs/UploadFileInput';
 // input options
 import PageTitle from '../../../reuseable/PageTitle';
 import NumberInput from '../../../inputs/NumberInput';
+import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 
 const AddClubHarness = () => {
 
@@ -40,6 +41,8 @@ const AddClubHarness = () => {
 
 
   const [brand, setBrand] = useState('');
+  const [showCustomBrandInput, setShowCustomBrandInput] = useState('');
+  const [customBrand, setCustomBrand] = useState('')
   const [aircraft, setAircraft] = useState('');
   const [size, setSize] = useState('');
   const [flightHour, setFlightHour] = useState('');
@@ -68,7 +71,14 @@ const AddClubHarness = () => {
   
   const handleBrandChange = (selectedOption) => {
     setBrand(selectedOption);
+    setCustomBrand('');
   };
+
+  // Event handler for custom brand input
+  const handleCustomBrand = (event) => {
+    setCustomBrand(event.target.value);
+    setBrand('');
+};
 
   const handleAircraftChange = (event) => {
     setAircraft(event.target.value);
@@ -124,7 +134,7 @@ const AddClubHarness = () => {
           return;
       }
 
-      if (!brand || !aircraft || !size || !flightHour || !year) {
+      if (!(brand || customBrand) || !aircraft || !size || !flightHour || !year) {
           toast('تمامی فیلدها را پر کنید', {
               type: 'error',
               position: 'top-right',
@@ -159,7 +169,8 @@ const AddClubHarness = () => {
         const formData = new FormData();
         // type 1 for Hamutate Harness
         formData.append('Type', 3);
-        formData.append('brandId', brand.id);
+        !showCustomBrandInput && formData.append('brandId', brand.id);
+        showCustomBrandInput && formData.append('brandName', customBrand);
         formData.append('file', selectedFile);
         formData.append('serialNumber', serialNumber);
         formData.append('Model', aircraft);
@@ -220,13 +231,22 @@ const AddClubHarness = () => {
                   
                   <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                     
-                    {/* brand input */}
-                    <DropdownInput
-                      name={'برند'}
-                      options={brandsData.data}
-                      selectedOption={brand}
-                      handleSelectChange={handleBrandChange}
+                    {/* brand input / custom brand input */}
+                    <BrandsSearchInputWithDropdown
+                        showCustomBrandInput={showCustomBrandInput}
+                        setShowCustomBrandInput={setShowCustomBrandInput}
+                        className='col-span-1'
+                        options={brandsData.data}
+                        selectedOption={brand}
+                        handleSelectChange={handleBrandChange}
+                        name={'برند'}
                     />
+
+                    {/* show custom brand input */}
+                    {
+                      showCustomBrandInput &&
+                        <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' />
+                    }
                     
                     <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />
 
