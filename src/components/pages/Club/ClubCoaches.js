@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 // styles
 import gradients from '../../../styles/gradients/Gradient.module.css'
 
-// mui
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
+import arrowIcon from '../../../assets/icons/Right Arrow Button.svg';
 
 // queries
 import { useUserById } from '../../../Utilities/Services/queries';
@@ -23,13 +23,13 @@ const ClubCoaches = () => {
 
     
     const [DropDown, setDropDown] = useState('');
-    const [pageSize, setPageSize] = useState(10);
-    const [pageSizePrevious, setPageSizePrevious ] = useState(10);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [pageNumberPrevious, setPageNumberPrevious] = useState(1);
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
     
-    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(1,pageSize);
-    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading, error: coachesPreviousDataError } = useGetClubCoachesHistory(1,pageSize);
+    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(pageNumber,4);
+    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading, error: coachesPreviousDataError } = useGetClubCoachesHistory(pageNumberPrevious,5);
     const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId && coachId);
     const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
 
@@ -49,6 +49,22 @@ const ClubCoaches = () => {
     // Function to handle the input value
     const handleInputCoachId = (event) => {
         setCoachId(event.target.value);
+    }
+
+    const handleNextPageNumber = () => {
+        setPageNumber(prev => prev + 1)
+    }
+
+    const handleLastPageNumber = () => {
+        setPageNumber(prev => prev - 1)
+    }
+
+    const handleNextPageNumberPrevious = () => {
+        setPageNumberPrevious(prev => prev + 1)
+    }
+
+    const handleLastPageNumberPrevious = () => {
+        setPageNumberPrevious(prev => prev - 1)
     }
 
 
@@ -119,10 +135,37 @@ const ClubCoaches = () => {
                                 <ClubCoachBox key={coach.id} coachData={coach} />   
                                 ))}
 
-                                {clubCoachesData && clubCoachesData.totalCount > 5 &&
-                                <p
-                                onClick={() => setPageSize(pageSize + 5)}
-                                style={{color:' var(--red-text)'}}>مشاهده ی بیشتر ...</p>}
+                                {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
+                                    <div className='w-full flex justify-between px-10 items-center'>
+                                        <button
+                                            className='transform  w-10 justify-self-end'
+                                            disabled={pageNumber === 1}
+                                            onClick={handleLastPageNumber}
+                                        >
+                                            <img
+                                                src={arrowIcon}
+                                                alt='arrow'
+                                                className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                            />
+                                        </button>
+
+                                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                            صفحه ی {pageNumber}
+                                        </p>
+
+                                        <button
+                                            className='w-10 rotate-180 justify-self-start'
+                                            disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
+                                            onClick={handleNextPageNumber}
+                                        >
+                                            <img
+                                                src={arrowIcon}
+                                                alt='arrow'
+                                                className={`${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                            />
+                                        </button>
+                                    </div>
+                                }
                             </>
                         : 
                         <p style={{color:' var(--red-text)'}}>مربی فعالی در باشگاه وجود ندارد</p>
@@ -146,8 +189,37 @@ const ClubCoaches = () => {
                                 <ClubCoachBox key={coach.id} coachData={coach} />
                                 ))}
 
-                                {clubCoachesPreviousData && clubCoachesPreviousData.totalCount > 5 &&
-                                <p onClick={() => setPageSizePrevious(pageSizePrevious + 5)} style={{color:' var(--red-text)'}}>مشاهده ی بیشتر ...</p>}
+                                {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
+                                    <div className='w-full flex justify-between px-10 items-center'>
+                                        <button
+                                            className='transform  w-10 justify-self-end'
+                                            disabled={pageNumberPrevious === 1}
+                                            onClick={handleLastPageNumberPrevious}
+                                        >
+                                            <img
+                                                src={arrowIcon}
+                                                alt='arrow'
+                                                className={`mt-2 ${pageNumberPrevious === 1 && 'opacity-60'}`}
+                                            />
+                                        </button>
+
+                                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                            صفحه ی {pageNumberPrevious}
+                                        </p>
+
+                                        <button
+                                            className='w-10 rotate-180 justify-self-start'
+                                            disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
+                                            onClick={handleNextPageNumberPrevious}
+                                        >
+                                            <img
+                                                src={arrowIcon}
+                                                alt='arrow'
+                                                className={`${(clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious) && 'opacity-60'}`}
+                                            />
+                                        </button>
+                                    </div>
+                                }
                             </>
                             :
                             <p style={{color:' var(--red-text)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
@@ -170,9 +242,9 @@ const ClubCoaches = () => {
                             <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                         </div>
                         <span
-                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
-                        onClick={handleAddCoachToClub}
-                        disabled={false}
+                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                            onClick={handleAddCoachToClub}
+                            disabled={false}
                         >
                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
                         </span>
