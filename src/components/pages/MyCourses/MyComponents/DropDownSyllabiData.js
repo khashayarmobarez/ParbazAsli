@@ -63,9 +63,15 @@ const DropDownSyllabiData = (props) => {
         {
             data && isExpanded &&
             data.map((data, index) => (
-                <div className={`${isExpanded ? 'block' : 'hidden'} flex justify-between items-center px-4 py-2 rounded-2xl`}
+                <div className={`${isExpanded ? 'block' : 'hidden'} flex justify-between items-center px-4 py-2 rounded-2xl border-2`}
                 key={data.id}
-                style={{background:'var(--syllabus-data-boxes-bg)'}}>
+                style={{background:'var(--syllabus-data-boxes-bg)',
+                borderColor: 
+                    data.percent === 100 ?
+                    'var(--yellow-border-button)'
+                    :
+                    'var(--light-border-button-collapsed)',
+                }}>
                     <p className={` text-center self-center`} >{index + 1}</p>
                     <p className={` text-center self-center text-sm`} >{data.description}</p>
                     {
