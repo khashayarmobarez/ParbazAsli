@@ -20,14 +20,12 @@ import Cube from '../../../assets/icons/3dCube.svg'
 
 
 // components
-import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 
 // input options
 import PageTitle from '../../reuseable/PageTitle';
 import NumberInput from '../../inputs/NumberInput';
-import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 import BrandsSearchInputWithDropdown from './inputsForEquipment/BrandsSearchInputWithDropdown';
 
