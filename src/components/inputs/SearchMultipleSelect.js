@@ -5,7 +5,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, name, handleRemove, isForSyllabi }) => {
+const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, name, handleRemove, isForSyllabi, Icon }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -60,7 +60,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
     <div className='flex flex-col w-full' ref={dropdownRef}>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
         <span>
-          <img src={Cube} alt='icon' className='absolute mt-3 mr-2 w-5' />
+          <img src={Icon || Cube} alt='icon' className='absolute mt-4 mr-2 w-5' />
         </span>
         <input
           ref={inputRef}

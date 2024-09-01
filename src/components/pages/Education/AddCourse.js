@@ -10,6 +10,7 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 // assets 
 import AddIcon from '@mui/icons-material/Add';
 import Cube from '../../../assets/icons/3dCube.svg';
+import listIcon from '../../../assets/icons/listIcon.svg';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -45,20 +46,23 @@ const AddCourse = () => {
     const [level, setLevel] = useState('')
 
     // states for retraining
-    const [selectedSyllabi, setSelectedSyllabi] = useState([]);
-    const [syllabusIds, setSyllabusIds] = useState([]);
     const [courseName, setCourseName] = useState('')
+    const [selectedSyllabiPractical, setSelectedSyllabiPractical] = useState([]);
+    const [selectedSyllabiTheory, setSelectedSyllabiTheory] = useState([]);
+    const [syllabusIdsPractical, setSyllabusIdsPractical] = useState([]);
+    const [syllabusIdsTheory, setSyllabusIdsTheory] = useState([]);
+    const mergeRetrainingSyllabiIds = [...new Set([...syllabusIdsPractical, ...syllabusIdsTheory])];
 
-    
+    const uniqueSyllabiIds = mergeRetrainingSyllabiIds.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+    });
+
+
     // states for retraining
     const [customCourseTheory, setCustomCourseTheory] = useState('');
     const [customCoursePractical, setCustomCoursePractical] = useState('');
     const [customCourses, setCustomCourses] = useState([]);
-    
-    useEffect(() => {
-        if(customCourses)
-        console.log(customCourses)
-    },[customCourses])
+
 
     // added students 
     const [studentsList, setStudentsList] = useState([]); 
@@ -81,12 +85,6 @@ const AddCourse = () => {
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingCourse();
     const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomCourse();
 
-    useEffect(() => {
-        if(studentError) {
-            console.log(studentError.response.data.ErrorMessages[0].ErrorMessage)
-        }
-    },[studentError])
-
 
     // when the studentId goes under 6 characters reset the errorMessage
     useEffect(() => {
@@ -100,8 +98,10 @@ const AddCourse = () => {
         setOrgan('')
         setLevel('')
         setFlightCount('')
-        setSelectedSyllabi([])
-        setSyllabusIds([])
+        setSelectedSyllabiPractical([])
+        setSelectedSyllabiTheory([])
+        setSyllabusIdsPractical([])
+        setSyllabusIdsTheory([])
         setCourseName('')
         setDescription('')
         setCustomCourses([])
@@ -113,8 +113,10 @@ const AddCourse = () => {
     useEffect(() => {
         setLevel('')
         setFlightCount('')
-        setSelectedSyllabi([])
-        setSyllabusIds([])
+        setSelectedSyllabiPractical([])
+        setSelectedSyllabiTheory([])
+        setSyllabusIdsPractical([])
+        setSyllabusIdsTheory([])
         setCourseName('')
         setDescription('')
         setCustomCourses([])
@@ -125,8 +127,10 @@ const AddCourse = () => {
 
     useEffect(() => {
         setFlightCount('')
-        setSelectedSyllabi([])
-        setSyllabusIds([])
+        setSelectedSyllabiPractical([])
+        setSelectedSyllabiTheory([])
+        setSyllabusIdsPractical([])
+        setSyllabusIdsTheory([])
         setCourseName('')
         setDescription('')
         setCustomCourses([])
@@ -182,14 +186,24 @@ const AddCourse = () => {
         setStudentsData(prev => prev.filter(student => student.id !== studentToRemove.id));
     };    
     
-    const handleSelectChangeSyllabi = (newSelectedOptions) => {
-        setSelectedSyllabi(newSelectedOptions);
-        setSyllabusIds(newSelectedOptions.map(option => option.id));
+    const handleSelectChangeSyllabiPractical = (newSelectedOptions) => {
+        setSelectedSyllabiPractical(newSelectedOptions);
+        setSyllabusIdsPractical(prev => [...prev, ...newSelectedOptions.map(option => option.id)]);
     };
     
-    const handleRemoveSyllabi = (dataToRemove) => {
-        setSelectedSyllabi(selectedSyllabi.filter(data => data.id !== dataToRemove.id));
-        setSyllabusIds(prev => prev.filter(id => id !== dataToRemove.id));
+    const handleRemoveSyllabiPractical = (dataToRemove) => {
+        setSelectedSyllabiPractical(selectedSyllabiPractical.filter(data => data.id !== dataToRemove.id));
+        setSyllabusIdsPractical(prev => prev.filter(id => id !== dataToRemove.id));
+    };
+    
+    const handleSelectChangeSyllabiTheory = (newSelectedOptions) => {
+        setSelectedSyllabiTheory(newSelectedOptions);
+        setSyllabusIdsTheory(newSelectedOptions.map(option => option.id));
+    };
+    
+    const handleRemoveSyllabiTheory = (dataToRemove) => {
+        setSelectedSyllabiTheory(selectedSyllabiTheory.filter(data => data.id !== dataToRemove.id));
+        setSyllabusIdsTheory(prev => prev.filter(id => id !== dataToRemove.id));
     };
     
     const handleInputTheory = (event) => {
@@ -233,7 +247,7 @@ const AddCourse = () => {
                     style: { width: "90%" }
                 });
                 return;
-        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || selectedSyllabi.length < 1 ) ) {
+        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || selectedSyllabiPractical.length < 1 || selectedSyllabiTheory.length < 1 ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -276,7 +290,7 @@ const AddCourse = () => {
                 description: description,
                 userIds: studentsList,
                 name: courseName,
-                SyllabusIds: syllabusIds
+                SyllabusIds: uniqueSyllabiIds,
             };
     
             if (selectedClassType.id === 1) {
@@ -443,11 +457,22 @@ const AddCourse = () => {
                                         /> */}
 
                                         <SearchMultipleSelect
-                                            options={syllabiData.data}
-                                            selectedOptions={selectedSyllabi}
-                                            handleSelectChange={handleSelectChangeSyllabi}
-                                            name="سیلابس ها"
-                                            handleRemove={handleRemoveSyllabi}
+                                            Icon={listIcon}
+                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
+                                            selectedOptions={selectedSyllabiPractical}
+                                            handleSelectChange={handleSelectChangeSyllabiPractical}
+                                            name="سرفصل های عملی"
+                                            handleRemove={handleRemoveSyllabiPractical}
+                                            isForSyllabi={true}
+                                        />
+
+                                        <SearchMultipleSelect
+                                            Icon={listIcon}
+                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
+                                            selectedOptions={selectedSyllabiTheory}
+                                            handleSelectChange={handleSelectChangeSyllabiTheory}
+                                            name="سرفصل های تئوری"
+                                            handleRemove={handleRemoveSyllabiTheory}
                                             isForSyllabi={true}
                                         />
 
