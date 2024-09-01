@@ -51,7 +51,7 @@ const AddHarness = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [serialNumber, setSerialNumber] = useState('');
   const [year, setYear] = useState('');
-
+  
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
 
