@@ -20,7 +20,7 @@ import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import PageTitle from '../components/reuseable/PageTitle';
 import TextInput from '../components/inputs/textInput';
 import LongTextInput from '../components/inputs/LongTextInput';
@@ -32,6 +32,8 @@ const ContactUs = () => {
     const [comment, setComment] = useState('');
     const [showErrors, setShowErrors] = useState(false);
     const [errorMessages, setErrorMessages] = useState({ fullName: null, email: null, comment: null });
+    
+    const queryClient = useQueryClient();
 
     useEffect(() => {
         const errors = {};
@@ -52,7 +54,18 @@ const ContactUs = () => {
         setErrorMessages(errors);
     }, [email, fullName, comment]);
 
-    const queryClient = useQueryClient();
+    const sendEmailHandler = () => {
+        window.location.href = "mailto: info@digilogbook.ir";
+    }
+
+    const callHandler = () => {
+        window.location.href = "tel:09965089408";
+    }
+
+    const contactViaTelegramHandler = () => {
+        window.open('https://t.me/digilogbook', '_blank');
+    }
+
 
     const mutation = useMutation(addGeneralComment, {
         onSuccess: (data) => {
@@ -141,26 +154,36 @@ const ContactUs = () => {
                 <PageTitle title={'راه‌های ارتباطی'} />
                 }
 
-                <div className='w-[90%] flex flex-col rounded-3xl py-6 px-8 gap-y-6 mb-8 mt-10 md:w-[50%] md:self-start md:flex-row' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
+                <div className='w-[90%] flex flex-col rounded-3xl py-6 px-8 gap-y-6 mb-8 mt-10 md:w-[50%] md:flex-row md:self-center' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
 
                     <div className='w-full flex justify-between gap-y-8 md:py-4 md:flex-col' >
 
                         <div className='flex flex-col gap-y-10 py-4'>
                             <h1 className=' text-2xl self-start' style={{color:'var(--yellow-text)'}}>راه‌های ارتباطی</h1>
-                            <div className='flex gap-x-4'><EmailOutlinedIcon /><p>info@digilogbook.ir</p></div>
-                            <div className='flex gap-x-4'><LocalPhoneOutlinedIcon /><p>021-77788899</p></div>
+                            <div className='flex gap-x-4 cursor-pointer' onClick={sendEmailHandler}>
+                                <EmailOutlinedIcon />
+                                <p>info@digilogbook.ir</p>
+                            </div>
+                            <div className='flex gap-x-4 cursor-pointer' onClick={callHandler}>
+                                <LocalPhoneOutlinedIcon />
+                                <p>09965089408</p>
+                            </div>
                         </div>
 
                         <div className='flex flex-col gap-y-4 md:gap-y-6'>
 
-                            <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center' style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
+                            <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer' 
+                            style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
                                 <XIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
                             </div>
-                            <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center' style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
+                            <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer' 
+                            style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
                                 <InstagramIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
                             </div>
-                            <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center' style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
-                                <WhatsAppIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
+                            <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer'
+                            style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}
+                            onClick={contactViaTelegramHandler}>
+                                <TelegramIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
                             </div>
 
                         </div>
