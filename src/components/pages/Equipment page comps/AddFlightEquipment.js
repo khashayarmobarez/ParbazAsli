@@ -43,7 +43,8 @@ const AddFlightEquipment = () => {
   const [selectedOptionType, setSelectedOptionType] = useState('');
 
   const [aircraft, setAircraft] = useState('');
-  const [size, setSize] = useState('');
+  const [minimumWeightCapacity, setMinimumWeightCapacity] = useState('');
+  const [maximumWeightCapacity, setMaximumWeightCapacity] = useState('');
   const [flightHour, setFlightHour] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
   const [year, setYear] = useState('');
@@ -87,8 +88,13 @@ const AddFlightEquipment = () => {
     setSelectedOptionType(selectedOption);
   };
 
-  const handleTextInputSize = (event) => {
-    setSize(event.target.value);
+  // Event handlers for weight capacity
+  const handleMinimumWeightCapacity = (event) => {
+    setMinimumWeightCapacity(event.target.value);
+  };
+
+  const handleMaximumWeightCapacity = (event) => {
+    setMaximumWeightCapacity(event.target.value);
   };
 
 
@@ -146,7 +152,7 @@ const AddFlightEquipment = () => {
           return;
       }
 
-      if (!selectedOptionBrand || !aircraft || !size || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
+      if (!selectedOptionBrand || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
           toast('تمامی فیلدها را پر کنید', {
               type: 'error',
               position: 'top-right',
@@ -175,7 +181,7 @@ const AddFlightEquipment = () => {
     // Event submision
     const handleSubmit = (event) => {
 
-      if( serialNumber || aircraft || size || flightHour || year ) {
+      if( serialNumber || aircraft || minimumWeightCapacity || maximumWeightCapacity || flightHour || year ) {
 
         event.preventDefault();
 
@@ -186,7 +192,8 @@ const AddFlightEquipment = () => {
         formData.append('file', selectedFile);
         formData.append('serialNumber', serialNumber);
         formData.append('Model', aircraft);
-        formData.append('Size', size);
+        formData.append('minimumWeightCapacity', minimumWeightCapacity);
+        formData.append('maximumWeightCapacity', maximumWeightCapacity);
         formData.append('flightHours', flightHour);
         formData.append('year', year);
         formData.append('wingClassId', selectedOptionClass.id);
@@ -260,6 +267,15 @@ const AddFlightEquipment = () => {
                         {/* aircraft model input */}
                         <TextInput value={aircraft} onChange={handleTextInputAircraft} placeholder='مدل' />
 
+                        {/* size inputs */}
+                        <div className='col-span-1 flex flex-col gap-y-2'>
+                          <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>
+                          <div className='flex justify-between gap-x-2'>
+                            <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' />
+                            <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' />
+                          </div>
+                        </div>
+
                         {/* class input */}
                         <DropdownInput
                           className='col-span-1'
@@ -286,9 +302,6 @@ const AddFlightEquipment = () => {
                           onChange={handleTextInputYear}
                           placeholder='سال'
                         />
-
-                        {/* size input */}
-                        <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
                         
                         {/* flight hour model input */}
                         <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />

@@ -222,9 +222,9 @@ const AddClass = () => {
                     <form className='w-full flex flex-col items-center gap-y-4'>
 
                         <TextInput
-                        value={ClassName}
-                        onChange={handleClassName}
-                        placeholder='نام کلاس'
+                            value={ClassName}
+                            onChange={handleClassName}
+                            placeholder='نام کلاس'
                         />
 
                         <div className='w-full flex flex-col gap-y-2'>

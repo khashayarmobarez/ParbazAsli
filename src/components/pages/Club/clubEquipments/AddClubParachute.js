@@ -49,7 +49,8 @@ const AddParachute = () => {
   
   // State for selected option
   const [selectedOptionBrand, setSelectedOptionBrand] = useState('');
-  const [size, setSize] = useState('');
+  const [minimumWeightCapacity, setMinimumWeightCapacity] = useState('');
+  const [maximumWeightCapacity, setMaximumWeightCapacity] = useState('');
   const [flightHour, setFlightHour] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
   const [year, setYear] = useState('');
@@ -101,8 +102,13 @@ const AddParachute = () => {
     setSelectedOptionBrand(selectedOption);
   };
 
-  const handleTextInputSize = (event) => {
-    setSize(event.target.value);
+  // Event handlers for weight capacity
+  const handleMinimumWeightCapacity = (event) => {
+    setMinimumWeightCapacity(event.target.value);
+  };
+
+  const handleMaximumWeightCapacity = (event) => {
+    setMaximumWeightCapacity(event.target.value);
   };
 
   const handleTextInputFlightHour = (event) => {
@@ -197,7 +203,7 @@ const AddParachute = () => {
       return;
     }
 
-    if (!selectedOptionBrand || !aircraft || !packageDate || !size|| !flightHour || !year) {
+    if (!selectedOptionBrand || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year) {
       toast('تمامی فیلدهای الزامی را پر کنید', {
           type: 'error',
           position: 'top-right',
@@ -225,7 +231,7 @@ const AddParachute = () => {
   // Event submision
   const handleSubmit = (event) => {
 
-      if(selectedOptionBrand || serialNumber || aircraft || size || packageDate || flightHour || year ) {
+      if(selectedOptionBrand || serialNumber || aircraft || minimumWeightCapacity || maximumWeightCapacity || packageDate || flightHour || year ) {
 
         event.preventDefault();
         const formattedPackedDate = formatDate(packageDate) + " 00:00";
@@ -237,7 +243,8 @@ const AddParachute = () => {
         formData.append('file', selectedFile);
         formData.append('serialNumber', serialNumber);
         formData.append('Model', aircraft);
-        formData.append('Size', size);
+        formData.append('minimumWeightCapacity', minimumWeightCapacity);
+        formData.append('maximumWeightCapacity', maximumWeightCapacity);
         if (packageDate) {
           formData.append('LastPackingDateTime', formattedPackedDate);
         }
@@ -303,8 +310,14 @@ const AddParachute = () => {
                       {/* aircraft model input */}
                       <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft}  />
 
-                      {/* size input */}
-                      <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
+                      {/* size inputs */}
+                      <div className='col-span-1 flex flex-col gap-y-2'>
+                        <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>
+                        <div className='flex justify-between gap-x-2'>
+                          <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' />
+                          <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' />
+                        </div>
+                      </div>
 
                       {/* FLight hour input */}
                       <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />

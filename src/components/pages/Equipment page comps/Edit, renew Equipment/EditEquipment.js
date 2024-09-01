@@ -39,7 +39,7 @@ const EditEquipment = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     
     const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, false)
-    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType} = EquipmentData?.data || {};
+    const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     // useEditEquipment for submitting the form
     const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
@@ -206,16 +206,6 @@ const EditEquipment = () => {
                                         </div>
                                 }
 
-                                { 
-                                size &&
-                                    <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>سایز</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{size}</p>
-                                    </div>
-                                </div>
-                                }
-
                                 {
                                 flightHours >= 0 && flightHours !== null &&
                                     <div className='flex flex-col items-start gap-y-2'>
@@ -287,6 +277,17 @@ const EditEquipment = () => {
                                         </div>
                                     </div>
                                 }  
+
+                                {
+                                    minimumWeightCapacity && maximumWeightCapacity &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>بازه وزن قابل تحمل</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{maximumWeightCapacity} - {minimumWeightCapacity}</p>
+                                        </div>
+                                    </div>
+                                }  
+
 
                             </div>
 
