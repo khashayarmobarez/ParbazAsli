@@ -48,7 +48,8 @@ const NotifVersionStudentFlightForm = ({notif}) => {
                     :
                     <button 
                     onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
-                    className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
+                    className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت
+                    </button>
                 }
             </div>
 

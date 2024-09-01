@@ -12,6 +12,7 @@ import NotifAcceptCourse from '../components/pages/Notifications/NotifAcceptCour
 import NotifAcceptStudent from '../components/pages/Notifications/NotifAcceptStudent';
 import RegularTextNotif from '../components/pages/Notifications/RegularTextNotif';
 import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifTandemPassengerSurvey';
+import PopupForNotif from '../components/pages/Notifications/PopupForNotif';
 
 
 const Notifications = () => {
@@ -21,6 +22,8 @@ const Notifications = () => {
     const [PageNumber, setPageNumber ] = useState(1)
 
     const [allNotifications, setAllNotifications] = useState([]);
+
+    const [popUpData, setPopUpData] = useState('')
 
     const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError, refetch: refetchNotifications } = useNotifications(PageNumber,7);
 
@@ -54,7 +57,8 @@ const Notifications = () => {
                         notificationsData.data &&
                         allNotifications &&
                         allNotifications.map((notif, index) => (
-                        <div className='w-full flex justify-center' key={index}>
+                        <div className='w-full flex justify-center' key={index}
+                        onClick={() => setPopUpData(notif)}>
 
                             {   notif.type === 'StudentFlightForm' &&
                                 <NotifVersionStudentFlightForm key={index} notif={notif} />
@@ -91,6 +95,8 @@ const Notifications = () => {
                 }
                 
             </div>
+
+            <PopupForNotif popUpData={popUpData} setPopUpData={setPopUpData} />
             
         </div>
     );
