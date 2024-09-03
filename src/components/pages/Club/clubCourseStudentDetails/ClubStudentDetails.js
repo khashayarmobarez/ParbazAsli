@@ -14,8 +14,6 @@ const ClubCourseStudentDetails = ({data}) => {
     const { studentId } = useParams();
     const navigate = useNavigate();
 
-    
-
     const isMobile = useMediaQuery('(max-width:720px)');
 
 
