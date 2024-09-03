@@ -8,13 +8,16 @@ import { useMediaQuery } from '@mui/material';
 import flightHour from '../../../../assets/icons/flightHour.svg';
 import flightQuan from '../../../../assets/icons/flightQuantity.svg';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
+import { useGetClubCourseStudent } from '../../../../Utilities/Services/clubQueries';
 
-const ClubCourseStudentDetails = ({data}) => {
+const ClubCourseStudentDetails = () => {
     
     const { studentId } = useParams();
     const navigate = useNavigate();
 
     const isMobile = useMediaQuery('(max-width:720px)');
+
+    const { data: studentData } = useGetClubCourseStudent(studentId)
 
 
     return (
@@ -24,20 +27,20 @@ const ClubCourseStudentDetails = ({data}) => {
                 <div className={`w-full min-h-52 rounded-3xl flex justify-between items-center p-4 relative`}
                 style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}>
                     { 
-                    data && 
+                    studentData && 
                     <>
                         {/* avatar and name */}
                         <div className='w-full flex flex-col justify-between items-center gap-y-4'>
                             
                             {
                                 isMobile &&
-                                <h1 className='text-lg font-medium'>{data.firstName}&nbsp;{data.lastName}</h1>
+                                <h1 className='text-lg font-medium'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
                             }
 
                                 <div className="avatar">
                                     <div className="w-24 rounded-full">
                                     <img
-                                        src={data.image ? data.image.path : ''} 
+                                        src={ studentData.data.image.path || ''} 
                                         alt='userPicture' 
                                     />
                                     </div>
@@ -48,38 +51,38 @@ const ClubCourseStudentDetails = ({data}) => {
 
                         {/* user name and level for desktop */}
                         {
-                            !isMobile && data &&
+                            !isMobile && studentData.data &&
                             <div className='w-full flex flex-col justify-center items-center gap-y-4'>
-                                <h1 className='text-lg font-medium'>{data.firstName}&nbsp;{data.lastName}</h1>
-                                <p className='text-xs text-lowOpacityWhite'>گواهینامه {data.levelName}</p>
+                                <h1 className='text-lg font-medium'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
+                                <p className='text-xs text-lowOpacityWhite'>گواهینامه {studentData.data.levelName}</p>
                             </div>
                         }
 
 
-                        {/* user data */}
+                        {/* user studentData.data */}
                         <div className='w-full flex flex-col justify-between items-center gap-y-4  py-2'>
 
                             {
-                                isMobile && data &&
-                                <p className='text-xs text-lowOpacityWhite'>گواهینامه {data.levelName}</p>
+                                isMobile && studentData.data &&
+                                <p className='text-xs text-lowOpacityWhite'>گواهینامه {studentData.data.levelName}</p>
                             }
 
                             <div className='w-full flex flex-col items-start justify-between gap-y-2 mr-4 text-sm md:pr-[20%]'>
                                 <p className='flex gap-x-2'>
                                     <img alt='icon' src={flightQuan} />
-                                    {data.flightCount} تعداد پرواز
+                                    {studentData.data.flightCount} تعداد پرواز
                                 </p>
                                 <p className='flex gap-x-2'>
                                     <img alt='icon' src={flightHour} />
-                                    {data.flightHours} ساعت پرواز
+                                    {studentData.data.flightHours} ساعت پرواز
                                 </p>
                                 <p className='flex gap-x-2'>
                                     <img alt='icon' src={flightHour} />
-                                    {data.coachingHours} ساعت مربی‌گری
+                                    {studentData.data.coachingHours} ساعت مربی‌گری
                                 </p>
                                 <p className='flex gap-x-2'>
                                     <img alt='icon' src={flightQuan} />
-                                    کد کاربری: {data.userId}
+                                    کد کاربری: {studentData.data.userId}
                                 </p>
                             </div>
 
