@@ -166,46 +166,70 @@ const ClubCoachDetails = () => {
                             boxShadow: 'var(--organs-coachData-boxShadow)'
                         }}
                         >
-                            <h1 className='text-base'>{course.name}</h1>
+                            <div className='w-full flex justify-between items-center'>
+
+                                <h1 className='text-base'>{course.name}</h1>
+
+                                <div className='flex gap-x-1'>
+
+                                    <p className='text-[var(--low-opacity-white)]'>وضعیت: <span className='text-[var(--text-color)]'>{course.status}</span></p>
+
+                                    {course.status === 'Active' && 
+                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                    }
+                                    {course.status === 'Pending' &&
+                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                    }
+                                    {course.status === 'Disable' &&
+                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                    }
+
+                                </div>
+
+                            </div>
 
                             <div className='w-full flex justify-between items-center'>
 
                                 <div className='flex flex-col text-start gap-y-1'>
 
-                                    <p>
-                                        {course.level} {course.organization && `/ ${course.organization}`}
-                                    </p>
+                                    {
+                                        course.organization &&
+                                            <p className='text-base'>
+                                                {course.organization}
+                                            </p>
+                                    }
 
                                     { course.clubName &&
                                         <p>باشگاه: {course.clubName}</p>
                                     }
 
-                                    <p>تعداد پرواز: {course.flightsCount}</p>
+                                    {
+                                    course.level &&
+                                        <p><span className='text-[var(--low-opacity-white)]'>مقطع: </span> {course.level}</p>
+                                    }
+                                    <p><span className='text-[var(--low-opacity-white)]'>تعداد پرواز:</span> {course.flightsCount}</p>
 
-                                    <div className='flex gap-x-1'>
-                                        <p>وضعیت: {course.status}</p>
-
-                                        {course.status === 'Active' && 
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                        }
-                                        {course.status === 'Pending' &&
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                        }
-                                        {course.status === 'Disable' &&
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                        }
-
-                                    </div>
+                                    
 
                                 </div>
 
-                                <button 
-                                onClick={() => handleClickDetails(course.id)}
-                                className={`${ButtonStyles.normalButton} self-end`} >
-                                    جزئیات  
-                                </button>
+                                <div className='flex flex-col text-start gap-y-1'>
+
+                                    <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
+                                    
+                                    <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
+
+                                </div>
+
 
                             </div>
+
+                            <button 
+                            onClick={() => handleClickDetails(course.id)}
+                            className={`${ButtonStyles.normalButton}`} >
+                                جزئیات
+                            </button>
+
                         </div>
                         ))
                     }    

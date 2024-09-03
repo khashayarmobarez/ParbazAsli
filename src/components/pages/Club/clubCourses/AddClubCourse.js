@@ -74,11 +74,17 @@ const AddClubCourse = () => {
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level && level.id);
-    const { data: studentData } = useUserLevelById(studentId && studentId, selectedClassType.id === 3 ? 1 : level && level.id, selectedClassType && selectedClassType.id, setErrorMessage);
+    const { data: studentData, isLoading: loadingStudentLevel, error: studentError } = useUserLevelById(studentId && studentId, selectedClassType.id === 3 ? 1 : level && level.id, selectedClassType && selectedClassType.id, setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularClubCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingClubCourse();
     const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomClubCourse();
 
+
+    useEffect(() => {
+        if(studentError) {
+            console.log(studentError.message)
+        }
+    },[studentError])
 
     // when the studentId goes under 6 characters reset the errorMessage
     useEffect(() => {
@@ -419,6 +425,7 @@ const AddClubCourse = () => {
                                                     selectedOption={level}
                                                     name={'سطح گواهینامه'}
                                                 />
+
                                             </>
                                         }
                                     </>
@@ -516,11 +523,13 @@ const AddClubCourse = () => {
 
                                 {/* add students */}
                                 <div className='w-full flex flex-col gap-y-1'>
-                                    { studentData && studentData.data &&
+                                    { 
+                                    studentData && studentData.data &&
                                         <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
                                     }
-                                    {errorMessage &&
-                                        <p className='text-[var(--red-text)] self-start'>{errorMessage}</p>
+                                    {
+                                    loadingStudentLevel && studentId.length > 5 &&
+                                        <p className='text-[var(--yellow-text)] self-start'>در حال جستجو ...</p>
                                     }
 
                                     <div className='w-full flex justify-between relative items-center'>
@@ -528,8 +537,8 @@ const AddClubCourse = () => {
                                             <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
                                         </div>
                                         <span 
-                                        className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                        onClick={studentData ? handleAddStudent : null}
+                                            className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                            onClick={studentData ? handleAddStudent : null}
                                         >
                                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
                                         </span>

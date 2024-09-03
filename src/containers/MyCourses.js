@@ -148,6 +148,7 @@ const MyCourses = () => {
 
                                     {
                                         course.courseType !== 'Guest' && courseData && courseData.data?.map((courseData, index) => (
+                                            
                                             <div key={index} className='w-full flex flex-col items-center'>
 
                                                 <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>

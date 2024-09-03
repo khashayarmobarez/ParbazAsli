@@ -76,6 +76,10 @@ const CourseStudents = () => {
         setStudentId(event.target.value);
     };
 
+    const handleClickStudent = (studentId) => {
+        navigate(`/club/courseDetails/studentDetails/${studentId}`);
+    }
+
     
     // handle add student
     const handleAddStudnetToCourse = () => {
@@ -152,7 +156,8 @@ const CourseStudents = () => {
                         />
                     }
                     {DropDownActive && studentsData.data?.map((student) => (
-                        <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
+                        <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}
+                        onClick={() => handleClickStudent(student.id)}>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
                                 <span>
                                     <PersonOutlineOutlinedIcon />

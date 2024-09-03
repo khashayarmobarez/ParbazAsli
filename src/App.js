@@ -111,6 +111,7 @@ import MyGuestClassDetails from './components/pages/MyCourses/MyGuestClassDetail
 import OrganPilots from './components/pages/Organization/OrganPilots';
 import OrgansData from './components/pages/Organization/Dashboard/OrgansData';
 import OrgansUsersData from './components/pages/Organization/Dashboard/OrgansUsersData';
+import ClubCourseStudentDetails from './components/pages/Club/clubCourseStudentDetails/ClubStudentDetails';
   
 
 
@@ -343,6 +344,7 @@ function App() {
                 <Route path="classes" element={<ClubCourseClasses />} />
                 <Route path="syllabi" element={<ClubCourseSyllabi />} />
               </Route> 
+              <Route path='/club/courseDetails/studentDetails/:studentId' element={<ClubCourseStudentDetails />} />
 
 
               {/* edit profile */}
