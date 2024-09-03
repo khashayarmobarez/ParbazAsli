@@ -68,11 +68,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import Settings from './containers/Settings';
   import Notifications from './containers/Notifications';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
-// organization components
-  import OrganDashboard from './containers/OrganDashboard';
-  import OrganCoaches from './components/pages/Organization/OrganCoaches';
-  import PilotsHistory from './components/pages/Organization/PilotsHistory';
-  import CoachHistory from './components/pages/Organization/CoachHistory';
 import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
 import PossessionTransitionEquipment from './components/pages/Equipment page comps/PossessionTransitionEquipment';
 import CourseDetails from './components/pages/Education/CourseDetails';
@@ -108,10 +103,11 @@ import ClubCourseStudents from './components/pages/Club/clubCourses/ClubCourseSt
 import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseClasses';
 import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
 import MyGuestClassDetails from './components/pages/MyCourses/MyGuestClassDetails';
-import OrganPilots from './components/pages/Organization/OrganPilots';
-import OrgansData from './components/pages/Organization/Dashboard/OrgansData';
-import OrgansUsersData from './components/pages/Organization/Dashboard/OrgansUsersData';
 import ClubCourseStudentDetails from './components/pages/Club/clubCourseStudentDetails/ClubStudentDetails';
+import ClubCourseStudentPracticalDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentPracticalDetails';
+import ClubCourseStudentTheoryDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentTheoryDetails';
+import ClubCourseStudentSyllabiDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentSyllabiDetails';
+import ClubCourseStudentAFlightDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentAFlightDetails';
   
 
 
@@ -344,7 +340,13 @@ function App() {
                 <Route path="classes" element={<ClubCourseClasses />} />
                 <Route path="syllabi" element={<ClubCourseSyllabi />} />
               </Route> 
-              <Route path='/club/courseDetails/studentDetails/:studentId' element={<ClubCourseStudentDetails />} />
+              <Route path='/club/courseDetails/studentDetails/:studentId' element={<ClubCourseStudentDetails />} >
+                <Route index element={<ClubCourseStudentPracticalDetails />} />
+                <Route path="practical" element={<ClubCourseStudentPracticalDetails />} />
+                <Route path="theory" element={<ClubCourseStudentTheoryDetails />} />
+                <Route path="syllabi" element={<ClubCourseStudentSyllabiDetails />} />
+              </Route>
+              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<ClubCourseStudentAFlightDetails />} />
 
 
               {/* edit profile */}

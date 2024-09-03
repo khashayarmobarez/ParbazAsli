@@ -143,7 +143,7 @@ const AddTakeoff = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
-                        <p className='text-xs text-start self-start'>زمان take off</p>
+                        <p className='text-xs text-start self-start'>زمان take off (ورودی ساعت ۲۴ ساعته می باشد)</p>
                         <TimeInput
                             value={takeoffTime}
                             onChange={handleTakeOffTimeChange}

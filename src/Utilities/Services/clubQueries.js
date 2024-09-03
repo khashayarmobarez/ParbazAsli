@@ -904,4 +904,170 @@ const useAddStudentToClubCourse = () => {
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent };
+
+
+
+
+// get club course student flights
+// /Club/GetClubStudentFlights?userCourseId=45&pageNumber=1&pageSize=2
+    const getClubCourseStudentFlights = async (userCourseId, pageNumber, pageSize) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useClubCourseStudentFlights = (userCourseId, pageNumber, pageSize) => {
+        return useQuery(['getClubCourseStudentFlights', userCourseId, pageNumber, pageSize], () => getClubCourseStudentFlights(userCourseId, pageNumber, pageSize));
+    };
+
+
+
+
+
+
+
+
+
+// get club student flight
+// /Club/GetClubStudentFlight?flightId=30
+    const getClubStudentFlight = async (flightId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentFlight?flightId=${flightId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubStudentFlight = (flightId) => {
+        return useQuery(['getClubStudentFlight', flightId], () => getClubStudentFlight(flightId));
+    };
+
+
+
+
+
+
+
+// get club student classes
+// /Club/GetClubStudentClasses?userCourseId=45
+    const getClubStudentClasses = async (userCourseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentClasses?userCourseId=${userCourseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useClubStudentClasses = (userCourseId) => {
+        return useQuery(['getClubStudentClasses', userCourseId], () => getClubStudentClasses(userCourseId));
+    };
+
+
+
+
+
+
+
+
+
+
+// get club course student class
+// /Club/GetClubStudentClass?classId=7
+    const getClubCourseStudentClass = async (classId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentClass?classId=${classId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useClubCourseStudentClass = (classId) => {
+        return useQuery(['getClubCourseStudentClass', classId], () => getClubCourseStudentClass(classId));
+    };
+
+
+
+
+
+
+
+
+// get club course student syllabi
+// /Club/GetClubStudentSyllabi?userCourseId=45
+    const getClubCourseStudentSyllabi = async (userCourseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentSyllabi?userCourseId=${userCourseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    const useGetClubCourseStudentSyllabi = (userCourseId) => {
+        return useQuery(['getClubCourseStudentSyllabi', userCourseId], () => getClubCourseStudentSyllabi(userCourseId));
+    }
+
+
+
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi };
