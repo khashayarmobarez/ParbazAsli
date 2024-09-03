@@ -12,7 +12,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
-import clipboard from '../../../../assets/icons/clipboard.svg'
 import arrowIcon from '../../../../assets/icons/Right Arrow Button.svg';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -75,6 +74,11 @@ const CourseStudents = () => {
     const handleInputStudentId = (event) => {
         setStudentId(event.target.value);
     };
+
+    // handle click student
+    const handleClickStudent = (id) => {
+        navigate(`/education/courseDetails/studentDetails/${id}/practical`)
+    }
 
     const handleTriggerStudentStatus = (status ,id, event) => {
 
@@ -205,13 +209,17 @@ const CourseStudents = () => {
                     }
                     {DropDownActive && studentsData.data?.map((student) => (
                         <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
-                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
-                                <span>
+                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}
+                            >
+                                <span onClick={() => handleClickStudent(student.id)}>
                                     <PersonOutlineOutlinedIcon />
                                 </span>
-                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
-                                <p>{student.name}</p>
-                                <p className='text-[var(--low-opacity-white)]'>وضعیت: 
+                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}
+                                onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
+                                <p
+                                onClick={() => handleClickStudent(student.id)}>{student.name}</p>
+                                <p className='text-[var(--low-opacity-white)]'
+                                onClick={() => handleClickStudent(student.id)}>وضعیت: 
                                     {student.status === 'Active' && <span className='text-[var(--yellow-text)]'> فعال </span>}
                                     {student.status === 'CoachPending' && <span className='text-[var(--text-color)]'> در انتظار تایید</span>}
                                 </p>
@@ -219,7 +227,7 @@ const CourseStudents = () => {
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
                                     sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                                 </Box> */}
-                                <div/>
+                                <div onClick={() => handleClickStudent(student.id)} />
                                 {student.status !== 'CoachPending' &&
                                 <button 
                                 onClick={() => setShowActiveStudentOptions(
@@ -357,14 +365,18 @@ const CourseStudents = () => {
                             {DropDownHistory &&
                                 <div className='w-full flex flex-col items-center gap-y-4'>
                                     {studentsHistoryData.data?.map((student) => (
-                                        <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
+                                        <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}
+>
                                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
-                                                <span>
+                                                <span onClick={() => handleClickStudent(student.id)}>
                                                     <PersonOutlineOutlinedIcon />
                                                 </span>
-                                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
-                                                <p>{student.name}</p>
-                                                <p className='text-[var(--low-opacity-white)]'>وضعیت: 
+                                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}
+                                                onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
+                                                <p onClick={() => handleClickStudent(student.id)}>{student.name}</p>
+                                                <p className='text-[var(--low-opacity-white)]'
+                                                onClick={() => handleClickStudent(student.id)}>
+                                                    وضعیت: 
                                                     {student.status === 'Completed' && <span className='text-[var(--yellow-text)] '> تمام شده</span>}
                                                     {student.status === 'Canceled' && <span className='text-[var(--red-text)]'> لغو شده</span>}
                                                 </p>

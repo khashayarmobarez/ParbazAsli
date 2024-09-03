@@ -754,31 +754,60 @@ const getSyllabiForLevels = async (levelId) => {
     }
 
 
+    
 
 
 
 
 
-// add student to club course post
-// /Club/AddStudentToClubCourse
-// {
-//     "userId": "676aoj",
-//     "courseId": 38
-// }
-    const addStudentToClubCourse = async (userId, courseId) => {
+
+
+// get a course student
+// /Course/GetCourseStudent?userCourseId=35
+    const getACourseStudent = async (userCourseId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(
-                `${BASE_URL}/Club/AddStudentToClubCourse`,
-                { userId, courseId },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
+            const response = await axios.get(`${BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+    
+    const useACourseStudent = (userCourseId) => {
+        return useQuery(['aCourseStudent', userCourseId], () => getACourseStudent(userCourseId));
+    };
+
+
+
+
+
+
+
+
+
+// get course student flights
+// /Course/GetStudentFlights?userCourseId=35&pageNumber=1&pageSize=2
+    const getCourseStudentFlights = async (userCourseId, pageNumber, pageSize) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
             return response.data;
         } catch (error) {
             if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
@@ -789,8 +818,138 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const useAddStudentToClubCourse = () => {
-        return useMutation(addStudentToClubCourse);
+    const useCourseStudentFlights = (userCourseId, pageNumber, pageSize) => {
+        return useQuery(['courseStudentFlights', userCourseId, pageNumber, pageSize], () => getCourseStudentFlights(userCourseId, pageNumber, pageSize));
+    }
+
+
+
+
+
+
+
+// get student flight
+// /Course/GetStudentFlight?flightId=25
+    const getCourseStudentFlight = async (flightId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetStudentFlight?flightId=${flightId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useCourseStudentFlight = (flightId) => {
+        return useQuery(['courseStudentFlight', flightId], () => getCourseStudentFlight(flightId));
+    }
+
+
+
+
+
+// get course student classes
+// /Course/GetStudentClasses?userCourseId=35
+    const getCourseStudentClasses = async (userCourseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetStudentClasses?userCourseId=${userCourseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useCourseStudentClasses = (userCourseId) => {
+        return useQuery(['courseStudentClasses', userCourseId], () => getCourseStudentClasses(userCourseId));
+    }
+
+
+
+
+
+
+
+
+
+// get course student class
+// /Course/GetStudentClass?classId=1
+    const getCourseStudentClass = async (classId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetStudentClass?classId=${classId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useCourseStudentClass = (classId) => {
+        return useQuery(['courseStudentClass', classId], () => getCourseStudentClass(classId));
+    }
+
+
+
+
+
+
+
+
+
+// get student syllabi
+// /Course/GetStudentSyllabi?userCourseId=35
+    const getStudentSyllabi = async (userCourseId) => {
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.get(`${BASE_URL}/Course/GetStudentSyllabi?userCourseId=${userCourseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+    
+    const useGetStudentSyllabi = (userCourseId) => {
+        return useQuery(['studentSyllabi', userCourseId], () => getStudentSyllabi(userCourseId));
     };
 
 
@@ -799,5 +958,4 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts}; 
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useCourseStudentFlights, useCourseStudentFlight, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi }; 

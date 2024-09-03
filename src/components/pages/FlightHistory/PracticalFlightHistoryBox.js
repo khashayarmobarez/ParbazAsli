@@ -13,14 +13,15 @@ import check from '../../../assets/icons/checkGreen.svg'
 const PracticalFlightHistoryBox = (props) => {
 
     const navigate = useNavigate()
-    const { flightBaseData, isForClubCourseStudent, flightId } = props;
+    const { flightBaseData, isForClubCourseStudent, isForEducationCourseStudent } = props;
 
     // for changing the color of the texts when user clicked and expand it
 
 
     const handleClick = (id) => {
-        !isForClubCourseStudent && navigate(`/flightHistory/${id}`)
+        !isForClubCourseStudent && !isForEducationCourseStudent && navigate(`/flightHistory/${id}`)
         isForClubCourseStudent && navigate(`/club/courseDetails/studentDetails/aStudentFlight/${flightBaseData.id}`)
+        isForEducationCourseStudent && navigate(`/education/courseDetails/studentDetails/aStudentFlight/${flightBaseData.id}`)
     }
 
     return (

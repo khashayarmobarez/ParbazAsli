@@ -108,6 +108,11 @@ import ClubCourseStudentPracticalDetails from './components/pages/Club/clubCours
 import ClubCourseStudentTheoryDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentTheoryDetails';
 import ClubCourseStudentSyllabiDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentSyllabiDetails';
 import ClubCourseStudentAFlightDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentAFlightDetails';
+import CourseStudentDetails from './components/pages/Education/courseStudentDetails/StudentDetails';
+import CourseStudentPracticalDetails from './components/pages/Education/courseStudentDetails/CourseStudentPracticalDetails';
+import CourseStudentTheoryDetails from './components/pages/Education/courseStudentDetails/CourseStudentTheoryDetails';
+import CourseStudentSyllabiDetails from './components/pages/Education/courseStudentDetails/CourseStudentSyllabiDetails';
+import CourseStudentAFlightDetails from './components/pages/Education/courseStudentDetails/CourseStudentAFlightDetails';
   
 
 
@@ -284,6 +289,13 @@ function App() {
               </Route> 
               <Route path='/education/:id/AddClass' element={<AddClass/>} />
               <Route path='/education/StudentDetails/:id' element={<StudentDetails/>} />
+              <Route path='/education/courseDetails/studentDetails/:studentId' element={<CourseStudentDetails />} >
+                <Route index element={<CourseStudentPracticalDetails />} />
+                <Route path="practical" element={<CourseStudentPracticalDetails />} />
+                <Route path="theory" element={<CourseStudentTheoryDetails />} />
+                <Route path="syllabi" element={<CourseStudentSyllabiDetails />} />
+              </Route>
+              <Route path='/education/courseDetails/studentDetails/aStudentFlight/:flightId' element={<CourseStudentAFlightDetails />} />
 
               {/* my courses */}
               <Route path='/MyCourses' element={<MyCourses  />} />
