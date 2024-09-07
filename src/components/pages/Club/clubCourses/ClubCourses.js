@@ -9,12 +9,13 @@ import AddIcon from '@mui/icons-material/Add';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 
 // assets
 import attention from '../../../../assets/icons/attention.svg';
 
 // queries
-import { useClubCourses, useGetClubCoursesDividers } from '../../../../Utilities/Services/clubQueries';
+import { useClubCourseCounts, useClubCourses, useGetClubCoursesDividers } from '../../../../Utilities/Services/clubQueries';
 
 // comnponents
 import PageTitle from '../../../reuseable/PageTitle';
@@ -27,11 +28,12 @@ const ClubCourses = () => {
 
     // courseData
     const [courseType, setCourseType] = useState('')
-    const [organizationId, setOrganizationId] = useState('')
+    const [organizationId, setOrganizationId] = useState(1)
     const [pageNumber, setPageNumber] = useState(1)
 
     const [DropDown, setDropDown] = useState('')
 
+    const { data: courseCountsData, isLoading: courseCountsLoading } = useClubCourseCounts();
     const { data: clubCourseDividerData, isLoading: clubCourseDividerLoading, error: clubCourseDividerError } = useGetClubCoursesDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useClubCourses(courseType, organizationId, pageNumber);
 
@@ -73,10 +75,10 @@ const ClubCourses = () => {
 
             <PageTitle  title='دوره ها' navigateTo={'/club'} />
 
-            <div className='w-[90%] flex flex-col items-center' >
+            <div className='w-[90%] flex flex-col items-center gap-y-4' >
 
                 {
-                clubCourseDividerLoading &&
+                clubCourseDividerLoading && courseCountsLoading &&
                     <CircularProgressLoader />
                 }
 
@@ -94,6 +96,26 @@ const ClubCourses = () => {
                 {
                     !clubCourseDividerData && !clubCourseDividerLoading && !clubCourseDividerError &&
                     <p className='h-60vh w-full text-center flex justify-center items-center'> دوره ای اضافه نشده</p>
+                }
+
+                {courseCountsData && 
+                    <div className='flex w-full justify-between gap-x-2'>
+                        
+                            <div className='w-full flex flex-col items-center gap-y-2'>
+                                <p className=' text-xs'>دوره های فعال</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                    <p>{courseCountsData.data.activeCourseCounts}</p>
+                                </div>
+                            </div>
+
+                            <div className='w-full flex flex-col items-center gap-y-2'>
+                                <p className=' text-xs'>دوره های غیرفعال</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                    <p>{courseCountsData.data.disableCourseCounts}</p>
+                                </div>
+                            </div>
+
+                    </div>
                 }
 
                 {clubCourseDividerData && clubCourseDividerData.data.length > 0 &&
@@ -156,6 +178,11 @@ const ClubCourses = () => {
                                                         </div>
                                                     
                                                     </div>
+
+                                                    <p className='text-[var(--low-opacity-white)] -mt-1'>
+                                                        نام مربی:&nbsp;
+                                                        <span className='text-[var(--text-color)] text-sm'>{course.coachFullName}</span>
+                                                    </p>
 
                                                     <div className='w-full flex justify-between items-center'>
 

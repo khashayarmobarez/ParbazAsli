@@ -133,23 +133,23 @@ const Education = () => {
                 }
 
                 {courseCountsData && 
-                <div className='flex w-full justify-between gap-x-2'>
-                    
-                        <div className='w-full flex flex-col items-center gap-y-2'>
-                            <p className=' text-xs'>دوره های فعال</p>
-                            <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                <p>{courseCountsData.data.activeCourseCounts}</p>
+                    <div className='flex w-full justify-between gap-x-2'>
+                        
+                            <div className='w-full flex flex-col items-center gap-y-2'>
+                                <p className=' text-xs'>دوره های فعال</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                    <p>{courseCountsData.data.activeCourseCounts}</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className='w-full flex flex-col items-center gap-y-2'>
-                            <p className=' text-xs'>دوره های غیرفعال</p>
-                            <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                <p>{courseCountsData.data.disableCourseCounts}</p>
+                            <div className='w-full flex flex-col items-center gap-y-2'>
+                                <p className=' text-xs'>دوره های غیرفعال</p>
+                                <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                    <p>{courseCountsData.data.disableCourseCounts}</p>
+                                </div>
                             </div>
-                        </div>
 
-                </div>
+                    </div>
                 }
 
                 {courseDividerData && courseDividerData.data.length > 0 &&

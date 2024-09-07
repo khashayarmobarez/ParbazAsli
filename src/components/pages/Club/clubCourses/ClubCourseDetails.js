@@ -234,22 +234,9 @@ const ClubCourseDetails = () => {
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
                             <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
-                                onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
+                            onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                 <p>فعال سازی</p>
                             </button>
-                        }
-                        {
-                            aCourseData.data.status === 'Pending' &&
-                                <div className=' z-10 w-[90%] md:w-2/6 fixed bottom-16 flex justify-between'>
-                                    <button className={`${ButtonStyles.addButton} w-[45%] text-base`} 
-                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
-                                        <p>تایید</p>
-                                    </button>
-                                    <button className={`${ButtonStyles.normalButton} w-[45%] text-base`} 
-                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Rejected', id)} >
-                                        <p>رد</p>
-                                    </button>
-                                </div>
                         }
                     </>
                 }
