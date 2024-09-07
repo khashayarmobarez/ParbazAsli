@@ -231,7 +231,7 @@ const AddClubCourse = () => {
             description: type === 1 ? customCourseTheory : customCoursePractical,
             order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
         };
-        setCustomCourses([...customCourses, newCourse]);
+        newCourse.description && setCustomCourses([...customCourses, newCourse]);
         if (type === 1) {
             setCustomCourseTheory('');
         } else {
@@ -448,7 +448,7 @@ const AddClubCourse = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    name={'سطح گواهینامه'}
+                                                    name={'مقطع'}
                                                 />
 
                                             </>
