@@ -7,6 +7,9 @@ import { Box, CircularProgress } from '@mui/material';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+import wingIcon from '../../../assets/icons/wingicon.svg'
+import harnessIcon from '../../../assets/icons/harnessicon.svg'
+import parachuteIcon from '../../../assets/icons/parachuteIcon.svg'
 
 // queries
 import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
@@ -197,23 +200,23 @@ const AddUsedEquipment = () => {
                         <>
 
                             {   wingType === 'Tandem' ?
-                                <DropdownInputForEquipment name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
                                 :
                                 wingType === 'Single' ?
-                                <DropdownInputForEquipment name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
                                 :
-                                <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
                                 
                             }
 
-                            <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
+                            <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
 
                             {
                                 flightType === 'Tandem' &&
-                                <DropdownInputForEquipment name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} />
+                                <DropdownInputForEquipment icon={harnessIcon} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} />
                             }
                             
-                            <DropdownInputForEquipment name={'چتر'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
+                            <DropdownInputForEquipment icon={parachuteIcon} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
                         </>
                     }
                 </form>
