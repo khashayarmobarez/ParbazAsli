@@ -155,33 +155,30 @@ const ClubCourseDetails = () => {
                                     </div>
                                 }
 
-                                    {/* show extra version */}
-                                    {
-                                    showExtra &&
-                                        <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                            <p className=' text-xs pr-2'>وضعیت</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                                {aCourseData.data.status === 'Active' && 
-                                                    <>
-                                                        <p>فعال</p>
-                                                        <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                                    </>
-                                                }
-                                                {aCourseData.data.status === 'Pending' &&
-                                                    <>
-                                                        <p>در انتظار تایید</p>
-                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                    </>
-                                                }
-                                                {aCourseData.data.status === 'Disable' &&
-                                                    <>
-                                                        <p>غیرفعال</p>
-                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                                    </>
-                                                }
-                                            </div> 
-                                        </div>
-                                    }   
+                                
+                                <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
+                                    <p className=' text-xs pr-2'>وضعیت</p>
+                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
+                                        {aCourseData.data.status === 'Active' && 
+                                            <>
+                                                <p>فعال</p>
+                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                            </>
+                                        }
+                                        {aCourseData.data.status === 'Pending' &&
+                                            <>
+                                                <p>در انتظار تایید</p>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                            </>
+                                        }
+                                        {aCourseData.data.status === 'Disable' &&
+                                            <>
+                                                <p>غیرفعال</p>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                            </>
+                                        }
+                                    </div> 
+                                </div> 
                             </div>
 
                             {/* show extra version */}

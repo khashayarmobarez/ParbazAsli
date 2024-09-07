@@ -473,7 +473,7 @@ const AddClubCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(1)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--yellow-text)' }} />
                                     </span>
                                 </div>
 
@@ -496,7 +496,7 @@ const AddClubCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(2)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--yellow-text)' }} />
                                     </span>
                                 </div>
 
@@ -540,7 +540,7 @@ const AddClubCourse = () => {
                                             className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                             onClick={studentData ? handleAddStudent : null}
                                         >
-                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--yellow-text)' }} />
                                         </span>
                                     </div>
                                     {studentsData.length < 1 &&
