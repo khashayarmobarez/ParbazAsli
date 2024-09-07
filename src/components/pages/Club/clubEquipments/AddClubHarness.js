@@ -28,6 +28,7 @@ import UploadFileInput from '../../../inputs/UploadFileInput';
 import PageTitle from '../../../reuseable/PageTitle';
 import NumberInput from '../../../inputs/NumberInput';
 import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const AddClubHarness = () => {
 
@@ -221,6 +222,11 @@ const AddClubHarness = () => {
             <PageTitle title={'افزودن هارنس'}  />
 
             {
+              brandsIsLoading &&
+              <CircularProgressLoader /> 
+            }
+
+            {
             brandsData &&
               <>
                 <p className=' text-sm'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
@@ -279,7 +285,10 @@ const AddClubHarness = () => {
                   />
 
                   {/* for uploading pictures */}
-                  <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                  <div className='w-full flex flex-col items-start space-y-3'>
+                    <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                    <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
+                  </div>
 
                   <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
                 </form>

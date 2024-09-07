@@ -31,6 +31,7 @@ import PageTitle from '../../../reuseable/PageTitle';
 import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import NumberInput from '../../../inputs/NumberInput';
 import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 
 const AddParachute = () => {
@@ -306,6 +307,11 @@ const AddParachute = () => {
             <PageTitle title={'افزودن چتر کمکی'}  />  
 
             {
+              brandsIsLoading &&
+              <CircularProgressLoader /> 
+            }
+
+            {
               brandsData &&
               <>
                 <p className=' text-xs'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
@@ -391,7 +397,10 @@ const AddParachute = () => {
                     {/* <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p> */}
 
                     {/* for uploading pictures */}
-                    <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                    <div className='w-full flex flex-col items-start space-y-3'>
+                      <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                      <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
+                    </div>
 
                     <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 

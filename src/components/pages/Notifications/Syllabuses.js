@@ -21,6 +21,15 @@ const Syllabuses = () => {
 
     const [counters, setCounters] = useState([]);
     const [description, setDescription] = useState('');
+    const [countersSum, setCountersSum] = useState(0);
+
+    useEffect(() => {
+        let sum = 0;
+        counters.forEach((counter) => {
+            sum += counter;
+        });
+        setCountersSum(sum);
+    }, [counters])
 
     useEffect(() => {
         if (syllabiDataPractical && syllabiDataPractical.data) {
@@ -49,6 +58,8 @@ const Syllabuses = () => {
     const handleDescription = (event) => {
         setDescription(event.target.value);
     };
+
+    
 
     const handleReset = (event) => {
         event.preventDefault();
@@ -178,7 +189,7 @@ const Syllabuses = () => {
                         type="submit"
                         className={`${ButtonStyles.addButton} w-32`}
                     >
-                        ثبت نهایی
+                        ثبت نهایی {countersSum > 0 && `(${countersSum})`}
                     </button>
                     <button
                         disabled={isSubmitting}

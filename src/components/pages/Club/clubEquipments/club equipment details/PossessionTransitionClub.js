@@ -133,9 +133,11 @@ const PossessionTransitionClub = () => {
     
     
             formData.append("equipmentId", id);
-            formData.append("receiverUserId", receiverId);
+            formData.append("receiverId", receiverId);
             formData.append("type", activeLink);
-            formData.append("expirationDateTime", formattedDate);
+            if(activeLink === 'temporary') {
+                formData.append("expirationDateTime", formattedDate);
+            }
             formData.append('isForClub', true);
     
             mutateTransitionData(formData, {
@@ -149,7 +151,7 @@ const PossessionTransitionClub = () => {
                         style: { width: "90%" }
                     });
                     setShowPopup(false);
-                    navigate('/equipment')
+                    navigate('/club/clubEquipment/flightEquipments')
                 },
                 onError: (error) => {
                     // Code to execute when mutation encounters an error
@@ -208,7 +210,7 @@ const PossessionTransitionClub = () => {
                             className='col-span-1'
                             value={receiverId}
                             onChange={handleTextInputReceiverId}
-                            placeholder='کد کاربری مالک جدید'
+                            placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
                             />
                             {userByIdData &&
                                 <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
@@ -234,7 +236,7 @@ const PossessionTransitionClub = () => {
 
                         {/* popup */}
                         <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
-                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-[200px] flex flex-col justify-around items-center z-10 md:z-[50]`}>
+                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
                                 <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                             
                                 <div className='w-[80%] flex justify-between'>

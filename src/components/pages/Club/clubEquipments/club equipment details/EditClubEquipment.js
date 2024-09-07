@@ -334,7 +334,7 @@ const EditClubEquipment = () => {
                                                 }
 
                                                 <h3 className=' text-[var(--softer-white)] text-sm mt-1 mb-[-10px]'>
-                                                    سریال چتر کمکی
+                                                    سریال وسیله پروازی
                                                 </h3>
 
                                                 {/* text input to add parachute serial */}
@@ -347,7 +347,7 @@ const EditClubEquipment = () => {
                                                 />
 
                                                 {/* for uploading pictures */}
-                                                <UploadFileInput name={'سریال چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                                <UploadFileInput name={'سریال وسیله پروازی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
                                                 <p className=' text-xs mt-[-0.5rem]'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
                                             </>
                                             }
@@ -366,11 +366,11 @@ const EditClubEquipment = () => {
                                                 {/* Last Packer ID input */}
                                                 <div className='w-full flex flex-col items-start gap-y-2'>
                                                     <TextInput
-                                                    icon={Cube}
-                                                    className='col-span-1'
-                                                    value={lastPackerId}
-                                                    onChange={handleTextInputLastPackerId}
-                                                    placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
+                                                        icon={Cube}
+                                                        className='col-span-1'
+                                                        value={lastPackerId}
+                                                        onChange={handleTextInputLastPackerId}
+                                                        placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
                                                     />
                                                     {userByIdData &&
                                                     <div className='flex gap-x-1 text-[#A5E65E]'>

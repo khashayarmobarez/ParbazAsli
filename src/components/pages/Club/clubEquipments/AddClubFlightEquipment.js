@@ -27,6 +27,7 @@ import UploadFileInput from '../../../inputs/UploadFileInput';
 import PageTitle from '../../../reuseable/PageTitle';
 import NumberInput from '../../../inputs/NumberInput';
 import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 
 const AddClubFlightEquipment = () => {
@@ -251,6 +252,11 @@ const AddClubFlightEquipment = () => {
               <PageTitle title={'افزودن وسیله پروازی'}  />  
 
               {
+                brandsIsLoading &&
+                <CircularProgressLoader /> 
+              }
+
+              {
                 brandsData && wingsClasses &&
                 <>
                   <p className=' text-sm'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
@@ -265,7 +271,8 @@ const AddClubFlightEquipment = () => {
                             showCustomBrandInput={showCustomBrandInput}
                             setShowCustomBrandInput={setShowCustomBrandInput}
                             className='col-span-1'
-                            options={brandsData.data}
+                            options={brandsData.data
+                            }
                             selectedOption={selectedOptionBrand}
                             handleSelectChange={handleSelectChangeBrand}
                             name={'برند'}
@@ -331,7 +338,7 @@ const AddClubFlightEquipment = () => {
                       {/* for uploading pictures */}
                       <div className='w-full flex flex-col items-start space-y-3'>
                         <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                        <p className=' text-xs'>*فرمت‌های مجاز فایل JPEG,JPG,Png</p>
+                        <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
                       </div>
 
 
