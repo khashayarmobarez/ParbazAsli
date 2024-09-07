@@ -127,7 +127,13 @@ const ClubCoachDetails = () => {
 
                         <div className=' w-full flex items-center justify-between gap-y-4'>
                             <p className='text-base' style={{color:'var(--yellow-text)'}}>{coachDetails.data.name}</p>
-                            <p className=''>وضعیت: {coachDetails.data.status}</p>
+                            <p className='text-[var(--low-opacity-white)]'>
+                                وضعیت:
+                                {coachDetails.data.status === 'Active' && <span style={{color:'var(--yellow-text)'}}> فعال</span>}
+                                {coachDetails.data.status === 'Pending' && <span style={{color:'var(--red-text)'}}> در انتظار تایید</span>}
+                                {coachDetails.data.status === 'Disable' && <span style={{color:'var(--low-opacity-white)'}}> غیر فعال</span>}
+                                {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--notification-red)'}}> رد شده</span>}
+                            </p>
                         </div>
 
                         <div className='w-full flex items-center justify-between gap-y-4 bg'>
