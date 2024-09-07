@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -16,7 +17,7 @@ import Box from '@mui/material/Box';
 import flightHour from '../../../assets/icons/flightHour.svg'
 import flightQuan from '../../../assets/icons/flightQuantity.svg'
 import clubStudents from '../../../assets/icons/users-Icon.svg'
-import { toast } from 'react-toastify';
+import backButton from '../../../assets/icons/Right Arrow Button.svg'
 
 
 const ClubCoachDetails = () => {
@@ -122,10 +123,12 @@ const ClubCoachDetails = () => {
                 }
 
                 {coachDetails &&
-                    <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6'
+                    <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative'
                     style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}>
 
-                        <div className=' w-full flex items-center justify-between gap-y-4'>
+                        <img src={backButton} alt='back' className='absolute top-4 left-4 cursor-pointer rotate-180 w-8' onClick={() => navigate(-1)} />
+
+                        <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
                             <p className='text-base' style={{color:'var(--yellow-text)'}}>{coachDetails.data.name}</p>
                             <p className='text-[var(--low-opacity-white)]'>
                                 وضعیت:
