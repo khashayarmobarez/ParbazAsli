@@ -46,7 +46,6 @@ const FlightHistoryPage = () => {
                                     {
                                     fullFlightData.data.status &&
                                         <div className='flex flex-col col-span-6 items-start gap-y-3'>
-                                            <p className=' text-xs pr-2'>وضعیت پرواز</p>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                 <p className=' text-xs pr-2 text-[var(--low-opacity-white)]'>وضعیت:&nbsp;</p>
                                                 {
@@ -295,15 +294,17 @@ const FlightHistoryPage = () => {
                                     {
                                         DropDownLanding &&
                                         <>
+                                        
                                             {
-                                                fullFlightData.data.landingWindSpeedInKmh &&
+                                                fullFlightData.data.landingTime &&
                                                 <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                    <p className=' text-xs pr-2'>سرعت باد Landing</p>
+                                                    <p className=' text-xs pr-2'>ساعت Landing</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullFlightData.data.landingWindSpeedInKmh}</p>
+                                                        <p>{fullFlightData.data.landingTime}</p>
                                                     </div>
                                                 </div>
                                             }
+
 
                                             {
                                                 fullFlightData.data.landingWindDirection &&
@@ -316,14 +317,15 @@ const FlightHistoryPage = () => {
                                             }
 
                                             {
-                                                fullFlightData.data.landingTime &&
+                                                fullFlightData.data.landingWindSpeedInKmh &&
                                                 <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                    <p className=' text-xs pr-2'>زمان Landing</p>
+                                                    <p className=' text-xs pr-2'>سرعت باد Landing</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullFlightData.data.landingTime}</p>
+                                                        <p>{fullFlightData.data.landingWindSpeedInKmh}</p>
                                                     </div>
                                                 </div>
                                             }
+
                                         </>
                                     }
 

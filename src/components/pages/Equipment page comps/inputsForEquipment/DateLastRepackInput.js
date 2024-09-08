@@ -23,7 +23,7 @@ const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, pos
   return (
     <div className='w-full flex'>
         <span> 
-            <img src={icon ? icon : Calender} alt='icon' className=' absolute mt-3.5 mr-2 w-6' />
+            <img src={icon ? icon : Calender} alt='icon' className=' absolute mt-3.5 mr-2 w-5' />
         </span>
         <DatePicker
             onChange={(e) => handleChange(e.value)}

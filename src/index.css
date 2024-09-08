@@ -48,8 +48,8 @@ code {
   /* Defined global colors using CSS custom properties */
   --accent-normal: #A5E65E; /* Green-light */
   --accent-darker: #212829; /* Green-dark */
-  --bg-dark: #181A2D; /* Yellow */
-  --bg-dark-active: #131423; /* Yellow */
+  --bg-dark: #181A2D; 
+  --bg-dark-active: var(--bg-color); 
   --neutral-light:#EEEEEE; /* Neutral color */
   --neutral-light-active:#CACACA; /* Neutral color */
   --neutral-normal:#535353; /* Neutral color */

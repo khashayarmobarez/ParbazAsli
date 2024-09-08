@@ -14,7 +14,7 @@ const CourseStudentPracticalDetails = () => {
 
     const { studentId } = useParams();
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId,1,10);
+    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,1,10);
 
     useEffect(() => {
         if(userFlights) {

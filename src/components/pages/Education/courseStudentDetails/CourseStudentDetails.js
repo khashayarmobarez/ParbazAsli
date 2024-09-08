@@ -49,7 +49,7 @@ const CourseStudentDetails = () => {
                                     
                                 <img
                                     className="w-[20vw] h-[20vw] rounded-full object-cover"
-                                    src={ studentData.data.image.path || ''} 
+                                    src={ studentData.data.image?.path || ''} 
                                     alt='userPicture' 
                                 />
 

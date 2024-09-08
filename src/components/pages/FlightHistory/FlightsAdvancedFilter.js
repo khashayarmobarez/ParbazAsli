@@ -8,6 +8,14 @@ import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateC
 // styles
 import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 
+// assets
+import wingIcon from '../../../assets/icons/wingicon.svg'
+import harnessIcon from '../../../assets/icons/harnessicon.svg'
+import locationIcon from '../../../assets/icons/location.svg'
+import windIcon from '../../../assets/icons/windIcon.svg'
+import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
+import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg'
+
 // mui
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
@@ -170,9 +178,9 @@ const FlightsAdvancedFilter = () => {
                             {
                                 userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
                                 <>
-                                    <DropdownInputForEquipment name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
+                                    <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
-                                    <DropdownInputForEquipment name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
+                                    <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
                                 </>
                             }
 
