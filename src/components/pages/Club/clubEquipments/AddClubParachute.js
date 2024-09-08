@@ -388,9 +388,16 @@ const AddParachute = () => {
                     
                     </div>
 
-                    <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
+                    <div className='w-full flex flex-col text-start gap-y-1'>
+                      <p className=' self-start md:self-center text-[var(--primary-light)]'>ثبت سریال بال (اختیاری)</p>
+                      <p className=' text-xs text-right'>
+                        با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                        <br/>
+                        در صورت مفقودی بال ما را از طریق تیکت مطلع سازید.
+                      </p>
+                    </div>
   
-                        {/* Serial Number input */}
+                    {/* Serial Number input */}
                     <TextInput
                       icon={Cube}
                       className='col-span-1'
