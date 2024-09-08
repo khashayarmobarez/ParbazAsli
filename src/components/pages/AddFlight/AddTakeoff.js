@@ -10,6 +10,9 @@ import { useNavigate } from 'react-router-dom';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+import colorTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
+import windIcon from '../../../assets/icons/windIcon.svg'
+import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
 
 // provider
 import { windDirectionOptions, windSpeedUnits } from '../../../Utilities/Providers/dropdownInputOptions';
@@ -155,14 +158,15 @@ const AddTakeoff = () => {
 
                     {
                         takeOffTypesData &&
-                        <DropdownInput name={'شیوه'} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
+                        <DropdownInput name={'شیوه'} icon={colorTagsIcon} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
                     }
 
-                    <DropdownInput name={'جهت باد'} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
+                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
                     
                     {/* <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
                     <NumberInput
+                        icon={windIcon}
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
