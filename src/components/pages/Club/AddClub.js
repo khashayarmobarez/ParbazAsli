@@ -297,6 +297,11 @@ const AddClub = ({isForSetting}) => {
                         )}   
                     </div>
 
+                    <p className='text-sm w-[85%] self-center'>
+                        فرمت عکس باید jpeg, jpg, gif, bmp یا png 
+                        باشد حجم عکس نباید بیشتر از 10 مگابایت باشد
+                    </p>
+
                 </div>
 
                 <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
