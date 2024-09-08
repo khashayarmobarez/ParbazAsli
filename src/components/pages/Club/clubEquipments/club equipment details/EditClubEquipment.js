@@ -180,8 +180,6 @@ const EditClubEquipment = () => {
                 {
                     EquipmentData &&
                     <>
-                        <p className=' text-sm'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
-                        و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
 
                         <form className={` w-[90%] rounded-xl flex flex-col gap-y-6`}>
 
