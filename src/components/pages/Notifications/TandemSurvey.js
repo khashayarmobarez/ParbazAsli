@@ -143,7 +143,7 @@ const TandemSurvey = () => {
                             />
                         </div>
 
-                        <p className='text-center px-4 text-sm mt-6'>ویدیو پرواز خود را آپلود کنید</p>
+                        <p className='text-center px-4 text-base my-8 text-[var(--yellow-text)]'>در صورت تمایل ویدیو پرواز خود را آپلود کنید</p>
 
                         <div className={`${styles.inputDiv} `}>
                             <input 
