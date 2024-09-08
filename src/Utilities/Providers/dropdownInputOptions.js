@@ -47,8 +47,9 @@ const brandsOptionsData = [
   ];
 
   const flightTypeOptions = [
-    { name: 'سینگل', id: 1 },
-    { name: 'تندم', id: 2 },
+    { name: 'آموزشی', id: "Course" },
+    { name: 'تندم', id: 'Tandem' },
+    { name: 'سینگل', id: 'Solo' },
   ];
 
 

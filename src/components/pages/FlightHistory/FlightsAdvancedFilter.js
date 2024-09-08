@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+import { resetAllFilters, selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 
 // styles
 import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
@@ -219,8 +219,9 @@ const FlightsAdvancedFilter = () => {
 
                         </div>
 
-                        <div className='w-[90%] md:w-[65%] flex justify-center'>
+                        <div className='w-[90%] md:w-[65%] flex justify-between mt-2'>
                             <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-40 h-12`}>اعمال فیلتر</button>
+                            <button onClick={() => dispatch(resetAllFilters())} className={` ${buttonStyles.normalButton} w-40 h-12`}>حذف فیلترها</button>
                         </div>
                     </>
                     
