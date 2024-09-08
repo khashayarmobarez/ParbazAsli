@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+import windIcon from '../../../assets/icons/windIcon.svg'
+import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
+import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg'
 
 // react-toastify
 import { toast } from 'react-toastify';
@@ -359,16 +362,22 @@ const AddLanding = () => {
                         />
                     </div>
 
-                    <DropdownInput name={'جهت باد'} options={windDirectionOptions} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} />
+                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} />
                     
                     <NumberInput
+                        icon={windIcon}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
                     />
 
                     {flightType === 'Tandem' && 
-                    <TextInput value={passengerPhoneNumber} onChange={handlePassengerPhoneNum} placeholder='درج شماره تماس مسافر' />
+                    <TextInput 
+                        icon={phoneIcon}
+                        value={passengerPhoneNumber} 
+                        onChange={handlePassengerPhoneNum} 
+                        placeholder='درج شماره تماس مسافر' 
+                    />
                     }
 
                     {/* description input */}
