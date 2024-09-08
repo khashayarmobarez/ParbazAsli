@@ -35,13 +35,13 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
   };
 
   return (
-    <div className="flex relative w-[100%] h-12 rounded-xl">
+    <div className="flex items-center relative w-[100%] h-12 rounded-xl">
       <span>
-        <img src={icon || Cube} alt="icon" className="absolute mt-3 mr-2 w-5" />
+        <img src={icon || Cube} alt="icon" className="absolute -mt-3 mr-2 w-5" />
       </span>
       <select
         ref={selectRef}
-        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} w-full`} // Add right padding
+        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} h-full w-full`} // Add right padding
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={handleChange}
@@ -51,7 +51,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}
       </select>
-      <span onClick={handleIconClick} className="absolute left-3 pb-2  h-full flex items-center pr-2 cursor-pointer pointer-events-none">
+      <span onClick={handleIconClick} className="absolute left-3 pb-0  h-full flex items-center pr-2 cursor-pointer pointer-events-none">
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
     </div>

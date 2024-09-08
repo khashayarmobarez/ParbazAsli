@@ -12,9 +12,11 @@ import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 import wingIcon from '../../../assets/icons/wingicon.svg'
 import harnessIcon from '../../../assets/icons/harnessicon.svg'
 import locationIcon from '../../../assets/icons/location.svg'
-import windIcon from '../../../assets/icons/windIcon.svg'
-import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
-import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg'
+import earthIcon from '../../../assets/icons/earth.svg'
+import multipleTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
+import singleTag from '../../../assets/icons/ADressTag.svg'
+import userIcon from '../../../assets/icons/user-Icon.svg'
+
 
 // mui
 import CircularProgress from '@mui/material/CircularProgress';
@@ -172,7 +174,7 @@ const FlightsAdvancedFilter = () => {
                     
                             {
                                 userCoursesData && userCoursesData.data.length > 0 &&
-                                <DropdownInput name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                                <DropdownInput icon={singleTag} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
                             }
                             
                             {
@@ -186,27 +188,27 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 countriesData && 
-                                <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                                <DropdownInput icon={earthIcon} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
                             }
 
                             {
                                 provincesData && !provincesLoading && (countryFilter && countryFilter.id) &&
-                                (<SearchInputWithDropdown name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
+                                (<SearchInputWithDropdown icon={locationIcon} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
                             }
 
                             {
                                 flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
-                                (<SearchInputWithDropdown name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
+                                (<SearchInputWithDropdown icon={locationIcon} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
-                            <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                            <DropdownInput icon={multipleTagsIcon} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             
                             {
                                 userCoachesData && userCoachesData.data.length > 0 &&
-                                <DropdownInput name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
+                                <DropdownInput icon={userIcon} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
                             }
 
-                            <DropdownInput name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+                            <DropdownInput icon={multipleTagsIcon} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
                             {/* the date picker component comes from equipment section */}

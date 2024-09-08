@@ -52,7 +52,7 @@ const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange
 
 
       <span className=''> 
-        <ArrowBackIosNewIcon sx={{ position: 'absolute', transform: 'rotate(-90deg)', margin: '0.8rem -2rem 0 0rem',  }} />
+        <ArrowBackIosNewIcon sx={{ position: 'absolute', transform: 'rotate(-90deg)', margin: '0.8rem -2.2rem 0 0rem',  }} />
       </span>
 
     </div>
