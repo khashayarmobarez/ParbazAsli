@@ -22,8 +22,6 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../assets/icons/3dCube.svg'
-import parachuteIcon from '../../../assets/icons/parachuteIcon.svg'
-import tagsIcon from '../../../assets/icons/colorTagsIcon.svg'
 import clothesTag from '../../../assets/icons/clothingTag.svg'
 import calenderIcon from '../../../assets/icons/calender-Icon.svg'
 import watchIcon from '../../../assets/icons/flightHour.svg'

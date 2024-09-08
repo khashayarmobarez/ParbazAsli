@@ -16,6 +16,12 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // assets
 import Cube from '../../../../assets/icons/3dCube.svg'
+import wingIcon from '../../../../assets/icons/wingicon.svg'
+import tagsIcon from '../../../../assets/icons/colorTagsIcon.svg'
+import clothesTag from '../../../../assets/icons/clothingTag.svg'
+import calenderIcon from '../../../../assets/icons/calender-Icon.svg'
+import watchIcon from '../../../../assets/icons/flightHour.svg'
+import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
 
 // input options
 import {flightTypeOptions} from '../../../../Utilities/Providers/dropdownInputOptions'
@@ -282,6 +288,7 @@ const AddClubFlightEquipment = () => {
                             selectedOption={selectedOptionBrand}
                             handleSelectChange={handleSelectChangeBrand}
                             name={'برند'}
+                            icon={clothesTag}
                         />
 
                         {/* show custom brand input */}
@@ -303,6 +310,7 @@ const AddClubFlightEquipment = () => {
                         <DropdownInput
                           className='col-span-1'
                           name={'کلاس'}
+                          icon={wingIcon}
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
@@ -312,6 +320,7 @@ const AddClubFlightEquipment = () => {
                         <DropdownInput
                           className='col-span-1'
                           name={'نوع'}
+                          icon={tagsIcon}
                           options={flightTypeOptions}
                           selectedOption={selectedOptionType} 
                           handleSelectChange={handleSelectChangeType}
@@ -319,7 +328,7 @@ const AddClubFlightEquipment = () => {
                         
                         {/* Year input */}
                         <NumberInput
-                          icon={Cube}
+                          icon={calenderIcon}
                           className='col-span-1'
                           value={year}
                           onChange={handleTextInputYear}
@@ -327,7 +336,7 @@ const AddClubFlightEquipment = () => {
                         />
                         
                         {/* flight hour model input */}
-                        <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
+                        <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
                       
 
                       </div>
@@ -342,7 +351,7 @@ const AddClubFlightEquipment = () => {
                       </div>
 
                       <TextInput
-                        icon={Cube}
+                        icon={serialNumberIcon}
                         className='col-span-1'
                         value={serialNumber}
                         onChange={handleTextInputSerialNumber}

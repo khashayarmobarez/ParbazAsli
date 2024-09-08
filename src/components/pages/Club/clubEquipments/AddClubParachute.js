@@ -22,6 +22,11 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../../assets/icons/3dCube.svg'
+import clothesTag from '../../../../assets/icons/clothingTag.svg'
+import calenderIcon from '../../../../assets/icons/calender-Icon.svg'
+import watchIcon from '../../../../assets/icons/flightHour.svg'
+import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
+import userIcon from '../../../../assets/icons/user-Icon.svg'
 
 // components 
 import DropdownInput from '../../../inputs/DropDownInput';
@@ -335,6 +340,7 @@ const AddParachute = () => {
                           selectedOption={selectedOptionBrand}
                           handleSelectChange={handleSelectChangeBrand}
                           name={'برند'}
+                          icon={clothesTag}
                       />
 
                       {/* show custom brand input */}
@@ -356,11 +362,11 @@ const AddParachute = () => {
                       </div>
 
                       {/* FLight hour input */}
-                      <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
+                      <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
 
                       {/* Year input */}
                       <NumberInput
-                        icon={Cube}
+                        icon={calenderIcon}
                         className='col-span-1'
                         value={year}
                         onChange={handleTextInputYear}
@@ -372,7 +378,7 @@ const AddParachute = () => {
                       {/* Last Packer ID input */}
                       <div className='w-full flex flex-col items-start gap-y-2'>
                         <TextInput
-                          icon={Cube}
+                          icon={userIcon}
                           className='col-span-1'
                           value={lastPackerId}
                           onChange={handleTextInputLastPackerId}
@@ -389,7 +395,7 @@ const AddParachute = () => {
                     </div>
 
                     <div className='w-full flex flex-col text-start gap-y-1'>
-                      <p className=' self-start md:self-center text-[var(--primary-light)]'>ثبت سریال بال (اختیاری)</p>
+                      <p className=' self-start md:self-center text-[var(--primary-light)]'>ثبت سریال چتر کمکی (اختیاری)</p>
                       <p className=' text-xs text-right'>
                         با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
                         <br/>
@@ -399,7 +405,7 @@ const AddParachute = () => {
   
                     {/* Serial Number input */}
                     <TextInput
-                      icon={Cube}
+                      icon={serialNumberIcon}
                       className='col-span-1'
                       value={serialNumber}
                       onChange={handleTextInputSerialNumber}
