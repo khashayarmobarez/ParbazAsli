@@ -45,6 +45,13 @@ const EditClubEquipment = () => {
     const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
 
 
+    useEffect(() => {
+        if(equipmentSerial.length < 1) {
+            setSelectedFile(null);
+        }
+    }, [equipmentSerial])
+
+
     const handlePackageDate = (date) => {
         setPackageDate(date);
 
@@ -347,8 +354,13 @@ const EditClubEquipment = () => {
                                                 />
 
                                                 {/* for uploading pictures */}
-                                                <UploadFileInput name={'سریال وسیله پروازی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                                                <p className=' text-xs mt-[-0.5rem]'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                                                {
+                                                    equipmentSerial.length > 0 &&
+                                                    <>
+                                                        <UploadFileInput name={'سریال وسیله پروازی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                                        <p className=' text-xs mt-[-0.5rem]'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                                                    </>
+                                                }
                                             </>
                                             }
                                             

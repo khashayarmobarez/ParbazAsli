@@ -56,6 +56,12 @@ const AddClubHarness = () => {
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
 
+  useEffect(() => {
+    if(serialNumber.length < 1) {
+      setSelectedFile(null);
+    }
+  }, [serialNumber])
+
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
 
@@ -285,10 +291,13 @@ const AddClubHarness = () => {
                   />
 
                   {/* for uploading pictures */}
-                  <div className='w-full flex flex-col items-start space-y-3'>
-                    <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                    <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
-                  </div>
+                  {
+                    serialNumber.length > 0 &&
+                      <div className='w-full flex flex-col items-start space-y-3'>
+                        <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                        <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
+                      </div>
+                  }
 
                   <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
                 </form>

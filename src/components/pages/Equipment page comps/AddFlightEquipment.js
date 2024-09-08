@@ -62,6 +62,12 @@ const AddFlightEquipment = () => {
 
   // useNavigate to go back one page
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(serialNumber.length < 1) {
+      setSelectedFile(null);
+    }
+  }, [serialNumber])
 
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
@@ -346,10 +352,13 @@ const AddFlightEquipment = () => {
                         />
 
                       {/* for uploading pictures */}
-                      <div className='w-full flex flex-col items-start space-y-3'>
-                        <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                        <p className=' text-xs'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
-                      </div>
+                      {
+                        serialNumber.length > 0 &&
+                          <div className={`w-full flex flex-col items-start space-y-3`}>
+                            <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                            <p className=' text-xs'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                          </div>
+                      }
 
 
                       <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>

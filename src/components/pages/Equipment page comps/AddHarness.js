@@ -54,9 +54,22 @@ const AddHarness = () => {
   
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
+  
+  // Clear selected file if serial number is empty
+  useEffect(() => {
+    if(serialNumber.length < 1) {
+      setSelectedFile(null);
+    }
+  }, [serialNumber])
 
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
+
+  useEffect(() => {
+    if(serialNumber.length < 1) {
+      setSelectedFile(null);
+    }
+  }, [serialNumber])
 
   // Validation functions
   const validateSerialNumber = (serialNumber) => {
@@ -287,8 +300,13 @@ const AddHarness = () => {
                   />
 
                   {/* for uploading pictures */}
-                  <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                  <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                  {
+                        serialNumber.length > 0 &&
+                        <>
+                          <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                          <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                        </>
+                  }
                   
 
                   <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-2`} >ثبت</button>

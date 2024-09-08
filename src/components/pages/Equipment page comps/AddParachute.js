@@ -24,20 +24,18 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import Cube from '../../../assets/icons/3dCube.svg'
 
 // components 
-import DropdownInput from '../../inputs/DropDownInput';
 import TextInput from '../../inputs/textInput';
 import UploadFileInput from '../../inputs/UploadFileInput';
 import PageTitle from '../../reuseable/PageTitle';
 import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
 import NumberInput from '../../inputs/NumberInput';
-import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 import BrandsSearchInputWithDropdown from './inputsForEquipment/BrandsSearchInputWithDropdown';
 
 
 const AddParachute = () => {
   
-  const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('parachute');
+  const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands('parachute');
 
   
   const { mutate: mutateParachute , isLoading: isSubmitting, error: submitError} = useAddEquipment();
@@ -76,10 +74,17 @@ const AddParachute = () => {
   const [serialNumberError, setSerialNumberError] = useState('');
   const [packerIdError, setPackerIdError] = useState('');
   
+  // Clear selected file if serial number is empty
+  useEffect(() => {
+    if(serialNumber.length < 1) {
+      setSelectedFile(null);
+    }
+  }, [serialNumber])
 
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
   const userIdPattern = /^[0-9]{3}[a-z]{3}$/;
+
 
   // Validation functions
   const validateSerialNumber = (serialNumber) => {
@@ -397,8 +402,13 @@ const AddParachute = () => {
                     {/* <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p> */}
 
                     {/* for uploading pictures */}
-                    <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                    <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                    {
+                        serialNumber.length > 0 &&
+                        <>
+                          <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                          <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                        </>
+                    }
 
                     <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-2`}>ثبت</button>
 

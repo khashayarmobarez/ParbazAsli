@@ -74,8 +74,13 @@ const AddParachute = () => {
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
   const [packerIdError, setPackerIdError] = useState('');
-  
 
+  useEffect(() => {
+    if(serialNumber.length < 1) {
+      setSelectedFile(null);
+    }
+  }, [serialNumber])
+  
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
   const userIdPattern = /^[0-9]{3}[a-z]{3}$/;
@@ -386,21 +391,26 @@ const AddParachute = () => {
                     <p className=' self-start md:self-center'>ثبت سریال چتر (اختیاری)</p>
   
                         {/* Serial Number input */}
-                        <TextInput
-                          icon={Cube}
-                          className='col-span-1'
-                          value={serialNumber}
-                          onChange={handleTextInputSerialNumber}
-                          placeholder='شماره سریال (اختیاری)'
-                        />
+                    <TextInput
+                      icon={Cube}
+                      className='col-span-1'
+                      value={serialNumber}
+                      onChange={handleTextInputSerialNumber}
+                      placeholder='شماره سریال (اختیاری)'
+                    />
 
                     {/* <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p> */}
 
                     {/* for uploading pictures */}
-                    <div className='w-full flex flex-col items-start space-y-3'>
-                      <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                      <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
-                    </div>
+                    {
+                        serialNumber.length > 0 &&
+                        <>
+                          <div className='w-full flex flex-col items-start space-y-3'>
+                            <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                            <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
+                          </div>
+                        </>
+                    }
 
                     <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
