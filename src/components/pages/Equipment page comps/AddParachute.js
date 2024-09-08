@@ -22,6 +22,13 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../assets/icons/3dCube.svg'
+import parachuteIcon from '../../../assets/icons/parachuteIcon.svg'
+import tagsIcon from '../../../assets/icons/colorTagsIcon.svg'
+import clothesTag from '../../../assets/icons/clothingTag.svg'
+import calenderIcon from '../../../assets/icons/calender-Icon.svg'
+import watchIcon from '../../../assets/icons/flightHour.svg'
+import serialNumberIcon from '../../../assets/icons/serialNumber.svg'
+import userIcon from '../../../assets/icons/user-Icon.svg'
 
 // components 
 import TextInput from '../../inputs/textInput';
@@ -335,6 +342,7 @@ const AddParachute = () => {
                           selectedOption={selectedOptionBrand}
                           handleSelectChange={handleSelectChangeBrand}
                           name={'برند'}
+                          icon={clothesTag}
                       />
 
                       {/* show custom brand input */}
@@ -353,11 +361,11 @@ const AddParachute = () => {
                       </div>
 
                       {/* FLight hour input */}
-                      <NumberInput icon={Cube} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
+                      <NumberInput icon={watchIcon}  className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
 
                       {/* Year input */}
                       <NumberInput
-                        icon={Cube}
+                        icon={calenderIcon}
                         className='col-span-1'
                         value={year}  
                         onChange={handleTextInputYear}
@@ -369,7 +377,7 @@ const AddParachute = () => {
                       {/* Last Packer ID input */}
                       <div className='w-full flex flex-col items-start gap-y-2'>
                         <TextInput
-                          icon={Cube}
+                          icon={userIcon}
                           className='col-span-1'
                           value={lastPackerId}
                           onChange={handleTextInputLastPackerId}
@@ -393,7 +401,7 @@ const AddParachute = () => {
   
                         {/* Serial Number input */}
                         <TextInput
-                          icon={Cube}
+                          icon={serialNumberIcon}
                           className='col-span-1'
                           value={serialNumber}
                           onChange={handleTextInputSerialNumber}
