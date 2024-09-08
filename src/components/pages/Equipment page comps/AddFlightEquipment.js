@@ -361,7 +361,6 @@ const AddFlightEquipment = () => {
                           </div>
                       }
 
-
                       <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
                   </form>

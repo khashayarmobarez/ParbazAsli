@@ -19,7 +19,7 @@ const TandemSurvey = () => {
 
     const [rating, setRating] = useState(0); // Default to 2 stars
     const [description, setDescription] = useState('');
-    const [videoFile, setVideoFile] = useState(null);
+    const [videoFiles, setVideoFiles] = useState([]);
 
     const { data: IsSurveyAvailable, isLoading: availablityLoading, error: availablityError } = useIsSurveyAvailabe(id);
     const { mutate: submitSurvey, isLoading: submitSubmitSurveyLoading } = useSubmitSurvey();
@@ -29,23 +29,25 @@ const TandemSurvey = () => {
     };
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
+        const files = Array.from(event.target.files); // Convert FileList to array
         const validTypes = ['video/mp4', 'video/webm', 'video/ogg'];
         const maxSize = 50 * 1024 * 1024; // 50MB
-
-        if (file && validTypes.includes(file.type) && file.size <= maxSize) {
-            setVideoFile(file);
+    
+        const validFiles = files.filter((file) => validTypes.includes(file.type) && file.size <= maxSize);
+    
+        if (validFiles.length > 0) {
+          setVideoFiles(validFiles);
         } else {
-            setVideoFile(null);
-            toast('Invalid file type or size. Please upload a video file less than 50MB.', {
-                type: 'error',
-                position: 'top-right',
-                autoClose: 5000,
-                theme: 'dark',
-                style: { width: "90%" }
-            });
+          setVideoFiles([]);
+          toast('نوع یا اندازه فایل‌ها نامعتبر است. لطفاً فایل‌های ویدیویی کمتر از 50 مگابایت آپلود کنید.', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: '90%' },
+          });
         }
-    };
+      };
 
 
 
@@ -65,7 +67,9 @@ const TandemSurvey = () => {
 
             const formData = new FormData();
 
-            formData.append('file', videoFile);
+            videoFiles.forEach((file) => {
+                formData.append(`files`, file); // Append each file with a unique key
+            });
             formData.append('rate', rating);
             formData.append('id', id);
             formData.append('description', description);
@@ -143,39 +147,41 @@ const TandemSurvey = () => {
                             />
                         </div>
 
-                        <p className='text-center px-4 text-base my-8 text-[var(--yellow-text)]'>در صورت تمایل ویدیو پرواز خود را آپلود کنید</p>
+                        <p className='text-center px-4 text-base mt-6 mb-2 text-[var(--yellow-text)]'>در صورت تمایل ویدیو پرواز خود را آپلود کنید</p>
 
-                        <div className={`${styles.inputDiv} `}>
-                            <input 
-                                className={styles.input} 
-                                name="file" 
-                                type="file" 
-                                onChange={handleFileChange} 
+                        
+                        <div className="w-full">
+
+                            {/* Hidden file input */}
+                            <input
+                                id="fileInput"
+                                className="hidden" // Hide the default input
+                                name="file"
+                                type="file"
+                                onChange={handleFileChange}
                             />
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                strokeLinejoin="round"
-                                strokeLinecap="round"
-                                viewBox="0 0 24 24"
-                                strokeWidth="2"
-                                fill="none"
-                                stroke="currentColor"
-                                className={styles.icon}
-                            >
-                                <polyline points="16 16 12 12 8 16" />
-                                <line y2="21" x2="12" y1="12" x1="12" />
-                                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
-                                <polyline points="16 16 12 12 8 16" />
-                            </svg>
-                        </div>
-                        {
-                            videoFile &&
-                            <p className='text-xs mt-2'>{videoFile.name}</p>
-                        }
 
-                        <button type="submit" disabled={!rating || submitSubmitSurveyLoading} className={`${ButtonStyles.addButton} ${(!rating || submitSubmitSurveyLoading) && 'opacity-45'} w-24 mt-8`}>تایید</button>
+                            {/* Custom-styled label to act as a button */}
+                            <label
+                                htmlFor="fileInput"
+                                className={`${ButtonStyles.normalButton} w-full h-12 flex items-center justify-center cursor-pointer`} // Custom styles
+                            >
+                                آپلود  ویدئو
+                            </label>
+
+                            <p className=' text-xs mt-2 text-start'>فرمت مجاز: mp4, mov ,webm و mkv تا حجم 4 مگابایت</p>
+
+                        </div>
+
+                        {videoFiles.length > 0 && (
+                            <ul className="text-xs mt-2">
+                                {videoFiles.map((file, index) => (
+                                <li key={index}>{file.name}</li>
+                                ))}
+                            </ul>
+                        )}
+
+                        <button type="submit" disabled={!rating || submitSubmitSurveyLoading} className={`${ButtonStyles.addButton} ${(!rating || submitSubmitSurveyLoading) && 'opacity-45'} w-32 h-12 mt-8`}>تایید</button>
 
                     </form>
                 }
