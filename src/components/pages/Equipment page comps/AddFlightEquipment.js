@@ -145,29 +145,6 @@ const AddFlightEquipment = () => {
       // Here you can handle form submission, such as sending data to a backend server
       const isSerialNumberValid = validateSerialNumber(serialNumber);
 
-      // Validate inputs
-      if (!isSerialNumberValid) {
-        toast('فرمت شماره سریال چتر اشتباه است', {
-            type: 'error',
-            position: 'top-right',
-            autoClose: 5000,
-            theme: 'dark',
-            style: { width: "90%" }
-        });
-        return;
-      }
-
-      if (year <= 1979 || year > currentYear) {
-          toast('سال تولید چتر را درست وارد کنید', {
-              type: 'error',
-              position: 'top-right',
-              autoClose: 5000,
-              theme: 'dark',
-              style: { width: "90%" }
-          });
-          return;
-      }
-
       if (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
           toast('تمامی فیلدها را پر کنید', {
               type: 'error',
@@ -179,6 +156,30 @@ const AddFlightEquipment = () => {
           return;
       }
 
+      
+      if (year <= 1979 || year > currentYear) {
+        toast('سال تولید چتر را درست وارد کنید', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          style: { width: "90%" }
+        });
+          return;
+        }
+        
+      // Validate inputs
+      if (!isSerialNumberValid) {
+        toast('فرمت شماره سریال چتر اشتباه است', {
+            type: 'error',
+            position: 'top-right',
+            autoClose: 5000,
+            theme: 'dark',
+            style: { width: "90%" }
+        });
+        return;
+      }
+        
     if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
         toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
             type: 'error',
@@ -326,7 +327,7 @@ const AddFlightEquipment = () => {
                           className='col-span-1'
                           value={year}
                           onChange={handleTextInputYear}
-                          placeholder='سال'
+                          placeholder='سال ساخت (میلادی)'
                         />
                         
                         {/* flight hour model input */}

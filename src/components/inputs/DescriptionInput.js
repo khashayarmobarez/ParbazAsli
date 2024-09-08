@@ -16,7 +16,7 @@ const DescriptionInput = ({ value, onChange, placeholder,  }) => {
 
   return (
     <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
-      <textarea id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputDescription} ${filled && inputStyles.inputFilledBorder} rounded-xl w-[100%] min-h-28 px-2 py-2`} />
+      <textarea id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputDescription} ${filled && inputStyles.inputFilledBorder} rounded-xl w-[100%] min-h-28 px-3 py-3 text-sm`} />
     </div>
   ); 
 };

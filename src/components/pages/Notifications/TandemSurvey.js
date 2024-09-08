@@ -12,6 +12,7 @@ import { CircularProgress } from '@mui/material';
 import { useIsSurveyAvailabe, useSubmitSurvey } from '../../../Utilities/Services/notificationAndSurveyQueries';
 import DescriptionInput from '../../inputs/DescriptionInput';
 import { toast } from 'react-toastify';
+import StarRating from '../../reuseable/StarRating';
 
 const TandemSurvey = () => {
     const { id } = useParams();
@@ -22,10 +23,6 @@ const TandemSurvey = () => {
 
     const { data: IsSurveyAvailable, isLoading: availablityLoading, error: availablityError } = useIsSurveyAvailabe(id);
     const { mutate: submitSurvey, isLoading: submitSubmitSurveyLoading } = useSubmitSurvey();
-
-    const handleRatingChange = (event) => {
-        setRating(Number(event.target.value));
-    };
 
     const handleDescription = (event) => {
         setDescription(event.target.value);
@@ -132,23 +129,10 @@ const TandemSurvey = () => {
 
                         <p className='text-center px-4 text-sm'>با نظرات مفید خود از پروازی که انجام دادید ما را در راستای پیشرفت و هر چه بهتر شدن یاری فرمایید</p>
 
-                        <div className={styles.rating}>
-                            {[5, 4, 3, 2, 1].map((star) => (
-                                <React.Fragment key={star}>
-                                    <input 
-                                        type="radio" 
-                                        id={`star${star}`} 
-                                        name="rate" 
-                                        value={star} 
-                                        checked={rating === star} 
-                                        onChange={handleRatingChange} 
-                                    />
-                                    <label htmlFor={`star${star}`} title={`${star} stars`}></label>
-                                </React.Fragment>
-                            ))}
+                        {/* star rating */}
+                        <div className='w-[70%]'>
+                            <StarRating rate={rating} setRate={setRating} />
                         </div>
-
-                        <p className='text-center px-4 text-sm mt-2'>دلیل نمره خود را بنویسید</p>
 
                         {/* description input */}
                         <div className='w-full flex flex-col gap-y-2 '>

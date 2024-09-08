@@ -323,7 +323,7 @@ const AddClubFlightEquipment = () => {
                           className='col-span-1'
                           value={year}
                           onChange={handleTextInputYear}
-                          placeholder='سال'
+                          placeholder='سال ساخت (میلادی)'
                         />
                         
                         {/* flight hour model input */}

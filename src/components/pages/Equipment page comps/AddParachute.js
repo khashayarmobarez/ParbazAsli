@@ -186,6 +186,17 @@ const AddParachute = () => {
     const isSerialNumberValid = validateSerialNumber(serialNumber);
     const isPackerIdValid = validatePackerId(lastPackerId);
     
+    if (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year) {
+      toast('تمامی فیلدهای الزامی را پر کنید', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          style: { width: "90%" }
+      });
+      return;
+    }
+    
     // Validate inputs
     if (serialNumber && !isSerialNumberValid) {
       toast('فرمت شماره سریال چتر اشتباه است', {
@@ -197,7 +208,7 @@ const AddParachute = () => {
       });
       return;
     }
-
+    
     if (lastPackerId && !isPackerIdValid) {
       toast('فرمت کد بسته بندی کننده اشتباه است', {
           type: 'error',
@@ -220,16 +231,6 @@ const AddParachute = () => {
       return;
     }
 
-    if (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year) {
-      toast('تمامی فیلدهای الزامی را پر کنید', {
-          type: 'error',
-          position: 'top-right',
-          autoClose: 5000,
-          theme: 'dark',
-          style: { width: "90%" }
-      });
-      return;
-    }
 
     if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
       toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
@@ -360,7 +361,7 @@ const AddParachute = () => {
                         className='col-span-1'
                         value={year}  
                         onChange={handleTextInputYear}
-                        placeholder='سال ساخت'
+                        placeholder='سال ساخت (میلادی)'
                       />
 
                       <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />

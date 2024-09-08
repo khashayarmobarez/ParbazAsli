@@ -124,6 +124,17 @@ const AddHarness = () => {
       // Here you can handle form submission, such as sending data to a backend server
       const isSerialNumberValid = validateSerialNumber(serialNumber);
 
+      if (!(brand || customBrand) || !aircraft || !size || !flightHour || !year) {
+          toast('تمامی فیلدها را پر کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: 'dark',
+              style: { width: "90%" }
+          });
+          return;
+      }
+
       // Validate inputs
       if (!isSerialNumberValid) {
         toast('فرمت شماره سریال چتر اشتباه است', {
@@ -138,17 +149,6 @@ const AddHarness = () => {
 
       if (year <= 1979 || year > currentYear) {
           toast('سال تولید چتر را درست وارد کنید', {
-              type: 'error',
-              position: 'top-right',
-              autoClose: 5000,
-              theme: 'dark',
-              style: { width: "90%" }
-          });
-          return;
-      }
-
-      if (!(brand || customBrand) || !aircraft || !size || !flightHour || !year) {
-          toast('تمامی فیلدها را پر کنید', {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
@@ -278,7 +278,7 @@ const AddHarness = () => {
                       className='col-span-1'
                       value={year}
                       onChange={handleTextInputYear}
-                      placeholder='سال'
+                      placeholder='سال ساخت (میلادی)'
                     />
 
                   </div>

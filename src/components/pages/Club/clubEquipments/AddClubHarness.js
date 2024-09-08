@@ -274,7 +274,7 @@ const AddClubHarness = () => {
                       className='col-span-1'
                       value={year}
                       onChange={handleTextInputYear}
-                      placeholder='سال'
+                      placeholder='سال ساخت (میلادی)'
                     />
 
                   </div>

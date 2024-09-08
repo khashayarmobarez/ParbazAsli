@@ -372,12 +372,12 @@ const AddLanding = () => {
                     />
 
                     {flightType === 'Tandem' && 
-                    <TextInput 
-                        icon={phoneIcon}
-                        value={passengerPhoneNumber} 
-                        onChange={handlePassengerPhoneNum} 
-                        placeholder='درج شماره تماس مسافر' 
-                    />
+                        <TextInput 
+                            icon={phoneIcon}
+                            value={passengerPhoneNumber} 
+                            onChange={handlePassengerPhoneNum} 
+                            placeholder='درج شماره تماس مسافر' 
+                        />
                     }
 
                     {/* description input */}

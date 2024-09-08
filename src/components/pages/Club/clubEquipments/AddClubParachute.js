@@ -364,7 +364,7 @@ const AddParachute = () => {
                         className='col-span-1'
                         value={year}
                         onChange={handleTextInputYear}
-                        placeholder='سال ساخت'
+                        placeholder='سال ساخت (میلادی)'
                       />
 
                       <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
