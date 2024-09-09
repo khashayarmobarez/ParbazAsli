@@ -19,6 +19,7 @@ const DescriptionInput = ({ value, onChange, placeholder,  }) => {
       <textarea id="aircraft" placeholder={placeholder} onChange={handleInputChange} value={value ? value : ''} className={`${inputStyles.inputDescription} ${filled && inputStyles.inputFilledBorder} rounded-xl w-[100%] min-h-28 px-3 py-3 text-sm`} />
     </div>
   ); 
+  
 };
 
 export default DescriptionInput;
