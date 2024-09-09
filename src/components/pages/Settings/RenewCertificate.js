@@ -1,4 +1,4 @@
-import React, {  useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -46,6 +46,7 @@ const RenewCertificate = () => {
     const [dateEndValue, setDateEndValue] = useState('')
 
     const [uploadedFile, setUploadedFile] = useState(null);
+
     const fileInputRef = useRef(null);
 
     const [errMsg, setErrMsg] = useState(null)
@@ -54,6 +55,10 @@ const RenewCertificate = () => {
 
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
 
+    // reset all the states after changing certificateId
+    // useEffect(() => {
+
+    
     const handleSelectOrganChange = (selectedOption) => {
         setOrgan(selectedOption);
     };
@@ -241,7 +246,8 @@ const RenewCertificate = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    name={'سطح گواهینامه'}
+                                                    name={'مقطع گواهینامه'}
+                                                    isDeselectDeactivated={true}
                                                 />
                                                 
                                                 {/* removing other fill options for starters */}
