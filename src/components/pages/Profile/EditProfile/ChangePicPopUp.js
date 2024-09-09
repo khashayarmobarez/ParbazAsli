@@ -12,7 +12,7 @@ import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 
-const ChangePicPopUp = ({setShowPopup, showPopup}) => {
+const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;
@@ -137,10 +137,13 @@ const ChangePicPopUp = ({setShowPopup, showPopup}) => {
                     onClick={handleSubmit} >
                         {isLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
                     </button>
-
-                    <button type="reset" disabled={isDeleting}  className={`${ButtonStyles.normalButton} w-28 text-sm `} onClick={handleRemove} >
-                        {isDeleting ? 'در حال حذف...' : 'حذف عکس فعلی'}
-                    </button>
+                    
+                    {
+                        isUserPhotoAvailable &&
+                            <button type="reset" disabled={isDeleting}  className={`${ButtonStyles.normalButton} w-28 text-sm `} onClick={handleRemove} >
+                                {isDeleting ? 'در حال حذف...' : 'حذف عکس فعلی'}
+                            </button>
+                    }
 
                 </div>
 
