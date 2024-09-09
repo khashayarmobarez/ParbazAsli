@@ -24,7 +24,7 @@ import watchIcon from '../../../../assets/icons/flightHour.svg'
 import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
 
 // input options
-import {flightTypeOptionsEquipmen} from '../../../../Utilities/Providers/dropdownInputOptions'
+import {flightTypeOptionsEquipment} from '../../../../Utilities/Providers/dropdownInputOptions'
 
 // components 
 import DropdownInput from '../../../inputs/DropDownInput';
@@ -321,7 +321,7 @@ const AddClubFlightEquipment = () => {
                           className='col-span-1'
                           name={'نوع'}
                           icon={tagsIcon}
-                          options={flightTypeOptionsEquipmen}
+                          options={flightTypeOptionsEquipment}
                           selectedOption={selectedOptionType} 
                           handleSelectChange={handleSelectChangeType}
                         />
