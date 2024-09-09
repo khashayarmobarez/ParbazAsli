@@ -35,12 +35,6 @@ const ChangeProfile = () => {
         error
     } = authSettings;
     const {
-        passwordMinLength,
-        passwordMaxLength,
-        passwordRequireNonAlphanumeric,
-        passwordRequireDigit,
-        passwordRequireUppercase,
-        passwordRequireLowercase,
         emailCodeLength,
         phoneNumberCodeLength,
     } = authSettings.settings;
@@ -120,6 +114,29 @@ const ChangeProfile = () => {
             return;
         }
 
+        // Check if the phone number contains only numbers
+        if (!/^\d+$/.test(phoneNumber)) {
+            toast('شماره تلفن فقط باید شامل اعداد باشد', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
+
+        // Check if the phone number is less than 10 digits
+        if (phoneNumber.length < 10) {
+            toast('شماره تلفن نباید کمتر از 10 رقم باشد', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: 'dark',
+                style: { width: "90%" }
+            });
+            return;
+        }
 
         setLoadingStatus(true)
         
@@ -318,7 +335,7 @@ const ChangeProfile = () => {
                             <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
-                                <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                                <InputWithButton isForPhone={true} Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
                                 <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
 
                                 <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
@@ -336,7 +353,7 @@ const ChangeProfile = () => {
                         handleFinalSubmit={handleFinalPhoneSubmission} codeLength={phoneNumberCodeLength} />
 
                         <PhoneVerificationCode handleResendCode={changeEmailPopUp} isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
-                        handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} />
+                        handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength}  />
 
                         <ChangePasswordPopUp showPopUp={showPopupType === 'changePassword'} setShowPopUp={setShowPopupType} />
 

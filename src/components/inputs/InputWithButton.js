@@ -7,14 +7,14 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 // css styles 
 import gradients from '../../styles/gradients/Gradient.module.css'
 
-const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onChange, id}) => {
+const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onChange, id, isForPhone}) => {
 
-    const isPhoneNumber = /^09\d{9}$/.test(value);
+    const isPhoneNumber = /^09\d*$/.test(value);
 
     return (
             <div className={` flex relative w-[100%] h-12 px-2`}>
                 <span style={{color:'var(--disabled-button-text)'}}> 
-                {isPhoneNumber ? (
+                {(isPhoneNumber || isForPhone) ? (
                     <LocalPhoneRoundedIcon
                         sx={{ position: 'absolute', margin: '10px 5px 0 0' }}
                     />

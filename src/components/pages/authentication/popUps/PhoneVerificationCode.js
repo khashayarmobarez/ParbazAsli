@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css';
 
-const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode }) => {
+const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode, isForPhone }) => {
 
     const [ waitNotif, setWaitNotif ] = useState('')
 
