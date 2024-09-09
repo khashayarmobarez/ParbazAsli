@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 // styles
@@ -60,6 +60,26 @@ const EditUserSettings = () => {
     const { mutate: mutateChangePhone } = useChangePhoneNumber();
     const { mutate: mutateChangeEmail } = useChangeEmail();
 
+    // decrease codeRemainingTimePhone 1, every second
+    useEffect(() => {
+        if(codeRemainingTimePhone > 0) {
+            const interval = setInterval(() => {
+                setCodeRemainingTimePhone(codeRemainingTimePhone - 1)
+            }, 1000);
+            return () => clearInterval(interval);
+        }
+        
+        if(codeRemainingTimeEmail > 0) {
+            const interval = setInterval(() => {
+                setCodeRemainingTimeEmail(codeRemainingTimeEmail - 1)
+            }
+            , 1000);
+            return () => clearInterval(interval);
+        }
+        
+    }, [codeRemainingTimePhone, codeRemainingTimeEmail])
+
+
     const persianToEnglishNumber = (input) => {
         const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
         const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -73,6 +93,7 @@ const EditUserSettings = () => {
         const convertedValue = persianToEnglishNumber(e.target.value);
         setPhoneNumber(convertedValue);
     }
+
 
     const changeEmailHandler = (e) => {
         setEmail(e.target.value)
@@ -272,7 +293,7 @@ const EditUserSettings = () => {
             <div className='flex flex-col w-full space-y-4 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
                 <FixedInput textData={userData.data.firstName} />
                 <FixedInput textData={userData.data.lastName} />
-                <InputWithButton Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                <InputWithButton isForPhone={true} Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
                 <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
 
                 <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 

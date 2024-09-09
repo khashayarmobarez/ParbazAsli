@@ -25,10 +25,17 @@ const Settings = () => {
 
     
     // controlling  items drop down
-    const [DropDown, setDropDown] = useState('')
+    const [DropDown, setDropDown] = useState(['dropDown2']);
 
     // clubstatus could be NotAdded, Pending, Accepted
     const { data: clubStatus , loading: clubStatusLoading } = useClubStatus();
+
+    const handleOpenDropDowns = (dropDown) => {
+        
+        !DropDown.includes(dropDown) && setDropDown([...DropDown,dropDown])
+        DropDown.includes(dropDown) && setDropDown(DropDown.filter(item => item !== dropDown))
+
+    }
 
     
 
@@ -40,25 +47,17 @@ const Settings = () => {
                 <PageTitle title={'تنظیمات'} navigateTo={'profile'} paddingRight={'40%'} /> 
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClickActivation={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
+                    <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown2')} onClickActivation={() => handleOpenDropDowns('dropDown2')} />
                     {
-                        DropDown === 'dropDown1' &&
-                        <WebColorMode />
-                    }
-                </div>
-
-                <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown === 'dropDown2'} onClickActivation={() => setDropDown(DropDown === 'dropDown2' ? '' : 'dropDown2')} />
-                    {
-                        DropDown === 'dropDown2' &&
+                        DropDown.includes('dropDown2') &&
                             <EditUserSettings />
                     }
                 </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
                                                                                                                                                                                                                                                                                                                          
                 <div className='w-[90%] flex flex-col items-center gap-y-4'>
-                    <DropDownLine  title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown === 'dropDown3'} onClickActivation={() => setDropDown(DropDown === 'dropDown3' ? '' : 'dropDown3')} />
+                    <DropDownLine  title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown3')} onClickActivation={() => handleOpenDropDowns('dropDown3')} />
                     {
-                        DropDown === 'dropDown3' &&
+                        DropDown.includes('dropDown3') &&
                         <div className='w-full flex flex-col items-center gap-y-6'>
                             <CertificateSettings />
                         </div>
@@ -82,21 +81,30 @@ const Settings = () => {
 
                 {   clubStatus &&
                     clubStatus.data === 'NotAdded' &&
-                        <div className='w-[90%] flex flex-col items-center'>
-                            <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown === 'dropDown5'} onClickActivation={() => setDropDown(DropDown === 'dropDown5' ? '' : 'dropDown5')} />
-                            {   
-                                DropDown === 'dropDown5' &&
-                                <>
-                                    {
-                                        clubStatus.data === 'NotAdded' ?
-                                        <AddClub isForSetting={true} />
-                                        :
-                                        ''
-                                    }
-                                </>
-                            }
-                        </div>
+                    <div className='w-[90%] flex flex-col items-center'>
+                        <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown5')} onClickActivation={() => handleOpenDropDowns('dropDown5')} />
+                        {   
+                            DropDown.includes('dropDown5') &&
+                            <>
+                                {
+                                    clubStatus.data === 'NotAdded' ?
+                                    <AddClub isForSetting={true} />
+                                    :
+                                    ''
+                                }
+                            </>
+                        }
+                    </div>
                 }
+
+                
+                <div className='w-[90%] flex flex-col items-center gap-y-6'>
+                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown1')} onClickActivation={() => handleOpenDropDowns('dropDown1')} />
+                    {
+                        DropDown.includes('dropDown1') &&
+                        <WebColorMode />
+                    }
+                </div>
                     
 
             </div>

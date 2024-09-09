@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -16,9 +16,11 @@ import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 const CertificateSettings = () => {
 
-    const [pageSize, setPageSize] = useState(5)
+    const navigate = useNavigate();
 
-    const { data: userCertificates, isLoading, error } = useAllUserCertificates(1,pageSize);
+    const [pageSize, setPageSize] = useState(3)
+
+    const { data: userCertificates, isLoading, error } = useAllUserCertificates(1,3);
 
     return (
         <div className='w-full flex flex-col items-center gap-y-6 mt-4'>
@@ -38,9 +40,9 @@ const CertificateSettings = () => {
                 {   
                     userCertificates && userCertificates.totalCount >= pageSize &&
                     <p 
-                    onClick={() => setPageSize(pageSize + 5)}
+                    onClick={() => navigate(`/editProfile/changeCertificate`)}
                     className='w-full' style={{color:'var(--yellow-text)'}}>
-                        مشاهده بیشتر ...
+                        مشاهده همه
                     </p>
                 }
 
