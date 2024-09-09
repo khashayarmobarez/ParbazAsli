@@ -199,7 +199,7 @@ const Parachute = (props) => {
                             <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
                                 <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                    <p> برند {equipment.brand} / مدل {equipment.model}</p>
                                     <p> شماره سریال: {equipment.serialNumber}</p>
                                 </div>
 
