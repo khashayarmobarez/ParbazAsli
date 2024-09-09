@@ -273,6 +273,7 @@ const AddCertificate = () => {
                                                     selectedOption={level}
                                                     name={'مقطع گواهینامه'}
                                                     icon={certificateIcon}
+                                                    isDeselectDeactivated={true}
                                                 />
                                                 
                                                 {/* removing other fill options for starters */}

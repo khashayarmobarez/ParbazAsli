@@ -19,6 +19,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../../../assets/icons/3dCube.svg'
+import user from '../../../../../assets/icons/user-Icon.svg'
+import serialNumberIcon from '../../../../../assets/icons/serialNumber.svg'
 
 // comps
 import PageTitle from '../../../../reuseable/PageTitle';
@@ -344,7 +346,7 @@ const EditClubEquipment = () => {
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
-                                                icon={Cube}
+                                                icon={serialNumberIcon}
                                                 className='col-span-1'
                                                 value={equipmentSerial}
                                                 onChange={handleTextInputEquipmentSerial}
@@ -376,7 +378,7 @@ const EditClubEquipment = () => {
                                                 {/* Last Packer ID input */}
                                                 <div className='w-full flex flex-col items-start gap-y-2'>
                                                     <TextInput
-                                                        icon={Cube}
+                                                        icon={user}
                                                         className='col-span-1'
                                                         value={lastPackerId}
                                                         onChange={handleTextInputLastPackerId}
@@ -398,7 +400,7 @@ const EditClubEquipment = () => {
 
 
                                 <div className='w-full flex justify-center items-center'>
-                                    <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
+                                    <button onClick={handlePopup} className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
                                 </div>
                             </> 
                             }

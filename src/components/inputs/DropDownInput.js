@@ -7,7 +7,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 
-const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon }) => {
+const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated }) => {
   const [filled, setFilled] = useState(false);
   const selectRef = useRef(null); // Create a ref for the select element
 
@@ -46,7 +46,8 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
         value={selectedOption ? selectedOption.id : ''}
         onChange={handleChange}
       >
-        <option value="" className='w-full'>{name}</option>
+        
+        <option value="" className='w-full' disabled={isDeselectDeactivated}>{name}</option>
         {options?.map((option) => (
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}

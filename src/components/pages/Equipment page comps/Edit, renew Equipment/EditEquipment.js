@@ -19,13 +19,14 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../../assets/icons/3dCube.svg'
+import user from '../../../../assets/icons/user-Icon.svg'
+import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
 
 // comps
 import PageTitle from '../../../reuseable/PageTitle';
 import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
 import TextInput from '../../../inputs/textInput';
 import UploadFileInput from '../../../inputs/UploadFileInput';
-import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
 import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const EditEquipment = () => {
@@ -42,7 +43,7 @@ const EditEquipment = () => {
     const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     // useEditEquipment for submitting the form
-    const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
+    const { mutate: editEquipment, isLoading } = useEditEquipment()
 
     useEffect(() => {
         if(equipmentSerial.length < 1) {
@@ -340,7 +341,7 @@ const EditEquipment = () => {
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
-                                                icon={Cube}
+                                                icon={serialNumberIcon}
                                                 className='col-span-1'
                                                 value={equipmentSerial}
                                                 onChange={handleTextInputEquipmentSerial}
@@ -373,7 +374,7 @@ const EditEquipment = () => {
                                                 {/* Last Packer ID input */}
                                                 <div className='w-full flex flex-col items-start gap-y-2'>
                                                     <TextInput
-                                                    icon={Cube}
+                                                    icon={user}
                                                     className='col-span-1'
                                                     value={lastPackerId}
                                                     onChange={handleTextInputLastPackerId}
