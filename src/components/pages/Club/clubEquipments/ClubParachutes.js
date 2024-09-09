@@ -115,30 +115,33 @@ const Parachute = (props) => {
                         isActive={DropDown === 'Permanent'}  
                     />
                 }
-                {
-                    DropDown === 'Permanent' &&
-                    userEquipmentsData &&
-                    userEquipmentsData.data &&
-                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
-                            <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
-                                <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model}</p>
-                                    <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                    {
+                        DropDown === 'Permanent' &&
+                        userEquipmentsData &&
+                        userEquipmentsData.data &&
+                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
+                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+
+                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                                        <p> برند {equipment.brand} / مدل {equipment.model}</p>
+                                        <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                                    </div>
+
+                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+
+                                        <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
+                                            ویرایش
+                                        </button>
+
+                                        <button className={ButtonStyles.normalButton} onClick={handlePossession(equipment.id)} >انتقال مالکیت</button>
+                                    </div>
+
                                 </div>
-
-                                <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-
-                                    <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
-                                        ویرایش
-                                    </button>
-
-                                    <button className={ButtonStyles.normalButton} onClick={handlePossession(equipment.id)} >انتقال مالکیت</button>
-                                </div>
-
-                            </div>
-                        )
-                }
+                            )
+                    }
+                </div>
 
 
                 {/* temporary */}
@@ -152,36 +155,39 @@ const Parachute = (props) => {
                             isActive={DropDownForTemporary === 'Temporary'}  
                         />
                 }
-                {
-                    DropDownForTemporary === 'Temporary' &&
-                    userEquipmentsData &&
-                    userEquipmentsData.data &&
-                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
-                            <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
-                                <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
+                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                    {
+                        DropDownForTemporary === 'Temporary' &&
+                        userEquipmentsData &&
+                        userEquipmentsData.data &&
+                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
+                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
-                                <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
-                                    <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                                    <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
+
+                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                                        <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                        <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                                    </div>
+
+                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+
+                                        <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
+                                            {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
+                                            'ویرایش'
+                                            :
+                                            'جزئیات'
+                                            }
+                                        </button>
+
+                                        <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>
+                                    </div>
+
                                 </div>
-
-                                <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-
-                                    <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
-                                        {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
-                                        'ویرایش'
-                                        :
-                                        'جزئیات'
-                                        }
-                                    </button>
-
-                                    <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>
-                                </div>
-
-                            </div>
-                        )
-                }
+                            )
+                    }
+                </div>
 
                 {/* history */}
                 {
@@ -194,11 +200,13 @@ const Parachute = (props) => {
                             isActive={DropDownForHistory === 'History'}  
                         />
                 }
-                {
-                    DropDownForHistory === 'History' &&
-                    userEquipmentsHistoryData &&
-                    userEquipmentsHistoryData.data &&
-                    userEquipmentsHistoryData.data.map(equipment =>
+
+                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                    {
+                        DropDownForHistory === 'History' &&
+                        userEquipmentsHistoryData &&
+                        userEquipmentsHistoryData.data &&
+                        userEquipmentsHistoryData.data.map(equipment =>
                             <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
                                 <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
@@ -216,7 +224,8 @@ const Parachute = (props) => {
 
                             </div>
                         )
-                }
+                    }
+                </div>
 
             </div>
 
