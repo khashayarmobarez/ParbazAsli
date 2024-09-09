@@ -58,39 +58,43 @@ const AddFlightType = () => {
 
     return (
         <div className='flex flex-col items-center pt-14 pb-24'>
-            <div className='w-full flex flex-col items-center gap-y-6'>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
                 <PageTitle title={'ثبت پرواز'} navigateTo={'/profile'} />
 
-                <h1 className='text-sm'>نوع یا دوره پروازی خود را انتخاب کنید</h1>
+                <div className='w-[90%] flex flex-col gap-y-6'>
 
-                <div className='w-full flex flex-col items-center gap-y-6'>
-                    {
-                        flightTypesData &&
-                        flightTypesData.data.map((flightType, index) => (
-                            <div key={index} className={`${boxStyles.containerDarkmode} w-[90%] rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-2 text-sm`}
-                            onClick={() => handleSelectSetFlightType(flightType)}>
-                                <div className='w-full flex justify-between'>
-                                    <div className='w-full flex justify-start items-enter gap-x-2'>
-                                        {flightType.type === 'Course' ?
-                                            <div className=' w-4 h-4 rounded-full' style={{background:'var(--yellow-text)'}} />
-                                            : 
-                                            <div className=' w-4 h-4 rounded-full' style={{background:'var(--diffrential-blue)'}} />
-                                        }
-                                        <p>{flightType.name}</p> 
+                    <h1 className='text-sm'>نوع یا دوره پروازی خود را انتخاب کنید</h1>
+
+                    <div className='w-full flex flex-col items-center gap-y-6 md:grid md:grid-cols-2 md:gap-6'>
+                        {
+                            flightTypesData &&
+                            flightTypesData.data.map((flightType, index) => (
+                                <div key={index} className={`${boxStyles.containerDarkmode} w-[90%] rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-2 text-sm`}
+                                onClick={() => handleSelectSetFlightType(flightType)}>
+                                    <div className='w-full flex justify-between'>
+                                        <div className='w-full flex justify-start items-enter gap-x-2'>
+                                            {flightType.type === 'Course' ?
+                                                <div className=' w-4 h-4 rounded-full' style={{background:'var(--yellow-text)'}} />
+                                                : 
+                                                <div className=' w-4 h-4 rounded-full' style={{background:'var(--diffrential-blue)'}} />
+                                            }
+                                            <p>{flightType.name}</p> 
+                                        </div>
+                                        {flightType.type === 'Course' && flightType.club &&
+                                        <p>باشگاه: {flightType.club}</p>
+                                        }   
                                     </div>
-                                    {flightType.type === 'Course' && flightType.club &&
-                                    <p>باشگاه: {flightType.club}</p>
-                                    }   
+                                    {flightType.type === 'Course' &&
+                                        <div className='flex justify-start w-full'>
+                                            <p className='text-xs text-nowrap'>مربی: {flightType.coach}</p>
+                                        </div>
+                                    }
                                 </div>
-                                {flightType.type === 'Course' &&
-                                    <div className='flex justify-start w-full'>
-                                        <p className='text-xs text-nowrap'>مربی: {flightType.coach}</p>
-                                    </div>
-                                }
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
+                    </div>
+
                 </div>
 
             </div>

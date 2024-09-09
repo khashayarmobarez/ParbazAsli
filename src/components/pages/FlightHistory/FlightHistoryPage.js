@@ -32,9 +32,11 @@ const FlightHistoryPage = () => {
     return (
         <div className='w-full flex flex-col items-center py-14'>
 
+            <div className='w-[90%] md:w-[75%] flex flex-col justify-center items-center gap-y-0'>
+
             <PageTitle title={'جزئیات پرواز'} />
 
-            <div className='w-[90%] md:w-[75%] flex flex-col justify-center items-center gap-y-0'>
+            <div className='w-[90%] flex flex-col gap-y-6'>
 
                 { fullFlightData &&
                         <div className='w-full flex flex-col items-center justify-center gap-y-2' >
@@ -366,6 +368,7 @@ const FlightHistoryPage = () => {
                         </div>
 
                     }
+                </div>
             </div>
         </div>
     );

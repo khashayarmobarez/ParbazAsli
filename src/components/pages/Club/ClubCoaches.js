@@ -114,143 +114,150 @@ const ClubCoaches = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center pt-14'>
 
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] '>
+
             <PageTitle  title='مربیان' />
 
-            <div className='w-[90%] flex flex-col items-center gap-y-6 mt-6 '>
+                <div className='w-[90%] flex flex-col gap-y-6'>
 
 
-                <DropDownLine  
-                    onClickActivation={() => handleDropDownClick('activeCoaches')}
-                    title={'مربیان'} 
-                    dropDown={'activeCoaches'} 
-                    isActive={DropDown === `activeCoaches`}  
-                />
+                    <DropDownLine  
+                        onClickActivation={() => handleDropDownClick('activeCoaches')}
+                        title={'مربیان'} 
+                        dropDown={'activeCoaches'} 
+                        isActive={DropDown === `activeCoaches`}  
+                    />
 
-                {DropDown === `activeCoaches` &&  clubCoachesData &&
-                    <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
-                    {/* map clubCoachesData */}
-                        {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
-                            <>
-                                {clubCoachesData.data.map((coach) => (
-                                <ClubCoachBox key={coach.id} coachData={coach} />   
-                                ))}
+                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                        {DropDown === `activeCoaches` &&  clubCoachesData &&
+                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
+                            {/* map clubCoachesData */}
+                                {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
+                                    <>
+                                        {clubCoachesData.data.map((coach) => (
+                                        <ClubCoachBox key={coach.id} coachData={coach} />   
+                                        ))}
 
-                                {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
-                                    <div className='w-full flex justify-between px-10 items-center'>
-                                        <button
-                                            className='transform  w-10 justify-self-end'
-                                            disabled={pageNumber === 1}
-                                            onClick={handleLastPageNumber}
-                                        >
-                                            <img
-                                                src={arrowIcon}
-                                                alt='arrow'
-                                                className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
-                                            />
-                                        </button>
+                                        {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
+                                            <div className='w-full flex justify-between px-10 items-center'>
+                                                <button
+                                                    className='transform  w-10 justify-self-end'
+                                                    disabled={pageNumber === 1}
+                                                    onClick={handleLastPageNumber}
+                                                >
+                                                    <img
+                                                        src={arrowIcon}
+                                                        alt='arrow'
+                                                        className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                                    />
+                                                </button>
 
-                                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
-                                            صفحه ی {pageNumber}
-                                        </p>
+                                                <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                    صفحه ی {pageNumber}
+                                                </p>
 
-                                        <button
-                                            className='w-10 rotate-180 justify-self-start'
-                                            disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
-                                            onClick={handleNextPageNumber}
-                                        >
-                                            <img
-                                                src={arrowIcon}
-                                                alt='arrow'
-                                                className={`${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
-                                            />
-                                        </button>
-                                    </div>
+                                                <button
+                                                    className='w-10 rotate-180 justify-self-start'
+                                                    disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
+                                                    onClick={handleNextPageNumber}
+                                                >
+                                                    <img
+                                                        src={arrowIcon}
+                                                        alt='arrow'
+                                                        className={`${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                    />
+                                                </button>
+                                            </div>
+                                        }
+                                    </>
+                                : 
+                                <p style={{color:' var(--red-text)'}}>مربی فعالی در باشگاه وجود ندارد</p>
                                 }
-                            </>
-                        : 
-                        <p style={{color:' var(--red-text)'}}>مربی فعالی در باشگاه وجود ندارد</p>
+                            </div>
                         }
                     </div>
-                }
 
-                <DropDownLine  
-                    onClickActivation={() => handleDropDownClick('PreviousCoaches')}
-                    title={'مربیان سابق'} 
-                    dropDown={'PreviousCoaches'} 
-                    isActive={DropDown === `PreviousCoaches`}  
-                />
+                    <DropDownLine  
+                        onClickActivation={() => handleDropDownClick('PreviousCoaches')}
+                        title={'مربیان سابق'} 
+                        dropDown={'PreviousCoaches'} 
+                        isActive={DropDown === `PreviousCoaches`}  
+                    />
 
-                {DropDown === `PreviousCoaches` && clubCoachesPreviousData &&
-                    <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
-                    {/* map clubCoachesData */}
-                        {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0 && !coachesPreviousDataLoading) ?
-                            <>
-                                {clubCoachesPreviousData.data.map((coach) => (
-                                <ClubCoachBox key={coach.id} coachData={coach} />
-                                ))}
+                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                        {DropDown === `PreviousCoaches` && clubCoachesPreviousData &&
+                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
+                            {/* map clubCoachesData */}
+                                {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0 && !coachesPreviousDataLoading) ?
+                                    <>
+                                        {clubCoachesPreviousData.data.map((coach) => (
+                                        <ClubCoachBox key={coach.id} coachData={coach} />
+                                        ))}
 
-                                {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
-                                    <div className='w-full flex justify-between px-10 items-center'>
-                                        <button
-                                            className='transform  w-10 justify-self-end'
-                                            disabled={pageNumberPrevious === 1}
-                                            onClick={handleLastPageNumberPrevious}
-                                        >
-                                            <img
-                                                src={arrowIcon}
-                                                alt='arrow'
-                                                className={`mt-2 ${pageNumberPrevious === 1 && 'opacity-60'}`}
-                                            />
-                                        </button>
+                                        {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
+                                            <div className='w-full flex justify-between px-10 items-center'>
+                                                <button
+                                                    className='transform  w-10 justify-self-end'
+                                                    disabled={pageNumberPrevious === 1}
+                                                    onClick={handleLastPageNumberPrevious}
+                                                >
+                                                    <img
+                                                        src={arrowIcon}
+                                                        alt='arrow'
+                                                        className={`mt-2 ${pageNumberPrevious === 1 && 'opacity-60'}`}
+                                                    />
+                                                </button>
 
-                                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
-                                            صفحه ی {pageNumberPrevious}
-                                        </p>
+                                                <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                    صفحه ی {pageNumberPrevious}
+                                                </p>
 
-                                        <button
-                                            className='w-10 rotate-180 justify-self-start'
-                                            disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
-                                            onClick={handleNextPageNumberPrevious}
-                                        >
-                                            <img
-                                                src={arrowIcon}
-                                                alt='arrow'
-                                                className={`${(clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious) && 'opacity-60'}`}
-                                            />
-                                        </button>
-                                    </div>
+                                                <button
+                                                    className='w-10 rotate-180 justify-self-start'
+                                                    disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
+                                                    onClick={handleNextPageNumberPrevious}
+                                                >
+                                                    <img
+                                                        src={arrowIcon}
+                                                        alt='arrow'
+                                                        className={`${(clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious) && 'opacity-60'}`}
+                                                    />
+                                                </button>
+                                            </div>
+                                        }
+                                    </>
+                                    :
+                                    <p style={{color:' var(--red-text)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
                                 }
-                            </>
-                            :
-                            <p style={{color:' var(--red-text)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
+                            </div>
                         }
-                    </div>
-                }
+                    </div>    
 
-                <div className='flex flex-col w-full gap-y-2 mt-2'>
-                    { coachData && 
-                        <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
-                    }
-                    { coachDataLoading && coachId.length > 5 &&
-                        <p className=' self-start text-[var(--red-text)]'>...در حال جستجوی مربی</p>
-                    }
-                    { coachDataError && coachId.length > 5 &&
-                        <p className=' self-start text-[var(--notification-red)]'>مربی یافت نشد!</p>
-                    }
-                    <div className='w-full flex justify-between relative items-center'>
-                        <div className='w-[86%] flex flex-col'>
-                            <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
+                    <div className='flex flex-col w-full gap-y-2 mt-2'>
+                        { coachData && 
+                            <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
+                        }
+                        { coachDataLoading && coachId.length > 5 &&
+                            <p className=' self-start text-[var(--red-text)]'>...در حال جستجوی مربی</p>
+                        }
+                        { coachDataError && coachId.length > 5 &&
+                            <p className=' self-start text-[var(--notification-red)]'>مربی یافت نشد!</p>
+                        }
+                        <div className='w-full flex justify-between relative items-center'>
+                            <div className='w-[86%] flex flex-col'>
+                                <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
+                            </div>
+                            <span
+                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                                onClick={handleAddCoachToClub}
+                                disabled={false}
+                            >
+                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                            </span>
                         </div>
-                        <span
-                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
-                            onClick={handleAddCoachToClub}
-                            disabled={false}
-                        >
-                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
-                        </span>
                     </div>
-                </div>
 
+                </div>
 
             </div>
 
