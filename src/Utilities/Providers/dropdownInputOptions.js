@@ -52,5 +52,11 @@ const brandsOptionsData = [
     { name: 'سینگل', id: 'Solo' },
   ];
 
+  const flightTypeOptionsEquipment = [
+    { name: 'آموزشی', id: "Course" },
+    { name: 'تندم', id: 'Tandem' },
+    { name: 'سینگل', id: 'Single' },
+  ];
 
-  export {brandsOptionsData, windDirectionOptions , courseTypeOptionData, windSpeedUnits, flightStatusOptions , sizeOptionData, flightHourOptionData, flightTypeOptions}
+
+  export {brandsOptionsData, windDirectionOptions , courseTypeOptionData, windSpeedUnits, flightStatusOptions , sizeOptionData, flightHourOptionData, flightTypeOptions, flightTypeOptionsEquipment}

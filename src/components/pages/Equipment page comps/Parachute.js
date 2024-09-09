@@ -108,6 +108,7 @@ const Parachute = (props) => {
                 {
                 userEquipmentsData &&
                 userEquipmentsData.data[0] &&
+                userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
                     <DropDownLine  
                     onClickActivation={() => handleDropDownClick('Permanent')}
                     title={'دائمی'} 
@@ -118,7 +119,7 @@ const Parachute = (props) => {
                 {
                     DropDown === 'Permanent' &&
                     userEquipmentsData &&
-                    userEquipmentsData.data &&
+                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
                     userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
                             <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
