@@ -383,7 +383,7 @@ const AddFlightEquipment = () => {
 
                       <p className='text-base w-[90%]' >در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
 
-                      <div className='w-full flex justify-around items-center'>
+                      <div className='w-full flex justify-around items-center'> 
                           <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
                           <button 
                           type="submit" 

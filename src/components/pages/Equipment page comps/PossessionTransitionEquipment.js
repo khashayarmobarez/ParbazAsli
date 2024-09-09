@@ -7,7 +7,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // assets
-import Cube from '../../../assets/icons/3dCube.svg'
+import userIcon from '../../../assets/icons/user-Icon.svg'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -201,7 +201,7 @@ const PossessionTransitionEquipment = () => {
                             
                             {/* Serial Number input */}
                             <TextInput
-                            icon={Cube}
+                            icon={userIcon}
                             className='col-span-1'
                             value={receiverId}
                             onChange={handleTextInputReceiverId}

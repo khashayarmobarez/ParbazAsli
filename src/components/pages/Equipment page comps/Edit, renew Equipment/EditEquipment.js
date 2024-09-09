@@ -336,7 +336,7 @@ const EditEquipment = () => {
                                                 }
 
                                                 <h3 className=' text-[var(--softer-white)] text-sm mt-1 mb-[-10px]'>
-                                                    سریال چتر کمکی
+                                                    سریال وسیله
                                                 </h3>
 
                                                 {/* text input to add parachute serial */}
@@ -352,7 +352,7 @@ const EditEquipment = () => {
                                                 {
                                                     equipmentSerial.length > 0 &&
                                                     <>
-                                                        <UploadFileInput name={'سریال چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                                        <UploadFileInput name={'سریال وسیله'} selectedFile={selectedFile} onFileChange={handleFileChange} />
                                                         <p className=' text-xs mt-[-0.5rem]'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
                                                     </>
                                                 }
