@@ -40,7 +40,7 @@ const Settings = () => {
                 <PageTitle title={'تنظیمات'} navigateTo={'profile'} paddingRight={'40%'} /> 
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='حالت شب' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClickActivation={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
+                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClickActivation={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
                     {
                         DropDown === 'dropDown1' &&
                         <WebColorMode />
