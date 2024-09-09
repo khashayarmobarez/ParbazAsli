@@ -8,7 +8,6 @@ import SettIcon from '../assets/icons/Icon-settings.svg'
 import userIcon from '../assets/icons/user-Icon.svg'
 import certificateIcon from '../assets/icons/certificate-Vector.svg'
 import usersIcon from '../assets/icons/users-Icon.svg'
-import dateIcon from '../assets/icons/calender-Icon.svg';
 
 // queries
 import { useClubStatus } from '../Utilities/Services/clubQueries';
@@ -17,7 +16,6 @@ import { useClubStatus } from '../Utilities/Services/clubQueries';
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import WebColorMode from '../components/pages/Settings/WebColorMode';
-import TextInput from '../components/inputs/textInput';
 import EditUserSettings from '../components/pages/Settings/EditUserSettings';
 import CertificateSettings from '../components/pages/Settings/CertificateSettings';
 import AddClub from '../components/pages/Club/AddClub';
@@ -42,7 +40,7 @@ const Settings = () => {
                 <PageTitle title={'تنظیمات'} navigateTo={'profile'} paddingRight={'40%'} /> 
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClickActivation={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
+                    <DropDownLine  title='حالت شب' icon={SettIcon} dropDown={DropDown} isActive={DropDown === 'dropDown1'} onClickActivation={() => setDropDown(DropDown === 'dropDown1' ? '' : 'dropDown1')} />
                     {
                         DropDown === 'dropDown1' &&
                         <WebColorMode />

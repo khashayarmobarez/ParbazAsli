@@ -55,8 +55,11 @@ const RenewCertificate = () => {
 
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
 
-    // reset all the states after changing certificateId
-    // useEffect(() => {
+    // reset level after changing certificateId
+    useEffect(() => {
+        setLevel('')
+    }, [certificateId])
+
 
     
     const handleSelectOrganChange = (selectedOption) => {
@@ -165,7 +168,7 @@ const RenewCertificate = () => {
                         theme: 'dark',
                         style: { width: "350px" }
                     });
-                    navigate('/profile')
+                    navigate('/editProfile/changeCertificate')
                 },
                 onError: (error) => {
                     let errorMessage = 'خطایی رخ داده است';
@@ -230,6 +233,7 @@ const RenewCertificate = () => {
                                     handleSelectChange={handleSelectOrganChange}
                                     selectedOption={organ}
                                     name={'صدور گواهینامه از'}
+                                    isDeselectDeactivated={true}
                                 />
                                 {
                                     organ && 
@@ -294,8 +298,14 @@ const RenewCertificate = () => {
                                                                     />
                                                                     )}
                                                                 </div>
-                                                            )}   
+                                                            )} 
+
                                                         </div>
+                                                        
+                                                        <p className='text-sm w-[85%] self-center'>
+                                                            فرمت عکس باید jpeg, jpg, gif, bmp یا png 
+                                                            باشد حجم عکس نباید بیشتر از 10 مگابایت باشد
+                                                        </p>
 
 
 

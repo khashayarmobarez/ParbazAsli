@@ -8,7 +8,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import keyIcon from '../../../../assets/icons/key-Icon.svg';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur }) => {
+const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder }) => {
 
   const [pwdFocus, setPwdFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);  
@@ -45,7 +45,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur }) => {
             setPwdFocus(false);
             onBlur();
           }}
-          placeholder="رمز عبور"
+          placeholder={customPlaceHolder || "رمز عبور"}
           autoComplete="new-password" 
         />
         <span onClick={togglePasswordVisibility} style={{ color: '#cacaca' }}>

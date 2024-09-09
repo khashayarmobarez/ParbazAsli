@@ -104,6 +104,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     focus={oldpwdFocus}
                     onFocus={() => setOldPwdFocus(true)}
                     onBlur={() => setOldPwdFocus(false)}
+                    customPlaceHolder='رمز عبور قدیمی'
                 />
 
                 <PasswordInputSignup    
@@ -126,7 +127,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
 
                 <button type="submit" disabled={changePassLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
                 onClick={handleSubmit} >
-                    {changePassLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
+                    {changePassLoading ? 'در حال بارگذاری...' : 'تغییر'}
                 </button>
 
                 {/* {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
