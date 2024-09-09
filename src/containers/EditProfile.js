@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -9,22 +9,11 @@ import PageTitle from '../components/reuseable/PageTitle';
 
 const EditProfile = () => {
 
+    const location = useLocation();
+
     // to set which button is active and style it
     const [activeLink, setActiveLink] = useState('flight'); // State to track active link
     
-
-    // Ref to the button element
-    const buttonRef = useRef(null);
-
-
-    // Effect to click the button when the page is mounted
-    useEffect(() => {
-        // Check if the button ref exists and it has a current property
-        if (buttonRef.current) {
-        // Programmatically click the button
-        buttonRef.current.click();
-        }
-    }, []); // Empty dependency array ensures the effect runs only once after initial render
 
 
     return (
@@ -34,8 +23,11 @@ const EditProfile = () => {
                 <PageTitle title={'ویرایش پروفایل'} navigateTo={'/profile'} />  
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
-                    <Link ref={buttonRef} to='/editProfile/changeProfile' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'profile' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('profile')}>پروفایل</Link> 
-                    <Link to='/editProfile/changeCertificate' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${activeLink === 'certificate' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('certificate')} >گواهینامه</Link> 
+
+                    <Link to='/editProfile/changeProfile' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/editProfile/changeProfile' ? ButtonStyles.activeYellow : ''}`} >پروفایل</Link> 
+
+                    <Link to='/editProfile/changeCertificate' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${location.pathname === '/editProfile/changeCertificate' ? ButtonStyles.activeYellow : ''}`}  >گواهینامه</Link> 
+                    
                 </div>
 
                 <Outlet />

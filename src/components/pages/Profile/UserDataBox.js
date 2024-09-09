@@ -94,7 +94,7 @@ const UserDataBox = ({hasCoach}) => {
 
                         </div>
 
-                        <Link to='/editProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
+                        <Link to='/editProfile/changeProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
 
                         <ChangePicPopUp showPopup={showPopUp} setShowPopup={setShowPopup} />
                     </div>
