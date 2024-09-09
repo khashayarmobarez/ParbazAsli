@@ -9,6 +9,9 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { CircularProgress } from '@mui/material';
 
+// assets
+import certificateIcon from '../../../assets/icons/certificate-Vector.svg'
+
 // queries
 import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../Utilities/Services/queries'
 
@@ -217,6 +220,7 @@ const RenewCertificate = () => {
 
                                 
                                 <DropdownInput
+                                    icon={certificateIcon}
                                     options={organsData.data}
                                     handleSelectChange={handleSelectOrganChange}
                                     selectedOption={organ}
@@ -233,6 +237,7 @@ const RenewCertificate = () => {
 
 
                                                 <DropdownInput
+                                                    icon={certificateIcon}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
@@ -249,7 +254,7 @@ const RenewCertificate = () => {
                                                         onChange={handleCertificateIdChange}
                                                         placeholder={'شماره گواهینامه'}
                                                         Type={'text'}
-                                                        icon={null} // You can replace `null` with a specific icon if you have one
+                                                        icon={certificateIcon}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
