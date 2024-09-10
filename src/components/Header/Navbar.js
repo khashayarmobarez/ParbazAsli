@@ -142,7 +142,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                 <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
 
                                     {/* app logo */}
-                                    <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={styles.logo} /> 
+                                    <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={`${styles.logo}`} /> 
                                 
                                     <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
                                     style={{ background: isOpen ? 'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)' : 'none',
@@ -185,7 +185,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             :
                                             <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
                                     :
-                                    <>
+                                    <div className='flex gap-x-4 mr-10'>
                                         <button >
                                             {
                                                 notificationCountsData && notificationCountsData.data > 0 &&
@@ -202,7 +202,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                         <div to='/' className={`hidden md:flex justify-center items-center`} >
                                             <img src={logout} alt='logout' onClick={handleLogout} />
                                         </div>
-                                    </>
+                                    </div>
                                     }
 
                                     
