@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -27,6 +27,8 @@ const AddUsedEquipment = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const [submitted, setSubmitted] = useState(false);
 
     // user equipments data
     const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipments(1,false)
@@ -97,6 +99,8 @@ const AddUsedEquipment = () => {
     
 
     const handleNextPageButton = () => {
+
+        setSubmitted(true);
 
         if(wing.id && harness.id && parachute.id && (flightType === 'Tandem' ? passengerHarness.id : true)) {
             navigate('/addFlight/AddSituation')
@@ -200,23 +204,23 @@ const AddUsedEquipment = () => {
                         <>
 
                             {   wingType === 'Tandem' ?
-                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 :
                                 wingType === 'Single' ?
-                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 :
-                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} />
+                                <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 
                             }
 
-                            <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} />
+                            <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
 
                             {
                                 flightType === 'Tandem' &&
-                                <DropdownInputForEquipment icon={harnessIcon} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} />
+                                <DropdownInputForEquipment icon={harnessIcon} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
                             }
                             
-                            <DropdownInputForEquipment icon={parachuteIcon} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} />
+                            <DropdownInputForEquipment icon={parachuteIcon} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />
                         </>
                     }
                 </form>

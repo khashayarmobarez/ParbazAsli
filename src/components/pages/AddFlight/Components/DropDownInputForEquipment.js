@@ -8,7 +8,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../../../assets/icons/3dCube.svg'
 
 
-const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange, name, icon }) => {
+const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange, name, icon, IsEmptyAfterSubmit }) => {
 
   const [filled, setFilled] = useState(false);
 
@@ -31,7 +31,7 @@ const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange
       }
 
       <select
-        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]`}
+        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%]`}
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={(event) => {

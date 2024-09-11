@@ -25,12 +25,12 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
           }
       </span>
       <input 
-      type={Type} 
-      id="aircraft" 
-      placeholder={placeholder} 
-      onChange={handleInputChange} 
-      value={value ? value : ''} 
-      className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%] pr-9`} 
+        type={Type} 
+        id="aircraft" 
+        placeholder={placeholder} 
+        onChange={handleInputChange} 
+        value={value ? value : ''} 
+        className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%] pr-9`} 
       />
     </div>
   ); 

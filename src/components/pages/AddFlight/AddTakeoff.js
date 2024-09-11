@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
 
@@ -30,6 +30,8 @@ const AddTakeoff = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const [submitted, setSubmitted] = useState(false);
 
     // redux
     const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection, takeOffWindUnit,
@@ -80,6 +82,8 @@ const AddTakeoff = () => {
     
 
     const handleNextPageButton = () => {
+
+        setSubmitted(true);
 
         if(takeoffTime && takeoffType && takeoffWindSpeed && takeoffwindDirection && takeOffWindUnit) {
             navigate('/addFlight/AddLanding')
@@ -158,10 +162,10 @@ const AddTakeoff = () => {
 
                     {
                         takeOffTypesData &&
-                        <DropdownInput name={'شیوه'} icon={colorTagsIcon} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} />
+                        <DropdownInput name={'شیوه'} icon={colorTagsIcon} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
                     }
 
-                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} />
+                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} IsEmptyAfterSubmit={submitted && !takeoffwindDirection} />
                     
                     {/* <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
@@ -170,6 +174,7 @@ const AddTakeoff = () => {
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                        IsEmptyAfterSubmit={submitted && !takeoffWindSpeed}
                     />
 
                 </form>

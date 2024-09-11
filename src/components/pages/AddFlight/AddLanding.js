@@ -42,6 +42,11 @@ const AddLanding = () => {
     const dispatch = useDispatch()
     const navigate= useNavigate('')
 
+    // states, submit pop up control
+    const [showPopup, setShowPopup] = useState(false); 
+
+    const [submitted, setSubmitted] = useState(false);
+
     const { mutate: mutateCourseFlight , isLoading: courseLoading, error: courseError} = useAddCourseFlight();
     const { mutate: mutateSoloFlight , isLoading: SoloLoading, error: SoloError} = useAddSoloFlight();
     const { mutate: mutateTandemFlight , isLoading: TandemLoading, error: TandemError} = useAddTandemFlight();
@@ -51,8 +56,6 @@ const AddLanding = () => {
     ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description
     } = useSelector(selectAddFlight)
 
-    // states, submit pop up control
-    const [showPopup, setShowPopup] = useState(false); 
 
 
     useEffect(() => {
@@ -95,6 +98,9 @@ const AddLanding = () => {
     
     // Event handler for form submission
     const handleSubmit = (event) => {
+
+        setSubmitted(true);
+
         if(flightType === 'tandem') {
             if(landingTime && landingWindSpeed && landingWindDirection && passengerPhoneNumber.length > 10) {
                 event.preventDefault();
@@ -362,13 +368,14 @@ const AddLanding = () => {
                         />
                     </div>
 
-                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} />
+                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} IsEmptyAfterSubmit={submitted && !landingWindDirection}/>
                     
                     <NumberInput
                         icon={windIcon}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                        IsEmptyAfterSubmit={submitted && !landingWindSpeed}
                     />
 
                     {flightType === 'Tandem' && 
@@ -377,6 +384,7 @@ const AddLanding = () => {
                             value={passengerPhoneNumber} 
                             onChange={handlePassengerPhoneNum} 
                             placeholder='درج شماره تماس مسافر' 
+                            IsEmptyAfterSubmit={submitted && !passengerPhoneNumber}
                         />
                     }
 

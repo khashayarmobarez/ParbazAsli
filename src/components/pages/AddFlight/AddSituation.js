@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 // provider
@@ -28,6 +28,8 @@ const AddSituation = () => {
 
     const navigate= useNavigate('')
     const dispatch = useDispatch()
+
+    const [submitted, setSubmitted] = useState(false);
 
     // redux, the first line are this page datas and the second line is for checking the form to be complete
     const { country, city, sight, clouds ,
@@ -86,6 +88,8 @@ const AddSituation = () => {
     
 
     const handleNextPageButton = () => {
+
+        setSubmitted(true);
 
         if(city && sight && clouds) {
             navigate('/addFlight/addTakeoff')
@@ -152,7 +156,7 @@ const AddSituation = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
                     {
                         countriesData &&
-                        <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} />
+                        <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} IsEmptyAfterSubmit={submitted && !country} />
                     }
 
                     {
@@ -162,17 +166,19 @@ const AddSituation = () => {
                             selectedOption={city}
                             handleSelectChange={handleSelectSetCity}
                             name="استان"
+                            IsEmptyAfterSubmit={submitted && !city}
                         />
                     }
 
                     {
                         flightSitesData && city && city.id &&
-                        <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight} />
+                        <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight}
+                        IsEmptyAfterSubmit={submitted && !sight} />
                     }
 
                     {
                         flightSitesData && cloudTypesData &&
-                        <DropdownInput name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} />
+                        <DropdownInput name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} IsEmptyAfterSubmit={submitted && !clouds}/>
                     }
                     
                     {/* <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
