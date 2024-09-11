@@ -10,7 +10,7 @@ const useAppModeEffect = (isDarkMode) => {
     if (isDarkMode) {
 
         root.style.setProperty('--bg-color', '#131423');
-        root.style.setProperty('--text-color', '#ffffff');
+        root.style.setProperty('--text-color', '#ebebeb');
         root.style.setProperty('--low-opacity-white', 'rgba(255, 255, 255, 0.3)');
         root.style.setProperty('--yellow-text', '#A5E65E');
         root.style.setProperty('--dark-green', '#638a38');
