@@ -7,7 +7,7 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 // assets
 import Calender from '../../../../assets/icons/calender-Icon.svg'
 
-const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon }) => {
+const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit }) => {
 
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
@@ -28,7 +28,7 @@ const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, pos
         <DatePicker
             onChange={(e) => handleChange(e.value)}
             show={true}
-            inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${inputStyles.customDateInput}`}
+            inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} ${inputStyles.customDateInput} `}
             position={position}
             round="thin"
             accentColor="#0D59F2"

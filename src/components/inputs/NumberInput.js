@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const NumberInput = ({ value, onChange, placeholder, icon }) => {
+const NumberInput = ({ value, onChange, placeholder, icon, IsEmptyAfterSubmit }) => {
   const [filled, setFilled] = useState(false);
 
   // Function to handle changes in the input value
@@ -30,7 +30,7 @@ const NumberInput = ({ value, onChange, placeholder, icon }) => {
         placeholder={placeholder}
         onChange={handleInputChange}
         value={value ? value : ''}
-        className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-9`}
+        className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%] pr-9`}
       />
     </div>
   );

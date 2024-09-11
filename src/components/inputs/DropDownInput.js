@@ -7,7 +7,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 
-const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated }) => {
+const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit }) => {
   const [filled, setFilled] = useState(false);
   const selectRef = useRef(null); // Create a ref for the select element
 
@@ -41,7 +41,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
       </span>
       <select
         ref={selectRef}
-        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} h-full w-full`} // Add right padding
+        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} h-full w-full`} // Add right padding
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={handleChange}

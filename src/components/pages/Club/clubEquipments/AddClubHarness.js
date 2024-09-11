@@ -60,6 +60,9 @@ const AddClubHarness = () => {
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
 
+  
+  const [submitted, setSubmitted] = useState(false);
+
   useEffect(() => {
     if(serialNumber.length < 1) {
       setSelectedFile(null);
@@ -117,6 +120,7 @@ const AddClubHarness = () => {
   
     const handlePopUp= (event) => {
       event.preventDefault();
+      setSubmitted(true);
       const currentYear = new Date().getFullYear();
       
       // Here you can handle form submission, such as sending data to a backend server
@@ -257,21 +261,22 @@ const AddClubHarness = () => {
                         handleSelectChange={handleBrandChange}
                         name={'برند'}
                         icon={clothesTag}
+                        IsEmptyAfterSubmit={submitted && !brand} 
                     />
 
                     {/* show custom brand input */}
                     {
                       showCustomBrandInput &&
-                        <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' />
+                        <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand}  />
                     }
                     
-                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange}  />
+                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
 
                     {/* size input */}
-                    <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' />
+                    <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
 
                     {/* Flight hour input */}
-                    <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
+                    <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput
@@ -280,6 +285,7 @@ const AddClubHarness = () => {
                       value={year}
                       onChange={handleTextInputYear}
                       placeholder='سال ساخت (میلادی)'
+                      IsEmptyAfterSubmit={submitted && !year}
                     />
 
                   </div>

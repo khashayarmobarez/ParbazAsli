@@ -42,17 +42,17 @@ const FooterLanding = () => {
       }}
     >
         <ul className=' hidden md:flex flex-col gap-y-4'>
-            <li>خانه</li>
-            <li>بلاگ</li>
-            <li>ارتباط با ما</li>
-            <li>تماس با ما</li>
+            <li className='cursor-pointer' onClick={() => navigate('/profile') }>خانه</li>
+            <li className='cursor-pointer' onClick={() => navigate('/blogs') }>بلاگ</li>
+            <li className='cursor-pointer' onClick={() => navigate('/aboutUs') }>ارتباط با ما</li>
+            <li className='cursor-pointer' onClick={() => navigate('/contactUs') }>تماس با ما</li>
         </ul>
 
         <div className='flex flex-col items-center gap-y-4 md:w-[30vw] w-full h-full justify-around py-4 px-4'>
             <img alt='logo' src={logo} className='w-1/2 md:w-[212px]'/>
             {isSmallScreen && 
               <>
-                <ul className='w-full flex justify-around'>
+                <ul className='w-full flex justify-around '>
                   <li onClick={() => navigate('/profile') } >خانه</li>
                   <li onClick={() => navigate('/blogs') } >بلاگ</li>
                   <li onClick={() => navigate('/aboutUs') } >درباره ما</li>
@@ -65,7 +65,6 @@ const FooterLanding = () => {
               </>
             }
             <p className='text-lg'>عضویت در خبرنامه</p>
-            <p>ما هرزنامه ارسال نمی کنیم، پس نگران نباشید</p>
             <InputWithButton Type={'text'} icon={mail} buttonText={'ارسال'} id={'email'} placeH={'ایمیل خود را وارد کنید'} />
             <p></p>
         </div>

@@ -3,7 +3,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../../../assets/icons/3dCube.svg';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, ClickedOthers, showCustomBrandInput, setShowCustomBrandInput }) => {
+const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, ClickedOthers, showCustomBrandInput, setShowCustomBrandInput, IsEmptyAfterSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -70,7 +70,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
       <input
         ref={inputRef}
         type="text"
-        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} placeholder-text-color w-full pl-10 pr-8`}
+        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} placeholder-text-color w-full pl-10 pr-8`}
         placeholder={name}
         value={searchTerm}
         onChange={handleInputChange}

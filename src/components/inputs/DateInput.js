@@ -6,7 +6,7 @@ import { DatePicker } from "zaman";
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const TextInput = ({ value, onChange, placeholder }) => {
+const TextInput = ({ value, onChange, placeholder, IsEmptyAfterSubmit }) => {
 
   const [filled, setFilled] = useState(false);
 
@@ -24,7 +24,7 @@ const TextInput = ({ value, onChange, placeholder }) => {
       <DatePicker
           onChange={handleInputChange}
           show={true}
-          inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${inputStyles.customDateInput}`}
+          inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${inputStyles.customDateInput} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}`}
           position='right'
           round="thin"
           accentColor="#0D59F2"

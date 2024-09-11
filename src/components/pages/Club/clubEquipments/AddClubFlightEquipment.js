@@ -66,6 +66,9 @@ const AddClubFlightEquipment = () => {
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
 
+  // Submitted state
+  const [submitted, setSubmitted] = useState(false);
+
   // useNavigate to go back one page
   const navigate = useNavigate();
 
@@ -145,6 +148,7 @@ const AddClubFlightEquipment = () => {
   //Event handler for pop up
     const handlePopUp= (event) => {
       event.preventDefault();
+      setSubmitted(true);
       const currentYear = new Date().getFullYear();
       
       // Here you can handle form submission, such as sending data to a backend server
@@ -283,26 +287,26 @@ const AddClubFlightEquipment = () => {
                             showCustomBrandInput={showCustomBrandInput}
                             setShowCustomBrandInput={setShowCustomBrandInput}
                             className='col-span-1'
-                            options={brandsData.data
-                            }
+                            options={brandsData.data}
                             selectedOption={selectedOptionBrand}
                             handleSelectChange={handleSelectChangeBrand}
                             name={'برند'}
                             icon={clothesTag}
+                            IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
                         />
 
                         {/* show custom brand input */}
                         {
                           showCustomBrandInput &&
-                            <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' />
+                            <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !aircraft}  />
                         }
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' />
-                            <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' />
+                            <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
@@ -314,6 +318,7 @@ const AddClubFlightEquipment = () => {
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
+                          IsEmptyAfterSubmit={submitted && !selectedOptionClass}
                         />
 
                         {/* wing type input */}
@@ -324,6 +329,7 @@ const AddClubFlightEquipment = () => {
                           options={flightTypeOptionsEquipment}
                           selectedOption={selectedOptionType} 
                           handleSelectChange={handleSelectChangeType}
+                          IsEmptyAfterSubmit={submitted && !selectedOptionType}
                         />
                         
                         {/* Year input */}
@@ -333,10 +339,11 @@ const AddClubFlightEquipment = () => {
                           value={year}
                           onChange={handleTextInputYear}
                           placeholder='سال ساخت (میلادی)'
+                          IsEmptyAfterSubmit={submitted && !year}
                         />
                         
                         {/* flight hour model input */}
-                        <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
+                        <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
                       
 
                       </div>

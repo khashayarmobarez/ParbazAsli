@@ -4,7 +4,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, handleRemove }) => {
+const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, handleRemove, IsEmptyAfterSubmit }) => {
   const handleSelection = (e) => {
     const selectedValue = options.find(option => option.id.toString() === e.target.value);
     if (selectedValue && !selectedOptions.some(option => option.id === selectedValue.id)) {
@@ -18,7 +18,7 @@ const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, h
         <span>
           <img src={Cube} alt='icon' className='absolute mt-3 mr-1 w-6' />
         </span>
-        <select className={`${inputStyles.inputDropdown} w-[100%]`} id="dropdown" value="" onChange={handleSelection}>
+        <select className={`${inputStyles.inputDropdown} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%]`} id="dropdown" value="" onChange={handleSelection}>
           <option value="">{name}</option>
           {options.map((option) => (
             <option key={option.id} value={option.id.toString()}>

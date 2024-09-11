@@ -78,6 +78,8 @@ const AddParachute = () => {
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
   const [packerIdError, setPackerIdError] = useState('');
+
+  const [submitted, setSubmitted] = useState(false);
   
   // Clear selected file if serial number is empty
   useEffect(() => {
@@ -186,6 +188,7 @@ const AddParachute = () => {
   // Event handler for form submission
   const handlePopUp = (event) => {
     event.preventDefault();
+    setSubmitted(true);
     const currentYear = new Date().getFullYear();
 
     const isSerialNumberValid = validateSerialNumber(serialNumber);
@@ -341,25 +344,26 @@ const AddParachute = () => {
                           handleSelectChange={handleSelectChangeBrand}
                           name={'برند'}
                           icon={clothesTag}
+                          IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
                       />
 
                       {/* show custom brand input */}
                       {
                         showCustomBrandInput &&
-                          <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' />
+                          <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand} />
                       }
 
                       {/* size inputs */}
                       <div className='col-span-1 flex flex-col gap-y-2'>
                         <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>
                         <div className='flex justify-between gap-x-2'>
-                          <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' />
-                          <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' />
+                          <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                          <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                         </div>
                       </div>
 
                       {/* FLight hour input */}
-                      <NumberInput icon={watchIcon}  className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' />
+                      <NumberInput icon={watchIcon}  className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                       {/* Year input */}
                       <NumberInput
@@ -368,9 +372,10 @@ const AddParachute = () => {
                         value={year}  
                         onChange={handleTextInputYear}
                         placeholder='سال ساخت (میلادی)'
+                        IsEmptyAfterSubmit={submitted && !year}
                       />
 
-                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} IsEmptyAfterSubmit={submitted && !packageDate} />
 
                       {/* Last Packer ID input */}
                       <div className='w-full flex flex-col items-start gap-y-2'>
