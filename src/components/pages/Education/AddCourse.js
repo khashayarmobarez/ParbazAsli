@@ -11,6 +11,7 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import listIcon from '../../../assets/icons/listIcon.svg';
 import chartIcon from '../../../assets/icons/chartIcon.svg';
+import chartIcon2 from '../../../assets/icons/chartIcon2.svg';
 import singleTag from '../../../assets/icons/ADressTag.svg';
 import tagsIcon from '../../../assets/icons/colorTagsIcon.svg';
 import certificateIcon from '../../../assets/icons/certificate-Vector.svg';
@@ -442,7 +443,7 @@ const AddCourse = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    icon={chartIcon}
+                                                    icon={chartIcon2}
                                                     name={'مقطع'}
                                                 />
                                             </>

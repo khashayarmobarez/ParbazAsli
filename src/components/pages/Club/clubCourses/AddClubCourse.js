@@ -9,11 +9,14 @@ import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
-import Cube from '../../../../assets/icons/3dCube.svg';
 import attention from '../../../../assets/icons/attention.svg';
 import listIcon from '../../../../assets/icons/listIcon.svg';
 import chartIcon from '../../../../assets/icons/chartIcon.svg';
+import chartIcon2 from '../../../../assets/icons/chartIcon2.svg';
 import singleTag from '../../../../assets/icons/ADressTag.svg';
+import tagsIcon from '../../../../assets/icons/colorTagsIcon.svg';
+import userIcon from '../../../../assets/icons/user-Icon.svg';
+import certificateIcon from '../../../../assets/icons/certificate-Vector.svg';
 
 // mui
 import ClearIcon from '@mui/icons-material/Clear';
@@ -400,12 +403,13 @@ const AddClubCourse = () => {
                         handleSelectChange={handleSelectCoachChange}
                         selectedOption={Coach}
                         name={'انتخاب مربی'}
+                        icon={userIcon}
                     />
                 }
 
                 {
                     coachNamesData && coachNamesData.data.length > 0 &&
-                        <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                        <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={tagsIcon} />
                 }
 
                 {selectedClassType && 
@@ -436,6 +440,7 @@ const AddClubCourse = () => {
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
                                 name={'ارگان مربوطه'}
+                                icon={certificateIcon}
                                 />
                                 {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
                                 {
@@ -449,6 +454,7 @@ const AddClubCourse = () => {
                                                 <DropdownInput
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
+                                                    icon={chartIcon2}
                                                     selectedOption={level}
                                                     name={'مقطع'}
                                                 />
