@@ -252,7 +252,7 @@ const ClubCoaches = () => {
                                 onClick={handleAddCoachToClub}
                                 disabled={false}
                             >
-                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem' }} />
+                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
                             </span>
                         </div>
                     </div>

@@ -6,6 +6,11 @@ import { toast } from 'react-toastify';
 import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
+// assets
+import singleTag from '../../../../assets/icons/ADressTag.svg';
+import listIcon from '../../../../assets/icons/listIcon.svg';
+import usersIcon from '../../../../assets/icons/users-Icon.svg';
+
 // queries
 import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents } from '../../../../Utilities/Services/coursesQueries';
 import { useUserById } from '../../../../Utilities/Services/queries';
@@ -225,6 +230,7 @@ const AddClass = () => {
                             value={ClassName}
                             onChange={handleClassName}
                             placeholder='نام کلاس'
+                            Icon={singleTag}
                         />
 
                         <div className='w-full flex flex-col gap-y-2'>
@@ -250,11 +256,12 @@ const AddClass = () => {
                         </div>
 
                         < SearchMultipleSelect
-                            name={'سیلابس ها'}
+                            name={'مباحث مورد نظر'}
                             options={syllabiDataTheory.data}
                             selectedOptions={selectedSyllabi}
                             handleSelectChange={handleSelectChangeSyllabi}
                             handleRemove={handleRemoveSyllabi}
+                            Icon={listIcon}
                         />
 
                         <div className='w-full flex flex-col gap-y-2'>
@@ -266,24 +273,15 @@ const AddClass = () => {
                             />
                         </div>
 
-                        <div className='w-full flex justify-between items-center text-sm gap-x-3 mt-3' style={{color:'var(--soft-white)'}}>
-                            <p className='whitespace-nowrap'>هنرجویان</p>
-                            <div className='w-full h-[0.5px]' style={{ background:'var(--soft-white)'}}></div>
-                        </div>
-
                         <SearchMultipleSelectStudent
                             name={'هنرجویان'}
                             options={courseStudents.data}
                             selectedOptions={selectedStudents}
                             handleSelectChange={handleSelectChangeStudents}
                             handleRemove={handleRemoveStudents}
+                            Icon={usersIcon}
                         />
                         
-
-                        <div className='w-full flex justify-between items-center text-sm gap-x-3 mt-3' style={{color:'var(--soft-white)'}}>
-                            <p className='whitespace-nowrap'>هنرجویان مهمان</p>
-                            <div className='w-full h-[0.5px]' style={{ background:'var(--soft-white)'}}></div>
-                        </div>
 
                         {
                             userByIdData &&

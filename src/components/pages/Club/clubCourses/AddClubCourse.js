@@ -21,6 +21,7 @@ import certificateIcon from '../../../../assets/icons/certificate-Vector.svg';
 // mui
 import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 // drop down options
 import { courseTypeOptionData } from '../../../../Utilities/Providers/dropdownInputOptions'
@@ -603,11 +604,18 @@ const AddClubCourse = () => {
                                     }
                                 </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-3 gap-2'>
-                                    {studentsData && studentsData?.map((student) => (
-                                        <li key={student.id} className=' col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between w-auto items-center'>
-                                            <p className=' text-sm mx-1' >{student.name}</p>
-                                            <ClearIcon onClick={() => handleRemoveStudent(student)} />
+                                <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                    {studentsData && studentsData?.map((student,index) => (
+                                        <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                             onClick={() => handleRemoveStudent(student)} />
                                         </li>
                                     ))}
                                 </ul>

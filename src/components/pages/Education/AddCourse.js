@@ -428,7 +428,7 @@ const AddCourse = () => {
                                 options={organsData.data}
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
-                                name={'ارگان مربوطه'}
+                                name={'ارگان'}
                                 icon={certificateIcon}
                                 />
                                 {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}

@@ -4,7 +4,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../assets/icons/3dCube.svg';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectChange, name, handleRemove }) => {
+const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectChange, name, handleRemove, Icon }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -59,12 +59,12 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
     <div className='flex flex-col w-full' ref={dropdownRef}>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
         <span>
-          <img src={Cube} alt='icon' className='absolute mt-3 mr-1 w-6' />
+          <img src={Icon || Cube} alt='icon' className='absolute mt-3 mr-2 w-6' />
         </span>
         <input
           ref={inputRef}
           type="text"
-          className={`${inputStyles.inputDropdown} w-[100%] pl-10 pr-8 placeholder-text-color`}
+          className={`${inputStyles.inputDropdown} w-[100%] pl-10 pr-10 placeholder-text-color`}
           placeholder={name}
           value={searchTerm}
           onChange={handleInputChange}
