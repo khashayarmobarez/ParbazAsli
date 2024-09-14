@@ -39,7 +39,7 @@ const ClubCoachBox = ({ coachData }) => {
                 onClick={clickHandler(coachData.id)} 
                 className='flex w-full justify-between items-center rounded-2xl text-xs h-16 px-2' 
                 style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}} >
-                    <Avatar src={coachData.profilePicture.path || ''} alt="Remy Sharp" sx={{height:'40px', width:'40px', zIndex:'0'}} />
+                    <Avatar src={coachData.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'40px', width:'40px', zIndex:'0'}} />
                     <p>{coachData.name}</p>
                     {/* <p>کد عضویت: {coachData.id}</p> */}
                     <p>
