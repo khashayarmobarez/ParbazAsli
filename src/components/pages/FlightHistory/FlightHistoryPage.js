@@ -32,7 +32,7 @@ const FlightHistoryPage = () => {
     return (
         <div className='w-full flex flex-col items-center py-14'>
 
-            <div className='w-[90%] md:w-[75%] flex flex-col justify-center items-center gap-y-0'>
+            <div className='w-full md:w-[75%] flex flex-col justify-center items-center gap-y-0'>
 
             <PageTitle title={'جزئیات پرواز'} />
 
