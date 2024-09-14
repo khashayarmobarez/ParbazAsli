@@ -118,7 +118,7 @@ const ClubCoaches = () => {
 
             <PageTitle  title='مربیان' />
 
-                <div className='w-[90%] flex flex-col gap-y-6'>
+                <div className='w-[90%] flex flex-col gap-y-2'>
 
 
                     <DropDownLine  
@@ -128,9 +128,9 @@ const ClubCoaches = () => {
                         isActive={DropDown === `activeCoaches`}  
                     />
 
-                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2'>
                         {DropDown === `activeCoaches` &&  clubCoachesData &&
-                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
+                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem] py-4'>
                             {/* map clubCoachesData */}
                                 {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
                                     <>
@@ -186,7 +186,7 @@ const ClubCoaches = () => {
 
                     <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                         {DropDown === `PreviousCoaches` && clubCoachesPreviousData &&
-                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem]'>
+                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem] py-4'>
                             {/* map clubCoachesData */}
                                 {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0 && !coachesPreviousDataLoading) ?
                                     <>

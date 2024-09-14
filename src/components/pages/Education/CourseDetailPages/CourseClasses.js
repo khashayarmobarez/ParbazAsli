@@ -23,7 +23,7 @@ const CourseClasses = () => {
     
 
     return (
-        <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
+        <div className='w-full flex flex-col gap-y-8 items-center pb-20 '>
 
             {classesData && classesData.data.classesCount === 0 &&
                 <p className='w-full text-center'>کلاسی اضافه نشده است</p>
@@ -31,7 +31,7 @@ const CourseClasses = () => {
             
             {classesData && classesData.data.classesCount > 0 &&
             <>
-                <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-10'>
+                <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-6'>
                     
                     <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
                         <p className='text-xs'>تعداد کلاس های برگزارشده</p>
@@ -49,12 +49,7 @@ const CourseClasses = () => {
 
                 </div>
             
-                {/* group name of data */}
-                <div className='flex justify-between items-center w-full'>
-                    <h2 >کلاس ها</h2>
-                    <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
-                </div>
-
+                
                 {
                     classesData.data.classes.map((classData) => {
                     return <ClassesBoxCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;

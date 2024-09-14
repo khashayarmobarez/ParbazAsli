@@ -18,7 +18,7 @@ const ClubCourseClasses = () => {
     
 
     return (
-        <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
+        <div className='w-full flex flex-col gap-y-6 items-center pb-20'>
 
             {classesData && classesData.data.classesCount === 0 &&
                 <p className='w-full text-center'>کلاسی اضافه نشده است</p>
@@ -42,12 +42,6 @@ const ClubCourseClasses = () => {
                         </p>
                     </div>
 
-                </div>
-            
-                {/* group name of data */}
-                <div className='flex justify-between items-center w-full'>
-                    <h2 >کلاس ها</h2>
-                    <div id='line' className='w-[75%] h-[1px] rounded-xl bg-[#D9D9D9]'></div>
                 </div>
 
                 {
