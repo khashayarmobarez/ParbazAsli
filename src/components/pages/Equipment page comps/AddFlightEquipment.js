@@ -331,7 +331,7 @@ const AddFlightEquipment = () => {
                         <DropdownInput
                           className='col-span-1'
                           icon={tagsIcon}
-                          name={'نوع'}
+                          name={'نوع بال'}
                           options={flightTypeOptionsEquipment}
                           selectedOption={selectedOptionType} 
                           handleSelectChange={handleSelectChangeType}

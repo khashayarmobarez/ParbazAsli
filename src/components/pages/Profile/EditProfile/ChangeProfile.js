@@ -56,8 +56,8 @@ const ChangeProfile = () => {
     // queries
     const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
     const { mutate: mutateCodeRequestToChange} = useSendVerificattionCodeToChange();
-    const { mutate: mutateChangePhone } = useChangePhoneNumber();
-    const { mutate: mutateChangeEmail } = useChangeEmail();
+    const { mutate: mutateChangePhone, isLoading: phoneNumLoading } = useChangePhoneNumber();
+    const { mutate: mutateChangeEmail, isLoading: emailLoading } = useChangeEmail();
 
     const persianToEnglishNumber = (input) => {
         const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -205,6 +205,9 @@ const ChangeProfile = () => {
                     theme: 'dark',
                     style: { width: "90%" }
                 });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             },
             onError: (err) => {
                 setLoadingStatus(false)
@@ -300,6 +303,9 @@ const ChangeProfile = () => {
                     theme: 'dark',
                     style: { width: "90%" }
                 });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             },
             onError: (err) => {
                 setLoadingStatus(false)
@@ -335,8 +341,8 @@ const ChangeProfile = () => {
                             <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
-                                <InputWithButton isForPhone={true} Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
-                                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
+                                <InputWithButton isLoading={phoneNumLoading} isForPhone={true} Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                                <InputWithButton isLoading={emailLoading} Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
 
                                 <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
                                 onClick={() => setShowPopupType('changePassword')}>

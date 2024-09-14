@@ -7,7 +7,7 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 // css styles 
 import gradients from '../../styles/gradients/Gradient.module.css'
 
-const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onChange, id, isForPhone}) => {
+const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onChange, id, isForPhone, isLoading}) => {
 
     const isPhoneNumber = /^09\d*$/.test(value);
 
@@ -35,7 +35,8 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                         boxShadow: 'var(--dark-input-boxShadow)',
                     }}
                 />
-                <button onClick={onSubmit} className={`${gradients.clipboardButtonBackgroundGradient} w-24 h-full flex items-center justify-center rounded-l-xl px-2 text-sm whitespace-nowrap`}>
+                <button disabled={isLoading} onClick={onSubmit} className={`${gradients.clipboardButtonBackgroundGradient} ${isLoading && 'opacity-50'} 
+                 w-24 h-full flex items-center justify-center rounded-l-xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}>
                     <p>{buttonText}</p> 
                 </button>
             </div>           

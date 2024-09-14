@@ -215,110 +215,113 @@ const AddClass = () => {
 
     return (
         <div className='w-full pt-14 flex flex-col justify-center items-center gap-y-8'>
+
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
             
-            <PageTitle title={'افزودن کلاس'} />
+                <PageTitle title={'افزودن کلاس'} />
 
-            <div className='w-[90%] flex flex-col items-center min-h-[100vh] gap-y-4'>
+                <div className='w-[90%] flex flex-col gap-y-6'>
 
 
-                {
-                    syllabiDataTheory && courseStudents &&
+                    {
+                        syllabiDataTheory && courseStudents &&
 
-                    <form className='w-full flex flex-col items-center gap-y-4'>
+                        <form className='w-full flex flex-col items-center gap-y-4'>
 
-                        <TextInput
-                            value={ClassName}
-                            onChange={handleClassName}
-                            placeholder='نام کلاس'
-                            Icon={singleTag}
-                        />
-
-                        <div className='w-full flex flex-col gap-y-2'>
-                            <p className='text-xs text-start self-start'>تایم شروع کلاس</p>
-                            <TimeInput
-                            value={StartSelectedTime}
-                            onChange={handleStartTimeChange}
-                            placeholder="Select time"
+                            <TextInput
+                                value={ClassName}
+                                onChange={handleClassName}
+                                placeholder='نام کلاس'
+                                Icon={singleTag}
                             />
-                        </div>
 
-                        <div className='w-full flex flex-col gap-y-2'>
-                            <p className='text-xs text-start self-start'>تایم پایان کلاس</p>
-                            <TimeInput
-                            value={endSelectedTime}
-                            onChange={handleEndTimeChange}
-                            placeholder="Select time"
-                            />
-                            {
-                                (StartSelectedTime > endSelectedTime) &&
-                                <p className='text-start text-sm' style={{color:'var(--red-text)'}} >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
-                            }
-                        </div>
-
-                        < SearchMultipleSelect
-                            name={'مباحث مورد نظر'}
-                            options={syllabiDataTheory.data}
-                            selectedOptions={selectedSyllabi}
-                            handleSelectChange={handleSelectChangeSyllabi}
-                            handleRemove={handleRemoveSyllabi}
-                            Icon={listIcon}
-                        />
-
-                        <div className='w-full flex flex-col gap-y-2'>
-                            <h1 className=' self-start'>توضیحات کلاس</h1>
-                            <DescriptionInput
-                                value={description}
-                                onChange={handleDescription}
-                                placeholder='هر متنی را که دوست دارید تایپ کنید...'
-                            />
-                        </div>
-
-                        <SearchMultipleSelectStudent
-                            name={'هنرجویان'}
-                            options={courseStudents.data}
-                            selectedOptions={selectedStudents}
-                            handleSelectChange={handleSelectChangeStudents}
-                            handleRemove={handleRemoveStudents}
-                            Icon={usersIcon}
-                        />
-                        
-
-                        {
-                            userByIdData &&
-                            <p className=' self-start text-start text-sm mb-[-10px]' style={{color:'var(--yellow-text)'}}>
-                                {userByIdData.data.fullName}
-                            </p>
-                        }
-                        <div className='w-full flex justify-between relative items-center'>
-                            <div className='w-[86%] flex flex-col'>
-                                <TextInput value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
+                            <div className='w-full flex flex-col gap-y-2'>
+                                <p className='text-xs text-start self-start'>تایم شروع کلاس</p>
+                                <TimeInput
+                                value={StartSelectedTime}
+                                onChange={handleStartTimeChange}
+                                placeholder="Select time"
+                                />
                             </div>
-                            <span
-                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                onClick={() => handleAddguestStudent()}
-                            >
-                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
-                            </span>
-                        </div>
 
-                        {
-                            guestStudentDatas &&
-                            <ul className=' w-full py-0 grid grid-cols-1 gap-y-2'>
-                                {guestStudentDatas.map((student, index) => (
-                                    <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                        <p className='text-sm mx-1'>{student.data.fullName}</p>
-                                        <ClearIcon onClick={() => handleRemoveGuestStudents(index)} />
-                                    </li>
-                                ))}
-                            </ul>
-                        }
+                            <div className='w-full flex flex-col gap-y-2'>
+                                <p className='text-xs text-start self-start'>تایم پایان کلاس</p>
+                                <TimeInput
+                                value={endSelectedTime}
+                                onChange={handleEndTimeChange}
+                                placeholder="Select time"
+                                />
+                                {
+                                    (StartSelectedTime > endSelectedTime) &&
+                                    <p className='text-start text-sm' style={{color:'var(--red-text)'}} >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
+                                }
+                            </div>
+
+                            < SearchMultipleSelect
+                                name={'مباحث مورد نظر'}
+                                options={syllabiDataTheory.data}
+                                selectedOptions={selectedSyllabi}
+                                handleSelectChange={handleSelectChangeSyllabi}
+                                handleRemove={handleRemoveSyllabi}
+                                Icon={listIcon}
+                            />
+
+                            <div className='w-full flex flex-col gap-y-2'>
+                                <h1 className=' self-start'>توضیحات کلاس</h1>
+                                <DescriptionInput
+                                    value={description}
+                                    onChange={handleDescription}
+                                    placeholder='هر متنی را که دوست دارید تایپ کنید...'
+                                />
+                            </div>
+
+                            <SearchMultipleSelectStudent
+                                name={'هنرجویان'}
+                                options={courseStudents.data}
+                                selectedOptions={selectedStudents}
+                                handleSelectChange={handleSelectChangeStudents}
+                                handleRemove={handleRemoveStudents}
+                                Icon={usersIcon}
+                            />
+                            
+
+                            {
+                                userByIdData &&
+                                <p className=' self-start text-start text-sm mb-[-10px]' style={{color:'var(--yellow-text)'}}>
+                                    {userByIdData.data.fullName}
+                                </p>
+                            }
+                            <div className='w-full flex justify-between relative items-center'>
+                                <div className='w-[86%] flex flex-col'>
+                                    <TextInput value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
+                                </div>
+                                <span
+                                    className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                    onClick={() => handleAddguestStudent()}
+                                >
+                                    <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                </span>
+                            </div>
+
+                            {
+                                guestStudentDatas &&
+                                <ul className=' w-full py-0 grid grid-cols-1 gap-y-2'>
+                                    {guestStudentDatas.map((student, index) => (
+                                        <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
+                                            <p className='text-sm mx-1'>{student.data.fullName}</p>
+                                            <ClearIcon onClick={() => handleRemoveGuestStudents(index)} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            }
 
 
-                        <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-2`}>ثبت </button>
+                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-2`}>ثبت </button>
 
-                    </form>
-                }
+                        </form>
+                    }
 
+                </div>
             </div>
         </div>
     );

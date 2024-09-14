@@ -21,12 +21,14 @@
 
 .ThreeStickedButtonButton:hover {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.3px 1px #0000007a, 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.8px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: 0px 4px 10.8px 2px #46AE2D inset, 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51), -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(2px);
 }
 
 .ThreeStickedButtonButton:active {
   background: var(--yellow-button-bg);
-  box-shadow: -2px 3px 4.3px 1px #0000007a, 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.8px 2px rgba(70, 174, 45, 1) inset;
+  box-shadow: 0px 4px 10.8px 2px #46AE2D inset, 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51), -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(2px);
 }
 
 
