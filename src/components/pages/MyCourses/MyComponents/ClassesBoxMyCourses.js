@@ -51,15 +51,14 @@ const ClassesBoxMyCourses = (props) => {
                     classData &&
                     <>
                         {/* classesInput */}
-                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
+                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm 
+                        ${isExpanded && 'text-[var(--yellow-text)]'}`}>
                             <span>
-                                <AutoStoriesOutlinedIcon />
+                                <AutoStoriesOutlinedIcon sx={{color:isExpanded ? 'var(--yellow-text)' : ''}} />
                             </span>
                             <p>{classData.name}</p>
                             <p>{classData.classDuration}</p>
-                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                                <img src={clipboard} alt='icon' />
-                            </button>
+                            <div/>
                         </div>
 
                         {isExpanded && classDetails &&
