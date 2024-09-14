@@ -185,7 +185,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             :
                                             <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
                                     :
-                                    <div className='flex gap-x-4 mr-10'>
+                                    <div className='md:flex md:gap-x-4 md:mr-10'>
                                         <button >
                                             {
                                                 notificationCountsData && notificationCountsData.data > 0 &&
