@@ -12,6 +12,8 @@ import AddIcon from '@mui/icons-material/Add';
 import Cube from '../../../../assets/icons/3dCube.svg';
 import attention from '../../../../assets/icons/attention.svg';
 import listIcon from '../../../../assets/icons/listIcon.svg';
+import chartIcon from '../../../../assets/icons/chartIcon.svg';
+import singleTag from '../../../../assets/icons/ADressTag.svg';
 
 // mui
 import ClearIcon from '@mui/icons-material/Clear';
@@ -492,6 +494,7 @@ const AddClubCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
+                                        icon={singleTag}
                                         />
                                     </>
 
@@ -508,6 +511,7 @@ const AddClubCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
+                                        icon={singleTag}
                                     />
 
                                 <div className='w-full flex justify-between relative items-center'>
@@ -563,7 +567,7 @@ const AddClubCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput icon={Cube} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput icon={chartIcon} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}

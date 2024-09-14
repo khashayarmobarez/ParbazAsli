@@ -11,6 +11,8 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import Cube from '../../../assets/icons/3dCube.svg';
 import listIcon from '../../../assets/icons/listIcon.svg';
+import chartIcon from '../../../assets/icons/chartIcon.svg';
+import singleTag from '../../../assets/icons/ADressTag.svg';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -480,6 +482,7 @@ const AddCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
+                                        icon={singleTag}
                                         />
                                     </>
 
@@ -496,6 +499,7 @@ const AddCourse = () => {
                                     value={courseName}  
                                     onChange={handleCourseName}
                                     placeholder='نام دوره'
+                                    icon={singleTag}
                                 />
 
                                 <div className='w-full flex justify-between relative items-center'>
@@ -565,7 +569,7 @@ const AddCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput icon={Cube} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput icon={chartIcon} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}
