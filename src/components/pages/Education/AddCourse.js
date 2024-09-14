@@ -9,10 +9,12 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // assets 
 import AddIcon from '@mui/icons-material/Add';
-import Cube from '../../../assets/icons/3dCube.svg';
 import listIcon from '../../../assets/icons/listIcon.svg';
 import chartIcon from '../../../assets/icons/chartIcon.svg';
 import singleTag from '../../../assets/icons/ADressTag.svg';
+import tagsIcon from '../../../assets/icons/colorTagsIcon.svg';
+import certificateIcon from '../../../assets/icons/certificate-Vector.svg';
+import userIcon from '../../../assets/icons/user-Icon.svg';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -399,7 +401,7 @@ const AddCourse = () => {
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} />
+                <DropdownInput isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={tagsIcon}/>
 
 
                 {selectedClassType && 
@@ -426,6 +428,7 @@ const AddCourse = () => {
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
                                 name={'ارگان مربوطه'}
+                                icon={certificateIcon}
                                 />
                                 {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
                                 {
@@ -439,7 +442,8 @@ const AddCourse = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    name={'سطح گواهینامه'}
+                                                    icon={chartIcon}
+                                                    name={'مقطع'}
                                                 />
                                             </>
                                         }
