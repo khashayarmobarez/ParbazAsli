@@ -144,7 +144,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             (
                                 popUpData.status === 'Expired' ?
                                 <button 
-                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >منقضی شده</button>
+                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.id}`)}
@@ -155,7 +155,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             (
                                 popUpData.status === 'Expired' ?
                                 <button 
-                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >منقضی شده</button>
+                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.id}`)}
@@ -166,7 +166,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             (
                                 popUpData.status === 'Expired' ?
                                 <button 
-                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >منقضی شده</button>
+                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.id}`)}
@@ -177,13 +177,12 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             <>
                                 {
                                     popUpData.status === 'Expired' ?
-                                    <p style={{color:'var(--yellow-text)'}}>منقضی شده</p>
+                                    null
                                     :
                                     <div className='flex w-20 justify-between'>
                                         <button type="submit" disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerStudentStatus( 'active', popUpData.id, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
                                         <button disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerStudentStatus( 'coachRejected', popUpData.id, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
                                     </div>
-                    
                                 }
                             </>
                         }
@@ -191,7 +190,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             <>
                                 {
                                     popUpData.status === 'Expired' ?
-                                    <p style={{color:'var(--yellow-text) '}}>منقضی شده</p>
+                                    null
                                     :
                                     <div className='flex w-20 justify-between'>
                                         <button type="submit" disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'active', popUpData.id, event) } style={{color:'var(--yellow-text) '}} >تایید</button>

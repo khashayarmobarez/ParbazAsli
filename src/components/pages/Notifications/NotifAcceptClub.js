@@ -66,7 +66,7 @@ const NotifAcceptClub = ({notif}) => {
             
             {
                 status === 'Expired' ?
-                <p style={{color:'var(--yellow-text) '}}>منقضی شده</p>
+                null
                 :
                 <div className='flex w-20 justify-between'>
                     <button type="submit" disabled={triggerClubStatusLoading} onClick={(event) => handleTriggerClubStatus( 'active', externalId, event) } style={{color:'var(--yellow-text)'}} >تایید</button>

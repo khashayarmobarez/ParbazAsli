@@ -49,7 +49,7 @@ const NotifTandemPassengerSurvey = ({notif}) => {
                 {
                     status === 'Expired' ?
                     <button 
-                    className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >منقضی شده</button>
+                    className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >تعیین وضعیت</button>
                     :
                     <button 
                     onClick={() => navigate(`/survey/${externalId}`)}

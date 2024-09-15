@@ -67,7 +67,7 @@ const NotifAcceptCourse = ({notif}) => {
             
             {
                 status === 'Expired' ?
-                <p style={{color:'var(--yellow-text) '}}>منقضی شده</p>
+                null
                 :
                 <div className='flex w-20 justify-between'>
                     <button type="submit" disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
