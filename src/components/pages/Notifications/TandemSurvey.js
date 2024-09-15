@@ -199,7 +199,7 @@ const TandemSurvey = () => {
                                             style={{background:  'var(--profile-buttons-background)',
                                                 boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                                     <p>{index + 1}</p>
-                                                    <p>{file.name}</p> 
+                                                    <p>{file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name}</p> 
                                                     <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                                     boxShadow: 'var(--profile-buttons-boxShadow)',
                                                     borderRadius:'0.5rem',
