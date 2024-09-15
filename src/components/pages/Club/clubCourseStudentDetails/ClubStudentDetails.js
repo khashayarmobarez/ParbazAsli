@@ -19,7 +19,7 @@ const ClubCourseStudentDetails = () => {
 
     const location = useLocation();
     
-    const { studentId } = useParams();
+    const { courseId,studentId } = useParams();
     const navigate = useNavigate();
 
     const isMobile = useMediaQuery('(max-width:720px)');
@@ -141,16 +141,16 @@ const ClubCourseStudentDetails = () => {
                     <img
                         src={rightArrowButton}
                         alt="rightArrowButton"
-                        onClick={() => navigate(-1)}
+                        onClick={() => {navigate(`/club/courseDetails/${courseId}/students`); console.log(document.referrer);}}
                         className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
                     />
                     
                 </div>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
-                    <Link to={`/club/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
-                    <Link to={`/club/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
-                    <Link to={`/club/courseDetails/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
+                    <Link to={`/club/courseDetails/${courseId}/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/${courseId}/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
+                    <Link to={`/club/courseDetails/${courseId}/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/club/courseDetails/${courseId}/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
+                    <Link to={`/club/courseDetails/${courseId}/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/club/courseDetails/${courseId}/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
                 </div>
 
                 <div className='w-[90%]'>

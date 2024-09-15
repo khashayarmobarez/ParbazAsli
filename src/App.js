@@ -352,7 +352,7 @@ function App() {
                 <Route path="classes" element={<ClubCourseClasses />} />
                 <Route path="syllabi" element={<ClubCourseSyllabi />} />
               </Route> 
-              <Route path='/club/courseDetails/studentDetails/:studentId' element={<ClubCourseStudentDetails />} >
+              <Route path='/club/courseDetails/:courseId/studentDetails/:studentId' element={<ClubCourseStudentDetails />} >
                 <Route index element={<ClubCourseStudentPracticalDetails />} />
                 <Route path="practical" element={<ClubCourseStudentPracticalDetails />} />
                 <Route path="theory" element={<ClubCourseStudentTheoryDetails />} />
