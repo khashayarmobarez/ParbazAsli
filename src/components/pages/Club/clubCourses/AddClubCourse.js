@@ -321,6 +321,17 @@ const AddClubCourse = () => {
                         });
                         navigate('/club/clubCourses');
                     },
+                    onError: (error) => {
+                        const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                        toast(errorMessage, {
+                            type: 'error',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: "90%" }
+                        });
+                        console.error(error);
+                    }
                 });
             } else if ( selectedClassType.id === 2  ) {
                 addRetrainingCourse(retrainingformData, {
@@ -334,6 +345,17 @@ const AddClubCourse = () => {
                         });
                         navigate('/club/clubCourses');
                     },
+                    onError: (error) => {
+                        const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                        toast(errorMessage, {
+                            type: 'error',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: 'dark',
+                            style: { width: "90%" }
+                        });
+                        console.error(error);
+                    }
                 });
             } 
 
