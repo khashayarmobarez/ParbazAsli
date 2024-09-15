@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
 import { useTriggerCourseStatus } from '../../../Utilities/Services/coursesQueries';
@@ -70,8 +71,8 @@ const NotifAcceptCourse = ({notif}) => {
                 null
                 :
                 <div className='flex w-20 justify-between'>
-                    <button type="submit" disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
-                    <button disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'rejected', externalId, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
+                    <button type="submit" disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } className={`${ButtonStyles.addButton} w-6`} >تایید</button>
+                    <button disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'rejected', externalId, event) } className={`${ButtonStyles.normalButton} w-6`}>رد</button>
                 </div>
 
             }

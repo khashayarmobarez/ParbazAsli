@@ -141,7 +141,7 @@ const ClubCoachDetails = () => {
 
                         <div className='w-full flex items-center justify-between gap-y-4 bg'>
 
-                            <Avatar src={coachDetails.data.profilePicture.path} alt="Remy Sharp" sx={{height:'100px', width:'100px', zIndex:'0'}} />
+                            <Avatar src={coachDetails.data.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'100px', width:'100px', zIndex:'0'}} />
 
                             <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
 
@@ -224,20 +224,23 @@ const ClubCoachDetails = () => {
 
                                 <div className='flex flex-col text-start gap-y-1'>
 
-                                    <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
+                                        <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
                                     
-                                    <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
+                                        <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
 
                                 </div>
 
 
                             </div>
 
-                            <button 
-                            onClick={() => handleClickDetails(course.id)}
-                            className={`${ButtonStyles.normalButton}`} >
-                                جزئیات
-                            </button>
+                            {
+                                course.status !== 'Rejected' &&
+                                    <button 
+                                    onClick={() => handleClickDetails(course.id)}
+                                    className={`${ButtonStyles.normalButton}`} >
+                                        جزئیات
+                                    </button>
+                            }
 
                         </div>
                         ))
