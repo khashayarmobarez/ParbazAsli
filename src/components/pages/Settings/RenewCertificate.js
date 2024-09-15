@@ -58,7 +58,7 @@ const RenewCertificate = () => {
     // reset level after changing certificateId
     useEffect(() => {
         setLevel('')
-    }, [certificateId])
+    }, [organ])
 
 
     

@@ -102,7 +102,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
           style={{background:  'var(--profile-buttons-background)',
           boxShadow: 'var(--profile-buttons-boxShadow)'}}>
             <p className=' text-sm mx-1' >{index + 1}</p>
-            <p className='text-sm px-6 w-full text-start'>{option.description}{isForSyllabi === true && (option.type === 'Theory' ? ' - تئوری' : ' - عملی')}</p>
+            <p className='text-sm px-6 w-full text-start'>{option.description}</p>
             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
             boxShadow: 'var(--profile-buttons-boxShadow)',
             borderRadius:'0.5rem',

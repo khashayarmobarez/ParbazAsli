@@ -277,7 +277,7 @@ const AddHarness = () => {
                         />
                     }
                     
-                    <TextInput placeholder='مدل' value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}  />
+                    <TextInput placeholder='مدل' icon={clothesTag} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}  />
 
                     {/* size input */}
                     <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size} />

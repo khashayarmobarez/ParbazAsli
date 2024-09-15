@@ -270,7 +270,7 @@ const AddClubHarness = () => {
                         <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand}  />
                     }
                     
-                    <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
+                    <TextInput placeholder='مدل' icon={clothesTag} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
 
                     {/* size input */}
                     <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
