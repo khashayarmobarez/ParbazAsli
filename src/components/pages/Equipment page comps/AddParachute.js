@@ -353,6 +353,9 @@ const AddParachute = () => {
                           <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand} />
                       }
 
+                      {/* aircraft model input */}
+                      <TextInput value={aircraft} icon={clothesTag} onChange={handleTextInputAircraft} placeholder='مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+
                       {/* size inputs */}
                       <div className='col-span-1 flex flex-col gap-y-2'>
                         <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>

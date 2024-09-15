@@ -39,7 +39,7 @@ const TandemSurvey = () => {
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files); // Convert FileList to array
         const validTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
-        const maxSize = 50 * 1024 * 1024; // 50MB
+        const maxSize = 150 * 1024 * 1024; // 150MB
     
         const validFiles = files.filter((file) => validTypes.includes(file.type) && file.size <= maxSize);
     
@@ -188,7 +188,7 @@ const TandemSurvey = () => {
                                         آپلود  ویدئو
                                     </label>
 
-                                    <p className=' text-xs mt-2 text-start'>فرمت مجاز: mp4, mov ,webm و mkv تا حجم 4 مگابایت</p>
+                                    <p className=' text-xs mt-2 text-start'>فرمت مجاز: mp4, mov ,webm و mkv تا حجم 150 مگابایت</p>
 
                                 </div>
 
