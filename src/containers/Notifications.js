@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom';
 // queries
 import { useNotifications } from '../Utilities/Services/notificationAndSurveyQueries';
 
+// icons
+import arrowIcon from '../assets/icons/Right Arrow Button.svg';
+
 // components
 import PageTitle from '../components/reuseable/PageTitle';
 import NotifVersionStudentFlightForm from '../components/pages/Notifications/NotifVersionStudentFlightForm';
@@ -17,31 +20,20 @@ import PopupForNotif from '../components/pages/Notifications/PopupForNotif';
 
 const Notifications = () => {
 
-    const location = useLocation();
-
     const [PageNumber, setPageNumber ] = useState(1)
-
-    const [allNotifications, setAllNotifications] = useState([]);
 
     const [popUpData, setPopUpData] = useState('')
 
     const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError, refetch: refetchNotifications } = useNotifications(PageNumber,7);
 
-    useEffect(() => {
-        setAllNotifications([]);
-    }, [location]);
 
-    useEffect(() => {
-        if (notificationsData && notificationsData.data) {
-            setAllNotifications(prevNotifications => [...prevNotifications, ...notificationsData.data]);
-        }
-    }, [notificationsData, location]);
+    const handleNextPageNumber = () => {
+        setPageNumber(prev => prev + 1)
+    }
 
-    // reset all notification when user changes location
-
-    const handleSeeMore = () => {
-        setPageNumber(prevPageNumber => prevPageNumber + 1);
-    };
+    const handleLastPageNumber = () => {
+        setPageNumber(prev => prev - 1)
+    }
 
 
     return (
@@ -54,9 +46,7 @@ const Notifications = () => {
                 <div className='w-[90%] flex flex-col space-y-6'>
 
                     {   notificationsData &&
-                        notificationsData.data &&
-                        allNotifications &&
-                        allNotifications.map((notif, index) => (
+                        notificationsData.data?.map((notif, index) => (
                         <div className='w-full flex justify-center' key={index}
                         onClick={() => setPopUpData(notif)}>
 
@@ -86,12 +76,36 @@ const Notifications = () => {
                     ))}
                 </div>
 
-                {   notificationsData && notificationsData.totalCount > 7 && notificationsData.currentPage !== notificationsData.totalPagesCount &&
-                    <p 
-                    onClick={handleSeeMore}
-                    className='w-full' style={{color:'var(--yellow-text)'}}>
-                        مشاهده بیشتر ...
-                    </p>
+                {   notificationsData && notificationsData.totalCount > 7 &&
+                    <div className='w-full flex justify-between px-10 items-center'>
+                        <button
+                            className='transform  w-10 justify-self-end'
+                            disabled={PageNumber === 1}
+                            onClick={handleLastPageNumber}
+                        >
+                            <img
+                                src={arrowIcon}
+                                alt='arrow'
+                                className={`mt-2 ${PageNumber === 1 && 'opacity-60'}`}
+                            />
+                        </button>
+
+                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                            صفحه ی {PageNumber}
+                        </p>
+
+                        <button
+                            className='w-10 rotate-180 justify-self-start'
+                            disabled={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}
+                            onClick={handleNextPageNumber}
+                        >
+                            <img
+                                src={arrowIcon}
+                                alt='arrow'
+                                className={`${(notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber) && 'opacity-60'}`}
+                            />
+                        </button>
+                    </div>
                 }
                 
             </div>

@@ -30,7 +30,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
 
         // Move focus to the next input if available
         if (e.target.value && index < codeLength - 1) {
-            inputRefs.current[index + 1].current.focus();
+            inputRefs.current[index + 1].current.focus();   
         }
     };
 
@@ -49,8 +49,9 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     }
 
     // Capture pasted characters
-    const handlePaste = (e) => {
+    const handlePaste = async(e) => {
         e.preventDefault();
+        
         const pasteData = e.clipboardData.getData('text').slice(0, codeLength);  // Ensure only codeLength number of characters
         const newCode = [...code];
         
