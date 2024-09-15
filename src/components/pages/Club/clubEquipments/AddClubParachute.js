@@ -350,11 +350,11 @@ const AddParachute = () => {
                       {/* show custom brand input */}
                       {
                         showCustomBrandInput &&
-                          <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand} />
+                          <TextInput  value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand} />
                       }
 
                       {/* aircraft model input */}
-                      <TextInput placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft} IsEmptyAfterSubmit={submitted && !aircraft}  />
+                      <TextInput icon={clothesTag} placeholder='مدل وسیله پروازی' value={aircraft} onChange={handleTextInputAircraft} IsEmptyAfterSubmit={submitted && !aircraft}  />
 
                       {/* size inputs */}
                       <div className='col-span-1 flex flex-col gap-y-2'>

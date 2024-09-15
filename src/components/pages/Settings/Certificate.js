@@ -8,7 +8,8 @@ const Certificate = ({certificateData}) => {
 
 
     return (
-        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' style={{background:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)', color:'var(--soft-white) ' }}>
+        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' 
+        style={{background:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)', color:'var(--soft-white) ' }}>
             
             <div className=' w-full text-xs flex justify-between items-center gap-x-4'>
 
@@ -31,7 +32,7 @@ const Certificate = ({certificateData}) => {
 
             {certificateData.status === 'Rejected' &&
                 <div className='w-full flex items-center gap-x-2  mt-4'>
-                    <p className='text-sm text-[var(--notification-red)]'>دلیل رد شدن: {certificateData.rejectionReason}</p>
+                    <p className='text-sm text-[var(--notification-red)] font-medium'>دلیل رد شدن: {certificateData.rejectReason}</p>
                 </div>
             }
 

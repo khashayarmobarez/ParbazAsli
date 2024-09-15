@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
@@ -16,6 +16,8 @@ import Certificate from '../../Settings/Certificate';
 
 
 const ChangeCertificate = () => {
+
+    const navigate = useNavigate()
 
     const [pageNumber, setPageNumber] = useState(1)
 
@@ -72,12 +74,12 @@ const ChangeCertificate = () => {
                     </div>
                 }
 
-                <Link to='/Settings/certificate' className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
+                <div onClick={() => navigate('/Settings/certificate')} className='fixed bottom-[4.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
                     <button className={`${ButtonStyles.addButton} w-[100%]`} >
                         <AddIcon />
                         <p>افزودن گواهینامه</p>
                     </button>
-                </Link>
+                </div>
 
             </div>
     );

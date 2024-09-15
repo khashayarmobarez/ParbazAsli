@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 
 // assets
 import flightHour from '../../../assets/icons/flightHour.svg'
-import flightQuan from '../../../assets/icons/flightQuantity.svg'
+import documentIcon from '../../../assets/icons/doc-Icon.svg'
 import clubStudents from '../../../assets/icons/users-Icon.svg'
 import backButton from '../../../assets/icons/Right Arrow Button.svg'
 
@@ -147,17 +147,17 @@ const ClubCoachDetails = () => {
 
                                 <div className=' flex justify-start items-start w-32' >
                                     <img src={clubStudents} alt='icon'/>
-                                    <p className=' font-normal text-xs mr-2  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
+                                    <p className=' font-normal text-xs mr-1  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
                                 </div> 
 
                                 <div className=' flex justify-start items-start w-32' >
                                     <img src={flightHour} alt='icon'/>
-                                    <p className=' font-normal text-xs mr-2  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
+                                    <p className=' font-normal text-xs mr-1  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
                                 </div>
 
-                                <div className=' flex justify-start items-start w-32' >
-                                    <img src={flightQuan} alt='icon'/>
-                                    <p className=' font-normal text-xs mr-2  text-start'>کد عضویت: {coachDetails.data.id}</p>
+                                <div className=' flex justify-start items-start w-32 -mt-1' >
+                                    <img src={documentIcon} alt='icon'/>
+                                    <p className=' font-normal text-xs mr-1 mt-[2px] text-start'>کد عضویت: {coachDetails.data.id}</p>
                                 </div>
 
                             </div>

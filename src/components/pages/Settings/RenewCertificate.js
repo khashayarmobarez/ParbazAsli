@@ -168,7 +168,9 @@ const RenewCertificate = () => {
                         theme: 'dark',
                         style: { width: "350px" }
                     });
-                    navigate('/editProfile/changeCertificate')
+                    setTimeout(() => {
+                        navigate('/editProfile/changeCertificate')
+                    }, 500);
                 },
                 onError: (error) => {
                     let errorMessage = 'خطایی رخ داده است';

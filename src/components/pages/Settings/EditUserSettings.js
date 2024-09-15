@@ -69,6 +69,10 @@ const EditUserSettings = () => {
             return () => clearInterval(interval);
         }
         
+    }, [codeRemainingTimePhone])
+    
+    useEffect(() => {
+        
         if(codeRemainingTimeEmail > 0) {
             const interval = setInterval(() => {
                 setCodeRemainingTimeEmail(codeRemainingTimeEmail - 1)
@@ -77,7 +81,7 @@ const EditUserSettings = () => {
             return () => clearInterval(interval);
         }
         
-    }, [codeRemainingTimePhone, codeRemainingTimeEmail])
+    }, [codeRemainingTimeEmail])
 
 
     const persianToEnglishNumber = (input) => {

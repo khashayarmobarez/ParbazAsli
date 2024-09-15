@@ -185,17 +185,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
   };
 
   const useAddCertificate = () => {
-    return useMutation(addCertificate, {
-      onSuccess: (data) => {
-        // Handle success, e.g., show a notification, reset the form, etc.
-        console.log('Certificate added successfully:', data);
-        window.location.reload()
-      },
-      onError: (error) => {
-        // Handle error, e.g., show an error message
-        console.error('Error adding certificate:', error);
-      },
-    });
+    return useMutation(addCertificate);
   };
 
 

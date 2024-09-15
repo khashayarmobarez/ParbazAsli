@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // mui
-import { useMediaQuery } from '@mui/material';
+import { Avatar, useMediaQuery } from '@mui/material';
 import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 
@@ -46,12 +46,7 @@ const ClubCourseStudentDetails = () => {
                                     <h1 className='text-lg font-medium'>{studentData.data.name}</h1>
                                 }
 
-                                    
-                                <img
-                                    className="w-[20vw] h-[20vw] rounded-full object-cover"
-                                    src={ studentData.data.image.path || ''} 
-                                    alt='userPicture' 
-                                />
+                                <Avatar alt='user picture'  src={ studentData.data.image?.path || ''} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
 
                             </div>
 

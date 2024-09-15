@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // redux
@@ -46,6 +46,8 @@ const FlightsAdvancedFilter = () => {
     const dispatch = useDispatch()
     const { formatDate } = useDateFormat();
 
+    const [resetDate, setResetDate] = useState(false)
+
     // redux
     const { 
         courseFilter,
@@ -71,7 +73,10 @@ const FlightsAdvancedFilter = () => {
     const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter ? countryFilter.id : '')
     const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter  && provinceFilter.id, countryFilter && countryFilter.id)
     
-
+    const resetDateFunc = () => {
+        setResetDate(true)
+        setTimeout(() => setResetDate(false), 50);
+    }
 
     const handleSelectCourseFilter = (selectedOption) => {
         dispatch(updateCourseFilter(selectedOption));
@@ -151,6 +156,27 @@ const FlightsAdvancedFilter = () => {
     }
     , [fromDateFilter, toDateFilter])
 
+//     Create a function with two arguments that will return an array of the first n multiples of x.
+
+// Assume both the given number and the number of times to count will be positive numbers greater than 0.
+
+// Return the results as an array or list ( depending on language ).
+
+// Examples
+// countBy(1,10) === [1,2,3,4,5,6,7,8,9,10]
+// countBy(2,5) === [2,4,6,8,10]
+
+
+// function countBy(x, n) {
+//   let z = [x];
+    
+    // for(let i = 0; i < n; i++) {
+        // z.push(z[z.lenght - 1] + x)
+    // } 
+    
+//   return z;
+// }
+
 
 
     return (
@@ -211,17 +237,22 @@ const FlightsAdvancedFilter = () => {
                             <DropdownInput icon={multipleTagsIcon} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
-                            {/* the date picker component comes from equipment section */}
-                            <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
+                            {
+                                !resetDate &&
+                                <>
+                                    {/* the date picker component comes from equipment section */}
+                                    <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
 
-                            {/* the date picker component comes from equipment section */}
-                            <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
+                                    {/* the date picker component comes from equipment section */}
+                                    <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
+                                </>
+                            }
 
                         </div>
 
                         <div className='w-[90%] md:w-[65%] flex justify-between mt-2'>
                             <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-40 h-12`}>اعمال فیلتر</button>
-                            <button onClick={() => dispatch(resetAllFilters())} className={` ${buttonStyles.normalButton} w-40 h-12`}>حذف فیلترها</button>
+                            <button onClick={() => {dispatch(resetAllFilters()); resetDateFunc()}} className={` ${buttonStyles.normalButton} w-40 h-12`}>حذف فیلترها</button>
                         </div>
                     </>
                     
