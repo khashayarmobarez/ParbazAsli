@@ -237,7 +237,6 @@ const ChangeProfile = () => {
             return;
         }
 
-
         setLoadingStatus(true)
         
         const requestBody = {

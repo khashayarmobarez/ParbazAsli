@@ -136,7 +136,13 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         const sendCodeHandler = async(e) => {
             e.preventDefault();
             if (!validInput) { 
-                setErrMsg("فرمت ایمیل یا شماره تلفن صحیح نمیباشد");
+                toast('فرمت ایمیل یا شماره تلفن صحیح نمیباشد', {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                }); 
                 return;
             }
             try {
@@ -167,10 +173,23 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             } catch (err) {
                 // Handle errors
                 if (!err?.response) {
-                    setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
+                    toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                        type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    }); 
                 } else {
                     console.log(err)
-                    setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
+                    setErrMsg(err.response?.data.ErrorMessages[0].ErrorMessage)
+                    toast(err.response?.data.ErrorMessages[0].ErrorMessage, {
+                        type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    }); 
                 }
             }
         }
@@ -330,10 +349,9 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                 </>
                             )
                         }
-                        
-                        <p className={errMsg ? "text-[#ED553B] text-sm" : "offscreen"} aria-live="assertive"> {errMsg}</p>
-                        {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کنید اطلاعات در حال بارگذاری می باشد</p> */}
 
+                        {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کنید اطلاعات در حال بارگذاری می باشد</p> */}
+                        <p className={errMsg ? "text-[#ED553B] text-sm" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     </form>
                 </div>
             )}

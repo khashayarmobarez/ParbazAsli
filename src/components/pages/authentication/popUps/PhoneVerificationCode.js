@@ -50,12 +50,22 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
 
     // Capture pasted characters
     const handlePaste = (e) => {
-        const pasteData = e.clipboardData.getData('text').slice(0, codeLength);
-        const newCode = pasteData.split('').map((char, i) => pasteData[i] || code[i]);
-        setCode(newCode.join(''));  // Join the array elements into a string before setting the state
-
-        // Move focus to the appropriate input
-        const nextIndex = Math.min(newCode.length, codeLength - 1);
+        e.preventDefault();
+        const pasteData = e.clipboardData.getData('text').slice(0, codeLength);  // Ensure only codeLength number of characters
+        const newCode = [...code];
+        
+        // Distribute the pasted characters across the inputs
+        pasteData.split('').forEach((char, i) => {
+            if (i < codeLength) {
+                newCode[i] = char;
+                inputRefs.current[i].current.value = char;  // Set the value of each input
+            }
+        });
+    
+        setCode(newCode.join(''));
+    
+        // Focus the next empty input if available
+        const nextIndex = pasteData.length < codeLength ? pasteData.length : codeLength - 1;
         if (inputRefs.current[nextIndex]?.current) {
             inputRefs.current[nextIndex].current.focus();
         }
@@ -102,6 +112,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                             className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                             key={index}
                             type="text"
+                            autocomplete="one-time-code"
                             maxLength={1}
                             onChange={(e) => handleInput(e, index)}
                             ref={ref}
