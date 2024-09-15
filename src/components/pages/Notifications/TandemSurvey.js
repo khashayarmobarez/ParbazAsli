@@ -38,7 +38,7 @@ const TandemSurvey = () => {
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files); // Convert FileList to array
-        const validTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+        const validTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
         const maxSize = 50 * 1024 * 1024; // 50MB
     
         const validFiles = files.filter((file) => validTypes.includes(file.type) && file.size <= maxSize);
