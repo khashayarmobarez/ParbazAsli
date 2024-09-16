@@ -4,6 +4,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
+
+
 const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit }) => {
 
   const [filled, setFilled] = useState(false);
@@ -19,7 +21,7 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
     <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
       <span> 
         { icon ?
-          <img src={icon} alt='icon' className=' absolute w-6 mt-[12px] mr-[8px]' style={{fill :'white'}} />
+          <img src={icon} alt='icon' className=' absolute w-5 mt-[15px] mr-[8px]' style={{fill :'white'}} />
           : 
           <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
           }

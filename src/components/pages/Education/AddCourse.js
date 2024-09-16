@@ -509,7 +509,7 @@ const AddCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                        <TextInput icon={listIcon} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -527,7 +527,7 @@ const AddCourse = () => {
                                         style={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
-                                            <p className='text-sm px-6 w-full text-start'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <p className='text-sm px-6 w-full text-start'>{course.description} </p>
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
@@ -539,7 +539,7 @@ const AddCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                        <TextInput icon={listIcon} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -557,7 +557,7 @@ const AddCourse = () => {
                                         style={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
-                                            <p className='text-sm px-6 w-full text-start'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
+                                            <p className='text-sm px-6 w-full text-start'>{course.description}</p>
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
@@ -635,8 +635,10 @@ const AddCourse = () => {
 
                                 <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
                             </>
+                            
                         }
-                        
+                     
+                    
                         
                     </>
                 }

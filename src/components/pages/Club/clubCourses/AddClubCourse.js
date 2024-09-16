@@ -545,7 +545,7 @@ const AddClubCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                        <TextInput icon={listIcon} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -555,20 +555,27 @@ const AddClubCourse = () => {
                                     </span>
                                 </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
+                                <ul className='w-full py-0 mt-[-1rem] gap-2'>
                                     {customCourses
                                     .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
-                                    .map((course) => (
-                                        <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                            <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <ClearIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                    .map((course,index) => (
+                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className='text-sm px-6 w-full text-start'>{course.description} </p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                            onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                        <TextInput icon={listIcon} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -578,13 +585,20 @@ const AddClubCourse = () => {
                                     </span>
                                 </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] grid grid-cols-1 gap-2'>
+                                <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                     {customCourses
                                     .filter(course => course.type === 2) // Filter for practical courses (type 2)
-                                    .map((course) => (
-                                        <li key={course.order} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                            <p className='text-sm mx-1'>{course.description} ({course.type === 1 ? 'تئوری' : 'عملی'})</p>
-                                            <ClearIcon onClick={() => handleRemoveCustomCourse(course.order)} />
+                                    .map((course,index) => (
+                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className='text-sm px-6 w-full text-start'>{course.description}</p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                            onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
                                 </ul>

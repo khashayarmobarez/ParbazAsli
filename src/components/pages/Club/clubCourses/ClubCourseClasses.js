@@ -49,6 +49,7 @@ const ClubCourseClasses = () => {
                     return <ClubCourseClassBox title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
+
             </>
             }
 

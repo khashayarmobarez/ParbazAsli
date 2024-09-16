@@ -232,7 +232,7 @@ const AddClass = () => {
                                 value={ClassName}
                                 onChange={handleClassName}
                                 placeholder='نام کلاس'
-                                Icon={singleTag}
+                                icon={singleTag}
                             />
 
                             <div className='w-full flex flex-col gap-y-2'>
