@@ -2,7 +2,7 @@
   z-index: -100;
   min-height: 100vh;
   background-color: var(--bg-dark-active) ;
-  color:#fff;
+  color:var(--text-color);
   text-align: center;
   margin: 0;
   /* overflow: hidden; */

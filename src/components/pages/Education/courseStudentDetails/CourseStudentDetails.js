@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // mui
-import { useMediaQuery } from '@mui/material';
+import { Avatar, useMediaQuery } from '@mui/material';
 import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 
@@ -13,7 +13,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import flightHour from '../../../../assets/icons/flightHour.svg';
 import flightQuan from '../../../../assets/icons/flightQuantity.svg';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
-import { useACourseStudent } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseStudent, useCourseStudentFlights } from '../../../../Utilities/Services/coursesQueries';
 
 const CourseStudentDetails = () => {
 
@@ -25,6 +25,7 @@ const CourseStudentDetails = () => {
     const isMobile = useMediaQuery('(max-width:720px)');
 
     const { data: studentData } = useACourseStudent(studentId)
+    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,1,10);
 
 
     return (
@@ -47,10 +48,10 @@ const CourseStudentDetails = () => {
                                 }
 
                                     
-                                <img
-                                    className="w-[20vw] h-[20vw] rounded-full object-cover"
+                                <Avatar
                                     src={ studentData.data.image?.path || ''} 
                                     alt='userPicture' 
+                                    sx={{height:'100px', width:'100px', zIndex:'0'}}
                                 />
 
                             </div>
@@ -153,7 +154,12 @@ const CourseStudentDetails = () => {
                 </div>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
-                    <Link to={`/education/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
+                    <Link to={`/education/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >
+                        عملی
+                        <span className='text-[var(--red-text)]'>
+                            &nbsp;({userFlights && userFlights.totalCount})
+                        </span>
+                    </Link>
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
                 </div>
