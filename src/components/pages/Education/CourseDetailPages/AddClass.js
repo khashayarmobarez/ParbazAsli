@@ -10,6 +10,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import singleTag from '../../../../assets/icons/ADressTag.svg';
 import listIcon from '../../../../assets/icons/listIcon.svg';
 import usersIcon from '../../../../assets/icons/users-Icon.svg';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 // queries
 import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents } from '../../../../Utilities/Services/coursesQueries';
@@ -307,9 +308,16 @@ const AddClass = () => {
                                 guestStudentDatas &&
                                 <ul className=' w-full py-0 grid grid-cols-1 gap-y-2'>
                                     {guestStudentDatas.map((student, index) => (
-                                        <li key={index} className='col-span-1 p-1 bg-[#282C4C] rounded-xl flex justify-between items-center'>
-                                            <p className='text-sm mx-1'>{student.data.fullName}</p>
-                                            <ClearIcon onClick={() => handleRemoveGuestStudents(index)} />
+                                        <li key={student.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                        style={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <p className=' text-sm mx-1' >{index + 1}</p>
+                                            <p className='text-sm px-6 w-full text-start'>{student.data.fullName} </p>
+                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            borderRadius:'0.5rem',
+                                            color:'var(--red-text)'}}
+                                            onClick={() => handleRemoveGuestStudents(index)} />
                                         </li>
                                     ))}
                                 </ul>
