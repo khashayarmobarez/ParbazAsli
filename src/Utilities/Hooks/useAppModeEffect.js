@@ -87,8 +87,8 @@ const useAppModeEffect = (isDarkMode) => {
         root.style.setProperty('--dark-input-boxShadow', ' -3px 4px 4px 1px rgba(0, 0, 0, 0.32)');
         
         // club => coaches => coaches details boxes
-        root.style.setProperty('--coachesDetails-bg', 'linear-gradient(5deg, rgba(135,141,203,0.3) 11%, rgba(24,26,45,0.2) 100%)');
-        root.style.setProperty('--coachesDetails-BoxShadow', ' 1px -1px 2.59px 0px rgba(235, 224, 224, 0.41)');
+        root.style.setProperty('--coachesDetails-bg', 'linear-gradient(5deg, rgba(135,141,203,0.3) -41%, rgba(24,26,45,0.2) 100%)');
+        root.style.setProperty('--coachesDetails-BoxShadow', ' 1px -1px 2.59px 0px rgba(235, 224, 224, 0.21)');
         
         // organization/couches details/ coach data
         root.style.setProperty('--organs-coachData-bg', 'linear-gradient(5.31deg, #353A65 -34.63%, rgba(42, 46, 81, 0) 100.99%)')
