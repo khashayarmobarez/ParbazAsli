@@ -2,6 +2,10 @@ import React, {  useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+// hotjar
+import Hotjar from '@hotjar/browser';
+
+
 // api
 import { postIsUserAuthenticated } from './Utilities/Services/AuthenticationApi';
 
@@ -121,6 +125,11 @@ const queryClient = new QueryClient();
 
 
 function App() {
+
+  const siteId = 5136101;
+  const hotjarVersion = 6;
+
+  Hotjar.init(siteId, hotjarVersion);
 
   const token = Cookies.get('token') || null;
 
