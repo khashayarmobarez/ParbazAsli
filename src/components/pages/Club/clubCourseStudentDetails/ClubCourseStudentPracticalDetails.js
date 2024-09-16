@@ -39,7 +39,12 @@ const ClubCourseStudentPracticalDetails = () => {
 
                     <div className='w-full flex flex-col gap-y-6'>
                         {userFlights.data.map((flight) => (
-                            <PracticalFlightHistoryBox key={flight.id} flightBaseData={flight} isForClubCourseStudent={true} />
+                            <div key={flight.id} className='w-full'>
+                                <PracticalFlightHistoryBox key={flight.id} flightBaseData={flight} isForClubCourseStudent={true} />
+                                {/* <div className='bg-light-yellow w-full h-10'>
+                                    test
+                                </div> */}
+                            </div>
                         ))}
                     </div>
 
