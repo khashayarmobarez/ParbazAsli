@@ -25,7 +25,7 @@ const CourseStudentDetails = () => {
 
     const isMobile = useMediaQuery('(max-width:720px)');
 
-    const { data: studentData } = useACourseStudent(studentId)
+    const { data: studentData } = useACourseStudent(studentId);
     const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,1,10);
 
 
@@ -34,7 +34,7 @@ const CourseStudentDetails = () => {
             <div  className='w-full flex flex-col items-center gap-y-10 md:w-[70%]'>
 
                 <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start pb-8 px-4 py-2  relative`}
-                style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}
+                    style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}
                 >
                     { 
                     studentData && 
