@@ -129,9 +129,8 @@ function App() {
   const siteId = 5136101;
   const hotjarVersion = 6;
 
-  useEffect(() => {
-    Hotjar.init(siteId, hotjarVersion);
-  }, []);
+  
+  Hotjar.init(siteId, hotjarVersion);
 
 
   const token = Cookies.get('token') || null;
