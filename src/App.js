@@ -129,9 +129,21 @@ function App() {
   const siteId = 5136101;
   const hotjarVersion = 6;
 
-  Hotjar.init(siteId, hotjarVersion);
+  useEffect(() => {
+    Hotjar.init(siteId, hotjarVersion);
+  }, []);
+
 
   const token = Cookies.get('token') || null;
+  const userInput = Cookies.get('userInput') || null;
+
+
+  // hotjar
+  if(token) {
+    Hotjar.identify(userInput, {
+      userInput: userInput,   
+    });
+  }
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
