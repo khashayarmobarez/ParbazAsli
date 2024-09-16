@@ -152,7 +152,7 @@ const AddUsedEquipment = () => {
 
                         <p className='' style={{color:'var(--soft-white)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>وسیله پرواز</p>
+                        <p className='' style={{color:'var(--yellow-text)'}}>وسیله پروازی</p>
 
                     </div>
                     

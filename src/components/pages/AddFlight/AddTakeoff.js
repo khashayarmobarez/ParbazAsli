@@ -135,7 +135,7 @@ const AddTakeoff = () => {
 
                         <p className='' style={{color:'var(--yellow-text)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>وسیله پرواز</p>
+                        <p className='' style={{color:'var(--yellow-text)'}}>وسیله پروازی</p>
 
                     </div>
                     
