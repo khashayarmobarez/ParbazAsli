@@ -163,28 +163,67 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             )
                         }
                         {   popUpData.type === 'AcceptClub' &&
-                            (
-                                popUpData.status === 'Expired' ?
-                                <button 
-                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
-                                :
-                                <button 
-                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.id}`)}
-                                className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
-                            )
+                           <>
+                           {
+                               popUpData.status === 'Expired' ?
+                               <div className='flex w-full justify-between gap-x-2'>
+                                   <button 
+                                       type="submit" 
+                                       disabled={true} 
+                                       className={`${ButtonStyles.addButton} opacity-45 w-28`} >
+                                           تایید
+                                       </button>
+                                   <button 
+                                   disabled={true} 
+                                   className={`${ButtonStyles.normalButton} opacity-45 `} >
+                                       رد
+                                   </button>
+                               </div>
+                               :
+                               <div className='flex w-full justify-between gap-x-2'>
+                                   <button 
+                                    type="submit" 
+                                    disabled={triggerStudentStatusLoading} 
+                                    onClick={(event) => handleTriggerClubStatus( 'active', popUpData.id, event) } 
+                                    className={`${ButtonStyles.addButton} w-28`} 
+                                    >
+                                           تایید
+                                    </button>
+                                    <button 
+                                        disabled={triggerStudentStatusLoading} 
+                                        onClick={(event) => handleTriggerClubStatus( 'rejected', popUpData.id, event) }
+                                        className={`${ButtonStyles.normalButton}`} 
+                                    >
+                                            رد
+                                    </button>
+                               </div>
+                           }
+                       </>
                         }
                         {   popUpData.type === 'AcceptStudentInCourse' &&
                             <>
                                 {
                                     popUpData.status === 'Expired' ?
-                                    null
+                                    <div className='flex w-full justify-between gap-x-2'>
+                                        <button 
+                                            type="submit" 
+                                            disabled={true} 
+                                            className={`${ButtonStyles.addButton} opacity-45 w-28`} >
+                                                تایید
+                                            </button>
+                                        <button 
+                                        disabled={true} 
+                                        className={`${ButtonStyles.normalButton} opacity-45 `} >
+                                            رد
+                                        </button>
+                                    </div>
                                     :
-                                    <div className='flex w-40 justify-between'>
+                                    <div className='flex w-full justify-between gap-x-2'>
                                         <button 
                                             type="submit" 
                                             disabled={triggerStudentStatusLoading} 
                                             onClick={(event) => handleTriggerStudentStatus( 'active', popUpData.id, event) } 
-                                            className={`${ButtonStyles.addButton} w-full`} >
+                                            className={`${ButtonStyles.addButton} w-28`} >
                                                 تایید
                                             </button>
                                         <button 
@@ -203,21 +242,22 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                     popUpData.status === 'Expired' ?
                                     null
                                     :
-                                    <div className='flex w-40 justify-between'>
+                                    <div className='flex w-full justify-between gap-x-2'>
                                         <button 
                                             type="submit" 
                                             disabled={triggerCourseStatusLoading} 
                                             onClick={(event) => handleTriggerCourseStatus( 'active', popUpData.id, event) } 
-                                            className={`${ButtonStyles.addButton} w-full`}  
+                                            className={`${ButtonStyles.addButton} w-28`}  
                                         >
-                                                تایید
+                                            تایید
                                         </button>
                                         <button 
                                             disabled={triggerCourseStatusLoading} 
                                             onClick={(event) => handleTriggerCourseStatus( 'rejected', popUpData.id, event) } 
                                             className={`${ButtonStyles.normalButton}`} 
                                         >
-                                                رد
+                                            
+                                            رد
                                         </button>
                                     </div>
 

@@ -75,7 +75,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
           onClick={handleIconClick}
           className='absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer'
         >
-          <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
+        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
         </span>
       </div>
 
@@ -88,7 +88,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
                 className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
-                {option.description}{isForSyllabi && (option.type === 'Theory' ? ' - تئوری' : ' - عملی')}
+                {option.description}
               </li>
               <div className='w-full h-[1px] bg-[var(--low-opacity-white)]' />
             </div>
