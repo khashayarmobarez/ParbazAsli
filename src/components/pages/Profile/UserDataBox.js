@@ -73,19 +73,19 @@ const UserDataBox = ({hasCoach}) => {
 
                             <div className=' flex justify-center items-center w-[80%]' >
                                 <img src={flightQuan} alt='icon'/>
-                                <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.flightCount} تعداد پرواز</p>
+                                <p className=' font-normal text-xs mr-2 w-36 text-start'>تعداد پرواز {data.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center w-[80%]' >
                                 <img src={flightHour} alt='icon'/>
-                                <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.flightHours} ساعت پرواز</p>
+                                <p className=' font-normal text-xs mr-2 w-36 text-start'>ساعت پرواز {data.data.flightHours}</p>
                             </div>
                             
                             {/* condition based on coach  */}
-                            { (data.data.coachingHours >= 0 && hasCoach) ?
+                            { hasCoach ?
                                 <div className=' flex justify-between items-center w-[80%]' >
                                     <img src={flightHour} alt='icon'/>
-                                    <p className=' font-normal text-xs mr-2 w-36 text-start'>{data.data.coachingHours} ساعت مربیگری</p>
+                                    <p className=' font-normal text-xs mr-2 w-36 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
                                 </div>
                                 :
                                 <div/>

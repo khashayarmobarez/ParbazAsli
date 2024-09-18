@@ -25,6 +25,7 @@ import DropdownInput from '../../../inputs/DropDownInput';
 import TextInput from '../../../inputs/textInput';
 import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
+import { toast } from 'react-toastify';
 
 
 const AddCertificate = () => {
@@ -148,6 +149,20 @@ const AddCertificate = () => {
 
         event.preventDefault();
 
+        if(
+            !organ || !level || ((level.roleName !== "Starter") && (!certificateId || !dateStartValue || !dateEndValue || !uploadedFile))
+        ) {
+            toast("فرم را کامل کنید", {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "90%" }
+            }); 
+
+            return
+        }
+
         const formattedStartDate = formatDate(dateStartValue);
         const formattedEndDate = formatDate(dateEndValue);
 
@@ -172,10 +187,17 @@ const AddCertificate = () => {
         
         mutateCertificate(formData, {
             onSuccess: async (data) => {
-            await postIsUserAuthenticated(data.response.data.data.token, navigate, isUserAuthenticated);
             console.log(data);
-            window.location.reload();
-            navigate('/addEmail');
+            toast('گواهینامه با موفقیت اضافه شد', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+            });
+            setTimeout(() => {
+                navigate('/adminPending');
+            }, 1000);
             },
             onError: (error) => {
                 console.error('Error adding certificate:', error);
@@ -338,7 +360,6 @@ const AddCertificate = () => {
                                                 </button>
 
                                                 {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
-                                                {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
 
                                             </>
                                         }

@@ -179,9 +179,20 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                     popUpData.status === 'Expired' ?
                                     null
                                     :
-                                    <div className='flex w-20 justify-between'>
-                                        <button type="submit" disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerStudentStatus( 'active', popUpData.id, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
-                                        <button disabled={triggerStudentStatusLoading} onClick={(event) => handleTriggerStudentStatus( 'coachRejected', popUpData.id, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
+                                    <div className='flex w-40 justify-between'>
+                                        <button 
+                                            type="submit" 
+                                            disabled={triggerStudentStatusLoading} 
+                                            onClick={(event) => handleTriggerStudentStatus( 'active', popUpData.id, event) } 
+                                            className={`${ButtonStyles.addButton} w-full`} >
+                                                تایید
+                                            </button>
+                                        <button 
+                                        disabled={triggerStudentStatusLoading} 
+                                        onClick={(event) => handleTriggerStudentStatus( 'coachRejected', popUpData.id, event) }
+                                        className={`${ButtonStyles.normalButton}`} >
+                                            رد
+                                        </button>
                                     </div>
                                 }
                             </>
@@ -192,9 +203,22 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                     popUpData.status === 'Expired' ?
                                     null
                                     :
-                                    <div className='flex w-20 justify-between'>
-                                        <button type="submit" disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'active', popUpData.id, event) } style={{color:'var(--yellow-text) '}} >تایید</button>
-                                        <button disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'rejected', popUpData.id, event) } style={{ color: 'var(--notification-red)' }}>رد</button>
+                                    <div className='flex w-40 justify-between'>
+                                        <button 
+                                            type="submit" 
+                                            disabled={triggerCourseStatusLoading} 
+                                            onClick={(event) => handleTriggerCourseStatus( 'active', popUpData.id, event) } 
+                                            className={`${ButtonStyles.addButton} w-full`}  
+                                        >
+                                                تایید
+                                        </button>
+                                        <button 
+                                            disabled={triggerCourseStatusLoading} 
+                                            onClick={(event) => handleTriggerCourseStatus( 'rejected', popUpData.id, event) } 
+                                            className={`${ButtonStyles.normalButton}`} 
+                                        >
+                                                رد
+                                        </button>
                                     </div>
 
                                 }
