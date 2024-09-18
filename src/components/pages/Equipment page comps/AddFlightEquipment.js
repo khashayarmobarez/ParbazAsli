@@ -305,7 +305,7 @@ const AddFlightEquipment = () => {
 
                         
                         {/* aircraft model input */}
-                        <TextInput value={aircraft} icon={clothesTag} onChange={handleTextInputAircraft} placeholder='مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                        <TextInput value={aircraft} icon={clothesTag} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>
