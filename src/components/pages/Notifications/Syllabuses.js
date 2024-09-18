@@ -98,7 +98,7 @@ const Syllabuses = () => {
                             theme: 'dark',
                             style: { width: '90%' }
                         });
-                        navigate('/notifications');
+                        navigate(-2);
                     },
                     onError: (error) => {
                         let errorMessage = 'خطایی رخ داده است';

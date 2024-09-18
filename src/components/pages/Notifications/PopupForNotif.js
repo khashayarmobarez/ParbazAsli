@@ -147,7 +147,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                 className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
-                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.id}`)}
+                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.externalId}`)}
                                 className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
                             )
                         }
@@ -158,7 +158,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                 className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
-                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.id}`)}
+                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.externalId}`)}
                                 className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
                             )
                         }
