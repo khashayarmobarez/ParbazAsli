@@ -181,17 +181,21 @@ const ClubCoachDetails = () => {
 
                                 <div className='flex gap-x-1'>
 
-                                    <p className='text-[var(--low-opacity-white)]'>وضعیت: <span className='text-[var(--text-color)]'>{course.status}</span></p>
-
-                                    {course.status === 'Active' && 
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--dark-green)'}}></div>
-                                    }
-                                    {course.status === 'Pending' &&
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                    }
-                                    {course.status === 'Disable' &&
-                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
-                                    }
+                                    <p className='text-[var(--low-opacity-white)]'>وضعیت:&nbsp; 
+                                        
+                                            {course.status === 'Active' && 
+                                                <span className='text-[var(--dark-green)]'>فعال</span>
+                                            }
+                                            {course.status === 'Pending' &&
+                                                <span className='text-[var(--red-text)]'>در انتظار...</span>
+                                            }
+                                            {course.status === 'Disable' &&
+                                                <span className='text-[var(--red-text)]'>غیر فعال</span>
+                                            }
+                                            {course.status === 'Rejected' &&
+                                                <span className='text-[var(--red-text)]'>رد شده</span>
+                                            }
+                                    </p>
 
                                 </div>
 

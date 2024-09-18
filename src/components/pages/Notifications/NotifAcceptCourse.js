@@ -68,11 +68,40 @@ const NotifAcceptCourse = ({notif}) => {
             
             {
                 status === 'Expired' ?
-                null
+                <div className='flex w-20 justify-between'>
+
+                    <button 
+                    type="submit" 
+                    disabled={true} 
+                    className='text-[var(--low-opacity-white)] font-medium' >
+                        تایید
+                    </button>
+                    
+                    <button 
+                    disabled={true} 
+                    className='text-[var(--low-opacity-white)] font-medium'>
+                        رد
+                    </button>
+
+                </div>
                 :
                 <div className='flex w-20 justify-between'>
-                    <button type="submit" disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } className={`${ButtonStyles.addButton} w-6`} >تایید</button>
-                    <button disabled={triggerCourseStatusLoading} onClick={(event) => handleTriggerCourseStatus( 'rejected', externalId, event) } className={`${ButtonStyles.normalButton} w-6`}>رد</button>
+
+                    <button 
+                    type="submit" 
+                    disabled={triggerCourseStatusLoading} 
+                    onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } 
+                    className='text-[var(--yellow-text)] font-medium'>
+                        تایید
+                    </button>
+                    
+                    <button 
+                    disabled={triggerCourseStatusLoading} 
+                    onClick={(event) => handleTriggerCourseStatus( 'rejected', externalId, event) } 
+                    className='text-[var(--red-text)] font-medium'>
+                        رد
+                    </button>
+
                 </div>
 
             }

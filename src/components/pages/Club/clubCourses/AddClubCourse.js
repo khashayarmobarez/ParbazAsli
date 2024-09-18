@@ -19,7 +19,6 @@ import userIcon from '../../../../assets/icons/user-Icon.svg';
 import certificateIcon from '../../../../assets/icons/certificate-Vector.svg';
 
 // mui
-import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 
