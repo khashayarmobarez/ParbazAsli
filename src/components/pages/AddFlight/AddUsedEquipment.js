@@ -40,6 +40,16 @@ const AddUsedEquipment = () => {
     const {wing, harness, parachute, passengerHarness,
     flightType, wingType} = useSelector(selectAddFlight)
 
+    // function to start from the bottom of the page
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight, 
+                behavior: 'smooth',  // 'auto' if you don't want smooth scrolling
+              });
+        }, 300);
+    }, []);
+
 
     useEffect(() => {
         if(!flightType) {
@@ -117,6 +127,7 @@ const AddUsedEquipment = () => {
       };
 
 
+    
 
     
     return (

@@ -42,6 +42,16 @@ const AddTakeoff = () => {
     const { data: takeOffTypesData, loading:takeOffTypesLoading, error:takeOffTypesError } = useTakeoffTypes()
 
 
+    // function to start from the bottom of the page
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight, 
+                behavior: 'smooth',  // 'auto' if you don't want smooth scrolling
+              });
+        }, 300);
+    }, []);
+
     useEffect(() => {
         if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id || !flightType) {
             navigate('/addFlight/AddFlightType')

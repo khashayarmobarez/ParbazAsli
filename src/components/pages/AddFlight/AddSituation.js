@@ -42,6 +42,16 @@ const AddSituation = () => {
     const { data: cloudTypesData, loading:cloudTypesLoading, error:cloudTypesError } = useCloudTypes()
 
 
+    // function to start from the bottom of the page
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight, 
+                behavior: 'smooth',  // 'auto' if you don't want smooth scrolling
+              });
+        }, 300);
+    }, []);
+
     useEffect(() => {
         if(!wing.id || !harness.id || !parachute.id || !flightType) {
             navigate('/addFlight/AddFlightType')
@@ -89,9 +99,9 @@ const AddSituation = () => {
 
     const handleNextPageButton = () => {
 
-        setSubmitted(true);
+    setSubmitted(true);
 
-        if(city && sight && clouds) {
+    if(city && sight && clouds) {
             navigate('/addFlight/addTakeoff')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
@@ -100,12 +110,13 @@ const AddSituation = () => {
                 autoClose: 3000,
                 theme: 'dark',
                 style: { width: "350px" }
-              });
+                });
         }
 
-      };
+    };
 
 
+    
 
     
     return (

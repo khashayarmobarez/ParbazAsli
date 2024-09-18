@@ -35,7 +35,7 @@ const UserDataBox = ({hasCoach}) => {
         <>
             {
                 isLoading && 
-                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                <Box sx={{ display: 'flex', width: 'full' , justifyContent:'center' }}>
                     <CircularProgress /> 
                 </Box>
             }
