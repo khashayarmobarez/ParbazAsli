@@ -9,7 +9,7 @@ const NotifTandemPassengerSurvey = ({notif}) => {
 
     const navigate = useNavigate()
 
-    const {isRead, title, status , description, externalId} = notif;
+    const {isRead, title, status , description, externalId, createdDateTime} = notif;
 
     const {  data: isSurveyAvailable, isLoading: availablityLoading, error: availablityError } = useIsSurveyAvailabe(externalId);
 
@@ -23,7 +23,7 @@ const NotifTandemPassengerSurvey = ({notif}) => {
     }, [description])
 
     return (
-        <div className=' w-full h-20 rounded-3xl flex items-center justify-between px-4' 
+        <div className=' w-full h-auto rounded-3xl flex items-center justify-between px-4 py-2' 
         style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'>
@@ -42,6 +42,8 @@ const NotifTandemPassengerSurvey = ({notif}) => {
                             <p className='text-start text-xs'>{shortDescription}</p>
                         </div>
                 }
+
+                <p className='text-start text-[var(--low-opacity-white)]'>{createdDateTime}</p>
 
             </div>
             

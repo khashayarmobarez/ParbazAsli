@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const NotifAcceptClub = ({notif}) => {
 
-    const {description ,externalId ,title, status, isRead} = notif;
+    const {description ,externalId ,title, status, isRead, createdDateTime} = notif;
 
     const { mutate: triggerClubStatus, isLoading: triggerClubStatusLoading } = useTriggerClubStatus();
 
@@ -46,7 +46,7 @@ const NotifAcceptClub = ({notif}) => {
     }
 
     return (
-        <div className=' w-full h-20 rounded-3xl flex items-center justify-between px-6' 
+        <div className=' w-full h-auto rounded-3xl flex items-center justify-between px-6 py-2' 
         style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'>
@@ -63,6 +63,7 @@ const NotifAcceptClub = ({notif}) => {
                     <p className='text-start'>{description.slice(0, 32)}{description.length > 0 ? ' ...' : ''}</p>
                 </div>
 
+                <p className='text-start text-[var(--low-opacity-white)]'>{createdDateTime}</p>
             </div>
             
             {

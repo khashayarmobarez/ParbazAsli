@@ -159,7 +159,6 @@ const AddCertificate = () => {
                 theme: 'dark',
                 style: { width: "90%" }
             }); 
-
             return
         }
 
@@ -196,6 +195,7 @@ const AddCertificate = () => {
                 style: { width: "350px" }
             });
             setTimeout(() => {
+                window.location.reload();
                 navigate('/adminPending');
             }, 1000);
             },
@@ -208,10 +208,10 @@ const AddCertificate = () => {
 
     return (
         <div className='flex flex-col items-center pt-20 pb-[4rem]'>
-                {
-                    organsLoading &&
-                    <DigilogbookLoading />
-                }
+            {
+                organsLoading &&
+                <DigilogbookLoading />
+            }
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
 
 
