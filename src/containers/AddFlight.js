@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
+import jalaali from 'jalaali-js';
 
 // components
 import PageTitle from '../components/reuseable/PageTitle';
@@ -43,9 +44,35 @@ const AddFlight = () => {
     },[takeoffTime, landingTime, dispatch])
 
 
+    function gregorianToShamsi(dateString) {
+        if (!dateString) return '';
+    
+        // Persian numerals map
+        const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    
+        // Function to convert regular numbers to Persian numerals
+        const toPersianNumber = (num) => num.toString().split('').map(digit => persianNumbers[digit]).join('');
+    
+        // Split the date and convert to numbers
+        const [year, month, day] = dateString.split('/').map(Number);
+        
+        // Convert to Shamsi (Jalali) date
+        const { jy, jm, jd } = jalaali.toJalaali(year, month, day);
+    
+        // Convert the Jalali date to Persian numerals
+        const persianDay = toPersianNumber(jd);
+        const persianMonth = toPersianNumber(jm);
+        const persianYear = toPersianNumber(jy);
+    
+        // Return the Persian date in dd/mm/yyyy format
+        return `${persianDay}/${persianMonth}/${persianYear}`;
+    }
+
+    const shamsiFlightData = formattedDate ? gregorianToShamsi(formattedDate) : '';
+
 
     return (
-        <div className='flex flex-col items-center pt-14 pb-24'>
+        <div className='flex flex-col items-center pt-14 pb-8'>
             <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10'>
 
             <PageTitle title={'ثبت پرواز'} navigateTo={-1} />
@@ -65,7 +92,7 @@ const AddFlight = () => {
                         <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-4'>
                             <p className=' text-xs pr-2'>تاریخ پرواز</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-2 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                <p className=' text-end'>{formattedDate}</p>
+                                <p className=' text-end'>{ shamsiFlightData}</p>
                             </div>
                         </div>
 

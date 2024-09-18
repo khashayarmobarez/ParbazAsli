@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -23,6 +24,7 @@ import backButton from '../../../assets/icons/Right Arrow Button.svg'
 const ClubCoachDetails = () => {
 
     const navigate = useNavigate()
+    const location = useLocation();
 
     const { id } = useParams();
 
@@ -30,12 +32,16 @@ const ClubCoachDetails = () => {
     const {  data: coachCoursesDetails, isLoading: coachCourseDetailsLoading, error: coachCourseDetailsError } = useGetCoachCourses(id);
     const { mutate: triggerCoachStatus, isLoading: triggerCoachStatusLoading } = useTriggerCoachStatus();
 
+    // for handliung the back button of club course details
+    Cookies.set('lastPathForClubCourseDetails',location.pathname)
 
     const handleClickDetails = (id) => {
 
         navigate(`/club/courseDetails/${id}/students`)
         
     }
+
+    
 
 
     const handleTriggerCoachStatus = (status) => {

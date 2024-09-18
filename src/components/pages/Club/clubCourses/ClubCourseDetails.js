@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // styles
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
@@ -23,12 +24,15 @@ const ClubCourseDetails = () => {
 
     const { id } = useParams();
 
+    const historyPageUrl = Cookies.get('lastPathForClubCourseDetails') || null;
+
     const [showPopup, setShowPopup] = useState(false);
     const [showExtra, setShowExtra ] = useState(false);
 
     const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useGetClubCourse(id);
 
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerClubCourseStatus();
+
 
     const handleTriggerCourseStatus = (event ,status ,id) => {
 
@@ -81,7 +85,7 @@ const ClubCourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={'/club'} /> 
+                <PageTitle title={'جزئیات دوره'} navigateTo={historyPageUrl} /> 
 
                 {
                     courseDataLoading &&

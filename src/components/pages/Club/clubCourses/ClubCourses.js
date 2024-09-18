@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // mui 
 import CircularProgress from '@mui/material/CircularProgress';
@@ -25,6 +25,7 @@ import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 const ClubCourses = () => {
 
     const navigate = useNavigate()
+    const location = useLocation();
 
     // courseData
     const [courseType, setCourseType] = useState('')
@@ -46,6 +47,9 @@ const ClubCourses = () => {
             setOrganizationId(clubCourseDividerData.data[0].organizationId)
         }
     }, [clubCourseDividerData])
+
+    // for handliung the back button of club course details
+    Cookies.set('lastPathForClubCourseDetails',location.pathname)
 
 
     const handleClubCourseDetails = (id) => () => {
