@@ -14,7 +14,7 @@ import flightHour from '../../../../assets/icons/flightHour.svg';
 import flightQuan from '../../../../assets/icons/flightQuantity.svg';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
 import userIcon from '../../../../assets/icons/user-Icon.svg';
-import { useACourseStudent, useCourseStudentFlights } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../../Utilities/Services/coursesQueries';
 
 const CourseStudentDetails = () => {
 
@@ -26,6 +26,7 @@ const CourseStudentDetails = () => {
     const isMobile = useMediaQuery('(max-width:720px)');
 
     const { data: studentData } = useACourseStudent(studentId);
+    const { data: studentPendingFlightCounts } = useStudentPendingFlightCounts(studentId);
     const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,1,10);
 
 
@@ -159,7 +160,7 @@ const CourseStudentDetails = () => {
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >
                         عملی
                         <span className='text-[var(--red-text)]'>
-                            &nbsp;({userFlights && userFlights.totalCount})
+                            &nbsp;({studentPendingFlightCounts && studentPendingFlightCounts.data})
                         </span>
                     </Link>
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
