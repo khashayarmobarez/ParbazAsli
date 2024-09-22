@@ -238,7 +238,6 @@ const AddCertificate = () => {
                 
                 <div className='w-full flex flex-col gap-y-2'>
                     <p style={{color:'var(--red-text)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
-                    <p className='text-sm text-right' style={{color:'var(--yellow-text)'}}>اول ارگان خود را انتخاب کرده سپس اطلاعات گواهینامه ی خود را کامل کنید.</p>
                 </div>
 
 
@@ -314,9 +313,9 @@ const AddCertificate = () => {
                                     {
                                         isStarter === 'false' &&
                                         <p 
-                                            className='self-start text-xs text-start text-[var(--yellow-text)]'
+                                            className='self-start text-xs text-start text-[var(--red-text)]'
                                         >
-                                            *اگر گواهینامه شما منقضی شده‌ است لطفا ابتدا نسبت به تمدید آن اقدام فرمایید
+                                            *اگر گواهینامه شما منقضی شده‌است، برای تکمیل ثبت نام لطفا ابتدا نسبت به تمدید آن اقدام فرمایید
                                         </p>
                                     }
                                     
