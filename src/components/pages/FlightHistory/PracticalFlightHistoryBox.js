@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // styles
@@ -20,6 +20,7 @@ import check from '../../../assets/icons/checkGreen.svg'
 const PracticalFlightHistoryBox = (props) => {
 
     const navigate = useNavigate()
+    const location = useLocation()
     const { flightBaseData, isForClubCourseStudent, isForEducationCourseStudent } = props;
 
     const { mutate: mutateDecline , isLoading: declineLoading} = useDeclineUserFlight();
@@ -87,7 +88,7 @@ const PracticalFlightHistoryBox = (props) => {
                             }
                         </div>
                         {/* Trigger flight status */}
-                        {flightBaseData.status === 'Pending' &&
+                        {flightBaseData.status === 'Pending' && location.pathname.includes('/education/courseDetails/studentDetails') &&
                             <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
                             style={{background: 'var(--syllabus-data-boxes-bg)',
                                 boxShadow: 'var(--organs-coachData-boxShadow)'}}>

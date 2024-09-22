@@ -68,42 +68,52 @@ const NotifAcceptStudent = ({notif}) => {
             
             {
                 status === 'Expired' ?
-                <div className='flex w-20 justify-between'>
+                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                    <div className='flex w-20 justify-between'>
 
-                    <button 
-                    type="submit" 
-                    disabled={true} 
-                    className='text-[var(--low-opacity-white)] font-medium' >
-                        تایید
-                    </button>
-                    
-                    <button 
-                    disabled={true} 
-                    className='text-[var(--low-opacity-white)] font-medium'>
-                        رد
-                    </button>
+                        <button 
+                        type="submit" 
+                        disabled={true} 
+                        className='text-[var(--low-opacity-white)] font-medium' >
+                            تایید
+                        </button>
+                        
+                        <button 
+                        disabled={true} 
+                        className='text-[var(--low-opacity-white)] font-medium'>
+                            رد
+                        </button>
 
+                    </div>
+
+                    <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                
                 </div>
                 :
-                <div className='flex w-20 justify-between'>
-
-                    <button 
-                    type="submit" 
-                    disabled={triggerStudentStatusLoading} 
-                    onClick={(event) => handleTriggerStudentStatus( 'active', externalId, event) } 
-                    className='text-[var(--yellow-text)] font-medium'>
-                        تایید
-                    </button>
+                <div className='flex flex-col w-45% h-full justify-around items-end'>
                     
-                    <button 
-                    disabled={triggerStudentStatusLoading} 
-                    onClick={(event) => handleTriggerStudentStatus( 'coachRejected', externalId, event) } 
-                    className='text-[var(--red-text)] font-medium'>
-                        رد
-                    </button>
+                    <div className='flex w-20 justify-between'>
 
+                        <button 
+                        type="submit" 
+                        disabled={triggerStudentStatusLoading} 
+                        onClick={(event) => handleTriggerStudentStatus( 'active', externalId, event) } 
+                        className='text-[var(--yellow-text)] font-medium'>
+                            تایید
+                        </button>
+                        
+                        <button 
+                        disabled={triggerStudentStatusLoading} 
+                        onClick={(event) => handleTriggerStudentStatus( 'coachRejected', externalId, event) } 
+                        className='text-[var(--red-text)] font-medium'>
+                            رد
+                        </button>
+
+                    </div>
+
+                    <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                
                 </div>
-
             }
 
         </div>

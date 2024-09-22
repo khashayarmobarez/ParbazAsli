@@ -70,40 +70,49 @@ const NotifAcceptCourse = ({notif}) => {
             
             {
                 status === 'Expired' ?
-                <div className='flex w-20 justify-between'>
+                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                    <div className='flex w-20 justify-between'>
 
-                    <button 
-                    type="submit" 
-                    disabled={true} 
-                    className='text-[var(--low-opacity-white)] font-medium' >
-                        تایید
-                    </button>
-                    
-                    <button 
-                    disabled={true} 
-                    className='text-[var(--low-opacity-white)] font-medium'>
-                        رد
-                    </button>
+                        <button 
+                        type="submit" 
+                        disabled={true} 
+                        className='text-[var(--low-opacity-white)] font-medium' >
+                            تایید
+                        </button>
+                        
+                        <button 
+                        disabled={true} 
+                        className='text-[var(--low-opacity-white)] font-medium'>
+                            رد
+                        </button>
 
+                    </div>
+
+                    <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
                 </div>
                 :
-                <div className='flex w-20 justify-between'>
+                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                    <div className='flex w-20 justify-between'>
 
-                    <button 
-                    type="submit" 
-                    disabled={triggerCourseStatusLoading} 
-                    onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } 
-                    className='text-[var(--yellow-text)] font-medium'>
-                        تایید
-                    </button>
+                        <button 
+                        type="submit" 
+                        disabled={triggerCourseStatusLoading} 
+                        onClick={(event) => handleTriggerCourseStatus( 'active', externalId, event) } 
+                        className='text-[var(--yellow-text)] font-medium'>
+                            تایید
+                        </button>
+                        
+                        <button 
+                        disabled={triggerCourseStatusLoading} 
+                        onClick={(event) => handleTriggerCourseStatus( 'rejected', externalId, event) } 
+                        className='text-[var(--red-text)] font-medium'>
+                            رد
+                        </button>
+
+                    </div>
                     
-                    <button 
-                    disabled={triggerCourseStatusLoading} 
-                    onClick={(event) => handleTriggerCourseStatus( 'rejected', externalId, event) } 
-                    className='text-[var(--red-text)] font-medium'>
-                        رد
-                    </button>
-
+                    <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                
                 </div>
 
             }
