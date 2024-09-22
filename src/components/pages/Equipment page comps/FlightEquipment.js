@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // queries
-import { useReturnEquipment, useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
+import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -26,6 +26,7 @@ const FlightEquipment = () => {
     const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(2, false)
     const { data: userEquipmentsHistoryData, HistoryLoading, historyError, refetch: refetchHistory } = useUserEquipmentsHistory(2, false)
     const { mutate: mutateReturnEquipment, isLoading:loadingReturnEquipment } = useReturnEquipment()
+    const { mutate: mutateTriggerEquipmentStatus, isLoading:loadingTriggerEquipmentStatus } = useTriggerEquipmentStatus()
 
     // useEffect to open active dropdown open at firt
     useEffect(() => {
@@ -63,6 +64,79 @@ const FlightEquipment = () => {
     const handlePossession = (id) => () => {
         navigate(`/possessionTransitionEquipment/${id}`);
     };
+
+    const handleSubmittingTranfer = (action, id) => {
+        if(action === 'accept') {
+            // accept
+            const formBody = {
+                equipmentId: id,
+                status: 'Accepted',
+                isForClub: false
+            }
+            
+            mutateTriggerEquipmentStatus(formBody, {
+                onSuccess: () => {
+                    refetchUserEquipmentsData()
+                    toast('وسیله پروازی با موفقیت تایید شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    refetchHistory()
+                }
+            }, { onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                }
+            })
+        } else {
+            // decline
+            const formBody = {
+                equipmentId: id,
+                status: 'Rejected',
+                isForClub: false
+            }
+
+            mutateTriggerEquipmentStatus(formBody, {
+                onSuccess: () => {
+                    refetchUserEquipmentsData()
+                    toast('وسیله پروازی با موفقیت رد شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                    refetchHistory()
+                }
+            }, { onError: (error) => {
+                console.log(error)
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                }
+            })
+        }
+    }
 
     const handleReturnEquipment = (id) => () => {
         const formBody = {
@@ -122,26 +196,89 @@ const FlightEquipment = () => {
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
-                                style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                                <div className='w-full flex flex-col items-center'>
 
-                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
-                                        <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
-                                    </div>
+                                    <div key={equipment.id} className={` z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
+                                    style={{background:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
-                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                                        {
+                                            equipment.status === 'Pending' &&
+                                            <p className='text-[var(--yellow-text)] font-bold -mb-2'>تایید انتقال از {equipment?.transferorFullName}</p> 
+                                        }   
 
-                                        <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
-                                            {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
-                                            'ویرایش'
-                                            :
-                                            'جزئیات'
+                                        <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                                            <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                            {
+                                                equipment.status !== 'Pending' &&
+                                                <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                             }
-                                        </button>
+                                        </div>
 
-                                        <button className={ButtonStyles.normalButton} onClick={handlePossession(equipment.id)} >انتقال مالکیت</button>
+                                        <div className={` w-full text-xs flex justify-between gap-y-1 items-center ${equipment.status === 'Pending' && '-mt-4'}`}>
+
+                                            
+                                            {
+                                                equipment.status === 'Pending' &&
+                                                    <p>{equipment.serialNumber}</p>
+                                            }
+
+                                            <button className={`${ButtonStyles.normalButton} ${equipment.status === 'Pending' && '-mt-2'}`} 
+                                            onClick={handleEditEquipment(equipment.id)} >
+                                                {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') && equipment.status !== 'Pending' ?
+                                                'ویرایش'
+                                                :
+                                                'جزئیات'
+                                                }
+                                            </button>
+
+                                            {
+                                                equipment.status !== 'Pending' &&
+                                                <button 
+                                                className={`${ButtonStyles.normalButton} ${equipment?.isTransitionRestricted && 'opacity-50 text-[var(--yellow-text)]'} `} 
+                                                onClick={handlePossession(equipment.id)}
+                                                disabled={equipment?.isTransitionRestricted} >
+                                                    {equipment?.isTransitionRestricted ?
+                                                    'در انتظار ...'
+                                                    :
+                                                    'انتقال مالکیت'
+                                                }
+                                                </button>
+                                            }
+
+                                        </div>
+
                                     </div>
+
+                                    {
+                                        equipment.status === 'Pending' &&
+                                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
+                                            style={{background: 'var(--syllabus-data-boxes-bg)',
+                                                boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+
+                                                <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
+                                                    <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                                    <p>آیا این ابزار مورد تایید شما است؟</p>
+                                                </div>
+
+                                                <div className='flex gap-x-6 items-center px-2'>
+                                                    
+                                                    <p 
+                                                    onClick={() => handleSubmittingTranfer('accept', equipment.id)}
+                                                    disabled={loadingTriggerEquipmentStatus} 
+                                                    className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                                        تایید
+                                                    </p>
+
+                                                    <p 
+                                                    onClick={() => handleSubmittingTranfer('decline', equipment.id)}
+                                                    disabled={loadingTriggerEquipmentStatus} 
+                                                    className='text-[var(--red-text)] text-sm font-medium' >
+                                                        رد
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                    }
 
                                 </div>
                             )
@@ -240,7 +377,7 @@ const FlightEquipment = () => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className='fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

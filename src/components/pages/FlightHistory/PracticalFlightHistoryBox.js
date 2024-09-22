@@ -80,10 +80,12 @@ const PracticalFlightHistoryBox = (props) => {
                             <p>{flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}</p>
                             <p>{flightBaseData.city && flightBaseData.city.slice(0, 10)}</p>
                             <p>{flightBaseData.site && flightBaseData.site.slice(0, 14)}</p>
-                            { flightBaseData.status === 'Pending' &&
+                            {
+                            flightBaseData.status === 'Pending' &&
                                 <img src={timer} alt='timer' />
                             }
-                            { flightBaseData.status === 'Accepted' &&
+                            {
+                            flightBaseData.status === 'Accepted' &&
                                 <img src={check} alt='check' />
                             }
                         </div>
@@ -95,7 +97,7 @@ const PracticalFlightHistoryBox = (props) => {
 
                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                     <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
-                                    <p >آیا این دوره مورد تایید شما است؟</p>
+                                    <p>آیا این پرواز مورد تایید شما است؟</p>
                                 </div>
 
                                 <div className='flex gap-x-6 items-center px-2'>

@@ -222,4 +222,33 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory, useReturnEquipment };
+
+
+
+
+// trigger equipment status mutation
+// /Equipment/TriggerEquipmentStatus
+    const triggerEquipmentStatus = async (formData) => {
+        const token = Cookies.get('token');
+        const response = await axios.post(`${BASE_URL}/Equipment/TriggerEquipmentStatus`, formData, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        });
+    
+        if (response.status !== 200) {
+        throw new Error('Failed to trigger equipment status');
+        }
+    
+        return response.data;
+    };
+
+    const useTriggerEquipmentStatus = () => {
+        return useMutation(triggerEquipmentStatus);
+    };
+
+
+
+
+export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory, useReturnEquipment, useTriggerEquipmentStatus };
