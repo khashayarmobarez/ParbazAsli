@@ -38,20 +38,32 @@ const NotifVersionStudentFlightForm = ({notif}) => {
                         </div>
                 }
 
-                <p className='text-start text-[var(--low-opacity-white)]'>{notif.createdDateTime}</p>
 
             </div>
             
             <div>
                 {
                     notif.status === 'Expired' ?
-                    <button 
-                    className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >تعیین وضعیت</button>
+                    <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2'>
+
+                        <button 
+                        className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >
+                            تعیین وضعیت
+                        </button>
+
+                        <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
+
+                    </div>
                     :
-                    <button 
-                    onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
-                    className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت
-                    </button>
+                    <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2'>
+
+                        <button 
+                        onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
+                        className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت
+                        </button>
+
+                        <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>                       
+                    </div>
                 }
             </div>
 

@@ -189,7 +189,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                         <button >
                                             {
                                                 notificationCountsData && notificationCountsData.data > 0 &&
-                                                    <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10' style={{background:'var(--red-text)'}}>
+                                                    <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10 bg-[var(--red-text)]'>
                                                         <p>{notificationCountsData.data}</p>
                                                     </div>
                                             }

@@ -64,7 +64,6 @@ const NotifAcceptCourse = ({notif}) => {
                     <p className='text-start'>{description.slice(0, 32)}{description.length > 0 ? ' ...' : ''}</p>
                 </div>
 
-                <p className='text-start text-[var(--low-opacity-white)]'>{createdDateTime}</p>
 
             </div>
             
@@ -88,7 +87,7 @@ const NotifAcceptCourse = ({notif}) => {
 
                     </div>
 
-                    <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                 </div>
                 :
                 <div className='flex flex-col w-45% h-full justify-around items-end'>
@@ -111,7 +110,7 @@ const NotifAcceptCourse = ({notif}) => {
 
                     </div>
                     
-                    <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                 
                 </div>
 

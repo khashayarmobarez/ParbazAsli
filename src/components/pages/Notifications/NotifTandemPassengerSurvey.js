@@ -43,26 +43,25 @@ const NotifTandemPassengerSurvey = ({notif}) => {
                         </div>
                 }
 
-                <p className='text-start text-[var(--low-opacity-white)]'>{createdDateTime}</p>
 
             </div>
             
             <div>
                 {
                     status === 'Expired' ?
-                    <div className='flex flex-col w-45% h-full justify-around items-end'>
+                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
 
                         <button 
                         className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >
                             تعیین وضعیت
                         </button>
                     
-                        <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                        <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                 
                     </div>
                     :
 
-                    <div className='flex flex-col w-45% h-full justify-around items-end'>
+                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
 
                         <button 
                         onClick={() => navigate(`/survey/${externalId}`)}
@@ -70,7 +69,7 @@ const NotifTandemPassengerSurvey = ({notif}) => {
                             تعیین وضعیت
                         </button>
 
-                        <p className='text-end text-[var(--low-opacity-white)] text-xs'>{createdDateTime}</p>
+                        <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                 
                     </div>
                 }
