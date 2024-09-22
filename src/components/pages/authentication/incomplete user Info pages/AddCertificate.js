@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 // assets 
 import certificateIcon from '../../../../assets/icons/certificate-Vector.svg'
@@ -14,7 +14,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../../Utilities/Services/queries'
+import { useAddCertificate, useOrganLevelsForCourse, useOrgansData } from '../../../../Utilities/Services/queries'
 
 // utilities
 import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
@@ -65,12 +65,12 @@ const AddCertificate = () => {
     
     
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
-    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ && organ.id);
+    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();    
+        // window.location.reload();
     }
     
     // clear the other states if organ changes

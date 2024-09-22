@@ -246,20 +246,22 @@ function App() {
             </>
           )}
 
-
           
-          {token && isUserAuthenticated === 'noCertificate' && (
-            <>
-              <Route path='/addCertificate' element={<AddCertificate />} />
-              <Route path='*' element={<Navigate to="/addCertificate" replace />} />
-              {/* edit profile */}
-              <Route path='/editProfile' element={<EditProfile />}>
-                <Route index element={<ChangeProfile />} />
-                <Route path="changeProfile" element={<ChangeProfile />} />
-                <Route path="changeCertificate" element={<ChangeCertificate />} />
-              </Route>
-            </>
-          )}
+<Route path='/addCertificate' element={<AddCertificate />} />
+          {
+            token && isUserAuthenticated === 'noCertificate' && (
+              <>
+                <Route path='/addCertificate' element={<AddCertificate />} />
+                <Route path='*' element={<Navigate to="/addCertificate" replace />} />
+                {/* edit profile */}
+                <Route path='/editProfile' element={<EditProfile />} >
+                  <Route index element={<ChangeProfile />} />
+                  <Route path="changeProfile" element={<ChangeProfile />} />
+                  <Route path="changeCertificate" element={<ChangeCertificate />} />
+                </Route>
+              </>
+            )
+          }
 
           {/* user pages */}
           {token && isUserAuthenticated === 'noAdminApprovment' && (
