@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // assets 
 import certificateIcon from '../../../../assets/icons/certificate-Vector.svg'
@@ -54,7 +54,14 @@ const AddCertificate = () => {
     const fileInputRef = useRef(null);
     
     const [errMsg, setErrMsg] = useState(null)
+
+    const [isStarter, setIsStarter] = useState('notAnsweredYet')
     
+    useEffect(() => {
+        if(organ) {
+            console.log(organ)
+        }
+    },[organ])
     
     
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
@@ -63,7 +70,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();
+        // window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -101,6 +108,12 @@ const AddCertificate = () => {
         // function to close the datePicker
         clickOnRightSide()
     }
+    
+    // user is starter
+    const handleUserIsStarter = (userSituation, event) => {
+        event.preventDefault();
+        setIsStarter(userSituation);
+    }
 
     // function to close the datePicker
     const clickOnRightSide = () => {
@@ -120,7 +133,7 @@ const AddCertificate = () => {
 
     const handleUploadClick = () => {
         fileInputRef.current.click();
-      };
+    };
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -150,7 +163,7 @@ const AddCertificate = () => {
         event.preventDefault();
 
         if(
-            !organ || !level || ((level.roleName !== "Starter") && (!certificateId || !dateStartValue || !dateEndValue || !uploadedFile))
+            !organ || ((isStarter === 'false') && ( !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile))
         ) {
             toast("فرم را کامل کنید", {
                 type: 'error',
@@ -168,43 +181,49 @@ const AddCertificate = () => {
         console.log(level,certificateId,formattedStartDate,formattedEndDate,dateStartValue,uploadedFile)
         
         const formData = new FormData();
-        formData.append('LevelId', level.id);
-        formData.append('Number', certificateId);
-
-        if (dateStartValue && dateEndValue) {
-            formData.append('IssueDate', formattedStartDate)
-            formData.append('ExpirationDate', formattedEndDate)
-        } else 
-            {
-            formData.append('IssueDate', dateStartValue)
-            formData.append('ExpirationDate', dateEndValue)
-        }
-
-        if (uploadedFile) {
-            formData.append('File', uploadedFile);
+        if(isStarter) {
+            formData.append('LevelId', organ.starterLevelId);
+        } else {
+            formData.append('LevelId', level.id);
+            formData.append('Number', certificateId);
+    
+            if (dateStartValue && dateEndValue) {
+                formData.append('IssueDate', formattedStartDate)
+                formData.append('ExpirationDate', formattedEndDate)
+            } else 
+                {
+                formData.append('IssueDate', dateStartValue)
+                formData.append('ExpirationDate', dateEndValue)
+            }
+    
+            if (uploadedFile) {
+                formData.append('File', uploadedFile);
+            }
         }
         
         mutateCertificate(formData, {
-            onSuccess: async (data) => {
-            console.log(data);
-            toast('گواهینامه با موفقیت اضافه شد', {
-                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                autoClose: 3000,
-                theme: 'dark',
-                style: { width: "350px" }
-            });
-            setTimeout(() => {
-                window.location.reload();
-                navigate('/adminPending');
-            }, 1000);
-            },
-            onError: (error) => {
-                console.error('Error adding certificate:', error);
-            },
-        });
+                onSuccess: async (data) => {
+                console.log(data);
+                toast('گواهینامه با موفقیت اضافه شد', {
+                    type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 3000,
+                    theme: 'dark',
+                    style: { width: "350px" }
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                    navigate('/adminPending');
+                }, 1000);
+                },
+                onError: (error) => {
+                    console.error('Error adding certificate:', error);
+                },
+            }
+        );
 
     };
+
 
     return (
         <div className='flex flex-col items-center pt-20 pb-[4rem]'>
@@ -268,16 +287,59 @@ const AddCertificate = () => {
                         <>
                             <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
 
-                                
-                                <DropdownInput
-                                options={organsData.data}
-                                handleSelectChange={handleSelectOrganChange}
-                                selectedOption={organ}
-                                name={'صدور گواهینامه از'}
-                                icon={certificateIcon}
-                                />
+
+                                <div className='w-full flex flex-col items-center p-4 bg-[var(--diffrential-blue)] rounded-2xl gap-y-4' >
+
+                                    <p className='self-start text-base '>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
+
+                                    <div className={`${ButtonStyles.ThreeStickedButtonCont} w-full`}>
+
+                                        {/* booleans identified as a string for more precision */}
+                                        <button 
+                                            className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${ isStarter === 'false' ? ButtonStyles.activeYellow : ''} `} 
+                                            onClick={(event) => handleUserIsStarter('false', event)}
+                                        >
+                                            بله
+                                        </button> 
+
+                                        <button 
+                                            className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${ isStarter === 'true' ? ButtonStyles.activeYellow : ''} `}
+                                            onClick={(event) => handleUserIsStarter('true', event)}
+                                        >
+                                            خیر
+                                        </button>
+
+                                    </div>
+                                    
+                                    {
+                                        isStarter === 'false' &&
+                                        <p 
+                                            className='self-start text-xs text-start text-[var(--yellow-text)]'
+                                        >
+                                            *اگر گواهینامه شما منقضی شده‌ است لطفا ابتدا نسبت به تمدید آن اقدام فرمایید
+                                        </p>
+                                    }
+                                    
+                                </div>
+
                                 {
-                                    organ && 
+                                    isStarter !== 'notAnsweredYet' &&
+                                        <DropdownInput
+                                            options={organsData.data}
+                                            handleSelectChange={handleSelectOrganChange}
+                                            selectedOption={organ}
+                                            name={
+                                                isStarter === 'false' ?
+                                                'گواهینامه صادر شده از'
+                                                :
+                                                'صدور گواهینامه از'
+                                            }
+                                            icon={certificateIcon}
+                                        />
+                                }
+                                
+                                {
+                                    organ && isStarter === 'false' &&
                                     <>
                                         {levelsLoading && 
                                         <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'6rem' }}>
@@ -286,8 +348,6 @@ const AddCertificate = () => {
                                         {levelsError && <p>مشکلی پیش آمده</p>}
                                         {!levelsError && !levelsLoading &&
                                             <>
-
-
 
                                                 <DropdownInput
                                                     options={levelsData.data}
@@ -304,11 +364,11 @@ const AddCertificate = () => {
                                                     <>
 
                                                         <TextInput
-                                                        value={certificateId}
-                                                        onChange={handleCertificateIdChange}
-                                                        placeholder={'شماره گواهینامه'}
-                                                        Type={'text'}
-                                                        icon={certificateIcon} // You can replace `null` with a specific icon if you have one
+                                                            value={certificateId}
+                                                            onChange={handleCertificateIdChange}
+                                                            placeholder={'شماره گواهینامه'}
+                                                            Type={'text'}
+                                                            icon={certificateIcon} // You can replace `null` with a specific icon if you have one
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
@@ -349,20 +409,26 @@ const AddCertificate = () => {
                                                         <p className='text-sm w-[85%] self-center'>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
                                                         حجم عکس نباید بیشتر از 10 مگابایت باشد</p>
 
-
                                                     </>
                                                 }
 
-                                                <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-24 self-center mt-4`}
-                                                onClick={handleSubmit}
-                                                disabled={isSubmitting} >
-                                                    ثبت
-                                                </button>
-
-                                                {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
-
                                             </>
                                         }
+
+
+                                    </>
+                                }
+
+                                {
+                                    isStarter !== 'notAnsweredYet' &&
+                                    <>
+                                        <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-24 self-center mt-4`}
+                                        onClick={handleSubmit}
+                                        disabled={isSubmitting} >
+                                            ثبت
+                                        </button>
+
+                                        {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
                                     </>
                                 }
 

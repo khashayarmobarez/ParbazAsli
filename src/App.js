@@ -248,6 +248,7 @@ function App() {
 
 
           
+<Route path='/addCertificate' element={<AddCertificate />} />
           {token && isUserAuthenticated === 'noCertificate' && (
             <>
               <Route path='/addCertificate' element={<AddCertificate />} />
