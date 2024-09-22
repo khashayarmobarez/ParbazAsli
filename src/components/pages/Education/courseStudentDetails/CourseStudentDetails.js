@@ -112,7 +112,7 @@ const CourseStudentDetails = () => {
                                     }
                                     <p className='flex gap-x-2'>
                                         <img alt='icon' src={userIcon} />
-                                        کد کاربری: {studentData.data.id}
+                                        کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>
 

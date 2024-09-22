@@ -103,7 +103,7 @@ const ClubCourseStudentDetails = () => {
                                     }
                                     <p className='flex gap-x-2'>
                                         <img alt='icon' src={flightQuan} />
-                                        کد کاربری: {studentData.data.id}
+                                        کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>
 
