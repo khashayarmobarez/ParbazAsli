@@ -70,7 +70,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        // window.location.reload();    
+        window.location.reload();    
     }
     
     // clear the other states if organ changes
