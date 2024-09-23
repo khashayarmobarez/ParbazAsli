@@ -150,6 +150,10 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
+                    // reload
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             }, { onError: (error) => {
                 let errorMessage = 'خطایی رخ داده است';
@@ -182,6 +186,10 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
+                    // reload
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             }, { onError: (error) => {
                 console.log(error)

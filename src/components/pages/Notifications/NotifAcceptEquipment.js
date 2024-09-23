@@ -4,7 +4,7 @@ import React from 'react';
 import { useTriggerEquipmentStatus } from '../../../Utilities/Services/equipmentQueries';
 import { toast } from 'react-toastify';
 
-const NotifAcceptEquipment = ({notif, isForClub}) => {
+const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
 
     const { description ,externalId ,title, status, isRead, createdDateTime } = notif;
 
@@ -31,6 +31,10 @@ const NotifAcceptEquipment = ({notif, isForClub}) => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
+                    // reload
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             }, { onError: (error) => {
                 let errorMessage = 'خطایی رخ داده است';
@@ -63,6 +67,10 @@ const NotifAcceptEquipment = ({notif, isForClub}) => {
                         theme: 'dark',
                         style: { width: "90%" }
                     });
+                    // reload
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             }, { onError: (error) => {
                 console.log(error)
@@ -86,7 +94,8 @@ const NotifAcceptEquipment = ({notif, isForClub}) => {
         <div className=' w-full h-auto rounded-3xl flex items-center justify-between px-6 py-2' 
         style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
-            <div className='text-xs flex flex-col justify-center items-start space-y-2'>
+            <div className='text-xs flex flex-col justify-center items-start space-y-2'
+            onClick={handleActivatePopUp}>
 
                 <div className=' flex items-center justify-center gap-x-2'>
                     {
@@ -104,7 +113,7 @@ const NotifAcceptEquipment = ({notif, isForClub}) => {
             
             {
                 status === 'Expired' ?
-                <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2 z-10'>
+                <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2 z-20'>
                     <div className='flex w-20 justify-between'>
 
                         <button 
@@ -125,7 +134,7 @@ const NotifAcceptEquipment = ({notif, isForClub}) => {
                     <p className='text-end  text-xs'>{createdDateTime}</p>
                 </div>
                 :
-                <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2 z-10'>
+                <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2 z-20'>
                     <div className='flex w-20 justify-between'>
 
                         <button 

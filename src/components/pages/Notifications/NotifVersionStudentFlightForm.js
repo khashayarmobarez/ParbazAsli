@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
-const NotifVersionStudentFlightForm = ({notif}) => {
+const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
 
     const navigate = useNavigate()
 
@@ -21,7 +21,8 @@ const NotifVersionStudentFlightForm = ({notif}) => {
         <div className=' w-full h-auto rounded-3xl flex items-center justify-between px-4 py-2'
         style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
-            <div className='text-xs flex flex-col justify-center items-start space-y-2'>
+            <div className='text-xs flex flex-col justify-center items-start space-y-2'
+            onClick={handleActivatePopUp}>
 
                 <div className=' flex justify-center items-center gap-x-2'>
                     {

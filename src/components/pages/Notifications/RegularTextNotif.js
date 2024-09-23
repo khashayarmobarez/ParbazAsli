@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const RegularTextNotif = ({notif}) => {
+const RegularTextNotif = ({notif, handleActivatePopUp}) => {
 
     const {description ,title, isRead, createdDateTime} = notif;
 
@@ -9,7 +9,8 @@ const RegularTextNotif = ({notif}) => {
 
     return (
         <div className=' w-full h-auto rounded-3xl flex flex-col items-center justify-between px-6 py-2 gap-y-2'
-        style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
+        style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}
+        onClick={handleActivatePopUp}>
 
             <div className=' flex self-start justify-start text-start items-start gap-x-2'>
 

@@ -48,34 +48,33 @@ const Notifications = () => {
 
                     {   notificationsData &&
                         notificationsData.data?.map((notif, index) => (
-                        <div className='w-full flex justify-center' key={index}
-                        onClick={() => setPopUpData(notif)}>
+                        <div className='w-full flex justify-center' key={index}>
 
                             {   notif.type === 'StudentFlightForm' &&
-                                <NotifVersionStudentFlightForm key={index} notif={notif} />
+                                <NotifVersionStudentFlightForm key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)} />
                             }
                             {   notif.type === 'AcceptStudentInCourse' &&
-                                <NotifAcceptStudent key={index} notif={notif} />
+                                <NotifAcceptStudent key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)} />
                             }
                             {
                                 notif.type === 'AcceptClub' &&
-                                <NotifAcceptClub key={index} notif={notif} />
+                                <NotifAcceptClub key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)} />
                             }
                             {
                                 notif.type === 'AcceptCourse' &&
-                                <NotifAcceptCourse key={index} notif={notif} />
+                                <NotifAcceptCourse key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)}/>
                             }
                             {
                                 notif.type === 'Regular' &&
-                                <RegularTextNotif key={index} notif={notif} />
+                                <RegularTextNotif key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)}/>
                             }
                             {
                                 notif.type === 'TandemPassenger' &&
-                                <NotifTandemPassengerSurvey key={index} notif={notif} />
+                                <NotifTandemPassengerSurvey key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)}/>
                             }
                             {
                                 (notif.type === 'AcceptUserEquipment' || notif.type === 'AcceptClubEquipment') &&
-                                <NotifAcceptEquipment isForClub={notif.type === 'AcceptClubEquipment'} key={index} notif={notif} />
+                                <NotifAcceptEquipment isForClub={notif.type === 'AcceptClubEquipment'} key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)} />
                             }
                         </div>
                     ))}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import { useIsSurveyAvailabe } from '../../../Utilities/Services/notificationAndSurveyQueries';
 
-const NotifTandemPassengerSurvey = ({notif}) => {
+const NotifTandemPassengerSurvey = ({notif, handleActivatePopUp}) => {
 
     const navigate = useNavigate()
 
@@ -26,7 +26,8 @@ const NotifTandemPassengerSurvey = ({notif}) => {
         <div className=' w-full h-auto rounded-3xl flex items-center justify-between px-4 py-2' 
         style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
-            <div className='text-xs flex flex-col justify-center items-start space-y-2'>
+            <div className='text-xs flex flex-col justify-center items-start space-y-2'
+            onClick={handleActivatePopUp}>
 
                 <div className=' flex justify-center items-center gap-x-2'>
                     {
@@ -49,7 +50,8 @@ const NotifTandemPassengerSurvey = ({notif}) => {
             <div>
                 {
                     status === 'Expired' ?
-                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
+                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'
+                    >
 
                         <button 
                         className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >
