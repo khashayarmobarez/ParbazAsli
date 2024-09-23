@@ -16,6 +16,7 @@ import NotifAcceptStudent from '../components/pages/Notifications/NotifAcceptStu
 import RegularTextNotif from '../components/pages/Notifications/RegularTextNotif';
 import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifTandemPassengerSurvey';
 import PopupForNotif from '../components/pages/Notifications/PopupForNotif';
+import NotifAcceptEquipment from '../components/pages/Notifications/NotifAcceptEquipment';
 
 
 const Notifications = () => {
@@ -71,6 +72,10 @@ const Notifications = () => {
                             {
                                 notif.type === 'TandemPassenger' &&
                                 <NotifTandemPassengerSurvey key={index} notif={notif} />
+                            }
+                            {
+                                (notif.type === 'AcceptUserEquipment' || notif.type === 'AcceptClubEquipment') &&
+                                <NotifAcceptEquipment equipmentForUserOrClub={notif.type} key={index} notif={notif} />
                             }
                         </div>
                     ))}

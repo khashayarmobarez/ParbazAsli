@@ -11,7 +11,6 @@ const Equipment = () => {
 
     const location = useLocation();
 
-
     return (
         <div className=' flex flex-col mt-14 items-center '>
 
