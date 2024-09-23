@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 import { toast } from 'react-toastify';
+import { useTriggerEquipmentStatus } from '../../../Utilities/Services/equipmentQueries';
 
 const PopupForNotif = ({popUpData, setPopUpData}) => {
 
@@ -124,11 +125,87 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
         });
     }
 
+
+
+    const { mutate: mutateTriggerEquipmentStatus, isLoading:loadingTriggerEquipmentStatus } = useTriggerEquipmentStatus()
+
+    const handleSubmittingTranfer = (action, id, event) => {
+
+        event.preventDefault();
+
+        if(action === 'Accepted') {
+            // accept
+            const formBody = {
+                equipmentId: id,
+                status: 'Accepted',
+                isForClub: popUpData.type === 'AcceptClubEquipment'
+            }
+            
+            mutateTriggerEquipmentStatus(formBody, {
+                onSuccess: () => {
+                    toast('وسیله پروازی با موفقیت تایید شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                }
+            }, { onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                }
+            })
+        } else {
+            // decline
+            const formBody = {
+                equipmentId: id,
+                status: 'Rejected',
+                isForClub: popUpData.type === 'AcceptClubEquipment'
+            }
+
+            mutateTriggerEquipmentStatus(formBody, {
+                onSuccess: () => {
+                    toast('وسیله پروازی با موفقیت رد شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: 'dark',
+                        style: { width: "90%" }
+                    });
+                }
+            }, { onError: (error) => {
+                console.log(error)
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'dark',
+                    style: { width: "90%" }
+                });
+                }
+            })
+        }
+    }
+
     return (
-        <div className={` w-full fixed inset-0 flex items-center justify-center ${popUpData ? 'visible' : 'invisible'}`}>
+        <div className={`z-30 w-full fixed inset-0 flex items-center justify-center ${popUpData ? 'visible' : 'invisible'}`}>
             <form
             className={`${boxStyles.containerChangeOwnership} 
-            w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg gap-y-6 py-8`}
+            w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg gap-y-6 py-8 `}
             >
                 <CloseIcon
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
@@ -147,7 +224,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                 className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
-                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.externalId}`)}
+                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}
                                 className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
                             )
                         }
@@ -158,7 +235,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                 className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
-                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${popUpData.externalId}`)}
+                                onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}
                                 className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
                             )
                         }
@@ -184,14 +261,14 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                    <button 
                                     type="submit" 
                                     disabled={triggerStudentStatusLoading} 
-                                    onClick={(event) => handleTriggerClubStatus( 'active', popUpData.id, event) } 
+                                    onClick={(event) => handleTriggerClubStatus( 'active', parseInt(popUpData.externalId), event) } 
                                     className={`${ButtonStyles.addButton} w-28`} 
                                     >
                                            تایید
                                     </button>
                                     <button 
                                         disabled={triggerStudentStatusLoading} 
-                                        onClick={(event) => handleTriggerClubStatus( 'rejected', popUpData.id, event) }
+                                        onClick={(event) => handleTriggerClubStatus( 'rejected', parseInt(popUpData.externalId), event) }
                                         className={`${ButtonStyles.normalButton}`} 
                                     >
                                             رد
@@ -222,13 +299,13 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                         <button 
                                             type="submit" 
                                             disabled={triggerStudentStatusLoading} 
-                                            onClick={(event) => handleTriggerStudentStatus( 'active', popUpData.id, event) } 
+                                            onClick={(event) => handleTriggerStudentStatus( 'active', parseInt(popUpData.externalId), event) } 
                                             className={`${ButtonStyles.addButton} w-28`} >
                                                 تایید
                                             </button>
                                         <button 
                                         disabled={triggerStudentStatusLoading} 
-                                        onClick={(event) => handleTriggerStudentStatus( 'coachRejected', popUpData.id, event) }
+                                        onClick={(event) => handleTriggerStudentStatus( 'coachRejected', parseInt(popUpData.externalId), event) }
                                         className={`${ButtonStyles.normalButton}`} >
                                             رد
                                         </button>
@@ -246,14 +323,54 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                         <button 
                                             type="submit" 
                                             disabled={triggerCourseStatusLoading} 
-                                            onClick={(event) => handleTriggerCourseStatus( 'active', popUpData.id, event) } 
+                                            onClick={(event) => handleTriggerCourseStatus( 'active', parseInt(popUpData.externalId), event) } 
                                             className={`${ButtonStyles.addButton} w-28`}  
                                         >
                                             تایید
                                         </button>
                                         <button 
                                             disabled={triggerCourseStatusLoading} 
-                                            onClick={(event) => handleTriggerCourseStatus( 'rejected', popUpData.id, event) } 
+                                            onClick={(event) => handleTriggerCourseStatus( 'rejected', parseInt(popUpData.externalId), event) } 
+                                            className={`${ButtonStyles.normalButton}`} 
+                                        >
+                                            
+                                            رد
+                                        </button>
+                                    </div>
+
+                                }
+                            </>
+                        }
+                        {   (popUpData.type === 'AcceptUserEquipment' || popUpData.type === 'AcceptClubEquipment') &&
+                            <>
+                                {
+                                    popUpData.status === 'Expired' ?
+                                    <div className='flex w-full justify-between gap-x-2'>
+                                        <button 
+                                            type="submit" 
+                                            disabled={true} 
+                                            className={`${ButtonStyles.addButton} opacity-45 w-28`} >
+                                                تایید
+                                            </button>
+                                        <button 
+                                        disabled={true} 
+                                        className={`${ButtonStyles.normalButton} opacity-45 `} >
+                                            رد
+                                        </button>
+                                    </div>
+                                    :
+                                    <div className='flex w-full justify-between gap-x-2'>
+                                        <button 
+                                            type="submit" 
+                                            disabled={triggerCourseStatusLoading} 
+                                            onClick={(event) => handleSubmittingTranfer( 'Accepted', parseInt(popUpData.externalId), event) } 
+                                            className={`${ButtonStyles.addButton} w-28`}  
+                                        >
+                                            تایید
+                                        </button>
+                                        <button 
+                                            disabled={triggerCourseStatusLoading} 
+                                            onClick={(event) => handleSubmittingTranfer( 'rejected', parseInt(popUpData.externalId), event) } 
                                             className={`${ButtonStyles.normalButton}`} 
                                         >
                                             

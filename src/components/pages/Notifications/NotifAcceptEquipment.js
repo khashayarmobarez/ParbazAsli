@@ -4,7 +4,7 @@ import React from 'react';
 import { useTriggerEquipmentStatus } from '../../../Utilities/Services/equipmentQueries';
 import { toast } from 'react-toastify';
 
-const NotifAcceptEquipment = ({notif,equipmentForUserOrClub}) => {
+const NotifAcceptEquipment = ({notif, isForClub}) => {
 
     const { description ,externalId ,title, status, isRead, createdDateTime } = notif;
 
@@ -14,12 +14,12 @@ const NotifAcceptEquipment = ({notif,equipmentForUserOrClub}) => {
 
         event.preventDefault();
 
-        if(action === 'accept') {
+        if(action === 'Accepted') {
             // accept
             const formBody = {
                 equipmentId: id,
                 status: 'Accepted',
-                isForClub: equipmentForUserOrClub === 'AcceptClubEquipment' ? true : false
+                isForClub: isForClub
             }
             
             mutateTriggerEquipmentStatus(formBody, {
@@ -51,7 +51,7 @@ const NotifAcceptEquipment = ({notif,equipmentForUserOrClub}) => {
             const formBody = {
                 equipmentId: id,
                 status: 'Rejected',
-                isForClub: false
+                isForClub: isForClub
             }
 
             mutateTriggerEquipmentStatus(formBody, {
@@ -104,7 +104,7 @@ const NotifAcceptEquipment = ({notif,equipmentForUserOrClub}) => {
             
             {
                 status === 'Expired' ?
-                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2 z-10'>
                     <div className='flex w-20 justify-between'>
 
                         <button 
@@ -122,16 +122,16 @@ const NotifAcceptEquipment = ({notif,equipmentForUserOrClub}) => {
 
                     </div>
 
-                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
+                    <p className='text-end  text-xs'>{createdDateTime}</p>
                 </div>
                 :
-                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2 z-10'>
                     <div className='flex w-20 justify-between'>
 
                         <button 
                         type="submit" 
                         disabled={loadingTriggerEquipmentStatus} 
-                        onClick={(event) => handleSubmittingTranfer( 'active', externalId, event) } 
+                        onClick={(event) => handleSubmittingTranfer( 'Accepted', externalId, event) } 
                         className='text-[var(--yellow-text)] font-medium' >
                             تایید
                         </button>
@@ -145,7 +145,7 @@ const NotifAcceptEquipment = ({notif,equipmentForUserOrClub}) => {
 
                     </div>
                     
-                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
+                    <p className='text-end text-xs'>{createdDateTime}</p>
                 
                 </div>
 

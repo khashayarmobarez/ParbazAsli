@@ -75,7 +75,7 @@ const Notifications = () => {
                             }
                             {
                                 (notif.type === 'AcceptUserEquipment' || notif.type === 'AcceptClubEquipment') &&
-                                <NotifAcceptEquipment equipmentForUserOrClub={notif.type} key={index} notif={notif} />
+                                <NotifAcceptEquipment isForClub={notif.type === 'AcceptClubEquipment'} key={index} notif={notif} />
                             }
                         </div>
                     ))}
