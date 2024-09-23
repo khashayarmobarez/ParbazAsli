@@ -12,11 +12,14 @@ const RegularTextNotif = ({notif}) => {
         style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
 
             <div className=' flex self-start justify-start text-start items-start gap-x-2'>
+
                 {
                     !isRead &&
                     <div className='w-[10px] h-[10px] rounded-full ' style={{background:'var(--red-text)'}} />
                 }
-                <p className='text-base text-start '> {title.slice(0, 42)}{title.length > 42 ? '...' : ''}</p>
+
+                <p className='text-base text-start '>{title.slice(0, 42)}{title.length > 42 ? '...' : ''}</p>
+
             </div>
 
             <div className='text-xs flex justify-between items-center'>
@@ -29,7 +32,6 @@ const RegularTextNotif = ({notif}) => {
                 <p className='w-full text-end text-xs self-end'>{createdDateTime}</p>
 
             </div>
-
 
         </div>
     );

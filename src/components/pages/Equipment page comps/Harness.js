@@ -204,7 +204,7 @@ const Harness = (props) => {
                             <div className='w-full flex flex-col items-center'>
 
                                 <div key={equipment.id} className={` z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
-                                style={{background:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                                style={{background:'var(--equipments-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
 
                                     {
                                         equipment.status === 'Pending' &&
