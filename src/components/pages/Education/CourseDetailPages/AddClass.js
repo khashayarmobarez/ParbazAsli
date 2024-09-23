@@ -27,6 +27,7 @@ import TimeInput from '../../../inputs/TimeInput';
 import SearchMultipleSelectStudent from '../../../inputs/SearchMultipleSelectStudent';
 import SearchMultipleSelect from '../../../inputs/SearchMultipleSelect';
 import DescriptionInput from '../../../inputs/DescriptionInput';
+import SelectMultiplePopUp from '../../../reuseable/SelectMultiplePopUp';
 
 const AddClass = () => {
 
@@ -258,7 +259,16 @@ const AddClass = () => {
                                 }
                             </div>
 
-                            < SearchMultipleSelect
+                            {/* < SearchMultipleSelect
+                                name={'مباحث مورد نظر'}
+                                options={syllabiDataTheory.data}
+                                selectedOptions={selectedSyllabi}
+                                handleSelectChange={handleSelectChangeSyllabi}
+                                handleRemove={handleRemoveSyllabi}
+                                Icon={listIcon}
+                            /> */}
+
+                            < SelectMultiplePopUp
                                 name={'مباحث مورد نظر'}
                                 options={syllabiDataTheory.data}
                                 selectedOptions={selectedSyllabi}

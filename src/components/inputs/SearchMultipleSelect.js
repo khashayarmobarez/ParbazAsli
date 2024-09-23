@@ -13,6 +13,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
   const dropdownRef = useRef(null);
 
   useEffect(() => {
+    
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -23,6 +24,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+
   }, []);
 
   const handleInputChange = (event) => {

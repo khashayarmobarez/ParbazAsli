@@ -6,7 +6,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
 
 
-const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit }) => {
+const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd }) => {
 
   const [filled, setFilled] = useState(false);
   
@@ -19,13 +19,13 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
 
   return (
     <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
-      <span> 
-        { icon ?
-          <img src={icon} alt='icon' className=' absolute w-5 mt-[15px] mr-[8px]' style={{fill :'white'}} />
-          : 
-          <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
-          }
-      </span>
+          <span> 
+            { icon ?
+              <img src={icon} alt='icon' className=' absolute w-5 mt-[15px] mr-[8px]' style={{fill :'white'}} />
+              : 
+              <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+            }
+          </span>
       <input 
         type={Type} 
         id="aircraft" 

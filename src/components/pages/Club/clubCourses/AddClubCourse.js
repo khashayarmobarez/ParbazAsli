@@ -38,6 +38,7 @@ import NumberInput from '../../../inputs/NumberInput';
 import DescriptionInput from '../../../inputs/DescriptionInput';
 import SearchMultipleSelect from '../../../inputs/SearchMultipleSelect';
 import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
+import SelectMultiplePopUp from '../../../reuseable/SelectMultiplePopUp';
 
 const AddClubCourse = () => {
 
@@ -498,7 +499,7 @@ const AddClubCourse = () => {
                                             isForSyllabi={true}
                                         /> */}
 
-                                        <SearchMultipleSelect
+                                        {/* <SearchMultipleSelect
                                             Icon={listIcon}
                                             options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
                                             selectedOptions={selectedSyllabiPractical}
@@ -509,6 +510,26 @@ const AddClubCourse = () => {
                                         />
 
                                         <SearchMultipleSelect
+                                            Icon={listIcon}
+                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
+                                            selectedOptions={selectedSyllabiTheory}
+                                            handleSelectChange={handleSelectChangeSyllabiTheory}
+                                            name="سرفصل های تئوری"
+                                            handleRemove={handleRemoveSyllabiTheory}
+                                            isForSyllabi={true}
+                                        /> */}
+
+                                        <SelectMultiplePopUp
+                                            Icon={listIcon}
+                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
+                                            selectedOptions={selectedSyllabiPractical}
+                                            handleSelectChange={handleSelectChangeSyllabiPractical}
+                                            name="سرفصل های عملی"
+                                            handleRemove={handleRemoveSyllabiPractical}
+                                            isForSyllabi={true}
+                                        />
+
+                                        <SelectMultiplePopUp
                                             Icon={listIcon}
                                             options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                             selectedOptions={selectedSyllabiTheory}
