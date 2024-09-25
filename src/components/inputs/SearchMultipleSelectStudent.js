@@ -33,7 +33,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
 
   const filterOptions = (value) => {
     const filtered = options.filter(option =>
-      option.name.toLowerCase().includes(value.toLowerCase()) &&
+      option.fullName.toLowerCase().includes(value.toLowerCase()) &&
       !selectedOptions.some(selected => selected.id === option.id)
     );
     setFilteredOptions(filtered);
@@ -88,7 +88,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
                 className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
-                {option.name} - {option.status}
+                {option.fullName}
               </li>
               <div className='w-full h-[1px] bg-[var(--low-opacity-white)]' />
             </div>
@@ -106,7 +106,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
           style={{background:  'var(--profile-buttons-background)',
               boxShadow: 'var(--profile-buttons-boxShadow)'}}>
               <p className=' text-sm mx-1' >{index + 1}</p>
-              <p className='text-sm px-6 w-full text-start'>{option.name} - {option.status} </p>
+              <p className='text-sm px-6 w-full text-start'>{option.fullName} </p>
               <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
               boxShadow: 'var(--profile-buttons-boxShadow)',
               borderRadius:'0.5rem',

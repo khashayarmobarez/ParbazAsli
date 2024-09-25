@@ -13,7 +13,7 @@ import usersIcon from '../../../../assets/icons/users-Icon.svg';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // queries
-import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents, useAllActiveStudents } from '../../../../Utilities/Services/coursesQueries';
 import { useUserById } from '../../../../Utilities/Services/queries';
 
 // mui
@@ -49,11 +49,13 @@ const AddClass = () => {
     const [guestStudentDatas, setGuestStudentDatas] = useState([]);
 
     const [description, setDescription] = useState('');
-
+    
+    // all student ids together(studentIds, guestStudentIds)
+    const allStudentIds = [...studentIds, ...guestStudentIds];
 
 
     const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
-    const {  data: courseStudents, isLoading: courseStudentsLoading, error: courseStudentsError } = useAllActiveCourseStudents(id);
+    const {  data: courseStudents, isLoading: courseStudentsLoading, error: courseStudentsError } = useAllActiveStudents(id);
     const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(guestStudentId)
     const { mutate: addCourseClass, isLoading: addCourseClassLoading } = useAddCourseClass();
     
@@ -160,9 +162,9 @@ const AddClass = () => {
             "Description": description,
             "startTime": startTime,
             "endTime": endTime,
-            "userCourseIds": studentIds,
             "classSyllabusIds": syllabusIds,
-            "guestUserIds": guestStudentIds
+            // student ids with the guest student ids
+            "studentUserIds": allStudentIds,
         };
 
         if(!id || !ClassName || !startTime || !endTime || syllabusIds.length === 0 || studentIds.length === 0){
