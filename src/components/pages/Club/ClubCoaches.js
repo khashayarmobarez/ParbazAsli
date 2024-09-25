@@ -244,15 +244,16 @@ const ClubCoaches = () => {
                             <p className=' self-start text-[var(--notification-red)]'>مربی یافت نشد!</p>
                         }
                         <div className='w-full flex justify-between relative items-center'>
-                            <div className='w-[86%] flex flex-col'>
+                            <div className='w-[70%] flex flex-col'>
                                 <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                             </div>
                             <span
-                                className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                                className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-[var(--bg-color)] cursor-pointer`}
+                                style={{ background: 'var(--yellow-button-bg)' }}
                                 onClick={handleAddCoachToClub}
-                                disabled={false}
+                                disabled={addCoachToClubLoading}
                             >
-                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                افزودن
                             </span>
                         </div>
                     </div>

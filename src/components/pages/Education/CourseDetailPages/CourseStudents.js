@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 // styles
 import gradients from '../../../../styles/gradients/Gradient.module.css'
+import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -337,15 +338,16 @@ const CourseStudents = () => {
                         {
                             aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
                                 <div className='w-full flex justify-between relative items-center'>
-                                    <div className='w-[86%] flex flex-col'>
+                                    <div className='w-[70%] flex flex-col'>
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
-                                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${gradients.container}`}
+                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-[var(--bg-color)] cursor-pointer`}
+                                        style={{ background: 'var(--yellow-button-bg)' }}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                       افزودن
                                     </span>
                                 </div>
                         }
