@@ -139,8 +139,26 @@ my-app/
 │   |   │   |   └── DescriptionInput.js
 │   |   │   |
 │   |   │   ├── Loader/
-│   |   │   ├── pages/ (includes the sub pages and components of the app)
+│   |   │   |
+│   |   │   ├── pages/ (includes the sub pages and components of the app) 80% of the app/      this components are sub component of the files in the containers
+│   |   │   |   ├── authentication/ (the authentication system of the app)
+│   |   │   |   ├── AddFlight/
+│   |   │   |   ├── Notifications/
+│   |   │   |   ├── Settings/
+│   |   │   |   ├── SyllabiList/
+│   |   │   |   ├── Profile/
+│   |   │   |   ├── Blogs/
+│   |   │   |   ├── Club/
+│   |   │   |   ├── Equipment page comps/ (equipment)
+│   |   │   |   ├── LandingPageComponents/ (landing)
+│   |   │   |   ├── FlightHistory/
+│   |   │   |   ├── Organization/
+│   |   │   |   ├── MyCourses/
+│   |   │   |   └── oragnization/ (disabled and must be removed)
+│   |   │   |
 │   |   │   └── reusable/
+│   |   │       ├── MyCourses/
+│   |   │       └── oragnization/ (disabled and must be removed)
 │   |   │  
 │   │   ├── containers/ (includes the main pages of the app)
 │   |   │   ├── LandingPage.js
@@ -164,7 +182,8 @@ my-app/
 │   │   ├── Utilities/ (REALLY IMPORTANT, includes the HEART OF THE APP, API, REDUX, HOOKS AND DATA PROVIDERS)
 │   |   │   ├── LandingPage.js
 │   |   │   └── ...
-│   │   ├── App.js
+│   |   │  
+│   │   ├── App.js  (the root of the app)
 │   │   ├── App.css
 │   │   ├── index.css
 │   │   ├── index.js
