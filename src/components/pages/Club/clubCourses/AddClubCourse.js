@@ -643,17 +643,29 @@ const AddClubCourse = () => {
                                     loadingStudentLevel && studentId.length > 5 &&
                                         <p className='text-[var(--yellow-text)] self-start'>در حال جستجو ...</p>
                                     }
+                                    { studentError && studentId.length > 5 &&
+                                        <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                                    }
 
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-[86%] flex flex-col'>
                                             <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
                                         </div>
-                                        <span 
-                                            className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                            onClick={studentData ? handleAddStudent : null}
-                                        >
-                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--yellow-text)' }} />
-                                        </span>
+                                        {studentData?.data && (
+                                            <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                            
+                                                <div className='flex flex-col w-full items-center justify-center '>
+                                                    <li
+                                                        key={studentData.data.id}
+                                                        className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                                                        onClick={() => handleAddStudent()}
+                                                    >
+                                                        {studentData.data.fullName}
+                                                    </li>
+                                                </div>
+
+                                            </ul>
+                                        )}
                                     </div>
                                     {studentsData.length < 1 &&
                                         <p className='text-start text-sm'>بعد از نوشتن کد کاربری هنرجویانتان داخل کادر،برای اضافه کردن آن ها به نوبت، بر روی دکمه مثبت روبرو کلیک کنید </p>

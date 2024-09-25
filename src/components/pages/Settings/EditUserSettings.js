@@ -311,7 +311,7 @@ const EditUserSettings = () => {
             handleFinalSubmit={handleFinalPhoneSubmission} codeLength={phoneNumberCodeLength} />
 
             <PhoneVerificationCode handleResendCode={changeEmailPopUp} isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
-            handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} />
+            handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} isForEmail={true} />
 
             <ChangePasswordPopUp showPopUp={showPopupType === 'changePassword'} setShowPopUp={setShowPopupType} />
         </div>

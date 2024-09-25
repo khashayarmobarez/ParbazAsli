@@ -7,12 +7,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css';
 
-const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode, isForPhone }) => {
+const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode, isForEmail }) => {
 
     const [ waitNotif, setWaitNotif ] = useState('')
 
     // Create an array of refs based on codeLength from api
     const inputRefs = useRef(Array.from({ length: codeLength }, () => React.createRef()));
+
+    useEffect(() => {
+        console.log('isForEmail:', isForEmail); // Check if this logs the correct value
+    }, [isForEmail]);
 
     // Reset all inputs and clear state
     const resetCode = () => {
@@ -126,8 +130,13 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 </div>
 
                 {
+                    isForEmail &&
+                    <p className='mt-6 text-xs text-[var(--yellow-text)]'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
+                }
+
+                {
                     codeRemainingTime < 1 &&
-                        <p onClick={handleResendCode} className="text-light-yellow mt-8" aria-live="assertive">ارسال مجدد</p>
+                        <p onClick={handleResendCode} className="text-light-yellow mt-6" aria-live="assertive">ارسال مجدد</p>
                 }
 
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
