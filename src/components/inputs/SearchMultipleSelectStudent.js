@@ -79,7 +79,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
       </div>
 
       {isOpen && (
-        <ul className="absolute z-20 w-[80%] bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+        <ul className="absolute z-20 w-[90%] bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
           
           {filteredOptions.map((option) => (
             <div className='flex flex-col w-full items-center justify-center '>

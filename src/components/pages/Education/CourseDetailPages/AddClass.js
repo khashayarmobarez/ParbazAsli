@@ -63,8 +63,8 @@ const AddClass = () => {
 
 
     useEffect(() => {
-        console.log(StartSelectedTime, endSelectedTime)
-    }, [StartSelectedTime, endSelectedTime]);
+        console.log(guestStudentIds, studentIds)
+    }, [guestStudentIds, studentIds]);
 
 
     // a use effect to check the endSelectedTime is after StartSelectedTime when the endSelectedTime is changed
@@ -128,11 +128,15 @@ const AddClass = () => {
 
     const handleAddguestStudent = () => {
         if (guestStudentId === '') return;
-        if (guestStudentIds.includes(guestStudentId)) return;
+        if (guestStudentIds.includes(guestStudentId)) {
+            setGuestStudentId('')
+            return;
+        }
         if (userByIdData) {
             setGuestStudentDatas([...guestStudentDatas, userByIdData]);
             setGuestStudentIds([...guestStudentIds, guestStudentId]);
         }
+        setGuestStudentId('')
     }
 
     const handleRemoveGuestStudents = (index) => {
@@ -298,27 +302,36 @@ const AddClass = () => {
                             />
                             
 
-                            {
-                                userByIdData &&
-                                <p className=' self-start text-start text-sm mb-[-10px]' style={{color:'var(--yellow-text)'}}>
-                                    {userByIdData.data.fullName}
-                                </p>
-                            }
-                            <div className='w-full flex justify-between relative items-center'>
-                                <div className='w-[86%] flex flex-col'>
+                            <div className='w-full flex flex-col items-center relative'>
+                                <div className='w-full flex flex-col'>
                                     <TextInput value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
                                 </div>
-                                <span
+                                {/* <span
                                     className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                     onClick={() => handleAddguestStudent()}
                                 >
                                     <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
-                                </span>
+                                </span> */}
+                                {userByIdData?.data && (
+                                    <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                    
+                                        <div className='flex flex-col w-full items-center justify-center '>
+                                            <li
+                                                key={userByIdData.data.id}
+                                                className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                                                onClick={() => handleAddguestStudent(userByIdData.data)}
+                                            >
+                                                {userByIdData.data.fullName}
+                                            </li>
+                                        </div>
+
+                                    </ul>
+                                )}
                             </div>
 
                             {
                                 guestStudentDatas &&
-                                <ul className=' w-full py-0 grid grid-cols-1 gap-y-2'>
+                                <ul className=' w-full py-0 grid grid-cols-1 gap-y-2 -mt-4'>
                                     {guestStudentDatas.map((student, index) => (
                                         <li key={student.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                         style={{background:  'var(--profile-buttons-background)',
