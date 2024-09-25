@@ -47,6 +47,7 @@ const initialState = {
     takeoffWindSpeed :'',
     takeoffwindDirection :'', 
     landingTime :'',
+    landingType: '',
     landingWindSpeed :'',
     landingWindDirection :'', 
     // passenger phone number for tandem flights
@@ -117,6 +118,9 @@ const initialState = {
       updateLandingTime: (state, action) => {
         state.landingTime = action.payload;
       },
+      updateLandingType: (state, action) => {
+        state.landingType = action.payload;
+      },
       updateLandingWindSpeed: (state, action) => {
         state.landingWindSpeed = action.payload;
       },
@@ -168,6 +172,7 @@ const initialState = {
         state.takeoffWindSpeed = '';
         state.takeoffwindDirection = '';
         state.landingTime = '';
+        state.landingType = '';
         state.landingWindSpeed = '';
         state.landingWindDirection = '';
         state.passengerPhoneNumber = '';
@@ -182,7 +187,7 @@ const initialState = {
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName, updateWingType
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName, updateWingType, updateLandingType
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;

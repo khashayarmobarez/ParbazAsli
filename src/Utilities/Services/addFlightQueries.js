@@ -308,6 +308,38 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
+// get all landing types
+// /LandingType/GetAllLandingTypes
+    const getLandingTypes = async () => {
+            
+        const token = Cookies.get('token');
+
+        try {
+        const response = await axios.get(`${BASE_URL}/LandingType/GetAllLandingTypes`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+
+    };
+
+    const useLandingTypes = () => {
+        return useQuery(['getLandingTypes'], getLandingTypes);
+    }
+
+
+
+
 
 
     
@@ -316,4 +348,4 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , useFlightTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight};
+export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , useFlightTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes};

@@ -11,6 +11,7 @@ import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import windIcon from '../../../assets/icons/windIcon.svg'
 import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
 import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg'
+import colorTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
 
 // react-toastify
 import { toast } from 'react-toastify';
@@ -19,12 +20,12 @@ import { toast } from 'react-toastify';
 import { windDirectionOptions } from '../../../Utilities/Providers/dropdownInputOptions';
 
 // react-query
-import { useAddCourseFlight, useAddSoloFlight, useAddTandemFlight } from '../../../Utilities/Services/addFlightQueries';
+import { useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes } from '../../../Utilities/Services/addFlightQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription, updateLandingType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // mui
 import { CircularProgress } from '@mui/material';
@@ -47,13 +48,15 @@ const AddLanding = () => {
 
     const [submitted, setSubmitted] = useState(false);
 
-    const { mutate: mutateCourseFlight , isLoading: courseLoading, error: courseError} = useAddCourseFlight();
-    const { mutate: mutateSoloFlight , isLoading: SoloLoading, error: SoloError} = useAddSoloFlight();
-    const { mutate: mutateTandemFlight , isLoading: TandemLoading, error: TandemError} = useAddTandemFlight();
+    const { data: landingTypesData , isLoading: landngTypesLoading} = useLandingTypes();
+
+    const { mutate: mutateCourseFlight , isLoading: courseLoading} = useAddCourseFlight();
+    const { mutate: mutateSoloFlight , isLoading: SoloLoading} = useAddSoloFlight();
+    const { mutate: mutateTandemFlight , isLoading: TandemLoading} = useAddTandemFlight();
 
     // redux
     const { landingTime, landingWindSpeed, landingWindDirection , passengerPhoneNumber
-    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description
+    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description, landingType
     } = useSelector(selectAddFlight)
 
 
@@ -80,6 +83,10 @@ const AddLanding = () => {
         }
     }, [ wing, harness, parachute, country, city , sight , clouds , flightType , takeoffTime, navigate])
 
+    useEffect(() => {
+        if(landingTypesData) {console.log(landingTypesData)}
+    },[landingTypesData])
+
 
     const handleLandingTimeChange = (newTime) => {
         dispatch(updateLandingTime(newTime));
@@ -87,6 +94,10 @@ const AddLanding = () => {
 
     const handleSetLandingWindspeedChange = (event) => {
         dispatch(updateLandingWindSpeed(event.target.value));
+      };
+
+    const handleSelectSetLandingType = (selectedOption) => {
+        dispatch(updateLandingType(selectedOption));
       };
 
     const handleSelectSetLandingWindDirection = (selectedOption) => {
@@ -183,6 +194,7 @@ const AddLanding = () => {
             formData.append('landingTime', formatedLandingTime);
             formData.append('landingWindSpeedInKmh', landingWindSpeedInKmh);
             formData.append('landingWindDirection', landingWindDirection.id);
+            formData.append('landingTypeId', landingType.id);
             if(flightType === 'Solo') {
                 formData.append('description', description);
             }
@@ -382,7 +394,26 @@ const AddLanding = () => {
                         />
                     </div>
 
-                    <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={landingWindDirection} handleSelectChange={handleSelectSetLandingWindDirection} IsEmptyAfterSubmit={submitted && !landingWindDirection}/>
+                    {
+                        landingTypesData &&   
+                        <DropdownInput 
+                            name={'شیوه'} 
+                            icon={colorTagsIcon} 
+                            options={landingTypesData.data} 
+                            selectedOption={landingType} 
+                            handleSelectChange={handleSelectSetLandingType} 
+                            IsEmptyAfterSubmit={submitted && !landingType}
+                        />
+                    }
+
+                    <DropdownInput 
+                        name={'جهت باد'} 
+                        icon={windDirectionCock} 
+                        options={windDirectionOptions} 
+                        selectedOption={landingWindDirection} 
+                        handleSelectChange={handleSelectSetLandingWindDirection} 
+                        IsEmptyAfterSubmit={submitted && !landingWindDirection}
+                    />
                     
                     <NumberInput
                         icon={windIcon}
