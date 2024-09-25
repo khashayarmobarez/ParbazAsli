@@ -14,7 +14,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
 import arrowIcon from '../../../../assets/icons/Right Arrow Button.svg';
-import AddIcon from '@mui/icons-material/Add';
 
 
 // queries
@@ -343,7 +342,7 @@ const CourseStudents = () => {
                                     </div>
                                     <span
                                         className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-[var(--bg-color)] cursor-pointer`}
-                                        style={{ background: 'var(--yellow-button-bg)' }}
+                                        style={{ background: 'var(--yellow-button-bg)'}}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >
