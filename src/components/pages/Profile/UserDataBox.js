@@ -30,6 +30,7 @@ const UserDataBox = ({hasCoach}) => {
     const { data, isLoading, error } = useUserData();
 
     const [showPopUp,setShowPopup] = useState(false)
+    
 
     return (
         <>
@@ -91,6 +92,8 @@ const UserDataBox = ({hasCoach}) => {
                                 <div/>
                             }
 
+
+                            
 
                         </div>
 
