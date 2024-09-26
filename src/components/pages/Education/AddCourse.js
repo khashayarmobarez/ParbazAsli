@@ -633,9 +633,6 @@ const AddCourse = () => {
                                             </ul>
                                         )}
                                     </div>
-                                    {studentsData.length < 1 &&
-                                        <p className='text-start text-sm'>بعد از نوشتن کد کاربری هنرجویانتان داخل کادر،برای اضافه کردن آن ها به نوبت، بر روی دکمه مثبت روبرو کلیک کنید </p>
-                                    }
                                 </div>
 
                                 <ul className=' w-full py-0 mt-[-1rem] gap-2'>

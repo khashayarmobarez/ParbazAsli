@@ -635,10 +635,6 @@ const AddClubCourse = () => {
 
                                 {/* add students */}
                                 <div className='w-full flex flex-col gap-y-1'>
-                                    { 
-                                    studentData && studentData.data &&
-                                        <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
-                                    }
                                     {
                                     loadingStudentLevel && studentId.length > 5 &&
                                         <p className='text-[var(--yellow-text)] self-start'>در حال جستجو ...</p>
@@ -648,7 +644,7 @@ const AddClubCourse = () => {
                                     }
 
                                     <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[86%] flex flex-col'>
+                                        <div className='w-full flex flex-col'>
                                             <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
                                         </div>
                                         {studentData?.data && (
@@ -667,9 +663,6 @@ const AddClubCourse = () => {
                                             </ul>
                                         )}
                                     </div>
-                                    {studentsData.length < 1 &&
-                                        <p className='text-start text-sm'>بعد از نوشتن کد کاربری هنرجویانتان داخل کادر،برای اضافه کردن آن ها به نوبت، بر روی دکمه مثبت روبرو کلیک کنید </p>
-                                    }
                                 </div>
 
                                 <ul className=' w-full py-0 mt-[-1rem] gap-2'>
