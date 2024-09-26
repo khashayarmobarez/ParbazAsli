@@ -334,6 +334,8 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                         onBlur={() => setMatchFocus(false)}
                                     />
 
+                                    <p className=' text-xs font-medium text-[var(--red-text)] -mb-4 -mt-6'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
+
                                     <p className={`${codeRemainingTime ? "text-light-yellow my-4" : "hidden"} text-xs font-medium`} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
                                     
                                     {
