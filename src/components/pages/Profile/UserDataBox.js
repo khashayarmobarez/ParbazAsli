@@ -90,7 +90,6 @@ const UserDataBox = ({hasCoach}) => {
                                 :
                                 <div/>
                             }
-+
 
                         </div>
 
