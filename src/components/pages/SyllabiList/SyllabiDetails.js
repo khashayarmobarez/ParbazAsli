@@ -20,13 +20,23 @@ const SyllabiDetails = () => {
     // Check if data exists and if the content is not null or undefined
     let apiHtmlParts = ['', '', ''];
     if (syllabiData && syllabiData.data) {
-        apiHtmlParts = syllabiData.data.split('{0}').flatMap((part) => part.split('{1}'));
+        apiHtmlParts = syllabiData.data.htmlContent.split('{0}').flatMap((part) => part.split('{1}'));
     }
+
+    // const persianToEnglishNumber = (input) => {
+    //     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    //     const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        
+    //     return input.replace(/[\u06F0-\u06F9]/g, (char) => {
+    //         return englishNumbers[persianNumbers.indexOf(char)];
+    //     });
+    // };
 
 
     if (syllabiLoading || syllabiListLoading) {
         return <div>Loading...</div>;
     }
+    
 
     // Handle error state
     if (syllabiError || syllabiListError) {
@@ -36,16 +46,42 @@ const SyllabiDetails = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
 
-            <PageTitle title={syllabiData?.data?.name || 'سیلابس ها'} navigateTo={'/profile'} />
+            <PageTitle title={syllabiData?.data?.levelName || 'سیلابس ها'} navigateTo={'/profile'} />
 
             <div className='w-[90%] flex flex-col items-center gap-y-4 md:w-[70%] py-6'>
 
                 {syllabiData && syllabiData.data ? (
                 <>
                     <div dangerouslySetInnerHTML={{ __html: apiHtmlParts[0] }} />
-                    <p>the mapped data</p>
+                        {
+                            syllabiData.data && syllabiData.data.htmlContent.includes('{0}') &&
+                            <div className=' w-full min-h-6 rounded-2xl bg-[var(--syllabus-data-boxes-bg)] p-3'>
+                                {   
+                                    // theorySyllabi
+                                    syllabiData.data?.theorySyllabi.map((syllabi) => (
+                                        <div className='w-full flex justify-start items-start gap-x-2 my-4' key={syllabi.id}>
+                                            <p className='px-4 text-xs py-1 bg-[var(--yellow-text)] text-[var(--dark-blue-bg)] font-medium rounded-lg'>{syllabi.order}</p>
+                                            <p className='text-start text-sm'>{syllabi.description}</p>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        }
                     <div dangerouslySetInnerHTML={{ __html: apiHtmlParts[1] }} />
-                    <p>the mapped data 2</p>
+                        {
+                            syllabiData.data && syllabiData.data.htmlContent.includes('{1}') &&
+                            <div className=' w-full min-h-6 rounded-2xl bg-[var(--syllabus-data-boxes-bg)] p-3'>
+                                {   
+                                    // practicalSyllabi
+                                    syllabiData.data?.practicalSyllabi.map((syllabi) => (
+                                        <div className='w-full flex justify-start items-start gap-x-2 my-4' key={syllabi.id}>
+                                            <p className='px-4 text-xs py-1 bg-[var(--purple)] text-[var(--dark-blue-bg)] font-medium rounded-lg'>{syllabi.order}</p>
+                                            <p className='text-start text-sm'>{syllabi.description}</p>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        }
                     <div dangerouslySetInnerHTML={{ __html: apiHtmlParts[2] }} />
                 </>
                 ) : (
