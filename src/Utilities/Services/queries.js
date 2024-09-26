@@ -145,7 +145,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
   const getOrganizationLevelsForCourse = async (organId) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/Level/GetLevelsForAddingCourseByOrganizationId?organizationId=${organId}`, {
+      const response = await axios.get(`${BASE_URL}/Level/GetNoneStarterLevels?organizationId=${organId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -255,9 +255,35 @@ const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
 
 
 
+// get level by organization id
+// /api/Level/GetLevelsByOrganizationId 
+  const getLevelsByOrganizationId = async (organId) => {
+    try {
+      const token = Cookies.get('token');
+      const response = await axios.get(`${BASE_URL}/Level/GetLevels?organizationId=${organId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+      // console.log(response.data);  
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to fetch organs');
+    }
+  }
+
+  const useLevelsByOrganizationId = (organId) => {
+    return useQuery(['levelsByOrganizationId', organId], () => getLevelsByOrganizationId(organId), {
+        enabled: !!organId, // This ensures the query runs only if organId is not null/undefined
+    });
+  }
+
+
+
 
 
 
   
 
-export { useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById};
+export { useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById, useLevelsByOrganizationId};

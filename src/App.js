@@ -117,6 +117,7 @@ import CourseStudentPracticalDetails from './components/pages/Education/courseSt
 import CourseStudentTheoryDetails from './components/pages/Education/courseStudentDetails/CourseStudentTheoryDetails';
 import CourseStudentSyllabiDetails from './components/pages/Education/courseStudentDetails/CourseStudentSyllabiDetails';
 import CourseStudentAFlightDetails from './components/pages/Education/courseStudentDetails/CourseStudentAFlightDetails';
+import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
   
 
 
@@ -330,6 +331,7 @@ function App() {
 
               {/* syllabi list */}
               <Route path='/syllabi' element={<SyllabiList  />} /> 
+              <Route path='/syllabi/details/:id' element={<SyllabiDetails  />} /> 
 
               {/* add flight */}
               <Route path="/addFlight/AddFlightType" element={ <AddFlightType />} />
