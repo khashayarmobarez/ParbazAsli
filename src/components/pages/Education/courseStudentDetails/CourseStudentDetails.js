@@ -71,7 +71,7 @@ const CourseStudentDetails = () => {
 
 
                             {/* user studentData.data */}
-                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pr-8 pt-2'>
+                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pr-5 pt-2'>
 
                                 {
                                     isMobile && studentData.data &&
@@ -98,11 +98,11 @@ const CourseStudentDetails = () => {
                                 <div className='w-full flex flex-col items-start justify-between gap-y-4 text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
                                         <img alt='icon' src={flightQuan} />
-                                        {studentData.data.flightCounts} تعداد پرواز
+                                        تعداد پرواز {studentData.data.flightCounts}
                                     </p>
                                     <p className='flex gap-x-2'>
                                         <img alt='icon' src={flightHour} />
-                                        {studentData.data.flightHours} ساعت پرواز
+                                        ساعت پرواز {studentData.data.flightHours}
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
