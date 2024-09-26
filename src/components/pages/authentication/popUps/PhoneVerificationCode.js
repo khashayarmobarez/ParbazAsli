@@ -131,7 +131,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
 
                 {
                     isForEmail &&
-                    <p className='mt-6 text-xs text-[var(--yellow-text)]'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
+                    <p className='mt-6 text-xs text-[var(--red-text)]'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
                 }
 
                 {
