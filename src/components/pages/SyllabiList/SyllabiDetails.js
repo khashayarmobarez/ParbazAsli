@@ -38,7 +38,7 @@ const SyllabiDetails = () => {
 
             <PageTitle title={syllabiData?.data?.name || 'سیلابس ها'} navigateTo={'/profile'} />
 
-            <div className='w-[90%] flex flex-col items-center gap-y-6 md:w-[70%] py-6'>
+            <div className='w-[90%] flex flex-col items-center gap-y-4 md:w-[70%] py-6'>
 
                 {syllabiData && syllabiData.data ? (
                 <>
