@@ -159,9 +159,12 @@ const CourseStudentDetails = () => {
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >
                         عملی
-                        <span className='text-[var(--red-text)]'>
-                            &nbsp;({studentPendingFlightCounts && studentPendingFlightCounts.data})
-                        </span>
+                        {
+                            studentPendingFlightCounts && studentPendingFlightCounts.data > 0 &&
+                                <span className='text-[var(--red-text)]'>
+                                    &nbsp;({studentPendingFlightCounts.data})
+                                </span>
+                        }
                     </Link>
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>

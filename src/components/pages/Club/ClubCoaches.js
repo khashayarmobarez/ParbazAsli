@@ -116,7 +116,7 @@ const ClubCoaches = () => {
 
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] '>
 
-            <PageTitle  title='مربیان' />
+            <PageTitle  title='مربیان' navigateTo={'/club'} />
 
                 <div className='w-[90%] flex flex-col gap-y-2'>
 
