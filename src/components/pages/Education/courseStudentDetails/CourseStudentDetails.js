@@ -71,7 +71,7 @@ const CourseStudentDetails = () => {
 
 
                             {/* user studentData.data */}
-                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pr-5 pt-2'>
+                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pr- pt-2'>
 
                                 {
                                     isMobile && studentData.data &&
