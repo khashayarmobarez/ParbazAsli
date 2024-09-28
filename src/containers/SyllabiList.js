@@ -66,7 +66,7 @@ const SyllabiList = () => {
 
                 {
                     organsData &&
-                    <div className='w-[90%]  flex flex-col items-center gap-y-4'>
+                    <div className='w-[90%] flex flex-col items-center gap-y-4'>
                         
                         <OrgansSlider organs={organsData.data} setOrgan={setOrgan} theOrgan={organ} />
                         
@@ -100,6 +100,7 @@ const SyllabiList = () => {
                                 ))    
                             }
                         </div>
+                        
                     </div>
                 }
 
