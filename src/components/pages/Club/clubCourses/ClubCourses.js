@@ -88,7 +88,8 @@ const ClubCourses = () => {
                         <CircularProgressLoader />
                     }
 
-                    {clubCourseDividerError &&
+                    {
+                    clubCourseDividerError &&
                         <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                     }
 
@@ -123,14 +124,14 @@ const ClubCourses = () => {
 
                                 <div className='w-full flex flex-col items-center gap-y-2'>
                                     <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
-                                    onClick={() => navigate('/')}>
+                                    onClick={() => navigate('/club/clubCourses/studentsListClub/1')}>
                                         <p>هنرجویان فعال ({courseCountsData.data.activeStudentCounts})</p>
                                     </div>
                                 </div>
 
                                 <div className='w-full flex flex-col items-center gap-y-2'>
                                     <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
-                                    onClick={() => navigate('/')}>
+                                    onClick={() => navigate('/club/clubCourses/studentsListClub/1')}>
                                         <p>هنرجویان سابق ({courseCountsData.data.disableStudentCounts})</p>
                                     </div>
                                 </div>
