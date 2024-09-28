@@ -9,6 +9,7 @@ import { useSyllabiForLevels, useSyllabusLandingContent } from '../../../Utiliti
 
 // comps
 import PageTitle from '../../reuseable/PageTitle';
+import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 
 
 
@@ -37,7 +38,11 @@ const SyllabiDetails = () => {
 
 
     if (syllabiLoading || syllabiListLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className='w-full flex justify-center item-center pt-20'>
+                <CircularProgressLoader /> 
+            </div>
+        )
     }
     
 

@@ -155,7 +155,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                         (windowWidth < 768 && token) && data &&
                                         <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
                                         }
-                                        <ul className={`${!token ? 'pt-10 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
+                                        <ul className={`${!token ? 'pt-10 mt-[10vh] md:mt-0 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/blogs'>بلاگ</Link></li>
                                             <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/aboutUs'>درباره ما</Link></li>

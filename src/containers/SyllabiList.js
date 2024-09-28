@@ -96,39 +96,6 @@ const SyllabiList = () => {
 
                                         <p className={`${level.isPassed && 'text-[var(--yellow-text)]'}`}>{level.name}</p>
 
-
-                                        {/* <DropDownLine  
-                                            onClickActivation={() => handleDropDownClick(index, level)}
-                                            title={level.name} 
-                                            dropDown={DropDown} 
-                                            isActive={DropDown === `dropDown${index}`}  
-                                        /> */}
-            
-                                        {/* {DropDown === `dropDown${index}` && 
-                                            <div className='w-full flex flex-col gap-y-6'>
-            
-                                                {syllabiLoading && 
-                                                    <CircularProgressLoader />
-                                                }
-            
-                                                {
-                                                    syllabiData && syllabiData.data?.map((syllabi) => (
-                                                        <div className='w-full flex items-center justify-start gap-x-2'>
-                                                            {
-                                                                syllabi.type === 'Theory' &&
-                                                                <p className='px-4 text-xs py-1 bg-[var(--purple)] rounded-lg'>تئوری</p>
-                                                            }
-                                                            {
-                                                                syllabi.type === 'Practical' &&
-                                                                <p className='px-4 text-xs py-1 bg-[var(--yellow-text)] text-[var(--dark-blue-bg)] rounded-lg'>عملی</p>
-                                                            }
-                                                            <p className='text-start text-sm'>{syllabi.description}</p>
-                                                        </div>
-                                                    ))
-                                                }
-            
-                                            </div>
-                                        } */}
                                     </div>
                                 ))    
                             }

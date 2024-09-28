@@ -118,6 +118,8 @@ import CourseStudentTheoryDetails from './components/pages/Education/courseStude
 import CourseStudentSyllabiDetails from './components/pages/Education/courseStudentDetails/CourseStudentSyllabiDetails';
 import CourseStudentAFlightDetails from './components/pages/Education/courseStudentDetails/CourseStudentAFlightDetails';
 import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
+import StudentsList from './components/pages/Education/studentsList/StudentsList';
+import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
   
 
 
@@ -318,6 +320,8 @@ function App() {
                 <Route path="syllabi" element={<CourseStudentSyllabiDetails />} />
               </Route>
               <Route path='/education/courseDetails/studentDetails/aStudentFlight/:flightId' element={<CourseStudentAFlightDetails />} />
+              {/* id 1 is for active students and id 2 is for history student */}
+              <Route path='/education/studentsList/:id' element={<StudentsList />} />
 
               {/* my courses */}
               <Route path='/MyCourses' element={<MyCourses  />} />
@@ -382,6 +386,8 @@ function App() {
                 <Route path="syllabi" element={<ClubCourseStudentSyllabiDetails />} />
               </Route>
               <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<ClubCourseStudentAFlightDetails />} />
+              {/* id 1 is for active students and id 2 is for history student */}
+              <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsListClub />} />
 
 
               {/* edit profile */}
