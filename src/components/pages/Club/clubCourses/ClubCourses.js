@@ -122,16 +122,16 @@ const ClubCourses = () => {
                                 </div>
 
                                 <div className='w-full flex flex-col items-center gap-y-2'>
-                                    <p className=' text-xs'>هنرجویان فعال</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{courseCountsData.data.activeStudentCounts}</p>
+                                    <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
+                                    onClick={() => navigate('/')}>
+                                        <p>هنرجویان فعال ({courseCountsData.data.activeStudentCounts})</p>
                                     </div>
                                 </div>
 
                                 <div className='w-full flex flex-col items-center gap-y-2'>
-                                    <p className=' text-xs'>هنرجویان سابق</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{courseCountsData.data.disableStudentCounts}</p>
+                                    <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
+                                    onClick={() => navigate('/')}>
+                                        <p>هنرجویان سابق ({courseCountsData.data.disableStudentCounts})</p>
                                     </div>
                                 </div>
                         </div>
