@@ -24,7 +24,7 @@ const useAppModeEffect = (isDarkMode) => {
 
         // overall used colors
         root.style.setProperty('--soft-white', '#F6FDEF');
-        root.style.setProperty('--softer-white', ' #CDD3D4');
+        root.style.setProperty('--softer-white', ' #eeeeee');
         root.style.setProperty('--corn-flower-blue', ' #878DCB');
         root.style.setProperty('--purple', ' #3b5284');
         

@@ -37,7 +37,7 @@ const Education = () => {
     const [DropDown, setDropDown] = useState('')
 
     // queries
-    const { data: courseCountsData, isLoading: courseCountsLoading, error: courseCountsError } = useCourseCounts();
+    const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts();
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
