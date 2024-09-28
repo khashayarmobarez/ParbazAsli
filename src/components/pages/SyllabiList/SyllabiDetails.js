@@ -19,7 +19,7 @@ const SyllabiDetails = () => {
 
     // Check if data exists and if the content is not null or undefined
     let apiHtmlParts = ['', '', ''];
-    if (syllabiData && syllabiData.data) {
+    if (syllabiData && syllabiData.data.htmlContent && (syllabiData.data?.htmlContent.includes('{0}') || syllabiData.data.htmlContent?.includes('{1}'))) {
         apiHtmlParts = syllabiData.data.htmlContent.split('{0}').flatMap((part) => part.split('{1}'));
     }
 
@@ -50,11 +50,11 @@ const SyllabiDetails = () => {
 
             <div className='w-[90%] flex flex-col items-center gap-y-4 md:w-[70%] py-6'>
 
-                {syllabiData && syllabiData.data ? (
+                {syllabiData && syllabiData.data.htmlContent ? (
                 <>
                     <div dangerouslySetInnerHTML={{ __html: apiHtmlParts[0] }} />
                         {
-                            syllabiData.data && syllabiData.data.htmlContent.includes('{0}') &&
+                            syllabiData.data.htmlContent && syllabiData.data.htmlContent.includes('{0}') &&
                             <div className=' w-full min-h-6 rounded-2xl bg-[var(--syllabus-data-boxes-bg)] p-3'>
                                 {   
                                     // theorySyllabi
@@ -69,7 +69,7 @@ const SyllabiDetails = () => {
                         }
                     <div dangerouslySetInnerHTML={{ __html: apiHtmlParts[1] }} />
                         {
-                            syllabiData.data && syllabiData.data.htmlContent.includes('{1}') &&
+                            syllabiData.data.htmlContent && syllabiData.data.htmlContent.includes('{1}') &&
                             <div className=' w-full min-h-6 rounded-2xl bg-[var(--syllabus-data-boxes-bg)] p-3'>
                                 {   
                                     // practicalSyllabi
