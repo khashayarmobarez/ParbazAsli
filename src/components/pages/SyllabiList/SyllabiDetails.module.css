@@ -26,9 +26,10 @@
 .container ul {
     font-size: 12px;
     text-align: start;
-    align-self: start;
+    align-self: start;  
 }
 
 .container li {
     text-align: start;
+    padding: 0.3rem 0;
 }
