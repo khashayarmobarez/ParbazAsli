@@ -133,14 +133,6 @@ const Syllabuses = () => {
         <div className="py-14 flex flex-col justify-center items-center gap-y-6">
             <PageTitle title={'سیلابس‌ها'} />
             <form className="w-[90%] flex flex-col gap-y-4" onSubmit={handleSubmit}>
-                <div className="w-full flex flex-col gap-y-2">
-                    <h1 className="self-center">توضیحات</h1>
-                    <DescriptionInput
-                        value={description}
-                        onChange={handleDescription}
-                        placeholder="توضیحات پرواز را اینجا بنویسید"
-                    />
-                </div>
 
                 <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
 
@@ -185,6 +177,16 @@ const Syllabuses = () => {
                         </div>
                     </div>
                 ))}
+
+                <div className="w-full flex flex-col gap-y-2">
+                    <h1 className="self-center">توضیحات</h1>
+                    <DescriptionInput
+                        value={description}
+                        onChange={handleDescription}
+                        placeholder="توضیحات پرواز را اینجا بنویسید"
+                    />
+                </div>
+
                 <div className="w-full flex justify-around mt-8">
                     <button
                         disabled={isSubmitting}
@@ -201,6 +203,7 @@ const Syllabuses = () => {
                         تنظیم مجدد
                     </button>
                 </div>
+                
             </form>
         </div>
     );
