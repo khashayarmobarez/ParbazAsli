@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // mui
 import { Avatar, useMediaQuery } from '@mui/material';
@@ -19,9 +20,11 @@ import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCoun
 const CourseStudentDetails = () => {
 
     const location = useLocation();
+    const navigate = useNavigate();
     
     const { studentId } = useParams();
-    const navigate = useNavigate();
+    
+    const historyPageUrl = Cookies.get('lastPathForStudentDetails') || null;
 
     const isMobile = useMediaQuery('(max-width:720px)');
 
@@ -150,7 +153,7 @@ const CourseStudentDetails = () => {
                     <img
                         src={rightArrowButton}
                         alt="rightArrowButton"
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate(historyPageUrl)}
                         className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
                     />
                     

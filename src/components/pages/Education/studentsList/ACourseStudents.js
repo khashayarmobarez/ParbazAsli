@@ -1,41 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useUserById } from '../../../../Utilities/Services/queries';
+import { toast } from 'react-toastify';
+import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../../Utilities/Services/coursesQueries';
 
 // styles
 import gradients from '../../../../styles/gradients/Gradient.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
-
-// mui
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
 import arrowIcon from '../../../../assets/icons/Right Arrow Button.svg';
 
+// mui
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-// queries
-import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../../Utilities/Services/coursesQueries';
-
-// components
+// comps
+import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 import TextInput from '../../../inputs/textInput';
-import { useUserById } from '../../../../Utilities/Services/queries';
-import DropDownLine from '../../../reuseable/DropDownLine';
 
-const CourseStudents = () => {
-    
+
+const ACourseStudents = ({courseData, isForHistory}) => {
+
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { id } = useParams();
+    const { courseId } = courseData
 
     const [pageNumber, setPageNumber] = useState(1);
     const [historyPageNumber, sethistoryPageNumber] = useState(1);
-    const [DropDownHistory, setDropDownHistory] = useState(false);
-    const [DropDownActive, setDropDownActive] = useState(true);
 
     // show student options
     const [showActiveStudentOptions, setShowActiveStudentOptions] = useState(false);
@@ -44,10 +37,10 @@ const CourseStudents = () => {
     // add student
     const [studentId, setStudentId] = useState('');
 
-    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id,pageNumber);
-    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id,historyPageNumber);
+    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(courseId,pageNumber);
+    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(courseId,historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(courseId);
     const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
 
     // post student to course
@@ -144,7 +137,7 @@ const CourseStudents = () => {
     const handleAddStudnetToCourse = () => {
 
         const customCourseData = {
-            courseId: id,
+            courseId: courseId,
             userId: studentId
         }
 
@@ -182,14 +175,12 @@ const CourseStudents = () => {
 
 
     return (
-        <div className='w-full flex flex-col items-center pb-14'>
+        <div className='w-full flex flex-col items-center pb-0 pt-8'>
             <div className='w-full flex flex-col'>
 
             {
                 studentsDataLoading &&
-                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'4rem' }}>
-                    <CircularProgress /> 
-                </Box>
+                <CircularProgressLoader /> 
             }
 
             {
@@ -205,16 +196,7 @@ const CourseStudents = () => {
             {
                 studentsData && !studentsDataLoading &&
                 <div className='w-full flex flex-col items-center gap-y-6'>
-                    {
-                        studentsData.totalCount > 0 &&
-                        <DropDownLine  
-                            onClickActivation={() => setDropDownActive(!DropDownActive)}
-                            title={'هنر جویان'} 
-                            dropDown={DropDownActive} 
-                            isActive={DropDownActive === true}  
-                        />
-                    }
-                    {DropDownActive && studentsData.data?.map((student) => (
+                    {!isForHistory && studentsData.data?.map((student) => (
                         <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}
                             >
@@ -249,8 +231,7 @@ const CourseStudents = () => {
                                 }
 
                             </div>
-                            {
-                                aCourseData &&
+                            {   aCourseData &&
                                 aCourseData.data.status === 'Active' && student.status === 'CoachPending' &&
                                 <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
                                 style={{background: 'var(--syllabus-data-boxes-bg)',
@@ -264,9 +245,7 @@ const CourseStudents = () => {
                                     <div className='flex gap-x-6 items-center px-2'>
 
                                         {triggerStudentStatusLoading && 
-                                            <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                                <CircularProgress sx={{width:'1rem'}} /> 
-                                            </Box>
+                                            <CircularProgressLoader /> 
                                         }
                                         
                                         <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'Active', student.id, event)} className='text-[var(--yellow-text)] text-sm font-medium'  >
@@ -332,7 +311,7 @@ const CourseStudents = () => {
                         </div>
                     )}
 
-                    <div className='flex flex-col w-full gap-y-2'>
+                    {/* <div className='flex flex-col w-full gap-y-2'>
                         { studentNameLoading && studentId.length > 5 &&
                             <p className=' self-start text-[var(--yellow-text)]'>در حال بررسی هنرجو ... </p>
                         }
@@ -358,20 +337,14 @@ const CourseStudents = () => {
                                     </span>
                                 </div>
                         }
-                    </div>
+                    </div> */}
 
                     {/* history students */}
                     {
                         studentsHistoryData && studentsHistoryData.data.length > 0 &&
-                        <div  className='w-full flex flex-col items-center gap-y-4'>
-                            <DropDownLine  
-                                onClickActivation={() => setDropDownHistory(!DropDownHistory)}
-                                title={'هنر جویان سابق'} 
-                                dropDown={DropDownHistory} 
-                                isActive={DropDownHistory === true}  
-                            />
+                        <div  className='w-full flex flex-col items-center gap-y-4 -mt-4'>
 
-                            {DropDownHistory &&
+                            {isForHistory &&
                                 <div className='w-full flex flex-col items-center gap-y-4'>
                                     {studentsHistoryData.data?.map((student) => (
                                         <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
@@ -440,4 +413,4 @@ const CourseStudents = () => {
     );
 };
 
-export default CourseStudents;
+export default ACourseStudents;

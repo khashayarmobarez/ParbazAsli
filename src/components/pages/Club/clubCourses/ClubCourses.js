@@ -48,7 +48,7 @@ const ClubCourses = () => {
         }
     }, [clubCourseDividerData])
 
-    // for handliung the back button of club course details
+    // for handling the back button of club course details
     Cookies.set('lastPathForClubCourseDetails',location.pathname)
 
 
