@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // mui
 import { Avatar, useMediaQuery } from '@mui/material';
@@ -23,6 +24,8 @@ const ClubCourseStudentDetails = () => {
     const navigate = useNavigate();
 
     const isMobile = useMediaQuery('(max-width:720px)');
+
+    const historyPageUrl = Cookies.get('lastPathForClubStudentDetails') || null;
 
     const { data: studentData } = useGetClubCourseStudent(studentId)
 
@@ -141,7 +144,7 @@ const ClubCourseStudentDetails = () => {
                     <img
                         src={rightArrowButton}
                         alt="rightArrowButton"
-                        onClick={() => {navigate(`/club/courseDetails/${courseId}/students`); console.log(document.referrer);}}
+                        onClick={() => {navigate(historyPageUrl); console.log(document.referrer);}}
                         className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
                     />
                     

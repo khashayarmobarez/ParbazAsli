@@ -25,6 +25,7 @@ const ClubCourseDetails = () => {
     const { id } = useParams();
 
     const historyPageUrl = Cookies.get('lastPathForClubCourseDetails') || null;
+    Cookies.set('lastPathForClubStudentDetails', location.pathname);
 
     const [showPopup, setShowPopup] = useState(false);
     const [showExtra, setShowExtra ] = useState(false);

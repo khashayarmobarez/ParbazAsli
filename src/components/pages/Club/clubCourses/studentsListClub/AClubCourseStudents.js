@@ -74,7 +74,7 @@ const AClubCourseStudents = ({courseData, isForHistory}) => {
 
     // handle click student
     const handleClickStudent = (id) => {
-        navigate(`/education/courseDetails/studentDetails/${id}/practical`)
+        navigate(`/club/courseDetails/${courseId}/studentDetails/${id}/practical`)
     }
 
     // for handling the back button of club course details

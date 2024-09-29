@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../../../../reuseable/PageTitle';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import CircularProgressLoader from '../../../../Loader/CircularProgressLoader';
 import DropDownLine from '../../../../reuseable/DropDownLine';
 import { useAllClubStudentDividers, useClubCourseCounts } from '../../../../../Utilities/Services/clubQueries';
 import AClubCourseStudents from './AClubCourseStudents';
+import Cookies from 'js-cookie';
 
 const StudentsListClub = () => {
+
+    const location = useLocation()  
 
     // id 1 is for active students and id 2 is for history student
     const {id} = useParams()
@@ -18,6 +21,8 @@ const StudentsListClub = () => {
     const { data: courseCountsData, isLoading: courseCountsLoading } = useClubCourseCounts();
     // id 1 is for active students and id 2 is for history student
     const { data: AllStudentDividers, isLoading: AllStudentDividersLoading, error: AllStudentDividerError } = useAllClubStudentDividers(id && id);
+
+    Cookies.set('lastPathForClubStudentDetails', location.pathname)
 
     // function to active all the drop downs when all student dividers came
     useEffect(() => {
