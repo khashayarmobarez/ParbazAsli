@@ -1086,6 +1086,6 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-
+    
 
 export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useCourseStudentFlights, useCourseStudentFlight, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingFlightCounts, useAllActiveStudents, useSyllabusLandingContent, useAllStudentDividers };
