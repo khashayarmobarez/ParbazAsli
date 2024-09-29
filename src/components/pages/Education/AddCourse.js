@@ -15,7 +15,6 @@ import chartIcon2 from '../../../assets/icons/chartIcon2.svg';
 import singleTag from '../../../assets/icons/ADressTag.svg';
 import tagsIcon from '../../../assets/icons/colorTagsIcon.svg';
 import certificateIcon from '../../../assets/icons/certificate-Vector.svg';
-import userIcon from '../../../assets/icons/user-Icon.svg';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';

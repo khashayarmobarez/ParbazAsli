@@ -23,13 +23,26 @@
     font-weight: 400;
 }
 
-.container ul {
+.container ol {
     font-size: 12px;
     text-align: start;
-    align-self: start;  
+    align-self: start;
+    list-style-type: decimal;  
 }
 
 .container li {
     text-align: start;
     padding: 0.3rem 0;
+    margin-right:3vw;
+}
+
+
+
+@media (min-width: 760px) {
+
+    .container ol {
+        font-size: 14px;
+        margin-right: 0vw;
+    }
+
 }

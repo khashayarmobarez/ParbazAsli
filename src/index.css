@@ -65,28 +65,28 @@ code {
 /* fonts imported here */
 @font-face {
   font-family: 'iransans';
-  src: url('./assets/Fonts/IRANSansX-Regular.ttf') format('truetype');
+  src: url('./assets/Fonts/IRANSansXFaNum-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'iransans';
-  src: url('./assets/Fonts/IRANSansX-Bold.ttf') format('truetype');
+  src: url('./assets/Fonts/IRANSansXFaNum-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'iransans';
-  src: url('./assets/Fonts/IRANSansX-Light.ttf') format('truetype');
+  src: url('./assets/Fonts/IRANSansXFaNum-Light.ttf') format('truetype');
   font-weight: lighter;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'iransans';
-  src: url('./assets/Fonts/IRANSansX-DemiBold.ttf') format('truetype');
+  src: url('./assets/Fonts/IRANSansXFaNum-DemiBold.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
