@@ -198,7 +198,7 @@ my-app/
 
 ### Description of Folders
 
-- **node_modules/**: Contains all npm dependencies.
+- **src/**: Contains all the source codes of the app.
 - **public/**: Contains static files such as `index.html` and images.
 - **src/**: Contains the source code for the React application.
     - **components/**: Contains React components.
