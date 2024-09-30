@@ -1,13 +1,16 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useAStudentCourses } from '../../../../Utilities/Services/coursesQueries';
 
 const AStudentCourses = () => {
 
-    const { id } = useParams()
+    const { studentId } = useParams()
+
+    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError } = useAStudentCourses(studentId && studentId);
 
     return (
-        <div>
-            {id}
+        <div className='pt-20'>
+            {studentId} normal
         </div>
     );
 };

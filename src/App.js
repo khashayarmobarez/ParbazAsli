@@ -121,6 +121,7 @@ import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
 import StudentsList from './components/pages/Education/studentsList/StudentsList';
 import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
 import AStudentCourses from './components/pages/Education/studentsList/AStudentCourses';
+import AStudentClubCourses from './components/pages/Club/clubCourses/studentsListClub/AStudentClubCourses';
   
 
 
@@ -390,6 +391,7 @@ function App() {
               <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<ClubCourseStudentAFlightDetails />} />
               {/* id 1 is for active students and id 2 is for history student */}
               <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsListClub />} />
+              <Route path='/club/clubCourses/studentsListClub/aStudentClubCourses/:studentId' element={<AStudentClubCourses />} />
 
 
               {/* edit profile */}
