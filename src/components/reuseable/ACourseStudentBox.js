@@ -2,13 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
-import gradients from '../../../../../styles/gradients/Gradient.module.css'
+import gradients from '../../styles/gradients/Gradient.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 
-const ACourseStudentBox = ({studentData, isForHistory}) => {
+const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
 
     const navigate = useNavigate();
 

@@ -3,7 +3,7 @@ import PageTitle from '../../../reuseable/PageTitle';
 import { useAllStudents, useCourseCounts } from '../../../../Utilities/Services/coursesQueries';
 import { useParams } from 'react-router-dom';
 import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
-import ACourseStudentBox from './comps/ACourseStudentBox';
+import ACourseStudentBox from '../../../reuseable/ACourseStudentBox';
 
 const StudentsList = () => {
 

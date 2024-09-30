@@ -1105,11 +1105,11 @@ const useAddStudentToClubCourse = () => {
 
 // get club all students divider
 // /Club/GetAllClubStudentDividers?type=1
-    const getAllClubStudentDividers = async (type) => {
+    const getAllClubStudents = async (type) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetAllClubStudentDividers?type=${type}`, {
+            const response = await axios.get(`${BASE_URL}/Club/GetAllClubStudents?type=${type}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1125,10 +1125,10 @@ const useAddStudentToClubCourse = () => {
         }
     }
 
-    const useAllClubStudentDividers = (type) => {
-        return useQuery(['getAllStudentDividers', type], () => getAllClubStudentDividers(type));
+    const useAllClubStudents = (type) => {
+        return useQuery(['getAllStudents', type], () => getAllClubStudents(type));
     }
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi, useClubCourseCounts, useAllClubStudentDividers };
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useGetClubCoursesDividers, useClubCourses, useAddRegularClubCourse, useAddRetrainingClubCourse, useAddCustomClubCourse, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi, useClubCourseCounts, useAllClubStudents };
