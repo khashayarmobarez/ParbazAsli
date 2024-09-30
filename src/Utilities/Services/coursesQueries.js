@@ -1056,13 +1056,13 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-// use all student dividers query
-// /Course/GetAllStudentDividers?type=active
-    const getAllStudentDividers = async (type) => {
+// use all students query
+// /Course/GetAllStudents?type=active
+    const getAllStudents = async (type) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetAllStudentDividers?type=${type}`, {
+            const response = await axios.get(`${BASE_URL}/Course/GetAllStudents?type=${type}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1080,12 +1080,12 @@ const getSyllabiForLevels = async (levelId) => {
 
     };
 
-    const useAllStudentDividers = (type) => {
-        return useQuery(['allStudentDividers', type], () => getAllStudentDividers(type));
+    const useAllStudents = (type) => {
+        return useQuery(['allStudents', type], () => getAllStudents(type));
     }   
 
 
 
     
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useCourseStudentFlights, useCourseStudentFlight, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingFlightCounts, useAllActiveStudents, useSyllabusLandingContent, useAllStudentDividers };
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useCourseStudentFlights, useCourseStudentFlight, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingFlightCounts, useAllActiveStudents, useSyllabusLandingContent, useAllStudents };
