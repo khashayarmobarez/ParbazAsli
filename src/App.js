@@ -120,6 +120,7 @@ import CourseStudentAFlightDetails from './components/pages/Education/courseStud
 import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
 import StudentsList from './components/pages/Education/studentsList/StudentsList';
 import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
+import AStudentCourses from './components/pages/Education/studentsList/AStudentCourses';
   
 
 
@@ -322,6 +323,7 @@ function App() {
               <Route path='/education/courseDetails/studentDetails/aStudentFlight/:flightId' element={<CourseStudentAFlightDetails />} />
               {/* id 1 is for active students and id 2 is for history student */}
               <Route path='/education/studentsList/:id' element={<StudentsList />} />
+              <Route path='/education/studentsList/aStudentCourses/:studentId' element={<AStudentCourses />} />
 
               {/* my courses */}
               <Route path='/MyCourses' element={<MyCourses  />} />
