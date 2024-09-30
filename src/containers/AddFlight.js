@@ -65,7 +65,7 @@ const AddFlight = () => {
         const persianYear = toPersianNumber(jy);
     
         // Return the Persian date in dd/mm/yyyy format
-        return `${persianDay}/${persianMonth}/${persianYear}`;
+        return `${persianYear}/${persianMonth}/${persianDay}`;
     }
 
     const shamsiFlightData = formattedDate ? gregorianToShamsi(formattedDate) : '';
