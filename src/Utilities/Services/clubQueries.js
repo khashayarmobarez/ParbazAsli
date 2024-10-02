@@ -1104,7 +1104,7 @@ const useAddStudentToClubCourse = () => {
 
 
 // get club all students divider
-// /Club/GetAllClubStudentDividers?type=1
+// /Club/GetAllClubStudents?type=1
     const getAllClubStudents = async (type) => {
         const token = Cookies.get('token');
 
