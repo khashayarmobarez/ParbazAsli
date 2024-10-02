@@ -22,16 +22,18 @@ const StudentsList = () => {
 
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                { (courseCountsLoading || AllStudentLoading) &&
+                { 
+                (courseCountsLoading || AllStudentLoading) &&
                     <CircularProgressLoader /> 
                 }
 
-                {AllStudentError &&
+                {
+                AllStudentError &&
                     <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                 }
 
                 {
-                    courseCountsData && AllStudents &&
+                courseCountsData && AllStudents &&
                     <div className='w-full flex flex-col justify-center items-center gap-y-8'>
                         <PageTitle 
                             title={`${id === '1' ? `هنرجویان فعال (${courseCountsData.data.activeStudentCounts})` : `هنرجویان سابق (${courseCountsData.data.disableStudentCounts})`}`} 

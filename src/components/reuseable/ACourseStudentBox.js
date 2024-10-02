@@ -12,10 +12,6 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
 
     const navigate = useNavigate();
 
-    
-    // for handling the back button of club course details
-    // Cookies.set('lastPathForStudentDetails',location.pathname)
-
     const handleClickStudent = () => {
         !isForClub && navigate(`/education/studentsList/aStudentCourses/${studentData.id}`)
         isForClub && navigate(`/club/clubCourses/studentsListClub/aStudentClubCourses/${studentData.id}`)
