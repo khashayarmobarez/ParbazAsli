@@ -51,7 +51,7 @@ const AStudentCourses = () => {
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
                 <PageTitle 
-                    title={`هنرجو`}
+                    title={StudentCourses ? `${StudentCourses.data[0].studentName}` : 'نام هنرجو' }
                     navigateTo={`/education`} 
                 />
 
