@@ -1135,11 +1135,11 @@ const useAddStudentToClubCourse = () => {
 
 // get student courses
 // /Club/GetClubStudentCourses?studentUserId=676aoj
-    const GetClubStudentCourses = async (id) => {
+    const GetClubStudentCourses = async (id, pageNumber, pageSize) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentCourses?studentUserId=${id}`, {
+            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1157,9 +1157,9 @@ const useAddStudentToClubCourse = () => {
 
     };
 
-    const useAClubStudentCourses = (id) => {
-        return useQuery(['AClubStudentCourses', id], () => GetClubStudentCourses(id));
-    } 
+    const useAClubStudentCourses = (id, pageNumber, pageSize) => {
+        return useQuery(['AClubStudentCourses', id, pageNumber, pageSize], () => GetClubStudentCourses(id, pageNumber, pageSize));
+    }
 
 
 

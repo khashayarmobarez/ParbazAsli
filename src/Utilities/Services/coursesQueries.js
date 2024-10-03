@@ -1058,11 +1058,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 // use all students query
 // /Course/GetAllStudents?type=active
-    const getAllStudents = async (type) => {
+    const getAllStudents = async (type, pageNumber, pageSize) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetAllStudents?type=${type}`, {
+            const response = await axios.get(`${BASE_URL}/Course/GetAllStudents?type=${type}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1080,8 +1080,8 @@ const getSyllabiForLevels = async (levelId) => {
 
     };
 
-    const useAllStudents = (type) => {
-        return useQuery(['allStudents', type], () => getAllStudents(type));
+    const useAllStudents = (type, pageNumber, pageSize) => {
+        return useQuery(['allStudents', type, pageNumber, pageSize], () => getAllStudents(type, pageNumber, pageSize));
     }   
 
 
@@ -1091,11 +1091,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get student courses
 // /Course/GetStudentCourses?studentUserId=890soq
-    const GetStudentCourses = async (id) => {
+    const GetStudentCourses = async (id, pageNumber, pageSize) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentCourses?studentUserId=${id}`, {
+            const response = await axios.get(`${BASE_URL}/Course/GetStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1113,9 +1113,17 @@ const getSyllabiForLevels = async (levelId) => {
 
     };
 
-    const useAStudentCourses = (id) => {
-        return useQuery(['AStudentCourses', id], () => GetStudentCourses(id));
+    const useAStudentCourses = (id, pageNumber, pageSize) => {
+        return useQuery(['AStudentCourses', id], () => GetStudentCourses(id, pageNumber, pageSize));
     } 
+
+
+
+
+
+
+
+    
 
 
     

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageTitle from '../../../../reuseable/PageTitle';
 import { useParams } from 'react-router-dom';
 import CircularProgressLoader from '../../../../Loader/CircularProgressLoader';
+import arrowIcon from '../../../../../assets/icons/Right Arrow Button.svg';
 import ACourseStudentBox from '../../../../reuseable/ACourseStudentBox';
 import { useAllClubStudents, useClubCourseCounts } from '../../../../../Utilities/Services/clubQueries';
 
@@ -10,11 +11,21 @@ const StudentsListClub = () => {
     // id 1 is for active students and id 2 is for history student
     const {id} = useParams()
 
+    const [pageNumber, setPageNumber] = useState(1);
+    let pageSize = 10
+
     // queries
     const { data: courseCountsData, isLoading: courseCountsLoading } = useClubCourseCounts();
     // id 1 is for active students and id 2 is for history student
-    const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError } = useAllClubStudents(id && id);
+    const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError } = useAllClubStudents(id && id, pageNumber, pageSize);
 
+    const handleNextPageNumber = () => {
+        setPageNumber(prev => prev + 1)
+    }
+
+    const handleLastPageNumber = () => {
+        setPageNumber(prev => prev - 1)
+    }
 
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
@@ -48,6 +59,38 @@ const StudentsListClub = () => {
                             ))
                         }
                     </div>
+
+                    { AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1 && (
+                            <div className='w-full flex justify-between px-10 items-center'>
+                                <button
+                                    className='w-10 justify-self-start'
+                                    disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
+                                    onClick={handleNextPageNumber}
+                                >
+                                    <img
+                                        src={arrowIcon}
+                                        alt='arrow'
+                                        className={`${(AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                    />
+                                </button>
+
+                                <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                    صفحه ی {pageNumber}
+                                </p>
+
+                                <button
+                                    className='transform rotate-180 w-10 justify-self-end'
+                                    disabled={pageNumber === 1}
+                                    onClick={handleLastPageNumber}
+                                >
+                                    <img
+                                        src={arrowIcon}
+                                        alt='arrow'
+                                        className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
+                                    />
+                                </button>
+                            </div>
+                        )}
                     
                 </div>
             }

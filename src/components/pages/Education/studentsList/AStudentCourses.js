@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -30,8 +30,14 @@ const AStudentCourses = () => {
     Cookies.set('lastPathForStudentDetails',location.pathname)
 
     const [pageNumber, setPageNumber] = useState(1)
+    let pageSize = 4
 
-    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError } = useAStudentCourses(studentId && studentId);
+    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError, refetch: reftchCourses } = useAStudentCourses(studentId && studentId, pageNumber, pageSize);
+
+    // refetch courses when pageNumber changed
+    useEffect(() => {
+        reftchCourses()
+    }, [pageNumber])
 
     const handleCourseDetails = (id) => () => {
         navigate(`/education/courseDetails/studentDetails/${id}/practical`);
