@@ -77,7 +77,7 @@ const CourseStudents = () => {
     };
 
     const handleClickStudent = (studentId) => {
-        navigate(`/club/courseDetails/${id}/studentDetails/${studentId}/practical`);
+        navigate(`/club/courseDetails/studentDetails/${studentId}/practical`);
     }
 
     

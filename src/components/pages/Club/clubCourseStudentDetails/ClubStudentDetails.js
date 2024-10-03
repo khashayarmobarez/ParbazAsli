@@ -10,11 +10,13 @@ import Box from '@mui/material/Box';
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
+// queries
+import { useGetClubCourseStudent } from '../../../../Utilities/Services/clubQueries';
+
 // assets
 import flightHour from '../../../../assets/icons/flightHour.svg';
 import flightQuan from '../../../../assets/icons/flightQuantity.svg';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
-import { useGetClubCourseStudent } from '../../../../Utilities/Services/clubQueries';
 
 const ClubCourseStudentDetails = () => {
 
@@ -151,9 +153,9 @@ const ClubCourseStudentDetails = () => {
                 </div>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
-                    <Link to={`/club/courseDetails/${courseId}/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/${courseId}/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
-                    <Link to={`/club/courseDetails/${courseId}/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/club/courseDetails/${courseId}/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
-                    <Link to={`/club/courseDetails/${courseId}/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/club/courseDetails/${courseId}/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
+                    <Link to={`/club/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
+                    <Link to={`/club/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
+                    <Link to={`/club/courseDetails/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
                 </div>
 
                 <div className='w-[90%]'>
