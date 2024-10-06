@@ -226,7 +226,7 @@ function App() {
           <>
             <Route path='/signUpLogin' element={<SignUpOrLogin />} />
             <Route path='/' element={<LandingPage />} />
-            <Route path='*' element={<Navigate to="/" />} />
+            <Route path='*' element={<Navigate to="/" replace />} />
           </>
           }
 
