@@ -30,7 +30,7 @@ import styles from './Navbar.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // assets
-import companyLogo from '../../assets/Logo/Digilogbook -1401 1.svg';
+import companyLogo from '../../assets/Logo/DigilogbookMainLogo.svg';
 import logout from '../../assets/icons/logout.svg';
 
 
