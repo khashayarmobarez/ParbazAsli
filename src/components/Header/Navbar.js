@@ -38,7 +38,7 @@ import logout from '../../assets/icons/logout.svg';
 const inlineStyles = {
     hideOnLarge: {
         display: 'none',
-      }
+    }
 }
 
 
@@ -133,95 +133,95 @@ const Navbar = ({toggleTheme ,userRole}) => {
                 },
                 }} ref={burgerRef}>
                     
-                            <Toolbar sx={{
-                            display:'flex',
-                            justifyContent: 'space-between',
-                            background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
-                            boxShadow: '-3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
+                    <Toolbar sx={{
+                    display:'flex',
+                    justifyContent: 'space-between',
+                    background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
+                    boxShadow: '-3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
 
-                                <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
+                        <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
 
-                                    {/* app logo */}
-                                    <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={`${styles.logo}`} /> 
-                                
-                                    <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
-                                    style={{ background: isOpen ? 'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)' : 'none',
-                                    border: '1px solid rgba(17, 24, 39, 0.1)',
-                                    boxShadow: isOpen ? '-2px 3px 4.3px 1px #0000007A' : 'none',
-                                      }}
-                                    >
-                                        {
-                                        // (windowWidth < 768 && userRole && userRole !== '') &&
-                                        (windowWidth < 768 && token) && data &&
-                                        <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
-                                        }
-                                        <ul className={`${!token ? 'pt-10 mt-[10vh] md:mt-0 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
-                                            <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
-                                            <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/blogs'>بلاگ</Link></li>
-                                            <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/aboutUs'>درباره ما</Link></li>
-                                            <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/contactUs'>تماس با ما</Link></li>
-                                            {!token ?
-                                            null
-                                            :
-                                            <>
-                                                <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <SettingsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/settings'>تنظیمات</Link></li>
-                                                {/* <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li> */}
-                                            </>
-                                            }
-                                        </ul>
-                                        {!token ?
-                                        <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--yellow-text)'}}> ورود / ثبت نام</Link>
-                                        :
-                                        <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
-                                        }
-                                    </div>
-                                </div>
-
-                                <div className={ `flex justify-between w-16 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
-
+                            {/* app logo */}
+                            <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={`${styles.logo}`} /> 
+                        
+                            <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
+                            style={{ background: isOpen ? 'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)' : 'none',
+                            border: '1px solid rgba(17, 24, 39, 0.1)',
+                            boxShadow: isOpen ? '-2px 3px 4.3px 1px #0000007A' : 'none',
+                                }}
+                            >
+                                {
+                                // (windowWidth < 768 && userRole && userRole !== '') &&
+                                (windowWidth < 768 && token) && data &&
+                                <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
+                                }
+                                <ul className={`${!token ? 'pt-10 mt-[10vh] md:mt-0 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>صفحه اصلی</Link></li>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/blogs'>بلاگ</Link></li>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/aboutUs'>درباره ما</Link></li>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/contactUs'>تماس با ما</Link></li>
                                     {!token ?
-                                        (windowWidth > 768) ?
-                                            <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
-                                            :
-                                            <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
+                                    null
                                     :
-                                    <div className='md:flex md:gap-x-4 md:mr-10'>
-                                        <button >
-                                            {
-                                                notificationCountsData && notificationCountsData.data > 0 &&
-                                                    <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10 bg-[var(--red-text)]'>
-                                                        <p>{notificationCountsData.data}</p>
-                                                    </div>
-                                            }
-                                            {currentUrl === '/notifications' ?
-                                            <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--yellow-text)', height:'30px',width:'30px'}} />
-                                            :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--softer-white)', height:'30px',width:'30px'}} />
-                                            }
-                                        </button>
-
-                                        <div to='/' className={`hidden md:flex justify-center items-center`} >
-                                            <img src={logout} alt='logout' onClick={handleLogout} />
-                                        </div>
-                                    </div>
+                                    <>
+                                        <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <SettingsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/settings'>تنظیمات</Link></li>
+                                        {/* <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li> */}
+                                    </>
                                     }
+                                </ul>
+                                {!token ?
+                                <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--yellow-text)'}}> ورود / ثبت نام</Link>
+                                :
+                                <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
+                                }
+                            </div>
+                        </div>
 
-                                    
+                        <div className={ `flex justify-between w-16 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
 
-                                    <label className={`${styles.burger} mt-[2px]`} htmlFor="burger" >
-                                        <input type="checkbox" id="burger" onClick={toggleNavbar}/>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                    </label>
+                            {!token ?
+                                (windowWidth > 768) ?
+                                    <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-9 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
+                                    :
+                                    <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
+                            :
+                            <div className='md:flex md:gap-x-4 md:mr-10'>
+                                <button >
+                                    {
+                                        notificationCountsData && notificationCountsData.data > 0 &&
+                                            <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10 bg-[var(--red-text)]'>
+                                                <p>{notificationCountsData.data}</p>
+                                            </div>
+                                    }
+                                    {currentUrl === '/notifications' ?
+                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--yellow-text)', height:'30px',width:'30px'}} />
+                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--softer-white)', height:'30px',width:'30px'}} />
+                                    }
+                                </button>
 
-
+                                <div to='/' className={`hidden md:flex justify-center items-center`} >
+                                    <img src={logout} alt='logout' onClick={handleLogout} />
                                 </div>
-                                
-                            </Toolbar>
+                            </div>
+                            }
 
-                        </AppBar>
+                            
 
-                    </Box>
+                            <label className={`${styles.burger} mt-[2px]`} htmlFor="burger" >
+                                <input type="checkbox" id="burger" onClick={toggleNavbar}/>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                            </label>
+
+
+                        </div>
+                        
+                    </Toolbar>
+
+                </AppBar>
+
+            </Box>
     );
 };
 
