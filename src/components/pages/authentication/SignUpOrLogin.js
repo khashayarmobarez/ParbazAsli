@@ -34,6 +34,7 @@ const SignUpOrLogin = () => {
                     <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'signUp' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('signUp')} >ثبت نام</button>
                 </div>
 
+
                 {activeLink === 'login' ? 
                 // sign in
                 <div className='w-[90%]'>
