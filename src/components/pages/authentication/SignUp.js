@@ -398,7 +398,7 @@ const SignUp = () => {
                                 <CircularProgress sx={{ color: 'var(--dark-blue-bg)' }} size={25} />
                                 :
                                 <>
-                                    ثبت
+                                    ثبت نام
                                 </>
                             }
                             </button>
