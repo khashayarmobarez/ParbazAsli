@@ -16,12 +16,6 @@ const PracticalMyCourse = () => {
 
     const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(1,10,id, '', '', '', '', '', '', '', '', '', '' , '');
 
-    useEffect(() => {
-        if(userFlights) {
-            console.log(userFlights)
-        }
-    }, [userFlights])
-
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
             {userFlightsLoading &&

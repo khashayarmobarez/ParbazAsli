@@ -36,7 +36,7 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                     }}
                 />
                 <button disabled={isLoading} onClick={onSubmit} className={`${gradients.clipboardButtonBackgroundGradient} ${isLoading && 'opacity-50'} 
-                 w-24 h-full flex items-center justify-center rounded-l-xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}>
+                w-24 h-12 flex items-center justify-center rounded-l-2xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}>
                     <p>{buttonText}</p> 
                 </button>
             </div>           
