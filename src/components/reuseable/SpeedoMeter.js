@@ -88,13 +88,14 @@ const SpeedoMeter = (props) => {
 
         </div>
 
-        <svg style={{ height: 0,width: 0,position:'absolute' }}>
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="22.92%" stopColor="#A5E65E" />
-                <stop offset="227.14%" stopColor="rgba(199, 3, 15, 0.2)" />
-              </linearGradient>
-            </defs>
+        <svg style={{ height: 0, width: 0, position: 'absolute' }}>
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(35, 188, 124, 1)" />
+              <stop offset="50%" stopColor="rgba(255, 153, 0, 1)" />
+              <stop offset="100%" stopColor="rgba(220, 53, 69, 1)" />
+            </linearGradient>
+          </defs>
         </svg>
 
     </div>
