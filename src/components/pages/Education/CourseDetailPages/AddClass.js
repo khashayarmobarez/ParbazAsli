@@ -13,7 +13,7 @@ import usersIcon from '../../../../assets/icons/users-Icon.svg';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // queries
-import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents, useAllActiveStudents } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents, useAllStudents } from '../../../../Utilities/Services/coursesQueries';
 import { useUserById } from '../../../../Utilities/Services/queries';
 
 // mui
@@ -33,6 +33,9 @@ const AddClass = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
+
+    const [pageNumber, setPageNumber] = useState(1);
+    const pageSize = 1000
 
     const [ClassName, setClassName] = useState('');
 
@@ -55,7 +58,7 @@ const AddClass = () => {
 
 
     const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
-    const {  data: courseStudents, isLoading: courseStudentsLoading, error: courseStudentsError } = useAllActiveStudents(id);
+    const {  data: courseStudents, isLoading: courseStudentsLoading, error: courseStudentsError } = useAllStudents(1, pageNumber, pageSize );
     const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(guestStudentId)
     const { mutate: addCourseClass, isLoading: addCourseClassLoading } = useAddCourseClass();
     
@@ -81,6 +84,14 @@ const AddClass = () => {
             }
         }
     }, [endSelectedTime]);
+
+    const handleNextPageNumber = () => {
+        setPageNumber(prev => prev + 1)
+    }
+
+    const handleLastPageNumber = () => {
+        setPageNumber(prev => prev - 1)
+    }
 
 
     const handleClassName = (event) => {
