@@ -78,7 +78,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
         <ul className="absolute z-30 w-full bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
           
           {filteredOptions.map((option) => (
-            <div key={option.id} className=' flex flex-col w-full items-center justify-center '>
+            <div key={option.id} className=' flex flex-col w-full items-center justify-center text-sm'>
               <li
                 className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
                 onClick={() => handleOptionClick(option)}

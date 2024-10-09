@@ -10,13 +10,21 @@
 
 .ThreeStickedButtonButton {
   font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    width: 100%;
-    height: 100%;
-    background:  var(--profile-buttons-background);
-    box-shadow: var(--profile-buttons-boxShadow);
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 100%;
+  height: 100%;
+  background:  var(--profile-buttons-background);
+  box-shadow: var(--profile-buttons-boxShadow);
+}
+
+@media (min-width: 720px) {
+
+  ThreeStickedButtonCont {
+    height: 3rem;
+  }
+
 }
 
 .ThreeStickedButtonButton:hover {

@@ -11,9 +11,6 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-
-
-
 // landing page section query
     // get home sections
       const useLandingPage = () => {

@@ -216,7 +216,7 @@ const CourseStudents = () => {
                     }
                     {DropDownActive && studentsData.data?.map((student) => (
                         <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
-                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}
+                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-xs`}
                             >
                                 <span onClick={() => handleClickStudent(student.id)}>
                                     <PersonOutlineOutlinedIcon />
