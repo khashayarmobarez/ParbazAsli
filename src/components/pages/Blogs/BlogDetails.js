@@ -39,7 +39,7 @@ const BlogDetails = () => {
     } = data?.data || {};
 
     return (
-        <div className='w-full flex flex-col mt-14 items-center gap-y-8 pb-10 '>
+        <article className='w-full flex flex-col mt-14 items-center gap-y-8 pb-10 '>
             {
                 isLoading && isFetching && 
                 <DigilogbookLoading />
@@ -137,7 +137,7 @@ const BlogDetails = () => {
 
                 </div>
             }
-        </div>
+        </article>
     );
 };
 

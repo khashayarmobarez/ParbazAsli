@@ -33,7 +33,7 @@ const BlogBlock = ({blogData}) => {
 
 
     return (
-        <div className='w-full h-[500px] flex flex-col items-center justify-between p-4 rounded-3xl md:p-8' 
+        <article className='w-full h-[500px] flex flex-col items-center justify-between p-4 rounded-3xl md:p-8' 
         style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
 
             <div className="w-full h-52 md:h-56">
@@ -50,7 +50,7 @@ const BlogBlock = ({blogData}) => {
 
             <button onClick={handleReadMoreClick} className={`${ButtonStyles.addButton} w-36 `}>خواندن مقاله</button>
             
-        </div>
+        </article>
     );
 };
 

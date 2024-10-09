@@ -139,7 +139,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                     background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
                     boxShadow: '-3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
 
-                        <div className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
+                        <nav className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
 
                             {/* app logo */}
                             <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={`${styles.logo}`} /> 
@@ -175,7 +175,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                 <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
                                 }
                             </div>
-                        </div>
+                        </nav>
 
                         <div className={ `flex justify-between w-16 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
 
