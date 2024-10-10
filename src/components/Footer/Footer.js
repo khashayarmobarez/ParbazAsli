@@ -29,7 +29,7 @@ const styles = {
       zIndex: 100,
       background: '#131423',
       Bottom:'2rem',
-      height:'calc(3.6rem + env(safe-area-inset-bottom,5))',
+      height:'calc(3.8rem + env(safe-area-inset-bottom,5))',
       '@media screen and (min-width: 768px)': {
         right: 0,
         top: '15%',
@@ -88,38 +88,18 @@ const Footer = ({ userRole }) => {
           right={0}
           sx={styles.container}
         >
-            
-              {
-                userRole === 'Organization' ?
-                <BottomNavigation
-                sx={styles.buttonsContainer}
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
-                setValue(newValue);
-                }}
-                >
-                  <BottomNavigationAction onClick={() => navigate('/organizationDashboard')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>داشبورد</Typography>} icon={<SpaceDashboardOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationDashboard' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                  <BottomNavigationAction onClick={() => navigate('/organizationCoaches')} label={<Typography variant="body1" sx={{ fontSize: '16px' }}>مربی</Typography>} icon={<AccountCircleOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationCoaches' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}}/>
-                  <BottomNavigationAction onClick={() => navigate('/organizationPilots')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>خلبان</Typography>} icon={<LocalPoliceOutlinedIcon />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/organizationPilots' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                </BottomNavigation>
-
-                :
-
-                // for couch and student userRole
-                <BottomNavigation
-                sx={styles.buttonsContainer}
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
-                setValue(newValue);
-                }}
-                >
-                  <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}} />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                  <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px' }}>لاگ</Typography>} icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'8px', width:'1.75rem', height: '1.6rem', marginBottom:'0px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                  <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px' }}>لاگ بوک</Typography>} icon={<FolderOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}}/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-                </BottomNavigation>
-              }
+          <BottomNavigation
+          sx={styles.buttonsContainer}
+          showLabels
+          value={value}
+          onChange={(event, newValue) => {
+          setValue(newValue);
+          }}
+          >
+            <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}} />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+            <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px', marginTop:'2px' }}>لاگ</Typography>} icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'8px', width:'1.75rem', height: '1.6rem', marginBottom:'0px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+            <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>لاگ بوک</Typography>} icon={<FolderOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}}/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+          </BottomNavigation>
         </Box>
       </ThemeProvider>
     );
