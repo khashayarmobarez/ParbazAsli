@@ -19,7 +19,7 @@ const Equipment = () => {
                 <PageTitle title={'تجهیزات'} navigateTo={'/profile'} />  
                 
                 {/* buttons */}
-                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
+                <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
                     <Link to='/equipment/flightEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`} >بال</Link> 
                     <Link to='/equipment/parachute' className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === '/equipment/parachute' ? ButtonStyles.activeYellow : ''}`}  >چتر کمکی</Link> 
                     <Link to='/equipment/harness' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/equipment/harness' ? ButtonStyles.activeYellow : ''}`}  >هارنس</Link> 
