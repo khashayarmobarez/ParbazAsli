@@ -54,8 +54,6 @@ code {
   --neutral-light-active:#CACACA; /* Neutral color */
   --neutral-normal:#535353; /* Neutral color */
   --warning-normal:#ED553B; /* warning color */
-
-  
    
    /* example to use:
     background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
@@ -64,7 +62,7 @@ code {
 
 /* @media (prefers-color-scheme: dark) {
   :root {
-    
+
   }
 } */
 
