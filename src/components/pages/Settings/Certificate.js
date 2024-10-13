@@ -25,7 +25,7 @@ const Certificate = ({certificateData}) => {
                         {certificateData.status === 'Expired' && <span style={{color:'var(--red-text)'}}> منقضی شده</span>}
                         {certificateData.status === 'Rejected' && <span style={{color:'var(--notification-red)'}}> رد شده</span>}
                     </p>
-                    <p>تاریخ {certificateData.expirationDate}</p>
+                    <p className='text-xs'>تاریخ انقضا {certificateData.expirationDate}</p>
                 </div>
 
             </div>
