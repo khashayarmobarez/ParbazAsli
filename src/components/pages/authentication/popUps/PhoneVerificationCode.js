@@ -14,10 +14,6 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     // Create an array of refs based on codeLength from api
     const inputRefs = useRef(Array.from({ length: codeLength }, () => React.createRef()));
 
-    useEffect(() => {
-        console.log('isForEmail:', isForEmail); // Check if this logs the correct value
-    }, [isForEmail]);
-
     // Reset all inputs and clear state
     const resetCode = () => {
         inputRefs.current.forEach(ref => {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 
 
@@ -128,4 +129,91 @@ const postLogout = async (token) => {
 
 
 
-export { fetchAuthSettings, postLogout, postIsUserAuthenticated };
+
+
+
+// send verification code
+// input = {
+//   "username": "09907406599",
+//   "type": 1
+// }
+  const postSendVerificationCode = async (input) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/Auth/SendVerificationCode`, input, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+            throw error;
+    }
+
+  };
+
+  const useSendVerificationCode = () => {
+    return useMutation(postSendVerificationCode);
+  }
+
+
+
+
+
+// check cahnge password code validation
+// /Auth/CheckForgotPasswordCode
+// inpu = {
+//     "Username": "09907406599",
+//     "Code": "7923"
+// }
+  const postCheckForgotPasswordCode = async (input) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/Auth/CheckForgotPasswordCode`, input, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+            throw error;
+    }
+
+  };
+
+  const useCheckForgotPasswordCode = () => {
+    return useMutation(postCheckForgotPasswordCode);
+  }
+
+
+
+
+
+// reset password
+// https://api.digilogbook.ir/api/Auth/ForgotPassword
+//   const requestBody = {
+//     "username": input,
+//     "password": pwd,
+//     "confirmPassword": matchPwd,
+//     "code": code,
+// };
+  const postResetPassword = async (input) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/Auth/ForgotPassword`, input, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+
+  };
+
+  const useResetPassword = () => {
+    return useMutation(postResetPassword);
+  }
+
+
+
+
+export { fetchAuthSettings, postLogout, postIsUserAuthenticated, useSendVerificationCode, useCheckForgotPasswordCode, useResetPassword };
