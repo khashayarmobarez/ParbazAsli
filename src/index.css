@@ -64,14 +64,7 @@ code {
 
 /* @media (prefers-color-scheme: dark) {
   :root {
-    --accent-normal: #6BBF59; /* Adjusted Green-light for dark mode */
-    --accent-darker: #1B1F20; /* Adjusted Green-dark for dark mode */
-    --bg-dark: #121212; 
-    --bg-dark-active: var(--bg-color); 
-    --neutral-light:#BBBBBB; /* Adjusted Neutral color for dark mode */
-    --neutral-light-active:#999999; /* Adjusted Neutral color for dark mode */
-    --neutral-normal:#E0E0E0; /* Adjusted Neutral color for dark mode */
-    --warning-normal:#FF6F61; /* Adjusted warning color for dark mode */
+    
   }
 } */
 
