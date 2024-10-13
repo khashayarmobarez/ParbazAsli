@@ -384,19 +384,27 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                         {
                             !showCodeInput && !showPassChangeInput &&
-                            <InputWithButton
-                                id={'phoneOrEmail'}
-                                onSubmit={sendCodeHandler}
-                                icon={phoneIcon}
-                                buttonText={'دریافت کد'}
-                                placeH={'شماره موبایل یا ایمیل'}
-                                inputRef={userRef}
-                                onChange={phoneOrEmailInputHandler}
-                                value={input}
-                                focus={inputFocus}
-                                onFocus={() => setInputFocus(true)}
-                                onBlur={() => setInputFocus(false)}
-                            />
+                            <>
+                                <InputWithButton
+                                    id={'phoneOrEmail'}
+                                    onSubmit={sendCodeHandler}
+                                    icon={phoneIcon}
+                                    buttonText={'دریافت کد'}
+                                    placeH={'شماره موبایل یا ایمیل'}
+                                    inputRef={userRef}
+                                    onChange={phoneOrEmailInputHandler}
+                                    value={input}
+                                    focus={inputFocus}
+                                    onFocus={() => setInputFocus(true)}
+                                    onBlur={() => setInputFocus(false)}
+                                />
+
+                                {/* <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
+                                    disabled={VerificationLoading}
+                                    onClick={sendCodeHandler}>
+                                        تایید
+                                </button> */}
+                            </>
                         }
 
                         {   showCodeInput && !showPassChangeInput &&

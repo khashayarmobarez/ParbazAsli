@@ -6,7 +6,6 @@ import certifiacte from '../../../assets/icons/certificate-Vector.svg'
 
 const Certificate = ({certificateData}) => {
 
-
     return (
         <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' 
         style={{background:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)', color:'var(--soft-white) ' }}>
