@@ -6,7 +6,6 @@ import certifiacte from '../../../assets/icons/certificate-Vector.svg'
 
 const Certificate = ({certificateData}) => {
 
-
     return (
         <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' 
         style={{background:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)', color:'var(--soft-white) ' }}>
@@ -25,7 +24,7 @@ const Certificate = ({certificateData}) => {
                         {certificateData.status === 'Expired' && <span style={{color:'var(--red-text)'}}> منقضی شده</span>}
                         {certificateData.status === 'Rejected' && <span style={{color:'var(--notification-red)'}}> رد شده</span>}
                     </p>
-                    <p>تاریخ {certificateData.expirationDate}</p>
+                    <p className='text-xs'>تاریخ انقضا {certificateData.expirationDate}</p>
                 </div>
 
             </div>

@@ -55,11 +55,19 @@ code {
   --neutral-normal:#535353; /* Neutral color */
   --warning-normal:#ED553B; /* warning color */
 
-  
+  /* --background-page-dark-hover: #1E2227;
+  --background-page-dark: #181A2D; */
    
    /* example to use:
     background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
 }
+
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+
+  }
+} */
 
 
 /* fonts imported here */
