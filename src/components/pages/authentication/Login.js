@@ -56,6 +56,7 @@ const Login = () => {
         setTermsChecked(savedRememberMe);
         setUserInput(savedUsername);
         setPwd(savedPwd)
+        
     }, []);
     
     useEffect(() => {
@@ -107,12 +108,10 @@ const Login = () => {
             // Successful login
             if (response.data.isSuccess) {
 
-                setSubmitLoading(false)
-
                 toast('لاگین با موفقیت انجام شد', {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 3000,
+                    autoClose: 5000,
                     theme: 'dark',
                     style: { width: "90%" }
                 });
