@@ -55,8 +55,28 @@ code {
   --neutral-normal:#535353; /* Neutral color */
   --warning-normal:#ED553B; /* warning color */
 
-  /* --background-page-dark-hover: #1E2227;
-  --background-page-dark: #181A2D; */
+  /* background */
+    --background-page-dark-hover: #1E2227;
+
+  /* buttons */
+    /* main */
+    --button-main-normal: #23BC7C;
+    --button-main-hover: #20A970;
+    --button-main-active: #1C9663;
+
+    /* secondary */
+    --button-secondary-normal: #323941;
+    --button-secondary-hover: #2D333B;
+    --button-secondary-active: #282E34;
+    --button-secondary-neutral-dark: #323232;
+    
+    /* profile */
+    --button-profile-normal: #1E2227;
+    --button-profile-hover: #1B1F23;
+    --button-profile-active: #181C20;
+    --button-profile-neutral-dark: #323232;
+    
+
    
    /* example to use:
     background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
