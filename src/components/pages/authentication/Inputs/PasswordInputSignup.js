@@ -34,18 +34,21 @@
       } = authSettings.settings;
       
       useEffect(() => {
+        const interval = setInterval(() => {
+          const isValid =
+            value.length >= passwordMinLength &&
+            value.length <= passwordMaxLength &&
+            (!passwordRequireNonAlphanumeric || /[^\w\s]/.test(value)) &&
+            (!passwordRequireDigit || /\d/.test(value)) &&
+            (!passwordRequireUppercase || /[A-Z]/.test(value)) &&
+            (!passwordRequireLowercase || /[a-z]/.test(value)) &&
+            PWD_REGEX.test(value);
 
-        const isValid =
-          value.length >= passwordMinLength &&
-          value.length <= passwordMaxLength &&
-          (!passwordRequireNonAlphanumeric || /[^\w\s]/.test(value)) &&
-          (!passwordRequireDigit || /\d/.test(value)) &&
-          (!passwordRequireUppercase || /[A-Z]/.test(value)) &&
-          (!passwordRequireLowercase || /[a-z]/.test(value)) &&
-          PWD_REGEX.test(value);
-    
-        setValidPwd(isValid);
-        setFilled(value.trim() !== '');
+          setValidPwd(isValid);
+          setFilled(value.trim() !== '');
+        }, 1000);
+
+        return () => clearInterval(interval);
       }, [
         value, 
         passwordMinLength, 
