@@ -1,7 +1,8 @@
 .App {
   z-index: -100;
   min-height: 100vh;
-  background-color: var(--bg-dark-active) ;
+  background-color: var(--background-page-main) ;
+  transition: background-color 0.5s ease, color 0.5s ease;
   color:var(--text-color);
   text-align: center;
   margin: 0;

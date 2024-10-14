@@ -45,37 +45,76 @@ code {
 
 
 :root {
-  /* Defined global colors using CSS custom properties */
-  --accent-normal: #A5E65E; /* Green-light */
-  --accent-darker: #212829; /* Green-dark */
-  --bg-dark: #181A2D; 
-  --bg-dark-active: var(--bg-color); 
-  --neutral-light:#EEEEEE; /* Neutral color */
-  --neutral-light-active:#CACACA; /* Neutral color */
-  --neutral-normal:#535353; /* Neutral color */
-  --warning-normal:#ED553B; /* warning color */
 
-  /* background */
-    --background-page-main: #1E2227;
+  
+  --background-page-main: #e0e1e3;
 
   /* buttons */
     /* main */
-    --button-main-normal: #23BC7C;
+    --button-main-default: #23BC7C;
     --button-main-hover: #20A970;
     --button-main-active: #1C9663;
 
     /* secondary */
-    --button-secondary-normal: #323941;
+    --button-secondary-default: #323941;
     --button-secondary-hover: #2D333B;
     --button-secondary-active: #282E34;
     --button-secondary-disable: #323232;
     
     /* profile */
-    --button-profile-normal: #1E2227;
+    --button-profile-default: #1E2227;
     --button-profile-hover: #1B1F23;
     --button-profile-active: #181C20;
     --button-profile-disable: #323232;
     
+    /* input */
+    --input-dropdown: #323941;
+    --input-placeHolder:  #323941;
+    --input-selectedOption: #262B31
+
+    /* outputs */
+    --output-Default: #262B31;
+    --Selected-options: #2D333B;
+
+    /* popups */
+    --popup-Default: #323941;
+    --popup-header-footer: #2D333B;
+
+    /* cards */
+    --card-bg: #323941;
+
+    /* menus(navbar, footer) */
+    --menu-bg: #1E2227:
+
+    /* tabs */
+    --tab-Default: #2D333B;
+    --tab-active:#20A970;
+    --tab-hover: #23BC7C;
+
+    /* page headers */
+    --page-header-bg: #282E34;
+
+    /* borders and strokes  */
+    --border-checkBox: #23BC7C;
+    --divider-active: #23BC7C;
+    --divider-default: #EEEEEE;
+    --border-outputs: #EEEEEE;
+    --border-input-success: #23BC7C;
+    --border-input-error: #DC3545;
+    --border-input-default: #535353;
+    --border-input-active: #EEEEEE;
+
+    /* icons */
+    --icon-active: #23BC7C;
+    --icon-default: #EEEEEE;
+    --icon-disable: #535353;
+
+
+    /* texts */
+    --text-accent: #23BC7C;
+    --text-default: #EEEEEE;
+    --text-disable: #535353;
+    --text-input-placeholder:#767779;
 
    
    /* example to use:
@@ -84,7 +123,76 @@ code {
 
 
 [data-theme='dark'] {
-  --background-page-main: #E0E1E3;
+
+  /* background */
+  --background-page-main: #1E2227;
+
+  /* buttons */
+    /* main */
+    --button-main-default: #23BC7C;
+    --button-main-hover: #20A970;
+    --button-main-active: #1C9663;
+
+    /* secondary */
+    --button-secondary-default: #323941;
+    --button-secondary-hover: #2D333B;
+    --button-secondary-active: #282E34;
+    --button-secondary-disable: #323232;
+    
+    /* profile */
+    --button-profile-default: #1E2227;
+    --button-profile-hover: #1B1F23;
+    --button-profile-active: #181C20;
+    --button-profile-disable: #323232;
+    
+    /* input */
+    --input-dropdown: #323941;
+    --input-placeHolder:  #323941;
+    --input-selectedOption: #262B31
+
+    /* outputs */
+    --output-Default: #262B31;
+    --Selected-options: #2D333B;
+
+    /* popups */
+    --popup-Default: #323941;
+    --popup-header-footer: #2D333B;
+
+    /* cards */
+    --card-bg: #323941;
+
+    /* menus(navbar, footer) */
+    --menu-bg: #1E2227:
+
+    /* tabs */
+    --tab-Default: #2D333B;
+    --tab-active:#20A970;
+    --tab-hover: #23BC7C;
+
+    /* page headers */
+    --page-header-bg: #282E34;
+
+    /* borders and strokes  */
+    --border-checkBox: #23BC7C;
+    --divider-active: #23BC7C;
+    --divider-default: #EEEEEE;
+    --border-outputs: #EEEEEE;
+    --border-input-success: #23BC7C;
+    --border-input-error: #DC3545;
+    --border-input-default: #535353;
+    --border-input-active: #EEEEEE;
+
+    /* icons */
+    --icon-active: #23BC7C;
+    --icon-default: #EEEEEE;
+    --icon-disable: #535353;
+
+
+    /* texts */
+    --text-accent: #23BC7C;
+    --text-default: #EEEEEE;
+    --text-disable: #535353;
+    --text-input-placeholder:#767779;
 }
 
 
