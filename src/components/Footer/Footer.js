@@ -28,9 +28,11 @@ const styles = {
       width: '100%',
       zIndex: 100,
       background: '#131423',
+      borderRadius: '0',
       Bottom:'2rem',
       height:'calc(3.8rem + env(safe-area-inset-bottom,5))',
       '@media screen and (min-width: 768px)': {
+        borderRadius: '2rem 0 0 2rem',
         right: 0,
         top: '15%',
         width: '125px',

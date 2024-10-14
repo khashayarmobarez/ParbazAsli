@@ -3,6 +3,7 @@
 .input1 {
     background: rgba(24, 26, 45, 1);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+    font-size: 14px;
 }
 
 /* for add new vehicle component */
@@ -13,6 +14,7 @@
     appearance: none;
     padding: 0 2.2rem 0 0;
     border-radius: 0.75rem;
+    font-size: 14px;
 }
 
 .inputDescription {
@@ -23,6 +25,7 @@
 
 .inputDropdown option {
     background-color: #181A2D;
+    font-size: 14px;
 }
 
 /* for add new vehicle component  */
@@ -32,10 +35,12 @@
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     border-radius: 0.75rem;
+    font-size: 14px;
 }
 
 .inputText2::placeholder {
     color: #fff;
+    font-size: 14px;
 }
 
 .inputFilledBorder {
@@ -54,6 +59,7 @@
     appearance: none;
     padding: 0 2rem 0 0;
     border-radius: 1rem;
+    font-size: 14px;
 }
 
 .fixedInput::placeholder {
@@ -62,6 +68,7 @@
 
 /* password Input */
 .passwordInput {
+    font-size: 14px;
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
     border: 0.5px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
@@ -125,6 +132,7 @@
     border-radius: 0.75rem;
     padding: 0 2.4rem;
     color: #fff;
+    font-size: 14px;
 }
 
 

@@ -56,7 +56,7 @@ code {
   --warning-normal:#ED553B; /* warning color */
 
   /* background */
-    --background-page-dark-hover: #1E2227;
+    --background-page-main: #1E2227;
 
   /* buttons */
     /* main */
@@ -68,13 +68,13 @@ code {
     --button-secondary-normal: #323941;
     --button-secondary-hover: #2D333B;
     --button-secondary-active: #282E34;
-    --button-secondary-neutral-dark: #323232;
+    --button-secondary-disable: #323232;
     
     /* profile */
     --button-profile-normal: #1E2227;
     --button-profile-hover: #1B1F23;
     --button-profile-active: #181C20;
-    --button-profile-neutral-dark: #323232;
+    --button-profile-disable: #323232;
     
 
    
@@ -83,11 +83,9 @@ code {
 }
 
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-
-  }
-} */
+[data-theme='dark'] {
+  --background-page-main: #E0E1E3;
+}
 
 
 /* fonts imported here */

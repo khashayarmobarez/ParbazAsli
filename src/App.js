@@ -17,6 +17,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Hooks 
 import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
+import { useTheme } from './Utilities/Hooks/useTheme';
 
 // redux
 import { useSelector } from 'react-redux';
@@ -140,6 +141,8 @@ function App() {
 
   const token = Cookies.get('token') || null;
   const userInput = Cookies.get('userInput') || null;
+
+  useTheme();
 
 
   // hotjar
