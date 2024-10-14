@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // assets
 import phoneIcon from '../../../../assets/icons/phone-Icon (Stroke).svg';
+import userIcon from '../../../../assets/icons/user-Icon.svg';
 
 // styles
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
@@ -25,6 +26,7 @@ import PasswordInputSignup from '../Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from '../Inputs/ConfirmPassInputSignup';
 import CodeInput from '../Inputs/CodeInput';
 import { useCheckForgotPasswordCode, useResetPassword, useSendVerificationCode } from '../../../../Utilities/Services/AuthenticationApi';
+import TextInput from '../../../inputs/textInput';
 
 // regex
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -384,8 +386,8 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                         {
                             !showCodeInput && !showPassChangeInput &&
-                            <>
-                                <InputWithButton
+                            <div className='w-full flex flex-col items-center gap-y-6'>
+                                {/* <InputWithButton
                                     id={'phoneOrEmail'}
                                     onSubmit={sendCodeHandler}
                                     icon={phoneIcon}
@@ -397,14 +399,23 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     focus={inputFocus}
                                     onFocus={() => setInputFocus(true)}
                                     onBlur={() => setInputFocus(false)}
+                                /> */}
+                                <p className='text-[var(--yellow-text)] text-xl'>شماره‌ تلفن یا ایمیل خود را وارد کنید</p>
+
+                                <TextInput
+                                    value={input}
+                                    onChange={phoneOrEmailInputHandler}
+                                    placeholder={'شماره موبایل یا ایمیل'}
+                                    Type={'text'}
+                                    icon={userIcon} // You can replace `null` with a specific icon if you have one
                                 />
 
-                                {/* <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
+                                <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
                                     disabled={VerificationLoading}
                                     onClick={sendCodeHandler}>
                                         تایید
-                                </button> */}
-                            </>
+                                </button>
+                            </div>
                         }
 
                         {   showCodeInput && !showPassChangeInput &&
