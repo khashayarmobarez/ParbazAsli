@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background:  var(--bg-color);
+  background:  var(--bg-tab-default);
 }
 
 .ThreeStickedButtonButton {
@@ -15,8 +15,8 @@
   align-items:center;
   width: 100%;
   height: 100%;
-  background:  var(--profile-buttons-background);
-  box-shadow: var(--profile-buttons-boxShadow);
+  background:  var(--bg-tab-default);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
 }
 
 @media (min-width: 720px) {
@@ -28,14 +28,14 @@
 }
 
 .ThreeStickedButtonButton:hover {
-  background: var(--yellow-button-bg);
-  box-shadow: 0px 4px 10.8px 2px #46AE2D inset, 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51), -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48);
+  background: var(--bg-tab-hover);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
   backdrop-filter: blur(2px);
 }
 
 .ThreeStickedButtonButton:active {
-  background: var(--yellow-button-bg);
-  box-shadow: 0px 4px 10.8px 2px #46AE2D inset, 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51), -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48);
+  background: var(--bg-tab-active);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
   backdrop-filter: blur(2px);
 }
 
@@ -50,20 +50,20 @@
 
 .normalButton:hover{
   background: var(--yellow-button-bg);
-  box-shadow: var(--yellow-button-boxShadow);
+  box-shadow: var(--shadow-button-white),var(--yellow-button-boxShadow);
   color: rgba(33, 40, 41, 1); 
 }
 
 .activeYellow {
-  background: var(--yellow-button-bg);
-  box-shadow: var(--yellow-button-boxShadow);
+  background: var(--bg-tab-active);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
   color: rgba(33, 40, 41, 1); 
   font-weight: 500;
 }
 
 .addButton {
-  background: var(--yellow-button-bg),var(--bg-color);
-  box-shadow: -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48), 1px -1px 2.59px 0px rgba(235, 224, 224, 0.51),0px 4px 10.80px 2px rgba(70, 174, 45, 1) inset;
+  background: var(--bg-button-main-default);
+  box-shadow: var(--shadow-all);
   font-weight:bold ;
   display: flex; 
   min-height: 48px;

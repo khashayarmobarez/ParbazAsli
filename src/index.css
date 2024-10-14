@@ -21,178 +21,171 @@ code {
   monospace;
 }
 
-/* choose hour face */
-/* .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  direction: ltr;
-}
-
-.css-1g7nc1s-MuiPickersLayout-root {
-  background-color: var(--primary-light);
-  
-} */
-
-/* .css-1q48g88-MuiPickersToolbar-root-MuiTimePickerToolbar-root {
-  background-color: var(--corn-flower-blue);
-}
-
-.css-ku1d3k-MuiTimeClock-root {
-  background-color: var(--corn-flower-blue);
-}
-
-.css-knqc4i-MuiDialogActions-root {
-  background-color: var(--corn-flower-blue);
-} */
-
 
 :root {
 
+  /* overall */
+  --bg-page-main: #e0e1e3;
+  --text-accent:#23BC7C;
+  --text-default:#EEEEEE;
+  --text-disabled:#535353;
+  --text-error:#DC3545;
+
+  /* main button */
+  --bg-button-main-default:#23BC7C;
+  --bg-button-main-hover:#20A970;
+  --bg-button-main-active:#1C9663;
+  --text-button-main-default:#EEE;
+  --text-button-main-disabled:#535353;
+
+  /* second button */
+  --bg-button-secondary-default:#323941;
+  --bg-button-secondary-hover:#2D333B;
+  --bg-button-secondary-active:#282E34;
+  --bg-button-secondary-disabled:#323232;
+
+  /* button profile */
+  --bg-button-profile-default:#323941;
+  --bg-button-profile-hover:#2D333B;
+  --bg-button-profile-active:#2D333B;
+  --bg-button-profile-disabled:#323232;
+  --text-button-profile-default:#23BC7C;
+  --text-button-profile-Disable:#535353;
+  --text-button-profile-active:#eee;
+
+  /* input */
+  --bg-input-dropdown:#323941;  
+  --bg-input-selected-option:#262B31;
+  --border-input-success: #23BC7C;
+  --border-input-error: #DC3545;
+  --border-input-default: #535353;
+  --border-input-selected: #eee;
+  --text-input-default:#767779;
+  --text-input-selected:#EEEEEE;
+  --text-input-error:#DC3545;
+  --text-input-success:#23BC7C;
+
+  /* outputs */
+  --bg-output-default:#262B31;  
+  --bg-output-selected-option:#2D333B;
+  --border-output: #EEEEEE;
+
+  /* pop ups */
+  --bg-pop-up-default:#323941;
+  --bg-pop-up-header-footer:#2D333B;
+
+  /* cards */
+  --bg-card:#323941;
+
+  /* menu(navbar,footer) */
+  --bg-menu:#E0E1E3;
+
+  /* tabs */
+  --bg-tab-active:#23BC7C;
+  --bg-tab-hover:#20A970;
+  --bg-tab-default:#2D333B;
+
+  /* Headers */
+  --bg-header:#282E34;
+
+  /* check box */
+  --border-checkbox:#23BC7C;
+
+  /* divider */
+  --bg-divider-active:#23BC7C;
+  --bg-divider-default:#EEEEEE;
+
+  /* icons */
+  --icon-active:#23BC7C;
+  --icon-default:#EEEEEE;
+  --icon-disable:#535353;
+
+  --shadow-all: -0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
+  --shadow-button-white: 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51);
+  --shadow-button-dark: -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48);
   
-  --background-page-main: #e0e1e3;
-
-  /* buttons */
-    /* main */
-    --button-main-default: #23BC7C;
-    --button-main-hover: #20A970;
-    --button-main-active: #1C9663;
-
-    /* secondary */
-    --button-secondary-default: #323941;
-    --button-secondary-hover: #2D333B;
-    --button-secondary-active: #282E34;
-    --button-secondary-disable: #323232;
-    
-    /* profile */
-    --button-profile-default: #1E2227;
-    --button-profile-hover: #1B1F23;
-    --button-profile-active: #181C20;
-    --button-profile-disable: #323232;
-    
-    /* input */
-    --input-dropdown: #323941;
-    --input-placeHolder:  #323941;
-    --input-selectedOption: #262B31
-
-    /* outputs */
-    --output-Default: #262B31;
-    --Selected-options: #2D333B;
-
-    /* popups */
-    --popup-Default: #323941;
-    --popup-header-footer: #2D333B;
-
-    /* cards */
-    --card-bg: #323941;
-
-    /* menus(navbar, footer) */
-    --menu-bg: #1E2227:
-
-    /* tabs */
-    --tab-Default: #2D333B;
-    --tab-active:#20A970;
-    --tab-hover: #23BC7C;
-
-    /* page headers */
-    --page-header-bg: #282E34;
-
-    /* borders and strokes  */
-    --border-checkBox: #23BC7C;
-    --divider-active: #23BC7C;
-    --divider-default: #EEEEEE;
-    --border-outputs: #EEEEEE;
-    --border-input-success: #23BC7C;
-    --border-input-error: #DC3545;
-    --border-input-default: #535353;
-    --border-input-active: #EEEEEE;
-
-    /* icons */
-    --icon-active: #23BC7C;
-    --icon-default: #EEEEEE;
-    --icon-disable: #535353;
-
-
-    /* texts */
-    --text-accent: #23BC7C;
-    --text-default: #EEEEEE;
-    --text-disable: #535353;
-    --text-input-placeholder:#767779;
-
-   
-   /* example to use:
-    background: linear-gradient(var(--gradient-direction), var(--gradient-start), var(--gradient-end)); */
 }
 
 
 [data-theme='dark'] {
 
-  /* background */
-  --background-page-main: #1E2227;
 
-  /* buttons */
-    /* main */
-    --button-main-default: #23BC7C;
-    --button-main-hover: #20A970;
-    --button-main-active: #1C9663;
+  /* overall */
+  --bg-page-main: #1E2227;
+  --text-accent:#23BC7C;
+  --text-default:#EEEEEE;
+  --text-disabled:#535353;
 
-    /* secondary */
-    --button-secondary-default: #323941;
-    --button-secondary-hover: #2D333B;
-    --button-secondary-active: #282E34;
-    --button-secondary-disable: #323232;
-    
-    /* profile */
-    --button-profile-default: #1E2227;
-    --button-profile-hover: #1B1F23;
-    --button-profile-active: #181C20;
-    --button-profile-disable: #323232;
-    
-    /* input */
-    --input-dropdown: #323941;
-    --input-placeHolder:  #323941;
-    --input-selectedOption: #262B31
+  /* main button */
+  --bg-button-main-default:#23BC7C;
+  --bg-button-main-hover:#20A970;
+  --bg-button-main-active:#1C9663;
+  --text-button-main-default:#EEE;
+  --text-button-main-disabled:#535353;
 
-    /* outputs */
-    --output-Default: #262B31;
-    --Selected-options: #2D333B;
+  /* second button */
+  --bg-button-secondary-default:#323941;
+  --bg-button-secondary-hover:#2D333B;
+  --bg-button-secondary-active:#282E34;
+  --bg-button-secondary-disabled:#323232;
 
-    /* popups */
-    --popup-Default: #323941;
-    --popup-header-footer: #2D333B;
+  /* button profile */
+  --bg-button-profile-default:#323941;
+  --bg-button-profile-hover:#2D333B;
+  --bg-button-profile-active:#2D333B;
+  --bg-button-profile-disabled:#323232;
+  --text-button-profile-default:#23BC7C;
+  --text-button-profile-Disable:#535353;
+  --text-button-profile-active:#eee;
 
-    /* cards */
-    --card-bg: #323941;
+  /* input */
+  --bg-input-dropdown:#323941;  
+  --bg-input-selected-option:#262B31;
+  --border-input-success: #23BC7C;
+  --border-input-error: #DC3545;
+  --border-input-default: #535353;
+  --border-input-selected: #eee;
+  --text-input-default:#767779;
+  --text-input-selected:#EEEEEE;
+  --text-input-error:#DC3545;
+  --text-input-success:#23BC7C;
 
-    /* menus(navbar, footer) */
-    --menu-bg: #1E2227:
+  /* outputs */
+  --bg-output-default:#262B31;  
+  --bg-output-selected-option:#2D333B;
+  --border-output: #EEEEEE;
 
-    /* tabs */
-    --tab-Default: #2D333B;
-    --tab-active:#20A970;
-    --tab-hover: #23BC7C;
+  /* pop ups */
+  --bg-pop-up-default:#323941;
+  --bg-pop-up-header-footer:#2D333B;
 
-    /* page headers */
-    --page-header-bg: #282E34;
+  /* cards */
+  --bg-card:#323941;
 
-    /* borders and strokes  */
-    --border-checkBox: #23BC7C;
-    --divider-active: #23BC7C;
-    --divider-default: #EEEEEE;
-    --border-outputs: #EEEEEE;
-    --border-input-success: #23BC7C;
-    --border-input-error: #DC3545;
-    --border-input-default: #535353;
-    --border-input-active: #EEEEEE;
+  /* menu(navbar,footer) */
+  --bg-menu:#1E2227;
 
-    /* icons */
-    --icon-active: #23BC7C;
-    --icon-default: #EEEEEE;
-    --icon-disable: #535353;
+  /* tabs */
+  --bg-tab-active:#23BC7C;
+  --bg-tab-hover:#20A970;
+  --bg-tab-default:#2D333B;
+
+  /* Headers */
+  --bg-header:#282E34;
+
+  /* check box */
+  --border-checkbox:#23BC7C;
+
+  /* divider */
+  --bg-divider-active:#23BC7C;
+  --bg-divider-default:#EEEEEE;
+
+  /* icons */
+  --icon-active:#23BC7C;
+  --icon-default:#EEEEEE;
+  --icon-disable:#535353;
 
 
-    /* texts */
-    --text-accent: #23BC7C;
-    --text-default: #EEEEEE;
-    --text-disable: #535353;
-    --text-input-placeholder:#767779;
 }
 
 

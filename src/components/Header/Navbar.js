@@ -123,9 +123,9 @@ const Navbar = ({toggleTheme ,userRole}) => {
         <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000', }} >
                          
             <AppBar  sx={{
-                height:'62px',
+                height:'58px',
                 direction: 'rtl',
-                background: '#131424',
+                background: 'var(--bg-menu)',
                 padding: '0rem 5px 0 5px',
                 '@media (max-width: 768px)': {
                     height: '80', // Adjust height for smaller screens}   
@@ -136,8 +136,8 @@ const Navbar = ({toggleTheme ,userRole}) => {
                     <Toolbar sx={{
                     display:'flex',
                     justifyContent: 'space-between',
-                    background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
-                    boxShadow: '-3px 4px 5.80px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',}}>
+                    background: 'var(--bg-menu)',
+                    boxShadow: 'var(--shadow-all)',}}>
 
                         <nav className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
 
@@ -145,9 +145,9 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={`${styles.logo}`} /> 
                         
                             <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
-                            style={{ background: isOpen ? 'linear-gradient(75.59deg, #111221 -4.46%, #2E3048 105.44%)' : 'none',
+                            style={{ background: isOpen ? 'var(--bg-menu)' : 'none',
                             border: '1px solid rgba(17, 24, 39, 0.1)',
-                            boxShadow: isOpen ? '-2px 3px 4.3px 1px #0000007A' : 'none',
+                            boxShadow: isOpen ? 'var(--shadow-all)' : 'none',
                                 }}
                             >
                                 {
@@ -170,7 +170,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     }
                                 </ul>
                                 {!token ?
-                                <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--yellow-text)'}}> ورود / ثبت نام</Link>
+                                <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--text-accent)'}}> ورود / ثبت نام</Link>
                                 :
                                 <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
                                 }
@@ -181,7 +181,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
 
                             {!token ?
                                 (windowWidth > 768) ?
-                                    <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-12 flex items-center justify-center`} style={{border: '1px solid var(--yellow-text)'}}><p>ورود / ثبت نام</p></Link>
+                                    <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-12 flex items-center justify-center`} style={{border: '1px solid var(--text-accent)'}}><p>ورود / ثبت نام</p></Link>
                                     :
                                     <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
                             :
@@ -189,13 +189,13 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                 <button >
                                     {
                                         notificationCountsData && notificationCountsData.data > 0 &&
-                                            <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10 bg-[var(--red-text)]'>
+                                            <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10 bg-[var(--text-error)]'>
                                                 <p>{notificationCountsData.data}</p>
                                             </div>
                                     }
                                     {currentUrl === '/notifications' ?
-                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--yellow-text)', height:'30px',width:'30px'}} />
-                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--softer-white)', height:'30px',width:'30px'}} />
+                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-accent)', height:'30px',width:'30px'}} />
+                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-default)', height:'30px',width:'30px'}} />
                                     }
                                 </button>
 

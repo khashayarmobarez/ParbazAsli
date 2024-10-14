@@ -1,9 +1,9 @@
 .App {
   z-index: -100;
   min-height: 100vh;
-  background-color: var(--background-page-main) ;
+  background-color: var(--bg-page-main) ;
   transition: background-color 0.5s ease, color 0.5s ease;
-  color:var(--text-color);
+  color:var(--text-default);
   text-align: center;
   margin: 0;
   /* overflow: hidden; */
@@ -24,7 +24,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #--bg-page-main;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -20,8 +20,7 @@ const WebColorMode = () => {
 
   return (
     <div
-      className="w-full flex justify-between items-center px-4 py-3 rounded-3xl"
-      style={{ background: 'var(--button-toggle-bg)', boxShadow: 'var(--button-toggle-boxshadow)' }}
+      className="w-full flex justify-between items-center py-0 rounded-3xl"
     >
       <DropdownInput
         name="حالت اپلیکیشن"

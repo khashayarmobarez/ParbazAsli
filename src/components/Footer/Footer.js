@@ -27,10 +27,10 @@ const styles = {
     container: {
       width: '100%',
       zIndex: 100,
-      background: '#131423',
+      background: 'var(--bg-menu)',
       borderRadius: '0',
       Bottom:'2rem',
-      height:'calc(3.8rem + env(safe-area-inset-bottom,5))',
+      height:'calc(4rem + env(safe-area-inset-bottom,5))',
       '@media screen and (min-width: 768px)': {
         borderRadius: '2rem 0 0 2rem',
         right: 0,
@@ -42,8 +42,8 @@ const styles = {
     buttonsContainer: {
       paddingBottom:'env(safe-area-inset-bottom, 5rem)',
       width: '100%',
-      background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)',
-      boxShadow: '-3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)',
+      background: 'var(--bg-menu)',
+      boxShadow: ' -0.5px -3px 10px 0px rgba(0, 0, 0, 0.32)',
       height: '100%',
       
       '@media screen and (min-width: 768px)': {
