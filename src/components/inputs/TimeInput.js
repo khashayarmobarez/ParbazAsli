@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { GlobalStyles, TextField } from '@mui/material';
+import { GlobalStyles, InputAdornment } from '@mui/material';
 import dayjs from 'dayjs';
 import clockIcon from '../../assets/icons/flightHour.svg';
 
-
-
-const TimeInput = ({ value, onChange, placeholder, icon }) => {
+const TimeInput = ({ value, onChange }) => {
   const [selectedTime, setSelectedTime] = useState(dayjs(value));
 
   const handleTimeChange = (newValue) => {
@@ -16,70 +14,63 @@ const TimeInput = ({ value, onChange, placeholder, icon }) => {
     onChange(newValue);
   };
 
-  return (
-    <div className={`w-full min-h-8 rounded-2xl relative flex`}>
+  const CustomInput = React.forwardRef((props, ref) => {
+    const { inputProps, InputProps, ...other } = props;
 
-      {/* Global Styles to Force LTR for Picker Dialog */}
+    return (
+      <div ref={ref} className="custom-time-input">
+        <input
+          {...inputProps}
+          {...other}
+          placeholder="زمان"
+          style={{
+            width: '100%',
+            height: '3rem',
+            padding: '0.5rem 2.5rem 0.5rem 0.5rem',
+            border: '1px solid var(--border-input-default)',
+            borderRadius: '0.75rem',
+            background: 'none',
+            color: 'var(--text-default)',
+            fontSize: '14px',
+          }}
+        />
+        <InputAdornment position="start" style={{ position: 'absolute', right: '0.1rem', top: '50%', transform: 'translateY(-50%)' }}>
+          <img src={clockIcon} alt='icon' style={{ width: '1.5rem' }} />
+        </InputAdornment>
+      </div>
+    );
+  });
+
+  return (
+    <div className="w-full min-h-8 rounded-2xl relative">
       <GlobalStyles styles={{
         '.MuiPaper-root': {
-          direction: 'ltr', // Ensure dialog is LTR
+          direction: 'ltr',
         },
       }} />
 
-      <span>
-        <img src={clockIcon} alt='icon' className={`absolute w-6 mt-3 mr-2 z-10`} />
-      </span>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <MobileTimePicker
           ampm={false}
           value={selectedTime}
           onChange={handleTimeChange}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="standard"
-              InputProps={{
-                ...params.InputProps,
-                placeholder: placeholder || "hh:mm",
-              }}
-              sx={{
-                  width: '100%',
-                  '& .MuiInput-underline:before': {
-                    borderBottomColor: 'rgba(255, 255, 255, 0.7)',
-                  },
-                  '& .MuiInputBase-input': {
-                    '&::placeholder': {
-                      color: 'rgba(255, 255, 255, 0.5)',
-                      opacity: 1,
-                    },
-                  },
-              }}
-              label="گزینه‌ی‌زمان"
-            />
-          )}
+          components={{
+            TextField: CustomInput,
+          }}
           sx={{
             width: '100%',
-            height: '3rem',
-            background: 'linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '-3px 4px 4px 1px rgba(0, 0, 0, 0.32)',
-            appearance: 'none',
-            borderRadius: '0.75rem',
-            '& .MuiInputBase-input': {
-              color: 'var(--softer-white)',
-            },
             '& .MuiInputBase-root': {
-              paddingRight: '2.5rem',
-              borderRadius: '0.75rem',
-              height: '3rem',
-              border: '1px solid rgba(255, 255, 255, 0.5)',
+              '&.Mui-error': {
+                '& .custom-time-input input': {
+                  borderColor: 'var(--border-input-default)',
+                },
+              },
               '&:hover': {
                 background: 'none',
               },
               '&.Mui-focused': {
                 background: 'none',
                 boxShadow: 'none',
-                border: '1px solid var(--low-opacity-white)',
               },
             },
           }}

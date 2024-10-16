@@ -40,7 +40,7 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
             </button>
 
             {theOrgan &&
-                <h1 className='text-sm font-medium text-[var(--yellow-text)]'>{theOrgan.name}</h1>
+                <h1 className='text-sm font-medium text-textAccent'>{theOrgan.name}</h1>
             }
 
             <button onClick={handleNextOrgan} className='w-8 h-8'>

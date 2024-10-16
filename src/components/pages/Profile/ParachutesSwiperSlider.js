@@ -42,10 +42,10 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
                 z-index: 50;
               }
               .swiper-button-next {
-                margin-left: 33%;
+                margin-left: 30%;
               }
               .swiper-button-prev {
-                margin-right: 33%;
+                margin-right: 30%;
               }
 
               .swiper-pagination-bullet{
@@ -69,12 +69,12 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
   }, [isDesktop]);
 
     return (
-        <div className='w-full h-52'>
+        <div className='w-full h-54'>
           <div className='w-full h-full py-2'>
 
             
               <swiper-container
-                style={{ height:'12.4rem',...(!isDesktop && { marginRight: '0' }), }}
+                style={{ height:'12.8rem',...(!isDesktop && { marginRight: '0' }), }}
                 ref={swiperRef}
                 init="false"
                 >

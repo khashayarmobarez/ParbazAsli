@@ -44,10 +44,10 @@ const UserCoursesSlider = ({coursesData}) => {
                 z-index: 50;
               }
               .swiper-button-next {
-                margin-left: 33%;
+                margin-left: 30%;
               }
               .swiper-button-prev {
-                margin-right: 33%;
+                margin-right: 30%;
               }
 
               .swiper-pagination-bullet{
@@ -75,7 +75,7 @@ const UserCoursesSlider = ({coursesData}) => {
           <div className='w-full h-full py-2 md:pt-0'>
             
               <swiper-container
-                style={{ height:'14.3rem',...(!isDesktop && { marginRight: '0' }), }}
+                style={{ height:'14.6rem',...(!isDesktop && { marginRight: '0' }), }}
                 ref={swiperRef}
                 init="false"
                 >

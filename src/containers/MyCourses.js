@@ -157,14 +157,14 @@ const MyCourses = () => {
                                                                     
                                                                     {/* conditional course name */}
                                                                     {courseData.status === 'Active' && <p className='text-base'>{courseData.name}</p>}
-                                                                    {courseData.status === 'Completed' && <p className='text-base text-[var(--yellow-text)]'>{courseData.name}(تمام شده)</p>}
-                                                                    {courseData.status === 'Canceled' && <p className='text-base text-[var(--notification-red)]'>{courseData.name}(لغو شده)</p>}
+                                                                    {courseData.status === 'Completed' && <p className='text-base text-textAccent'>{courseData.name}(تمام شده)</p>}
+                                                                    {courseData.status === 'Canceled' && <p className='text-base text-textError'>{courseData.name}(لغو شده)</p>}
 
                                                                     {/* conditional course percent */}
                                                                     <p
                                                                     className={`
-                                                                        ${courseData.status === 'Completed'&& 'text-[var(--yellow-text)]'}
-                                                                        ${courseData.status === 'Canceled'&& 'text-[var(--notification-red)]'}
+                                                                        ${courseData.status === 'Completed'&& 'text-textAccent'}
+                                                                        ${courseData.status === 'Canceled'&& 'text-textError'}
                                                                         ${courseData.status === 'Active'&& ''}
                                                                     `}
                                                                     >{courseData.percent}%</p>
@@ -177,12 +177,12 @@ const MyCourses = () => {
                                                                         sx={{ 
                                                                         height: '1rem', 
                                                                         borderRadius: '1rem', 
-                                                                        backgroundColor: 'var(--diffrential-blue)', 
+                                                                        backgroundColor: 'var(--bg-button-secondary-default)', 
                                                                         '& .MuiLinearProgress-bar': {
                                                                             backgroundColor: 
-                                                                            courseData.status === 'Active' ? 'var(--red-text)' :
-                                                                            courseData.status === 'Completed' ? 'var(--yellow-text)' :
-                                                                            courseData.status === 'Canceled' ? 'var(--notification-red)' :
+                                                                            courseData.status === 'Active' ? 'var(--text-error)' :
+                                                                            courseData.status === 'Completed' ? 'var(--text-accent)' :
+                                                                            courseData.status === 'Canceled' ? 'var(--text-error)' :
                                                                             undefined, // Optional: A default value if none of the conditions match
                                                                         }
                                                                         }} 
@@ -193,7 +193,7 @@ const MyCourses = () => {
                                                                     <div className='flex flex-col justify-between self-start'>
                                                                         { courseData.organization && courseData.type !== 'Regular' &&
                                                                             <p>
-                                                                                <span className='text-[var(--low-opacity-white)]'>
+                                                                                <span className='text-textDisabled'>
                                                                                     ارگان:&nbsp;
                                                                                 </span>
                                                                                 {courseData.organization}
@@ -201,7 +201,7 @@ const MyCourses = () => {
                                                                         }
                                                                         { courseData.clubName &&
                                                                             <p>
-                                                                                <span className='text-[var(--low-opacity-white)]'>
+                                                                                <span className='text-textDisabled'>
                                                                                     باشگاه:&nbsp;
                                                                                 </span>
                                                                                 {courseData.clubName}
@@ -209,7 +209,7 @@ const MyCourses = () => {
                                                                         }
                                                                         { courseData.coach &&
                                                                             <p>
-                                                                                <span className='text-[var(--low-opacity-white)]'>
+                                                                                <span className='text-textDisabled'>
                                                                                     مربی:&nbsp;
                                                                                 </span> 
                                                                                 {courseData.coach}
@@ -226,12 +226,10 @@ const MyCourses = () => {
 
                                                             {/* Trigger course status */}
                                                             {course.status === 'Pending' &&
-                                                                <div className='w-full min-h-14 rounded-b-2xl z-10 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                                                style={{background: '#262941',
-                                                                    boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+                                                                <div className='w-full min-h-14 rounded-b-2xl z-10 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard shadow-lg' >
 
                                                                     <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
-                                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                                                         <p >آیا این دوره مورد تایید شما است؟</p>
                                                                     </div>
 
@@ -242,8 +240,8 @@ const MyCourses = () => {
                                                                                 <CircularProgress sx={{width:'1rem'}} /> 
                                                                             </Box>
                                                                         }
-                                                                        <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--dark-green)'}} />
-                                                                        <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--notification-red)'}} />
+                                                                        <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--text-accent)'}} />
+                                                                        <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--text-error)'}} />
 
                                                                     </div>
                                                                 </div>
@@ -268,7 +266,7 @@ const MyCourses = () => {
                                                         />
                                                     </button>
 
-                                                    <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                    <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                                         صفحه ی {pageNumber}
                                                     </p>
 
@@ -293,7 +291,7 @@ const MyCourses = () => {
                                                         <div className='w-full flex justify-between text-sm'>
                                                             <p className='text-base'>{guestClass.name}</p>
                                                             <p>
-                                                                <span className='text-[var(--low-opacity-white)]'>
+                                                                <span className='text-textDisabled'>
                                                                     تاریخ:&nbsp;
                                                                 </span>
                                                                 {guestClass.dateTime}
@@ -302,7 +300,7 @@ const MyCourses = () => {
                                                         <div className='w-full flex justify-between items-center text-start text-sm'>
                                                             { guestClass.classDuration &&
                                                                 <p>
-                                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                                    <span className='text-textDisabled'>
                                                                         مدت زمان:&nbsp;
                                                                     </span> 
                                                                     {guestClass.classDuration}

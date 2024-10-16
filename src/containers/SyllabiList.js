@@ -81,7 +81,7 @@ const SyllabiList = () => {
                                 levelsData.data.map((level, index) => (
                                     <div 
                                         key={index} 
-                                        className='w-24 h-24 flex flex-col items-center justify-center bg-[var(--diffrential-blue)] rounded-3xl gap-y-2'
+                                        className='w-24 h-24 flex flex-col items-center justify-center bg-bgButtonSecondaryDefault shadow-lg rounded-3xl gap-y-2'
                                         onClick={() => syllabiClickHandler(level) }
                                     >
                                         {
@@ -91,10 +91,10 @@ const SyllabiList = () => {
 
                                         {
                                             level.isPassed &&
-                                            < CheckOutlinedIcon className='text-[var(--yellow-text)]' />
+                                            < CheckOutlinedIcon className='text-textAccent' />
                                         }
 
-                                        <p className={`${level.isPassed && 'text-[var(--yellow-text)]'}`}>{level.name}</p>
+                                        <p className={`${level.isPassed && 'text-textAccent'}`}>{level.name}</p>
 
                                     </div>
                                 ))    

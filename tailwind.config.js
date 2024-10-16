@@ -9,6 +9,7 @@ module.exports = {
       bgPageMain: 'var(--bg-page-main)',
       textAccent: 'var(--text-accent)',
       textDefault: 'var(--text-default)',
+      textDefaultOpposite: 'var(--text-default-opposite)',
       textDisabled: 'var(--text-disabled)',
       textError: 'var(--text-error)',
 

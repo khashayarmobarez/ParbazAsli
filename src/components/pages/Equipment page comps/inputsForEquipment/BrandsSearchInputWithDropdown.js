@@ -83,17 +83,17 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)',  }} />
       </span>
       {isOpen && (
-        <ul className="absolute z-30 w-full bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+        <ul className="absolute z-30 w-full bg-bgInputDropdown mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
           
           {filteredOptions.map((option) => (
             <div key={option.id} className=' flex flex-col w-full items-center justify-center '>
               <li
-                className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                className="px-4 w-full py-2 hover:bg-bgInputDropdown cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
                 {option.name}
               </li>
-              <div className='w-full h-[1px] bg-[var(--low-opacity-white)]' />
+              <div className='w-full h-[1px] bg-textDisabled' />
             </div>
           ))}
           <div className=' flex flex-col w-full items-center justify-center '>
@@ -103,7 +103,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
               >
                 سایر ...
               </li>
-              <div className='w-full h-[1px] bg-[var(--low-opacity-white)]' />
+              <div className='w-full h-[1px] bg-textDisabled' />
             </div>
         </ul>
       )}

@@ -28,6 +28,7 @@ code {
   --bg-page-main: #e0e1e3;
   --text-accent:#23BC7C;
   --text-default:#3E3E3E;
+  --text-default-opposite:#EEEEEE;
   --text-disabled:#CACACA;
   --text-error:#DC3545;
 
@@ -114,6 +115,7 @@ code {
   --bg-page-main: #1E2227;
   --text-accent:#23BC7C;
   --text-default:#EEEEEE;
+  --text-default-opposite:#3E3E3E;
   --text-disabled:#767779;
 
   /* main button */

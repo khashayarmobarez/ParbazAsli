@@ -38,7 +38,7 @@ const ClubData = () => {
                         onClick={() => setShowPopup(true)}
                         className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.name} src={data.data.file?.path ? data.data.file.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
+                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
                             <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                         </div>
                         <p className=' font-normal text-xl w-36'>{data.data.name}</p>

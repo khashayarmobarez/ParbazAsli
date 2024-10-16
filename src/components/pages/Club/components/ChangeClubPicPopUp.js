@@ -102,7 +102,7 @@ const ChangeClubPicPopUp = ({setShowPopup, showPopup}) => {
                 <p className='text-sm mt-4'>آپلود عکس پروفایل</p>
                 
                 <div onClick={handleUploadClick} className='w-32 h-32 self-center flex justify-center items-center border-dashed border-2 rounded-full'
-                style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+                style={{borderColor:'var(--softer-white)', backgroundColor:'none '}}>
 
                     <input
                         type="file"

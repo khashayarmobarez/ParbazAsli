@@ -198,11 +198,11 @@ const FlightEquipment = () => {
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
                                 <div className='w-full flex flex-col items-center'>
 
-                                    <div key={equipment.id} className={`bg-bgCard shadow-shadowAll z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} >
+                                    <div key={equipment.id} className={`bg-bgCard shadow-lg z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} >
 
                                         {
                                             equipment.status === 'Pending' &&
-                                            <p className='text-[var(--yellow-text)] font-bold -mb-2'>تایید انتقال از {equipment?.transferorFullName}</p> 
+                                            <p className='text-textAccent font-bold -mb-2'>تایید انتقال از {equipment?.transferorFullName}</p> 
                                         }   
 
                                         <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
@@ -233,7 +233,7 @@ const FlightEquipment = () => {
                                             {
                                                 equipment.status !== 'Pending' &&
                                                 <button 
-                                                className={`${ButtonStyles.normalButton} ${equipment?.isTransitionRestricted && 'opacity-50 text-[var(--yellow-text)]'} `} 
+                                                className={`${ButtonStyles.normalButton} ${equipment?.isTransitionRestricted && 'opacity-50 text-textAccent'} `} 
                                                 onClick={handlePossession(equipment.id)}
                                                 disabled={equipment?.isTransitionRestricted} >
                                                     {equipment?.isTransitionRestricted ?
@@ -250,12 +250,10 @@ const FlightEquipment = () => {
 
                                     {
                                         equipment.status === 'Pending' &&
-                                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                            style={{background: 'var(--syllabus-data-boxes-bg)',
-                                                boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+                                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard shadow-lg'>
 
                                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
-                                                    <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                                    <div className='w-2 h-2 rounded-full bg-textError'></div>
                                                     <p>آیا این ابزار مورد تایید شما است؟</p>
                                                 </div>
 
@@ -264,14 +262,14 @@ const FlightEquipment = () => {
                                                     <p 
                                                     onClick={() => handleSubmittingTranfer('accept', equipment.id)}
                                                     disabled={loadingTriggerEquipmentStatus} 
-                                                    className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                                    className='text-textAccent text-sm font-medium'  >
                                                         تایید
                                                     </p>
 
                                                     <p 
                                                     onClick={() => handleSubmittingTranfer('decline', equipment.id)}
                                                     disabled={loadingTriggerEquipmentStatus} 
-                                                    className='text-[var(--red-text)] text-sm font-medium' >
+                                                    className='text-textError text-sm font-medium' >
                                                         رد
                                                     </p>
 
@@ -303,7 +301,7 @@ const FlightEquipment = () => {
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard shadow-lg`}>
 
                                     <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
@@ -348,7 +346,7 @@ const FlightEquipment = () => {
                         userEquipmentsHistoryData &&
                         userEquipmentsHistoryData.data &&
                         userEquipmentsHistoryData.data.map(equipment =>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                                <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard shadow-lg`} >
 
                                     <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
                                         <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
@@ -376,7 +374,7 @@ const FlightEquipment = () => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[3.8rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

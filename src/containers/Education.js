@@ -195,11 +195,7 @@ const Education = () => {
 
                                                     <div
                                                     key={course.id}
-                                                    className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs"
-                                                    style={{
-                                                        background: 'var(--organs-coachData-bg) var(--bg-color)',
-                                                        boxShadow: 'var(--organs-coachData-boxShadow)'
-                                                    }}
+                                                    className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgCard shadow-xl"
                                                     >
                                                         <div className='w-full flex justify-between items-center'>
                                                         
@@ -207,18 +203,18 @@ const Education = () => {
 
                                                             <div className='flex gap-x-1'>
 
-                                                                <p className='text-[var(--low-opacity-white)]'>وضعیت:
+                                                                <p className='text-textDisabled'>وضعیت:
                                                                     {course.status === 'Active' && 
-                                                                        <span className='text-[var(--yellow-text)]'> فعال</span>
+                                                                        <span className='text-textAccent'> فعال</span>
                                                                     }
                                                                     {course.status === 'Pending' &&
-                                                                        <span className='text-[var(--text-color)]'> در انتظار تایید</span>
+                                                                        <span className='text-textDefault'> در انتظار تایید</span>
                                                                     }
                                                                     {course.status === 'Disable' && 
-                                                                        <span className='text-[var(--notification-red)]'> غیر فعال</span>
+                                                                        <span className='text-textError'> غیر فعال</span>
                                                                     }
                                                                     {course.status === 'Rejected' && 
-                                                                        <span className='text-[var(--notification-red)]'> رد شده</span>
+                                                                        <span className='text-textError'> رد شده</span>
                                                                     }
                                                                 </p>
 
@@ -239,17 +235,17 @@ const Education = () => {
                                                                 {
                                                                     course.type === 'Retraining' &&
                                                                     <p className='text-sm'>
-                                                                        <span className='text-[var(--low-opacity-white)]'>مقطع:</span> {course.level}
+                                                                        <span className='text-textDisabled'>مقطع:</span> {course.level}
                                                                     </p>
                                                                 } 
 
                                                                 <p>
-                                                                    <span className='text-[var(--low-opacity-white)]'>تعداد پرواز: </span>{course.flightsCount}
+                                                                    <span className='text-textDisabled'>تعداد پرواز: </span>{course.flightsCount}
                                                                 </p>
 
                                                                 { course.clubName &&
                                                                     <p>
-                                                                        <span className='text-[var(--low-opacity-white)]'>باشگاه: </span> {course.clubName}
+                                                                        <span className='text-textDisabled'>باشگاه: </span> {course.clubName}
                                                                     </p>
                                                                 }
 
@@ -257,10 +253,10 @@ const Education = () => {
 
                                                             <div className='flex flex-col text-start gap-y-2'>
                                                                 <p>
-                                                                    <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                    <span className='text-textDisabled'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
                                                                 </p>
                                                                 <p>
-                                                                    <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                    <span className='text-textDisabled'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
                                                                 </p>
                                                             </div>
 
@@ -279,11 +275,11 @@ const Education = () => {
                                                     {/* Trigger course status */}
                                                     {course.status === 'Pending' &&
                                                         <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                                        style={{background: 'var(--syllabus-data-boxes-bg)',
-                                                            boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+                                                        style={{background: 'none',
+                                                            boxShadow: 'var(--shadow-all)'}}>
 
                                                             <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
-                                                                <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                                                <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                                                 <p >آیا این دوره مورد تایید شما است؟</p>
                                                             </div>
 
@@ -295,11 +291,11 @@ const Education = () => {
                                                                     </Box>
                                                                 }
                                                                 
-                                                                <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                                                <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} className='text-textAccent text-sm font-medium'  >
                                                                     تایید
                                                                 </p>
 
-                                                                <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} className='text-[var(--red-text)] text-sm font-medium' >
+                                                                <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} className='text-textAccent text-sm font-medium' >
                                                                     رد
                                                                 </p>
 
@@ -326,7 +322,7 @@ const Education = () => {
                                             />
                                             </button>
 
-                                            <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                            <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                                 صفحه ی {pageNumber}
                                             </p>
 
@@ -354,9 +350,9 @@ const Education = () => {
 
                 </div>
 
-                <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                <div className='fixed bottom-[3.7rem] w-[90%] bg-none rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
                     <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/education/addClass') } >
-                        <AddIcon />
+                        <AddIcon /> 
                         <p>افزودن دوره جدید</p>
                     </button>
                 </div>

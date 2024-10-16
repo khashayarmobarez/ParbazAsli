@@ -27,7 +27,7 @@ const TextInput = ({ value, onChange, placeholder, IsEmptyAfterSubmit }) => {
           inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${inputStyles.customDateInput} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}`}
           position='right'
           round="thin"
-          accentColor="#0D59F2"
+          accentColor="#23BC7C"
           locale="fa"
           inputAttributes={{ placeholder: placeholder }}
           direction="rtl"

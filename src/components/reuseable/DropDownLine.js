@@ -9,7 +9,7 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
             
             <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 
-                <div className={`flex gap-x-3 justify-center  ${isActive ? 'text-[var(--yellow-text)]' : 'text-[var(--soft-white)]'}`}>
+                <div className={`flex gap-x-3 justify-center  ${isActive ? 'text-textAccent' : 'text-bgDividerDefault'}`}>
                     {icon ? 
                     <>
                         <span className='w-4'>
@@ -27,11 +27,11 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
                 </div>
 
                 <div className='w-full'>
-                    <div className={`w-full h-[1px] ${isActive ? 'bg-[var(--yellow-text)]' : 'bg-[var(--soft-white)]'}`} ></div>
+                    <div className={`w-full h-[1px] ${isActive ? 'bg-bgDividerActive' : 'bg-bgDividerDefault'}`} ></div>
                 </div>
 
                 <span onClick={onClick} className={`transition-transform duration-300 transform ${isActive ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
-                    <ArrowBackIosIcon sx={{ color: isActive ? 'var(--yellow-text)' : 'var(--soft-white)' }} />
+                    <ArrowBackIosIcon sx={{ color: isActive ? 'var(--text-accent)' : 'var(--bg-divider-default)' }} />
                 </span>
 
             </div>

@@ -27,19 +27,19 @@ const DropDownSyllabiData = (props) => {
         <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 border-2 border-opacity-50`}
         style={{
             borderColor: isExpanded ? 
-                'var(--yellow-border-button)' 
+                'var(--border-input-success)' 
                 :
                     percent === 100 ?
-                    'var(--yellow-border-button)'
+                    'var(--border-input-success)'
                     :
-                    'var(--light-border-button-collapsed)',
+                    'var(--border-input-default)',
             color: isExpanded ? 
-                'var(--yellow-border-button)' 
+                'var(--border-input-success)' 
                 :
                     percent === 100 ?
-                    'var(--yellow-border-button)'
+                    'var(--border-input-success)'
                     :
-                    'var(--light-border-button-collapsed)',
+                    'var(--border-input-default)',
         }}>
 
             <div className='flex' >
@@ -65,18 +65,18 @@ const DropDownSyllabiData = (props) => {
             data.map((data, index) => (
                 <div className={`${isExpanded ? 'block' : 'hidden'} flex justify-between items-center px-4 py-2 rounded-2xl ${data.percent === 100 && 'border-2'}`}
                 key={data.id}
-                style={{background:'var(--syllabus-data-boxes-bg)',
+                style={{background:'var(--bg-output-default)',
                 borderColor: 
                     data.percent === 100 ?
-                    'var(--yellow-border-button)'
+                    'var(--border-input-success)'
                     :
-                    'var(--light-border-button-collapsed)',
+                    'var(--border-input-default)',
                 }}>
                     <p className={` text-center self-center`} >{index + 1}</p>
                     <p className={` text-center self-center text-sm`} >{data.description}</p>
                     {
                         data.percent === 100 ?
-                        <CheckIcon sx={{color:'var(--yellow-text)', width:'1.2rem', height:'1.2rem'}} />
+                        <CheckIcon sx={{color:'var(--text-accent)', width:'1.2rem', height:'1.2rem'}} />
                         :
                             data.percent !== 0 ?
                             <p className={` text-center self-center text-sm`} >{data.percent}%</p>

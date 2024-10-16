@@ -138,21 +138,21 @@ const MyCourseDetails = () => {
                                         aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                <div className='w-3 h-3 rounded-full bg-textAccent'></div>
                                             </>
                                         }
                                         {
                                         aCourseData.data.status === 'Canceled' &&
                                             <>
                                                 <p>لغو شده</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                <div className='w-3 h-3 rounded-full bg-textError'></div>
                                             </>
                                         }
                                         {
                                         aCourseData.data.status === 'Completed' &&
                                             <>
                                                 <p>تمام شده</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--yellow-text)'}}></div>
+                                                <div className='w-3 h-3 rounded-full bg-textAccent'></div>
                                             </>
                                         }
                                     </div> 
@@ -166,14 +166,14 @@ const MyCourseDetails = () => {
                                         <p>{aCourseData.data.percent}%</p>
                                 </div>
                                 <LinearProgress variant="determinate" value={aCourseData.data.percent > 3 ? aCourseData.data.percent : aCourseData.data.percent + 3} 
-                                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--design-background-normal)', '& .MuiLinearProgress-bar': {
-                                    borderRadius:'1rem',backgroundColor: 'var(--red-text)' // Change this to your desired color
+                                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--bg-button-secondary-default)', '& .MuiLinearProgress-bar': {
+                                    borderRadius:'1rem',backgroundColor: 'var(--text-error)' // Change this to your desired color
                                 }}} />
                             </Box>
 
                             {
                                 !extra && aCourseData.data.description &&
-                                <p onClick={() => setExtra(true)} className='text-[var(--yellow-text)] font-medium text-base cursor-pointer self-start text-start mr-[5vw]'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-textAccent font-medium text-base cursor-pointer self-start text-start mr-[5vw]'>بیشتر ...</p>
                             }
                             
                             {
