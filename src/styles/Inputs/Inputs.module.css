@@ -18,9 +18,9 @@
 }
 
 .inputDescription {
-    background: var(--corn-flower-blue);
-    background: var(--coachesDetails-bg);   
-    box-shadow: var(--coachesDetails-BoxShadow);
+    background: none;  
+    box-shadow: none;
+    border: solid 1px var(--text-input-default)
 }
 
 .inputDropdown option {

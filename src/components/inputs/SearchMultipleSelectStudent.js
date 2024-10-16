@@ -56,7 +56,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
   };
 
   return (
-    <div className='flex flex-col w-full' ref={dropdownRef}>
+    <div className='flex flex-col w-full md:items-center' ref={dropdownRef}>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
         <span>
           <img src={Icon || Cube} alt='icon' className='absolute mt-3 mr-2 w-6' />
@@ -79,13 +79,13 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
       </div>
 
       {isOpen && (
-        <ul className="absolute z-20 w-[90%] bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+        <ul className="absolute z-20 w-[90%] md:w-[40%] bg-bgInputDropdown mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
           
           {filteredOptions.map((option) => (
             <div className='flex flex-col w-full items-center justify-center '>
               <li
                 key={option.id}
-                className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                className="px-4 py-2 w-full hover:bg-bgInputSelectedOption cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
                 {option.fullName}
@@ -102,15 +102,13 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
           //   <p className='text-sm mx-1'>{option.name} - {option.status}</p>
           //   <ClearIcon onClick={() => handleRemove(option)} className="cursor-pointer" />
           // </div>
-          <li key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-          style={{background:  'var(--profile-buttons-background)',
-              boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+          <li key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4 bg-bgOutputDefault shadow-lg'>
               <p className=' text-sm mx-1' >{index + 1}</p>
               <p className='text-sm px-6 w-full text-start'>{option.fullName} </p>
-              <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-              boxShadow: 'var(--profile-buttons-boxShadow)',
+              <RemoveIcon sx={{background:  'var(--bg-output-default)',
+              boxShadow: 'var(--shadow-all)',
               borderRadius:'0.5rem',
-              color:'var(--red-text)'}}
+              color:'var(--text-error)'}}
               className="cursor-pointer"
               onClick={() => handleRemove(option)} />
           </li>

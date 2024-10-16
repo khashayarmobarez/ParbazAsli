@@ -161,19 +161,19 @@ const CourseDetails = () => {
                                         {aCourseData && aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--text-accent)'}}></div>
                                             </>
                                         }
                                         {aCourseData && aCourseData.data.status === 'Pending' &&
                                             <>
                                                 <p>در انتظار تایید</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-color)'}}></div>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-default)'}}></div>
                                             </>
                                         }
                                         {aCourseData && aCourseData.data.status === 'Disable' &&
                                             <>
                                                 <p>غیرفعال</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                             </>
                                         }
                                     </div> 
@@ -190,7 +190,7 @@ const CourseDetails = () => {
                             }   
 
                             <p onClick={() => setShowExtra(!showExtra)}
-                            className='w-full px-6 text-sm text-[var(--yellow-text)] text-start self-start'>
+                            className='w-full px-6 text-sm text-textAccent text-start self-start'>
                                 {showExtra ? 'بستن اطلاعات بیشتر' : 'نمایش اطلاعات بیشتر ...'}
                             </p>
 
@@ -221,7 +221,7 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base z-30`} 
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.4rem] w-[90%] md:w-2/6 text-base z-30`} 
                             onClick={() => setShowPopup(true)} >
                                 <p>غیر فعال سازی</p>
                             </button>
@@ -229,7 +229,7 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base z-30`} 
+                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.4rem] w-[90%] md:w-2/6 text-base z-30`} 
                                 onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                 <p>فعال سازی</p>
                             </button>

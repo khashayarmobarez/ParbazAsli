@@ -272,7 +272,7 @@ const AddClass = () => {
                                 />
                                 {
                                     (StartSelectedTime > endSelectedTime) &&
-                                    <p className='text-start text-sm' style={{color:'var(--red-text)'}} >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
+                                    <p className='text-start text-sm text-textError' >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
                                 }
                             </div>
 
@@ -324,12 +324,12 @@ const AddClass = () => {
                                     <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
                                 </span> */}
                                 {userByIdData?.data && (
-                                    <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                    <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
                                     
                                         <div className='flex flex-col w-full items-center justify-center '>
                                             <li
                                                 key={userByIdData.data.id}
-                                                className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                                                className="px-4 py-2 w-full cursor-pointer"
                                                 onClick={() => handleAddguestStudent(userByIdData.data)}
                                             >
                                                 {userByIdData.data.fullName}
@@ -345,12 +345,12 @@ const AddClass = () => {
                                 <ul className=' w-full py-0 grid grid-cols-1 gap-y-2 -mt-4'>
                                     {guestStudentDatas.map((student, index) => (
                                         <li key={student.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{student.data.fullName} </p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--red-text)'}}
                                             onClick={() => handleRemoveGuestStudents(index)} />

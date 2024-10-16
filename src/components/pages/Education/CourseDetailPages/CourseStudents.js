@@ -221,14 +221,14 @@ const CourseStudents = () => {
                                 <span onClick={() => handleClickStudent(student.id)}>
                                     <PersonOutlineOutlinedIcon />
                                 </span>
-                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}
+                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>
-                                <p className='text-[var(--low-opacity-white)]'
+                                <p className='text-textDisabled'
                                 onClick={() => handleClickStudent(student.id)}>وضعیت: 
-                                    {student.status === 'Active' && <span className='text-[var(--yellow-text)]'> فعال </span>}
-                                    {student.status === 'CoachPending' && <span className='text-[var(--text-color)]'> در انتظار تایید</span>}
+                                    {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
+                                    {student.status === 'CoachPending' && <span className='text-textDefault'> در انتظار تایید</span>}
                                 </p>
                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
@@ -252,12 +252,10 @@ const CourseStudents = () => {
                             {
                                 aCourseData &&
                                 aCourseData.data.status === 'Active' && student.status === 'CoachPending' &&
-                                <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                style={{background: 'var(--syllabus-data-boxes-bg)',
-                                    boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+                                <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgOutputDefault shadow-lg'>
 
                                     <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
-                                        <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                        <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                         <p >آیا این هنرجو مورد تایید شما است؟</p>
                                     </div>
 
@@ -269,11 +267,11 @@ const CourseStudents = () => {
                                             </Box>
                                         }
                                         
-                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'Active', student.id, event)} className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'Active', student.id, event)} className='text-textAccent text-sm font-medium'  >
                                             تایید
                                         </p>
 
-                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'CoachRejected', student.id, event)} className='text-[var(--red-text)] text-sm font-medium' >
+                                        <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'CoachRejected', student.id, event)} className='text-textError text-sm font-medium' >
                                             رد
                                         </p>
 
@@ -283,15 +281,15 @@ const CourseStudents = () => {
                             {
                                 student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
                                 <div className=' absolute w-full flex justify-end left-[5%] h-32'>
-                                    <div className='w-1/3 h-full bg-[var(--primaryA-dark-hover)] border border-[var(--low-opacity-white)] rounded-lg flex flex-col items-center justify-end'>
+                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled text-textDefault rounded-lg flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
-                                            className='w-full text-center py-3 active:bg-[var(--yellow-text)]'
+                                            className='w-full text-center py-3 active:bg-tetext-textAccent'
                                             >
                                                 اتمام دوره 
                                         </p>
-                                        <div className='w-[90%] h-[2px] bg-[var(--bg-color)]'/>
-                                        <p className=' w-full text-center py-3 active:bg-[var(--yellow-text)]'
+                                        <div className='w-[90%] h-[2px] bg-bgPageMain'/>
+                                        <p className=' w-full text-center py-3 active:bg-tetext-textAccent'
                                         onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
                                             لغو دوره
                                         </p>
@@ -314,7 +312,7 @@ const CourseStudents = () => {
                                 />
                             </button>
 
-                            <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                            <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                 صفحه ی {pageNumber}
                             </p>
 
@@ -334,13 +332,13 @@ const CourseStudents = () => {
 
                     <div className='flex flex-col w-full gap-y-2'>
                         { studentNameLoading && studentId.length > 5 &&
-                            <p className=' self-start text-[var(--yellow-text)]'>در حال بررسی هنرجو ... </p>
+                            <p className=' self-start text-textAccent'>در حال بررسی هنرجو ... </p>
                         }
                         { studentData && 
-                            <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
+                            <p className=' self-start text-textAccent'>{studentData.data.fullName}</p>
                         }
                         {studentError && studentId.length > 5 &&
-                            <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                            <p className='text-textError self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                         }
                         {
                             aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
@@ -349,8 +347,7 @@ const CourseStudents = () => {
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
-                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-[var(--bg-color)] cursor-pointer`}
-                                        style={{ background: 'var(--yellow-button-bg)'}}
+                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium bg-bgButtonMainDefault hover:bg-bgButtonMainHover cursor-pointer`}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >
@@ -379,14 +376,14 @@ const CourseStudents = () => {
                                                 <span onClick={() => handleClickStudent(student.id)}>
                                                     <PersonOutlineOutlinedIcon />
                                                 </span>
-                                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}
+                                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
                                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                                 <p onClick={() => handleClickStudent(student.id)}>{student.name}</p>
-                                                <p className='text-[var(--low-opacity-white)]'
+                                                <p className='text-textDisabled'
                                                 onClick={() => handleClickStudent(student.id)}>
                                                     وضعیت: 
-                                                    {student.status === 'Completed' && <span className='text-[var(--yellow-text)] '> تمام شده</span>}
-                                                    {student.status === 'Canceled' && <span className='text-[var(--red-text)]'> لغو شده</span>}
+                                                    {student.status === 'Completed' && <span className='text-textAccent '> تمام شده</span>}
+                                                    {student.status === 'Canceled' && <span className='text-textError'> لغو شده</span>}
                                                 </p>
                                                 <div/>
                                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
@@ -412,8 +409,8 @@ const CourseStudents = () => {
                                             {
                                                 student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
                                                 <div className=' absolute w-full flex justify-end left-[5%] h-24'>
-                                                    <div className='w-1/3 h-full bg-[var(--primaryA-dark-hover)] border border-[var(--low-opacity-white)] rounded-lg flex flex-col items-center justify-end'>
-                                                        <p className=' text-center py-3 active:bg-[var(--yellow-text)]'
+                                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-tetext-textDisabled rounded-lg flex flex-col items-center justify-end'>
+                                                        <p className=' text-center py-3 active:bg-tetext-textAccent'
                                                         onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
                                                             بازگردانی به دوره
                                                         </p>
@@ -424,7 +421,7 @@ const CourseStudents = () => {
                                     ))}
                                     {   studentsHistoryData &&
                                         studentsData.totalPagesCount < studentsData.currentPage && 
-                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
+                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem] text-textAccent ' >بقیه ی هنرجو ها ...</p>
                                     }
                                 </div>
                             }

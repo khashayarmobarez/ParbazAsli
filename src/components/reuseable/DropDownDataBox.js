@@ -21,8 +21,8 @@ const DropDownDataBox = (props) => {
 
         <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 border-2 border-opacity-50`}
         style={{
-            borderColor: isExpanded ? 'var(--yellow-border-button)' : 'var(--light-border-button-collapsed)',
-            color: isExpanded ? 'var(--yellow-border-button)' : 'var(--light-border-button-collapsed)',
+            borderColor: isExpanded ? 'var(--text-input-success)' : 'var(--light-border-button-collapsed)',
+            color: isExpanded ? 'var(--text-input-success)' : 'var(--light-border-button-collapsed)',
         }}>
 
             <div className='flex' >
@@ -43,7 +43,7 @@ const DropDownDataBox = (props) => {
         {
             data && isExpanded &&
             data.map((data,index) => (
-                <div key={data.id} className='w-full flex justify-start gap-x-8 px-6 h-12 items-center rounded-2xl bg-[var(--syllabus-data-boxes-bg)]'>
+                <div key={data.id} className='w-full flex justify-start gap-x-8 px-6 h-12 items-center rounded-2xl bg-bgOutputDefault'>
                     <p className={`${isExpanded ? 'block' : 'hidden'}`} >{data.order}</p>
                     <p className={`${isExpanded ? 'block' : 'hidden'} text-xs`} >{data.description}</p>
                 </div>

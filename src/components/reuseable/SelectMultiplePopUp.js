@@ -60,7 +60,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
   };
 
   return (
-    <div className='flex flex-col w-full' ref={dropdownRef}>
+    <div className='flex flex-col w-full md:items-center' ref={dropdownRef}>
         <div
           ref={inputRef}
           className={`${inputStyles.inputText2} pr-4 w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4 `}
@@ -79,15 +79,15 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
 
 
         {isOpen && (
-            <div className=' w-[90%] fixed top-32 z-30 max-h-[65dvh] bg-[var(--design-background-normal)] flex flex-col items-center rounded-2xl '>
+            <div className=' w-[90%] md:w-[40%] fixed top-32 z-30 max-h-[65dvh] bg-bgPopUpHeaderFooter flex flex-col items-center rounded-2xl '>
             
-                <div className='w-full flex justify-between items-center bg-[var(--design-background-normal)] px-2 py-4 rounded-t-2xl'>
+                <div className='w-full flex justify-between items-center bg-bgPopUpHeaderFooter px-2 py-4 rounded-t-2xl'>
                     <CloseIcon onClick={handleIconClick} />
                     <p>{name}</p>
                     <div />
                 </div>
 
-                <div className=' w-full py-4 bg-[var(--dark-blue-bg)] px-[5%] -mb-1'>
+                <div className=' w-full py-4 bg-bgHeader px-[5%] -mb-1'>
                     <TextInput 
                         placeholder={name}
                         value={searchTerm} 
@@ -96,20 +96,20 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                     />
                 </div>
 
-                <ul className="w-full bg-[var(--dark-blue-bg)] flex flex-col shadow-lg max-h-[80%] overflow-auto ">
+                <ul className="w-full bg-bgHeader flex flex-col shadow-lg max-h-[80%] overflow-auto ">
                     {filteredOptions.map((option) => (
                     <li
                         key={option.id}
-                        className="flex w-full py-3 items-center justify-between text-start px-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                        className="flex w-full py-3 items-center justify-between text-start px-2 hover:bg-bgHeader cursor-pointer"
                         onClick={() => handleOptionClick(option)}
                     >
                         <Checkbox
                         checked={selectedOptions.some(selected => selected.id === option.id)}
                         onChange={() => {}} // Handle change is managed by the li onClicks
                         sx={{
-                            color: 'var(--yellow-text)',
+                            color: 'var(--text-accent)',
                             '&.Mui-checked': {
-                            color: 'var(--yellow-text)',
+                            color: 'var(--text-accent)',
                             },
                         }}
                         />
@@ -119,7 +119,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                     ))}
                 </ul>
 
-                <div className='w-full bg-[var(--design-background-normal)] p-4 rounded-b-2xl flex item-center justify-center'>
+                <div className='w-full bg-bgPopUpHeaderFooter p-4 rounded-b-2xl flex item-center justify-center'>
                     <button 
                     onClick={handleIconClick}
                     className={`${ButtonStyles.addButton} w-28 self-center `} >
@@ -132,15 +132,13 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
 
       <div className={`flex flex-wrap items-center w-full ${selectedOptions.length > 0 && 'pt-4'} gap-y-4`}>
         {selectedOptions?.map((option, index) => (
-          <div key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center'
-          style={{background:  'var(--profile-buttons-background)',
-          boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+          <div key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center bg-bgOutputDefault shadow-lg'>
             <p className=' text-sm mx-1' >{index + 1}</p>
             <p className='text-sm px-6 w-full text-start'>{option.description}</p>
-            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-            boxShadow: 'var(--profile-buttons-boxShadow)',
+            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+            boxShadow: 'var(--shadow-all)',
             borderRadius:'0.5rem',
-            color:'var(--red-text)'}}
+            color:'var(--text-error)'}}
             onClick={() => handleRemove(option)} className="cursor-pointer" />
           </div>
         ))}

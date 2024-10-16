@@ -76,14 +76,14 @@ const AStudentCourses = () => {
                                         
                                         {/* conditional course name */}
                                         {courseData.status === 'Active' && <p className='text-base'>{courseData.name}</p>}
-                                        {courseData.status === 'Completed' && <p className='text-base text-[var(--yellow-text)]'>{courseData.name}(تمام شده)</p>}
-                                        {courseData.status === 'Canceled' && <p className='text-base text-[var(--notification-red)]'>{courseData.name}(لغو شده)</p>}
+                                        {courseData.status === 'Completed' && <p className='text-base text-textAccent'>{courseData.name}(تمام شده)</p>}
+                                        {courseData.status === 'Canceled' && <p className='text-base text-textError'>{courseData.name}(لغو شده)</p>}
 
                                         {/* conditional course percent */}
                                         <p
                                         className={`
-                                            ${courseData.status === 'Completed'&& 'text-[var(--yellow-text)]'}
-                                            ${courseData.status === 'Canceled'&& 'text-[var(--notification-red)]'}
+                                            ${courseData.status === 'Completed'&& 'text-textAccent'}
+                                            ${courseData.status === 'Canceled'&& 'text-textError'}
                                             ${courseData.status === 'Active'&& ''}
                                         `}
                                         >{courseData.percent}%</p>
@@ -96,7 +96,7 @@ const AStudentCourses = () => {
                                             sx={{ 
                                             height: '1rem', 
                                             borderRadius: '1rem', 
-                                            backgroundColor: 'var(--diffrential-blue)', 
+                                            backgroundColor: 'var(--bg-button-secondary-default)', 
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
                                                 courseData.status === 'Active' ? 'var(--red-text)' :

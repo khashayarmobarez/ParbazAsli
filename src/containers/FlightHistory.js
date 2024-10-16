@@ -92,10 +92,9 @@ const FlightHistory = () => {
                             >
                                 فیلتر جست‌وجو
                             </button>
-                            <button className={`w-12 rounded-xl flex justify-center items-center`}
+                            <button className={`w-16 rounded-2xl flex justify-center items-center bg-bgButtonSecondaryDefault`}
                             style={{
-                                background:  'var(--profile-buttons-background),var(--bg-color)',
-                                boxShadow: 'var(--profile-buttons-boxShadow)'
+                                boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)'
                             }}
                             onClick={handleResetData}>
                                 <img src={eraser} alt='eraser' />
