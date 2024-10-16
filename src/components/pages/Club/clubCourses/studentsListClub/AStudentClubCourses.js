@@ -75,14 +75,14 @@ const AStudentClubCourses = () => {
                                         
                                         {/* conditional course name */}
                                         {courseData.status === 'Active' && <p className='text-base'>{courseData.name}</p>}
-                                        {courseData.status === 'Completed' && <p className='text-base text-[var(--yellow-text)]'>{courseData.name}(تمام شده)</p>}
-                                        {courseData.status === 'Canceled' && <p className='text-base text-[var(--notification-red)]'>{courseData.name}(لغو شده)</p>}
+                                        {courseData.status === 'Completed' && <p className='text-base text-textAccent'>{courseData.name}(تمام شده)</p>}
+                                        {courseData.status === 'Canceled' && <p className='text-base text-textError'>{courseData.name}(لغو شده)</p>}
 
                                         {/* conditional course percent */}
                                         <p
                                         className={`
-                                            ${courseData.status === 'Completed'&& 'text-[var(--yellow-text)]'}
-                                            ${courseData.status === 'Canceled'&& 'text-[var(--notification-red)]'}
+                                            ${courseData.status === 'Completed'&& 'text-textAccent'}
+                                            ${courseData.status === 'Canceled'&& 'text-textError'}
                                             ${courseData.status === 'Active'&& ''}
                                         `}
                                         >{courseData.percent}%</p>
@@ -95,13 +95,13 @@ const AStudentClubCourses = () => {
                                             sx={{ 
                                             height: '1rem', 
                                             borderRadius: '1rem', 
-                                            backgroundColor: 'var(--diffrential-blue)', 
+                                            backgroundColor: 'var(--bg-button-secondary-default)', 
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
-                                                courseData.status === 'Active' ? 'var(--red-text)' :
-                                                courseData.status === 'Completed' ? 'var(--yellow-text)' :
-                                                courseData.status === 'Canceled' ? 'var(--notification-red)' :
-                                                undefined, // Optional: A default value if none of the conditions match
+                                                courseData.status === 'Active' ? 'var(--text-error)' :
+                                                courseData.status === 'Completed' ? 'var(--text-accent)' :
+                                                courseData.status === 'Canceled' ? 'var(--text-error)' :
+                                                'var(--text-error)', // Optional: A default value if none of the conditions match
                                             }
                                             }} 
                                         />
@@ -111,7 +111,7 @@ const AStudentClubCourses = () => {
                                         <div className='flex flex-col justify-between self-start'>
                                             { courseData.organization && courseData.type !== 'Regular' &&
                                                 <p>
-                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                    <span className='text-textDisabled'>
                                                         ارگان:&nbsp;
                                                     </span>
                                                     {courseData.organization}
@@ -119,7 +119,7 @@ const AStudentClubCourses = () => {
                                             }
                                             { courseData.clubName &&
                                                 <p>
-                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                    <span className='text-textDisabled'>
                                                         باشگاه:&nbsp;
                                                     </span>
                                                     {courseData.clubName}
@@ -127,7 +127,7 @@ const AStudentClubCourses = () => {
                                             }
                                             { courseData.coach &&
                                                 <p>
-                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                    <span className='text-textDisabled'>
                                                         مربی:&nbsp;
                                                     </span> 
                                                     {courseData.coach}
@@ -161,7 +161,7 @@ const AStudentClubCourses = () => {
                             />
                         </button>
 
-                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                        <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                             صفحه ی {pageNumber}
                         </p>
 

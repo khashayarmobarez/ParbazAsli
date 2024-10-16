@@ -36,8 +36,8 @@ const ClubCourseStudentDetails = () => {
         <div className='flex flex-col py-20 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-8 md:w-[70%]'>
 
-                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative`}
-                style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}>
+                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault`}
+                style={{ boxShadow:'var(--shadow-all)'}}>
                     { 
                     studentData && 
                     <div className='w-full flex flex-col justify-between items-center gap-y-6'>
@@ -75,16 +75,16 @@ const ClubCourseStudentDetails = () => {
                                         وضعیت: 
                                         {
                                             studentData.data.status === 'Active' ?
-                                            <span className='text-[var(--yellow-text)]'> فعال </span>
+                                            <span className='text-[var(--text-accent)]'> فعال </span>
                                             :
                                                 studentData.data.status === 'Canceled' ?
-                                                <span className='text-[var(--red-text)]'> غیرفعال </span>
+                                                <span className='text-[var(--text-error)]'> غیرفعال </span>
                                                 :
                                                     studentData.data.status === 'Completed' ?
-                                                    <span className='text-[var(--dark-green)]'> تایید شده </span>
+                                                    <span className='text-[var(--text-accent)]'> تایید شده </span>
                                                     :
                                                     studentData.data.status === 'Pending' ?
-                                                    <span className='text-[var(--primary-light)]'> در انتظار تایید </span>
+                                                    <span className='text-[var(--text-default)]'> در انتظار تایید </span>
                                                     :
                                                     ''
                                         }
@@ -127,12 +127,12 @@ const ClubCourseStudentDetails = () => {
                                     sx={{ 
                                         height: '1rem', 
                                         borderRadius: '1rem', 
-                                        backgroundColor: 'var(--diffrential-blue)', 
+                                        backgroundColor: 'var(--bg-button-secondary-default)', 
                                         '& .MuiLinearProgress-bar': {
                                             backgroundColor: 
-                                            studentData.data.status === 'Active' ? 'var(--red-text)' :
-                                            studentData.data.status === 'Completed' ? 'var(--yellow-text)' :
-                                            studentData.data.status === 'Canceled' ? 'var(--notification-red)' :
+                                            studentData.data.status === 'Active' ? 'var(--text-error)' :
+                                            studentData.data.status === 'Completed' ? 'var(--text-accent)' :
+                                            studentData.data.status === 'Canceled' ? 'var(--text-error)' :
                                             undefined, // Optional: A default value if none of the conditions match
                                         }
                                     }} 

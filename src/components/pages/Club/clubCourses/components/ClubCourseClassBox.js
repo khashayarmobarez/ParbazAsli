@@ -59,9 +59,9 @@ const ClubCourseClassBox = (props) => {
                     <>
                         {/* classesInput */}
                         <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm 
-                        ${isExpanded && 'text-[var(--yellow-text)]'}`}>
+                        ${isExpanded && 'text-textAccent'}`}>
                             <span>
-                                <AutoStoriesOutlinedIcon sx={{color:isExpanded ? 'var(--yellow-text)' : ''}} />
+                                <AutoStoriesOutlinedIcon sx={{color:isExpanded ? 'var(--text-accent)' : ''}} />
                             </span>
                             <p>{classData.name}</p>
                             <p>{classData.classDuration}</p>
@@ -115,7 +115,7 @@ const ClubCourseClassBox = (props) => {
                             {
                                 userRole === 'coach' && !extraData &&
                                 <div className=' flex justify-center w-[90%] mt-8'>
-                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >اطلاعات بیشتر...</button>
+                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >اطلاعات بیشتر...</button>
                                 </div>
                             }
             
@@ -176,7 +176,7 @@ const ClubCourseClassBox = (props) => {
                             {
                                 userRole === 'coach' && extraData &&
                                 <div className='w-full flex justify-center px-4 mt-8'>
-                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >بستن اطلاعات بیشتر</button>
+                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >بستن اطلاعات بیشتر</button>
                                 </div>
                             }
             

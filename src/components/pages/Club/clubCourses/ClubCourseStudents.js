@@ -162,11 +162,11 @@ const CourseStudents = () => {
                                 <span>
                                     <PersonOutlineOutlinedIcon />
                                 </span>
-                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
+                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}>{student.percent}%</p>
                                 <p>{student.name}</p>
-                                <p className='text-[var(--low-opacity-white)]'>وضعیت: 
-                                    {student.status === 'Active' && <span className='text-[var(--yellow-text)]'> فعال </span>}
-                                    {student.status === 'CoachPending' && <span className='text-[var(--text-color)]'> در انتظار تایید</span>}
+                                <p className='text-textDefault'>وضعیت: 
+                                    {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
+                                    {student.status === 'CoachPending' && <span className='text-textDefault'> در انتظار تایید</span>}
                                 </p>
                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
@@ -192,7 +192,7 @@ const CourseStudents = () => {
                                 />
                             </button>
 
-                            <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                            <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                 صفحه ی {pageNumber}
                             </p>
 
@@ -212,13 +212,13 @@ const CourseStudents = () => {
 
                     <div className='flex flex-col w-full gap-y-2'>
                         { studentNameLoading && studentId.length > 5 &&
-                            <p className=' self-start text-[var(--yellow-text)]'>در حال بررسی هنرجو ... </p>
+                            <p className=' self-start text-textAccent'>در حال بررسی هنرجو ... </p>
                         }
                         { studentData && 
-                            <p className=' self-start text-[var(--yellow-text)]'>{studentData.data.fullName}</p>
+                            <p className=' self-start text-textAccent'>{studentData.data.fullName}</p>
                         }
                         {studentError && studentId.length > 5 &&
-                            <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                            <p className='text-textError self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                         }
                         {
                             aCourseData && aCourseData.data.status === 'Active' &&
@@ -227,8 +227,8 @@ const CourseStudents = () => {
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
-                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-[var(--bg-color)] cursor-pointer`}
-                                        style={{ background: 'var(--yellow-button-bg)' }}
+                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-textDefaultOpposite cursor-pointer`}
+                                        style={{ background: 'var(--text-accent)' }}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >
@@ -257,11 +257,11 @@ const CourseStudents = () => {
                                                 <span>
                                                     <PersonOutlineOutlinedIcon />
                                                 </span>
-                                                <p className={`${student.percent > 50 ? 'text-[var(--yellow-text)]' : 'text-[var(--red-text)]'}`}>{student.percent}%</p>
+                                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}>{student.percent}%</p>
                                                 <p>{student.name}</p>
-                                                <p className='text-[var(--low-opacity-white)]'>وضعیت: 
-                                                    {student.status === 'Completed' && <span className='text-[var(--yellow-text)] '> تمام شده</span>}
-                                                    {student.status === 'Canceled' && <span className='text-[var(--red-text)]'> لغو شده</span>}
+                                                <p className='text-textDisabled'>وضعیت: 
+                                                    {student.status === 'Completed' && <span className='text-textAccent '> تمام شده</span>}
+                                                    {student.status === 'Canceled' && <span className='text-textError'> لغو شده</span>}
                                                 </p>
                                                 <div/>
                                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
@@ -274,7 +274,7 @@ const CourseStudents = () => {
                                     {   
                                     studentsHistoryData &&
                                         studentsData.totalPagesCount < studentsData.currentPage && 
-                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem]' style={{color:'var(--yellow-text) '}} >بقیه ی هنرجو ها ...</p>
+                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem]' style={{color:'var(--text-accent) '}} >بقیه ی هنرجو ها ...</p>
                                     }
                                 </div>
                             }

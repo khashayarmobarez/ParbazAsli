@@ -117,6 +117,7 @@ code {
   --text-default:#EEEEEE;
   --text-default-opposite:#3E3E3E;
   --text-disabled:#767779;
+  --text-error:#DC3545;
 
   /* main button */
   --bg-button-main-default:#23BC7C;

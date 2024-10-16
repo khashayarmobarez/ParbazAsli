@@ -167,19 +167,19 @@ const ClubCourseDetails = () => {
                                         {aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--dark-green)'}}></div>
+                                                <div className='w-3 h-3 rounded-full bg-textAccent '></div>
                                             </>
                                         }
                                         {aCourseData.data.status === 'Pending' &&
                                             <>
                                                 <p>در انتظار تایید</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                <div className='w-3 h-3 rounded-full bg-textError'></div>
                                             </>
                                         }
                                         {aCourseData.data.status === 'Disable' &&
                                             <>
                                                 <p>غیرفعال</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                                <div className='w-3 h-3 rounded-full bg-textError'></div>
                                             </>
                                         }
                                     </div> 
@@ -196,7 +196,7 @@ const ClubCourseDetails = () => {
                             }   
 
                             <p onClick={() => setShowExtra(!showExtra)}
-                            className='w-full px-6 text-sm text-[var(--yellow-text)] text-start self-start'>
+                            className='w-full px-6 text-sm text-textAccent text-start self-start'>
                                 {showExtra ? 'بستن اطلاعات بیشتر' : 'نمایش اطلاعات بیشتر ...'}
                             </p>
 
