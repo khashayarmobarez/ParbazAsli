@@ -129,19 +129,19 @@ const ClubCoachDetails = () => {
                 }
 
                 {coachDetails &&
-                    <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative'
-                    style={{background:'var(--coachesDetails-bg)', boxShadow:'var(--coachesDetails-BoxShadow)'}}>
+                    <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
+                    style={{ boxShadow:'var(--shadow-all)'}}>
 
                         <img src={backButton} alt='back' className='absolute top-4 left-4 cursor-pointer rotate-180 w-8' onClick={() => navigate('/club/clubCoaches')} />
 
                         <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
-                            <p className='text-base' style={{color:'var(--yellow-text)'}}>{coachDetails.data.name}</p>
-                            <p className='text-[var(--low-opacity-white)]'>
+                            <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>
+                            <p className='text-[var(--text-disable)]'>
                                 وضعیت:
-                                {coachDetails.data.status === 'Active' && <span style={{color:'var(--yellow-text)'}}> فعال</span>}
-                                {coachDetails.data.status === 'Pending' && <span style={{color:'var(--red-text)'}}> در انتظار تایید</span>}
-                                {coachDetails.data.status === 'Disable' && <span style={{color:'var(--low-opacity-white)'}}> غیر فعال</span>}
-                                {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--notification-red)'}}> رد شده</span>}
+                                {coachDetails.data.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
+                                {coachDetails.data.status === 'Pending' && <span style={{color:'var(--text-error)'}}> در انتظار تایید</span>}
+                                {coachDetails.data.status === 'Disable' && <span style={{color:'var(--text-disable)'}}> غیر فعال</span>}
+                                {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
                             </p>
                         </div>
 
@@ -175,10 +175,9 @@ const ClubCoachDetails = () => {
                     coachCoursesDetails && coachCoursesDetails.data.map((course) => (
                         <div
                         key={course.id}
-                        className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs"
+                        className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
                         style={{
-                            background: 'var(--organs-coachData-bg) var(--bg-color)',
-                            boxShadow: 'var(--organs-coachData-boxShadow)'
+                            boxShadow: 'var(--shadow-all)'
                         }}
                         >
                             <div className='w-full flex justify-between items-center'>
@@ -187,19 +186,19 @@ const ClubCoachDetails = () => {
 
                                 <div className='flex gap-x-1'>
 
-                                    <p className='text-[var(--low-opacity-white)]'>وضعیت:&nbsp; 
+                                    <p className='text-[var(--text-disable)]'>وضعیت:&nbsp; 
                                         
                                             {course.status === 'Active' && 
                                                 <span className='text-[var(--dark-green)]'>فعال</span>
                                             }
                                             {course.status === 'Pending' &&
-                                                <span className='text-[var(--red-text)]'>در انتظار...</span>
+                                                <span className='text-[var(--text-error)]'>در انتظار...</span>
                                             }
                                             {course.status === 'Disable' &&
-                                                <span className='text-[var(--red-text)]'>غیر فعال</span>
+                                                <span className='text-[var(--text-error)]'>غیر فعال</span>
                                             }
                                             {course.status === 'Rejected' &&
-                                                <span className='text-[var(--red-text)]'>رد شده</span>
+                                                <span className='text-[var(--text-error)]'>رد شده</span>
                                             }
                                     </p>
 
@@ -224,9 +223,9 @@ const ClubCoachDetails = () => {
 
                                     {
                                     course.level &&
-                                        <p><span className='text-[var(--low-opacity-white)]'>مقطع: </span> {course.level}</p>
+                                        <p><span className='text-[var(--text-disable)]'>مقطع: </span> {course.level}</p>
                                     }
-                                    <p><span className='text-[var(--low-opacity-white)]'>تعداد پرواز:</span> {course.flightsCount}</p>
+                                    <p><span className='text-[var(--text-disable)]'>تعداد پرواز:</span> {course.flightsCount}</p>
 
                                     
 
@@ -234,9 +233,9 @@ const ClubCoachDetails = () => {
 
                                 <div className='flex flex-col text-start gap-y-1'>
 
-                                        <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
+                                        <p><span className='text-[var(--text-disable)]'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
                                     
-                                        <p><span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
+                                        <p><span className='text-[var(--text-disable)]'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
 
                                 </div>
 
@@ -259,7 +258,7 @@ const ClubCoachDetails = () => {
                     {/* trigger coach status button */}
                     {
                         coachDetails && coachDetails.data.status === 'Disable' &&
-                            <div className='fixed bottom-[3.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                            <div className='fixed bottom-[4rem] w-[90%]  rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
                                 <button className={`${ButtonStyles.addButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
                                     <p>درخواست همکاری مجدد </p>
                                 </button>
@@ -268,7 +267,7 @@ const ClubCoachDetails = () => {
 
                     {
                         coachDetails && coachDetails.data.status === 'Active'  &&
-                            <div className='fixed bottom-[3.5rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                            <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
                                 <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
                                     <p>پایان همکاری</p>
                                 </button>

@@ -152,7 +152,7 @@ const ClubCoaches = () => {
                                                     />
                                                 </button>
 
-                                                <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                                     صفحه ی {pageNumber}
                                                 </p>
 
@@ -171,7 +171,7 @@ const ClubCoaches = () => {
                                         }
                                     </>
                                 : 
-                                <p style={{color:' var(--red-text)'}}>مربی فعالی در باشگاه وجود ندارد</p>
+                                <p style={{color:' var(--text-error)'}}>مربی فعالی در باشگاه وجود ندارد</p>
                                 }
                             </div>
                         }
@@ -208,7 +208,7 @@ const ClubCoaches = () => {
                                                     />
                                                 </button>
 
-                                                <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                                     صفحه ی {pageNumberPrevious}
                                                 </p>
 
@@ -227,7 +227,7 @@ const ClubCoaches = () => {
                                         }
                                     </>
                                     :
-                                    <p style={{color:' var(--red-text)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
+                                    <p style={{color:' var(--text-error)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
                                 }
                             </div>
                         }
@@ -235,21 +235,20 @@ const ClubCoaches = () => {
 
                     <div className='flex flex-col w-full gap-y-2 mt-2'>
                         { coachData && 
-                            <p className=' self-start text-[var(--yellow-text)]'>{coachData.data.fullName}</p>
+                            <p className=' self-start text-[var(--text-accent)]'>{coachData.data.fullName}</p>
                         }
                         { coachDataLoading && coachId.length > 5 &&
-                            <p className=' self-start text-[var(--red-text)]'>...در حال جستجوی مربی</p>
+                            <p className=' self-start text-[var(--text-error)]'>...در حال جستجوی مربی</p>
                         }
                         { coachDataError && coachId.length > 5 &&
-                            <p className=' self-start text-[var(--notification-red)]'>مربی یافت نشد!</p>
+                            <p className=' self-start text-[var(--text-error)]'>مربی یافت نشد!</p>
                         }
                         <div className='w-full flex justify-between relative items-center'>
                             <div className='w-[70%] flex flex-col'>
                                 <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                             </div>
                             <span
-                                className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-[var(--bg-color)] cursor-pointer`}
-                                style={{ background: 'var(--yellow-button-bg)' }}
+                                className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium  cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
                                 onClick={handleAddCoachToClub}
                                 disabled={addCoachToClubLoading}
                             >
