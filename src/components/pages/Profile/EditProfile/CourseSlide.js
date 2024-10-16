@@ -32,8 +32,8 @@ const CourseSlide = ({courseData}) => {
 
             <Box sx={{ width: '100%' }}>
                 <LinearProgress variant="determinate" value={courseData.percent + theOne} 
-                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--diffrential-blue)', '& .MuiLinearProgress-bar': {
-                    backgroundColor: 'var(--red-text)' // Change this to your desired color
+                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--bg-output-default)', '& .MuiLinearProgress-bar': {
+                    backgroundColor: 'var(--text-error)' // Change this to your desired color
                 }}} />
             </Box>
 

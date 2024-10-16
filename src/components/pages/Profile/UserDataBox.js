@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import GradientStyles from '../../../styles/gradients/Gradient.module.css'
+import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import { Avatar } from '@mui/material';
@@ -53,16 +53,16 @@ const UserDataBox = ({hasCoach}) => {
 
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
+                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
                             <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
                         </div>
 
                         <div className=' gap-y-[8px] md:space-y-5 flex flex-col items-center' >
                             <p className=' font-normal text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data.data.levelName &&
-                                <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>{!data.data.isStarter && 'گواهینامه' } {data.data.levelName} </p>
+                                <p className=' font-normal text-xs w-36 text-textDisabled' >{!data.data.isStarter && 'گواهینامه' } {data.data.levelName} </p>
                             }
-                            <p className=' font-normal text-xs w-36' style={{color:'var(--softer-white)'}}>کد کاربری: {data.data.userId}</p>
+                            <p className=' font-normal text-xs w-36 text-textDisabled'>کد کاربری: {data.data.userId}</p>
                         </div>
 
                     </div>
@@ -93,7 +93,7 @@ const UserDataBox = ({hasCoach}) => {
 
                         </div>
 
-                        <Link to='/editProfile/changeProfile' className={`${GradientStyles.container2} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
+                        <Link to='/editProfile/changeProfile' className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
 
                         <ChangePicPopUp isUserPhotoAvailable={data.data.image} showPopup={showPopUp} setShowPopup={setShowPopup} />
                     </div>

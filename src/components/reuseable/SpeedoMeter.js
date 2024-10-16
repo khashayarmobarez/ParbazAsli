@@ -59,7 +59,7 @@ const SpeedoMeter = (props) => {
                             strokeLinecap: 'round',
                             transform: 'rotate(-126deg)',
                             transformOrigin: 'center center',
-                            stroke: '#353A65'
+                            stroke: 'var(--bg-output-default)'
                             },
                             path: {
                             strokeLinecap: 'round',
@@ -68,7 +68,7 @@ const SpeedoMeter = (props) => {
                             stroke: 'url(#gradient)',
                             },
                             text: {
-                            fill: '#A5E65E',
+                            fill: 'var(--text-accent)',
                             fontSize:'10px'
                             },
                         }}
@@ -80,10 +80,10 @@ const SpeedoMeter = (props) => {
     
                 {/* the circle behind the text */}
             <div onClick={handleEditParachute(parachuteData.id)} className={` absolute w-[116px] h-[116px] rounded-full flex justify-center items-center`} 
-            style={{background:'var(--speedometer-background)',
-            boxShadow: 'var(--speedometer-boxShadow)',
+            style={{background:'var(--bg-button-secondary-default)',
+            boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)',
             }}>
-                <p className=' text-[#A5E65E] text-xs'>تمدید زود هنگام</p>
+                <p className=' text-textAccent text-xs'>تمدید زود هنگام</p>
             </div>
 
         </div>

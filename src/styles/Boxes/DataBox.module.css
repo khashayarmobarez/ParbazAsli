@@ -9,9 +9,8 @@
 .containerChangeOwnership {
     min-height: 3rem;
     border-radius: 20px;
-    background: linear-gradient(26.79deg, #353A65 -8.03%, rgba(42, 46, 81, 0) 111.88%),#131423;
-    box-shadow: -3px 4px 5.800000190734863px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E;
-
+    background: var(--bg-card);
+    box-shadow: var(--shadow-all);
 }
 
 

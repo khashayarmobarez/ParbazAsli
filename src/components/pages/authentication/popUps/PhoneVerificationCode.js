@@ -105,11 +105,11 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                     onClick={() => setShowPopup(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
-                <h3 className="text-[var(--yellow-text)] text-xl">کد تایید</h3>
+                <h3 className="text-textAccent text-xl">کد تایید</h3>
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                     {inputRefs.current.map((ref, index) => (
                         <input
-                            style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid ', background: 'transparent'}}
+                            style={{ border: 'none', borderBottom: '2px var(--text-accent) solid ', background: 'transparent'}}
                             className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                             key={index}
                             type="text"
@@ -127,7 +127,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
 
                 {
                     isForEmail &&
-                    <p className='mt-6 text-xs text-[var(--red-text)]'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
+                    <p className='mt-6 text-xs text-textError'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
                 }
 
                 {
@@ -139,7 +139,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32 mt-6 mb-4`} onClick={handleSubmit}>ثبت</button>
                 <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
                 <p className={isLoading ? "text-light-yellow mt-1" : "hidden"} aria-live="assertive">  ... صبر کنید اطلاعات در حال بارگذاری می باشد</p>
-                <p className={errMsg ? "text-sm text-[#ED553B]" : "hidden"} aria-live="assertive"> {errMsg}</p>
+                <p className={errMsg ? "text-sm text-textError" : "hidden"} aria-live="assertive"> {errMsg}</p>
 
             </form>
         </div>

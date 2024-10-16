@@ -400,7 +400,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     onFocus={() => setInputFocus(true)}
                                     onBlur={() => setInputFocus(false)}
                                 /> */}
-                                <p className='text-[var(--yellow-text)] text-xl'>شماره‌ تلفن یا ایمیل خود را وارد کنید</p>
+                                <p className='text-textAccent text-xl'>شماره‌ تلفن یا ایمیل خود را وارد کنید</p>
 
                                 <TextInput
                                     value={input}
@@ -420,11 +420,11 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                         {   showCodeInput && !showPassChangeInput &&
                             <>
-                                <h3 className="text-[var(--yellow-text)] text-xl">کد تایید</h3>
+                                <h3 className="text-textAccent text-xl">کد تایید</h3>
                                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                                     {inputRefs.map((ref, index) => (
                                         <input
-                                            style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid ', background: 'transparent'}}
+                                            style={{ border: 'none', borderBottom: '2px var(--text-accent) solid ', background: 'transparent'}}
                                             className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                                             key={index}
                                             type="text"
@@ -442,7 +442,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                 
                                 {
                                     isEmail &&
-                                    <p className=' text-xs font-medium text-[var(--red-text)] -mb-4'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
+                                    <p className=' text-xs font-medium text-textAccent -mb-4'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
                                 }
                                 <p className={`${codeRemainingTime ? "text-light-yellow my-4" : "hidden"} text-xs font-medium`} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
 
@@ -492,7 +492,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
 
                         {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کنید اطلاعات در حال بارگذاری می باشد</p> */}
-                        <p className={errMsg ? "text-[#ED553B] text-sm" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                        <p className={errMsg ? "text-textError text-sm" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     </form>
                 </div>
             )}

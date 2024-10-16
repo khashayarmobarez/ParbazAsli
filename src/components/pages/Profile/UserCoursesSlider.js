@@ -34,13 +34,13 @@ const UserCoursesSlider = ({coursesData}) => {
               .swiper-button-next,
               .swiper-button-prev {
                 margin-top:5.5rem;
-                background-color: var(--profile-buttons-background);
-                box-shadow:var(--profile-buttons-boxShadow);
-                padding: 3px;
+                background-color: var(--bg-button-secondary-default);
+                box-shadow:var(--shadow-button-dark),var(--shadow-button-white);
+                padding: 5px;
                 width:12px;
                 height:12px;
                 border-radius: 100%;
-                color: var(--softer-white);
+                color: var(--text-disabled);
                 z-index: 50;
               }
               .swiper-button-next {
@@ -53,7 +53,7 @@ const UserCoursesSlider = ({coursesData}) => {
               .swiper-pagination-bullet{
                 width: 6px;
                 height: 6px;
-                background-color: var(--softer-white);
+                background-color: var(--text-disabled);
               }
               ${
                 isDesktop

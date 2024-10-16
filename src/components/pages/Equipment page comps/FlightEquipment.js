@@ -198,8 +198,7 @@ const FlightEquipment = () => {
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
                                 <div className='w-full flex flex-col items-center'>
 
-                                    <div key={equipment.id} className={` z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
-                                    style={{background:'var(--equipments-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                                    <div key={equipment.id} className={`bg-bgCard shadow-shadowAll z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} >
 
                                         {
                                             equipment.status === 'Pending' &&
@@ -377,7 +376,7 @@ const FlightEquipment = () => {
 
             
 
-            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[3.2rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[3.8rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
