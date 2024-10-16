@@ -11,7 +11,7 @@ const FixedInput = ({ textData }) => {
     return (
         <div className='w-full'>
             <div className='flex relative w-[100%] h-12 px-2'>
-                <span style={{ color: 'var(--disabled-button-text)' }}>
+                <span style={{ color: 'var(--text-input-default)' }}>
                     <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
                 </span>
                 <input 

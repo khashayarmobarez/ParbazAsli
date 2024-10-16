@@ -13,7 +13,7 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
 
     return (
             <div className={` flex relative w-[100%] h-12 px-2`}>
-                <span style={{color:'var(--disabled-button-text)'}}> 
+                <span style={{color:'var(--text-input-default)'}}> 
                 {(isPhoneNumber || isForPhone) ? (
                     <LocalPhoneRoundedIcon
                         sx={{ position: 'absolute', margin: '10px 5px 0 0' }}
@@ -29,13 +29,13 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                     onChange={onChange}
                     id={id}
                     placeholder={placeH}
-                    className={`w-[100%] text-xs font-medium pr-8 rounded-r-2xl rounded-l-none`}
+                    className={`w-[100%] text-xs font-medium pr-8 rounded-r-2xl rounded-l-none border border-borderInputDefault`}
                     style={{
-                        background: 'var(--dark-input-bg)',
-                        boxShadow: 'var(--dark-input-boxShadow)',
+                        background: 'none',
+                        boxShadow: 'var(--shadow-all)',
                     }}
                 />
-                <button disabled={isLoading} onClick={onSubmit} className={`${gradients.clipboardButtonBackgroundGradient} ${isLoading && 'opacity-50'} 
+                <button disabled={isLoading} onClick={onSubmit} className={`bg-bgButtonSecondaryDefault shadow-shadowAll ${isLoading && 'opacity-50'} 
                 w-24 h-12 flex items-center justify-center rounded-l-2xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}>
                     <p>{buttonText}</p> 
                 </button>
