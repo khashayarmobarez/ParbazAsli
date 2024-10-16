@@ -9,7 +9,7 @@
 /* for add new vehicle component */
 .inputDropdown {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 0.5px solid var(--input-border);
+    border: 1px solid var(--border-input-default);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 2.2rem 0 0;
@@ -30,21 +30,21 @@
 
 /* for add new vehicle component  */
 .inputText2 {
-    background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 0.5px solid var(--input-border);
-    box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
+    background: none;
+    border: 1px solid var(--border-input-default);
+    box-shadow: none;
     appearance: none;
     border-radius: 0.75rem;
     font-size: 14px;
 }
 
 .inputText2::placeholder {
-    color: #fff;
+    color: var(--text-input-default);
     font-size: 14px;
 }
 
 .inputFilledBorder {
-    border: 0.5px solid #7d906b;
+    border: 1px solid var(--border-input-success);
 }
 
 .inputEmptyAfterSubmitBorder {
@@ -54,7 +54,7 @@
 /* fixed Input */
 .fixedInput {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 0.5px solid var(--input-border);
+    border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 2rem 0 0;
@@ -70,7 +70,7 @@
 .passwordInput {
     font-size: 14px;
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 0.5px solid var(--input-border);
+    border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     appearance: none;
     padding: 0 2rem 0 0;
@@ -118,7 +118,7 @@
 /* date input */
 .dateContainer {
     background: linear-gradient(0deg, #181A2D, #181A2D), linear-gradient(215.85deg, rgba(238, 238, 238, 0.46) -45.31%, rgba(238, 238, 238, 0) 168.95%);
-    border: 0.5px solid var(--input-border);
+    border: 1px solid var(--input-border);
     box-shadow: -3px 4px 4px 1px rgba(0, 0, 0, 0.32);
     border-radius: 0.75rem;
     position: relative;

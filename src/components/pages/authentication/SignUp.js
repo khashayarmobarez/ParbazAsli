@@ -321,7 +321,7 @@ const SignUp = () => {
             {
             error && 
                 <div className='w-full min-h-[71vh]'>
-                    <p style={{color:'var(--notification-red)'}}>مشکلی پیش آماده بعدا دوباره تلاش کنید</p>
+                    <p className='text-textError'>مشکلی پیش آماده بعدا دوباره تلاش کنید</p>
                 </div>
             }
             
@@ -395,7 +395,7 @@ const SignUp = () => {
                             disabled={submitLoading ? true : false}
                             >
                             {submitLoading ?
-                                <CircularProgress sx={{ color: 'var(--dark-blue-bg)' }} size={25} />
+                                <CircularProgress sx={{ color: 'var(textAccent)' }} size={25} />
                                 :
                                 <>
                                     ثبت نام
@@ -408,7 +408,7 @@ const SignUp = () => {
                         </div>
 
 
-                        {/* <p ref={errRef} className={errMsg ? `text-[#ED553B]` : "hidden"} aria-live="assertive">{errMsg}</p> */}
+                        {/* <p ref={errRef} className={errMsg ? `` : "hidden"} aria-live="assertive">{errMsg}</p> */}
                         <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کنید</p>
 
                     </form>

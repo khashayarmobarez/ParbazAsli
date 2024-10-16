@@ -4,7 +4,7 @@
 }
 
 .buttonsContainer {
-    background: linear-gradient(195.31deg, #353A65 34.63%, rgba(42, 46, 81, 0) 100.99%);
+    background: var(--bg-menu);
     width: 100%;
     box-shadow: -3px 4px 5.8px 5px #00000045, 3px -4px 4px 0px #B3AAAA2E;
     height: 75px;

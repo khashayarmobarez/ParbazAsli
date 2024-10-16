@@ -30,7 +30,7 @@ const styles = {
       background: 'var(--bg-menu)',
       borderRadius: '0',
       Bottom:'2rem',
-      height:'calc(4rem + env(safe-area-inset-bottom,5))',
+      height:'calc(65px + env(safe-area-inset-bottom,5))',
       '@media screen and (min-width: 768px)': {
         borderRadius: '2rem 0 0 2rem',
         right: 0,
@@ -98,9 +98,9 @@ const Footer = ({ userRole }) => {
           setValue(newValue);
           }}
           >
-            <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}} />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-            <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px', marginTop:'2px' }}>لاگ</Typography>} icon={<AddIcon className={`${GradientStyles.container}`} sx={{ borderRadius:'8px', width:'1.75rem', height: '1.6rem', marginBottom:'0px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
-            <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>لاگ بوک</Typography>} icon={<FolderOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}}/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? '#A5E65E' : 'inherit' }, color:'var(--neutral-light)'}} />
+            <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}} />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/profile' ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
+            <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px', marginTop:'2px' }}>لاگ</Typography>} icon={<AddIcon sx={{ borderRadius:'8px', width:'30px', height: '30px', marginBottom:'2px', border: 'solid 1.5px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl === '/addFlight' ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
+            <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>لاگ بوک</Typography>} icon={<FolderOutlinedIcon sx={{width:'1.28rem', height:'1.28rem'}}/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl === '/flightHistory' ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
           </BottomNavigation>
         </Box>
       </ThemeProvider>

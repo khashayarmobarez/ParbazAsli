@@ -5,74 +5,85 @@ module.exports = {
   ],
   theme: {
     colors: {
-  //     --background-page-main: #e0e1e3;
+      // overall
+      bgPageMain: 'var(--bg-page-main)',
+      textAccent: 'var(--text-accent)',
+      textDefault: 'var(--text-default)',
+      textDisabled: 'var(--text-disabled)',
+      textError: 'var(--text-error)',
 
-  // /* buttons */
-  //   /* main */
-  //   --button-main-default: #23BC7C;
-  //   --button-main-hover: #20A970;
-  //   --button-main-active: #1C9663;
+      // main button
+      bgButtonMainDefault: 'var(--bg-button-main-default)',
+      bgButtonMainHover: 'var(--bg-button-main-hover)',
+      bgButtonMainActive: 'var(--bg-button-main-active)',
+      textButtonMainDefault: 'var(--text-button-main-default)',
+      textButtonMainDisabled: 'var(--text-button-main-disabled)',
 
-  //   /* secondary */
-  //   --button-secondary-default: #323941;
-  //   --button-secondary-hover: #2D333B;
-  //   --button-secondary-active: #282E34;
-  //   --button-secondary-disable: #323232;
-    
-  //   /* profile */
-  //   --button-profile-default: #1E2227;
-  //   --button-profile-hover: #1B1F23;
-  //   --button-profile-active: #181C20;
-  //   --button-profile-disable: #323232;
-    
-  //   /* input */
-  //   --input-dropdown: #323941;
-  //   --input-placeHolder:  #323941;
-  //   --input-selectedOption: #262B31
+      // second button
+      bgButtonSecondaryDefault: 'var(--bg-button-secondary-default)',
+      bgButtonSecondaryHover: 'var(--bg-button-secondary-hover)',
+      bgButtonSecondaryActive: 'var(--bg-button-secondary-active)',
+      bgButtonSecondaryDisabled: 'var(--bg-button-secondary-disabled)',
 
-  //   /* outputs */
-  //   --output-Default: #262B31;
-  //   --selected-options: #2D333B;
+      // button profile
+      bgButtonProfileDefault: 'var(--bg-button-profile-default)',
+      bgButtonProfileHover: 'var(--bg-button-profile-hover)',
+      bgButtonProfileActive: 'var(--bg-button-profile-active)',
+      bgButtonProfileDisabled: 'var(--bg-button-profile-disabled)',
+      textButtonProfileDefault: 'var(--text-button-profile-default)',
+      textButtonProfileDisable: 'var(--text-button-profile-Disable)',
+      textButtonProfileActive: 'var(--text-button-profile-active)',
 
-  //   /* popups */
-  //   --popup-Default: #323941;
-  //   --popup-header-footer: #2D333B;
+      // input
+      bgInputDropdown: 'var(--bg-input-dropdown)',
+      bgInputSelectedOption: 'var(--bg-input-selected-option)',
+      borderInputSuccess: 'var(--border-input-success)',
+      borderInputError: 'var(--border-input-error)',
+      borderInputDefault: 'var(--border-input-default)',
+      borderInputSelected: 'var(--border-input-selected)',
+      textInputDefault: 'var(--text-input-default)',
+      textInputSelected: 'var(--text-input-selected)',
+      textInputError: 'var(--text-input-error)',
+      textInputSuccess: 'var(--text-input-success)',
 
-  //   /* cards */
-  //   --card-bg: #323941;
+      // outputs
+      bgOutputDefault: 'var(--bg-output-default)',
+      bgOutputSelectedOption: 'var(--bg-output-selected-option)',
+      borderOutput: 'var(--border-output)',
 
-  //   /* menus(navbar, footer) */
-  //   --menu-bg: #1E2227:
+      // pop ups
+      bgPopUpDefault: 'var(--bg-pop-up-default)',
+      bgPopUpHeaderFooter: 'var(--bg-pop-up-header-footer)',
 
-  //   /* tabs */
-  //   --tab-Default: #2D333B;
-  //   --tab-active:#20A970;
-  //   --tab-hover: #23BC7C;
+      // cards
+      bgCard: 'var(--bg-card)',
 
-  //   /* page headers */
-  //   --page-header-bg: #282E34;
+      //  menu(navbar,footer) 
+      bgMenu: 'var(--bg-menu)',
 
-  //   /* borders and strokes  */
-  //   --border-checkBox: #23BC7C;
-  //   --divider-active: #23BC7C;
-  //   --divider-default: #EEEEEE;
-  //   --border-outputs: #EEEEEE;
-  //   --border-input-success: #23BC7C;
-  //   --border-input-error: #DC3545;
-  //   --border-input-default: #535353;
-  //   --border-input-active: #EEEEEE;
+      // tab and header
+      bgTabActive: 'var(--bg-tab-active)',
+      bgTabHover: 'var(--bg-tab-hover)',
+      bgTabDefault: 'var(--bg-tab-default)',
+      bgHeader: 'var(--bg-header)',
 
-  //   /* icons */
-  //   --icon-active: #23BC7C;
-  //   --icon-default: #EEEEEE;
-  //   --icon-disable: #535353;
+      // checkbox
+      borderCheckbox: 'var(--border-checkbox)',
 
+      // divider
+      bgDividerActive: 'var(--bg-divider-active)',
+      bgDividerDefault: 'var(--bg-divider-default)',
 
-  //   /* texts */
-  //   --text-accent: #23BC7C;
-  //   --text-default: #EEEEEE;
-  //   --text-disable: #535353;
-  //   --text-input-placeholder:#767779;
+      // icon
+      iconActive: 'var(--icon-active)',
+      iconDefault: 'var(--icon-default)',
+      iconDisable: 'var(--icon-disable)',
+
+      // shadow
+      shadowAll: 'var(--shadow-all)',
+      shadowButtonWhite: 'var(--shadow-button-white)',
+      shadowButtonDark: 'var(--shadow-button-dark)',
+
     },
     extend: {},
   },

@@ -6,6 +6,7 @@
 /* nav menu */
 .navList {
 top: 0;
+color:var(--text-default);
 padding: 6rem 0 18vh 0;
 position: fixed;
 display: flex;

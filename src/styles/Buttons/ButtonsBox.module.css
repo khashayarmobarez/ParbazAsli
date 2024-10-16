@@ -43,21 +43,21 @@
 .normalButton {
   min-width: 110px;
   min-height: 48px;
-  background:  var(--profile-buttons-background),var(--bg-color);
-  box-shadow: var(--profile-buttons-boxShadow);
+  background:  var(--bg-button-secondary-default);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
   border-radius: 2rem;
 }
 
 .normalButton:hover{
-  background: var(--yellow-button-bg);
-  box-shadow: var(--shadow-button-white),var(--yellow-button-boxShadow);
-  color: rgba(33, 40, 41, 1); 
+  background: var(--bg-button-secondary-hover);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
+  color: var(--text-button-main-default); 
 }
 
 .activeYellow {
   background: var(--bg-tab-active);
   box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
-  color: rgba(33, 40, 41, 1); 
+  color: var(--text-button-main-default); 
   font-weight: 500;
 }
 
@@ -74,17 +74,17 @@
 }
 
 .addButton:hover {
-  background: var(--profile-buttons-background);
-  box-shadow: var(--profile-buttons-boxShadow);
-  color: var(--soft-white);
-  font-weight: 400;
+  background: var(--bg-button-main-hover);
+  box-shadow: var(--shadow-all);
 }
 
 .addButton:active {
-  background: var(--profile-buttons-background);
-  box-shadow: var(--profile-buttons-boxShadow);
-  color: var(--soft-white);
-  font-weight: 400;
+  background: var(--bg-button-main-active);
+  box-shadow: var(--shadow-all);
+}
+
+.profileButton {
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
 }
 
 

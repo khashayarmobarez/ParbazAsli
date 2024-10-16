@@ -25,6 +25,7 @@ import LoginIcon from '@mui/icons-material/Login';
 // styles
 import GradientStyles from '../../styles/gradients/Gradient.module.css'
 import styles from './Navbar.module.css';
+import buttonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // react router dom
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -146,7 +147,6 @@ const Navbar = ({toggleTheme ,userRole}) => {
                         
                             <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
                             style={{ background: isOpen ? 'var(--bg-menu)' : 'none',
-                            border: '1px solid rgba(17, 24, 39, 0.1)',
                             boxShadow: isOpen ? 'var(--shadow-all)' : 'none',
                                 }}
                             >
@@ -169,10 +169,8 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     </>
                                     }
                                 </ul>
-                                {!token ?
-                                <Link to='/signUpLogin' onClick={() => clickInput()} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-3xl text-lg mt-6 md:hidden`} style={{border:'1px solid var(--text-accent)'}}> ورود / ثبت نام</Link>
-                                :
-                                <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${GradientStyles.container} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
+                                {token &&
+                                <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
                                 }
                             </div>
                         </nav>

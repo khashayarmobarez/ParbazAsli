@@ -27,8 +27,8 @@ code {
   /* overall */
   --bg-page-main: #e0e1e3;
   --text-accent:#23BC7C;
-  --text-default:#EEEEEE;
-  --text-disabled:#535353;
+  --text-default:#3E3E3E;
+  --text-disabled:#CACACA;
   --text-error:#DC3545;
 
   /* main button */
@@ -39,19 +39,19 @@ code {
   --text-button-main-disabled:#535353;
 
   /* second button */
-  --bg-button-secondary-default:#323941;
-  --bg-button-secondary-hover:#2D333B;
-  --bg-button-secondary-active:#282E34;
-  --bg-button-secondary-disabled:#323232;
+  --bg-button-secondary-default:#E0E1E3;
+  --bg-button-secondary-hover:#BFC2C4;
+  --bg-button-secondary-active:#323941;
+  --bg-button-secondary-disabled:#CACACA;
 
   /* button profile */
-  --bg-button-profile-default:#323941;
-  --bg-button-profile-hover:#2D333B;
-  --bg-button-profile-active:#2D333B;
-  --bg-button-profile-disabled:#323232;
+  --bg-button-profile-default:#EBEBEC;
+  --bg-button-profile-hover:#E0E1E3;
+  --bg-button-profile-active:#BFC2C4;
+  --bg-button-profile-disabled:#CACACA;
   --text-button-profile-default:#23BC7C;
-  --text-button-profile-Disable:#535353;
-  --text-button-profile-active:#eee;
+  --text-button-profile-Disable:#CACACA;
+  --text-button-profile-active:#3E3E3E;
 
   /* input */
   --bg-input-dropdown:#323941;  
@@ -60,22 +60,22 @@ code {
   --border-input-error: #DC3545;
   --border-input-default: #535353;
   --border-input-selected: #eee;
-  --text-input-default:#767779;
-  --text-input-selected:#EEEEEE;
+  --text-input-default:#B1B2B5;
+  --text-input-selected:#3E3E3E;
   --text-input-error:#DC3545;
   --text-input-success:#23BC7C;
 
   /* outputs */
-  --bg-output-default:#262B31;  
-  --bg-output-selected-option:#2D333B;
-  --border-output: #EEEEEE;
+  --bg-output-default:#EBEBEC;  
+  --bg-output-selected-option:#EBEBEC;
+  --border-output: #BFC2C4;
 
   /* pop ups */
-  --bg-pop-up-default:#323941;
-  --bg-pop-up-header-footer:#2D333B;
+  --bg-pop-up-default:#EBEBEC;
+  --bg-pop-up-header-footer:#EBEBEC;
 
   /* cards */
-  --bg-card:#323941;
+  --bg-card:#EBEBEC;
 
   /* menu(navbar,footer) */
   --bg-menu:#E0E1E3;
@@ -83,22 +83,22 @@ code {
   /* tabs */
   --bg-tab-active:#23BC7C;
   --bg-tab-hover:#20A970;
-  --bg-tab-default:#2D333B;
+  --bg-tab-default:#EBEBEC;
 
   /* Headers */
-  --bg-header:#282E34;
+  --bg-header:#EBEBEC;
 
   /* check box */
   --border-checkbox:#23BC7C;
 
   /* divider */
   --bg-divider-active:#23BC7C;
-  --bg-divider-default:#EEEEEE;
+  --bg-divider-default:#3E3E3E;
 
   /* icons */
   --icon-active:#23BC7C;
-  --icon-default:#EEEEEE;
-  --icon-disable:#535353;
+  --icon-default:#3E3E3E;
+  --icon-disable:#CACACA;
 
   --shadow-all: -0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
   --shadow-button-white: 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51);
