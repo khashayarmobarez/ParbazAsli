@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,6 +13,10 @@ const TimeInput = ({ value, onChange }) => {
     setSelectedTime(newValue);
     onChange(newValue);
   };
+
+  useEffect(() => {
+    console.log(selectedTime.$D);
+  }, [selectedTime]);
 
   const CustomInput = React.forwardRef((props, ref) => {
     const { inputProps, InputProps, ...other } = props;
@@ -30,7 +34,7 @@ const TimeInput = ({ value, onChange }) => {
             border: '1px solid var(--border-input-default)',
             borderRadius: '0.75rem',
             background: 'none',
-            color: 'var(--text-default)',
+            color: selectedTime.$D ? 'var(--text-default)' : 'var(--text-disabled)',  
             fontSize: '14px',
           }}
         />
@@ -52,7 +56,7 @@ const TimeInput = ({ value, onChange }) => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <MobileTimePicker
           ampm={false}
-          value={selectedTime}
+          value={selectedTime.$D ? 'زمان' : selectedTime}
           onChange={handleTimeChange}
           components={{
             TextField: CustomInput,

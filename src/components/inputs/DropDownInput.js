@@ -41,7 +41,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
       </span>
       <select
         ref={selectRef}
-        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} h-full w-full`} // Add right padding
+        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} ${!selectedOption && 'text-textDisabled'} h-full w-full `} // Add right padding
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={handleChange}

@@ -31,7 +31,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
       }
 
       <select
-        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%] placeholder:text-textDisabled`}
+        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]  placeholder:text-textDisabled`}
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={(event) => {

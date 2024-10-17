@@ -31,7 +31,7 @@ const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange
       }
 
       <select
-        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%]`}
+        className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%] ${!selectedOption && 'text-textDisabled'}`}
         id="dropdown"
         value={selectedOption ? selectedOption.id : ''}
         onChange={(event) => {
