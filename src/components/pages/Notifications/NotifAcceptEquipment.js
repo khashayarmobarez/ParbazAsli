@@ -92,7 +92,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
 
     return (
         <div className=' w-full h-auto rounded-3xl flex items-center justify-between px-6 py-2' 
-        style={{background:'var(--Basic-dataBox-bg)', boxShadow:'var(--dark-input-boxShadow)', color:'var(--soft-white)', border: notif.status === 'Pending' ? '1px solid var(--yellow-text)' : '' }}>
+        style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'
             onClick={handleActivatePopUp}>
@@ -100,7 +100,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                 <div className=' flex items-center justify-center gap-x-2'>
                     {
                         !isRead &&
-                        <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--red-text)'}} />
+                        <div className='w-[10px] h-[10px] rounded-full bg-textError' />
                     }
                     <p className='text-base'>{title}</p>
                 </div>
@@ -119,13 +119,13 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         <button 
                         type="submit" 
                         disabled={true} 
-                        className='text-[var(--low-opacity-white)] font-medium' >
+                        className='text-textAccent font-medium' >
                             تایید
                         </button>
                         
                         <button 
                         disabled={true} 
-                        className='text-[var(--low-opacity-white)] font-medium'>
+                        className='text-textError font-medium'>
                             رد
                         </button>
 
@@ -141,14 +141,14 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         type="submit" 
                         disabled={loadingTriggerEquipmentStatus} 
                         onClick={(event) => handleSubmittingTranfer( 'Accepted', externalId, event) } 
-                        className='text-[var(--yellow-text)] font-medium' >
+                        className='text-textAccent font-medium' >
                             تایید
                         </button>
                         
                         <button 
                         disabled={loadingTriggerEquipmentStatus} 
                         onClick={(event) => handleSubmittingTranfer( 'rejected', externalId, event) } 
-                        className='text-[var(--red-text)] font-medium'>
+                        className='text-textError font-medium'>
                             رد
                         </button>
 

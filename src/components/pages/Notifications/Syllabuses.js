@@ -149,7 +149,7 @@ const Syllabuses = () => {
                         key={syllabus.id}
                         className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full"
                         style={{ backgroundColor: 'var(--syllabus-data-boxes-bg)' }}
-                    >
+                    > 
                         <div className="flex w-full justify-between items-center">
                             <p>{index + 1}.</p>
                             <p className='w-[60%]'>{syllabus.description}</p>

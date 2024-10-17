@@ -35,7 +35,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
   };
 
   return (
-    <div className="flex items-center relative w-[100%] h-12 rounded-xl">
+    <div className="flex items-center relative w-[100%] h-12 rounded-xl ">
       <span>
         <img src={icon || Cube} alt="icon" className="absolute -mt-3 mr-2 w-5" />
       </span>
@@ -47,7 +47,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
         onChange={handleChange}
       >
         
-      <option value="" className='w-full' disabled={isDeselectDeactivated}>{name}</option>
+      <option value="" className='w-full ' disabled={isDeselectDeactivated}>{name}</option>
         {options?.map((option) => (
           <option key={option.id} value={option.id}>{option.name}</option>
         ))}

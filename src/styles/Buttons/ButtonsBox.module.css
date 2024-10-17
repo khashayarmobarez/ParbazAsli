@@ -70,7 +70,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 2rem;
-  color:rgba(33, 40, 41, 1) ;
+  color:var(--text-default);
 }
 
 .addButton:hover {

@@ -132,7 +132,7 @@ const TandemSurvey = () => {
                         {
                             availablityLoading &&
                                 <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2 pt-56'>
-                                    <CircularProgress sx={{ color:'var(--yellow-text) '}} />
+                                    <CircularProgress sx={{ color:'var(--text-accent) '}} />
                                 </div>
                         }
 
@@ -140,7 +140,7 @@ const TandemSurvey = () => {
                             !availablityLoading && !IsSurveyAvailable &&
                             <div className='mt-32 flex flex-col items-center justify-center gap-y-6 w-full'>
                                 <img src={checkIcon} alt='check icon' className='w-32 h-32' />
-                                <p className='' style={{ color: 'var(--yellow-text)' }}>با تشکر از همکاری شما...</p>
+                                <p className='' style={{ color: 'var(--text-accent)' }}>با تشکر از همکاری شما...</p>
                                 <button onClick={() => navigate('/profile')} type="submit" className={`${ButtonStyles.addButton} w-32 h-12`}>صفحه اصلی</button>
                             </div>
                         }
@@ -165,7 +165,7 @@ const TandemSurvey = () => {
                                     />
                                 </div>
 
-                                <p className='text-center px-4 text-base mt-6 mb-2 text-[var(--yellow-text)]'>در صورت تمایل ویدیو پرواز خود را آپلود کنید</p>
+                                <p className='text-center px-4 text-base mt-6 mb-2 text-[var(--text-accent)]'>در صورت تمایل ویدیو پرواز خود را آپلود کنید</p>
 
                                 
                                 <div className="w-full">
@@ -195,16 +195,14 @@ const TandemSurvey = () => {
                                 {videoFiles.length > 0 && (
                                     <ul className="w-full text-xs mt-2">
                                         {videoFiles.map((file, index) => (
-                                            <li key={index} className='w-full px-4 py-3 gap-x-4 rounded-2xl flex justify-between items-center mt-4'
-                                            style={{background:  'var(--profile-buttons-background)',
-                                                boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                            <li key={index} className='w-full px-4 py-3 gap-x-4 rounded-2xl flex justify-between items-center mt-4 bg-bgCard shadow-lg'>
                                                     <p>{index + 1}</p>
                                                     <p>{file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name}</p> 
                                                     <RemoveIcon sx={{
                                                         background:  'var(--profile-buttons-background)',
                                                         boxShadow: 'var(--profile-buttons-boxShadow)',
                                                         borderRadius:'0.5rem',
-                                                        color:'var(--red-text)'}}
+                                                        color:'var(--text-error)'}}
                                                         onClick={() => handleRemoveVideo(file)}
                                                     />
                                             </li>

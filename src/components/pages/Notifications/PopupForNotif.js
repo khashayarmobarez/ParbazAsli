@@ -223,7 +223,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 {
                     popUpData &&
                     <>
-                        <h1 className='text-xl text-[var(--yellow-text)]' >توضیحات</h1>
+                        <h1 className='text-xl text-textAccent' >توضیحات</h1>
                         <p className='text-sm  md:text-base' >{popUpData.description}</p>
                         {   popUpData.type === 'StudentFlightForm' &&
                             (
