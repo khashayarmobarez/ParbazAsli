@@ -75,9 +75,9 @@ const AddFlightType = () => {
                                     <div className='w-full flex justify-between'>
                                         <div className='w-full flex justify-start items-enter gap-x-2'>
                                             {flightType.type === 'Course' ?
-                                                <div className=' w-4 h-4 rounded-full' style={{background:'var(--yellow-text)'}} />
+                                                <div className=' w-4 h-4 rounded-full' style={{background:'var(--text-accent)'}} />
                                                 : 
-                                                <div className=' w-4 h-4 rounded-full' style={{background:'var(--diffrential-blue)'}} />
+                                                <div className=' w-4 h-4 rounded-full' style={{background:'var(--text-disabled)'}} />
                                             }
                                             <p>{flightType.name}</p> 
                                         </div>

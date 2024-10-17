@@ -2,7 +2,7 @@
 /* profile user data and parachute stylings  */
 .containerDarkmode {
     min-height: 3rem;
-    background: var(--bg-header);
+    background: var(--bg-output-default);
     box-shadow: var(--shadow-all);
 }
 
