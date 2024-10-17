@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 export function useTheme() {
-  const [currentMode, setCurrentMode] = useState('auto');
+  const [currentMode, setCurrentMode] = useState('dark');
 
   const applyTheme = (theme) => {
     let appliedTheme = theme;

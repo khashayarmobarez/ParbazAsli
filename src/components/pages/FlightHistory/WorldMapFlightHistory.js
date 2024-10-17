@@ -38,7 +38,7 @@ const WorldMapFlightHistory = () => {
                         {
                             ({ geographies }) =>
                             geographies.map((geo) => (
-                            <Geography key={geo.rsmKey} geography={geo} fill='var(--text-color)' />
+                            <Geography key={geo.rsmKey} geography={geo} fill='var(--text-default)' />
                             ))
                         }
 

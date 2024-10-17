@@ -202,7 +202,7 @@ const ClubCourses = () => {
 
                                                             <p className='text-[var(--low-opacity-white)] -mt-1'>
                                                                 نام مربی:&nbsp;
-                                                                <span className='text-[var(--text-color)] text-sm'>{course.coachFullName}</span>
+                                                                <span className='text-textDefault text-sm'>{course.coachFullName}</span>
                                                             </p>
 
                                                             <div className='w-full flex justify-between items-center'>
