@@ -108,7 +108,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
             boxShadow: 'var(--profile-buttons-boxShadow)',
             borderRadius:'0.5rem',
-            color:'var(--red-text)'}}
+            color:'var(--text-error)'}}
             onClick={() => handleRemove(option)} className="cursor-pointer" />
           </div>
         ))}

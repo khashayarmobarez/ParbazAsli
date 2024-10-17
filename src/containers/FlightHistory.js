@@ -113,7 +113,7 @@ const FlightHistory = () => {
                         )}
 
                         {userFlights && userFlights.data.length === 0 && (
-                            <p className='text-base text-center font-medium mt-6' style={{ color: 'var(--red-text)' }}>
+                            <p className='text-base text-center font-medium mt-6' style={{ color: 'var(--text-error)' }}>
                                 هیچ پروازی یافت نشد
                             </p>
                         )}

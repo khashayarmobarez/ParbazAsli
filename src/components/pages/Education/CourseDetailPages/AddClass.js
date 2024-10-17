@@ -352,7 +352,7 @@ const AddClass = () => {
                                             <RemoveIcon sx={{background:  'var(--bg-output-default)',
                                             boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                             onClick={() => handleRemoveGuestStudents(index)} />
                                         </li>
                                     ))}

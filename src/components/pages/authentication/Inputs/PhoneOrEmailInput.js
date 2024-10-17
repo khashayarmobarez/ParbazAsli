@@ -70,7 +70,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
         />
       </div>
       <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}
-      style={{color:'var(--notification-red)'}}>
+      style={{color:'var(--text-error)'}}>
         <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> نام کاربری معتبر نمی باشد
       </p>
     </div>

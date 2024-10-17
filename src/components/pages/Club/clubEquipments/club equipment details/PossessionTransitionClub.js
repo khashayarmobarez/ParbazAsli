@@ -201,7 +201,7 @@ const PossessionTransitionClub = () => {
                             {/* {activeLink === 'temporary' ? 
                                 <h1 className=' text-xl font-medium text-[var(--text-accent)]'>انتقال موقت</h1>
                                 :
-                                <h1 className=' text-xl font-medium text-[var(--red-text)]'>انتقال دائمی</h1>
+                                <h1 className=' text-xl font-medium text-[var(--text-error)]'>انتقال دائمی</h1>
                             } */}
                             
                             {/* Serial Number input */}
@@ -219,7 +219,7 @@ const PossessionTransitionClub = () => {
                                 </div>
                             }
                             {receiverId && receiverId.length > 5 && !userByIdData &&
-                                <div className='flex gap-x-1 text-[var(--red-text)] self-start'>
+                                <div className='flex gap-x-1 text-[var(--text-error)] self-start'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>کاربر یافت نشد</p>
                                 </div>
@@ -250,12 +250,12 @@ const PossessionTransitionClub = () => {
                     }
                     {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
-                            <h1 className=' text-xl font-medium text-[var(--red-text)]'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
+                            <h1 className=' text-xl font-medium text-[var(--text-error)]'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
                             <h1 >بعد از تایید شما میتوانید مالکیت وسیله خود را انتقال دهید</h1>
                         </div>
                     }
                     {(EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
-                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-[var(--notification-red)]'>برای انتقال مالکیت, اول سریال وسیله پروازی خود را در قسمت ویرایش وارد کنید</h1>
+                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-[var(--text-error)]'>برای انتقال مالکیت, اول سریال وسیله پروازی خود را در قسمت ویرایش وارد کنید</h1>
                     }
 
             </div>

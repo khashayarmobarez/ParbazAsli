@@ -551,7 +551,7 @@ const AddCourse = () => {
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
@@ -581,7 +581,7 @@ const AddCourse = () => {
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
@@ -603,7 +603,7 @@ const AddCourse = () => {
                                         <p className=' self-start'>در حال بررسی هنرجو ... </p>
                                     }
                                     { studentError && studentId.length > 5 &&
-                                        <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                                        <p className='text-[var(--text-error)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                                     }
 
                                     <div className='w-full flex justify-between relative items-center'>
@@ -644,7 +644,7 @@ const AddCourse = () => {
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                              onClick={() => handleRemoveStudent(student)} />
                                         </li>
                                     ))}

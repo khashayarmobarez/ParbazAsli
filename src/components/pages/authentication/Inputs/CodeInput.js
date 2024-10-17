@@ -48,7 +48,7 @@ const CodeInput = ({ codeRef, onChange, value, focus, onFocus, onBlur }) => {
         />
       </div>
       <p id="codenote" className={`${value && !validCode && filled ? "instructions" : "hidden"}`}
-      style={{color:'var(--notification-red)'}}>
+      style={{color:'var(--text-error)'}}>
         <InfoOutlinedIcon /> کد تأیید باید فقط عدد باشد
       </p>
     </div>

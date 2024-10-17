@@ -59,7 +59,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
         />
       </div>
       <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} self-start text-start`}
-      style={{color:'var(--notification-red)'}}>
+      style={{color:'var(--text-error)'}}>
         <InfoOutlinedIcon /> شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
       </p>
     </div>

@@ -96,7 +96,7 @@ const PracticalFlightHistoryBox = (props) => {
                                 boxShadow: 'var(--organs-coachData-boxShadow)'}}>
 
                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
-                                    <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--notification-red)'}}></div>
+                                    <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                     <p>آیا این پرواز مورد تایید شما است؟</p>
                                 </div>
 
@@ -112,7 +112,7 @@ const PracticalFlightHistoryBox = (props) => {
                                         تایید
                                     </p>
 
-                                    <p onClick={(event) => handleDecline(event, flightBaseData.id)} disabled={declineLoading} className='text-[var(--red-text)] text-sm font-medium' >
+                                    <p onClick={(event) => handleDecline(event, flightBaseData.id)} disabled={declineLoading} className='text-[var(--text-error)] text-sm font-medium' >
                                         رد
                                     </p>
 

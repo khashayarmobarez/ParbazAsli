@@ -49,7 +49,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
         />
       </div>
       <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} self-start text-start`}
-      style={{color:'var(--notification-red)'}}>
+      style={{color:'var(--text-error)'}}>
         <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
         3 تا 24 کاراکتر<br />
         <InfoOutlinedIcon sx={{marginLeft:'5px'}} />

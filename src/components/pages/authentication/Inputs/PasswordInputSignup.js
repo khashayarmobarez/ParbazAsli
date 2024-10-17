@@ -104,7 +104,7 @@
             </span>
           </div>
           <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} self-start text-start`}
-          style={{color:'var(--notification-red)'}}>
+          style={{color:'var(--text-error)'}}>
             {
               (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
                 <>

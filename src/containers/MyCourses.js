@@ -180,7 +180,7 @@ const MyCourses = () => {
                                                                         backgroundColor: 'var(--bg-button-secondary-default)', 
                                                                         '& .MuiLinearProgress-bar': {
                                                                             backgroundColor: 
-                                                                            courseData.status === 'Active' ? 'var(--text-error)' :
+                                                                            courseData.status === 'Active' ? 'var(--text-warning)' :
                                                                             courseData.status === 'Completed' ? 'var(--text-accent)' :
                                                                             courseData.status === 'Canceled' ? 'var(--text-error)' :
                                                                             undefined, // Optional: A default value if none of the conditions match

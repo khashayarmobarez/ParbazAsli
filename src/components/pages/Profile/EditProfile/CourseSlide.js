@@ -23,17 +23,17 @@ const CourseSlide = ({courseData}) => {
     },[courseData])
 
     return (
-        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-[190px] z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
+        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-[190px] z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-0 mr-1 mt-1`}>
 
             <div className='w-full flex justify-between'>
                 <p className=' text-base'>{courseData.name}</p>
                 <p>{courseData.percent} %</p>
             </div>
 
-            <Box sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%',marginTop:'-0.5rem' }}>
                 <LinearProgress variant="determinate" value={courseData.percent + theOne} 
                 sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--bg-button-secondary-default)', '& .MuiLinearProgress-bar': {
-                    backgroundColor: 'var(--text-error)' // Change this to your desired color
+                    backgroundColor: 'var(--text-warning)' // Change this to your desired color
                 }}} />
             </Box>
 

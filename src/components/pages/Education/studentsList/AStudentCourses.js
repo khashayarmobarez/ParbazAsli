@@ -99,9 +99,9 @@ const AStudentCourses = () => {
                                             backgroundColor: 'var(--bg-button-secondary-default)', 
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
-                                                courseData.status === 'Active' ? 'var(--red-text)' :
+                                                courseData.status === 'Active' ? 'var(--text-error)' :
                                                 courseData.status === 'Completed' ? 'var(--text-accent)' :
-                                                courseData.status === 'Canceled' ? 'var(--notification-red)' :
+                                                courseData.status === 'Canceled' ? 'var(--text-error)' :
                                                 undefined, // Optional: A default value if none of the conditions match
                                             }
                                             }} 
@@ -150,7 +150,7 @@ const AStudentCourses = () => {
                                         boxShadow: 'var(--organs-coachData-boxShadow)'}}>
 
                                         <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
-                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--red-text)'}}></div>
+                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                             <p >آیا این دوره مورد تایید شما است؟</p>
                                         </div>
 
@@ -162,7 +162,7 @@ const AStudentCourses = () => {
                                                 </Box>
                                             }
                                             <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--text-accent)'}} />
-                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--notification-red)'}} />
+                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--text-error)'}} />
 
                                         </div>
                                     </div>

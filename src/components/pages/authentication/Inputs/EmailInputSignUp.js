@@ -49,7 +49,7 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
         />
       </div>
       <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} self-start text-start`}
-      style={{color:'var(--notification-red)'}}>
+      style={{color:'var(--text-error)'}}>
         <InfoOutlinedIcon /> لطفا یک آدرس ایمیل معتبر وارد کنید.
       </p>
     </div>

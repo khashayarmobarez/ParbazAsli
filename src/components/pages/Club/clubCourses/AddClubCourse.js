@@ -587,7 +587,7 @@ const AddClubCourse = () => {
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
@@ -617,7 +617,7 @@ const AddClubCourse = () => {
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
                                         </li>
                                     ))}
@@ -640,7 +640,7 @@ const AddClubCourse = () => {
                                         <p className='text-[var(--text-accent)] self-start'>در حال جستجو ...</p>
                                     }
                                     { studentError && studentId.length > 5 &&
-                                        <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                                        <p className='text-[var(--text-error)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                                     }
 
                                     <div className='w-full flex justify-between relative items-center'>
@@ -675,7 +675,7 @@ const AddClubCourse = () => {
                                             <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
                                             boxShadow: 'var(--profile-buttons-boxShadow)',
                                             borderRadius:'0.5rem',
-                                            color:'var(--red-text)'}}
+                                            color:'var(--text-error)'}}
                                              onClick={() => handleRemoveStudent(student)} />
                                         </li>
                                     ))}
