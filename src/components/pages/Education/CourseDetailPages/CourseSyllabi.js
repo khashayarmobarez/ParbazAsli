@@ -17,7 +17,7 @@ const CourseSyllabi = () => {
 
     
     return (
-        <div className=' w-full flex flex-col gap-y-7 pb-14'>
+        <div className=' w-full flex flex-col gap-y-4 pb-14'>
             {
                 syllabiDataTheory && syllabiDataPractical && syllabiDataTheory.data.length < 1 && syllabiDataPractical.data.length < 1 &&
                 <p className='w-full text-center'>سیلابسی برای این دوره ثبت نشده</p>

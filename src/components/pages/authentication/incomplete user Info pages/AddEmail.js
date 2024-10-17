@@ -266,7 +266,7 @@ const AddEmail = () => {
             {
                 !loading && !error &&
                 <>
-                    <p style={{color:'var(--red-text)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است</p>
+                    <p style={{color:'var(--text-error)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است</p>
 
 
                     {/* line and circle of adding flight level */}
@@ -274,25 +274,25 @@ const AddEmail = () => {
 
                         <div className='flex items-center justify-center w-full'>
                             
-                            <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
 
-                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-default)'}}></div>
 
-                            <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
 
-                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-default)'}}></div>
 
-                            <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
                         </div>
 
                         <div className='flex items-center justify-between w-[97%]'>
 
-                            <p className='' style={{color:'var(--soft-white)'}}>تاییدیه</p>
+                            <p className='' style={{color:'var(--text-default)'}}>تاییدیه</p>
 
-                            <p className='' style={{color:'var(--soft-white)'}}>گواهینامه</p>
+                            <p className='' style={{color:'var(--text-default)'}}>گواهینامه</p>
 
-                            <p className='' style={{color:'var(--yellow-text)'}}>احراز ایمیل</p>
+                            <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
 
                         </div>
 
@@ -317,7 +317,7 @@ const AddEmail = () => {
 
                     {
                         errMsg && 
-                        <p style={{color:'var(--red-text)'}}>{errMsg}</p>
+                        <p style={{color:'var(--text-error)'}}>{errMsg}</p>
                     }
 
                     <PhoneVerificationCode handleResendCode={handlePopUp} showPopup={showPopUpSubmit} setShowPopup={setShowPopupSubmit} codeRemainingTime={codeRemainingTime} code={code} setCode={setCode}

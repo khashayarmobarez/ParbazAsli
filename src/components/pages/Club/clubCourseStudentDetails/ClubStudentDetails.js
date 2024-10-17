@@ -84,7 +84,7 @@ const ClubCourseStudentDetails = () => {
                                                     <span className='text-[var(--text-accent)]'> تایید شده </span>
                                                     :
                                                     studentData.data.status === 'Pending' ?
-                                                    <span className='text-[var(--text-default)]'> در انتظار تایید </span>
+                                                    <span className='text-[var(--text-warning)]'> در انتظار تایید </span>
                                                     :
                                                     ''
                                         }

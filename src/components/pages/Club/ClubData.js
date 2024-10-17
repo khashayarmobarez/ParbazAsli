@@ -34,9 +34,7 @@ const ClubData = () => {
 
                     <div className='flex flex-col justify-center items-center ml-[6%] space-y-4 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
 
-                        <div
-                        onClick={() => setShowPopup(true)}
-                        className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
+                        <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.name} src={data.data.file?.path ? data.data.file.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
                             <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
                             <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
@@ -45,7 +43,7 @@ const ClubData = () => {
 
                     </div>
 
-                    <div className='w-full h-full flex flex-col items-start justify-between py-2 md:space-y-5'>
+                    <div className='w-full h-full flex flex-col items-start justify-between py-2 md:space-y-5 md:w-[50%] md:items-center'>
 
                         <div className=' flex justify-center items-start' >
                             <img src={clubCoaches} alt='icon'/>

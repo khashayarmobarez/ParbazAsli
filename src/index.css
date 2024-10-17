@@ -29,8 +29,9 @@ code {
   --text-accent:#23BC7C;
   --text-default:#3E3E3E;
   --text-default-opposite:#EEEEEE;
-  --text-disabled:#CACACA;
+  --text-disabled:#767779;
   --text-error:#DC3545;
+  --text-warning:#FF9900;
 
   /* main button */
   --bg-button-main-default:#23BC7C;
@@ -57,6 +58,7 @@ code {
   /* input */
   --bg-input-dropdown:#323941;  
   --bg-input-selected-option:#262B31;
+  --bg-upload-file:#161a1d;
   --border-input-success: #23BC7C;
   --border-input-error: #DC3545;
   --border-input-default: #535353;
@@ -65,7 +67,8 @@ code {
   --text-input-selected:#3E3E3E;
   --text-input-error:#DC3545;
   --text-input-success:#23BC7C;
-
+  --text-upload-file:#EEEEEE;
+  
   /* outputs */
   --bg-output-default:#EBEBEC;  
   --bg-output-selected-option:#EBEBEC;
@@ -144,6 +147,7 @@ code {
   /* input */
   --bg-input-dropdown:#323941;  
   --bg-input-selected-option:#262B31;
+  --bg-upload-file:#161a1d;
   --border-input-success: #23BC7C;
   --border-input-error: #DC3545;
   --border-input-default: #535353;
@@ -152,6 +156,7 @@ code {
   --text-input-selected:#EEEEEE;
   --text-input-error:#DC3545;
   --text-input-success:#23BC7C;
+  --text-upload-file:#EEEEEE;
 
   /* outputs */
   --bg-output-default:#262B31;  

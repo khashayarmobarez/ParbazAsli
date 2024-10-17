@@ -50,25 +50,25 @@ const AdminPending = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
                     </div>
 
                     <div className='flex items-center justify-between w-[98%]'>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>تاییدیه</p>
 
-                        <p className='mr-3 md:mr-0' style={{color:'var(--yellow-text)'}}>گواهینامه</p>
+                        <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>احراز ایمیل</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
 
                     </div>
 

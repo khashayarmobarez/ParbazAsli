@@ -186,7 +186,7 @@ const ClubCourses = () => {
                                                                             <span className='text-[var(--yellow-text)]'> فعال</span>
                                                                         }
                                                                         {course.status === 'Pending' &&
-                                                                            <span className='text-[var(--red-text)]'> در انتظار تایید</span>
+                                                                            <span className='text-[var(--text-warning)]'> در انتظار تایید</span>
                                                                         }
                                                                         {course.status === 'Disable' && 
                                                                             <span className='text-[var(--notification-red)]'> غیر فعال</span>

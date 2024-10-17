@@ -44,7 +44,7 @@ const DropdownInputForEquipment = ({ options, selectedOption, handleSelectChange
           {name}
         </option>
         {options?.map((option) => (
-          <option key={option.id} value={option.id}>
+          <option key={option.id} value={option.id} className='text-textDefault'>
             {option.brand} - {option.model}
           </option>
         ))}

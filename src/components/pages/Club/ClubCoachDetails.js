@@ -139,7 +139,7 @@ const ClubCoachDetails = () => {
                             <p className='text-[var(--text-disable)]'>
                                 وضعیت:
                                 {coachDetails.data.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
-                                {coachDetails.data.status === 'Pending' && <span style={{color:'var(--text-error)'}}> در انتظار تایید</span>}
+                                {coachDetails.data.status === 'Pending' && <span style={{color:'var(--text-warning)'}}> در انتظار تایید</span>}
                                 {coachDetails.data.status === 'Disable' && <span style={{color:'var(--text-disable)'}}> غیر فعال</span>}
                                 {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
                             </p>

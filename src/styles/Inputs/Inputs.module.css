@@ -17,6 +17,7 @@
     font-size: 14px;
 }
 
+
 .inputDropdown::placeholder {
     color:var(--text-disabled);
 }

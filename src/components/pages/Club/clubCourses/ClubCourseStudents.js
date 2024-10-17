@@ -166,7 +166,7 @@ const CourseStudents = () => {
                                 <p>{student.name}</p>
                                 <p className='text-textDefault'>وضعیت: 
                                     {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
-                                    {student.status === 'CoachPending' && <span className='text-textDefault'> در انتظار تایید</span>}
+                                    {student.status === 'CoachPending' && <span className='text-textWarning'> در انتظار تایید</span>}
                                 </p>
                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }

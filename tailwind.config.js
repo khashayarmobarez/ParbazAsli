@@ -12,6 +12,7 @@ module.exports = {
       textDefaultOpposite: 'var(--text-default-opposite)',
       textDisabled: 'var(--text-disabled)',
       textError: 'var(--text-error)',
+      textWarning: 'var(--text-warning)',
 
       // main button
       bgButtonMainDefault: 'var(--bg-button-main-default)',
@@ -38,6 +39,7 @@ module.exports = {
       // input
       bgInputDropdown: 'var(--bg-input-dropdown)',
       bgInputSelectedOption: 'var(--bg-input-selected-option)',
+      bgUploadFile: 'var(--bg-upload-file)',
       borderInputSuccess: 'var(--border-input-success)',
       borderInputError: 'var(--border-input-error)',
       borderInputDefault: 'var(--border-input-default)',
@@ -46,6 +48,7 @@ module.exports = {
       textInputSelected: 'var(--text-input-selected)',
       textInputError: 'var(--text-input-error)',
       textInputSuccess: 'var(--text-input-success)',
+      textUploadFile: 'var(--text-upload-file)',
 
       // outputs
       bgOutputDefault: 'var(--bg-output-default)',

@@ -237,7 +237,7 @@ const AddCertificate = () => {
                 <UserDataBox />
                 
                 <div className='w-full flex flex-col gap-y-2'>
-                    <p style={{color:'var(--red-text)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
+                    <p style={{color:'var(--text-error)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
                 </div>
 
 
@@ -246,25 +246,25 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
 
-                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-default)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
                     </div>
 
                     <div className='flex items-center justify-between w-[98%]'>
 
-                        <p className='' style={{color:'var(--soft-white)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--text-default)'}}>تاییدیه</p>
 
-                        <p className='mr-3 md:mr-0' style={{color:'var(--yellow-text)'}}>گواهینامه</p>
+                        <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>احراز ایمیل</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
 
                     </div>
 
@@ -287,7 +287,7 @@ const AddCertificate = () => {
                             <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
 
 
-                                <div className='w-full flex flex-col items-center p-4 bg-[var(--diffrential-blue)] rounded-2xl gap-y-4' >
+                                <div className='w-full flex flex-col items-center p-4 bg-bgOutputDefault rounded-2xl gap-y-4' >
 
                                     <p className='self-start text-base '>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
 
@@ -313,7 +313,7 @@ const AddCertificate = () => {
                                     {
                                         isStarter === 'false' &&
                                         <p 
-                                            className='self-start text-xs text-start text-[var(--red-text)]'
+                                            className='self-start text-xs text-start text-[var(--text-error)]'
                                         >
                                             *اگر گواهینامه شما منقضی شده‌است، برای تکمیل ثبت نام لطفا ابتدا نسبت به تمدید آن اقدام فرمایید
                                         </p>
@@ -378,8 +378,8 @@ const AddCertificate = () => {
 
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
-                                                        <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
-                                                        style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+                                                        <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
+                                                        style={{borderColor:'var(--text-default)'}}>
 
                                                             <input
                                                                 type="file"
