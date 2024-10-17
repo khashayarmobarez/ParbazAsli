@@ -56,7 +56,7 @@ const BlogDetails = () => {
                     {
                         isBelow768px &&
                         <div className={`sticky top-12 md:top-2 z-10 bg-[#1B253B] w-full h-20 md:h-32 flex flex-col items-between justify-end pt-3 pb-2 rounded-b-2xl `}>
-                            <p className=' font-medium' style={{color:'var(--yellow-text)'}}>{title}</p>
+                            <p className=' font-medium' style={{color:'var(--text-accent)'}}>{title}</p>
                             <p className=' font-medium'>{authorName}</p>
                             <ArrowBackIosNewIcon onClick={() => navigate(-1)} sx={{position:'absolute',left:'1rem' , width:'26px', height:'26px', padding:'5px', backgroundColor:'', borderRadius:'10rem', background: 'linear-gradient(195.31deg, #353A65 -84.63%, rgba(42, 46, 81, 0) 100.99%)', boxShadow: '-3px 4px 5.8px 5px rgba(0, 0, 0, 0.27), 3px -4px 4px 0px rgba(179, 170, 170, 0.18)'}} />
                         </div>
@@ -65,13 +65,13 @@ const BlogDetails = () => {
                     {
                         !isBelow768px && 
                         <div className='w-3/12 flex flex-col items-center'>
-                            {/* <div className='absolute h-[50%] w-1 left-20 ' style={{backgroundColor:'var(--yellow-text)'}}></div> */}
+                            {/* <div className='absolute h-[50%] w-1 left-20 ' style={{backgroundColor:'var(--text-accent)'}}></div> */}
                             {blogSections.map((section, index) => (
                                 <div key={section.title} className='flex w-full h-14 mb-6 justify-center items-center'>
                                     <p className='w-3/4' >{section.title}</p>
                                     <p className=' w-10 h-10 rounded-full text-center flex justify-center items-center z-10' style={{background:'var(--landing-page-titles-bg)',boxShadow:'var(--landing-page-titles-boxShadow) '}}>{section.order}</p>
                                     {index < blogSections.length - 1 && (
-                                            <div className='absolute h-20 mr-[17.5vw] mt-16 w-1 z-0' style={{backgroundColor:'var(--yellow-text) '}}></div>
+                                            <div className='absolute h-20 mr-[17.5vw] mt-16 w-1 z-0' style={{backgroundColor:'var(--text-accent) '}}></div>
                                     )}
                                 </div>
                             )
@@ -109,8 +109,8 @@ const BlogDetails = () => {
                                 {
                                     !isBelow768px &&
                                     <>
-                                        <h1 className='text-2xl' style={{color:'var(--yellow-text)'}}>{title}</h1>
-                                        <p className='text-xl' style={{color:'var(--low-opacity-white)'}}>{authorName}</p>
+                                        <h1 className='text-2xl' style={{color:'var(--text-accent)'}}>{title}</h1>
+                                        <p className='text-xl' style={{color:'var(--text-disabled)'}}>{authorName}</p>
                                     </>
                                 }
                                 <div className='md:mt-4'>

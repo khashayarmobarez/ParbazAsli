@@ -121,40 +121,40 @@ const AddTakeoff = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-default)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--yellow-text)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
                     </div>
 
                     <div className='flex items-center justify-between w-[97%]'>
 
-                        <p className='' style={{color:'var(--soft-white)'}}>Landing</p>
+                        <p className='' style={{color:'var(--text-default)'}}>Landing</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>Takeoff</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--yellow-text)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
 
                     </div>
                     
                 </div>
 
 
-                <div id='title' className='flex justify-between items-center w-full mt-2' style={{color:'var(--yellow-text'}}  >
+                <div id='title' className='flex justify-between items-center w-full mt-2' style={{color:'var(--text-accent'}}  >
                     <h3 className=' text-base '>Takeoff</h3>
-                    <div className='h-[1px] w-9/12 mt-2' style={{background: 'var(--yellow-text)' }}></div>
+                    <div className='h-[1px] w-9/12 mt-2' style={{background: 'var(--text-accent)' }}></div>
                 </div>
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>

@@ -140,7 +140,7 @@ const FlightHistory = () => {
                                     />
                                 </button>
 
-                                <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                                     صفحه ی {pageNumber}
                                 </p>
 

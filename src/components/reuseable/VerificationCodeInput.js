@@ -126,7 +126,7 @@ const VerificationCodeInput = ({ showPopup, setShowPopup, callback, reset, isLoa
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                     {[0, 1, 2, 3].map((index) => (
                         <input
-                            style={{ border: 'none', borderBottom: '2px var(--yellow-text) solid' }}
+                            style={{ border: 'none', borderBottom: '2px var(--text-accent) solid' }}
                             className="text-2xl rounded-none bg-none shadow-none w-10 flex p-2 text-center"
                             key={index}
                             type="text"

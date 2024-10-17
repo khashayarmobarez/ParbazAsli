@@ -100,7 +100,7 @@ const AStudentCourses = () => {
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
                                                 courseData.status === 'Active' ? 'var(--red-text)' :
-                                                courseData.status === 'Completed' ? 'var(--yellow-text)' :
+                                                courseData.status === 'Completed' ? 'var(--text-accent)' :
                                                 courseData.status === 'Canceled' ? 'var(--notification-red)' :
                                                 undefined, // Optional: A default value if none of the conditions match
                                             }
@@ -112,7 +112,7 @@ const AStudentCourses = () => {
                                         <div className='flex flex-col justify-between self-start'>
                                             { courseData.organization && courseData.type !== 'Regular' &&
                                                 <p>
-                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                    <span className='text-textDisabled'>
                                                         ارگان:&nbsp;
                                                     </span>
                                                     {courseData.organization}
@@ -120,7 +120,7 @@ const AStudentCourses = () => {
                                             }
                                             { courseData.clubName &&
                                                 <p>
-                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                    <span className='text-textDisabled'>
                                                         باشگاه:&nbsp;
                                                     </span>
                                                     {courseData.clubName}
@@ -128,7 +128,7 @@ const AStudentCourses = () => {
                                             }
                                             { courseData.coach &&
                                                 <p>
-                                                    <span className='text-[var(--low-opacity-white)]'>
+                                                    <span className='text-textDisabled'>
                                                         مربی:&nbsp;
                                                     </span> 
                                                     {courseData.coach}
@@ -161,7 +161,7 @@ const AStudentCourses = () => {
                                                     <CircularProgress sx={{width:'1rem'}} /> 
                                                 </Box>
                                             }
-                                            <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--dark-green)'}} />
+                                            <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--text-accent)'}} />
                                             <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--notification-red)'}} />
 
                                         </div>
@@ -187,7 +187,7 @@ const AStudentCourses = () => {
                             />
                         </button>
 
-                        <p className='text-sm justify-self-center' style={{ color: 'var(--yellow-text)' }}>
+                        <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
                             صفحه ی {pageNumber}
                         </p>
 

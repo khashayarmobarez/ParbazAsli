@@ -127,7 +127,7 @@ const LandingPage = () => {
                                     background: 'var(--landing-page-titles-bg)',
                                     boxShadow: 'var(--landing-page-titles-boxShadow)'
                                 }}>
-                                چرا <span style={{color:'var(--yellow-text)'}}>دیجی‌ لاگ‌بوک</span>
+                                چرا <span style={{color:'var(--text-accent)'}}>دیجی‌ لاگ‌بوک</span>
                                 </p>
                             </div>
 
@@ -144,7 +144,7 @@ const LandingPage = () => {
 
                                     <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                                     style={{
-                                    color:'var(--yellow-text)',
+                                    color:'var(--text-accent)',
                                     background: 'var(--landing-page-titles-bg)',
                                     boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
                                     >
@@ -154,7 +154,7 @@ const LandingPage = () => {
                                     <p
                                     className='rounded-3xl w-[70vw] md:w-[20vw] px-3 text-sm md:text-lg grid place-content-center'
                                     style={{
-                                        color:'var(--yellow-text)',
+                                        color:'var(--text-accent)',
                                         background: 'var(--landing-page-titles-bg)',
                                         boxShadow: 'var(--landing-page-titles-boxShadow)',}}
                                     >{item.content}</p>
@@ -200,7 +200,7 @@ const LandingPage = () => {
                                     boxShadow: 'var(--landing-page-titles-boxShadow)'
                                 }}>
                                     
-                                    چه طور با <span style={{color:'var(--yellow-text)'}}>دیجی لاگ بوک</span> پروازهامون رو بخاطر بسپاریم
+                                    چه طور با <span style={{color:'var(--text-accent)'}}>دیجی لاگ بوک</span> پروازهامون رو بخاطر بسپاریم
                                 
                                 </p>
 
@@ -215,7 +215,7 @@ const LandingPage = () => {
 
                                     <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                                     style={{
-                                    color:'var(--yellow-text)',
+                                    color:'var(--text-accent)',
                                     background: 'var(--landing-page-titles-bg)',
                                     boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
                                     ><NumberToPersian number={item.order} /></p>
@@ -223,7 +223,7 @@ const LandingPage = () => {
                                     <p
                                     className='rounded-3xl w-[90%] text-sm md:text-lg md:w-[65%] grid place-content-center'
                                     style={{
-                                        color:'var(--yellow-text)',
+                                        color:'var(--text-accent)',
                                         background: 'var(--landing-page-titles-bg)',
                                         boxShadow: 'var(--landing-page-titles-boxShadow)',}}
                                     >{item.content}</p>
@@ -249,7 +249,7 @@ const LandingPage = () => {
                                 background: 'var(--landing-page-titles-bg)',
                                 boxShadow: 'var(--landing-page-titles-boxShadow)'
                                 }}>
-                            وبلاگ <span style={{color:'var(--yellow-text)'}}>دیجی‌ لاگ‌بوک</span>
+                            وبلاگ <span style={{color:'var(--text-accent)'}}>دیجی‌ لاگ‌بوک</span>
                             </p>
 
                         </div>

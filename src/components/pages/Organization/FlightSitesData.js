@@ -115,7 +115,7 @@ const FlightSitesData = () => {
 
                     <div className=' w-full h-full flex flex-col items-center gap-y-4 lg:mt-6'>
 
-                            <p className='text-lg text-[var(--yellow-text)] self-start'>آمار پرواز در سایت‌ها</p>
+                            <p className='text-lg text-[var(--text-accent)] self-start'>آمار پرواز در سایت‌ها</p>
 
                             {
                                 countriesData && 
@@ -158,7 +158,7 @@ const FlightSitesData = () => {
                         }
                         <button className={`w-24 rounded-2xl flex justify-center items-center`}
                             style={{
-                                background:  'var(--profile-buttons-background),var(--bg-color)',
+                                background:  'var(--profile-buttons-background)',
                                 boxShadow: 'var(--profile-buttons-boxShadow)'
                             }}
                             onClick={handleResetData}>
@@ -166,9 +166,9 @@ const FlightSitesData = () => {
                         </button>
                     </div>
 
-                    <div className=' bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-[var(--low-opacity-white)] text-xs lg:text-base'>
-                        <p className='text-[var(--yellow-text)]'>تعداد پروازهای انجام شده</p>
-                        <p className='text-[var(--yellow-text)]'>{flightCountsData && flightCountsData.data}</p>
+                    <div className=' bg-[var(--Basic-dataBox-bg)] rounded-3xl h-12 flex justify-between items-center px-6 border border-textDisabled text-xs lg:text-base'>
+                        <p className='text-[var(--text-accent)]'>تعداد پروازهای انجام شده</p>
+                        <p className='text-[var(--text-accent)]'>{flightCountsData && flightCountsData.data}</p>
                         <>
                             {
                                 !toDate && !fromDate ?

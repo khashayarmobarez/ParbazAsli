@@ -181,18 +181,18 @@ const ClubCourses = () => {
 
                                                                 <div className='flex gap-x-1'>
 
-                                                                    <p className='text-[var(--low-opacity-white)]'>وضعیت:
+                                                                    <p className='text-textDisabled'>وضعیت:
                                                                         {course.status === 'Active' && 
-                                                                            <span className='text-[var(--yellow-text)]'> فعال</span>
+                                                                            <span className='text-textAccent'> فعال</span>
                                                                         }
                                                                         {course.status === 'Pending' &&
                                                                             <span className='text-[var(--text-warning)]'> در انتظار تایید</span>
                                                                         }
                                                                         {course.status === 'Disable' && 
-                                                                            <span className='text-[var(--notification-red)]'> غیر فعال</span>
+                                                                            <span className='text-textError'> غیر فعال</span>
                                                                         }
                                                                         {course.status === 'Rejected' && 
-                                                                            <span className='text-[var(--notification-red)]'> رد شده</span>
+                                                                            <span className='text-textError'> رد شده</span>
                                                                         }
                                                                     </p>
 
@@ -200,7 +200,7 @@ const ClubCourses = () => {
                                                             
                                                             </div>
 
-                                                            <p className='text-[var(--low-opacity-white)] -mt-1'>
+                                                            <p className='text-textDisabled -mt-1'>
                                                                 نام مربی:&nbsp;
                                                                 <span className='text-textDefault text-sm'>{course.coachFullName}</span>
                                                             </p>
@@ -218,17 +218,17 @@ const ClubCourses = () => {
                                                                     {
                                                                         course.type === 'Retraining' &&
                                                                         <p className='text-sm'>
-                                                                            <span className='text-[var(--low-opacity-white)]'>مقطع:</span> {course.level}
+                                                                            <span className='text-textDisabled'>مقطع:</span> {course.level}
                                                                         </p>
                                                                     } 
 
                                                                     <p>
-                                                                        <span className='text-[var(--low-opacity-white)]'>تعداد پرواز: </span>{course.flightsCount}
+                                                                        <span className='text-textDisabled'>تعداد پرواز: </span>{course.flightsCount}
                                                                     </p>
 
                                                                     { course.clubName &&
                                                                         <p>
-                                                                            <span className='text-[var(--low-opacity-white)]'>باشگاه: </span> {course.clubName}
+                                                                            <span className='text-textDisabled'>باشگاه: </span> {course.clubName}
                                                                         </p>
                                                                     }
 
@@ -236,10 +236,10 @@ const ClubCourses = () => {
 
                                                                 <div className='flex flex-col text-start gap-y-2'>
                                                                     <p>
-                                                                        <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                        <span className='text-textDisabled'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
                                                                     </p>
                                                                     <p>
-                                                                        <span className='text-[var(--low-opacity-white)]'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                        <span className='text-textDisabled'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
                                                                     </p>
                                                                 </div>
 
@@ -262,8 +262,8 @@ const ClubCourses = () => {
 
                                         {courseData && courseData.totalPagesCount > 1 &&
                                             <div className='w-full flex justify-between mt-2'>
-                                                <p onClick={handleNextPageNumber} className='' style={{color:'var(--yellow-text)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
-                                                <p onClick={handleLastPageNumber} className='' style={{color:'var(--yellow-text)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
+                                                <p onClick={handleNextPageNumber} className='' style={{color:'var(--text-accent)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
+                                                <p onClick={handleLastPageNumber} className='' style={{color:'var(--text-accent)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
                                             </div>
                                         }
 

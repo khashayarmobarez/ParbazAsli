@@ -108,7 +108,7 @@ const PracticalFlightHistoryBox = (props) => {
                                         </Box>
                                     }
                                     
-                                    <p onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${flightBaseData.id}`)} disabled={declineLoading} className='text-[var(--yellow-text)] text-sm font-medium'  >
+                                    <p onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${flightBaseData.id}`)} disabled={declineLoading} className='text-[var(--text-accent)] text-sm font-medium'  >
                                         تایید
                                     </p>
 

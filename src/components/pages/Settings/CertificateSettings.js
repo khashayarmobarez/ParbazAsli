@@ -41,7 +41,7 @@ const CertificateSettings = () => {
                     userCertificates && userCertificates.totalCount >= pageSize &&
                     <p 
                     onClick={() => navigate(`/editProfile/changeCertificate`)}
-                    className='w-full' style={{color:'var(--yellow-text)'}}>
+                    className='w-full' style={{color:'var(--text-accent)'}}>
                         مشاهده همه
                     </p>
                 }

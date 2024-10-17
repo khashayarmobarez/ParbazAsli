@@ -31,7 +31,7 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
 
                 {
                     !isForHistory &&
-                    <p className='text-[var(--yellow-text)]'>دوره فعال:{studentData.activeCourseCount}</p>
+                    <p className='text-[var(--text-accent)]'>دوره فعال:{studentData.activeCourseCount}</p>
                 }
                  
                 <p>دوره غیر فعال:{studentData.disableCourseCount}</p>

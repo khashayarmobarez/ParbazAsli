@@ -199,7 +199,7 @@ const PossessionTransitionClub = () => {
                         <form className='w-[90%] flex flex-col items-center mt-4  gap-y-4'>
 
                             {/* {activeLink === 'temporary' ? 
-                                <h1 className=' text-xl font-medium text-[var(--yellow-text)]'>انتقال موقت</h1>
+                                <h1 className=' text-xl font-medium text-[var(--text-accent)]'>انتقال موقت</h1>
                                 :
                                 <h1 className=' text-xl font-medium text-[var(--red-text)]'>انتقال دائمی</h1>
                             } */}

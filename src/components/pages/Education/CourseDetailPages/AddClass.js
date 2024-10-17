@@ -321,7 +321,7 @@ const AddClass = () => {
                                     className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                     onClick={() => handleAddguestStudent()}
                                 >
-                                    <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                    <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                 </span> */}
                                 {userByIdData?.data && (
                                     <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >

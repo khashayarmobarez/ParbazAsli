@@ -32,7 +32,7 @@ const AboutUs = () => {
 
                     {
                     !isBelow768px &&
-                        <h1 className='text-xl'><span style={{color:'var(--yellow-text)'}}>درباره</span> دیجی لاگ بوک</h1>
+                        <h1 className='text-xl'><span style={{color:'var(--text-accent)'}}>درباره</span> دیجی لاگ بوک</h1>
                     }
 
                         <p>

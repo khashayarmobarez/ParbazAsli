@@ -210,7 +210,7 @@ const AddClub = ({isForSetting}) => {
             {
              mutateClubLoading &&
                 <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
-                    <CircularProgress sx={{ color:'var(--yellow-text) '}} /> 
+                    <CircularProgress sx={{ color:'var(--text-accent) '}} /> 
                     <p>در حال ثبت اطلاعات</p>
                 </div>
             }
@@ -232,7 +232,7 @@ const AddClub = ({isForSetting}) => {
 
                     {uploadedProfilePic && 
                         <>
-                            <div className='w-[115px] h-[115px] absolute z-10 rounded-full' style={{border: '2px solid var(--yellow-text)',}}></div>
+                            <div className='w-[115px] h-[115px] absolute z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
                             <img className=' w-7 absolute mt-20 ml-20 z-10' src={YellowPlus} alt='icon' />
                         </>
                     }

@@ -571,7 +571,7 @@ const AddClubCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(1)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--yellow-text)' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--text-accent)' }} />
                                     </span>
                                 </div>
 
@@ -601,7 +601,7 @@ const AddClubCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(2)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--yellow-text)' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--text-accent)' }} />
                                     </span>
                                 </div>
 
@@ -637,7 +637,7 @@ const AddClubCourse = () => {
                                 <div className='w-full flex flex-col gap-y-1'>
                                     {
                                     loadingStudentLevel && studentId.length > 5 &&
-                                        <p className='text-[var(--yellow-text)] self-start'>در حال جستجو ...</p>
+                                        <p className='text-[var(--text-accent)] self-start'>در حال جستجو ...</p>
                                     }
                                     { studentError && studentId.length > 5 &&
                                         <p className='text-[var(--red-text)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>

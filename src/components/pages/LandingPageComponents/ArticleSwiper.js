@@ -105,7 +105,7 @@ import { useBlogs } from '../../../Utilities/Services/queries';
                 isDesktop ? 
                   ( index === activeSlideIndex &&
                   <>
-                    <h3 className=' text-xl' style={{color:'var(--yellow-text)'}}>{blog.title}</h3>
+                    <h3 className=' text-xl' style={{color:'var(--text-accent)'}}>{blog.title}</h3>
                     <p className=' mb-4' style={{color:'var(--softer-white)'}}>{blog.authorName}</p>
                     <p className=' mb-8' style={{color:'var(--softer-white)'}}>
                       { blog.blogSections && blog.blogSections.length > 0 && blog.blogSections[0].htmlContent
@@ -118,7 +118,7 @@ import { useBlogs } from '../../../Utilities/Services/queries';
                   ) 
                   :
                   <>
-                    <h3 className=' text-xl' style={{color:'var(--yellow-text)'}}>{blog.title}</h3>
+                    <h3 className=' text-xl' style={{color:'var(--text-accent)'}}>{blog.title}</h3>
                     <p className=' mb-4' style={{color:'var(--softer-white)'}}>{blog.authorName}</p>
                     <p className=' mb-8' style={{color:'var(--softer-white)'}}>
                       { blog.blogSections && blog.blogSections.length > 0 && blog.blogSections[0].htmlContent

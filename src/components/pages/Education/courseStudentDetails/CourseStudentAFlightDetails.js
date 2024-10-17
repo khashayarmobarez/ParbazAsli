@@ -49,7 +49,7 @@ const CourseStudentAFlightDetails = () => {
                                         fullFlightData.data.status &&
                                             <div className='flex flex-col col-span-6 items-start gap-y-3'>
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                    <p className=' text-xs pr-2 text-[var(--low-opacity-white)]'>وضعیت:&nbsp;</p>
+                                                    <p className=' text-xs pr-2 text-textDisabled'>وضعیت:&nbsp;</p>
                                                     {
                                                         fullFlightData.data.status === 'Accepted' && 
                                                         <>

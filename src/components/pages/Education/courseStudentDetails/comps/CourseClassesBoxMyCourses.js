@@ -52,9 +52,9 @@ const CourseClassesBoxMyCourses = (props) => {
                     <>
                         {/* classesInput */}
                         <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm 
-                        ${isExpanded && 'text-[var(--yellow-text)]'}`}>
+                        ${isExpanded && 'text-[var(--text-accent)]'}`}>
                             <span>
-                                <AutoStoriesOutlinedIcon sx={{color:isExpanded ? 'var(--yellow-text)' : ''}} />
+                                <AutoStoriesOutlinedIcon sx={{color:isExpanded ? 'var(--text-accent)' : ''}} />
                             </span>
                             <p>{classData.name}</p>
                             <p>{classData.classDuration}</p>
@@ -105,7 +105,7 @@ const CourseClassesBoxMyCourses = (props) => {
 
                             {
                                 !extra &&
-                                <p onClick={() => setExtra(true)} className='text-[var(--yellow-text)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-[var(--text-accent)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
                             }
 
                             {

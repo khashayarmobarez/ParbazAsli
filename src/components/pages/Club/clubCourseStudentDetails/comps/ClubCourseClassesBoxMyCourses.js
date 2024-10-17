@@ -106,7 +106,7 @@ const ClubCourseClassesBoxMyCourses = (props) => {
 
                             {
                                 !extra &&
-                                <p onClick={() => setExtra(true)} className='text-[var(--yellow-text)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-[var(--text-accent)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
                             }
 
                             {

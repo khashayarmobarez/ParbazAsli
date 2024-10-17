@@ -200,7 +200,7 @@ const RenewCertificate = () => {
                 {
                     isSubmitting &&
                         <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
-                            <CircularProgress sx={{ color:'var(--yellow-text) '}} /> 
+                            <CircularProgress sx={{ color:'var(--text-accent) '}} /> 
                             <p>در حال ثبت اطلاعات</p>
                         </div>
                 }

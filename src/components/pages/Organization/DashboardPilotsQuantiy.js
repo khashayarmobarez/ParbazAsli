@@ -90,7 +90,7 @@ const DashboardPilotsQuantiy = () => {
 
                         <SearchInput />
 
-                        <div className='w-full flex justify-start text-xl' style={{color:'var(--yellow-text) '}}>
+                        <div className='w-full flex justify-start text-xl' style={{color:'var(--text-accent) '}}>
                             <p>تعداد خلبان‌ها</p>
                         </div>
 
@@ -98,7 +98,7 @@ const DashboardPilotsQuantiy = () => {
 
                             <ResponsiveContainer width="100%" height={300}>
                                 <BarChart width={150} height={40} data={data}>
-                                    <Bar dataKey="uv" fill='var(--yellow-text)' shape={<RoundedBar />} >
+                                    <Bar dataKey="uv" fill='var(--text-accent)' shape={<RoundedBar />} >
                                         <LabelList dataKey="uv" position="insideTop" style={{ fill: '#3B444B', fontWeight:'500' }}  />
                                     </Bar> 
                                 </BarChart>

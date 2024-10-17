@@ -74,13 +74,13 @@ const FooterLanding = () => {
             <div className='flex gap-x-4'><LocalPhoneOutlinedIcon /><p>021-77788899</p></div>
             <div className='flex gap-x-4 mt-2'>
                 <div className='w-[53px] h-[53px] rounded-full flex items-center justify-center' style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
-                    <XIcon sx={{width:'50px', color:'var(--yellow-text)'}} />
+                    <XIcon sx={{width:'50px', color:'var(--text-accent)'}} />
                 </div>
                 <div className='w-[53px] h-[53px] rounded-full flex items-center justify-center' style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
-                    <InstagramIcon sx={{width:'50px', color:'var(--yellow-text)'}} />
+                    <InstagramIcon sx={{width:'50px', color:'var(--text-accent)'}} />
                  </div>
                 <div className='w-[53px] h-[53px] rounded-full flex items-center justify-center' style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
-                    <WhatsAppIcon sx={{width:'50px', color:'var(--yellow-text)'}} />
+                    <WhatsAppIcon sx={{width:'50px', color:'var(--text-accent)'}} />
                 </div>
             </div>
             <p className=''>پیشتازان پرباز</p>

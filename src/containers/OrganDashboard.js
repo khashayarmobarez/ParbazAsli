@@ -22,13 +22,13 @@ const OrganDashboard = () => {
                 <div className={` z-10 w-full flex justify-between gap-x-2 my-2 md:mb-6 md:mt-12`}>
                     <Link
                     to={`/organization/OrgansData`} 
-                    className={` ${location.pathname === `/organization/OrgansData` ? buttonStyles.activeYellow : 'border-2 border-[var(--yellow-text)] text-[var(--yellow-text)]'}
+                    className={` ${location.pathname === `/organization/OrgansData` ? buttonStyles.activeYellow : 'border-2 border-[var(--text-accent)] text-[var(--text-accent)]'}
                     rounded-xl w-full h-12 text-center flex justify-center items-center`} >
                         داشبورد انجمن
                     </Link> 
                     <Link
                     to={`/organization/OrgansUsersData`}
-                    className={` ${location.pathname === `/organization/OrgansUsersData` ? buttonStyles.activeYellow : 'border-2 border-[var(--yellow-text)] text-[var(--yellow-text)]'}
+                    className={` ${location.pathname === `/organization/OrgansUsersData` ? buttonStyles.activeYellow : 'border-2 border-[var(--text-accent)] text-[var(--text-accent)]'}
                     rounded-xl w-full h-12 text-center flex justify-center items-center`} >
                         کاربران
                     </Link> 

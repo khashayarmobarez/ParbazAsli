@@ -535,7 +535,7 @@ const AddCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(1)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                     </span>
                                 </div>
 
@@ -565,7 +565,7 @@ const AddCourse = () => {
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={() => handleAddCustomCourse(2)}
                                     >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                     </span>
                                 </div>
 
@@ -614,7 +614,7 @@ const AddCourse = () => {
                                         className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
                                         onClick={studentData ? handleAddStudent : null}
                                         >
-                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--yellow-text)' }} />
+                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                         </span> */}
                                         {studentData?.data && (
                                             <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >

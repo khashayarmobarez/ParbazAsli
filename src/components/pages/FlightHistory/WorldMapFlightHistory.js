@@ -47,7 +47,7 @@ const WorldMapFlightHistory = () => {
                     {
                         markers.map(
                             (marker) => <Marker key={marker.id} coordinates={marker.coordinates} >
-                                <circle r={7} fill='var(--bg-color)' stroke='var(--yellow-border-button)' strokeWidth={2}/>
+                                <circle r={7} fill='var(--bg-page-main)' stroke='var(--yellow-border-button)' strokeWidth={2}/>
                             </Marker>
                             )
                     }

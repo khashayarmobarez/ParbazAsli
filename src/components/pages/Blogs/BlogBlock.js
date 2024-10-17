@@ -41,8 +41,8 @@ const BlogBlock = ({blogData}) => {
             </div>
             
             <div className='w-full flex flex-col h-10 justify-center items-center md:my-4'>
-                <h1 className='text-lg' style={{ color: 'var(--yellow-text)' }}>{title}</h1>
-                <p style={{color:'var(--low-opacity-white)'}}>{authorName}</p>
+                <h1 className='text-lg' style={{ color: 'var(--text-accent)' }}>{title}</h1>
+                <p style={{color:'var(--text-disabled)'}}>{authorName}</p>
             </div>
 
 

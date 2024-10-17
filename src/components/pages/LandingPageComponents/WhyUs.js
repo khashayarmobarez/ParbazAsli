@@ -61,7 +61,7 @@ const WhyUs = () => {
 
                             <p className='w-[53px] h-[53px] text-center rounded-full md:w-[67px] md:h-[67px] grid place-content-center' 
                             style={{
-                            color:'var(--yellow-text)',
+                            color:'var(--text-accent)',
                             background: 'var(--landing-page-titles-bg)',
                             boxShadow: 'var(--landing-page-titles-boxShadow)'}} 
                             >
@@ -71,7 +71,7 @@ const WhyUs = () => {
                             <p
                             className='rounded-3xl w-full px-3 text-sm md:text-lg flex items-center text-center'
                             style={{
-                                color:'var(--yellow-text)',
+                                color:'var(--text-accent)',
                                 background: 'var(--landing-page-titles-bg)',
                                 boxShadow: 'var(--landing-page-titles-boxShadow)',}}
                             >

@@ -90,7 +90,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
               >
                 {option.fullName}
               </li>
-              <div className='w-full h-[1px] bg-[var(--low-opacity-white)]' />
+              <div className='w-full h-[1px] bg-textDisabled' />
             </div>
           ))}
         </ul>

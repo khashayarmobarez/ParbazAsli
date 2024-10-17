@@ -159,7 +159,7 @@ const ContactUs = () => {
                     <div className='w-full flex justify-between gap-y-8 md:py-4 md:flex-col' >
 
                         <div className='flex flex-col gap-y-10 py-4'>
-                            <h1 className=' text-2xl self-start' style={{color:'var(--yellow-text)'}}>راه‌های ارتباطی</h1>
+                            <h1 className=' text-2xl self-start' style={{color:'var(--text-accent)'}}>راه‌های ارتباطی</h1>
                             <div className='flex gap-x-4 cursor-pointer' onClick={sendEmailHandler}>
                                 <EmailOutlinedIcon />
                                 <p>info@digilogbook.ir</p>
@@ -174,16 +174,16 @@ const ContactUs = () => {
 
                             <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer' 
                             style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
-                                <XIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
+                                <XIcon sx={{width:'60%', height:'60%', color:'var(--text-accent)'}} />
                             </div>
                             <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer' 
                             style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
-                                <InstagramIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
+                                <InstagramIcon sx={{width:'60%', height:'60%', color:'var(--text-accent)'}} />
                             </div>
                             <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer'
                             style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}
                             onClick={contactViaTelegramHandler}>
-                                <TelegramIcon sx={{width:'60%', height:'60%', color:'var(--yellow-text)'}} />
+                                <TelegramIcon sx={{width:'60%', height:'60%', color:'var(--text-accent)'}} />
                             </div>
 
                         </div>

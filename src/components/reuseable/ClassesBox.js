@@ -116,7 +116,7 @@ const ClassesBox = (props) => {
                     {
                         userRole === 'coach' && !extraData &&
                         <div className='w-full flex justify-center px-4 mt-12'>
-                            <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >اطلاعات بیشتر...</button>
+                            <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >اطلاعات بیشتر...</button>
                         </div>
                     }
     
@@ -159,7 +159,7 @@ const ClassesBox = (props) => {
                     {
                         userRole === 'coach' && extraData &&
                         <div className='w-full flex justify-center px-4 mt-12'>
-                            <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--yellow-text'}} >بستن اطلاعات بیشتر</button>
+                            <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >بستن اطلاعات بیشتر</button>
                         </div>
                     }
     

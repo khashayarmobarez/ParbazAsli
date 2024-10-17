@@ -41,39 +41,39 @@ const CoachHistory = () => {
                     
                     <div className=' flex flex-col w-[90%] items-center space-y-6'>
 
-                        <div className='w-[90%] flex justify-start text-xl' style={{color:'var(--yellow-text) '}}>
+                        <div className='w-[90%] flex justify-start text-xl' style={{color:'var(--text-accent) '}}>
                             <p>تعداد شاگردان</p>
                         </div>
 
                         <div className='w-full flex flex-col space-y-4'>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>مبتدی</p>
                                     <p>9</p>
                                 </div>
                             </div>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>مقدماتی</p>
                                     <p>9</p>
                                 </div>
                             </div>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>متوسطه</p>
                                     <p>9</p>
                                 </div>
                             </div>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>پیشرفته</p>
                                     <p>9</p>
                                 </div>
@@ -85,39 +85,39 @@ const CoachHistory = () => {
                     {window.innerWidth > 768 && 
                         <div className=' flex flex-col w-[90%] items-center space-y-6'>
 
-                        <div className='w-[90%] flex justify-start text-xl' style={{color:'var(--yellow-text) '}}>
+                        <div className='w-[90%] flex justify-start text-xl' style={{color:'var(--text-accent) '}}>
                             <p>تعداد پروازها</p>
                         </div>
 
                         <div className='w-full flex flex-col space-y-4'>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>مبتدی</p>
                                     <p>9</p>
                                 </div>
                             </div>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>مقدماتی</p>
                                     <p>9</p>
                                 </div>
                             </div>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>متوسطه</p>
                                     <p>9</p>
                                 </div>
                             </div>
 
-                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                            <div className=' h-16 w-full rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                                 <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                                <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                     <p>پیشرفته</p>
                                     <p>9</p>
                                 </div>
@@ -131,39 +131,39 @@ const CoachHistory = () => {
 
                 {window.innerWidth < 768 &&
                 <div className='flex flex-col items-center justify-between w-[90%] min-h-20 rounded-2xl px-5 py-7 my-4 space-y-7' style={{backgroundColor:'var(--organs-coachData-bg)', boxShadow:'var(--organs-coachData-boxShadow)'}}>
-                    <div className='w-[90%] flex justify-start text-xl' style={{color:'var(--yellow-text) '}}>
+                    <div className='w-[90%] flex justify-start text-xl' style={{color:'var(--text-accent) '}}>
                         <p>تعداد پروازها</p>
                     </div>
 
                     <div className='w-full flex flex-col items-center space-y-4'>
 
-                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                             <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                 <p>مبتدی</p>
                                 <p>9</p>
                             </div>
                         </div>
 
-                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                             <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                 <p>مقدماتی</p>
                                 <p>9</p>
                             </div>
                         </div>
 
-                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                             <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                 <p>متوسطه</p>
                                 <p>9</p>
                             </div>
                         </div>
 
-                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--low-opacity-white)'}}>
+                        <div className=' h-16 w-[90%] rounded-xl flex justify-between pl-[5%]' style={{backgroundColor:'var(--Basic-dataBox-bg)', border:' 1px solid var(--text-disabled)'}}>
                             <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
-                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--yellow-text) '}}>
+                            <div className='w-[85%] flex justify-between items-center text-base' style={{color:'var(--text-accent) '}}>
                                 <p>پیشرفته</p>
                                 <p>9</p>
                             </div>
