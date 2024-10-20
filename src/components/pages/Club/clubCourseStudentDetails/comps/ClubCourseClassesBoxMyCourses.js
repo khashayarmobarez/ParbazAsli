@@ -11,7 +11,7 @@ import boxStyles from '../../../../../styles/Boxes/DataBox.module.css'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // assets
-import ClipboardIcon from '../../../../../components/icons/ClipcoardIcon';
+import ClipboardIcon from '../../../../../components/icons/ClipboardIcon';
 
 // queiries
 import { useClubCourseStudentClass } from '../../../../../Utilities/Services/clubQueries';
@@ -58,7 +58,7 @@ const ClubCourseClassesBoxMyCourses = (props) => {
                             <p>{classData.name}</p>
                             <p>{classData.classDuration}</p>
                             <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                                <img src={<ClipboardIcon/>} alt='icon' />
+                                <ClipboardIcon/>
                             </button>
                         </div>
 

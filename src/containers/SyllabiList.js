@@ -8,7 +8,7 @@ import CircularProgressLoader from '../components/Loader/CircularProgressLoader'
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 // assets
-import clipboard from '../assets/icons/clipboard.svg'
+import ClipboardIcon from '../components/icons/ClipboardIcon'
 
 // comps
 import PageTitle from '../components/reuseable/PageTitle';
@@ -86,7 +86,7 @@ const SyllabiList = () => {
                                     >
                                         {
                                             !level.isPassed &&
-                                            <img src={clipboard} alt='clipboard' className='w-6 h-6' />
+                                            <ClipboardIcon/>
                                         }
 
                                         {

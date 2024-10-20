@@ -8,7 +8,7 @@ import boxStyles from '../../styles/Boxes/DataBox.module.css'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // assets
-import clipboard from '../../assets/icons/clipboard.svg'
+import ClipboardIcon from '../../components/icons/ClipboardIcon'
 
 // redux
 import { useSelector } from 'react-redux';
@@ -51,7 +51,7 @@ const ClassesBox = (props) => {
                     <p>مقدماتی</p>
                     <p>ساعت</p>
                     <button onClick={handleClick} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                        <img src={clipboard} alt='icon' />
+                        <ClipboardIcon/>
                     </button>
                 </div>
 

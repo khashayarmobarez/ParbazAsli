@@ -5,7 +5,7 @@ import gradients from '../../styles/gradients/Gradient.module.css'
 
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-import clipboard from '../../assets/icons/clipboard.svg'
+import ClipboardIcon from '../../components/icons/ClipboardIcon'
 
 const StudentBox = (props) => {
 
@@ -30,7 +30,7 @@ const StudentBox = (props) => {
                     <p>رضا نظری</p>
                     <p>ساعت</p>
                     <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                        <img src={clipboard} alt='icon' />
+                        <ClipboardIcon/>
                     </button>
                 </div>
 
@@ -41,7 +41,7 @@ const StudentBox = (props) => {
                     <p>رضا نظری</p>
                     <p>ساعت</p>
                     <button onClick={() => navigate('/education/StudentDetails')} className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
-                        <img src={clipboard} alt='icon' />
+                        <ClipboardIcon/>
                     </button>
                 </div>
 
