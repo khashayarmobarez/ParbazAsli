@@ -11,7 +11,7 @@ import boxStyles from '../../../../../styles/Boxes/DataBox.module.css'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // assets
-import ClipboardIcon from '../../../../../components/icons/ClipboardIcon';
+import ClipboardIcon from '../../../../../components/icons/ClipcoardIcon';
 
 // queiries
 import { useClubCourseStudentClass } from '../../../../../Utilities/Services/clubQueries';
