@@ -5,7 +5,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
 // assets
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../assets/icons/3dCube.svg';
+import Cube from '../../components/icons/ThreeDCube';
 
 const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit }) => {
   const [filled, setFilled] = useState(false);
@@ -36,8 +36,12 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
 
   return (
     <div className="flex items-center relative w-[100%] h-12 rounded-xl ">
-      <span>
-        <img src={icon || Cube} alt="icon" className="absolute -mt-3 mr-2 w-5" />
+      <span className="absolute -mt-0 mr-2 w-5">
+        {icon ? 
+          icon
+          :
+          <Cube />
+        }
       </span>
       <select
         ref={selectRef}
@@ -52,7 +56,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
           <option key={option.id} className='text-textDefault' value={option.id}>{option.name}</option>
         ))}
       </select>
-      <span onClick={handleIconClick} className="absolute left-3 pb-0  h-full flex items-center pr-2 cursor-pointer pointer-events-none">
+      <span onClick={handleIconClick} className="absolute left-3 pb-0  h-full flex items-center pr-2 cursor-pointer pointer-events-none font-medium">
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
     </div>

@@ -16,7 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // assets
 import Cube from '../../../assets/icons/3dCube.svg'
-import wingIcon from '../../../assets/icons/wingicon.svg'
+import WingIcon from '../../../components/icons/WingIcon'
 import tagsIcon from '../../../assets/icons/colorTagsIcon.svg'
 import clothesTag from '../../../assets/icons/clothingTag.svg'
 import calenderIcon from '../../../assets/icons/calender-Icon.svg'
@@ -320,7 +320,7 @@ const AddFlightEquipment = () => {
                         <DropdownInput
                           className='col-span-1'
                           name={'کلاس'}
-                          icon={wingIcon}
+                          icon={<WingIcon color={'var(--text-default)'} />}
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
