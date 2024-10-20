@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // assets
 import logo from '../../../assets/ApiData Temporary/Digilogbook -1401 12.png'
-import mail from '../../../assets/icons/mail-Icon (Stroke).svg'
+import MailIcon from '../../../components/icons/MailIcon'
 
 // mui
 import { Box, useMediaQuery, useTheme } from '@mui/material';
@@ -65,7 +65,7 @@ const FooterLanding = () => {
               </>
             }
             <p className='text-lg'>عضویت در خبرنامه</p>
-            <InputWithButton Type={'text'} icon={mail} buttonText={'ارسال'} id={'email'} placeH={'ایمیل خود را وارد کنید'} />
+            <InputWithButton Type={'text'} icon={<MailIcon />} buttonText={'ارسال'} id={'email'} placeH={'ایمیل خود را وارد کنید'} />
             <p></p>
         </div>
 

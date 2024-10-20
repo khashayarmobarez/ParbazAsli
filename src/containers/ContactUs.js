@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 // assets
 import contactUs from '../assets/ApiData Temporary/picture/contacUs.jpg'
-import mailIcon from '../assets/icons/mail-Icon (Stroke).svg'
+import MailIcon from '../components/icons/MailIcon'
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -201,18 +201,18 @@ const ContactUs = () => {
                             onChange={(e) => setFullName(e.target.value)}
                             required  />
                             {showErrors && errorMessages.fullName && 
-                                <p className=' text-[#BE123C] text-right'>{errorMessages.fullName}</p>
+                                <p className=' text-textError text-right'>{errorMessages.fullName}</p>
                             }
                         </div>
 
                         <div className='w-full flex flex-col'>
-                            <TextInput  placeholder='ایمیل' icon={mailIcon}
+                            <TextInput  placeholder='ایمیل' icon={<MailIcon />}
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required />
                             {showErrors && errorMessages.email &&
-                                <p className=' text-[#BE123C] text-right'>{errorMessages.email}</p>
+                                <p className=' text-textError text-right'>{errorMessages.email}</p>
                             }
                         </div>
 
@@ -224,7 +224,7 @@ const ContactUs = () => {
                             minLength={4}
                             maxLength={500}/>
                             {showErrors && errorMessages.email &&
-                                <p className=' text-[#BE123C] text-right'>{errorMessages.comment}</p>
+                                <p className=' text-textError text-right'>{errorMessages.comment}</p>
                             }
                         </div>
 

@@ -11,7 +11,7 @@ import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 // assets
 import wingIcon from '../../../components/icons/WingIcon'
 import HarnessIcon from '../../../components/icons/HarnessIcon'
-import locationIcon from '../../../assets/icons/location.svg'
+import LocationIcon from '../../../components/icons/LocationIcon'
 import EarthIcon from '../../icons/EarthIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import singleTag from '../../../components/icons/ADressTag'
@@ -219,12 +219,12 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 provincesData && !provincesLoading && (countryFilter && countryFilter.id) &&
-                                (<SearchInputWithDropdown icon={locationIcon} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
+                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
                             }
 
                             {
                                 flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
-                                (<SearchInputWithDropdown icon={locationIcon} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
+                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
                             <DropdownInput icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />

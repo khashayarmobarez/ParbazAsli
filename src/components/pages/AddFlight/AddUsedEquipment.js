@@ -9,7 +9,7 @@ import { Box, CircularProgress } from '@mui/material';
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import wingIcon from '../../../components/icons/WingIcon'
 import HarnessIcon from '../../../components/icons/HarnessIcon'
-import parachuteIcon from '../../../assets/icons/parachuteIcon.svg'
+import ParachuteIcon from '../../../components/icons/ParachuteIcon'
 
 // queries
 import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
@@ -231,7 +231,7 @@ const AddUsedEquipment = () => {
                                 <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
                             }
                             
-                            <DropdownInputForEquipment icon={parachuteIcon} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />
+                            <DropdownInputForEquipment icon={<ParachuteIcon/>} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />
                         </>
                     }
                 </form>

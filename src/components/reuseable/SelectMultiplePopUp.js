@@ -6,7 +6,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css';
 import { Checkbox } from '@mui/material';
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 import TextInput from '../inputs/textInput';
-import searchIcon from '../../assets/icons/searchIcon.svg';
+import SearchIcon from '../../components/icons/SearchIcon';
 
 const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, name, handleRemove, isForSyllabi, Icon }) => {
 
@@ -96,7 +96,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                         placeholder={name}
                         value={searchTerm} 
                         onChange={handleInputChange} 
-                        icon={searchIcon}
+                        icon={<SearchIcon/>}
                     />
                 </div>
 

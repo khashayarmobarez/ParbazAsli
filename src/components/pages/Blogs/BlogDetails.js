@@ -10,7 +10,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // assets
-import mailIcon from '../../../assets/icons/mail-Icon (Stroke).svg'
+import MailIcon from '../../../components/icons/MailIcon'
 
 // components
 import DigilogbookLoading from '../../Loader/DigilogbookLoading';
@@ -87,19 +87,19 @@ const BlogDetails = () => {
 
                             <div className='w-full grid grid-cols-2 md:grid-cols-4 gap-y-4'>
                                 <div className='flex gap-x-2'>
-                                    <img src={mailIcon} alt='mailIcon' />
+                                    <MailIcon />
                                     <p>{timeToReadInMinutes} دقیقه مطالعه</p>
                                 </div>
                                 <div className='flex gap-x-2'>
-                                    <img src={mailIcon} alt='mailIcon' />
+                                    <MailIcon />
                                     <p>{createDate}</p>
                                 </div>
                                 <div className='flex gap-x-2'>
-                                    <img src={mailIcon} alt='mailIcon' />
+                                    <MailIcon />
                                     <p>{blogVisitCount} بازدید</p>
                                 </div>
                                 <div className='flex gap-x-2'>
-                                    <img src={mailIcon} alt='mailIcon' />
+                                    <MailIcon />
                                     <p>{blogComments.length} نظر</p>
                                 </div>
                             </div>

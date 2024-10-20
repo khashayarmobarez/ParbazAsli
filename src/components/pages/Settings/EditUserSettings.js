@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg';
-import mail from '../../../assets/icons/mail-Icon (Stroke).svg';
+import PhoneIcon from '../../../components/icons/PhoneIcon';
+import MailIcon from '../../../components/icons/MailIcon';
 
 // redux
 import { useSelector } from 'react-redux';
@@ -297,8 +297,8 @@ const EditUserSettings = () => {
             <div className='flex flex-col w-full space-y-4 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
                 <FixedInput textData={userData.data.firstName} />
                 <FixedInput textData={userData.data.lastName} />
-                <InputWithButton isForPhone={true} Type={'number'} icon={phoneIcon} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
-                <InputWithButton Type={'text'} icon={mail} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
+                <InputWithButton isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                <InputWithButton Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
 
                 <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
                 onClick={() => setShowPopupType('changePassword')}>

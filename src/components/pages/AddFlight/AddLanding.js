@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import windIcon from '../../../assets/icons/windIcon.svg'
 import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
-import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg'
+import PhoneIcon from '../../../components/icons/PhoneIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 
 // react-toastify
@@ -425,7 +425,7 @@ const AddLanding = () => {
 
                     {flightType === 'Tandem' && 
                         <TextInput 
-                            icon={phoneIcon}
+                            icon={<PhoneIcon/>}
                             value={passengerPhoneNumber} 
                             onChange={handlePassengerPhoneNum} 
                             placeholder='درج شماره تماس مسافر' 

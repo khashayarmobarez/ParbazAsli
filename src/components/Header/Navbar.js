@@ -32,7 +32,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // assets
 import companyLogo from '../../assets/Logo/DigilogbookMainLogo.svg';
-import logout from '../../assets/icons/logout.svg';
+import Logout from '../../components/icons/Logout';
 
 
 
@@ -197,8 +197,8 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     }
                                 </button>
 
-                                <div to='/' className={`hidden md:flex justify-center items-center`} >
-                                    <img src={logout} alt='logout' onClick={handleLogout} />
+                                <div onClick={handleLogout} className={`hidden md:flex justify-center items-center`} >
+                                    <Logout/>
                                 </div>
                             </div>
                             }

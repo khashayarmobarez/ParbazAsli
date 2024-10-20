@@ -9,7 +9,7 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // assets 
 import AddIcon from '@mui/icons-material/Add';
-import listIcon from '../../../assets/icons/listIcon.svg';
+import ListIcon from '../../../components/icons/ListIcon';
 import ChartIcon from '../../../components/icons/ChartIcon';
 import ChartIcon2 from '../../../components/icons/ChartIcon2';
 import SingleTag from '../../../components/icons/ADressTag';
@@ -464,7 +464,7 @@ const AddCourse = () => {
                                         /> */}
 
                                         {/* <SearchMultipleSelect
-                                            Icon={listIcon}
+                                            Icon={<ListIcon/>}
                                             options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
                                             selectedOptions={selectedSyllabiPractical}
                                             handleSelectChange={handleSelectChangeSyllabiPractical}
@@ -474,7 +474,7 @@ const AddCourse = () => {
                                         />
 
                                         <SearchMultipleSelect
-                                            Icon={listIcon}
+                                            Icon={<ListIcon/>}
                                             options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                             selectedOptions={selectedSyllabiTheory}
                                             handleSelectChange={handleSelectChangeSyllabiTheory}
@@ -484,7 +484,7 @@ const AddCourse = () => {
                                         /> */}
 
                                         <SelectMultiplePopUp
-                                            Icon={listIcon}
+                                            Icon={<ListIcon/>}
                                             options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
                                             selectedOptions={selectedSyllabiPractical}
                                             handleSelectChange={handleSelectChangeSyllabiPractical}
@@ -494,7 +494,7 @@ const AddCourse = () => {
                                         />
 
                                         <SelectMultiplePopUp
-                                            Icon={listIcon}
+                                            Icon={<ListIcon/>}
                                             options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                             selectedOptions={selectedSyllabiTheory}
                                             handleSelectChange={handleSelectChangeSyllabiTheory}
@@ -529,7 +529,7 @@ const AddCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput icon={listIcon} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                        <TextInput icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -559,7 +559,7 @@ const AddCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput icon={listIcon} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                        <TextInput icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}

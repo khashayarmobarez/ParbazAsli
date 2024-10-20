@@ -13,7 +13,6 @@ import { selectAuthSettings, getAuthSettings } from '../../../../Utilities/Redux
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import phoneIcon from '../../../../assets/icons/phone-Icon (Stroke).svg';
 import userIcon from '../../../../assets/icons/user-Icon.svg';
 
 // styles

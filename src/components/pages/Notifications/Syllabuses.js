@@ -10,7 +10,7 @@ import DescriptionInput from '../../inputs/DescriptionInput';
 import TextInput from '../../inputs/textInput';
 
 // assets
-import searchIcon from '../../../assets/icons/searchIcon.svg';
+import SearchIcon from '../../../components/icons/SearchIcon';
 
 const Syllabuses = () => {
     const navigate = useNavigate();
@@ -140,7 +140,7 @@ const Syllabuses = () => {
                     value={searchSyllabus}
                     onChange={(e) => setSearchSyllabus(e.target.value)}
                     placeholder='جستجو در سیلابس‌ها' 
-                    icon={searchIcon}
+                    icon={<SearchIcon/>}
                 />
 
                 {filteredSyllabi &&

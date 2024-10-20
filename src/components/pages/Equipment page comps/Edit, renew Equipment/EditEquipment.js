@@ -20,7 +20,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // assets
 import Cube from '../../../../components/icons/ThreeDCube'
 import user from '../../../../assets/icons/user-Icon.svg'
-import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
+import SerialNumberIcon from '../../../../components/icons/SerialNumberIcon'
 
 // comps
 import PageTitle from '../../../reuseable/PageTitle';
@@ -341,7 +341,7 @@ const EditEquipment = () => {
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
-                                                icon={serialNumberIcon}
+                                                icon={<SerialNumberIcon/>}
                                                 className='col-span-1'
                                                 value={equipmentSerial}
                                                 onChange={handleTextInputEquipmentSerial}

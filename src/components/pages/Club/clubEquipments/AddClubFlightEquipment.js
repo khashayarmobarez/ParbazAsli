@@ -21,7 +21,7 @@ import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon'
 import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
 import ClockIcon from '../../../../components/icons/ClockIcon'
-import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
+import SerialNumberIcon from '../../../../components/icons/SerialNumberIcon'
 
 // input options
 import {flightTypeOptionsEquipment} from '../../../../Utilities/Providers/dropdownInputOptions'
@@ -361,7 +361,7 @@ const AddClubFlightEquipment = () => {
                       </div>
 
                       <TextInput
-                        icon={serialNumberIcon}
+                        icon={<SerialNumberIcon/>}
                         className='col-span-1'
                         value={serialNumber}
                         onChange={handleTextInputSerialNumber}
