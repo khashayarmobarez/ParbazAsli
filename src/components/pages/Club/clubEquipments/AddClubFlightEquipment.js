@@ -17,8 +17,8 @@ import CloseIcon from '@mui/icons-material/Close';
 // assets
 import Cube from '../../../../components/icons/ThreeDCube'
 import wingIcon from '../../../../components/icons/WingIcon'
-import tagsIcon from '../../../../assets/icons/colorTagsIcon.svg'
-import clothesTag from '../../../../assets/icons/clothingTag.svg'
+import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon'
+import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
 import watchIcon from '../../../../assets/icons/flightHour.svg'
 import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
@@ -291,7 +291,7 @@ const AddClubFlightEquipment = () => {
                             selectedOption={selectedOptionBrand}
                             handleSelectChange={handleSelectChangeBrand}
                             name={'برند'}
-                            icon={clothesTag}
+                            icon={<ClothesTag/>}
                             IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
                         />
 
@@ -302,7 +302,7 @@ const AddClubFlightEquipment = () => {
                         }
 
                         {/* aircraft model input */}
-                        <TextInput value={aircraft} icon={clothesTag} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                        <TextInput value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>
@@ -328,7 +328,7 @@ const AddClubFlightEquipment = () => {
                         <DropdownInput
                           className='col-span-1'
                           name={'نوع'}
-                          icon={tagsIcon}
+                          icon={<ColorTagsIcon/>}
                           options={flightTypeOptionsEquipment}
                           selectedOption={selectedOptionType} 
                           handleSelectChange={handleSelectChangeType}

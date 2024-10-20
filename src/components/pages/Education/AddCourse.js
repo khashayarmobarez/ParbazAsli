@@ -13,7 +13,7 @@ import listIcon from '../../../assets/icons/listIcon.svg';
 import ChartIcon from '../../../components/icons/ChartIcon';
 import ChartIcon2 from '../../../components/icons/ChartIcon2';
 import SingleTag from '../../../components/icons/ADressTag';
-import tagsIcon from '../../../assets/icons/colorTagsIcon.svg';
+import ColorTagsIcon from '../../../components/icons/ColorTagsIcon';
 import CertificateIcon from '../../../components/icons/CertificateIcon';
 
 // mui
@@ -402,7 +402,7 @@ const AddCourse = () => {
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <DropdownInput isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={tagsIcon}/>
+                <DropdownInput isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>}/>
 
 
                 {selectedClassType && 

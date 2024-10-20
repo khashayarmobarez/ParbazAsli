@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // assets
 import Cube from '../../../components/icons/ThreeDCube'
-import clothesTag from '../../../assets/icons/clothingTag.svg'
+import ClothesTag from '../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../components/icons/CalenderIcon'
 import watchIcon from '../../../assets/icons/flightHour.svg'
 import serialNumberIcon from '../../../assets/icons/serialNumber.svg'
@@ -263,7 +263,7 @@ const AddHarness = () => {
                         selectedOption={brand}
                         handleSelectChange={handleBrandChange}
                         name={'برند'}
-                        icon={clothesTag}
+                        icon={<ClothesTag/>}
                         IsEmptyAfterSubmit={submitted && !brand}
                     />
 
@@ -277,7 +277,7 @@ const AddHarness = () => {
                         />
                     }
                     
-                    <TextInput placeholder='نام مدل' icon={clothesTag} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}  />
+                    <TextInput placeholder='نام مدل' icon={<ClothesTag/>} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}  />
 
                     {/* size input */}
                     <TextInput icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size} />

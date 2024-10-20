@@ -11,7 +11,7 @@ import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import windIcon from '../../../assets/icons/windIcon.svg'
 import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
 import phoneIcon from '../../../assets/icons/phone-Icon (Stroke).svg'
-import colorTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
+import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 
 // react-toastify
 import { toast } from 'react-toastify';
@@ -398,7 +398,7 @@ const AddLanding = () => {
                         landingTypesData &&   
                         <DropdownInput 
                             name={'شیوه'} 
-                            icon={colorTagsIcon} 
+                            icon={<ColorTagsIcon/>} 
                             options={landingTypesData.data} 
                             selectedOption={landingType} 
                             handleSelectChange={handleSelectSetLandingType} 

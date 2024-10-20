@@ -22,7 +22,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../../components/icons/ThreeDCube'
-import clothesTag from '../../../../assets/icons/clothingTag.svg'
+import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
 import watchIcon from '../../../../assets/icons/flightHour.svg'
 import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
@@ -343,7 +343,7 @@ const AddParachute = () => {
                           selectedOption={selectedOptionBrand}
                           handleSelectChange={handleSelectChangeBrand}
                           name={'برند'}
-                          icon={clothesTag}
+                          icon={<ClothesTag/>}
                           IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
                       />
 
@@ -354,7 +354,7 @@ const AddParachute = () => {
                       }
 
                       {/* aircraft model input */}
-                      <TextInput icon={clothesTag} placeholder='نام مدل' value={aircraft} onChange={handleTextInputAircraft} IsEmptyAfterSubmit={submitted && !aircraft}  />
+                      <TextInput icon={<ClothesTag/>} placeholder='نام مدل' value={aircraft} onChange={handleTextInputAircraft} IsEmptyAfterSubmit={submitted && !aircraft}  />
 
                       {/* size inputs */}
                       <div className='col-span-1 flex flex-col gap-y-2'>

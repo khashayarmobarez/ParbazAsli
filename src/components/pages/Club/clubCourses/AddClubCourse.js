@@ -14,7 +14,7 @@ import listIcon from '../../../../assets/icons/listIcon.svg';
 import ChartIcon from '../../../../components/icons/ChartIcon';
 import ChartIcon2 from '../../../../components/icons/ChartIcon2';
 import singleTag from '../../../../components/icons/ADressTag';
-import tagsIcon from '../../../../assets/icons/colorTagsIcon.svg';
+import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon';
 import userIcon from '../../../../assets/icons/user-Icon.svg';
 import CertificateIcon from '../../../../components/icons/CertificateIcon';
 
@@ -432,7 +432,7 @@ const AddClubCourse = () => {
 
                 {
                     coachNamesData && coachNamesData.data.length > 0 &&
-                        <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={tagsIcon} />
+                        <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>} />
                 }
 
                 {selectedClassType && 

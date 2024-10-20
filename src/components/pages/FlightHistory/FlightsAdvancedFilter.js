@@ -13,7 +13,7 @@ import wingIcon from '../../../components/icons/WingIcon'
 import harnessIcon from '../../../assets/icons/harnessicon.svg'
 import locationIcon from '../../../assets/icons/location.svg'
 import earthIcon from '../../../assets/icons/earth.svg'
-import multipleTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
+import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import singleTag from '../../../components/icons/ADressTag'
 import userIcon from '../../../assets/icons/user-Icon.svg'
 
@@ -227,7 +227,7 @@ const FlightsAdvancedFilter = () => {
                                 (<SearchInputWithDropdown icon={locationIcon} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
-                            <DropdownInput icon={multipleTagsIcon} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                            <DropdownInput icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             
                             {
                                 userCoachesData && userCoachesData.data.length > 0 &&

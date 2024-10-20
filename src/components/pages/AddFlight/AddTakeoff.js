@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
-import colorTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
+import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import windIcon from '../../../assets/icons/windIcon.svg'
 import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
 
@@ -172,7 +172,7 @@ const AddTakeoff = () => {
 
                     {
                         takeOffTypesData &&
-                        <DropdownInput name={'شیوه'} icon={colorTagsIcon} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
+                        <DropdownInput name={'شیوه'} icon={<ColorTagsIcon/>} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
                     }
 
                     <DropdownInput name={'جهت باد'} icon={windDirectionCock} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} IsEmptyAfterSubmit={submitted && !takeoffwindDirection} />

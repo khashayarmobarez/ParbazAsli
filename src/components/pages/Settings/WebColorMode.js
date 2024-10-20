@@ -3,7 +3,7 @@ import { useTheme } from '../../../Utilities/Hooks/useTheme';
 import DropdownInput from '../../inputs/DropDownInput';
 
 // assets
-import colorTagsIcon from '../../../assets/icons/colorTagsIcon.svg';
+import ColorTagsIcon from '../../../components/icons/ColorTagsIcon';
 
 const WebColorMode = () => {
   const { currentMode, toggleTheme } = useTheme();
@@ -24,7 +24,7 @@ const WebColorMode = () => {
     >
       <DropdownInput
         name="حالت اپلیکیشن"
-        icon={colorTagsIcon}
+        icon={<ColorTagsIcon/>}
         options={options}
         selectedOption={currentMode}
         handleSelectChange={handleSelectColor}
