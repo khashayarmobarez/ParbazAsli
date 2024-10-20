@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
-import windIcon from '../../../assets/icons/windIcon.svg'
+import WindIcon from '../../../components/icons/WindIcon'
 import WindDirectionCock from '../../../components/icons/WindDirectionCock'
 
 // provider
@@ -180,7 +180,7 @@ const AddTakeoff = () => {
                     {/* <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
                     <NumberInput
-                        icon={windIcon}
+                        icon={<WindIcon/>}
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}

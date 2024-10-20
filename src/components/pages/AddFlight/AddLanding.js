@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
-import windIcon from '../../../assets/icons/windIcon.svg'
+import WindIcon from '../../../components/icons/WindIcon'
 import WindDirectionCock from '../../../components/icons/WindDirectionCock'
 import PhoneIcon from '../../../components/icons/PhoneIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
@@ -416,7 +416,7 @@ const AddLanding = () => {
                     />
                     
                     <NumberInput
-                        icon={windIcon}
+                        icon={<WindIcon/>}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
