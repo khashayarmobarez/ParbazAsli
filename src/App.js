@@ -247,10 +247,10 @@ function App() {
               <Route path='*' element={<Navigate to="/addEmail" replace />} />
               {/* edit profile */}
               <Route path='/editProfile' element={<EditProfile />}>
-                    <Route index element={<ChangeProfile />} />
-                    <Route path="changeProfile" element={<ChangeProfile />} />
-                    <Route path="changeCertificate" element={<ChangeCertificate />} />
-                </Route>
+                <Route index element={<ChangeProfile />} />
+                <Route path="changeProfile" element={<ChangeProfile />} />
+                <Route path="changeCertificate" element={<ChangeCertificate />} />
+              </Route>
             </>
           )}
 

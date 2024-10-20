@@ -35,8 +35,9 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                         boxShadow: 'var(--shadow-all)',
                     }}
                 />
-                <button disabled={isLoading} onClick={onSubmit} className={`bg-bgButtonSecondaryDefault shadow-shadowAll ${isLoading && 'opacity-50'} 
-                w-24 h-12 flex items-center justify-center rounded-l-2xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}>
+                <button disabled={isLoading} onClick={onSubmit} className={`bg-bgButtonSecondaryDefault ${isLoading && 'opacity-50'} 
+                w-24 h-[47px] flex items-center justify-center rounded-l-2xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}
+                style={{boxShadow: 'var(--shadow-button-dark), var(--shadow-button-white)'}}>
                     <p>{buttonText}</p> 
                 </button>
             </div>           

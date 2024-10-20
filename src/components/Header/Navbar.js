@@ -181,7 +181,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                 (windowWidth > 768) ?
                                     <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-12 flex items-center justify-center`} style={{border: '1px solid var(--text-accent)'}}><p>ورود / ثبت نام</p></Link>
                                     :
-                                    <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon /> </Link>
+                                    <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon sx={{color: 'var(--text-default)', marginBottom: '-0.2rem'}} /> </Link>
                             :
                             <div className='md:flex md:gap-x-4 md:mr-10'>
                                 <button >
