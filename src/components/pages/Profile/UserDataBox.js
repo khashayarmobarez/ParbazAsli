@@ -13,8 +13,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // assets
-import flightHour from '../../../assets/icons/flightHour.svg'
-import flightQuan from '../../../assets/icons/flightQuantity.svg'
+import ClockIcon from '../../../components/icons/ClockIcon'
+import FlightQuantity from '../../../components/icons/FlightQuantity'
 import YellowPlus from '../../../assets/icons/yellowPlus.svg'
 
 // queries 
@@ -72,19 +72,23 @@ const UserDataBox = ({hasCoach}) => {
                         <div className=' gap-y-2 flex flex-col items-center md:space-y-5'>
 
                             <div className=' flex justify-center items-center w-[80%]' >
-                                <img src={flightQuan} alt='icon'/>
+                                <FlightQuantity/>
                                 <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center w-[80%]' >
-                                <img src={flightHour} alt='icon'/>
+                                <span className='w-10 -ml-3'>
+                                    <ClockIcon/>
+                                </span>
                                 <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
                             </div>
                             
                             {/* condition based on coach  */}
                             { hasCoach ?
                                 <div className=' flex justify-between items-center w-[80%]' >
-                                    <img src={flightHour} alt='icon'/>
+                                    <span className='w-10 -ml-3'>
+                                        <ClockIcon/>
+                                    </span>
                                     <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
                                 </div>
                                 :

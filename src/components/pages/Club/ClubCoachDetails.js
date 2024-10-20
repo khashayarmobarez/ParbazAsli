@@ -15,8 +15,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // assets
-import flightHour from '../../../assets/icons/flightHour.svg'
-import documentIcon from '../../../assets/icons/doc-Icon.svg'
+import ClockIcon from '../../../components/icons/ClockIcon'
+import DocumentIcon from '../../../components/icons/DocumentIcon'
 import clubStudents from '../../../assets/icons/users-Icon.svg'
 import backButton from '../../../assets/icons/Right Arrow Button.svg'
 
@@ -157,12 +157,12 @@ const ClubCoachDetails = () => {
                                 </div> 
 
                                 <div className=' flex justify-start items-start w-32' >
-                                    <img src={flightHour} alt='icon'/>
+                                    <ClockIcon/>
                                     <p className=' font-normal text-xs mr-1  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
                                 </div>
 
                                 <div className=' flex justify-start items-start w-32 -mt-1' >
-                                    <img src={documentIcon} alt='icon'/>
+                                    <DocumentIcon/>
                                     <p className=' font-normal text-xs mr-1 mt-[2px] text-start'>کد عضویت: {coachDetails.data.id}</p>
                                 </div>
 

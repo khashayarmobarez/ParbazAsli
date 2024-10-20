@@ -10,7 +10,7 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css';
 
 // assets 
 import arrowIcon from '../assets/icons/Right Arrow Button.svg';
-import eraser from '../assets/icons/eraser 1.svg';
+import Eraser from '../components/icons/Eraser1Icon';
 
 // mui
 import CircularProgress from '@mui/material/CircularProgress';
@@ -97,7 +97,7 @@ const FlightHistory = () => {
                                 boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)'
                             }}
                             onClick={handleResetData}>
-                                <img src={eraser} alt='eraser' />
+                                <Eraser/>
                             </button>
 
                         </div>

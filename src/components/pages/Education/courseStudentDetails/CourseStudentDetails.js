@@ -11,8 +11,8 @@ import Box from '@mui/material/Box';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import flightHour from '../../../../assets/icons/flightHour.svg';
-import flightQuan from '../../../../assets/icons/flightQuantity.svg';
+import ClockIcon from '../../../../components/icons/ClockIcon';
+import FlightQuantity from '../../../../components/icons/FlightQuantity';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
 import userIcon from '../../../../assets/icons/user-Icon.svg';
 import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../../Utilities/Services/coursesQueries';
@@ -100,16 +100,16 @@ const CourseStudentDetails = () => {
 
                                 <div className='w-full flex flex-col items-start justify-between gap-y-4 text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={flightQuan} />
+                                        <FlightQuantity/>
                                         تعداد پرواز {studentData.data.flightCounts}
                                     </p>
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={flightHour} />
+                                        <ClockIcon/>
                                         ساعت پرواز {studentData.data.flightHours}
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
-                                            <img alt='icon' src={flightHour} />
+                                            <ClockIcon/>
                                             {studentData.data.coachingHours} ساعت مربی‌گری
                                         </p>
                                     }

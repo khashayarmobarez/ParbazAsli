@@ -20,7 +20,7 @@ import WingIcon from '../../../components/icons/WingIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import ClothesTag from '../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../components/icons/CalenderIcon'
-import watchIcon from '../../../assets/icons/flightHour.svg'
+import ClockIcon from '../../../components/icons/ClockIcon'
 import serialNumberIcon from '../../../assets/icons/serialNumber.svg'
 
 // input options
@@ -350,7 +350,7 @@ const AddFlightEquipment = () => {
                         
                         {/* flight hour model input */}
                         <NumberInput 
-                          icon={watchIcon} 
+                          icon={<ClockIcon/>} 
                           className='col-span-1' 
                           value={flightHour} 
                           onChange={handleTextInputFlightHour} 

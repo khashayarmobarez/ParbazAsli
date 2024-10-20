@@ -19,7 +19,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Cube from '../../../../components/icons/ThreeDCube'
 import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
-import watchIcon from '../../../../assets/icons/flightHour.svg'
+import ClockIcon from '../../../../components/icons/ClockIcon'
 import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
 
 
@@ -276,7 +276,7 @@ const AddClubHarness = () => {
                     <TextInput icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
 
                     {/* Flight hour input */}
-                    <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                    <NumberInput icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput

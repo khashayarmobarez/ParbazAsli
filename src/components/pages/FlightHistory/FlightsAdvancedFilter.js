@@ -12,7 +12,7 @@ import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 import wingIcon from '../../../components/icons/WingIcon'
 import harnessIcon from '../../../assets/icons/harnessicon.svg'
 import locationIcon from '../../../assets/icons/location.svg'
-import earthIcon from '../../../assets/icons/earth.svg'
+import EarthIcon from '../../icons/EarthIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import singleTag from '../../../components/icons/ADressTag'
 import userIcon from '../../../assets/icons/user-Icon.svg'
@@ -214,7 +214,7 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 countriesData && 
-                                <DropdownInput icon={earthIcon} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                                <DropdownInput icon={<EarthIcon/>} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
                             }
 
                             {
@@ -234,7 +234,7 @@ const FlightsAdvancedFilter = () => {
                                 <DropdownInput icon={userIcon} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
                             }
 
-                            <DropdownInput icon={multipleTagsIcon} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+                            <DropdownInput icon={<ColorTagsIcon/>} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
                             {

@@ -14,8 +14,8 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import { useGetClubCourseStudent } from '../../../../Utilities/Services/clubQueries';
 
 // assets
-import flightHour from '../../../../assets/icons/flightHour.svg';
-import flightQuan from '../../../../assets/icons/flightQuantity.svg';
+import ClockIcon from '../../../../components/icons/ClockIcon';
+import FlightQuantity from '../../../../components/icons/FlightQuantity';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
 
 const ClubCourseStudentDetails = () => {
@@ -93,21 +93,21 @@ const ClubCourseStudentDetails = () => {
 
                                 <div className='w-full flex flex-col items-start justify-between gap-y-2 mr-4 text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={flightQuan} />
+                                        <FlightQuantity/>
                                         {studentData.data.flightCounts} تعداد پرواز
                                     </p>
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={flightHour} />
+                                        <ClockIcon/>
                                         {studentData.data.flightHours} ساعت پرواز
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
-                                            <img alt='icon' src={flightHour} />
+                                            <ClockIcon/>
                                             {studentData.data.coachingHours} ساعت مربی‌گری
                                         </p>
                                     }
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={flightQuan} />
+                                        <FlightQuantity/>
                                         کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>

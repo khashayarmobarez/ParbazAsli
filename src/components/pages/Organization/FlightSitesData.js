@@ -10,7 +10,7 @@ import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../
 import { useCitiesByProvinceId, useFlightCounts } from '../../../Utilities/Services/organQueries';
 
 // assets
-import eraser from '../../../assets/icons/eraser 1.svg';
+import Eraser from '../../../components/icons/Eraser1Icon';
 
 // components
 import IranMap from './iranMap/components/IranMap';
@@ -162,7 +162,7 @@ const FlightSitesData = () => {
                                 boxShadow: 'var(--profile-buttons-boxShadow)'
                             }}
                             onClick={handleResetData}>
-                                <img src={eraser} alt='eraser' />
+                                <Eraser />
                         </button>
                     </div>
 
