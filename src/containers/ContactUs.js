@@ -154,7 +154,8 @@ const ContactUs = () => {
                 <PageTitle title={'راه‌های ارتباطی'} />
                 }
 
-                <div className='w-[90%] flex flex-col rounded-3xl py-6 px-8 gap-y-6 mb-8 mt-10 md:w-[50%] md:flex-row md:self-center' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
+                <div className='w-[90%] flex flex-col rounded-3xl py-6 px-8 gap-y-6 mb-8 mt-10 md:w-[50%] md:flex-row md:self-center' 
+                style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)'}}>
 
                     <div className='w-full flex justify-between gap-y-8 md:py-4 md:flex-col' >
 
@@ -173,15 +174,15 @@ const ContactUs = () => {
                         <div className='flex flex-col gap-y-4 md:gap-y-6'>
 
                             <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer' 
-                            style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
+                            style={{background: 'var(--bg-button-secondary-default)',boxShadow: 'var(--shadow-all)'}}>
                                 <XIcon sx={{width:'60%', height:'60%', color:'var(--text-accent)'}} />
                             </div>
                             <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer' 
-                            style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}>
+                            style={{background: 'var(--bg-button-secondary-default)',boxShadow: 'var(--shadow-all)'}}>
                                 <InstagramIcon sx={{width:'60%', height:'60%', color:'var(--text-accent)'}} />
                             </div>
                             <div className='w-[53px] h-[53px] md:w-[60px] md:h-[60px] rounded-full flex items-center justify-center cursor-pointer'
-                            style={{background: 'var(--landing-page-titles-bg)',boxShadow: 'var(--landing-page-titles-boxShadow)'}}
+                            style={{background: 'var(--bg-button-secondary-default)',boxShadow: 'var(--shadow-all)'}}
                             onClick={contactViaTelegramHandler}>
                                 <TelegramIcon sx={{width:'60%', height:'60%', color:'var(--text-accent)'}} />
                             </div>

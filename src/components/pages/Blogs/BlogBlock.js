@@ -34,7 +34,7 @@ const BlogBlock = ({blogData}) => {
 
     return (
         <article className='w-full h-[500px] flex flex-col items-center justify-between p-4 rounded-3xl md:p-8' 
-        style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
+        style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)'}}>
 
             <div className="w-full h-52 md:h-56">
                 {image && <img src={image.path} alt={image.name} className="rounded object-cover object-center h-full w-full" />}

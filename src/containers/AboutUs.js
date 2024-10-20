@@ -28,7 +28,7 @@ const AboutUs = () => {
                     <PageTitle title={`درباره دیجی لاگ بوک`} />
                 }
 
-                    <div className='w-[90%] flex flex-col rounded-3xl py-8 px-4 text-right md:w-[50%] md:self-start gap-y-8 mt-6 mb-4' style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shadow)'}}>
+                    <div className='w-[90%] flex flex-col rounded-3xl py-8 px-4 text-right md:w-[50%] md:self-start gap-y-8 mt-6 mb-4' style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)'}}>
 
                     {
                     !isBelow768px &&

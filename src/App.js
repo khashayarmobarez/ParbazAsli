@@ -227,8 +227,8 @@ function App() {
           {/* landing page */}
           {!token &&
           <>
-            <Route path='/signUpLogin' element={<SignUpOrLogin />} />
-            <Route path='/' element={<LandingPage />} />
+            {/* <Route path='/LandingPage' element={<LandingPage />} /> */}
+            <Route path='/' element={<SignUpOrLogin />} />
             <Route path='*' element={<Navigate to="/" replace />} />
           </>
           }
