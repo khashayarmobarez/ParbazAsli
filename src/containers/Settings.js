@@ -46,7 +46,7 @@ const Settings = () => {
                 <PageTitle title={'تنظیمات'} navigateTo={'profile'} paddingRight={'40%'} /> 
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='شخصی' icon={userIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown2')} onClickActivation={() => handleOpenDropDowns('dropDown2')} />
+                    <DropDownLine  title='شخصی' icon={<UserIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown2')} onClickActivation={() => handleOpenDropDowns('dropDown2')} />
                     {
                         DropDown.includes('dropDown2') &&
                             <EditUserSettings />
