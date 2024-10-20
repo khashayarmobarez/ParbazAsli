@@ -7,7 +7,7 @@ import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import singleTag from '../../../../assets/icons/ADressTag.svg';
+import singleTag from '../../../../components/icons/ADressTag';
 import listIcon from '../../../../assets/icons/listIcon.svg';
 import usersIcon from '../../../../assets/icons/users-Icon.svg';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -251,7 +251,7 @@ const AddClass = () => {
                                 value={ClassName}
                                 onChange={handleClassName}
                                 placeholder='نام کلاس'
-                                icon={singleTag}
+                                icon={<singleTag/>}
                             />
 
                             <div className='w-full flex flex-col gap-y-2'>

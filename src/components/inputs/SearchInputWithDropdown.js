@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../assets/icons/3dCube.svg';
+import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
 const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon }) => {
@@ -56,8 +56,12 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
 
   return (
     <div className="flex relative w-[100%] h-12 rounded-xl" ref={dropdownRef}>
-      <span className='z-10'>
-        <img src={icon || Cube} alt="icon" className="absolute mt-3 mr-3 w-5" />
+      <span className="absolute -mt-0 mr-2 w-5">
+        {icon ? 
+          icon
+          :
+          <Cube />
+        }
       </span>
       <input
         ref={inputRef}

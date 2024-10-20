@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { LinearProgress } from '@mui/material';
 
 // assets
-import attention from '../assets/icons/attention.svg'
+import Attention from '../components/icons/Attention'
 import arrowIcon from '../assets/icons/Right Arrow Button.svg';
 
 // styles
@@ -115,7 +115,9 @@ const MyCourses = () => {
                     {
                         courseDividerData && courseDividerData.data.length === 0 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
-                            <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
+                            <div className='w-20 h-20 mx-auto' >
+                                <Attention />
+                            </div>
                             <p>در انتظار مربی...</p>
                             <p className='mt-5'>هنوز دوره‌ای برای شما افزوده نشده است!</p>
                         </div>

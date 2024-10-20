@@ -4,7 +4,7 @@ import { postIsUserAuthenticated } from '../../../../Utilities/Services/Authenti
 import {  useNavigate } from 'react-router-dom';
 
 // assets 
-import certificateIcon from '../../../../assets/icons/certificate-Vector.svg'
+import CertificateIcon from '../../../../components/icons/CertificateIcon'
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
@@ -333,7 +333,7 @@ const AddCertificate = () => {
                                                 :
                                                 'صدور گواهینامه از'
                                             }
-                                            icon={certificateIcon}
+                                            icon={<CertificateIcon/>}
                                         />
                                 }
                                 
@@ -353,7 +353,7 @@ const AddCertificate = () => {
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
                                                     name={'مقطع گواهینامه'}
-                                                    icon={certificateIcon}
+                                                    icon={<CertificateIcon/>}
                                                     isDeselectDeactivated={true}
                                                 />
                                                 
@@ -367,14 +367,14 @@ const AddCertificate = () => {
                                                             onChange={handleCertificateIdChange}
                                                             placeholder={'شماره گواهینامه'}
                                                             Type={'text'}
-                                                            icon={certificateIcon} // You can replace `null` with a specific icon if you have one
+                                                            icon={<CertificateIcon/>} // You can replace `null` with a specific icon if you have one
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput icon={certificateIcon} name={'تاریخ صدور'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'}  />
+                                                        <DateLastRepackInput icon={<CertificateIcon/>} name={'تاریخ صدور'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'}  />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput icon={certificateIcon} name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
+                                                        <DateLastRepackInput icon={<CertificateIcon/>} name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
 
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>

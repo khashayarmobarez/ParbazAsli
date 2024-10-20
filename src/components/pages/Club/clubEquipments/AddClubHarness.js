@@ -16,9 +16,9 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import Cube from '../../../../assets/icons/3dCube.svg'
+import Cube from '../../../../components/icons/ThreeDCube'
 import clothesTag from '../../../../assets/icons/clothingTag.svg'
-import calenderIcon from '../../../../assets/icons/calender-Icon.svg'
+import CalenderIcon from '../../../../components/icons/CalenderIcon'
 import watchIcon from '../../../../assets/icons/flightHour.svg'
 import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
 
@@ -273,14 +273,14 @@ const AddClubHarness = () => {
                     <TextInput placeholder='نام مدل' icon={clothesTag} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
 
                     {/* size input */}
-                    <TextInput icon={Cube} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
+                    <TextInput icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
 
                     {/* Flight hour input */}
                     <NumberInput icon={watchIcon} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput
-                      icon={calenderIcon}
+                      icon={<CalenderIcon/>}
                       className='col-span-1'
                       value={year}
                       onChange={handleTextInputYear}

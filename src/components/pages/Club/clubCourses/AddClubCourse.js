@@ -9,14 +9,14 @@ import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
-import attention from '../../../../assets/icons/attention.svg';
+import Attention from '../../../../components/icons/Attention';
 import listIcon from '../../../../assets/icons/listIcon.svg';
-import chartIcon from '../../../../assets/icons/chartIcon.svg';
-import chartIcon2 from '../../../../assets/icons/chartIcon2.svg';
-import singleTag from '../../../../assets/icons/ADressTag.svg';
+import ChartIcon from '../../../../components/icons/ChartIcon';
+import ChartIcon2 from '../../../../components/icons/ChartIcon2';
+import singleTag from '../../../../components/icons/ADressTag';
 import tagsIcon from '../../../../assets/icons/colorTagsIcon.svg';
 import userIcon from '../../../../assets/icons/user-Icon.svg';
-import certificateIcon from '../../../../assets/icons/certificate-Vector.svg';
+import CertificateIcon from '../../../../components/icons/CertificateIcon';
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
@@ -414,7 +414,7 @@ const AddClubCourse = () => {
                 {
                     coachNamesData && coachNamesData.data.length < 1 &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
-                        <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
+                        <img src={<Attention />} alt='attention' className='w-20 h-20 mx-auto' />
                         <p>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
                     </div>
                 }
@@ -463,7 +463,7 @@ const AddClubCourse = () => {
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
                                 name={'ارگان مربوطه'}
-                                icon={certificateIcon}
+                                icon={<CertificateIcon/>}
                                 />
                                 {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
                                 {
@@ -477,7 +477,7 @@ const AddClubCourse = () => {
                                                 <DropdownInput
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
-                                                    icon={chartIcon2}
+                                                    icon={<ChartIcon2/>}
                                                     selectedOption={level}
                                                     name={'مقطع'}
                                                 />
@@ -543,7 +543,7 @@ const AddClubCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
-                                        icon={singleTag}
+                                        icon={<singleTag/>}
                                         />
                                     </>
 
@@ -560,7 +560,7 @@ const AddClubCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
-                                        icon={singleTag}
+                                        icon={<singleTag/>}
                                     />
 
                                 <div className='w-full flex justify-between relative items-center'>
@@ -630,7 +630,7 @@ const AddClubCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput icon={chartIcon} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}

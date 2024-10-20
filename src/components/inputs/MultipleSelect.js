@@ -1,7 +1,7 @@
 import React from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../assets/icons/3dCube.svg';
+import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
 const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, handleRemove, IsEmptyAfterSubmit }) => {
@@ -15,9 +15,9 @@ const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, h
   return (
     <div className='flex flex-col w-full'>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
-        <span>
-          <img src={Cube} alt='icon' className='absolute mt-3 mr-1 w-6' />
-        </span>
+      <span className="absolute -mt-0 mr-2 w-5">
+          <Cube />
+      </span>
         <select className={`${inputStyles.inputDropdown} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%]`} id="dropdown" value="" onChange={handleSelection}>
           <option value="">{name}</option>
           {options.map((option) => (

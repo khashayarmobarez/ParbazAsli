@@ -10,11 +10,11 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 // assets 
 import AddIcon from '@mui/icons-material/Add';
 import listIcon from '../../../assets/icons/listIcon.svg';
-import chartIcon from '../../../assets/icons/chartIcon.svg';
-import chartIcon2 from '../../../assets/icons/chartIcon2.svg';
-import singleTag from '../../../assets/icons/ADressTag.svg';
+import ChartIcon from '../../../components/icons/ChartIcon';
+import ChartIcon2 from '../../../components/icons/ChartIcon2';
+import SingleTag from '../../../components/icons/ADressTag';
 import tagsIcon from '../../../assets/icons/colorTagsIcon.svg';
-import certificateIcon from '../../../assets/icons/certificate-Vector.svg';
+import CertificateIcon from '../../../components/icons/CertificateIcon';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -429,7 +429,7 @@ const AddCourse = () => {
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
                                 name={'ارگان'}
-                                icon={certificateIcon}
+                                icon={<CertificateIcon/>}
                                 />
                                 {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
                                 {
@@ -443,7 +443,7 @@ const AddCourse = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    icon={chartIcon2}
+                                                    icon={<ChartIcon2/>}
                                                     name={'مقطع'}
                                                 />
                                             </>
@@ -507,7 +507,7 @@ const AddCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
-                                        icon={singleTag}
+                                        icon={<SingleTag/>}
                                         />
                                     </>
 
@@ -524,7 +524,7 @@ const AddCourse = () => {
                                     value={courseName}  
                                     onChange={handleCourseName}
                                     placeholder='نام دوره'
-                                    icon={singleTag}
+                                    icon={<SingleTag/>}
                                 />
 
                                 <div className='w-full flex justify-between relative items-center'>
@@ -594,7 +594,7 @@ const AddCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput icon={chartIcon} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}

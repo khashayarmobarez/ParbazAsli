@@ -95,7 +95,7 @@ const LandingPage = () => {
                                 دیجی لاگ بوک به شما کمک می‌کند تا پیشرفت خود را به طور دقیق دنبال کنید و با مشاهده میزان ساعات پروازی خود و انواع تجهیزات پروازی استفاده شده و چالش‌هایی که با آنها روبرو شده‌اید ، می‌توانید ارزیابی دقیقی از توانایی‌ها و نیازهای آموزشی خود داشته باشد .
                             </p>
 
-                            <Link to='/signUpLogin' className='relative w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:top-4  '>
+                            <Link to='/signUpLogin' className='relative w-[90%]  rounded-xl md:w-96 md:relative md:top-4  '>
                                 <button className={`${ButtonStyles.addButton} w-[100%] gap-x-2`} >
                                     <PersonAddIcon />
                                     <p>ثبت نام در سامانه</p>

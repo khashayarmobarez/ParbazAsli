@@ -10,7 +10,6 @@ import boxStyles from '../../../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import attention from '../../../../../assets/icons/attention.svg'
 import arrowIcon from '../../../../../assets/icons/Right Arrow Button.svg';
 
 // mui

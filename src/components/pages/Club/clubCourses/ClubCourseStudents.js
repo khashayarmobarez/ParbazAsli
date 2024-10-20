@@ -12,7 +12,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
-import clipboard from '../../../../assets/icons/clipboard.svg'
 import arrowIcon from '../../../../assets/icons/Right Arrow Button.svg';
 import AddIcon from '@mui/icons-material/Add';
 

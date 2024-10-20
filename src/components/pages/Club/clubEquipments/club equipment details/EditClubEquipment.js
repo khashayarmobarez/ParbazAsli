@@ -18,7 +18,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import Cube from '../../../../../assets/icons/3dCube.svg'
 import user from '../../../../../assets/icons/user-Icon.svg'
 import serialNumberIcon from '../../../../../assets/icons/serialNumber.svg'
 

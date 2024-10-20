@@ -15,11 +15,11 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import Cube from '../../../../assets/icons/3dCube.svg'
-import wingIcon from '../../../../assets/icons/wingicon.svg'
+import Cube from '../../../../components/icons/ThreeDCube'
+import wingIcon from '../../../../components/icons/WingIcon'
 import tagsIcon from '../../../../assets/icons/colorTagsIcon.svg'
 import clothesTag from '../../../../assets/icons/clothingTag.svg'
-import calenderIcon from '../../../../assets/icons/calender-Icon.svg'
+import CalenderIcon from '../../../../components/icons/CalenderIcon'
 import watchIcon from '../../../../assets/icons/flightHour.svg'
 import serialNumberIcon from '../../../../assets/icons/serialNumber.svg'
 
@@ -308,8 +308,8 @@ const AddClubFlightEquipment = () => {
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={Cube} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                            <NumberInput icon={Cube} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                            <NumberInput icon={<Cube />} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={<Cube />} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
@@ -317,7 +317,7 @@ const AddClubFlightEquipment = () => {
                         <DropdownInput
                           className='col-span-1'
                           name={'کلاس'}
-                          icon={wingIcon}
+                          icon={<wingIcon/>}
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
@@ -337,7 +337,7 @@ const AddClubFlightEquipment = () => {
                         
                         {/* Year input */}
                         <NumberInput
-                          icon={calenderIcon}
+                          icon={<CalenderIcon/>}
                           className='col-span-1'
                           value={year}
                           onChange={handleTextInputYear}

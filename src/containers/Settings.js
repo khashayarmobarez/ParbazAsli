@@ -6,7 +6,7 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 // assets
 import SettIcon from '../assets/icons/Icon-settings.svg'
 import userIcon from '../assets/icons/user-Icon.svg'
-import certificateIcon from '../assets/icons/certificate-Vector.svg'
+import CertificateIcon from '../components/icons/CertificateIcon'
 import usersIcon from '../assets/icons/users-Icon.svg'
 
 // queries
@@ -55,7 +55,7 @@ const Settings = () => {
                 </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
                                                                                                                                                                                                                                                                                                                          
                 <div className='w-[90%] flex flex-col items-center gap-y-4'>
-                    <DropDownLine title='گواهینامه‌ها' icon={certificateIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown3')} onClickActivation={() => handleOpenDropDowns('dropDown3')} />
+                    <DropDownLine title='گواهینامه‌ها' icon={<CertificateIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown3')} onClickActivation={() => handleOpenDropDowns('dropDown3')} />
                     {
                         DropDown.includes('dropDown3') &&
                         <div className='w-full flex flex-col items-center gap-y-6'>

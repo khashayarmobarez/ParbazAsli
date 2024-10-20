@@ -10,7 +10,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import { CircularProgress } from '@mui/material';
 
 // assets
-import certificateIcon from '../../../assets/icons/certificate-Vector.svg'
+import CertificateIcon from '../../../components/icons/CertificateIcon'
 
 // queries
 import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../Utilities/Services/queries'
@@ -230,7 +230,7 @@ const RenewCertificate = () => {
 
                                 
                                 <DropdownInput
-                                    icon={certificateIcon}
+                                    icon={<CertificateIcon/>}
                                     options={organsData.data}
                                     handleSelectChange={handleSelectOrganChange}
                                     selectedOption={organ}
@@ -248,7 +248,7 @@ const RenewCertificate = () => {
 
 
                                                 <DropdownInput
-                                                    icon={certificateIcon}
+                                                    icon={<CertificateIcon/>}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
@@ -266,7 +266,7 @@ const RenewCertificate = () => {
                                                         onChange={handleCertificateIdChange}
                                                         placeholder={'شماره گواهینامه'}
                                                         Type={'text'}
-                                                        icon={certificateIcon}
+                                                        icon={<CertificateIcon/>}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}

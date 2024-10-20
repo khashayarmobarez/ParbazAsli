@@ -9,12 +9,12 @@ import { resetAllFilters, selectFlightFilter, updateCoachNameFilter, updateCount
 import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 
 // assets
-import wingIcon from '../../../assets/icons/wingicon.svg'
+import wingIcon from '../../../components/icons/WingIcon'
 import harnessIcon from '../../../assets/icons/harnessicon.svg'
 import locationIcon from '../../../assets/icons/location.svg'
 import earthIcon from '../../../assets/icons/earth.svg'
 import multipleTagsIcon from '../../../assets/icons/colorTagsIcon.svg'
-import singleTag from '../../../assets/icons/ADressTag.svg'
+import singleTag from '../../../components/icons/ADressTag'
 import userIcon from '../../../assets/icons/user-Icon.svg'
 
 
@@ -200,13 +200,13 @@ const FlightsAdvancedFilter = () => {
                     
                             {
                                 userCoursesData && userCoursesData.data.length > 0 &&
-                                <DropdownInput icon={singleTag} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                                <DropdownInput icon={<singleTag/>} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
                             }
                             
                             {
                                 userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
                                 <>
-                                    <DropdownInputForEquipment icon={wingIcon} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
+                                    <DropdownInputForEquipment icon={<wingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
                                     <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
                                 </>

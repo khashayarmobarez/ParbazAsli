@@ -6,7 +6,7 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
 
 // assets
-import Calender from '../../../../assets/icons/calender-Icon.svg'
+import CalenderIcon from '../../../../components/icons/CalenderIcon'
 
 const DateButtonInput = ({ defaultValue, onChange, value, customShowDateFormat, position = 'right',placeH, icon }) => {
 
@@ -28,8 +28,12 @@ const DateButtonInput = ({ defaultValue, onChange, value, customShowDateFormat, 
 
   return (
     <div className='w-full flex'>
-        <span className='z-0' > 
-            <img src={icon ? icon : Calender} alt='icon' className=' absolute mt-3 mr-6 w-6' />
+        <span className="absolute -mt-0 mr-2 w-5">
+          {icon ? 
+            icon
+            :
+            <CalenderIcon />
+          }
         </span>
         <DatePicker
             onChange={(e) => handleChange(e.value)}

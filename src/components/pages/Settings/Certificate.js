@@ -1,7 +1,7 @@
 import React from 'react';
 
 //  assets
-import certifiacte from '../../../assets/icons/certificate-Vector.svg'
+import CertificateIcon from '../../../components/icons/CertificateIcon'
 
 
 const Certificate = ({certificateData}) => {
@@ -13,7 +13,7 @@ const Certificate = ({certificateData}) => {
             <div className=' w-full text-xs flex justify-between items-center gap-x-2'>
 
                 <div className=' flex gap-x-2 '>
-                    <img src={certifiacte} alt='icon' />
+                    <img src={<CertificateIcon/>} alt='icon' />
                     <p className='flex-wrap' >{certificateData.organization} / {certificateData.level}</p>
                 </div>
                 <div className='flex flex-col items-start gap-y-2'>
@@ -31,7 +31,7 @@ const Certificate = ({certificateData}) => {
 
             {certificateData.status === 'Rejected' &&
                 <div className='w-full flex items-center gap-x-2  mt-4'>
-                    <p className='text-sm text-[var(--text-error)] font-medium'>دلیل رد شدن: {certificateData.rejectReason}</p>
+                    <p className='text-sm text-textError font-medium'>دلیل رد شدن: {certificateData.rejectReason}</p>
                 </div>
             }
 

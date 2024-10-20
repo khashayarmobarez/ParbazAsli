@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../assets/icons/3dCube.svg';
+import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
 const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, name, handleRemove, isForSyllabi, Icon }) => {
@@ -61,8 +61,12 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
   return (
     <div className='flex flex-col w-full' ref={dropdownRef}>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
-        <span>
-          <img src={Icon || Cube} alt='icon' className='absolute mt-4 mr-2 w-5' />
+        <span className="absolute -mt-0 mr-2 w-5">
+          {Icon ? 
+            Icon
+            :
+            <Cube />
+          }
         </span>
         <input
           ref={inputRef}

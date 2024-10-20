@@ -12,7 +12,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 
 // assets
-import attention from '../../../../assets/icons/attention.svg';
+import Attention from '../../../../components/icons/Attention';
 
 // queries
 import { useClubCourseCounts, useClubCourses, useGetClubCoursesDividers } from '../../../../Utilities/Services/clubQueries';
@@ -95,7 +95,7 @@ const ClubCourses = () => {
 
                     {clubCourseDividerData && clubCourseDividerData.data.length < 1 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
-                            <img src={attention} alt='attention' className='w-20 h-20 mx-auto' />
+                            <img src={<Attention />} alt='attention' className='w-20 h-20 mx-auto' />
                             <p>در حال حاضر دوره ای وجود ندارد</p>
                         </div>
                     }
@@ -278,7 +278,7 @@ const ClubCourses = () => {
 
             </div>
 
-            <div className='fixed bottom-[3.3rem] w-[90%] bg-[#131423] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+            <div className='fixed bottom-[3.3rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
                 <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/club/addCourseToClub')}>
                     <AddIcon />
                     <p>افزودن دوره جدید</p>

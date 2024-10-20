@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
-import Cube from '../../assets/icons/3dCube.svg';
+import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 import { Checkbox } from '@mui/material';
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
@@ -69,9 +69,13 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
           onFocus={() => setIsOpen(true)}
         >
 
-            <span className='h-full flex justify-center items-center'>
-                <img src={Icon || Cube} alt='icon' className='absolute w-5 ' />
-            </span>
+        <span className="absolute -mt-0 mr-2 w-5">
+                {Icon ? 
+                  Icon
+                  :
+                  <Cube />
+                }
+        </span>
 
             <p>{name}</p>
 

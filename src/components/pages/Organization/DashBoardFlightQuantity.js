@@ -1,7 +1,7 @@
 import React from 'react';
 
 // assets
-import calender from '../../../assets/icons/calender-Icon.svg'
+import CalenderIcon from '../../../components/icons/CalenderIcon'
 
 const DashBoardFlightQuantity = () => {
     return (
@@ -20,7 +20,7 @@ const DashBoardFlightQuantity = () => {
                                     <div className=' right-0 h-full w-3 rounded-r-xl' style={{backgroundImage:'var(--boxes-yellow-side)', boxShadow:'var(--boxes-yellow-side-boxshadow) '}}></div>
                                     <p style={{color:'var(--text-accent) '}}>روزانه</p>
                                     <div className='flex items-center justify-center gap-x-3'>
-                                        <img  src={calender} alt='icon' />
+                                        <CalenderIcon />
                                         <p className='mt-1'>15 آدر 1402</p>
                                     </div>
                                 </div>

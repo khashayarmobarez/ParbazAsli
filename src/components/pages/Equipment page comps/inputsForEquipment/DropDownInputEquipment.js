@@ -5,7 +5,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
 // assets
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../assets/icons/3dCube.svg'
+import Cube from '../../components/icons/ThreeDCube'
 
 
 const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon }) => {
@@ -19,16 +19,13 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
   return (
     <div className='flex relative w-[100%] h-12 rounded-xl'>
 
-      {
-        icon ?
-          <span> 
-            <img src={icon} alt='icon' className=' absolute mt-3 mr-2 w-5' />
-          </span>
+      <span className="absolute -mt-0 mr-2 w-5">
+        {icon ? 
+          icon
           :
-          <span> 
-            <img src={Cube} alt='icon' className=' absolute mt-3 mr-2 w-6' />
-          </span>
-      }
+          <Cube />
+        }
+      </span>
 
       <select
         className={`${inputStyles.inputDropdown} ${filled && inputStyles.inputFilledBorder} w-[100%]  placeholder:text-textDisabled`}
