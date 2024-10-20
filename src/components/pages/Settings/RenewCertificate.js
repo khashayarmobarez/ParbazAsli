@@ -13,7 +13,7 @@ import { CircularProgress } from '@mui/material';
 import CertificateIcon from '../../../components/icons/CertificateIcon'
 
 // queries
-import { useAddCertificate, useOrganLevels, useOrgansData } from '../../../Utilities/Services/queries'
+import { useAddCertificate, useLevelsByOrganizationId, useOrgansData } from '../../../Utilities/Services/queries'
 
 // utilities
 import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
@@ -51,7 +51,7 @@ const RenewCertificate = () => {
 
     const [errMsg, setErrMsg] = useState(null)
     
-    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevels(organ.id);
+    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useLevelsByOrganizationId(organ.id);
 
     const { mutate: mutateCertificate, isLoading: isSubmitting, isError: SubmitIsError, error: SubmitError, isSuccess: SubmitSuccess } = useAddCertificate();
 
@@ -278,7 +278,7 @@ const RenewCertificate = () => {
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
                                                         <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
-                                                        style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+                                                        style={{borderColor:'var(--text-default)', backgroundColor:'var(--) '}}>
 
                                                             <input
                                                                 type="file"

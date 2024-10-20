@@ -111,33 +111,6 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-// Get Levels By Organization Id
-  const getOrganizationLevels = async (organId) => {
-    try {
-      const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/Level/GetLevelsByOrganizationId?organizationId=${organId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-      // console.log(response.data);  
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to fetch organs');
-    }
-  };
-
-  // use data
-  const useOrganLevels = (organId) => {
-    return useQuery(['organLevels', organId], () => getOrganizationLevels(organId), {
-        enabled: !!organId, // This ensures the query runs only if organId is not null/undefined
-    });
-  };
-
-
-
-
 // Get Levels for adding course(without starter role) By Organization Id
   const getOrganizationLevelsForCourse = async (organId) => {
     try {
@@ -283,4 +256,4 @@ const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
 
   
 
-export { useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevels, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById, useLevelsByOrganizationId};
+export { useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById, useLevelsByOrganizationId};
