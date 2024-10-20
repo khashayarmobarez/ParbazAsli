@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import { useDeclineUserFlight } from '../../../Utilities/Services/coursesQueries';
 
 // assets
-import timer from '../../../assets/icons/timer.svg'
+import TimerIcon from '../../../components/icons/TimerIcon'
 import check from '../../../assets/icons/checkGreen.svg'
 
 
@@ -82,7 +82,7 @@ const PracticalFlightHistoryBox = (props) => {
                             <p>{flightBaseData.site && flightBaseData.site.slice(0, 14)}</p>
                             {
                             flightBaseData.status === 'Pending' &&
-                                <img src={timer} alt='timer' />
+                                <TimerIcon/>
                             }
                             {
                             flightBaseData.status === 'Accepted' &&

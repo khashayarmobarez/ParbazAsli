@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import windIcon from '../../../assets/icons/windIcon.svg'
-import windDirectionCock from '../../../assets/icons/windDirectionCock.svg'
+import WindDirectionCock from '../../../components/icons/WindDirectionCock'
 import PhoneIcon from '../../../components/icons/PhoneIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 
@@ -408,7 +408,7 @@ const AddLanding = () => {
 
                     <DropdownInput 
                         name={'جهت باد'} 
-                        icon={windDirectionCock} 
+                        icon={<WindDirectionCock/>} 
                         options={windDirectionOptions} 
                         selectedOption={landingWindDirection} 
                         handleSelectChange={handleSelectSetLandingWindDirection} 
