@@ -19,7 +19,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 // assets
 import Cube from '../../../../components/icons/ThreeDCube'
-import user from '../../../../assets/icons/user-Icon.svg'
+import UserIcon from '../../../../components/icons/UserIcon'
 import SerialNumberIcon from '../../../../components/icons/SerialNumberIcon'
 
 // comps
@@ -374,7 +374,7 @@ const EditEquipment = () => {
                                                 {/* Last Packer ID input */}
                                                 <div className='w-full flex flex-col items-start gap-y-2'>
                                                     <TextInput
-                                                    icon={user}
+                                                    icon={<UserIcon/>}
                                                     className='col-span-1'
                                                     value={lastPackerId}
                                                     onChange={handleTextInputLastPackerId}

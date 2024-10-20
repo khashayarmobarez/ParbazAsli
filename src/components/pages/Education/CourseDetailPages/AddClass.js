@@ -9,7 +9,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 // assets
 import singleTag from '../../../../components/icons/ADressTag';
 import ListIcon from '../../../../components/icons/ListIcon';
-import usersIcon from '../../../../assets/icons/users-Icon.svg';
+import UsersIcon from '../../../../components/icons/UsersIcon';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // queries
@@ -309,7 +309,7 @@ const AddClass = () => {
                                 selectedOptions={selectedStudents}
                                 handleSelectChange={handleSelectChangeStudents}
                                 handleRemove={handleRemoveStudents}
-                                Icon={usersIcon}
+                                Icon={<UsersIcon/>}
                             />
                             
 

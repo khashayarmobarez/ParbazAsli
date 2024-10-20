@@ -26,7 +26,7 @@ import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
 import ClockIcon from '../../../../components/icons/ClockIcon'
 import SerialNumberIcon from '../../../../components/icons/SerialNumberIcon'
-import userIcon from '../../../../assets/icons/user-Icon.svg'
+import UserIcon from '../../../../components/icons/UserIcon'
 
 // components 
 import DropdownInput from '../../../inputs/DropDownInput';
@@ -383,7 +383,7 @@ const AddParachute = () => {
                       {/* Last Packer ID input */}
                       <div className='w-full flex flex-col items-start gap-y-2'>
                         <TextInput
-                          icon={userIcon}
+                          icon={<UserIcon/>}
                           className='col-span-1'
                           value={lastPackerId}
                           onChange={handleTextInputLastPackerId}

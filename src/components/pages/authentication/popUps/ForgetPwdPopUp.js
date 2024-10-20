@@ -13,7 +13,7 @@ import { selectAuthSettings, getAuthSettings } from '../../../../Utilities/Redux
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import userIcon from '../../../../assets/icons/user-Icon.svg';
+import UserIcon from '../../../../components/icons/UserIcon';
 
 // styles
 import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
@@ -406,7 +406,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     onChange={phoneOrEmailInputHandler}
                                     placeholder={'شماره موبایل یا ایمیل'}
                                     Type={'text'}
-                                    icon={userIcon} // You can replace `null` with a specific icon if you have one
+                                    icon={<UserIcon/>} // You can replace `null` with a specific icon if you have one
                                 />
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 

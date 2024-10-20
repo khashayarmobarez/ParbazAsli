@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // assets
-import clubCoaches from '../../../assets/icons/user-Icon.svg'
-import clubStudents from '../../../assets/icons/users-Icon.svg'
+import UserIcon from '../../../components/icons/UserIcon'
+import UsersIcon from '../../../components/icons/UsersIcon'
 import YellowPlus from '../../../assets/icons/yellowPlus.svg'   
 
 // queries 
@@ -46,15 +46,15 @@ const ClubData = () => {
                     <div className='w-full h-full flex flex-col items-start justify-between py-2 md:space-y-5 md:w-[50%] md:items-center'>
 
                         <div className=' flex justify-center items-start' >
-                            <img src={clubCoaches} alt='icon'/>
+                            <UserIcon/>
                             <p className=' font-normal text-sm mr-2 w-36 text-start'>کد باشگاه: {data.data.id}</p>
                         </div> 
                         <div className=' flex justify-center items-start' >
-                            <img src={clubCoaches} alt='icon'/>
+                            <UserIcon/>
                             <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.activeCoachesCount} مربی فعال</p>
                         </div> 
                         <div className=' flex justify-between items-start' >
-                            <img src={clubStudents} alt='icon'/>
+                            <UsersIcon/>
                             <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.activeStudentsCount} هنرجو فعال</p>
                         </div>
 

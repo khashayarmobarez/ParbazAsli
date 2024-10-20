@@ -14,7 +14,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import ClockIcon from '../../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../../components/icons/FlightQuantity';
 import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
-import userIcon from '../../../../assets/icons/user-Icon.svg';
+import UserIcon from '../../../../components/icons/UserIcon';
 import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../../Utilities/Services/coursesQueries';
 
 const CourseStudentDetails = () => {
@@ -114,7 +114,7 @@ const CourseStudentDetails = () => {
                                         </p>
                                     }
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={userIcon} />
+                                        <img alt='icon' src={<UserIcon/>} />
                                         کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>

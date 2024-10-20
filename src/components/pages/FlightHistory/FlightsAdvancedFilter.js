@@ -15,7 +15,7 @@ import LocationIcon from '../../../components/icons/LocationIcon'
 import EarthIcon from '../../icons/EarthIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import singleTag from '../../../components/icons/ADressTag'
-import userIcon from '../../../assets/icons/user-Icon.svg'
+import UserIcon from '../../../components/icons/UserIcon'
 
 
 // mui
@@ -231,7 +231,7 @@ const FlightsAdvancedFilter = () => {
                             
                             {
                                 userCoachesData && userCoachesData.data.length > 0 &&
-                                <DropdownInput icon={userIcon} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
+                                <DropdownInput icon={<UserIcon/>} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
                             }
 
                             <DropdownInput icon={<ColorTagsIcon/>} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />

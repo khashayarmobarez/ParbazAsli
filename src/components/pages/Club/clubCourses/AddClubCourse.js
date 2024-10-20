@@ -15,7 +15,7 @@ import ChartIcon from '../../../../components/icons/ChartIcon';
 import ChartIcon2 from '../../../../components/icons/ChartIcon2';
 import singleTag from '../../../../components/icons/ADressTag';
 import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon';
-import userIcon from '../../../../assets/icons/user-Icon.svg';
+import UserIcon from '../../../../components/icons/UserIcon';
 import CertificateIcon from '../../../../components/icons/CertificateIcon';
 
 // mui
@@ -426,7 +426,7 @@ const AddClubCourse = () => {
                         handleSelectChange={handleSelectCoachChange}
                         selectedOption={Coach}
                         name={'انتخاب مربی'}
-                        icon={userIcon}
+                        icon={<UserIcon/>}
                     />
                 }
 

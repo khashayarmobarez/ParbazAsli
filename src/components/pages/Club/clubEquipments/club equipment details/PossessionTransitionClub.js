@@ -7,7 +7,7 @@ import ButtonStyles from '../../../../../styles/Buttons/ButtonsBox.module.css'
 import boxStyles from '../../../../../styles/Boxes/DataBox.module.css'
 
 // assets
-import userIcon from '../../../../../assets/icons/user-Icon.svg'
+import UserIcon from '../../../../../components/icons/UserIcon'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -206,7 +206,7 @@ const PossessionTransitionClub = () => {
                             
                             {/* Serial Number input */}
                             <TextInput
-                            icon={userIcon}
+                            icon={<UserIcon/>}
                             className='col-span-1'
                             value={receiverId}
                             onChange={handleTextInputReceiverId}

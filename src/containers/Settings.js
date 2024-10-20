@@ -5,9 +5,8 @@ import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // assets
 import SettingIcon from '../components/icons/SettingIcon'
-import userIcon from '../assets/icons/user-Icon.svg'
 import CertificateIcon from '../components/icons/CertificateIcon'
-import usersIcon from '../assets/icons/users-Icon.svg'
+import UserIcon from '../components/icons/UserIcon'
 
 // queries
 import { useClubStatus } from '../Utilities/Services/clubQueries';
@@ -82,7 +81,7 @@ const Settings = () => {
                 {   clubStatus &&
                     clubStatus.data === 'NotAdded' &&
                     <div className='w-[90%] flex flex-col items-center'>
-                        <DropDownLine  title='ثبت باشگاه' icon={usersIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown5')} onClickActivation={() => handleOpenDropDowns('dropDown5')} />
+                        <DropDownLine  title='ثبت باشگاه' icon={<UserIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown5')} onClickActivation={() => handleOpenDropDowns('dropDown5')} />
                         {   
                             DropDown.includes('dropDown5') &&
                             <>

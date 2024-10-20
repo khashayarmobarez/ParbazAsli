@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 // assets
 import ClockIcon from '../../../components/icons/ClockIcon'
 import DocumentIcon from '../../../components/icons/DocumentIcon'
-import clubStudents from '../../../assets/icons/users-Icon.svg'
+import UsersIcon from '../../../components/icons/UsersIcon'
 import backButton from '../../../assets/icons/Right Arrow Button.svg'
 
 
@@ -152,7 +152,7 @@ const ClubCoachDetails = () => {
                             <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
 
                                 <div className=' flex justify-start items-start w-32' >
-                                    <img src={clubStudents} alt='icon'/>
+                                    <UsersIcon/>
                                     <p className=' font-normal text-xs mr-1  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
                                 </div> 
 
