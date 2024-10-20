@@ -5,7 +5,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 // assets 
-import keyIcon from '../../../../assets/icons/key-Icon.svg';
+import KeyIcon from '../../../../components/icons/KeyIcon';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder }) => {
@@ -24,7 +24,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
     <>
       <div className={`${inputStyles['password-input']} flex relative w-full h-12 px-2`} htmlFor="password">
         <span style={{ color: 'var(--disabled-button-text)' }}>
-          <img src={keyIcon} alt="icon" className="absolute mt-4 mr-2" />
+          <img src={<KeyIcon/>} alt="icon" className="absolute mt-4 mr-2" />
         </span>
         <input
           type={showPassword ? 'text' : 'password'}

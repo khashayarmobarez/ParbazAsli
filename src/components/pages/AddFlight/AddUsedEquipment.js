@@ -8,7 +8,7 @@ import { Box, CircularProgress } from '@mui/material';
 // assets
 import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
 import wingIcon from '../../../components/icons/WingIcon'
-import harnessIcon from '../../../assets/icons/harnessicon.svg'
+import HarnessIcon from '../../../components/icons/HarnessIcon'
 import parachuteIcon from '../../../assets/icons/parachuteIcon.svg'
 
 // queries
@@ -224,11 +224,11 @@ const AddUsedEquipment = () => {
                                 
                             }
 
-                            <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
+                            <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
 
                             {
                                 flightType === 'Tandem' &&
-                                <DropdownInputForEquipment icon={harnessIcon} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
+                                <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
                             }
                             
                             <DropdownInputForEquipment icon={parachuteIcon} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />

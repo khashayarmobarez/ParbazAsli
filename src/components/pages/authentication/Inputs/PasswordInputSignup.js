@@ -10,7 +10,7 @@
     import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
     // assets 
-    import keyIcon from '../../../../assets/icons/key-Icon.svg';
+    import KeyIcon from '../../../../components/icons/KeyIcon';
     import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
     const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
@@ -69,7 +69,7 @@
         <>
           <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 px-2`} htmlFor="password">
             <span style={{ color: 'var(--disabled-button-text)' }}>
-              <img src={keyIcon} alt="icon" className="absolute mt-4 mr-2" />
+              <img src={<KeyIcon/>} alt="icon" className="absolute mt-4 mr-2" />
             </span>
             <input
               type={showPassword ? 'text' : 'password'}

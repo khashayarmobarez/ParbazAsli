@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
 // assets
-import keyIcon from '../../assets/icons/key-Icon.svg'
+import KeyIcon from '../../components/icons/KeyIcon'
 
 // mui
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -23,7 +23,7 @@ const PasswordInput = ({placeHolder, value, onChange}) => {
   return (
     <div className="password-input flex relative w-[100%] h-12 px-2 rounded-2xl">
       <span style={{color:'var(--disabled-button-text)'}}> 
-          <img src={keyIcon} alt='icon' className=' absolute mt-4 mr-2'/>
+          <img src={<KeyIcon/>} alt='icon' className=' absolute mt-4 mr-2'/>
       </span>
       <input
         type={showPassword ? 'text' : 'password'}

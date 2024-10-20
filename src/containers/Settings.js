@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import SettIcon from '../assets/icons/Icon-settings.svg'
+import SettingIcon from '../components/icons/SettingIcon'
 import userIcon from '../assets/icons/user-Icon.svg'
 import CertificateIcon from '../components/icons/CertificateIcon'
 import usersIcon from '../assets/icons/users-Icon.svg'
@@ -99,7 +99,7 @@ const Settings = () => {
 
                 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='مود و ظاهر' icon={SettIcon} dropDown={DropDown} isActive={DropDown.includes('dropDown1')} onClickActivation={() => handleOpenDropDowns('dropDown1')} />
+                    <DropDownLine  title='مود و ظاهر' icon={<SettingIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown1')} onClickActivation={() => handleOpenDropDowns('dropDown1')} />
                     {
                         DropDown.includes('dropDown1') &&
                         <WebColorMode />

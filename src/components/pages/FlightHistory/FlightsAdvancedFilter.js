@@ -10,7 +10,7 @@ import buttonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 
 // assets
 import wingIcon from '../../../components/icons/WingIcon'
-import harnessIcon from '../../../assets/icons/harnessicon.svg'
+import HarnessIcon from '../../../components/icons/HarnessIcon'
 import locationIcon from '../../../assets/icons/location.svg'
 import EarthIcon from '../../icons/EarthIcon'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
@@ -208,7 +208,7 @@ const FlightsAdvancedFilter = () => {
                                 <>
                                     <DropdownInputForEquipment icon={<wingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
-                                    <DropdownInputForEquipment icon={harnessIcon} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
+                                    <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
                                 </>
                             }
 
