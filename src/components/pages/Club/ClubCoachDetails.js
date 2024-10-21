@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 import ClockIcon from '../../../components/icons/ClockIcon'
 import DocumentIcon from '../../../components/icons/DocumentIcon'
 import UsersIcon from '../../../components/icons/UsersIcon'
-import backButton from '../../../assets/icons/Right Arrow Button.svg'
+import ArrowButton from '../../../components/icons/ArrowButton'
 
 
 const ClubCoachDetails = () => {
@@ -132,7 +132,9 @@ const ClubCoachDetails = () => {
                     <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
                     style={{ boxShadow:'var(--shadow-all)'}}>
 
-                        <img src={backButton} alt='back' className='absolute top-4 left-4 cursor-pointer rotate-180 w-8' onClick={() => navigate('/club/clubCoaches')} />
+                        <span className='absolute top-4 left-4 cursor-pointer rotate-180 w-8' onClick={() => navigate('/club/clubCoaches')}>
+                            <ArrowButton />
+                        </span>
 
                         <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
                             <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>

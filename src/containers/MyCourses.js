@@ -10,7 +10,7 @@ import { LinearProgress } from '@mui/material';
 
 // assets
 import Attention from '../components/icons/Attention'
-import arrowIcon from '../assets/icons/Right Arrow Button.svg';
+import ArrowButton from '../components/icons/ArrowButton';
 
 // styles
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
@@ -257,15 +257,11 @@ const MyCourses = () => {
                                             { course.courseType !== 'Guest' && courseData && courseData.totalPagesCount > 1 && (
                                                 <div className='w-full flex justify-between px-10 items-center'>
                                                     <button
-                                                        className='w-10 justify-self-start'
+                                                        className={`w-10 justify-self-start ${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
                                                         disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
                                                         onClick={handleNextPageNumber}
                                                     >
-                                                        <img
-                                                            src={arrowIcon}
-                                                            alt='arrow'
-                                                            className={`${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
-                                                        />
+                                                        <ArrowButton/>
                                                     </button>
 
                                                     <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -273,15 +269,11 @@ const MyCourses = () => {
                                                     </p>
 
                                                     <button
-                                                        className='transform rotate-180 w-10 justify-self-end'
+                                                        className={`transform rotate-180 w-10 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                                                         disabled={pageNumber === 1}
                                                         onClick={handleLastPageNumber}
                                                     >
-                                                        <img
-                                                            src={arrowIcon}
-                                                            alt='arrow'
-                                                            className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
-                                                        />
+                                                        <ArrowButton/>
                                                     </button>
                                                 </div>
                                             )}

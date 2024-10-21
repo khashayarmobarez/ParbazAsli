@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useNotifications } from '../Utilities/Services/notificationAndSurveyQueries';
 
 // icons
-import arrowIcon from '../assets/icons/Right Arrow Button.svg';
+import ArrowButton from '../components/icons/ArrowButton';
 
 // components
 import PageTitle from '../components/reuseable/PageTitle';
@@ -83,15 +83,11 @@ const Notifications = () => {
                 {   notificationsData && notificationsData.totalCount > 7 &&
                     <div className='w-full flex justify-between px-10 items-center'>
                         <button
-                            className='transform  w-10 justify-self-end'
+                            className={`transform  w-10 justify-self-end ${PageNumber === 1 && 'opacity-60'}`}
                             disabled={PageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
-                            <img
-                                src={arrowIcon}
-                                alt='arrow'
-                                className={`mt-2 ${PageNumber === 1 && 'opacity-60'}`}
-                            />
+                            <ArrowButton/>
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -99,15 +95,11 @@ const Notifications = () => {
                         </p>
 
                         <button
-                            className='w-10 rotate-180 justify-self-start'
+                            className={`w-10 rotate-180 justify-self-start ${(notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber) && 'opacity-60'}`}
                             disabled={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}
                             onClick={handleNextPageNumber}
                         >
-                            <img
-                                src={arrowIcon}
-                                alt='arrow'
-                                className={`${(notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber) && 'opacity-60'}`}
-                            />
+                            <ArrowButton/>
                         </button>
                     </div>
                 }

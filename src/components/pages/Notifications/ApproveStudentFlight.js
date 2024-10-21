@@ -11,8 +11,6 @@ import { useDeclineUserFlight, useUserCourseFlight } from '../../../Utilities/Se
 // mui
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-// assets
-import arrow from '../../../assets/icons/Right Arrow Button.svg'
 
 // comps
 import PageTitle from '../../reuseable/PageTitle';

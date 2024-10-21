@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useBlogs } from '../Utilities/Services/queries';
 
 // assets
-import arrow from '../assets/icons/Right Arrow Button.svg'
+import ArrowButton from '../components/icons/ArrowButton'
 
 // components
 import BlogBlock from '../components/pages/Blogs/BlogBlock';
@@ -51,7 +51,7 @@ const Blogs = () => {
                             disabled={pageNumber === Math.ceil(data.totalCount / pageSize)}
                             className='flex items-center justify-center'
                         >
-                            <img src={arrow} alt ='arrow'  />
+                            <ArrowButton/>
                             <p>صفحه بعد</p>
                         </button>
 
@@ -61,7 +61,9 @@ const Blogs = () => {
                             className='flex items-center justify-center'
                         >
                             <p>صفحه قبل</p>
-                            <img src={arrow} alt ='arrow' className=' rotate-180 mb-2' />
+                            <span className='rotate-180'>
+                                <ArrowButton/>
+                            </span>
                         </button>
 
                     </div>

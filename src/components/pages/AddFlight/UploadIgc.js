@@ -9,7 +9,7 @@ import { updateIgcFile } from '../../../Utilities/ReduxToolKit/features/AddFligh
 
 // assets
 import IGC from '../../../assets/icons/IGC-Download.svg'
-import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+import ArrowButton from '../../../components/icons/ArrowButton'
 
 // style
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -70,7 +70,9 @@ const UploadIgc = () => {
             <div className=' w-[90%] flex items-center justify-between' >
 
                 <div onClick={() => navigate('/addFlight/AddUsedEquipment')} className='flex items-center justify-between'>
-                    <span className='w-10'><img alt='icon' className='w-full h-full' src={RightArrowButton}/></span>
+                    <span className='w-10 flex justify-center items-center'>
+                        <ArrowButton />
+                    </span>
                     <p className='mr-2 pb-2'>بعدی</p>
                 </div>
 

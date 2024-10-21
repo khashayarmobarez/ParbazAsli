@@ -9,7 +9,7 @@ import DropdownInput from '../../inputs/DropDownInput';
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+import ArrowButton from '../../../components/icons/ArrowButton'
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
 import WindIcon from '../../../components/icons/WindIcon'
 import WindDirectionCock from '../../../components/icons/WindDirectionCock'
@@ -192,13 +192,17 @@ const AddTakeoff = () => {
                 <div className='flex justify-between items-center w-full'>
 
                     <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <span className='w-10'><img alt='icon' className='w-full h-full' src={RightArrowButton}/></span>
+                        <span className='w-10 flex justify-center items-center'>
+                            <ArrowButton />
+                        </span>
                         <p className='mr-2 pb-2'>بعدی</p>
                     </div>
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <p className='ml-2 '>قبلی</p>
-                        <span className='w-10'><img alt='icon' className='w-full h-full  rotate-180' src={RightArrowButton}/></span>
+                        <span className='w-10 flex justify-center items-center rotate-180'>
+                            <ArrowButton />
+                        </span>
                     </div>
                 
                 </div>

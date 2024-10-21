@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import arrow from '../../../assets/icons/Right Arrow Button.svg'
+import ArrowButton from '../../../components/icons/ArrowButton'
 
 const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
 
@@ -36,15 +36,15 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
         <div className='w-[60%] md:w-[30%] flex justify-between items-center'>
 
             <button onClick={handlePrevOrgan} className='w-8 h-8 active:w-6 hover:h-6'>
-                <img className='w-full' alt='next and prev' src={arrow} />
+                <ArrowButton/>
             </button>
 
             {theOrgan &&
                 <h1 className='text-sm font-medium text-textAccent'>{theOrgan.name}</h1>
             }
 
-            <button onClick={handleNextOrgan} className='w-8 h-8'>
-                <img className='transform rotate-180 w-full h-full' alt='next and prev' src={arrow} />
+            <button onClick={handleNextOrgan} className='w-8 h-8 rotate-180'>
+                <ArrowButton/>
             </button>
 
         </div>

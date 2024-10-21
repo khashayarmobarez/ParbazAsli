@@ -7,7 +7,7 @@ import gradients from '../../../styles/gradients/Gradient.module.css'
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
-import arrowIcon from '../../../assets/icons/Right Arrow Button.svg';
+import ArrowButton from '../../../components/icons/ArrowButton';
 
 // queries
 import { useUserById } from '../../../Utilities/Services/queries';
@@ -141,15 +141,11 @@ const ClubCoaches = () => {
                                         {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
                                             <div className='w-full flex justify-between px-10 items-center'>
                                                 <button
-                                                    className='transform  w-10 justify-self-end'
+                                                    className={`transform  w-10 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                                                     disabled={pageNumber === 1}
                                                     onClick={handleLastPageNumber}
                                                 >
-                                                    <img
-                                                        src={arrowIcon}
-                                                        alt='arrow'
-                                                        className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
-                                                    />
+                                                    <ArrowButton />
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -157,15 +153,11 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className='w-10 rotate-180 justify-self-start'
+                                                    className={`w-10 rotate-180 justify-self-start ${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
                                                     disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
                                                     onClick={handleNextPageNumber}
                                                 >
-                                                    <img
-                                                        src={arrowIcon}
-                                                        alt='arrow'
-                                                        className={`${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
-                                                    />
+                                                    <ArrowButton/>
                                                 </button>
                                             </div>
                                         }
@@ -195,17 +187,13 @@ const ClubCoaches = () => {
                                         ))}
 
                                         {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
-                                            <div className='w-full flex justify-between px-10 items-center'>
+                                            <div className={`w-full flex justify-between px-10 items-center ${pageNumberPrevious === 1 && 'opacity-60'}`}>
                                                 <button
                                                     className='transform  w-10 justify-self-end'
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
-                                                    <img
-                                                        src={arrowIcon}
-                                                        alt='arrow'
-                                                        className={`mt-2 ${pageNumberPrevious === 1 && 'opacity-60'}`}
-                                                    />
+                                                    <ArrowButton/>
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -213,15 +201,11 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className='w-10 rotate-180 justify-self-start'
+                                                    className={`w-10 rotate-180 justify-self-start ${pageNumberPrevious === 1 && 'opacity-60'}`}
                                                     disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
                                                     onClick={handleNextPageNumberPrevious}
                                                 >
-                                                    <img
-                                                        src={arrowIcon}
-                                                        alt='arrow'
-                                                        className={`${(clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious) && 'opacity-60'}`}
-                                                    />
+                                                    <ArrowButton/>
                                                 </button>
                                             </div>
                                         }

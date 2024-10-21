@@ -9,7 +9,7 @@ import { selectFlightFilter, resetAllFilters } from '../Utilities/ReduxToolKit/f
 import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css';
 
 // assets 
-import arrowIcon from '../assets/icons/Right Arrow Button.svg';
+import ArrowButton from '../components/icons/ArrowButton';
 import Eraser from '../components/icons/Eraser1Icon';
 
 // mui
@@ -129,15 +129,11 @@ const FlightHistory = () => {
                         {userFlights && userFlights.data.length > 0 && (
                             <div className='w-full flex justify-between px-10 items-center'>
                                 <button
-                                    className='w-10 justify-self-start'
+                                    className={`w-10 justify-self-start ${(userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber) && 'opacity-60'}`}
                                     disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
                                     onClick={handleNextPage}
                                 >
-                                    <img
-                                        src={arrowIcon}
-                                        alt='arrow'
-                                        className={`${(userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber) && 'opacity-60'}`}
-                                    />
+                                    <ArrowButton/>
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -145,16 +141,12 @@ const FlightHistory = () => {
                                 </p>
 
                                 <button
-                                    className='transform rotate-180 w-10 justify-self-end'
+                                    className={`transform rotate-180 w-10 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                                     disabled={pageNumber === 1}
                                     onClick={handlePrevPage}
                                 >
 
-                                <img
-                                    src={arrowIcon}
-                                    alt='arrow'
-                                    className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
-                                />
+                                    <ArrowButton/>
 
                                 </button>
                                 

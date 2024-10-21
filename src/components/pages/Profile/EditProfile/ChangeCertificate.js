@@ -8,7 +8,7 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
 import { useAllUserCertificates } from '../../../../Utilities/Services/userQueries';
 
 // mui and assets
-import arrowIcon from '../../../../assets/icons/Right Arrow Button.svg';
+import ArrowButton from '../../../../components/icons/ArrowButton';
 import AddIcon from '@mui/icons-material/Add';
 
 // components
@@ -43,17 +43,13 @@ const ChangeCertificate = () => {
                 }
 
                 {userCertificates && userCertificates.totalPagesCount > 1 &&
-                    <div className='w-full flex justify-between px-14 items-center mt-2'>
+                    <div className={`w-full flex justify-between px-14 items-center mt-2 ${pageNumber === 1 && 'opacity-60'}`}>
                         <button
                             className='transform  w-10 justify-self-end'
                             disabled={pageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
-                            <img
-                                src={arrowIcon}
-                                alt='arrow'
-                                className={`mt-2 ${pageNumber === 1 && 'opacity-60'}`}
-                            />
+                            <ArrowButton/>
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -61,15 +57,11 @@ const ChangeCertificate = () => {
                         </p>
 
                         <button
-                            className='w-10 rotate-180 justify-self-start'
+                            className={`w-10 rotate-180 justify-self-start ${(userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber) && 'opacity-60'}`}
                             disabled={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}
                             onClick={handleNextPageNumber}
                         >
-                            <img
-                                src={arrowIcon}
-                                alt='arrow'
-                                className={`${(userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber) && 'opacity-60'}`}
-                            />
+                            <ArrowButton/>
                         </button>
                     </div>
                 }

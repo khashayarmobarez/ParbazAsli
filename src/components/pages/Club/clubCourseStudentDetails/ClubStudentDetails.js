@@ -16,7 +16,7 @@ import { useGetClubCourseStudent } from '../../../../Utilities/Services/clubQuer
 // assets
 import ClockIcon from '../../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../../components/icons/FlightQuantity';
-import rightArrowButton from '../../../../assets/icons/Right Arrow Button.svg';
+import ArrowButton from '../../../../components/icons/ArrowButton';
 
 const ClubCourseStudentDetails = () => {
 
@@ -143,12 +143,10 @@ const ClubCourseStudentDetails = () => {
                     }
 
                     {/* back button */}
-                    <img
-                        src={rightArrowButton}
-                        alt="rightArrowButton"
-                        onClick={() => {navigate(historyPageUrl); console.log(document.referrer);}}
-                        className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
-                    />
+                    <span className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
+                    onClick={() => {navigate(historyPageUrl); console.log(document.referrer);}}>
+                        <ArrowButton />
+                    </span>
                     
                 </div>
 

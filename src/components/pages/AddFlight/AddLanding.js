@@ -7,7 +7,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import RightArrowButton from '../../../assets/icons/Right Arrow Button.svg'
+import ArrowButton from '../../../components/icons/ArrowButton'
 import WindIcon from '../../../components/icons/WindIcon'
 import WindDirectionCock from '../../../components/icons/WindDirectionCock'
 import PhoneIcon from '../../../components/icons/PhoneIcon'
@@ -454,7 +454,9 @@ const AddLanding = () => {
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <p className='ml-2 '>قبلی</p>
-                        <span className='w-10'><img alt='icon' className='w-full h-full  rotate-180' src={RightArrowButton}/></span>
+                        <span className='w-10 flex justify-center items-center rotate-180'>
+                            <ArrowButton />
+                        </span>
                     </div>
                 
                 </div>
