@@ -154,17 +154,23 @@ const ClubCoachDetails = () => {
                             <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
 
                                 <div className=' flex justify-start items-start w-32' >
-                                    <UsersIcon/>
+                                    <span className='w-6 h-6'>
+                                        <UsersIcon/>
+                                    </span>
                                     <p className=' font-normal text-xs mr-1  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
                                 </div> 
 
                                 <div className=' flex justify-start items-start w-32' >
-                                    <ClockIcon/>
+                                    <span className='w-6 h-6'>
+                                        <ClockIcon/>
+                                    </span>
                                     <p className=' font-normal text-xs mr-1  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
                                 </div>
 
                                 <div className=' flex justify-start items-start w-32 -mt-1' >
-                                    <DocumentIcon/>
+                                    <span className='w-6 h-6' >
+                                        <DocumentIcon/>
+                                    </span>
                                     <p className=' font-normal text-xs mr-1 mt-[2px] text-start'>کد عضویت: {coachDetails.data.id}</p>
                                 </div>
 

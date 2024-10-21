@@ -233,7 +233,7 @@ const ClubCourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
+                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.2rem] w-[90%] md:w-2/6 text-base`} 
                             onClick={() => setShowPopup(true)} >
                                 <p>غیر فعال سازی</p>
                             </button>
@@ -241,7 +241,7 @@ const ClubCourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.1rem] w-[90%] md:w-2/6 text-base`} 
+                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.2rem] w-[90%] md:w-2/6 text-base`} 
                             onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                 <p>فعال سازی</p>
                             </button>
