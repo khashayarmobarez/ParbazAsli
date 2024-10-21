@@ -7,7 +7,7 @@ import { Box, CircularProgress } from '@mui/material';
 
 // assets
 import ArrowButton from '../../../components/icons/ArrowButton'
-import wingIcon from '../../../components/icons/WingIcon'
+import WingIcon from '../../../components/icons/WingIcon'
 import HarnessIcon from '../../../components/icons/HarnessIcon'
 import ParachuteIcon from '../../../components/icons/ParachuteIcon'
 
@@ -215,12 +215,12 @@ const AddUsedEquipment = () => {
                         <>
 
                             {   wingType === 'Tandem' ?
-                                <DropdownInputForEquipment icon={<wingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                                <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 :
                                 wingType === 'Single' ?
-                                <DropdownInputForEquipment icon={<wingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                                <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 :
-                                <DropdownInputForEquipment icon={<wingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                                <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 
                             }
 

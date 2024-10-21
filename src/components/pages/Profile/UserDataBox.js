@@ -72,12 +72,14 @@ const UserDataBox = ({hasCoach}) => {
                         <div className=' gap-y-2 flex flex-col items-center md:space-y-5'>
 
                             <div className=' flex justify-center items-center w-[80%]' >
-                                <FlightQuantity/>
+                                <span className='w-5'>
+                                    <FlightQuantity />
+                                </span>
                                 <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center w-[80%]' >
-                                <span className='w-10 -ml-3'>
+                                <span className='w-5'>
                                     <ClockIcon/>
                                 </span>
                                 <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
@@ -86,7 +88,7 @@ const UserDataBox = ({hasCoach}) => {
                             {/* condition based on coach  */}
                             { hasCoach ?
                                 <div className=' flex justify-between items-center w-[80%]' >
-                                    <span className='w-10 -ml-3'>
+                                    <span className='w-5'>
                                         <ClockIcon/>
                                     </span>
                                     <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
