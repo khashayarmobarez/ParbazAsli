@@ -128,13 +128,13 @@ const AddSituation = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--soft-white)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
@@ -146,9 +146,9 @@ const AddSituation = () => {
 
                     <div className='flex items-center justify-between w-[97%]'>
 
-                        <p className='' style={{color:'var(--soft-white)'}}>Landing</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
 
-                        <p className='' style={{color:'var(--soft-white)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
 
                         <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
 

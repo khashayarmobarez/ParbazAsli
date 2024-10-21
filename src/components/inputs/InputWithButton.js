@@ -2,7 +2,7 @@ import React from 'react';
 
 // mui
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 // css styles 
 import gradients from '../../styles/gradients/Gradient.module.css'
@@ -13,14 +13,14 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
 
     return (
             <div className={` flex relative w-[100%] h-12 px-2`}>
-                <span style={{color:'var(--text-input-default)'}}> 
+                <span style={{color:'var(--text-input-default)'}} >
                 {(isPhoneNumber || isForPhone) ? (
                     <LocalPhoneRoundedIcon
-                        sx={{ position: 'absolute', margin: '10px 5px 0 0' }}
+                        sx={{ position: 'absolute', margin: '12px 5px 0 0', color:'var(--text-default)' }}
                     />
                 ) : (
-                    <EmailRoundedIcon
-                        sx={{ position: 'absolute', margin: '10px 5px 0 0' }}
+                    <EmailOutlinedIcon
+                        sx={{ position: 'absolute', margin: '12px 5px 0 0', color:'var(--text-default)' }}
                     />
                 )}
                 </span>

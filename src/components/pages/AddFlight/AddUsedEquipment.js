@@ -139,17 +139,17 @@ const AddUsedEquipment = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
@@ -157,11 +157,11 @@ const AddUsedEquipment = () => {
 
                     <div className='flex items-center justify-between w-[97%]'>
 
-                        <p className='' style={{color:'var(--text-default)'}}>Landing</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
 
-                        <p className='' style={{color:'var(--text-default)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
 
-                        <p className='' style={{color:'var(--text-default)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>شرایط پرواز</p>
 
                         <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
 
