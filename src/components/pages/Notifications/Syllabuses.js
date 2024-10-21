@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
-import plus from '../../../assets/icons/plusButton.png';
+import PlusButton from '../../../components/icons/PlusButton';
 import MinusButton from '../../../components/icons/MinusButton';
 import PageTitle from '../../reuseable/PageTitle';
 import { useAcceptUserFlight, useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
@@ -154,8 +154,13 @@ const Syllabuses = () => {
                             <p>{index + 1}.</p>
                             <p className='w-[60%]'>{syllabus.description}</p>
                             <div className="flex items-center justify-between w-24">
+                                <span className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}>
+                                    <PlusButton
+                                    onClick={() => handleIncrement(index)}
+                                    />
+                                </span>
                                 <img
-                                    src={plus}
+                                    src={PlusButton}
                                     alt="icon"
                                     onClick={() => handleIncrement(index)}
                                     className="text-white rounded-lg w-8 cursor-pointer"
@@ -170,7 +175,6 @@ const Syllabuses = () => {
                                 <span className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}>
                                     <MinusButton
                                     onClick={() => handleDecrement(index)} 
-                                    className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}
                                     />
                                 </span>
                             </div>
