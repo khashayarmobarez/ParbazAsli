@@ -63,13 +63,13 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
     <div className='flex flex-col w-full md:items-center' ref={dropdownRef}>
         <div
           ref={inputRef}
-          className={`${inputStyles.inputText2} pr-4 w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4 `}
+          className={`${inputStyles.inputText2} pr-9 w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4 `}
           
           onClick={handleIconClick}
           onFocus={() => setIsOpen(true)}
         >
 
-        <span className="absolute -mt-0 mr-2 w-5">
+        <span className="absolute -mt-0 -mr-7 w-5">
                 {Icon ? 
                   Icon
                   :

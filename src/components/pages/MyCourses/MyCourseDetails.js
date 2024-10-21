@@ -166,7 +166,7 @@ const MyCourseDetails = () => {
                                         <p>{aCourseData.data.percent}%</p>
                                 </div>
                                 <LinearProgress variant="determinate" value={aCourseData.data.percent > 3 ? aCourseData.data.percent : aCourseData.data.percent + 3} 
-                                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--bg-button-secondary-default)', '& .MuiLinearProgress-bar': {
+                                sx={{ height:'1rem', borderRadius:'1rem', backgroundColor :'var(--bg-button-secondary-hover)', '& .MuiLinearProgress-bar': {
                                     borderRadius:'1rem',backgroundColor: 'var(--text-error)' // Change this to your desired color
                                 }}} />
                             </Box>

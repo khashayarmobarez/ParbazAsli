@@ -100,21 +100,29 @@ const CourseStudentDetails = () => {
 
                                 <div className='w-full flex flex-col items-start justify-between gap-y-4 text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
-                                        <FlightQuantity/>
+                                        <span className='w-6'>
+                                            <FlightQuantity/>
+                                        </span>
                                         تعداد پرواز {studentData.data.flightCounts}
                                     </p>
                                     <p className='flex gap-x-2'>
-                                        <ClockIcon/>
+                                        <span className='w-6'>
+                                            <ClockIcon/>
+                                        </span>
                                         ساعت پرواز {studentData.data.flightHours}
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
-                                            <ClockIcon/>
+                                            <span className='w-6'>
+                                                <ClockIcon/>
+                                            </span>
                                             {studentData.data.coachingHours} ساعت مربی‌گری
                                         </p>
                                     }
                                     <p className='flex gap-x-2'>
-                                        <img alt='icon' src={<UserIcon/>} />
+                                        <span className='w-6'>
+                                            <UserIcon/>
+                                        </span>
                                         کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>
@@ -134,7 +142,7 @@ const CourseStudentDetails = () => {
                                     sx={{ 
                                         height: '1rem', 
                                         borderRadius: '1rem', 
-                                        backgroundColor: 'var(--bg-button-secondary-default)', 
+                                        backgroundColor: 'var(--bg-button-secondary-hover)', 
                                         '& .MuiLinearProgress-bar': {
                                             backgroundColor: 
                                             studentData.data.status === 'Active' ? 'var(--text-error)' :
@@ -150,13 +158,7 @@ const CourseStudentDetails = () => {
                     }
 
                     {/* back button */}
-                    <img
-                        src={ArrowButton}
-                        alt="ArrowButton"
-                        onClick={() => navigate(historyPageUrl)}
-                        className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
-                    />
-                    <span className=' absolute left-4 top-2 w-8 h-8 transform rotate-180'
+                    <span className=' absolute left-4 top-4 w-6 h-6 transform rotate-180'
                     onClick={() => navigate(historyPageUrl)}>
                         <ArrowButton />
                     </span>

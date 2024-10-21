@@ -179,7 +179,7 @@ const MyCourses = () => {
                                                                         sx={{ 
                                                                         height: '1rem', 
                                                                         borderRadius: '1rem', 
-                                                                        backgroundColor: 'var(--bg-button-secondary-default)', 
+                                                                        backgroundColor: 'var(--bg-button-secondary-hover)', 
                                                                         '& .MuiLinearProgress-bar': {
                                                                             backgroundColor: 
                                                                             courseData.status === 'Active' ? 'var(--text-warning)' :
