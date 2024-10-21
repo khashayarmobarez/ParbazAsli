@@ -20,7 +20,9 @@ const NumberInput = ({ value, onChange, placeholder, icon, IsEmptyAfterSubmit })
     <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
       <span>
         {icon ?
-          <img src={icon} alt='icon' className='absolute w-6 mt-[12px] mr-[8px]' style={{ fill: 'white' }} />
+          <span className='absolute w-6 mt-3 mr-2'>
+            {icon}
+          </span>
           :
           <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
         }

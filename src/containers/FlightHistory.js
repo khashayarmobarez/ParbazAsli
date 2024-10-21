@@ -97,7 +97,9 @@ const FlightHistory = () => {
                                 boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)'
                             }}
                             onClick={handleResetData}>
-                                <Eraser/>
+                                <span className='w-8' >
+                                    <Eraser/>
+                                </span>
                             </button>
 
                         </div>
@@ -129,7 +131,7 @@ const FlightHistory = () => {
                         {userFlights && userFlights.data.length > 0 && (
                             <div className='w-full flex justify-between px-10 items-center'>
                                 <button
-                                    className={`w-10 justify-self-start ${(userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                    className={`w-6 h-6 justify-self-start ${(userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber) && 'opacity-60'}`}
                                     disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
                                     onClick={handleNextPage}
                                 >
@@ -141,7 +143,7 @@ const FlightHistory = () => {
                                 </p>
 
                                 <button
-                                    className={`transform rotate-180 w-10 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                                    className={`transform rotate-180 w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                                     disabled={pageNumber === 1}
                                     onClick={handlePrevPage}
                                 >

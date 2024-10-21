@@ -56,7 +56,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
 
   return (
     <div className="flex relative w-[100%] h-12 rounded-xl" ref={dropdownRef}>
-      <span className="absolute -mt-0 mr-2 w-5">
+      <span className="absolute mt-3 mr-2 w-5">
         {icon ? 
           icon
           :

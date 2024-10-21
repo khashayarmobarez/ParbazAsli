@@ -45,7 +45,7 @@ const ChangeCertificate = () => {
                 {userCertificates && userCertificates.totalPagesCount > 1 &&
                     <div className={`w-full flex justify-between px-14 items-center mt-2 ${pageNumber === 1 && 'opacity-60'}`}>
                         <button
-                            className='transform  w-10 justify-self-end'
+                            className='transform  w-6 h-6 justify-self-end'
                             disabled={pageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
@@ -57,7 +57,7 @@ const ChangeCertificate = () => {
                         </p>
 
                         <button
-                            className={`w-10 rotate-180 justify-self-start ${(userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                            className={`w-6 h-6 rotate-180 justify-self-start ${(userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber) && 'opacity-60'}`}
                             disabled={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}
                             onClick={handleNextPageNumber}
                         >

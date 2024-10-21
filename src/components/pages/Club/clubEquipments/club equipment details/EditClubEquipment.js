@@ -339,7 +339,7 @@ const EditClubEquipment = () => {
                                                     </div>
                                                 }
 
-                                                <h3 className=' text-[var(--softer-white)] text-sm mt-1 mb-[-10px]'>
+                                                <h3 className=' text-[var(--text-default)] text-sm mt-1 mb-[-10px]'>
                                                     سریال وسیله پروازی
                                                 </h3>
 
@@ -367,7 +367,7 @@ const EditClubEquipment = () => {
                                             {equipmentType === "Parachute" && ownershipType !== 'Temporary' && EquipmentData.data.isExpired !== true &&
                                             <>
 
-                                                <h3 className=' text-[var(--softer-white)] text-sm mt-1 mb-[-10px]'>
+                                                <h3 className=' text-[var(--text-default)] text-sm mt-1 mb-[-10px]'>
                                                     تمدید چتر کمکی
                                                 </h3>
 

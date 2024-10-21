@@ -197,7 +197,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     }
                                 </button>
 
-                                <div onClick={handleLogout} className={`hidden md:flex justify-center items-center`} >
+                                <div onClick={handleLogout} className={`hidden md:flex justify-center items-center w-8`} >
                                     <Logout/>
                                 </div>
                             </div>

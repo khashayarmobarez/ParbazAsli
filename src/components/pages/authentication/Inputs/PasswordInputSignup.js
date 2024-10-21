@@ -68,9 +68,9 @@
       return (
         <>
           <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 px-2`} htmlFor="password">
-            <span style={{ color: 'var(--disabled-button-text)' }}>
-              <img src={<KeyIcon/>} alt="icon" className="absolute mt-4 mr-2" />
-            </span>
+          <span style={{ color: 'var(--disabled-button-text)'  }} className="absolute w-4 mt-4 mr-2"  >
+            <KeyIcon />
+          </span>
             <input
               type={showPassword ? 'text' : 'password'}
               id="password"

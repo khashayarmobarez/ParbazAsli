@@ -347,7 +347,7 @@ const Harness = (props) => {
                     userEquipmentsHistoryData &&
                     userEquipmentsHistoryData.data &&
                     userEquipmentsHistoryData.data.map(equipment =>
-                        <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1`} style={{background:'var(--organs-coachData-bg', boxShadow:'var(--organs-coachData-boxShadow)'}}>
+                        <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard`} style={{ boxShadow:'var(--shadow-all)'}}>
 
                             <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
                                 <p> برند {equipment.brand} / مدل {equipment.model}</p>

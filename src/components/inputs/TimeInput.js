@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { GlobalStyles, InputAdornment } from '@mui/material';
 import dayjs from 'dayjs';
-import ClockIcon from '../../components/icons/ClockIcon';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const TimeInput = ({ value, onChange }) => {
   const [selectedTime, setSelectedTime] = useState(dayjs(value));
@@ -39,7 +39,7 @@ const TimeInput = ({ value, onChange }) => {
           }}
         />
         <InputAdornment position="start" style={{ position: 'absolute', right: '0.1rem', top: '50%', transform: 'translateY(-50%)' }}>
-          <img src={<ClockIcon />} alt='icon' style={{ width: '1.5rem' }} />
+          <AccessTimeIcon sx={{color:'var(--text-default)'}} />
         </InputAdornment>
       </div>
     );

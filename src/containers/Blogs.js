@@ -51,7 +51,9 @@ const Blogs = () => {
                             disabled={pageNumber === Math.ceil(data.totalCount / pageSize)}
                             className='flex items-center justify-center'
                         >
-                            <ArrowButton/>
+                            <span className='w-6 h-6' >
+                                <ArrowButton/>
+                            </span>
                             <p>صفحه بعد</p>
                         </button>
 
@@ -61,7 +63,7 @@ const Blogs = () => {
                             className='flex items-center justify-center'
                         >
                             <p>صفحه قبل</p>
-                            <span className='rotate-180'>
+                            <span className='rotate-180 w-6 h-6'>
                                 <ArrowButton/>
                             </span>
                         </button>

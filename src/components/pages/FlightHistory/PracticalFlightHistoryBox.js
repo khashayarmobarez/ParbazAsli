@@ -82,7 +82,9 @@ const PracticalFlightHistoryBox = (props) => {
                             <p>{flightBaseData.site && flightBaseData.site.slice(0, 14)}</p>
                             {
                             flightBaseData.status === 'Pending' &&
-                                <TimerIcon/>
+                                <span className='w-4'>
+                                    <TimerIcon />
+                                </span>
                             }
                             {
                             flightBaseData.status === 'Accepted' &&
@@ -92,8 +94,8 @@ const PracticalFlightHistoryBox = (props) => {
                         {/* Trigger flight status */}
                         {flightBaseData.status === 'Pending' && location.pathname.includes('/education/courseDetails/studentDetails') &&
                             <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
-                            style={{background: 'var(--syllabus-data-boxes-bg)',
-                                boxShadow: 'var(--organs-coachData-boxShadow)'}}>
+                            style={{background: 'var(--bg-input-selected-option)',
+                                boxShadow: 'var(--shadow-all)'}}>
 
                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                     <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>

@@ -83,7 +83,7 @@ const Notifications = () => {
                 {   notificationsData && notificationsData.totalCount > 7 &&
                     <div className='w-full flex justify-between px-10 items-center'>
                         <button
-                            className={`transform  w-10 justify-self-end ${PageNumber === 1 && 'opacity-60'}`}
+                            className={`transform w-6 h-6 justify-self-end ${PageNumber === 1 && 'opacity-60'}`}
                             disabled={PageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
@@ -95,7 +95,7 @@ const Notifications = () => {
                         </p>
 
                         <button
-                            className={`w-10 rotate-180 justify-self-start ${(notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber) && 'opacity-60'}`}
+                            className={`w-6 h-6  rotate-180 justify-self-start ${(notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber) && 'opacity-60'}`}
                             disabled={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}
                             onClick={handleNextPageNumber}
                         >

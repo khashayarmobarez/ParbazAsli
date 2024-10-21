@@ -153,7 +153,7 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-10 rotate-180 justify-self-start ${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                    className={`w-6 h-6 rotate-180 justify-self-start ${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
                                                     disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
                                                     onClick={handleNextPageNumber}
                                                 >
@@ -189,7 +189,7 @@ const ClubCoaches = () => {
                                         {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
                                             <div className={`w-full flex justify-between px-10 items-center ${pageNumberPrevious === 1 && 'opacity-60'}`}>
                                                 <button
-                                                    className='transform  w-10 justify-self-end'
+                                                    className='transform  w-6 h-6 justify-self-end'
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
@@ -201,7 +201,7 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-10 rotate-180 justify-self-start ${pageNumberPrevious === 1 && 'opacity-60'}`}
+                                                    className={`w-6 h-6 rotate-180 justify-self-start ${pageNumberPrevious === 1 && 'opacity-60'}`}
                                                     disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
                                                     onClick={handleNextPageNumberPrevious}
                                                 >

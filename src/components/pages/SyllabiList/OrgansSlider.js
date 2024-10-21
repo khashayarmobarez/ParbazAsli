@@ -35,7 +35,7 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
     return (
         <div className='w-[60%] md:w-[30%] flex justify-between items-center'>
 
-            <button onClick={handlePrevOrgan} className='w-8 h-8 active:w-6 hover:h-6'>
+            <button onClick={handlePrevOrgan} className='w-6 h-6 active:w-6 hover:h-6'>
                 <ArrowButton/>
             </button>
 
@@ -43,7 +43,7 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
                 <h1 className='text-sm font-medium text-textAccent'>{theOrgan.name}</h1>
             }
 
-            <button onClick={handleNextOrgan} className='w-8 h-8 rotate-180'>
+            <button onClick={handleNextOrgan} className='w-6 h-6 rotate-180'>
                 <ArrowButton/>
             </button>
 

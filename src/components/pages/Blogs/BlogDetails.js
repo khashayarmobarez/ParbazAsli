@@ -51,7 +51,7 @@ const BlogDetails = () => {
 
             {
                 data && 
-                <div className='w-[90%] min-h-[50vh] flex flex-col items-center gap-y-8 md:flex-row-reverse md:mt-14 md:items-start md:justify-between md:w-[95%]'>
+                <div className='w-[90%] min-h-[50vh] flex flex-col items-center gap-y-8 md:flex-row-reverse md:mt-14 md:items-start md:justify-between md:w-[70%]'>
 
                     {
                         isBelow768px &&
@@ -69,7 +69,7 @@ const BlogDetails = () => {
                             {blogSections.map((section, index) => (
                                 <div key={section.title} className='flex w-full h-14 mb-6 justify-center items-center'>
                                     <p className='w-3/4' >{section.title}</p>
-                                    <p className=' w-10 h-10 rounded-full text-center flex justify-center items-center z-10' style={{background:'var(--landing-page-titles-bg)',boxShadow:'var(--landing-page-titles-boxShadow) '}}>{section.order}</p>
+                                    <p className=' w-10 h-10 rounded-full text-center flex justify-center items-center z-10 bg-bgCard shadow-lg' >{section.order}</p>
                                     {index < blogSections.length - 1 && (
                                             <div className='absolute h-20 mr-[17.5vw] mt-16 w-1 z-0' style={{backgroundColor:'var(--text-accent) '}}></div>
                                     )}
@@ -80,25 +80,25 @@ const BlogDetails = () => {
                     }
                     <div className='w-full md:w-9/12 flex flex-col gap-y-8'>
 
-                        <div className='w-full min-h-[530px] flex flex-col items-center justify-between px-4 py-6 rounded-3xl gap-y-4 md:p-8' 
-                        style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
+                        <div className='w-full min-h-[530px] flex flex-col items-center justify-between px-4 py-6 rounded-3xl gap-y-4 md:p-8 bg-bgCard' 
+                        style={{ boxShadow:'var(--shadow-all)'}}>
 
                             <img src={image.path} alt={image.name} className='w-full h-40 rounded-xl object-cover md:h-[30rem]' />
 
                             <div className='w-full grid grid-cols-2 md:grid-cols-4 gap-y-4'>
-                                <div className='flex gap-x-2'>
+                                <div className='flex gap-x-2 w-20'>
                                     <MailIcon />
                                     <p>{timeToReadInMinutes} دقیقه مطالعه</p>
                                 </div>
-                                <div className='flex gap-x-2'>
+                                <div className='flex gap-x-2 w-20'>
                                     <MailIcon />
                                     <p>{createDate}</p>
                                 </div>
-                                <div className='flex gap-x-2'>
+                                <div className='flex gap-x-2 w-20'>
                                     <MailIcon />
                                     <p>{blogVisitCount} بازدید</p>
                                 </div>
-                                <div className='flex gap-x-2'>
+                                <div className='flex gap-x-2 w-20'>
                                     <MailIcon />
                                     <p>{blogComments.length} نظر</p>
                                 </div>
@@ -125,8 +125,7 @@ const BlogDetails = () => {
                         {/* comments */}
                         <div className='w-full grid grid-cols-1 gap-y-6 md:gap-x-4 md:grid-cols-2 '>
                             {blogComments.map(comment => (
-                                <div key={comment.id} className=' min-h-[130px] flex flex-col items-start gap-y-2 px-4 py-4 rounded-3xl' 
-                                style={{background:'var(--about-us-box-color)', boxShadow:'var(--about-us-box-shodow)'}}>
+                                <div key={comment.id} className=' min-h-[130px] flex flex-col items-start gap-y-2 px-4 py-4 rounded-3xl bg-bgCard shadow-lg'>
                                     <p>{comment.userName}</p>
                                     <p>{comment.comment}</p>
                                 </div>

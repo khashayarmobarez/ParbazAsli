@@ -9,11 +9,11 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
             
             <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 
-                <div className={`flex gap-x-3 justify-center  ${isActive ? 'text-textAccent' : 'text-bgDividerDefault'}`}>
+                <div className={`flex gap-x-2 justify-center  ${isActive ? 'text-textAccent' : 'text-bgDividerDefault'}`}>
                     {icon ? 
                     <>
-                        <span className='w-4'>
-                            <img src={icon} alt='icon' />
+                        <span className='w-6'>
+                            {icon}
                         </span>
                         <p className='text-sm font-light w-16 '> 
                             {title}

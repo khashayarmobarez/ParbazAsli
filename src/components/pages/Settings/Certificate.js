@@ -7,16 +7,18 @@ import CertificateIcon from '../../../components/icons/CertificateIcon'
 const Certificate = ({certificateData}) => {
 
     return (
-        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' 
+        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between pr-4 pl-3 py-4 ' 
         style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)', color:'var(--text-default) ' }}>
             
             <div className=' w-full text-xs flex justify-between items-center gap-x-2'>
 
-                <div className=' flex gap-x-2 '>
-                    <img src={<CertificateIcon/>} alt='icon' />
-                    <p className='flex-wrap' >{certificateData.organization} / {certificateData.level}</p>
+                <div className=' flex gap-x-1 '>
+                    <span className='w-7'>
+                        <CertificateIcon/>
+                    </span>
+                    <p className='flex-wrap text-xs' >{certificateData.organization} / {certificateData.level}</p>
                 </div>
-                <div className='flex flex-col items-start gap-y-2'>
+                <div className='flex flex-col items-start gap-y-2 text-start'>
                     <p className='text-textDisabled '>
                         وضعیت:
                         {certificateData.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}

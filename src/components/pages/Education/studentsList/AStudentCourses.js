@@ -175,7 +175,7 @@ const AStudentCourses = () => {
                 { StudentCourses && StudentCourses.totalPagesCount && StudentCourses.totalPagesCount > 1 && (
                     <div className='w-full flex justify-between px-10 items-center'>
                         <button
-                            className={`w-10 justify-self-start ${(StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                            className={`w-6 h-6 justify-self-start ${(StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber) && 'opacity-60'}`}
                             disabled={StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber}
                             onClick={handleNextPageNumber}
                         >
@@ -187,7 +187,7 @@ const AStudentCourses = () => {
                         </p>
 
                         <button
-                            className={`transform rotate-180 w-10 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                            className={`transform rotate-180 w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                             disabled={pageNumber === 1}
                             onClick={handleLastPageNumber}
                         >

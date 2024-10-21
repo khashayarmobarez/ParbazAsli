@@ -23,8 +23,8 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   return (
     <>
       <div className={`${inputStyles['password-input']} flex relative w-full h-12 px-2`} htmlFor="password">
-        <span style={{ color: 'var(--disabled-button-text)' }}>
-          <img src={<KeyIcon/>} alt="icon" className="absolute mt-4 mr-2" />
+        <span style={{ color: 'var(--disabled-button-text)'  }} className="absolute w-4 mt-4 mr-2"  >
+          <KeyIcon />
         </span>
         <input
           type={showPassword ? 'text' : 'password'}
@@ -48,7 +48,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           placeholder={customPlaceHolder || "رمز عبور"}
           autoComplete="new-password" 
         />
-        <span onClick={togglePasswordVisibility} style={{ color: '#cacaca' }}>
+        <span onClick={togglePasswordVisibility} style={{ color: 'var(--text-default)' }}>
           {showPassword ? (
             <RemoveRedEyeOutlinedIcon sx={{ position: 'absolute', top: '0.8rem', left: '1rem' }} />
           ) : (
