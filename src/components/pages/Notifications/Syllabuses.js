@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 import plus from '../../../assets/icons/plusButton.png';
-import minus from '../../../assets/icons/minusButton.png';
+import MinusButton from '../../../components/icons/MinusButton';
 import PageTitle from '../../reuseable/PageTitle';
 import { useAcceptUserFlight, useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
@@ -167,12 +167,12 @@ const Syllabuses = () => {
                                     style={{ backgroundColor: 'transparent' }}
                                     className="rounded-lg w-4 text-center text-sm"
                                 />
-                                <img
-                                    src={minus}
-                                    alt="icon"
-                                    onClick={() => handleDecrement(index)}
+                                <span className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}>
+                                    <MinusButton
+                                    onClick={() => handleDecrement(index)} 
                                     className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}
-                                />
+                                    />
+                                </span>
                             </div>
                         </div>
                     </div>
