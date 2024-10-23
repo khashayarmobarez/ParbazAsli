@@ -25,6 +25,7 @@ code {
 :root {
 
   /* overall */
+  --theme-mode :'light';
   --bg-page-main: #e0e1e3;
   --text-accent:#23BC7C;
   --text-default:#3E3E3E;
@@ -115,6 +116,7 @@ code {
 
 
   /* overall */
+  --theme-mode :'dark';
   --bg-page-main: #1E2227;
   --text-accent:#23BC7C;
   --text-default:#EEEEEE;

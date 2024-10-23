@@ -190,6 +190,7 @@ function App() {
       }, 50); // (500 milliseconds)
     }
   }, [isPageReloaded]);
+
           
   // Check if user is authenticated
   useEffect(() => {
