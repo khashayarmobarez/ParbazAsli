@@ -61,7 +61,7 @@ const UploadIgc = () => {
                 <img alt='icon' className='w-20' src={IGC} />
             </span>
 
-            <p className='text-center -mt-1 font-semibold text-textAccent'>(اختیاری)</p>
+            <p className='text-center -mt-1 font-semibold text-textWarning'>(اختیاری)</p>
 
             <p className=' text-center w-full'>در صورت داشتن فایل IGC بارگزاری کنید تا مشخصات پرواز شما ثبت شود در غیر این صورت دکمه بعدی را بزنید و مشخصات پرواز خود را وارد کنید</p>
 

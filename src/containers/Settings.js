@@ -24,7 +24,7 @@ const Settings = () => {
 
     
     // controlling  items drop down
-    const [DropDown, setDropDown] = useState(['dropDown2']);
+    const [DropDown, setDropDown] = useState(['dropDown1']);
 
     // clubstatus could be NotAdded, Pending, Accepted
     const { data: clubStatus , loading: clubStatusLoading } = useClubStatus();

@@ -544,12 +544,12 @@ const AddCourse = () => {
                                     .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
                                     .map((course,index) => (
                                         <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{course.description} </p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
@@ -574,12 +574,12 @@ const AddCourse = () => {
                                     .filter(course => course.type === 2) // Filter for practical courses (type 2)
                                     .map((course,index) => (
                                         <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
@@ -617,12 +617,12 @@ const AddCourse = () => {
                                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                         </span> */}
                                         {studentData?.data && (
-                                            <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
                                             
                                                 <div className='flex flex-col w-full items-center justify-center '>
                                                     <li
                                                         key={studentData.data.id}
-                                                        className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                                                        className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
                                                         onClick={() => handleAddStudent()}
                                                     >
                                                         {studentData.data.fullName}
@@ -637,12 +637,12 @@ const AddCourse = () => {
                                 <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                     {studentsData && studentsData?.map((student,index) => (
                                         <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
                                              onClick={() => handleRemoveStudent(student)} />
