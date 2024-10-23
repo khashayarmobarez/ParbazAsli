@@ -145,7 +145,7 @@ const CourseStudentDetails = () => {
                                         backgroundColor: 'var(--bg-button-secondary-hover)', 
                                         '& .MuiLinearProgress-bar': {
                                             backgroundColor: 
-                                            studentData.data.status === 'Active' ? 'var(--text-error)' :
+                                            studentData.data.status === 'Active' ? 'var(--text-warning)' :
                                             studentData.data.status === 'Completed' ? 'var(--text-accent)' :
                                             studentData.data.status === 'Canceled' ? 'var(--text-error)' :
                                             undefined, // Optional: A default value if none of the conditions match
