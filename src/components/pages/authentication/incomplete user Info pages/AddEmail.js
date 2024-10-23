@@ -285,6 +285,7 @@ const AddEmail = () => {
                             <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
                         </div>
+                        
 
                         <div className='flex items-center justify-between w-[97%]'>
 
