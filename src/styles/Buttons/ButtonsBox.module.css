@@ -27,10 +27,14 @@
 
 }
 
-.ThreeStickedButtonButton:hover {
-  background: var(--bg-tab-hover);
-  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
-  backdrop-filter: blur(2px);
+@media (min-width: 720px) {
+
+  .ThreeStickedButtonButton:hover {
+    background: var(--bg-tab-hover);
+    box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
+    backdrop-filter: blur(2px);
+  }
+  
 }
 
 .ThreeStickedButtonButton:active {

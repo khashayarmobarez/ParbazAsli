@@ -271,8 +271,8 @@ const AddClub = ({isForSetting}) => {
 
                     <p className='text-sm'>آپلود عکس مجوز</p>
 
-                    <div onClick={handleUploadLicenseClick} className='w-[340px] md:w-[370px] h-36 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
-                    style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+                    <div onClick={handleUploadLicenseClick} className='bg-bgUploadFile w-[340px] md:w-[370px] h-36 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
+                    style={{borderColor:'var(--text-default)'}}>
 
                         <input
                             type="file"
