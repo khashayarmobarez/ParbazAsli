@@ -158,7 +158,7 @@ const CourseStudentDetails = () => {
                     }
 
                     {/* back button */}
-                    <span className=' absolute left-4 top-4 w-6 h-6 transform rotate-180'
+                    <span className=' absolute left-4 top-4 w-6 h-6 transform'
                     onClick={() => navigate(historyPageUrl)}>
                         <ArrowButton />
                     </span>

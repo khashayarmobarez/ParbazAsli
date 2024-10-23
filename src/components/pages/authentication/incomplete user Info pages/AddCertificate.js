@@ -246,9 +246,9 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-default)'}}></div>
+                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
@@ -260,7 +260,7 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-between w-[98%]'>
 
-                        <p className='' style={{color:'var(--text-default)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
 
                         <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
 

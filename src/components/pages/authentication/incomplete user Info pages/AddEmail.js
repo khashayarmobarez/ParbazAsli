@@ -274,13 +274,13 @@ const AddEmail = () => {
 
                         <div className='flex items-center justify-center w-full'>
                             
-                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-default)'}}></div>
+                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-default)'}}></div>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-default)'}}></div>
+                            <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
                             <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
@@ -288,9 +288,9 @@ const AddEmail = () => {
 
                         <div className='flex items-center justify-between w-[97%]'>
 
-                            <p className='' style={{color:'var(--text-default)'}}>تاییدیه</p>
+                            <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
 
-                            <p className='' style={{color:'var(--text-default)'}}>گواهینامه</p>
+                            <p className='' style={{color:'var(--icon-disable)'}}>گواهینامه</p>
 
                             <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
 
