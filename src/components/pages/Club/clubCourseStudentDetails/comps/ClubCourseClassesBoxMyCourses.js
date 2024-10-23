@@ -57,7 +57,7 @@ const ClubCourseClassesBoxMyCourses = (props) => {
                             </span>
                             <p>{classData.name}</p>
                             <p>{classData.classDuration}</p>
-                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-l-xl`}>
+                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 py-3 h-full flex items-center justify-center rounded-l-xl`}>
                                 <ClipboardIcon/>
                             </button>
                         </div>

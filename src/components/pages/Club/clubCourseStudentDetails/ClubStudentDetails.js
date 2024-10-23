@@ -93,21 +93,29 @@ const ClubCourseStudentDetails = () => {
 
                                 <div className='w-full flex flex-col items-start justify-between gap-y-2 mr-4 text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
-                                        <FlightQuantity/>
+                                        <span className='w-5 h-5'>
+                                            <FlightQuantity/>
+                                        </span>
                                         {studentData.data.flightCounts} تعداد پرواز
                                     </p>
                                     <p className='flex gap-x-2'>
-                                        <ClockIcon/>
+                                        <span className='w-5 h-5'>
+                                            <ClockIcon/>
+                                        </span>
                                         {studentData.data.flightHours} ساعت پرواز
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
-                                            <ClockIcon/>
+                                            <span className='w-5 h-5'>
+                                                <ClockIcon/>
+                                            </span>
                                             {studentData.data.coachingHours} ساعت مربی‌گری
                                         </p>
                                     }
                                     <p className='flex gap-x-2'>
-                                        <FlightQuantity/>
+                                        <span className='w-5 h-5'>
+                                            <FlightQuantity/>
+                                        </span>
                                         کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>
@@ -130,7 +138,7 @@ const ClubCourseStudentDetails = () => {
                                         backgroundColor: 'var(--bg-button-secondary-default)', 
                                         '& .MuiLinearProgress-bar': {
                                             backgroundColor: 
-                                            studentData.data.status === 'Active' ? 'var(--text-error)' :
+                                            studentData.data.status === 'Active' ? 'var(--text-warning)' :
                                             studentData.data.status === 'Completed' ? 'var(--text-accent)' :
                                             studentData.data.status === 'Canceled' ? 'var(--text-error)' :
                                             undefined, // Optional: A default value if none of the conditions match
@@ -143,7 +151,7 @@ const ClubCourseStudentDetails = () => {
                     }
 
                     {/* back button */}
-                    <span className='absolute left-4 top-2 w-8 h-8 transform rotate-180'
+                    <span className='absolute left-4 top-3 w-6 h-6'
                     onClick={() => {navigate(historyPageUrl); console.log(document.referrer);}}>
                         <ArrowButton />
                     </span>
