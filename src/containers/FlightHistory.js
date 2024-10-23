@@ -97,7 +97,7 @@ const FlightHistory = () => {
                                 boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)'
                             }}
                             onClick={handleResetData}>
-                                <span className='w-8' >
+                                <span className='w-5' >
                                     <Eraser/>
                                 </span>
                             </button>
