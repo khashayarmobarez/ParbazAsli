@@ -217,7 +217,8 @@ const ClubCourseDetails = () => {
                             </Link> 
                             <Link 
                                 to={aCourseData.data.status === 'Pending' ? '#' : `/club/courseDetails/${id}/classes`} 
-                                className={`${ButtonStyles.ThreeStickedButtonButton} ${aCourseData.data.status === 'Pending' && 'opacity-55'} ${location.pathname === `/club/courseDetails/${id}/classes` ? ButtonStyles.activeYellow : ''}`} >
+                                className={`${aCourseData.data.status === 'Pending' ? ButtonStyles.ThreeStickedButtonButtonDisable : ButtonStyles.ThreeStickedButtonButton} 
+                                ${aCourseData.data.status === 'Pending' && 'opacity-55'} ${location.pathname === `/club/courseDetails/${id}/classes` ? ButtonStyles.activeYellow : ''}`} >
                                 کلاس تئوری
                             </Link> 
                             <Link 

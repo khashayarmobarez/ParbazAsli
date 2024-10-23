@@ -19,6 +19,17 @@
   box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
 }
 
+.ThreeStickedButtonButtonDisable {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 100%;
+  height: 100%;
+  background:  var(--bg-tab-default);
+  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
+}
+
 @media (min-width: 720px) {
 
   ThreeStickedButtonCont {
@@ -39,8 +50,6 @@
 
 .ThreeStickedButtonButton:active {
   background: var(--bg-tab-active);
-  box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
-  backdrop-filter: blur(2px);
 }
 
 

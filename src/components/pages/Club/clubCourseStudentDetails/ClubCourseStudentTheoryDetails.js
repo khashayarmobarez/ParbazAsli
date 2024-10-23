@@ -58,7 +58,7 @@ const ClubCourseStudentTheoryDetails = () => {
 
                 {
                     classesData.data.classes.map((classData) => {
-                    return <ClubCourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                        return <ClubCourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
 
