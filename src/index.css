@@ -38,12 +38,12 @@ code {
   --bg-button-main-hover:#20A970;
   --bg-button-main-active:#1C9663;
   --text-button-main-default:#EEE;
-  --text-button-main-disabled:#535353;
+  --text-button-main-disabled:#E5E5E5;
 
   /* second button */
-  --bg-button-secondary-default:#F6F6F7;
-  --bg-button-secondary-hover:#BFC2C4;
-  --bg-button-secondary-active:#323941;
+  --bg-button-secondary-default:#F9F9FA;
+  --bg-button-secondary-hover:#F6F6F7;
+  --bg-button-secondary-active:#EDEDEE;
   --bg-button-secondary-disabled:#CACACA;
 
   /* button profile */
@@ -58,7 +58,7 @@ code {
   /* input */
   --bg-input-dropdown:#F6F6F7;  
   --bg-input-selected-option:#262B31;
-  --bg-upload-file:#161a1d;
+  --bg-upload-file:#BFC2C4;
   --border-input-success: #23BC7C;
   --border-input-error: #DC3545;
   --border-input-default: #535353;
@@ -76,7 +76,7 @@ code {
 
   /* pop ups */
   --bg-pop-up-default:#EBEBEC;
-  --bg-pop-up-header-footer:#EBEBEC;
+  --bg-pop-up-header-footer:#E0E1E3;
 
   /* cards */
   --bg-card:#EBEBEC;

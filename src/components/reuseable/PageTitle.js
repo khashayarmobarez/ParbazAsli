@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';  
 
 const PageTitle = (props) => {
 
@@ -13,7 +13,7 @@ const PageTitle = (props) => {
         <>
             <div className={`sticky top-6 md:top-2 z-30 bg-bgHeader w-[90%] h-20 md:h-32 flex justify-center items-end py-2 rounded-b-2xl `}>
                 <p className=' text-base font-medium'>{title}</p>
-                <ArrowBackIcon onClick={() => navigate(navigateTo ? navigateTo : -1)} 
+                <ArrowBackIosNewIcon onClick={() => navigate(navigateTo ? navigateTo : -1)} 
                 sx={{position:'absolute',left:'1rem' , width:'24px', height:'24px', padding:'2px', backgroundColor:'', borderRadius:'10rem', background: 'var(--bg-button-secondary-default)', boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)'}} />
             </div>
         </>

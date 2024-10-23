@@ -21,8 +21,8 @@ const DropDownDataBox = (props) => {
 
         <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 border-2 border-opacity-50`}
         style={{
-            borderColor: isExpanded ? 'var(--text-input-success)' : 'var(--light-border-button-collapsed)',
-            color: isExpanded ? 'var(--text-input-success)' : 'var(--light-border-button-collapsed)',
+            borderColor: isExpanded ? 'var(--text-accent)' : 'var(--text-default)',
+            color: isExpanded ? 'var(--text-accent)' : 'var(--text-default)',
         }}>
 
             <div className='flex' >

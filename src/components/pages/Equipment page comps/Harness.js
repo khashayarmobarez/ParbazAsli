@@ -203,7 +203,8 @@ const Harness = (props) => {
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
                             <div className='w-full flex flex-col items-center'>
 
-                                <div key={equipment.id} className={`bg-bgCard shadow-shadowAll z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} >
+                                <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
+                                style={{boxShadow:'var(--shadow-all)'}}>
 
                                     {
                                         equipment.status === 'Pending' &&
@@ -255,7 +256,8 @@ const Harness = (props) => {
 
                                 {
                                     equipment.status === 'Pending' &&
-                                        <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard shadow-lg'>
+                                        <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard '
+                                        style={{boxShadow:'var(--shadow-all)'}}>
 
                                             <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                                 <div className='w-2 h-2 rounded-full bg-textError'></div>
@@ -306,7 +308,8 @@ const Harness = (props) => {
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard shadow-lg`} >
+                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `} 
+                                style={{boxShadow:'var(--shadow-all)'}}>
 
                                     <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
@@ -351,7 +354,8 @@ const Harness = (props) => {
                     userEquipmentsHistoryData &&
                     userEquipmentsHistoryData.data &&
                     userEquipmentsHistoryData.data.map(equipment =>
-                            <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard shadow-lg`} >
+                            <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard `} 
+                            style={{boxShadow:'var(--shadow-all)'}}>
 
                                 <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
                                     <p> برند {equipment.brand} / مدل {equipment.model}</p>

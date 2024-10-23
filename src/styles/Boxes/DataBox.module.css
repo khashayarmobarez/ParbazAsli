@@ -23,10 +23,6 @@
     display: flex;
 }
 
-.Container2:active {
-    background: linear-gradient(21.47deg, #A5E65E 14.52%, rgba(173, 203, 139, 0) 245.02%);
-    box-shadow: -2px 3px 4.300000190734863px 1px #0000007a, 1px -1px 2.5999999046325684px 0px rgba(235, 224, 224, 0.51),0px 4px 10.800000190734863px 2px rgba(70, 174, 45, 1) inset;
-}
 
 
 /* basic data box such as class number used in addClass */

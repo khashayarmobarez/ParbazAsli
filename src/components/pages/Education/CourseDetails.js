@@ -161,19 +161,22 @@ const CourseDetails = () => {
                                         {aCourseData && aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--text-accent)'}}></div>
+                                                {/* below is a circle to show status of the app with color */}
+                                                {/* <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--text-accent)'}}></div> */}
                                             </>
                                         }
                                         {aCourseData && aCourseData.data.status === 'Pending' &&
                                             <>
                                                 <p>در انتظار تایید</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-default)'}}></div>
+                                                {/* below is a circle to show status of the app with color */}
+                                                {/* <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-default)'}}></div> */}
                                             </>
                                         }
                                         {aCourseData && aCourseData.data.status === 'Disable' &&
                                             <>
                                                 <p>غیرفعال</p>
-                                                <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
+                                                {/* below is a circle to show status of the app with color */}
+                                                {/* <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div> */}
                                             </>
                                         }
                                     </div> 
