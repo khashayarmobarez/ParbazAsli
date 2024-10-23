@@ -41,7 +41,6 @@ const PossessionTransitionEquipment = () => {
     const { mutate: mutateTransitionData, loading:possessionLoading } = usePossessionTransition();
 
     const { formatDate } = useDateFormat();
-
     
     // Ref to the button element
     const buttonRef = useRef(null);
@@ -208,13 +207,13 @@ const PossessionTransitionEquipment = () => {
                             placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
                             />
                             {userByIdData &&
-                                <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
+                                <div className='flex gap-x-1 text-textAccent self-start mt-[-12px]'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>{userByIdData.data.fullName}</p>
                                 </div>
                             }
                             {receiverId && receiverId.length > 5 && !userByIdData &&
-                                <div className='flex gap-x-1 text-[var(--text-error)] self-start'>
+                                <div className='flex gap-x-1 text-textError self-start'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>کاربر یافت نشد</p>
                                 </div>
@@ -231,12 +230,15 @@ const PossessionTransitionEquipment = () => {
 
                         {/* popup */}
                         <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
-                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
-                                <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
+                            <div className={`${boxStyles.containerChangeOwnership}   w-[88vw] md:w-[324px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
+                                
+                                <h1 className='text-xl font-medium text-textWarning'>تاییدیه</h1>
+
+                                <h3 className=' text-textError w-[90%] text-base font-normal'>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                             
-                                <div className='w-[80%] flex justify-between'>
-                                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >بله</button>
-                                    <button className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>خیر</button>
+                                <div className='w-[90%] flex justify-between'>
+                                    <button className={`${ButtonStyles.normalButton} w-32`} onClick={() => setShowPopup(false)}>خیر</button>
+                                    <button type="submit" className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit} >بله</button>
                                 </div>
                             
                             </div>
@@ -245,12 +247,12 @@ const PossessionTransitionEquipment = () => {
                     }
                     {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
-                            <h1 className=' text-xl font-medium text-[var(--text-error)]'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
+                            <h1 className=' text-xl font-medium text-textError'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
                             <h1 >بعد از تایید شما میتوانید مالکیت وسیله خود را انتقال دهید</h1>
                         </div>
                     }
                     {(EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
-                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-[var(--text-error)]'>برای انتقال مالکیت, اول سریال وسیله پروازی خود را در قسمت ویرایش وارد کنید</h1>
+                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-textError'>برای انتقال مالکیت, اول سریال وسیله پروازی خود را در قسمت ویرایش وارد کنید</h1>
                     }
 
             </div>

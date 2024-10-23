@@ -213,7 +213,7 @@ const PossessionTransitionClub = () => {
                             placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
                             />
                             {userByIdData &&
-                                <div className='flex gap-x-1 text-[#A5E65E] self-start mt-[-12px]'>
+                                <div className='flex gap-x-1 text-textAccent self-start mt-[-12px]'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>{userByIdData.data.fullName}</p>
                                 </div>
@@ -236,12 +236,15 @@ const PossessionTransitionClub = () => {
 
                         {/* popup */}
                         <div className={` ${showPopup ? '' : 'hidden'}  backdrop-blur-lg absolute w-full h-full flex justify-center items-center z-10`}>
-                            <div className={`${boxStyles.containerChangeOwnership}   w-[304px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
-                                <h3 className=' text-[#ED553B] w-[80%] text-base font-medium '>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
+                            <div className={`${boxStyles.containerChangeOwnership}  w-[88vw] md:w-[324px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
+                                
+                                <h1 className='text-xl font-medium text-textWarning'>تاییدیه</h1>
+
+                                <h3 className=' text-textError w-[90%] text-base font-normal'>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                             
                                 <div className='w-[80%] flex justify-between'>
-                                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >بله</button>
-                                    <button className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>خیر</button>
+                                    <button className={`${ButtonStyles.normalButton} w-32`} onClick={() => setShowPopup(false)}>خیر</button>
+                                    <button type="submit" className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit} >بله</button>
                                 </div>
                             
                             </div>

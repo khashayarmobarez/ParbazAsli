@@ -324,6 +324,7 @@ const FlightEquipment = () => {
                                         </button>
 
                                         <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>
+                                    
                                     </div>
 
                                 </div>
