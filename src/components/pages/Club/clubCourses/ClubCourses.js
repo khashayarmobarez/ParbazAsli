@@ -189,7 +189,7 @@ const ClubCourses = () => {
                                                                             <span className='text-[var(--text-warning)]'> در انتظار تایید</span>
                                                                         }
                                                                         {course.status === 'Disable' && 
-                                                                            <span className='text-textError'> غیر فعال</span>
+                                                                            <span className='text-textButtonProfileDisable'> غیر فعال</span>
                                                                         }
                                                                         {course.status === 'Rejected' && 
                                                                             <span className='text-textError'> رد شده</span>
@@ -200,14 +200,15 @@ const ClubCourses = () => {
                                                             
                                                             </div>
 
-                                                            <p className='text-textDisabled -mt-1'>
+                                                            <p className={`${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'} -mt-1`}>
                                                                 نام مربی:&nbsp;
-                                                                <span className='text-textDefault text-sm'>{course.coachFullName}</span>
+                                                                <span className='text-sm'>{course.coachFullName}</span>
                                                             </p>
 
                                                             <div className='w-full flex justify-between items-center'>
 
-                                                                <div className='flex flex-col text-start gap-y-3'>
+                                                                <div className={`${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}
+                                                                flex flex-col text-start gap-y-3`}>
                                                                     
                                                                     {
                                                                         course.type === 'Regular' &&
@@ -218,28 +219,29 @@ const ClubCourses = () => {
                                                                     {
                                                                         course.type === 'Retraining' &&
                                                                         <p className='text-sm'>
-                                                                            <span className='text-textDisabled'>مقطع:</span> {course.level}
+                                                                            <span className=''>مقطع:</span> {course.level}
                                                                         </p>
                                                                     } 
 
                                                                     <p>
-                                                                        <span className='text-textDisabled'>تعداد پرواز: </span>{course.flightsCount}
+                                                                        <span className=''>تعداد پرواز: </span>{course.flightsCount}
                                                                     </p>
 
                                                                     { course.clubName &&
                                                                         <p>
-                                                                            <span className='text-textDisabled'>باشگاه: </span> {course.clubName}
+                                                                            <span className=''>باشگاه: </span> {course.clubName}
                                                                         </p>
                                                                     }
 
                                                                 </div>
 
-                                                                <div className='flex flex-col text-start gap-y-2'>
+                                                                <div className={`flex flex-col text-start gap-y-2
+                                                                ${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}`}>
                                                                     <p>
-                                                                        <span className='text-textDisabled'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                        <span className=''>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
                                                                     </p>
                                                                     <p>
-                                                                        <span className='text-textDisabled'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                        <span className=''>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
                                                                     </p>
                                                                 </div>
 

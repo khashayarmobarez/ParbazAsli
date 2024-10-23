@@ -194,24 +194,24 @@ const MyCourses = () => {
                                                                 <div className='w-full flex justify-between text-start text-sm'>
                                                                     <div className='flex flex-col justify-between self-start'>
                                                                         { courseData.organization && courseData.type !== 'Regular' &&
-                                                                            <p>
-                                                                                <span className='text-textDisabled'>
+                                                                            <p className={`${courseData.status === 'Canceled'? 'text-bgButtonSecondaryDisabled' : 'text-textDefault'}`}>
+                                                                                <span >
                                                                                     ارگان:&nbsp;
                                                                                 </span>
                                                                                 {courseData.organization}
                                                                             </p>
                                                                         }
                                                                         { courseData.clubName &&
-                                                                            <p>
-                                                                                <span className='text-textDisabled'>
+                                                                            <p className={`${courseData.status === 'Canceled'? 'text-bgButtonSecondaryDisabled' : 'text-textDefault'}`}>
+                                                                                <span >
                                                                                     باشگاه:&nbsp;
                                                                                 </span>
                                                                                 {courseData.clubName}
                                                                             </p>
                                                                         }
                                                                         { courseData.coach &&
-                                                                            <p>
-                                                                                <span className='text-textDisabled'>
+                                                                            <p className={`${courseData.status === 'Canceled'? 'text-bgButtonSecondaryDisabled' : 'text-textDefault'}`}>
+                                                                                <span >
                                                                                     مربی:&nbsp;
                                                                                 </span> 
                                                                                 {courseData.coach}

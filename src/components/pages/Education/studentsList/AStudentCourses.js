@@ -110,24 +110,24 @@ const AStudentCourses = () => {
                                     <div className='w-full flex justify-between text-start text-sm'>
                                         <div className='flex flex-col justify-between self-start'>
                                             { courseData.organization && courseData.type !== 'Regular' &&
-                                                <p>
-                                                    <span className='text-textDisabled'>
+                                                <p className={`${courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' : 'text-textDefault'}`}>
+                                                    <span>
                                                         ارگان:&nbsp;
                                                     </span>
                                                     {courseData.organization}
                                                 </p>
                                             }
                                             { courseData.clubName &&
-                                                <p>
-                                                    <span className='text-textDisabled'>
+                                                <p className={`${courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
+                                                    <span>
                                                         باشگاه:&nbsp;
                                                     </span>
                                                     {courseData.clubName}
                                                 </p>
                                             }
                                             { courseData.coach &&
-                                                <p>
-                                                    <span className='text-textDisabled'>
+                                                <p className={`${courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
+                                                    <span>
                                                         مربی:&nbsp;
                                                     </span> 
                                                     {courseData.coach}
@@ -141,31 +141,6 @@ const AStudentCourses = () => {
                                     </div>
 
                                 </div>
-
-                                {/* Trigger course status */}
-                                {/* {course.status === 'Pending' &&
-                                    <div className='w-full min-h-14 rounded-b-2xl z-10 mt-[-1rem] pt-5 flex justify-between px-4' 
-                                    style={{background: '#262941',
-                                        boxShadow: 'var(--organs-coachData-boxShadow)'}}>
-
-                                        <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
-                                            <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
-                                            <p >آیا این دوره مورد تایید شما است؟</p>
-                                        </div>
-
-                                        <div className='flex gap-x-4 items-center px-6'>
-
-                                            {triggerCourseStatusLoading && 
-                                                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                                    <CircularProgress sx={{width:'1rem'}} /> 
-                                                </Box>
-                                            }
-                                            <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--text-accent)'}} />
-                                            <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--text-error)'}} />
-
-                                        </div>
-                                    </div>
-                                }  */}
 
                             </div>
                         ))
