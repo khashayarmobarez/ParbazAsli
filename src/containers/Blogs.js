@@ -52,7 +52,7 @@ const Blogs = () => {
                             className='flex items-center justify-center'
                         >
                             <span className='w-6 h-6' >
-                                <ArrowButton/>
+                                <ArrowButton isRight={true}/>
                             </span>
                             <p>صفحه بعد</p>
                         </button>
@@ -63,7 +63,7 @@ const Blogs = () => {
                             className='flex items-center justify-center'
                         >
                             <p>صفحه قبل</p>
-                            <span className='rotate-180 w-6 h-6'>
+                            <span className=' w-6 h-6'>
                                 <ArrowButton/>
                             </span>
                         </button>

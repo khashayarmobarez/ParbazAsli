@@ -36,14 +36,14 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
         <div className='w-[60%] md:w-[30%] flex justify-between items-center'>
 
             <button onClick={handlePrevOrgan} className='w-6 h-6 active:w-6 hover:h-6'>
-                <ArrowButton/>
+                <ArrowButton isRight={true} />
             </button>
 
             {theOrgan &&
                 <h1 className='text-sm font-medium text-textAccent'>{theOrgan.name}</h1>
             }
 
-            <button onClick={handleNextOrgan} className='w-6 h-6 rotate-180'>
+            <button onClick={handleNextOrgan} className='w-6 h-6'>
                 <ArrowButton/>
             </button>
 

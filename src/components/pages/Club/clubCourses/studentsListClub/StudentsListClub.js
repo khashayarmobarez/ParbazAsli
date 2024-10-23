@@ -67,7 +67,7 @@ const StudentsListClub = () => {
                                     disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
                                     onClick={handleNextPageNumber}
                                 >
-                                    <ArrowButton/>
+                                    <ArrowButton isRight={true}/>
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -75,7 +75,7 @@ const StudentsListClub = () => {
                                 </p>
 
                                 <button
-                                    className={`transform rotate-180 w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                                    className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                                     disabled={pageNumber === 1}
                                     onClick={handleLastPageNumber}
                                 >

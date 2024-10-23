@@ -145,7 +145,7 @@ const ClubCoaches = () => {
                                                     disabled={pageNumber === 1}
                                                     onClick={handleLastPageNumber}
                                                 >
-                                                    <ArrowButton />
+                                                    <ArrowButton isRight={true} />
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -153,7 +153,7 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-6 h-6 rotate-180 justify-self-start ${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                    className={`w-6 h-6 justify-self-start ${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
                                                     disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
                                                     onClick={handleNextPageNumber}
                                                 >
@@ -193,7 +193,7 @@ const ClubCoaches = () => {
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
-                                                    <ArrowButton/>
+                                                    <ArrowButton isRight={true}/>
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -201,7 +201,7 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-6 h-6 rotate-180 justify-self-start ${pageNumberPrevious === 1 && 'opacity-60'}`}
+                                                    className={`w-6 h-6 justify-self-start ${pageNumberPrevious === 1 && 'opacity-60'}`}
                                                     disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
                                                     onClick={handleNextPageNumberPrevious}
                                                 >
