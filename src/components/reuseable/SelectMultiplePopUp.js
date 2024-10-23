@@ -107,6 +107,12 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                         className="flex w-full py-3 items-center justify-between text-start px-2 hover:bg-bgHeader cursor-pointer"
                         onClick={() => handleOptionClick(option)}
                     >
+                        {/* <Checkbox
+                            label="با قوانین و مقررات موافقم"
+                            noLable={true}
+                            isChecked={termsChecked}
+                            onToggle={handleTermsToggle}
+                        /> */}
                         <Checkbox
                         checked={selectedOptions.some(selected => selected.id === option.id)}
                         onChange={() => {}} // Handle change is managed by the li onClicks
