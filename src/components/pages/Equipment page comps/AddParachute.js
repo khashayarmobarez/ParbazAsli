@@ -358,7 +358,7 @@ const AddParachute = () => {
 
                       {/* size inputs */}
                       <div className='col-span-1 flex flex-col gap-y-2'>
-                        <h1 className='text-[var(--primary-light)]'>بازه وزن قابل تحمل وسیله</h1>
+                        <h1 className='text-textDefault'>بازه وزن قابل تحمل وسیله</h1>
                         <div className='flex justify-between gap-x-2'>
                           <NumberInput icon={<Cube/>} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
                           <NumberInput icon={<Cube/>} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
@@ -400,7 +400,7 @@ const AddParachute = () => {
                     </div>
 
                     <div className='w-full flex flex-col text-start gap-y-1'>
-                      <p className=' self-start md:self-center text-[var(--primary-light)]'>ثبت سریال چتر کمکی (اختیاری)</p>
+                      <p className=' self-start md:self-center text-textDefault'>ثبت سریال چتر کمکی (اختیاری)</p>
                       <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
                       در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
                     </div>

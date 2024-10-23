@@ -9,7 +9,6 @@ const useAppModeEffect = (isDarkMode) => {
     const root = document.documentElement;
     if (isDarkMode) {
 
-        root.style.setProperty('--text-error', '#a70107');
         root.style.setProperty('--dark-blue-bg', '#151D2E');
         root.style.setProperty('--diffrential-blue', '#262941');
         root.style.setProperty('--primary-light', '#c0c2cf');

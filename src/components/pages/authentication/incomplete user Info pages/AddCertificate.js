@@ -296,6 +296,7 @@ const AddCertificate = () => {
                                         {/* booleans identified as a string for more precision */}
                                         <button 
                                             className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${ isStarter === 'false' ? ButtonStyles.activeYellow : ''} `} 
+                                            style={{boxShadow:'var(--shadow-button-dark), var(--shadow-button-white)'}}
                                             onClick={(event) => handleUserIsStarter('false', event)}
                                         >
                                             بله
@@ -303,6 +304,7 @@ const AddCertificate = () => {
 
                                         <button 
                                             className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${ isStarter === 'true' ? ButtonStyles.activeYellow : ''} `}
+                                            style={{boxShadow:'var(--shadow-button-dark), var(--shadow-button-white)'}}
                                             onClick={(event) => handleUserIsStarter('true', event)}
                                         >
                                             خیر
@@ -313,7 +315,7 @@ const AddCertificate = () => {
                                     {
                                         isStarter === 'false' &&
                                         <p 
-                                            className='self-start text-xs text-start text-[var(--text-error)]'
+                                            className='self-start text-xs text-start text-textWarning'
                                         >
                                             *اگر گواهینامه شما منقضی شده‌است، برای تکمیل ثبت نام لطفا ابتدا نسبت به تمدید آن اقدام فرمایید
                                         </p>
