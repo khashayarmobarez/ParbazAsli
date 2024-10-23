@@ -2,7 +2,7 @@ import React from 'react';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { useNavigate } from 'react-router-dom';
 
-const Checkbox = ({ label, isChecked, onToggle, openTerms }) => {
+const Checkbox = ({ label, isChecked, onToggle, openTerms, noLabel }) => {
 
   const toggleCheckbox = () => {
     onToggle(!isChecked); // Pass the new checked state to the parent component
@@ -13,7 +13,10 @@ const Checkbox = ({ label, isChecked, onToggle, openTerms }) => {
       <div className={`w-6 h-6 border-2 rounded flex items-center justify-center cursor-pointer`} style={{borderColor:'var(--text-accent)'}}>
         {isChecked && < CheckRoundedIcon sx={{color: 'var(--text-accent)'}} />}
       </div>
-      <div className=" underline underline-offset-4 cursor-pointer" >{label}</div>
+      {
+        !noLabel &&
+        <div className=" underline underline-offset-4 cursor-pointer" >{label}</div>
+      }
     </div>
   );
 };
