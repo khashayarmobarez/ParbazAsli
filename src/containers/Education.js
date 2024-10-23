@@ -203,7 +203,7 @@ const Education = () => {
 
                                                             <div className='flex gap-x-1'>
 
-                                                                <p className='text-textButtonProfileDisable'>وضعیت:
+                                                                <p className='text-textButtonProfileDisable '>وضعیت:
                                                                     {course.status === 'Active' && 
                                                                         <span className='text-textAccent'> فعال</span>
                                                                     }
@@ -211,7 +211,7 @@ const Education = () => {
                                                                         <span className='text-textDefault'> در انتظار تایید</span>
                                                                     }
                                                                     {course.status === 'Disable' && 
-                                                                        <span className='text-textError'> غیر فعال</span>
+                                                                        <span className=''> غیر فعال</span>
                                                                     }
                                                                     {course.status === 'Rejected' && 
                                                                         <span className='text-textError'> رد شده</span>

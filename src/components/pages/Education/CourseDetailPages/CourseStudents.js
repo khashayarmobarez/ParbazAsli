@@ -221,14 +221,14 @@ const CourseStudents = () => {
                                 <span onClick={() => handleClickStudent(student.id)}>
                                     <PersonOutlineOutlinedIcon />
                                 </span>
-                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
+                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textWarning'}`}
                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>
                                 <p className='text-textDisabled'
                                 onClick={() => handleClickStudent(student.id)}>وضعیت: 
                                     {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
-                                    {student.status === 'CoachPending' && <span className='text-textDefault'> در انتظار تایید</span>}
+                                    {student.status === 'CoachPending' && <span className='text-textWarning'> در انتظار تایید</span>}
                                 </p>
                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
@@ -339,7 +339,7 @@ const CourseStudents = () => {
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
-                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium bg-bgButtonMainDefault hover:bg-bgButtonMainHover cursor-pointer`}
+                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium bg-bgButtonMainDefault text-textButtonMainDefault hover:bg-bgButtonMainHover cursor-pointer`}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >
