@@ -138,21 +138,21 @@ const MyCourseDetails = () => {
                                         aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full bg-textAccent'></div>
+                                                {/* <div className='w-3 h-3 rounded-full bg-textAccent'></div> */}
                                             </>
                                         }
                                         {
                                         aCourseData.data.status === 'Canceled' &&
                                             <>
                                                 <p>لغو شده</p>
-                                                <div className='w-3 h-3 rounded-full bg-textError'></div>
+                                                {/* <div className='w-3 h-3 rounded-full bg-textError'></div> */}
                                             </>
                                         }
                                         {
                                         aCourseData.data.status === 'Completed' &&
                                             <>
                                                 <p>تمام شده</p>
-                                                <div className='w-3 h-3 rounded-full bg-textAccent'></div>
+                                                {/* <div className='w-3 h-3 rounded-full bg-textAccent'></div> */}
                                             </>
                                         }
                                     </div> 
