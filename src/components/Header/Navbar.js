@@ -187,13 +187,13 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                 <button >
                                     {
                                         notificationCountsData && notificationCountsData.data > 0 &&
-                                            <div className='absolute rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center pt-[2px] font-normal z-10 bg-[var(--text-error)]'>
+                                            <div className='-mb-4 rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center font-normal z-50  bg-[var(--text-error)]'>
                                                 <p>{notificationCountsData.data}</p>
                                             </div>
                                     }
                                     {currentUrl === '/notifications' ?
-                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-accent)', height:'30px',width:'30px'}} />
-                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-default)', height:'30px',width:'30px'}} />
+                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-accent)', height:'30px',width:'30px',zIndex:'10',}} />
+                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-default)', height:'30px',width:'30px',zIndex:'10'}} />
                                     }
                                 </button>
 
