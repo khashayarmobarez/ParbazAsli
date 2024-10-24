@@ -138,9 +138,9 @@ const TandemSurvey = () => {
 
                         {
                             !availablityLoading && !IsSurveyAvailable &&
-                            <div className='mt-32 flex flex-col items-center justify-center gap-y-6 w-full'>
-                                <img src={checkIcon} alt='check icon' className='w-32 h-32' />
-                                <p className='' style={{ color: 'var(--text-accent)' }}>با تشکر از همکاری شما...</p>
+                            <div className='mt-40 flex flex-col items-center justify-center gap-y-6 w-full'>
+                                <img src={checkIcon} alt='check icon' className='w-16 h-w-16' />
+                                <p className=' text-textDefault text-xl' >با تشکر از همکاری شما...</p>
                                 <button onClick={() => navigate('/profile')} type="submit" className={`${ButtonStyles.addButton} w-32 h-12`}>صفحه اصلی</button>
                             </div>
                         }
@@ -199,8 +199,8 @@ const TandemSurvey = () => {
                                                     <p>{index + 1}</p>
                                                     <p>{file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name}</p> 
                                                     <RemoveIcon sx={{
-                                                        background:  'var(--profile-buttons-background)',
-                                                        boxShadow: 'var(--profile-buttons-boxShadow)',
+                                                        background:  'var(--bg-button-secondary-default)',
+                                                        boxShadow: 'var(--shadow-all)',
                                                         borderRadius:'0.5rem',
                                                         color:'var(--text-error)'}}
                                                         onClick={() => handleRemoveVideo(file)}
@@ -210,7 +210,7 @@ const TandemSurvey = () => {
                                     </ul>
                                 )}
 
-                                <button type="submit" disabled={!rating || submitSubmitSurveyLoading} className={`${ButtonStyles.addButton} ${(!rating || submitSubmitSurveyLoading) && 'opacity-45'} w-32 h-12 mt-8`}>ثبت</button>
+                                <button type="submit" disabled={!rating || submitSubmitSurveyLoading} className={`${ButtonStyles.addButton} ${(!rating || submitSubmitSurveyLoading) && 'opacity-45'} w-36 h-12 mt-8`}>ثبت</button>
 
                             </form>
                         }
