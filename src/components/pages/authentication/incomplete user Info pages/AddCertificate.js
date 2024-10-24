@@ -181,7 +181,7 @@ const AddCertificate = () => {
         console.log(level,certificateId,formattedStartDate,formattedEndDate,dateStartValue,uploadedFile)
         
         const formData = new FormData();
-        if(isStarter) {
+        if(isStarter === 'true') {
             formData.append('LevelId', organ.starterLevelId);
         } else {
             formData.append('LevelId', level.id);
