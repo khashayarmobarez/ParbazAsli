@@ -229,7 +229,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             (
                                 popUpData.status === 'Expired' ?
                                 <button 
-                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
+                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >تعیین وضعیت</button>
                                 :
                                 <button 
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}
@@ -240,7 +240,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             (
                                 popUpData.status === 'Expired' ?
                                 <button 
-                                className={`${ButtonStyles.normalButton} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
+                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
                                 :
                                 <button 
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}

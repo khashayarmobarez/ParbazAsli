@@ -132,7 +132,7 @@ const ClubCoachDetails = () => {
                     <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
                     style={{ boxShadow:'var(--shadow-all)'}}>
 
-                        <span className='absolute top-4 left-4 cursor-pointer rotate-180 w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
+                        <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
                             <ArrowButton />
                         </span>
 

@@ -61,6 +61,14 @@
   border-radius: 2rem;
 }
 
+.normalButtonDisable {
+  min-width: 110px;
+  min-height: 48px;
+  background:  var(--bg-button-secondary-disabled);
+  color:  var(--text-default-opposite);
+  border-radius: 2rem;
+}
+
 .normalButton:hover{
   background: var(--bg-button-secondary-hover);
   box-shadow: var(--shadow-button-dark),var(--shadow-button-white);

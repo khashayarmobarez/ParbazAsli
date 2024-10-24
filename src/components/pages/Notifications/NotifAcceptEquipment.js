@@ -119,13 +119,13 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         <button 
                         type="submit" 
                         disabled={true} 
-                        className='text-textAccent font-medium' >
+                        className='text-textButtonProfileDisable font-medium' >
                             تایید
                         </button>
                         
                         <button 
                         disabled={true} 
-                        className='text-textError font-medium'>
+                        className='text-textButtonProfileDisable font-medium'>
                             رد
                         </button>
 

@@ -48,7 +48,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
                     <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2'>
 
                         <button 
-                        className={`${ButtonStyles.normalButton} w-7 h-10 opacity-55`} >
+                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >
                             تعیین وضعیت
                         </button>
 
