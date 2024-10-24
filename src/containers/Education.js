@@ -296,7 +296,7 @@ const Education = () => {
                                                                     تایید
                                                                 </p>
 
-                                                                <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} className='text-textAccent text-sm font-medium' >
+                                                                <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} className='text-textError text-sm font-medium' >
                                                                     رد
                                                                 </p>
 

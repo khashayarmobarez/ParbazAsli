@@ -60,7 +60,6 @@
 .fixedInput {
     background: none;
     border: 1px solid var(--border-input-default);
-    box-shadow: var(--shadow-all);
     appearance: none;
     padding: 0 2rem 0 0;
     border-radius: 1rem;
