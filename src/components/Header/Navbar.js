@@ -170,7 +170,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     }
                                 </ul>
                                 {token &&
-                                <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-lg md:hidden`} > خروج</Link>
+                                <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-base md:hidden`} > خروج</Link>
                                 }
                             </div>
                         </nav>

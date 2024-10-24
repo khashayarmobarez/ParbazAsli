@@ -94,7 +94,7 @@ const AStudentClubCourses = () => {
                                             sx={{ 
                                             height: '1rem', 
                                             borderRadius: '1rem', 
-                                            backgroundColor: 'var(--bg-button-secondary-hover)', 
+                                            backgroundColor: 'var(--bg-pop-up-header-footer)', 
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
                                                 courseData.status === 'Active' ? 'var(--text-error)' :
