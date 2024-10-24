@@ -362,7 +362,7 @@ const AddLanding = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[97%]'>
+                    <div className='flex items-center justify-between w-[97%] text-xs'>
 
                         <p className='' style={{color:'var(--text-accent)'}}>Landing</p>
 
@@ -454,7 +454,7 @@ const AddLanding = () => {
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <p className='ml-2 '>قبلی</p>
-                        <span className='w-6 h-6 flex justify-center items-center rotate-180'>
+                        <span className='w-6 h-6 flex justify-center items-center'>
                             <ArrowButton />
                         </span>
                     </div>

@@ -208,7 +208,7 @@ const Harness = (props) => {
                                     }   
 
                                     <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p> برند {equipment.brand} / مدل {equipment.model}</p>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}</p>
                                         {
                                             equipment.status !== 'Pending' &&
                                             <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
@@ -310,7 +310,7 @@ const Harness = (props) => {
                                     <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
                                     <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p> برند {equipment.brand} / مدل {equipment.model}</p>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}</p>
                                         <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                     </div>
 
@@ -353,7 +353,7 @@ const Harness = (props) => {
                         <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard`} style={{ boxShadow:'var(--shadow-all)'}}>
 
                             <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
-                                <p> برند {equipment.brand} / مدل {equipment.model}</p>
+                                <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}</p>
                                 <p> شماره سریال: {equipment.serialNumber}</p>
                             </div>
 

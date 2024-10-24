@@ -205,7 +205,7 @@ const FlightEquipment = () => {
                                     }   
 
                                     <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
                                         {
                                             equipment.status !== 'Pending' &&
                                             <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
@@ -307,7 +307,7 @@ const FlightEquipment = () => {
                                 <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                    <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                    <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
                                     <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                 </div>
 
@@ -351,7 +351,7 @@ const FlightEquipment = () => {
                                 style={{boxShadow:'var(--shadow-all)'}} >
 
                                     <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
-                                        <p> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
                                         <p> شماره سریال: {equipment.serialNumber}</p>
                                     </div>
 

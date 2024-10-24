@@ -62,7 +62,7 @@ const AdminPending = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[98%]'>
+                    <div className='flex items-center justify-between w-[98%] text-xs'>
 
                         <p className='' style={{color:'var(--text-accent)'}}>تاییدیه</p>
 

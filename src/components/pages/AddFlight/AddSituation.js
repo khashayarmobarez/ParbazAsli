@@ -144,7 +144,7 @@ const AddSituation = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[97%]'>
+                    <div className='flex items-center justify-between w-[97%] text-xs'>
 
                         <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
 

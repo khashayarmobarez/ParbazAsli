@@ -63,7 +63,7 @@ const DropDownSyllabiData = (props) => {
         {
             data && isExpanded &&
             data.map((data, index) => (
-                <div className={`${isExpanded ? 'block' : 'hidden'} flex justify-between items-center px-4 py-2 rounded-2xl ${data.percent === 100 && 'border-2'}`}
+                <div className={`${isExpanded ? 'block' : 'hidden'} flex justify-between items-center px-4 py-3 rounded-2xl ${data.percent === 100 && 'border-2'}`}
                 key={data.id}
                 style={{background:'var(--bg-output-default)',
                 borderColor: 
@@ -72,8 +72,8 @@ const DropDownSyllabiData = (props) => {
                     :
                     'var(--border-input-default)',
                 }}>
-                    <p className={` text-center self-center`} >{index + 1}</p>
-                    <p className={` text-center self-center text-sm`} >{data.description}</p>
+                    <p className={` text-center self-center text-xs`} >{index + 1}</p>
+                    <p className={` text-start mx-3 w-full self-center text-xs`} >{data.description}</p>
                     {
                         data.percent === 100 ?
                         <CheckIcon sx={{color:'var(--text-accent)', width:'1.2rem', height:'1.2rem'}} />

@@ -86,7 +86,6 @@
   background: var(--bg-button-main-default);
   box-shadow: var(--shadow-all);
   color:var(--text-default-opposite);
-  font-weight:bold ;
   display: flex; 
   min-height: 48px;
   justify-content: center;

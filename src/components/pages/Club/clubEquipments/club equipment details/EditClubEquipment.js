@@ -339,9 +339,6 @@ const EditClubEquipment = () => {
                                                     </div>
                                                 }
 
-                                                <h3 className=' text-[var(--text-default)] text-sm mt-1 mb-[-10px]'>
-                                                    سریال وسیله پروازی
-                                                </h3>
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput

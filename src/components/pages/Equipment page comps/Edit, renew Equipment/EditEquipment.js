@@ -335,9 +335,6 @@ const EditEquipment = () => {
                                                     </div>
                                                 }
 
-                                                <h3 className=' text-textDefault text-sm mt-1 mb-[-10px]'>
-                                                    سریال وسیله
-                                                </h3>
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
