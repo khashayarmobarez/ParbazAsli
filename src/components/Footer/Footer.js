@@ -31,7 +31,7 @@ const styles = {
       borderRadius: '0',
       Bottom:'2rem',
       height:'calc(65px + env(safe-area-inset-bottom,5))',
-      '@media screen and (min-width: 768px)': {
+      '@media screen and (min-width: 1024px)': {
         borderRadius: '2rem 0 0 2rem',
         right: 0,
         top: '15%',
@@ -46,7 +46,7 @@ const styles = {
       boxShadow: ' -0.5px -3px 10px 0px rgba(0, 0, 0, 0.32)',
       height: '100%',
       
-      '@media screen and (min-width: 768px)': {
+      '@media screen and (min-width: 1024px)': {
         height: '100%',
         width: '100%',
         display: 'flex',
