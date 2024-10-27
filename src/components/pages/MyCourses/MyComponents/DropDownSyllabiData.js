@@ -13,7 +13,7 @@ const DropDownSyllabiData = (props) => {
 
     // const { id } = usePa
 
-    const{title, data, percent} = props
+    const {title, data, percent} = props
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -79,13 +79,12 @@ const DropDownSyllabiData = (props) => {
                         <CheckIcon sx={{color:'var(--text-accent)', width:'1.2rem', height:'1.2rem'}} />
                         :
                             data.percent !== 0 ?
-                            <p className={` text-center self-center text-sm`} >{data.percent}%</p>
+                            <p className={` text-center text-textAccent self-center text-sm`} >{data.percent}%</p>
                             :
                             <div/>
                     }
                 </div>
             ))
-
         }
 
     </div>

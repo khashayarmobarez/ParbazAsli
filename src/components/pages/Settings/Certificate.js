@@ -21,10 +21,10 @@ const Certificate = ({certificateData}) => {
                 <div className='flex flex-col items-start gap-y-2 text-start'>
                     <p className='text-textDisabled '>
                         وضعیت:
-                        {certificateData.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
-                        {certificateData.status === 'Pending' && <span style={{color:'var(--text-default)'}}> در انتظار تایید</span>}
-                        {certificateData.status === 'Expired' && <span style={{color:'var(--text-error)'}}> منقضی شده</span>}
-                        {certificateData.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
+                        {certificateData.status === 'Active' && <span className='text-textAccent'> فعال</span>}
+                        {certificateData.status === 'Pending' && <span className='text-textWarning'> در انتظار تایید</span>}
+                        {certificateData.status === 'Expired' && <span className='text-textError'> منقضی شده</span>}
+                        {certificateData.status === 'Rejected' && <span className='text-textError'> رد شده</span>}
                     </p>
                     <p className='text-xs'>تاریخ انقضا {certificateData.expirationDate}</p>
                 </div>
@@ -33,7 +33,7 @@ const Certificate = ({certificateData}) => {
 
             {certificateData.status === 'Rejected' &&
                 <div className='w-full flex items-center gap-x-2  mt-4'>
-                    <p className='text-sm text-textError font-medium'>دلیل رد شدن: {certificateData.rejectReason}</p>
+                    <p className='text-sm text-textWarning font-medium'>دلیل رد شدن: {certificateData.rejectReason}</p>
                 </div>
             }
 
