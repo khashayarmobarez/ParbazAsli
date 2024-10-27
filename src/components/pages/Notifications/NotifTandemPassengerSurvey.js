@@ -54,7 +54,7 @@ const NotifTandemPassengerSurvey = ({notif, handleActivatePopUp}) => {
                     >
 
                         <button 
-                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10 opacity-55`} >
+                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10 `} >
                             تعیین وضعیت
                         </button>
                     

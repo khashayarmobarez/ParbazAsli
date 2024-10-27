@@ -70,7 +70,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();
+        // window.location.reload();
     }
     
     // clear the other states if organ changes
@@ -237,7 +237,7 @@ const AddCertificate = () => {
                 <UserDataBox />
                 
                 <div className='w-full flex flex-col gap-y-2'>
-                    <p style={{color:'var(--text-error)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
+                    <p className='text-textWarning text-start'>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
                 </div>
 
 

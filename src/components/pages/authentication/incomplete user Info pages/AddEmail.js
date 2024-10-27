@@ -266,7 +266,7 @@ const AddEmail = () => {
             {
                 !loading && !error &&
                 <>
-                    <p style={{color:'var(--text-error)'}}>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است</p>
+                    <p className='text-textWarning text-start'>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
 
 
                     {/* line and circle of adding flight level */}

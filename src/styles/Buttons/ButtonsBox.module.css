@@ -65,7 +65,7 @@
   min-width: 110px;
   min-height: 48px;
   background:  var(--bg-button-secondary-disabled);
-  color:  var(--text-default-opposite);
+  color:  var(--text-button-profile-Disable);
   border-radius: 2rem;
 }
 

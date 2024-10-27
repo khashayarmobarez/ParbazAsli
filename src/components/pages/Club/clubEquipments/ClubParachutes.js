@@ -203,7 +203,7 @@ const Parachute = (props) => {
 
                                     {
                                         equipment.status === 'Pending' &&
-                                        <p className='text-textAccent font-bold -mb-2'>تایید انتقال از {equipment?.transferorFullName}</p> 
+                                        <p className='text-textWarning font-bold -mb-2'>نیاز به تایید انتقال از {equipment?.transferorFullName}</p> 
                                     }   
 
                                     <div className=' w-full text-xs flex justify-between items-start gap-y-1'>

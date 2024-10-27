@@ -234,7 +234,7 @@ const PossessionTransitionEquipment = () => {
                                 
                                 <h1 className='text-xl font-medium text-textWarning'>تاییدیه</h1>
 
-                                <h3 className=' text-textError w-[90%] text-base font-normal'>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
+                                <h3 className=' w-[90%] text-base font-normal'>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                             
                                 <div className='w-[90%] flex justify-between'>
                                     <button className={`${ButtonStyles.normalButton} w-32`} onClick={() => setShowPopup(false)}>خیر</button>
