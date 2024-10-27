@@ -169,7 +169,6 @@ const ClubCourseDetails = () => {
                                         aCourseData.data.status === 'Active' && 
                                             <>
                                                 <p>فعال</p>
-                                                <div className='w-3 h-3 rounded-full bg-textAccent '></div>
                                             </>
                                         }
 
@@ -177,7 +176,6 @@ const ClubCourseDetails = () => {
                                         aCourseData.data.status === 'Pending' &&
                                             <>
                                                 <p>در انتظار تایید</p>
-                                                <div className='w-3 h-3 rounded-full bg-textWarning'></div>
                                             </>
                                         }
 
@@ -185,7 +183,6 @@ const ClubCourseDetails = () => {
                                         aCourseData.data.status === 'Disable' &&
                                             <>
                                                 <p>غیرفعال</p>
-                                                <div className='w-3 h-3 rounded-full bg-textError'></div>
                                             </>
                                         }
                                     </div> 

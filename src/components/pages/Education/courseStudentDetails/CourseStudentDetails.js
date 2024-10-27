@@ -37,14 +37,15 @@ const CourseStudentDetails = () => {
         <div className='flex flex-col py-20 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-10 md:w-[70%]'>
 
+                {/* the data box */}
                 <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start pb-8 px-4 py-2  relative`}
                     style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)'}}
                 >
                     { 
                     studentData && 
-                    <div className='w-full flex flex-col justify-between items-center gap-y-6'>
+                    <div className='w-full flex flex-col justify-between gap-y-6'>
 
-                        <div className='flex w-full justify-between items-center'>
+                        <div className='flex w-full justify-between items-center -mr-4'>
                             {/* avatar and name */}
                             <div className='w-full h-full flex flex-col justify-between items-center gap-y-6 pt-2'>
                                 
@@ -74,7 +75,7 @@ const CourseStudentDetails = () => {
 
 
                             {/* user studentData.data */}
-                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pr- pt-2'>
+                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pt-2 mr-4'>
 
                                 {
                                     isMobile && studentData.data &&
@@ -100,29 +101,29 @@ const CourseStudentDetails = () => {
 
                                 <div className='w-full flex flex-col items-start justify-between gap-y-4 text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
-                                        <span className='w-6'>
+                                        <span className='w-5'>
                                             <FlightQuantity/>
                                         </span>
                                         تعداد پرواز {studentData.data.flightCounts}
                                     </p>
                                     <p className='flex gap-x-2'>
-                                        <span className='w-6'>
+                                        <span className='w-5'>
                                             <ClockIcon/>
                                         </span>
                                         ساعت پرواز {studentData.data.flightHours}
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
-                                            <span className='w-6'>
+                                            <span className='w-5'>
                                                 <ClockIcon/>
                                             </span>
                                             {studentData.data.coachingHours} ساعت مربی‌گری
                                         </p>
                                     }
                                     <p className='flex gap-x-2'>
-                                        <span className='w-6'>
-                                            <UserIcon/>
-                                        </span>
+                                    <span className='w-5'>
+                                        <UserIcon/>
+                                    </span>
                                         کد کاربری: {studentData.data.userId}
                                     </p>
                                 </div>

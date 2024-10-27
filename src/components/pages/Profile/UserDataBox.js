@@ -16,6 +16,7 @@ import Box from '@mui/material/Box';
 import ClockIcon from '../../../components/icons/ClockIcon'
 import FlightQuantity from '../../../components/icons/FlightQuantity'
 import YellowPlus from '../../../assets/icons/yellowPlus.svg'
+import UserIcon from '../../../components/icons/UserIcon';
 
 // queries 
 import { useUserData } from '../../../Utilities/Services/userQueries';
