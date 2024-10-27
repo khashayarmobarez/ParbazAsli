@@ -166,11 +166,6 @@ const LandingPage = () => {
 
                             </div>
 
-
-                            <button onClick={() => navigate('/whyUs') } className={`${ButtonStyles.addButton} mt-4 w-32 self-center`} 
-                                >مطالعه بیشتر 
-                            </button>
-
                         </div>
 
                     </div>

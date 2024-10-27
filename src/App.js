@@ -34,7 +34,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import ContactUs from './containers/ContactUs';
   import Blogs from './containers/Blogs';
   import BlogDetails from './components/pages/Blogs/BlogDetails';
-  import WhyUs from './components/pages/LandingPageComponents/WhyUs';
 // not validated user component
   import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
   import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
@@ -219,7 +218,6 @@ function App() {
           <Route path='/contactUs' element={<ContactUs />} />
           <Route path='/blogs' element={<Blogs />} />
           <Route path='/blog/:id' element={<BlogDetails />} />
-          <Route path='/whyUs' element={<WhyUs />} />
           {/* tandem flight survey, for passenger */}
           <Route path="/survey/:id" element={ <TandemSurvey />} />
           
