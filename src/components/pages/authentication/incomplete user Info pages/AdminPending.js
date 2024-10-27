@@ -30,7 +30,7 @@ const AdminPending = () => {
             const isUserAuthenticated = Cookies.get('isUserAuthenticated');
             if(isUserAuthenticated !== 'noAdminApprovment') {
                 // reload
-                window.location.reload();
+                // window.location.reload();
             }
         }, 3000); // 3000 milliseconds = 3 seconds
 
@@ -77,7 +77,7 @@ const AdminPending = () => {
                 <p className=' text-xl'>در انتظار تایید...</p>
                 <p className=' text-base'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
 
-                <button className={`${ButtonStyles.normalButton} w-20 self-center mt-8`}
+                <button className={`${ButtonStyles.normalButton} w-[36%] self-center mt-8 md:w-32`}
                 onClick={() => window.location.reload()}>
                     تازه سازی
                 </button>
