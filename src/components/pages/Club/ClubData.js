@@ -6,7 +6,6 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 // assets
 import UserIcon from '../../../components/icons/UserIcon'
 import UsersIcon from '../../../components/icons/UsersIcon'
-import YellowPlus from '../../../assets/icons/yellowPlus.svg'   
 
 // queries 
 import { useGetClub } from '../../../Utilities/Services/clubQueries';
@@ -16,6 +15,7 @@ import { Avatar } from '@mui/material';
 
 // components
 import ChangeClubPicPopUp from './components/ChangeClubPicPopUp';
+import PlusWithCircularBorderIcon from '../../icons/PlusWithCircularBorderIcon';
 
 
 const ClubData = () => {
@@ -37,7 +37,9 @@ const ClubData = () => {
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.name} src={data.data.file?.path ? data.data.file.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
                             <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
-                            <img className=' w-7 absolute mt-20 ml-16 z-20' src={YellowPlus} alt='icon' />
+                            <span className='w-7 absolute mt-20 ml-16 z-20' >
+                                <PlusWithCircularBorderIcon />
+                            </span>
                         </div>
                         <p className=' font-normal text-xl w-36'>{data.data.name}</p>
 

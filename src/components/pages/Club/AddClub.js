@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import YellowPlus from '../../../assets/icons/yellowPlus.svg'
+import PlusWithCircularBorderIcon from '../../icons/PlusWithCircularBorderIcon';
 
 // Utilities
 import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
@@ -233,7 +233,9 @@ const AddClub = ({isForSetting}) => {
                     {uploadedProfilePic && 
                         <>
                             <div className='w-[115px] h-[115px] absolute z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
-                            <img className=' w-7 absolute mt-20 ml-20 z-10' src={YellowPlus} alt='icon' />
+                            <span className='w-7 absolute mt-20 ml-16 z-20' >
+                                <PlusWithCircularBorderIcon />
+                            </span>
                         </>
                     }
 
