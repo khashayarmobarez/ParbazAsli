@@ -226,6 +226,8 @@ const AddClub = ({isForSetting}) => {
                         ref={ProfilePicInputRef}
                         style={{ display: 'none' }}
                         onChange={handleFileChange}
+
+                        
                     />
 
                     <AddCircleOutlineOutlinedIcon sx={{width:'1.5rem', height:'1.5rem'}} />
