@@ -258,7 +258,7 @@ const PossessionTransitionClub = () => {
                         </div>
                     }
                     {(EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
-                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-textWarning'>برای انتقال مالکیت, اول سریال وسیله پروازی خود را در قسمت ویرایش وارد کنید</h1>
+                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-textWarning'>برای فعال شدن انتقال مالکیت ابتدا باید در بخش ویرایش، سریال وسیله درج شود.</h1>
                     }
 
             </div>
