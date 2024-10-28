@@ -32,14 +32,14 @@ const DropDownSyllabiData = (props) => {
                     percent === 100 ?
                     'var(--border-input-success)'
                     :
-                    'var(--border-input-default)',
+                    'var(--border-input-selected)',
             color: isExpanded ? 
                 'var(--border-input-success)' 
                 :
                     percent === 100 ?
                     'var(--border-input-success)'
                     :
-                    'var(--border-input-default)',
+                    'var(--border-input-selected)',
         }}>
 
             <div className='flex' >
@@ -70,7 +70,7 @@ const DropDownSyllabiData = (props) => {
                     data.percent === 100 ?
                     'var(--border-input-success)'
                     :
-                    'var(--border-input-default)',
+                    'var(--border-input-selected)',
                 }}>
                     <p className={` text-center self-center text-xs`} >{index + 1}</p>
                     <p className={` text-start mx-3 w-full self-center text-xs`} >{data.description}</p>

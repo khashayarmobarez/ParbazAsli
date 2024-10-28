@@ -56,7 +56,6 @@ const Login = () => {
         setTermsChecked(savedRememberMe);
         setUserInput(savedUsername);
         setPwd(savedPwd)
-        
     }, []);
     
     useEffect(() => {

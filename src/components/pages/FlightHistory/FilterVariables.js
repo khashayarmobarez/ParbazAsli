@@ -89,7 +89,7 @@ const FilterVariables = () => {
                 {   
                     courseFilter &&
                     courseFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{courseFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('courseFilter')} />
                         </li>
@@ -98,8 +98,8 @@ const FilterVariables = () => {
                 {   
                     wingFilter &&
                     wingFilter.brand &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
-                            <p className=' text-xs mx-1' >{wingFilter.brand} - {wingFilter.model}</p>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
+                            <p className=' text-xs mx-1' >{wingFilter.brand} - {wingFilter.model.slice(0,10)}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('wingFilter')} />
                         </li>
                 }
@@ -107,8 +107,8 @@ const FilterVariables = () => {
                 {
                     harnessFilter &&
                     harnessFilter.brand &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
-                            <p className=' text-xs mx-1' >{harnessFilter.brand} - {harnessFilter.model}</p>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
+                            <p className=' text-xs mx-1' >{harnessFilter.brand} - {harnessFilter.model.slice(0,10)}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('harnessFilter')} />
                         </li>
                 }
@@ -118,7 +118,7 @@ const FilterVariables = () => {
                     countryFilter.name &&
                     !provinceFilter.name &&
                     !siteFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{countryFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('countryFilter')} />
                         </li>
@@ -128,7 +128,7 @@ const FilterVariables = () => {
                     provinceFilter &&
                     provinceFilter.name &&
                     !siteFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{provinceFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('provinceFilter')} />
                         </li>
@@ -137,7 +137,7 @@ const FilterVariables = () => {
                 {
                     siteFilter &&
                     siteFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{siteFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('siteFilter')} />
                         </li>
@@ -146,7 +146,7 @@ const FilterVariables = () => {
                 {
                     flightTypeFilter &&
                     flightTypeFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{flightTypeFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('flightTypeFilter')} />
                         </li>
@@ -155,7 +155,7 @@ const FilterVariables = () => {
                 {
                     coachNameFilter &&
                     coachNameFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{coachNameFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('coachNameFilter')} />
                         </li>
@@ -164,7 +164,7 @@ const FilterVariables = () => {
                 {
                     flightStatusFilter &&
                     flightStatusFilter.name &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{flightStatusFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('flightStatusFilter')} />
                         </li>
@@ -172,7 +172,7 @@ const FilterVariables = () => {
 
                 {
                     shamsifromDateDate &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{shamsifromDateDate}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('fromDateFilter')} />
                         </li>
@@ -180,7 +180,7 @@ const FilterVariables = () => {
 
                 {
                     shamsiToDateDate &&
-                        <li className=' col-span-1 p-1 bg-bgOutputDefault rounded-xl flex justify-between w-auto items-center'>
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{shamsiToDateDate}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('toDateFilter')} />
                         </li>

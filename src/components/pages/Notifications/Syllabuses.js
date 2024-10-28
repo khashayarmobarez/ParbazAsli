@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
-import PlusButton from '../../../components/icons/PlusButton';
-import MinusButton from '../../../components/icons/MinusButton';
 import PageTitle from '../../reuseable/PageTitle';
 import { useAcceptUserFlight, useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 import DescriptionInput from '../../inputs/DescriptionInput';
 import TextInput from '../../inputs/textInput';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 // assets
 import SearchIcon from '../../../components/icons/SearchIcon';
@@ -147,24 +147,20 @@ const Syllabuses = () => {
                 filteredSyllabi.map((syllabus, index) => (
                     <div
                         key={syllabus.id}
-                        className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full"
-                        style={{ backgroundColor: 'var(--syllabus-data-boxes-bg)' }}
+                        className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full bg-bgOutputDefault"
+                        style={{ boxShadow:'var(--shadow-all)' }}
                     > 
                         <div className="flex w-full justify-between items-center">
                             <p>{index + 1}.</p>
                             <p className='w-[60%]'>{syllabus.description}</p>
                             <div className="flex items-center justify-between w-24">
-                                <span className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}>
-                                    <PlusButton
-                                    onClick={() => handleIncrement(index)}
+                                <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault`}
+                                style={{ boxShadow:'var(--shadow-all)' }}
+                                onClick={() => handleIncrement(index)}>
+                                    <AddIcon
+                                    sx={{color:'var(--text-accent)'}}
                                     />
                                 </span>
-                                <img
-                                    src={PlusButton}
-                                    alt="icon"
-                                    onClick={() => handleIncrement(index)}
-                                    className="text-white rounded-lg w-8 cursor-pointer"
-                                />
                                 <input
                                     type="number"
                                     value={counters[index] || 0}
@@ -172,9 +168,11 @@ const Syllabuses = () => {
                                     style={{ backgroundColor: 'transparent' }}
                                     className="rounded-lg w-4 text-center text-sm"
                                 />
-                                <span className={`text-white rounded-lg w-8 cursor-pointer ${counters[index] === 0 && 'opacity-35'}`}>
-                                    <MinusButton
-                                    onClick={() => handleDecrement(index)} 
+                                <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault ${counters[index] === 0 && 'opacity-35'}`}
+                                onClick={() => handleDecrement(index)}
+                                style={{ boxShadow:'var(--shadow-all)' }}>
+                                    <RemoveIcon
+                                    sx={{color:'var(--text-error)'}}
                                     />
                                 </span>
                             </div>

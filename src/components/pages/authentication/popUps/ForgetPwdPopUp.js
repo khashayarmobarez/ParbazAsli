@@ -419,7 +419,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                         {   showCodeInput && !showPassChangeInput &&
                             <>
-                                <h3 className="text-textAccent text-xl">کد تایید</h3>
+                                <h3 className="text-textAccent text-xl">کد تایید ارسال شده را وارد کنید</h3>
                                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                                     {inputRefs.map((ref, index) => (
                                         <input
@@ -443,11 +443,11 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     isEmail &&
                                     <p className=' text-xs font-medium text-textAccent -mb-4'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
                                 }
-                                <p className={`${codeRemainingTime ? "text-light-yellow my-4" : "hidden"} text-xs font-medium`} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
+                                <p className={`${codeRemainingTime ? "text-textAccent my-4" : "hidden"} text-xs font-medium`} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
 
                                 {
                                     codeRemainingTime < 1 &&
-                                        <p onClick={sendCodeHandler} className="text-light-yellow my-2 underline underline-offset-4 cursor-pointer" aria-live="assertive">ارسال مجدد</p>
+                                        <p onClick={sendCodeHandler} className="text-textAccent my-2 cursor-pointer" aria-live="assertive">ارسال مجدد</p>
                                 }
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${CheckCodeLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
