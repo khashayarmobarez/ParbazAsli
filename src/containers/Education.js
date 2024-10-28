@@ -236,17 +236,17 @@ const Education = () => {
                                                                 {
                                                                     course.type === 'Retraining' &&
                                                                     <p className='text-sm'>
-                                                                        <span className='text-textDisabled'>مقطع:</span> {course.level}
+                                                                        <span className='text-textButtonProfileDisable'>مقطع:</span> {course.level}
                                                                     </p>
                                                                 } 
 
                                                                 <p>
-                                                                    <span className='text-textDisabled'>تعداد پرواز: </span>{course.flightsCount}
+                                                                    <span className='text-textButtonProfileDisable'>تعداد پرواز: </span>{course.flightsCount}
                                                                 </p>
 
                                                                 { course.clubName &&
                                                                     <p>
-                                                                        <span className='text-textDisabled'>باشگاه: </span> {course.clubName}
+                                                                        <span className='text-textButtonProfileDisable'>باشگاه: </span> {course.clubName}
                                                                     </p>
                                                                 }
 
@@ -254,10 +254,10 @@ const Education = () => {
 
                                                             <div className='flex flex-col text-start gap-y-2'>
                                                                 <p>
-                                                                    <span className='text-textDisabled'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                    <span className='text-textButtonProfileDisable'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
                                                                 </p>
                                                                 <p>
-                                                                    <span className='text-textDisabled'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                    <span className='text-textButtonProfileDisable'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
                                                                 </p>
                                                             </div>
 
