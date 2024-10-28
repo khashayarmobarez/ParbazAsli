@@ -74,13 +74,13 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         <button 
                         type="submit" 
                         disabled={true} 
-                        className='text-textButtonProfileDisable font-medium' >
+                        className='text-textButtonMainDisabled font-medium' >
                             تایید
                         </button>
                         
                         <button 
                         disabled={true} 
-                        className='text-textButtonProfileDisable font-medium'>
+                        className='text-textButtonMainDisabled font-medium'>
                             رد
                         </button>
 

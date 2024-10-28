@@ -216,8 +216,8 @@ code {
 
 @font-face {
   font-family: 'iransans';
-  src: url('./assets/Fonts/IRANSANSWEB(FANUM)_LIGHT.ttf') format('truetype');
-  font-weight: lighter;
+  src: url('./assets/Fonts/IRANSansXFaNum-Light.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
 }
 

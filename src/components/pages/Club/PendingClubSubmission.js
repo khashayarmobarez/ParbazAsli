@@ -12,7 +12,7 @@ const PendingClubSubmission = () => {
             <PageTitle title='باشگاه' />
 
             <div className='w-[90%] h-[60vh] flex flex-col justify-center items-center'>
-                <span className='w-16 h-16 mx-auto'>
+                <span className='w-14 h-14 mx-auto'>
                     <Attention />
                 </span>
                 <p className='mt-4'>در انتظار تایید...</p>
