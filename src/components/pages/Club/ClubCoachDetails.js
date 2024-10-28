@@ -200,7 +200,7 @@ const ClubCoachDetails = () => {
                                                 <span className='text-textAccent'>فعال</span>
                                             }
                                             {course.status === 'Pending' &&
-                                                <span className='text-[var(--text-error)]'>در انتظار...</span>
+                                                <span className='text-[var(--text-warning)]'>در انتظار...</span>
                                             }
                                             {course.status === 'Disable' &&
                                                 <span className='text-[var(--text-error)]'>غیر فعال</span>

@@ -83,7 +83,7 @@ const AStudentCourses = () => {
                                         className={`
                                             ${courseData.status === 'Completed'&& 'text-textAccent'}
                                             ${courseData.status === 'Canceled'&& 'text-textError'}
-                                            ${courseData.status === 'Active'&& ''}
+                                            ${courseData.status === 'Active'&& 'text-textWarning'}
                                         `}
                                         >{courseData.percent}%</p>
                                     </div>
@@ -98,7 +98,7 @@ const AStudentCourses = () => {
                                             backgroundColor: 'var(--bg-pop-up-header-footer)', 
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
-                                                courseData.status === 'Active' ? 'var(--text-error)' :
+                                                courseData.status === 'Active' ? 'var(--text-warning)' :
                                                 courseData.status === 'Completed' ? 'var(--text-accent)' :
                                                 courseData.status === 'Canceled' ? 'var(--text-error)' :
                                                 undefined, // Optional: A default value if none of the conditions match

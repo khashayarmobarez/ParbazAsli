@@ -167,7 +167,7 @@ const CourseDetails = () => {
                                         }
                                         {aCourseData && aCourseData.data.status === 'Pending' &&
                                             <>
-                                                <p>در انتظار تایید</p>
+                                                <p className='text-textWarning'>در انتظار تایید</p>
                                                 {/* below is a circle to show status of the app with color */}
                                                 {/* <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-default)'}}></div> */}
                                             </>

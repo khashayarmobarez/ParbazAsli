@@ -176,7 +176,7 @@ const MyCourses = () => {
                                                                     <LinearProgress 
                                                                         variant="determinate" 
                                                                         value={courseData.percent + (courseData.percent < 2 ? 2 : 0)} 
-                                                                        sx={{ 
+                                                                        sx={{
                                                                         height: '1rem', 
                                                                         borderRadius: '1rem', 
                                                                         backgroundColor: 'var(--bg-button-secondary-hover)', 
@@ -194,7 +194,7 @@ const MyCourses = () => {
                                                                 <div className='w-full flex justify-between text-start text-sm'>
                                                                     <div className='flex flex-col justify-between self-start'>
                                                                         { courseData.organization && courseData.type !== 'Regular' &&
-                                                                            <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-bgButtonSecondaryDisabled' : 'text-textDefault'}`}>
+                                                                            <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
                                                                                     ارگان:&nbsp;
                                                                                 </span>
@@ -202,7 +202,7 @@ const MyCourses = () => {
                                                                             </p>
                                                                         }
                                                                         { courseData.clubName &&
-                                                                            <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-bgButtonSecondaryDisabled' : 'text-textDefault'}`}>
+                                                                            <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
                                                                                     باشگاه:&nbsp;
                                                                                 </span>
@@ -210,7 +210,7 @@ const MyCourses = () => {
                                                                             </p>
                                                                         }
                                                                         { courseData.coach &&
-                                                                            <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-bgButtonSecondaryDisabled' : 'text-textDefault'}`}>
+                                                                            <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
                                                                                     مربی:&nbsp;
                                                                                 </span> 

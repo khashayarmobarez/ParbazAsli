@@ -228,7 +228,7 @@ const Login = () => {
                     }
                 </button>
 
-                {/* <p ref={errRef} className={errMsg ? "text-[#ED553B]" : "invisible"} aria-live="assertive">{errMsg}</p> */}
+                {/* <p ref={errRef} className={errMsg ? "text-textError" : "invisible"} aria-live="assertive">{errMsg}</p> */}
 
 
             </form>

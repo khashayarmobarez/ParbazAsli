@@ -97,20 +97,25 @@ const AStudentClubCourses = () => {
                                             backgroundColor: 'var(--bg-pop-up-header-footer)', 
                                             '& .MuiLinearProgress-bar': {
                                                 backgroundColor: 
-                                                courseData.status === 'Active' ? 'var(--text-error)' :
+                                                courseData.status === 'Active' ? 'var(--text-warning)' :
                                                 courseData.status === 'Completed' ? 'var(--text-accent)' :
                                                 courseData.status === 'Canceled' ? 'var(--text-error)' :
-                                                'var(--text-error)', // Optional: A default value if none of the conditions match
+                                                'var(--text-warning)', // Optional: A default value if none of the conditions match
                                             }
                                             }} 
                                         />
                                     </Box>
 
                                     <div className='w-full flex justify-between text-start text-sm'>
-                                        <div className='flex flex-col justify-between self-start'>
+                                        <div className={`flex flex-col justify-between self-start 
+                                            text-${courseData.status === 'Active' ? 'textDefault' :
+                                                courseData.status === 'Completed' ? 'textButtonProfileDisable' :
+                                                courseData.status === 'Canceled' ? 'textButtonProfileDisable' :
+                                            'textDefault'}
+                                            `}>
                                             { courseData.organization && courseData.type !== 'Regular' &&
                                                 <p>
-                                                    <span className='text-textDisabled'>
+                                                    <span >
                                                         ارگان:&nbsp;
                                                     </span>
                                                     {courseData.organization}
@@ -118,7 +123,7 @@ const AStudentClubCourses = () => {
                                             }
                                             { courseData.clubName &&
                                                 <p>
-                                                    <span className='text-textDisabled'>
+                                                    <span className=''>
                                                         باشگاه:&nbsp;
                                                     </span>
                                                     {courseData.clubName}
@@ -126,7 +131,7 @@ const AStudentClubCourses = () => {
                                             }
                                             { courseData.coach &&
                                                 <p>
-                                                    <span className='text-textDisabled'>
+                                                    <span className=''>
                                                         مربی:&nbsp;
                                                     </span> 
                                                     {courseData.coach}

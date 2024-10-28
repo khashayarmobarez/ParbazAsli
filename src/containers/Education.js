@@ -209,7 +209,7 @@ const Education = () => {
                                                                         <span className='text-textAccent'> فعال</span>
                                                                     }
                                                                     {course.status === 'Pending' &&
-                                                                        <span className='text-textDefault'> در انتظار تایید</span>
+                                                                        <span className='text-textWarning'> در انتظار تایید</span>
                                                                     }
                                                                     {course.status === 'Disable' && 
                                                                         <span className=''> غیر فعال</span>

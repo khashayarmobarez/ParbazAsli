@@ -122,7 +122,7 @@ const VerificationCodeInput = ({ showPopup, setShowPopup, callback, reset, isLoa
                     onClick={() => setShowPopup(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
-                <h3 className="text-[#ED553B] text-xl">تاییدیه</h3>
+                <h3 className="text-textError text-xl">تاییدیه</h3>
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                     {[0, 1, 2, 3].map((index) => (
                         <input

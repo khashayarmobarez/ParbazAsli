@@ -52,17 +52,17 @@ const ClubCourseStudentAFlightDetails = () => {
                                                 {
                                                     fullFlightData.data.status === 'Accepted' && 
                                                     <>
-                                                        <p> تایید شده </p>
+                                                        <p className='text-textAccent'> تایید شده </p>
                                                     </>
                                                 }
                                                 {fullFlightData.data.status === 'Pending' &&
                                                     <>
-                                                        <p> در انتظار تایید </p>
+                                                        <p className='text-textWarning'> در انتظار تایید </p>
                                                     </>
                                                 }
                                                 {fullFlightData.data.status === 'Rejected' &&
                                                     <>
-                                                        <p> رد شده </p>
+                                                        <p className='text-textError'> رد شده </p>
                                                     </>
                                                 }
                                             </div>

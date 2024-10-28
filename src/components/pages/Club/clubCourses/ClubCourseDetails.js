@@ -168,21 +168,21 @@ const ClubCourseDetails = () => {
                                         {
                                         aCourseData.data.status === 'Active' && 
                                             <>
-                                                <p>فعال</p>
+                                                <p className='text-textAccent'>فعال</p>
                                             </>
                                         }
 
                                         {
                                         aCourseData.data.status === 'Pending' &&
                                             <>
-                                                <p>در انتظار تایید</p>
+                                                <p className='text-textWarning'>در انتظار تایید</p>
                                             </>
                                         }
 
                                         {
                                         aCourseData.data.status === 'Disable' &&
                                             <>
-                                                <p>غیرفعال</p>
+                                                <p className='text-textWarning'>غیرفعال</p>
                                             </>
                                         }
                                     </div> 

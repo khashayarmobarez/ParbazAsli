@@ -92,7 +92,7 @@ const CourseStudentDetails = () => {
                                                     <span className='text-textAccent'> تایید شده </span>
                                                     :
                                                     studentData.data.status === 'Pending' ?
-                                                    <span className='text-textDefault'> در انتظار تایید </span>
+                                                    <span className='text-textWarning'> در انتظار تایید </span>
                                                     :
                                                     ''
                                         }

@@ -15,7 +15,7 @@ const StandardPopup = ({ showPopup, setShowPopup, handleSubmit, topicText,explan
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{position:'absolute', top:'1rem', right:'1rem'  }} />
 
-                <h3 className=' text-[#ED553B] text-xl = '>{topicText || 'تاییدیه'}</h3>
+                <h3 className=' text-textError text-xl = '>{topicText || 'تاییدیه'}</h3>
 
 
                 <p className='text-sm w-[90%]' >{explanationtext || 'توضیحات'}</p>
