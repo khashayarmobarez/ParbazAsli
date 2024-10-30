@@ -79,7 +79,6 @@
   background: var(--bg-tab-active);
   box-shadow: var(--shadow-button-dark),var(--shadow-button-white);
   color: var(--text-button-main-default); 
-  font-weight: 500;
 }
 
 .addButton {
