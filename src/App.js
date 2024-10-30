@@ -441,11 +441,11 @@ function App() {
         {/* footer section */}
         {/* based on if the user is signed in or not */}
         <Footer userRole = { userRole } />
-        {!token && 
+        {/* {!token && 
           <>
             <FooterLanding /> 
           </>
-        }
+        } */}
 
         <ToastContainer/>                                                                                                                                                                                                                                                                      
       </div>

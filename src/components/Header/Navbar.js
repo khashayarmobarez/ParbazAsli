@@ -120,7 +120,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
         };
     }, []); 
 
-    return (
+    if (token) return (
         <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000', }} >
                          
             <AppBar  sx={{

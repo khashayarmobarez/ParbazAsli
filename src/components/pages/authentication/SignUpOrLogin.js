@@ -26,7 +26,7 @@ const SignUpOrLogin = () => {
         }, []);
 
     return (
-        <div className='mt-14 flex flex-col items-center'>
+        <div className='pt-12 flex flex-col items-center'>
             <div className='w-full mt-6 flex flex-col items-center justify-center md:w-[55%]'>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
