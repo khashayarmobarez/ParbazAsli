@@ -260,7 +260,7 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-between w-[98%] text-xs'>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--text-warning)'}}>تاییدیه</p>
 
                         <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
 

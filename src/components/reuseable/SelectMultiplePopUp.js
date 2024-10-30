@@ -86,7 +86,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                 placeholder={name}
                 value={searchTerm} 
                 onChange={handleInputChange} 
-                icon={<SearchIcon/>}
+                icon={<SearchIcon anotherColor={'var(--text-input-default)'} />}
               />
             </div>
 
@@ -113,7 +113,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                 onClick={handleIconClick}
                 className={`${ButtonStyles.addButton} w-28 self-center`}
               >
-                اعمال
+                اعمال ({selectedOptions.length})
               </button>
             </div>
           </div>
