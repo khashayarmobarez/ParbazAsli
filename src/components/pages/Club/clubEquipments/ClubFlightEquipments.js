@@ -232,7 +232,7 @@ const FlightEquipment = () => {
                                         {
                                             equipment.status !== 'Pending' &&
                                             <button 
-                                            className={`${ButtonStyles.normalButton} ${equipment?.isTransitionRestricted && 'opacity-50 text-textAccent'} `} 
+                                            className={`${ButtonStyles.normalButton} ${equipment?.isTransitionRestricted && 'bg-bgButtonSecondaryDisabled text-textWarning'} `} 
                                             onClick={handlePossession(equipment.id)}
                                             disabled={equipment?.isTransitionRestricted} >
                                                 {equipment?.isTransitionRestricted ?

@@ -28,12 +28,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // landing and overall section
-  import LandingPage from './containers/LandingPage';
+  // import LandingPage from './containers/LandingPage';
   import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
-  import AboutUs from './containers/AboutUs';
-  import ContactUs from './containers/ContactUs';
-  import Blogs from './containers/Blogs';
-  import BlogDetails from './components/pages/Blogs/BlogDetails';
+  // import AboutUs from './containers/AboutUs';
+  // import ContactUs from './containers/ContactUs';
+  // import Blogs from './containers/Blogs';
+  // import BlogDetails from './components/pages/Blogs/BlogDetails';
 // not validated user component
   import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
   import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
