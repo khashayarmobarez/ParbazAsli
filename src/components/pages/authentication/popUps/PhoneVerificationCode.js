@@ -136,7 +136,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 }
 
                 {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
-                <p className={codeRemainingTime ? "text-textAccent" : "hidden"} aria-live="assertive">در صورت عدم دریافت کد {codeRemainingTime} ثانیه صبر کنید</p>
+                <p className={codeRemainingTime ? "text-textAccent font-semibold" : "hidden"} aria-live="assertive">در صورت عدم دریافت کد {codeRemainingTime} ثانیه صبر کنید</p>
                 <p className={isLoading ? "text-textAccent mt-1" : "hidden"} aria-live="assertive">  ... صبر کنید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "text-sm text-textError" : "hidden"} aria-live="assertive"> {errMsg}</p>
                 <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32 mt-6 mb-4`} onClick={handleSubmit}>ثبت</button>

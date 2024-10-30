@@ -257,7 +257,7 @@ const AddClub = ({isForSetting}) => {
                     
                 </div>
 
-                <p className='text-sm mt-[-0.5rem]'>آپلود عکس پروفایل</p>
+                <p className='text-xl text-textAccent mt-[-0.5rem] mb-2'>آپلود عکس پروفایل</p>
 
                 {/* aircraft model input */}
                 <TextInput placeholder='نام باشگاه' value={clubName} onChange={handleChangeClubName}  />

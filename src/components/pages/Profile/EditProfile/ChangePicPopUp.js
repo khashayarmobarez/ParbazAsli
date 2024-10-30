@@ -99,7 +99,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
                 />
 
                 {/* upload picture */}
-                <p className='text-sm mt-4'>آپلود عکس پروفایل</p>
+                <p className='text-xl text-textAccent mt-4 mb-2'>آپلود عکس پروفایل</p>
                 
                 <div onClick={handleUploadClick} className='w-32 h-32 self-center flex justify-center items-center border-dashed border-2 rounded-full'
                 style={{borderColor:'var(--text-default)', backgroundColor:'var(--bg-upload-file)'}}>
