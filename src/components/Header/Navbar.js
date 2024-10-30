@@ -152,31 +152,18 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             >
                                 {
                                 // (windowWidth < 768 && userRole && userRole !== '') &&
-                                  <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
-
+                                (windowWidth < 768 && token) && data &&
+                                <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
                                 }
-
-                                 <ul className={`${!token ? 'pt-10 mt-[10vh] md:mt-0 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
-
-                                      <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/'>صفحه اصلی</a></li>
-
-                                       <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir//blogs/1'>بلاگ</a></li>
-
-                                        <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/aboutUs'>درباره ما</a></li>
-
-                                         <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/contactUs'>تماس با ما</a></li>
-
-                                          {!token ?
-
-                                           null
-
-                                            :
-
-                                             <>
-
-                                                  <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <SettingsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/settings'>تنظیمات</Link></li>
-
-                                                   {/* <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li> */}}
+                                <ul className={`${!token ? 'pt-10 mt-[10vh] md:mt-0 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/'>صفحه اصلی</a></li>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/blogs/1'>بلاگ</a></li>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/aboutUs'>درباره ما</a></li>
+                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/contactUs'>تماس با ما</a></li>
+                                    {!token ?
+                                    null
+                                    :
+                                    <>
                                         <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <SettingsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/settings'>تنظیمات</Link></li>
                                         {/* <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li> */}
                                     </>

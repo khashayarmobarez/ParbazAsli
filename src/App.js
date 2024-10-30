@@ -214,10 +214,10 @@ function App() {
         <Navbar toggleTheme={toggleTheme} />
           <Routes>
 
-          <Route path='/aboutUs' element={<AboutUs />} />
-          <Route path='/contactUs' element={<ContactUs />} />
-          <Route path='/blogs' element={<Blogs />} />
-          <Route path='/blog/:id' element={<BlogDetails />} />
+          {/* <Route path='/aboutUs' element={<AboutUs />} /> */}
+          {/* <Route path='/contactUs' element={<ContactUs />} /> */}
+          {/* <Route path='/blogs' element={<Blogs />} /> */}
+          {/* <Route path='/blog/:id' element={<BlogDetails />} /> */}
           {/* tandem flight survey, for passenger */}
           <Route path="/survey/:id" element={ <TandemSurvey />} />
           
