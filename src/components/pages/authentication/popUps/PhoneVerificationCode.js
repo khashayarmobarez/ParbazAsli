@@ -105,7 +105,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                     onClick={() => setShowPopup(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
-                <h3 className="text-textAccent text-xl">کد تایید</h3>
+                <h3 className="text-textAccent text-xl">کد تایید ارسال شده را وارد کنید</h3>
                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                     {inputRefs.current.map((ref, index) => (
                         <input

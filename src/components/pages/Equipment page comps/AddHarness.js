@@ -330,28 +330,30 @@ const AddHarness = () => {
             }
 
             {/* submit pop up */}
-            <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
+            <div className={`${showPopup ? 'fixed' : 'hidden'} w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
+              <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
 
-                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+                  <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 
-                <h3 className=' text-textError text-xl mt-[-3rem] '>تاییدیه</h3>
-
-
-                <p className='text-base w-[90%]' >در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
+                  <h3 className=' text-textError text-xl mt-[-3rem] '>تاییدیه</h3>
 
 
-                <div className='w-full flex justify-around items-center'>
-                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button 
-                    type="submit" 
-                    onClick={handleSubmit} 
-                    className={`${ButtonStyles.addButton} w-24`}
-                    disabled={isSubmitting}>
-                      {isSubmitting ? 'در حال ارسال...' : 'تایید'}
-                    </button>
-                </div>
+                  <p className='text-base w-[90%]' >در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
 
-            </form>
+
+                  <div className='w-full flex justify-around items-center'>
+                      <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                      <button 
+                      type="submit" 
+                      onClick={handleSubmit} 
+                      className={`${ButtonStyles.addButton} w-24`}
+                      disabled={isSubmitting}>
+                        {isSubmitting ? 'در حال ارسال...' : 'تایید'}
+                      </button>
+                  </div>
+
+              </form>
+            </div>
           
           </div>
             

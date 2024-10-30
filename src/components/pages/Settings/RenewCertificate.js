@@ -278,7 +278,7 @@ const RenewCertificate = () => {
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
                                                         <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
-                                                        style={{borderColor:'var(--text-default)', backgroundColor:'var(--) '}}>
+                                                        style={{borderColor:'var(--text-default)', backgroundColor:'var(--bg-upload-file) '}}>
 
                                                             <input
                                                                 type="file"

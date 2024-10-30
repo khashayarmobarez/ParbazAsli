@@ -15,7 +15,7 @@ const Checkbox = ({ label, isChecked, onToggle, openTerms, noLabel }) => {
       </div>
       {
         !noLabel &&
-        <div className=" underline underline-offset-4 cursor-pointer" >{label}</div>
+        <div className=" cursor-pointer" >{label}</div>
       }
     </div>
   );

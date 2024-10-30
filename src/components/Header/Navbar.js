@@ -175,7 +175,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             </div>
                         </nav>
 
-                        <div className={ `flex justify-between w-16 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
+                        <div className={ `flex justify-between w-12 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
 
                             {!token ?
                                 (windowWidth > 768) ?
@@ -192,12 +192,12 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                             </div>
                                     }
                                     {currentUrl === '/notifications' ?
-                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-accent)', height:'30px',width:'30px',zIndex:'10',}} />
-                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-default)', height:'30px',width:'30px',zIndex:'10'}} />
+                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-accent)', height:'24px',width:'24px',zIndex:'10',}} />
+                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-default)', height:'24px',width:'24px',zIndex:'10'}} />
                                     }
                                 </button>
 
-                                <div onClick={handleLogout} className={`hidden md:flex justify-center items-center w-8`} >
+                                <div onClick={handleLogout} className={`hidden md:flex justify-center items-center w-6`} >
                                     <Logout/>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
 
                             
 
-                            <label className={`${styles.burger} mt-[2px]`} htmlFor="burger" >
+                            <label className={`${styles.burger} mt-[0px]`} htmlFor="burger" >
                                 <input type="checkbox" id="burger" onClick={toggleNavbar}/>
                                     <span></span>
                                     <span></span>
