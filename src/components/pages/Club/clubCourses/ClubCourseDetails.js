@@ -250,7 +250,7 @@ const ClubCourseDetails = () => {
 
             </div>
 
-            <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-20 backdrop-blur-sm`}>
+            <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-50 backdrop-blur-sm`}>
                 <StandardPopup
                 showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading} 
                 handleSubmit={(event) => {
