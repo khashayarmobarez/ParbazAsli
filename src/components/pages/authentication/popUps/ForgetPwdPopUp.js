@@ -423,7 +423,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                                     {inputRefs.map((ref, index) => (
                                         <input
-                                            style={{ border: 'none', borderBottom: '2px var(--text-accent) solid ', background: 'transparent'}}
+                                            style={{ border: 'none', borderBottom: '2px var(--text-default) solid ', background: 'transparent'}}
                                             className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                                             key={index}
                                             type="text"

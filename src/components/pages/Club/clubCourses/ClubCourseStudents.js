@@ -218,7 +218,7 @@ const CourseStudents = () => {
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
-                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium text-textDefaultOpposite cursor-pointer`}
+                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl cursor-pointer text-textDefault`}
                                         style={{ background: 'var(--text-accent)' }}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}

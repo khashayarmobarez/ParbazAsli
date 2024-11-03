@@ -239,7 +239,10 @@ const Harness = (props) => {
                                         {
                                             equipment.status !== 'Pending' &&
                                             <button 
-                                            className={`${ButtonStyles.normalButton} ${equipment?.isTransitionRestricted && 'bg-bgButtonSecondaryDisabled text-textWarning'} `} 
+                                            className={`
+                                                ${!equipment?.isTransitionRestricted && ButtonStyles.normalButton} 
+                                                ${equipment?.isTransitionRestricted && 'bg-bgButtonSecondaryDisabled text-textWarning w-[110px] h-[48px] rounded-3xl'}
+                                            `}  
                                             onClick={handlePossession(equipment.id)}
                                             disabled={equipment?.isTransitionRestricted} >
                                                 {equipment?.isTransitionRestricted ?

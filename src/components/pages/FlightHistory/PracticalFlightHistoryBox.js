@@ -13,8 +13,9 @@ import Box from '@mui/material/Box';
 import { useDeclineUserFlight } from '../../../Utilities/Services/coursesQueries';
 
 // assets
-import TimerIcon from '../../../components/icons/TimerIcon'
-import check from '../../../assets/icons/checkGreen.svg'
+import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
+import CheckIcon from '@mui/icons-material/Check';
+import NotInterestedIcon from '@mui/icons-material/NotInterested';
 
 
 const PracticalFlightHistoryBox = (props) => {
@@ -82,13 +83,15 @@ const PracticalFlightHistoryBox = (props) => {
                             <p>{flightBaseData.site && flightBaseData.site.slice(0, 14)}</p>
                             {
                             flightBaseData.status === 'Pending' &&
-                                <span className='w-4'>
-                                    <TimerIcon />
-                                </span>
+                                <TimerOutlinedIcon sx={{width:'1.1rem', color:'var(--text-warning)'}} />
                             }
                             {
                             flightBaseData.status === 'Accepted' &&
-                                <img src={check} alt='check' />
+                                <CheckIcon sx={{width:'1.1rem', color:'var(--text-accent)'}} />
+                            }
+                            {
+                            flightBaseData.status === 'Rejected' &&
+                                <NotInterestedIcon sx={{width:'1rem', color:'var(--text-error)'}} />
                             }
                         </div>
                         {/* Trigger flight status */}

@@ -200,8 +200,8 @@ const ClubCourses = () => {
                                                             
                                                             </div>
 
-                                                            <p className={`${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'} -mt-1`}>
-                                                                نام مربی:&nbsp;
+                                                            <p className={`${course.status === 'Disable' ? 'text-textButtonProfileDisable' : 'text-textDefault'} -mt-1 flex gap-x-1 items-center`}>
+                                                                <p className='text-textButtonProfileDisable'>نام مربی: </p>
                                                                 <span className='text-sm'>{course.coachFullName}</span>
                                                             </p>
 
@@ -219,17 +219,17 @@ const ClubCourses = () => {
                                                                     {
                                                                         course.type === 'Retraining' &&
                                                                         <p className='text-sm'>
-                                                                            <span className=''>مقطع:</span> {course.level}
+                                                                            <span className=' text-textButtonProfileDisable'>مقطع:</span> {course.level}
                                                                         </p>
                                                                     } 
 
                                                                     <p>
-                                                                        <span className=''>تعداد پرواز: </span>{course.flightsCount}
+                                                                        <span className='text-textButtonProfileDisable'>تعداد پرواز: </span>{course.flightsCount}
                                                                     </p>
 
                                                                     { course.clubName &&
                                                                         <p>
-                                                                            <span className=''>باشگاه: </span> {course.clubName}
+                                                                            <span className='text-textButtonProfileDisable'>باشگاه: </span> {course.clubName}
                                                                         </p>
                                                                     }
 
@@ -238,10 +238,10 @@ const ClubCourses = () => {
                                                                 <div className={`flex flex-col text-start gap-y-2
                                                                 ${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}`}>
                                                                     <p>
-                                                                        <span className=''>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                        <span className='text-textButtonProfileDisable'>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
                                                                     </p>
                                                                     <p>
-                                                                        <span className=''>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                        <span className='text-textButtonProfileDisable'>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
                                                                     </p>
                                                                 </div>
 
