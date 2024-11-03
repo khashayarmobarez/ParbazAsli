@@ -42,11 +42,11 @@ const ClubCoachBox = ({ coachData }) => {
                     <Avatar src={coachData.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'40px', width:'40px', zIndex:'0'}} />
                     <p>{coachData.name}</p>
                     {/* <p>کد عضویت: {coachData.id}</p> */}
-                    <p>
+                    <p className='text-textButtonMainDisabled'>
                         وضعیت:
                         {coachData.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
                         {coachData.status === 'Pending' && <span style={{color:'var(--text-warning)'}}> در انتظار تایید</span>}
-                        {coachData.status === 'Disable' && <span style={{color:'var(--text-disable)'}}> غیر فعال</span>}
+                        {coachData.status === 'Disable' && <span className='text-textButtonMainDisabled'> غیر فعال</span>}
                         {coachData.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
                     </p>
                 </div>

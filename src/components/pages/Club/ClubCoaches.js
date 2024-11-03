@@ -141,7 +141,7 @@ const ClubCoaches = () => {
                                         {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
                                             <div className='w-full flex justify-between px-10 items-center'>
                                                 <button
-                                                    className={`transform  w-10 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                                                    className={`  w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
                                                     disabled={pageNumber === 1}
                                                     onClick={handleLastPageNumber}
                                                 >
@@ -189,7 +189,7 @@ const ClubCoaches = () => {
                                         {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
                                             <div className={`w-full flex justify-between px-10 items-center ${pageNumberPrevious === 1 && 'opacity-60'}`}>
                                                 <button
-                                                    className='transform  w-6 h-6 justify-self-end'
+                                                    className=' w-6 h-6 justify-self-end'
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
@@ -232,7 +232,7 @@ const ClubCoaches = () => {
                                 <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                             </div>
                             <span
-                                className={` w-24 h-12 flex justify-center text-textDefaultOpposite items-center rounded-2xl font-medium  cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
+                                className={` w-24 h-12 flex justify-center text-[#eee] items-center rounded-2xl font-medium  cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
                                 onClick={handleAddCoachToClub}
                                 disabled={addCoachToClubLoading}
                             >
