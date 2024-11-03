@@ -97,16 +97,16 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     }, [inputRefs]);
 
     return (
-        <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm ${showPopup ? 'visible' : 'invisible'}`}>
+        <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm z-[100] ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 pt-8 rounded-lg shadow-lg`}
             >
                 <CloseIcon
                     onClick={() => setShowPopup(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
                 <h3 className="text-textAccent text-xl">کد تایید ارسال شده را وارد کنید</h3>
-                <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
+                <div dir="ltr" className="w-full flex justify-center gap-5 relative my-6">
                     {inputRefs.current.map((ref, index) => (
                         <input
                             style={{ border: 'none', borderBottom: '2px var(--text-accent) solid ', background: 'transparent'}}
@@ -139,6 +139,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                 <p className={codeRemainingTime ? "text-textAccent font-semibold" : "hidden"} aria-live="assertive">در صورت عدم دریافت کد {codeRemainingTime} ثانیه صبر کنید</p>
                 <p className={isLoading ? "text-textAccent mt-1" : "hidden"} aria-live="assertive">  ... صبر کنید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "text-sm text-textError" : "hidden"} aria-live="assertive"> {errMsg}</p>
+                
                 <button disabled={isLoading} className={`${ButtonStyles.addButton} ${isLoading && 'opacity-45'} w-32 mt-6 mb-4`} onClick={handleSubmit}>ثبت</button>
 
             </form>

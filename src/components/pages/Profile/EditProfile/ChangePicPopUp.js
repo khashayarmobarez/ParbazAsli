@@ -111,7 +111,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
                         onChange={handleFileChange}
                     />
 
-                    <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem'}} />
+                    <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem', zIndex: '10'}} />
 
                     
                     {uploadedFile && (

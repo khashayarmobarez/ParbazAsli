@@ -210,7 +210,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
     }
 
     return (
-        <div className={`z-30 w-full fixed inset-0 flex items-center justify-center ${popUpData ? 'visible' : 'invisible'}`}>
+        <div className={`z-30 w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm ${popUpData ? 'visible' : 'invisible'}`}>
             <form
             className={`${boxStyles.containerChangeOwnership} 
             w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg gap-y-6 py-8 `}
