@@ -29,7 +29,7 @@ const ClubCourseClasses = () => {
                 <div className=' w-full grid grid-cols-4 items-center text-border-button-yellow gap-x-10'>
                     
                     <div className='w-full col-span-2 flex flex-col justify-center items-start gap-y-2'>
-                        <p className='text-xs'>تعداد کلاس های برگزارشده</p>
+                        <p className='text-xs'>تعداد کلاس های برگزار شده</p>
                         <p className={` ${dataBox.classDetailsData} w-full h-10 rounded-xl flex items-center justify-center`}>
                         {classesData.data.classesCount}
                         </p>

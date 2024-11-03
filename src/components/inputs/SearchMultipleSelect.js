@@ -109,7 +109,7 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
           boxShadow: 'var(--profile-buttons-boxShadow)'}}>
             <p className=' text-sm mx-1' >{index + 1}</p>
             <p className='text-sm px-6 w-full text-start'>{option.description}</p>
-            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
+            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
             boxShadow: 'var(--profile-buttons-boxShadow)',
             borderRadius:'0.5rem',
             color:'var(--text-error)'}}

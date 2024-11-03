@@ -168,21 +168,21 @@ const ClubCourseDetails = () => {
                                         {
                                         aCourseData.data.status === 'Active' && 
                                             <>
-                                                <p className='text-textAccent'>فعال</p>
+                                                <p className=''>فعال</p>
                                             </>
                                         }
 
                                         {
                                         aCourseData.data.status === 'Pending' &&
                                             <>
-                                                <p className='text-textWarning'>در انتظار تایید</p>
+                                                <p className=''>در انتظار تایید</p>
                                             </>
                                         }
 
                                         {
                                         aCourseData.data.status === 'Disable' &&
                                             <>
-                                                <p className='text-textWarning'>غیرفعال</p>
+                                                <p className=''>غیرفعال</p>
                                             </>
                                         }
                                     </div> 
@@ -200,7 +200,7 @@ const ClubCourseDetails = () => {
 
                             <p onClick={() => setShowExtra(!showExtra)}
                             className='w-full px-6 text-sm text-textAccent text-start self-start'>
-                                {showExtra ? 'بستن اطلاعات بیشتر' : 'نمایش اطلاعات بیشتر ...'}
+                                {showExtra ? 'کمتر ...' : 'بیشتر ...'}
                             </p>
 
                         </div>

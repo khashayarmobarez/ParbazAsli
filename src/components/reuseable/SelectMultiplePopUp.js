@@ -83,10 +83,11 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
 
             <div className='w-full py-4 bg-bgHeader px-[5%] -mb-1'>
               <TextInput 
+                customIconSize={'w-5'}
                 placeholder={name}
                 value={searchTerm} 
                 onChange={handleInputChange} 
-                icon={<SearchIcon anotherColor={'var(--text-input-default)'} customIconSize={'w-5'} />}
+                icon={<SearchIcon anotherColor={'var(--text-input-default)'} />}
               />
             </div>
 
@@ -127,7 +128,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
             <p className='text-sm px-6 w-full text-start'>{option.description}</p>
             <RemoveIcon 
               sx={{
-                background: 'var(--bg-output-default)',
+                background: 'var(--bg-input-dropdown)',
                 boxShadow: 'var(--shadow-all)',
                 borderRadius: '0.5rem',
                 color: 'var(--text-error)'

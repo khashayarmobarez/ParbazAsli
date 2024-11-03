@@ -548,7 +548,7 @@ const AddCourse = () => {
                                             boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{course.description} </p>
-                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
                                             boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
@@ -578,7 +578,7 @@ const AddCourse = () => {
                                             boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
                                             boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
@@ -641,7 +641,7 @@ const AddCourse = () => {
                                             boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
-                                            <RemoveIcon sx={{background:  'var(--bg-output-default)',
+                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
                                             boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}

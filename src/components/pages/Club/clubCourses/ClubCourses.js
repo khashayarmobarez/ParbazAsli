@@ -172,7 +172,7 @@ const ClubCourses = () => {
                                                         key={course.id}
                                                         className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
                                                         style={{
-                                                            boxShadow: 'var(--organs-coachData-boxShadow)'
+                                                            boxShadow: 'var(--shadow-all)'
                                                         }}
                                                         >
                                                             <div className='w-full flex justify-between items-center'>

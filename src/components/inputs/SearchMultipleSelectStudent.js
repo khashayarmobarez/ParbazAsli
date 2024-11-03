@@ -109,7 +109,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
           <li key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4 bg-bgOutputDefault shadow-lg'>
               <p className=' text-sm mx-1' >{index + 1}</p>
               <p className='text-sm px-6 w-full text-start'>{option.fullName} </p>
-              <RemoveIcon sx={{background:  'var(--bg-output-default)',
+              <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
               boxShadow: 'var(--shadow-all)',
               borderRadius:'0.5rem',
               color:'var(--text-error)'}}

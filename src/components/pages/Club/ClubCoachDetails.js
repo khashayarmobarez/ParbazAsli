@@ -119,7 +119,7 @@ const ClubCoachDetails = () => {
 
     return (
         <div className='w-full flex flex-col items-center pt-20'>
-            <div className='w-[90%] flex flex-col items-center gap-y-6'>
+            <div className='w-[90%] md:w-[60%] flex flex-col items-center gap-y-6'>
 
                 {
                     coachDetailsLoading &&
@@ -138,11 +138,11 @@ const ClubCoachDetails = () => {
 
                         <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
                             <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>
-                            <p className='text-[var(--text-disable)]'>
+                            <p className='text-textButtonMainDisabled'>
                                 وضعیت:
                                 {coachDetails.data.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
                                 {coachDetails.data.status === 'Pending' && <span style={{color:'var(--text-warning)'}}> در انتظار تایید</span>}
-                                {coachDetails.data.status === 'Disable' && <span style={{color:'var(--text-disable)'}}> غیر فعال</span>}
+                                {coachDetails.data.status === 'Disable' && <span className='text-textButtonMainDisabled'> غیر فعال</span>}
                                 {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
                             </p>
                         </div>
@@ -153,22 +153,22 @@ const ClubCoachDetails = () => {
 
                             <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
 
-                                <div className=' flex justify-start items-start w-32' >
-                                    <span className='w-6 h-6'>
+                                <div className=' flex justify-start items-center w-32' >
+                                    <span className='w-5 h-5'>
                                         <UsersIcon/>
                                     </span>
                                     <p className=' font-normal text-xs mr-1  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
                                 </div> 
 
-                                <div className=' flex justify-start items-start w-32' >
-                                    <span className='w-6 h-6'>
+                                <div className=' flex justify-start items-center w-32' >
+                                    <span className='w-5 h-5'>
                                         <ClockIcon/>
                                     </span>
                                     <p className=' font-normal text-xs mr-1  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
                                 </div>
 
-                                <div className=' flex justify-start items-start w-32 -mt-1' >
-                                    <span className='w-6 h-6' >
+                                <div className=' flex justify-start items-center w-32 -mt-1' >
+                                    <span className='w-5 h-5' >
                                         <DocumentIcon/>
                                     </span>
                                     <p className=' font-normal text-xs mr-1 mt-[2px] text-start'>کد عضویت: {coachDetails.data.id}</p>
@@ -194,16 +194,16 @@ const ClubCoachDetails = () => {
 
                                 <div className='flex gap-x-1'>
 
-                                    <p className='text-[var(--text-disable)]'>وضعیت:&nbsp; 
+                                    <p className='text-textButtonMainDisabled'>وضعیت:&nbsp; 
                                         
                                             {course.status === 'Active' && 
                                                 <span className='text-textAccent'>فعال</span>
                                             }
                                             {course.status === 'Pending' &&
-                                                <span className='text-[var(--text-warning)]'>در انتظار...</span>
+                                                <span className='text-textWarning'>در انتظار...</span>
                                             }
                                             {course.status === 'Disable' &&
-                                                <span className='text-[var(--text-error)]'>غیر فعال</span>
+                                                <span className='text-textButtonMainDisabled'>غیر فعال</span>
                                             }
                                             {course.status === 'Rejected' &&
                                                 <span className='text-[var(--text-error)]'>رد شده</span>
@@ -226,14 +226,14 @@ const ClubCoachDetails = () => {
                                     }
 
                                     { course.clubName &&
-                                        <p>باشگاه: {course.clubName}</p>
+                                        <p><span className='text-textButtonMainDisabled'>باشگاه:</span> {course.clubName}</p>
                                     }
 
                                     {
                                     course.level &&
-                                        <p><span className='text-[var(--text-disable)]'>مقطع: </span> {course.level}</p>
+                                        <p><span className='text-textButtonMainDisabled'>مقطع: </span> {course.level}</p>
                                     }
-                                    <p><span className='text-[var(--text-disable)]'>تعداد پرواز:</span> {course.flightsCount}</p>
+                                    <p><span className='text-textButtonMainDisabled'>تعداد پرواز:</span> {course.flightsCount}</p>
 
                                     
 
@@ -241,9 +241,9 @@ const ClubCoachDetails = () => {
 
                                 <div className='flex flex-col text-start gap-y-1'>
 
-                                        <p><span className='text-[var(--text-disable)]'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
+                                        <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
                                     
-                                        <p><span className='text-[var(--text-disable)]'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
+                                        <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
 
                                 </div>
 

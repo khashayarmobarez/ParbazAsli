@@ -6,6 +6,9 @@ import GradientStyles from '../styles/gradients/Gradient.module.css'
 
 // assets
 import pencil from '../assets/icons/pencil-alt.svg'
+import ParachuteIcon from '../components/icons/ParachuteIcon'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
 
 // use club status
 import { useClubStatus } from '../Utilities/Services/clubQueries';
@@ -49,17 +52,19 @@ const Club = () => {
 
                         <div className='w-full flex justify-around'>
                             <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
-                                <img src={pencil} alt='icon' className='w-[56%]'/>
+                                <span className='w-[18px]'>
+                                    <ParachuteIcon anotherColor={'var(--text-accent)'} />
+                                </span>
                                 <p>تجهیزات</p>
                             </Link>
                             
                             <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
-                                <img src={pencil} alt='icon' className='w-[56%]'/>
+                                <ClassOutlinedIcon sx={{width:'18px', height:'18px'}} />
                                 <p>دوره‌ها</p>
                             </Link>
                             
                             <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
-                                <img src={pencil} alt='icon' className='w-[56%]'/>
+                                <AccountCircleOutlinedIcon sx={{width:'18px', height:'18px'}} />
                                 <p>مربیان</p>
                             </Link>
                         </div>

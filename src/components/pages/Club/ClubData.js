@@ -60,7 +60,7 @@ const ClubData = () => {
                             <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.activeCoachesCount} مربی فعال</p>
                         </div> 
                         <div className=' flex justify-between items-center' >
-                            <span className='w-5'>
+                            <span className='w-5 h-5'>
                             <UsersIcon/>
                             </span>
                             <p className=' font-normal text-sm mr-2 w-36 text-start'>{data.data.activeStudentsCount} هنرجو فعال</p>

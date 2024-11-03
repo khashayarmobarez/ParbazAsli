@@ -71,7 +71,7 @@ const ClubCourseStudentDetails = () => {
 
                                 {
                                     isMobile && studentData.data &&
-                                    <p className='text-xs text-lowOpacityWhite'>
+                                    <p className='text-xs text-textButtonMainDisabled'>
                                         وضعیت: 
                                         {
                                             studentData.data.status === 'Active' ?

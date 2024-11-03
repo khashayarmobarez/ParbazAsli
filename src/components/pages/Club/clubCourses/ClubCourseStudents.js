@@ -158,11 +158,11 @@ const CourseStudents = () => {
                         onClick={() => handleClickStudent(student.id)}>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
                                 <span>
-                                    <PersonOutlineOutlinedIcon />
+                                    <PersonOutlineOutlinedIcon sx={{width:'20px', height:'20px'}} />
                                 </span>
-                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}>{student.percent}%</p>
+                                <p className={`${student.status === 'Active' && 'text-textWarning'}`}>{student.percent}%</p>
                                 <p>{student.name}</p>
-                                <p className='text-textDefault'>وضعیت: 
+                                <p className='text-textButtonProfileDisable'>وضعیت: 
                                     {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
                                     {student.status === 'CoachPending' && <span className='text-textWarning'> در انتظار تایید</span>}
                                 </p>
@@ -245,11 +245,14 @@ const CourseStudents = () => {
                                         <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
                                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                                                 <span>
-                                                    <PersonOutlineOutlinedIcon />
+                                                    <PersonOutlineOutlinedIcon sx={{width:'20px', height:'20px'}} />
                                                 </span>
-                                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}>{student.percent}%</p>
+                                                <p>
+                                                    {student.status === 'Completed' && <span className='text-textAccent '>{student.percent}%</span>}
+                                                    {student.status === 'Canceled' && <span className='text-textError'> {student.percent}%</span>}
+                                                </p>
                                                 <p>{student.name}</p>
-                                                <p className='text-textDisabled'>وضعیت: 
+                                                <p className='text-textButtonProfileDisable'>وضعیت: 
                                                     {student.status === 'Completed' && <span className='text-textAccent '> تمام شده</span>}
                                                     {student.status === 'Canceled' && <span className='text-textError'> لغو شده</span>}
                                                 </p>

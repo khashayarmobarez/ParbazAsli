@@ -221,7 +221,7 @@ const CourseStudents = () => {
                                 <span onClick={() => handleClickStudent(student.id)}>
                                     <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}}  />
                                 </span>
-                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textWarning'}`}
+                                <p className={`${student.status === 'Active' ? 'text-textAccent' : 'text-textWarning'}`}
                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>

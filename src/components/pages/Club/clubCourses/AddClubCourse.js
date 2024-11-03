@@ -13,7 +13,7 @@ import Attention from '../../../../components/icons/Attention';
 import ListIcon from '../../../../components/icons/ListIcon';
 import ChartIcon from '../../../../components/icons/ChartIcon';
 import ChartIcon2 from '../../../../components/icons/ChartIcon2';
-import singleTag from '../../../../components/icons/ADressTag';
+import SingleTag from '../../../../components/icons/ADressTag';
 import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon';
 import UserIcon from '../../../../components/icons/UserIcon';
 import CertificateIcon from '../../../../components/icons/CertificateIcon';
@@ -413,9 +413,11 @@ const AddClubCourse = () => {
 
                 {
                     coachNamesData && coachNamesData.data.length < 1 &&
-                    <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
-                        <img src={<Attention />} alt='attention' className='w-20 h-20 mx-auto' />
-                        <p>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center gap-y-4'>
+                        <span className='w-16 h-16'>
+                            <Attention />
+                        </span>
+                        <p className='text-textWarning'>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
                     </div>
                 }
 
@@ -543,7 +545,7 @@ const AddClubCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
-                                        icon={<singleTag/>}
+                                        icon={<SingleTag/>}
                                         />
                                     </>
 
@@ -560,7 +562,7 @@ const AddClubCourse = () => {
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
-                                        icon={<singleTag/>}
+                                        icon={<SingleTag/>}
                                     />
 
                                 <div className='w-full flex justify-between relative items-center'>
@@ -580,12 +582,12 @@ const AddClubCourse = () => {
                                     .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
                                     .map((course,index) => (
                                         <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{course.description} </p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
@@ -610,12 +612,12 @@ const AddClubCourse = () => {
                                     .filter(course => course.type === 2) // Filter for practical courses (type 2)
                                     .map((course,index) => (
                                         <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
                                             onClick={() => handleRemoveCustomCourse(course.order)} />
@@ -648,12 +650,12 @@ const AddClubCourse = () => {
                                             <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
                                         </div>
                                         {studentData?.data && (
-                                            <ul className="absolute z-20 w-full bg-[var(--dark-blue-bg)] mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
                                             
                                                 <div className='flex flex-col w-full items-center justify-center '>
                                                     <li
                                                         key={studentData.data.id}
-                                                        className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+                                                        className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
                                                         onClick={() => handleAddStudent()}
                                                     >
                                                         {studentData.data.fullName}
@@ -668,12 +670,12 @@ const AddClubCourse = () => {
                                 <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                     {studentsData && studentsData?.map((student,index) => (
                                         <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)'}}>
+                                        style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
                                             <p className=' text-sm mx-1' >{index + 1}</p>
                                             <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
-                                            <RemoveIcon sx={{background:  'var(--profile-buttons-background)',
-                                            boxShadow: 'var(--profile-buttons-boxShadow)',
+                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                            boxShadow: 'var(--shadow-all)',
                                             borderRadius:'0.5rem',
                                             color:'var(--text-error)'}}
                                              onClick={() => handleRemoveStudent(student)} />
@@ -705,26 +707,30 @@ const AddClubCourse = () => {
             </form>
 
             {/* submit pop up */}
-            <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
+            <div className={`${showPopup ? 'fixed' : 'hidden'} w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
 
-                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+                <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'} w-[80%] md:w-[314px] h-[280px] flex flex-col justify-around items-center top-52`}>
 
-                <h3 className=' text-textError text-xl mt-[-3rem] '>تاییدیه</h3>
+                    <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 
-                <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
+                    <h3 className=' text-textError text-xl mt-[-3rem] '>تاییدیه</h3>
 
-                <div className='w-full flex justify-around items-center'>
-                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button 
-                    type="submit" 
-                    onClick={handleSubmit} 
-                    className={`${ButtonStyles.addButton} w-24`}
-                    disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
-                    {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
-                    </button>
-                </div>  
+                    <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
 
-            </form>
+                    <div className='w-full flex justify-around items-center'>
+                        <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                        <button 
+                        type="submit" 
+                        onClick={handleSubmit} 
+                        className={`${ButtonStyles.addButton} w-24`}
+                        disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
+                        {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
+                        </button>
+                    </div>  
+
+                </form>
+            
+            </div>
 
         </div> 
     );

@@ -84,7 +84,7 @@
 
 .addButton {
   background: var(--bg-button-main-default);
-  box-shadow: var(--shadow-all);
+  box-shadow: var(--shadow-button-dark);
   color:var(--text-button-main-default);
   display: flex; 
   min-height: 48px;
