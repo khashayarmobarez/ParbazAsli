@@ -70,7 +70,7 @@ const UploadIgc = () => {
             <div className=' w-[90%] flex items-center justify-between' >
 
                 <div onClick={() => navigate('/addFlight/AddUsedEquipment')} className='flex items-center justify-between'>
-                    <span className='w-6 h-6 flex justify-center items-center'>
+                    <span className='w-8 h-8 flex justify-center items-center'>
                         <ArrowButton isRight={true} />
                     </span>
                     <p className='mr-3'>بعدی</p>

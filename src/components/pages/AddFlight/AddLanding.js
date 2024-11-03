@@ -454,7 +454,7 @@ const AddLanding = () => {
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <p className='ml-2 '>قبلی</p>
-                        <span className='w-6 h-6 flex justify-center items-center'>
+                        <span className='w-8 h-8 flex justify-center items-center'>
                             <ArrowButton />
                         </span>
                     </div>

@@ -218,8 +218,8 @@ const AddClub = ({isForSetting}) => {
             <form className={`w-[90%] flex flex-col items-center ${isForSetting !== true && 'pt-8'} gap-y-6`}>
 
                 {/* upload picture */}
-                <div onClick={handleUploadClick} className='w-28 h-28 self-center flex justify-center items-center border-dashed border-2 rounded-full'
-                style={{borderColor:'var(--softer-white)', backgroundColor:'var(--syllabus-data-boxes-bg) '}}>
+                <div onClick={handleUploadClick} className='w-28 h-28 self-center flex justify-center items-center border-dashed border-2 rounded-full bg-bgUploadFile'
+                style={{borderColor:'var(--softer-white)'}}>
 
                     <input
                         type="file"

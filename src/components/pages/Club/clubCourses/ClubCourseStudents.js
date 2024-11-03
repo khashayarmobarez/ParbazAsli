@@ -9,7 +9,6 @@ import gradients from '../../../../styles/gradients/Gradient.module.css'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
 import ArrowButton from '../../../../components/icons/ArrowButton';

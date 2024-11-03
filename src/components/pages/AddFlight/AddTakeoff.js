@@ -192,7 +192,7 @@ const AddTakeoff = () => {
                 <div className='flex justify-between items-center w-full'>
 
                     <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <span className='w-6 h-6 flex justify-center items-center '>
+                        <span className='w-8 h-8 flex justify-center items-center '>
                             <ArrowButton isRight={true} />
                         </span>
                         <p className='mr-2 '>بعدی</p>
@@ -200,7 +200,7 @@ const AddTakeoff = () => {
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <p className='ml-2 '>قبلی</p>
-                        <span className='w-6 h-6 flex justify-center items-center'>
+                        <span className='w-8 h-8 flex justify-center items-center'>
                             <ArrowButton />
                         </span>
                     </div>

@@ -219,7 +219,7 @@ const CourseStudents = () => {
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-xs`}
                             >
                                 <span onClick={() => handleClickStudent(student.id)}>
-                                    <PersonOutlineOutlinedIcon />
+                                    <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}}  />
                                 </span>
                                 <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textWarning'}`}
                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
@@ -243,8 +243,8 @@ const CourseStudents = () => {
                                     :
                                     student.id
                                 )}
-                                className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}>
-                                    <MoreVertIcon  />
+                                className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-12 flex items-center justify-center rounded-l-2xl`}>
+                                    <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
                                 </button>
                                 }
 
@@ -281,15 +281,15 @@ const CourseStudents = () => {
                             {
                                 student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
                                 <div className=' absolute w-full flex justify-end left-[5%] h-32'>
-                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled text-textDefault rounded-lg flex flex-col items-center justify-end'>
+                                    <div className='w-1/3 h-full bg-bgInputDropdown text-textDefault rounded-2xl flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
-                                            className='w-full text-center py-3 active:bg-tetext-textAccent'
+                                            className='w-full text-center py-3 active:bg-textAccent'
                                             >
                                                 اتمام دوره 
                                         </p>
                                         <div className='w-[90%] h-[2px] bg-bgPageMain'/>
-                                        <p className=' w-full text-center py-3 active:bg-tetext-textAccent'
+                                        <p className=' w-full text-center py-3 active:bg-textAccent'
                                         onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
                                             لغو دوره
                                         </p>
@@ -366,7 +366,7 @@ const CourseStudents = () => {
                                         <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
                                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                                                 <span onClick={() => handleClickStudent(student.id)}>
-                                                    <PersonOutlineOutlinedIcon />
+                                                    <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}} />
                                                 </span>
                                                 <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
                                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
@@ -394,15 +394,15 @@ const CourseStudents = () => {
                                                     // onClick={() => navigate('/education/StudentDetails')}
                                                     className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}
                                                     >
-                                                        <MoreVertIcon  />
+                                                        <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
                                                     </button>
                                                 }
                                             </div>
                                             {
                                                 student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
                                                 <div className=' absolute w-full flex justify-end left-[5%] h-24'>
-                                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-tetext-textDisabled rounded-lg flex flex-col items-center justify-end'>
-                                                        <p className=' text-center py-3 active:bg-tetext-textAccent'
+                                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled rounded-2xl flex flex-col items-center justify-end'>
+                                                        <p className=' text-center py-3 active:bg-textAccent'
                                                         onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
                                                             بازگردانی به دوره
                                                         </p>

@@ -55,8 +55,8 @@ const UserDataBox = ({hasCoach}) => {
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
                             <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
-                            <span className='w-7 absolute mt-20 ml-16 z-20' >
-                                <PlusWithCircularBorderIcon/>
+                            <span className='w-[24px] absolute mt-20 ml-16 z-20' >
+                                <PlusWithCircularBorderIcon />
                             </span>
                         </div>
 
@@ -75,14 +75,14 @@ const UserDataBox = ({hasCoach}) => {
                         <div className=' gap-y-2 flex flex-col items-center md:space-y-5'>
 
                             <div className=' flex justify-center items-center w-[80%]' >
-                                <span className='w-5'>
+                                <span className='w-6 h-6'>
                                     <FlightQuantity />
                                 </span>
                                 <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center w-[80%]' >
-                                <span className='w-5'>
+                                <span className='w-6 h-5'>
                                     <ClockIcon/>
                                 </span>
                                 <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
@@ -91,7 +91,7 @@ const UserDataBox = ({hasCoach}) => {
                             {/* condition based on coach  */}
                             { hasCoach ?
                                 <div className=' flex justify-between items-center w-[80%]' >
-                                    <span className='w-5'>
+                                    <span className='w-6 h-5'>
                                         <ClockIcon/>
                                     </span>
                                     <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>

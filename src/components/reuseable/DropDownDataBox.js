@@ -25,16 +25,16 @@ const DropDownDataBox = (props) => {
             color: isExpanded ? 'var(--text-accent)' : 'var(--text-default)',
         }}>
 
-            <div className='flex' >
+            <div className='flex gap-x-2' >
                 <span> 
-                    <InsertDriveFileOutlinedIcon sx={{ position: 'relative' }} />
+                    <InsertDriveFileOutlinedIcon sx={{ position: 'relative', width:'20px', height:'20px' }} />
                 </span>
                 <h3 className='text-base'>{title}</h3>
             </div>
 
             <div className='flex gap-x-3 justify-center'>
                 <span className={`transition-transform duration-300 transform ${isExpanded ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
-                    <ArrowBackIosIcon />
+                    <ArrowBackIosIcon sx={{ width:'20px', height:'20px'}} />
                 </span>
             </div>
 

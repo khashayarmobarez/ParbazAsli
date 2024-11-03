@@ -5,7 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background:  var(--bg-tab-default);
+  background:  var(--bg-tab-default); 
+  z-index:40;
 }
 
 .ThreeStickedButtonButton {
