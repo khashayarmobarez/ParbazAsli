@@ -41,7 +41,7 @@ const ClubData = () => {
                                 <PlusWithCircularBorderIcon />
                             </span>
                         </div>
-                        <p className=' font-normal text-xl w-36'>{data.data.name}</p>
+                        <p className=' font-normal text-base w-36'>{data.data.name}</p>
 
                     </div>
 
