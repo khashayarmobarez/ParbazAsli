@@ -6,7 +6,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
 
 
-const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd }) => {
+const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize }) => {
 
   const [filled, setFilled] = useState(false);
   
@@ -21,7 +21,7 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
     <div className='flex relative w-[100%] min-h-12 rounded-2xl'>
           <span> 
             { icon ?
-              <span className="absolute mt-3 mr-2 w-6">  
+              <span className={`absolute mt-3 mr-2 ${customIconSize ? customIconSize : 'w-6'}`}>  
                 {icon}
               </span>
               : 

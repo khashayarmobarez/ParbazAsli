@@ -86,7 +86,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                 placeholder={name}
                 value={searchTerm} 
                 onChange={handleInputChange} 
-                icon={<SearchIcon anotherColor={'var(--text-input-default)'} />}
+                icon={<SearchIcon anotherColor={'var(--text-input-default)'} customIconSize={'w-5'} />}
               />
             </div>
 
