@@ -39,7 +39,7 @@ code {
   --bg-button-main-hover:#20A970;
   --bg-button-main-active:#1C9663;
   --text-button-main-default:#EEE;
-  --text-button-main-disabled:#E5E5E5;
+  --text-button-main-disabled:#cacaca;
 
   /* second button */
   --bg-button-secondary-default:#F9F9FA;
