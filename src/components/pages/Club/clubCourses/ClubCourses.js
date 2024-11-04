@@ -93,7 +93,7 @@ const ClubCourses = () => {
                         <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                     }
 
-                    {clubCourseDividerData && clubCourseDividerData.data &&
+                    {clubCourseDividerData && clubCourseDividerData.data.length < 1 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
                             <span className='w-20 h-20 mb-2'>
                                 <Attention />
