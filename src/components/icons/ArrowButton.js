@@ -9,9 +9,9 @@ const ArrowButton = ({isRight}) => {
         style={{boxShadow: 'var(--shadow-button-white),var(--shadow-button-dark)'}}>
             {
                 isRight ?
-                <ArrowForwardIosIcon sx={{color: 'var(--text-default)', width:'100%', height:'100%'}} />
+                <ArrowForwardIosIcon sx={{color: 'var(--text-default)', width:'75%', height:'75%'}} />
                 :
-                <ArrowBackIosNewIcon sx={{color: 'var(--text-default)', width:'100%', height:'100%'}} />
+                <ArrowBackIosNewIcon sx={{color: 'var(--text-default)', width:'75%', height:'75%'}} />
             }
         </div>
     );

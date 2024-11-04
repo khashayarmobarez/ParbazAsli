@@ -76,7 +76,7 @@ const DropDownSyllabiData = (props) => {
                     <p className={` text-start mx-3 w-full self-center text-xs`} >{data.description}</p>
                     {
                         data.percent === 100 ?
-                        <CheckIcon sx={{color:'var(--text-accent)', width:'1.2rem', height:'1.2rem'}} />
+                        <CheckIcon sx={{color:'var(--text-accent)', width:'20px',height:'20px',}} />
                         :
                             data.percent !== 0 ?
                             <p className={` text-center text-textAccent self-center text-sm`} >{data.percent}%</p>
