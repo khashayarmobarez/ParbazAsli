@@ -189,7 +189,7 @@ const ClubCoaches = () => {
                                         {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
                                             <div className={`w-full flex justify-between px-10 items-center ${pageNumberPrevious === 1 && 'opacity-60'}`}>
                                                 <button
-                                                    className=' w-6 h-6 justify-self-end'
+                                                    className={`' w-6 h-6 justify-self-end ${pageNumberPrevious === 1 && 'opacity-60'}`}
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
@@ -201,7 +201,7 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-6 h-6 justify-self-start ${pageNumberPrevious === 1 && 'opacity-60'}`}
+                                                    className={`w-6 h-6 justify-self-start ${(clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious) && 'opacity-60'}`}
                                                     disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
                                                     onClick={handleNextPageNumberPrevious}
                                                 >
