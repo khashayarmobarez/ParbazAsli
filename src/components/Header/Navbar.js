@@ -175,7 +175,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             </div>
                         </nav>
 
-                        <div className={ `flex justify-between w-12 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'} z-0`}>
+                        <div className={ `flex justify-between w-12 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
 
                             {!token ?
                                 (windowWidth > 768) ?
