@@ -675,26 +675,28 @@ const AddCourse = () => {
             </form>
 
             {/* submit pop up */}
-            <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
+            <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm z-[100] ${showPopup ? 'visible' : 'invisible'}`}>
+                <form  className={` ${boxStyles.containerChangeOwnership} fixed  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
 
-                <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+                    <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 
-                <h3 className=' text-textWarning text-xl mt-[-3rem] '>تاییدیه</h3>
+                    <h3 className=' text-textWarning text-xl mt-[-3rem] '>تاییدیه</h3>
 
-                <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
+                    <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
 
-                <div className='w-full flex justify-around items-center'>
-                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button 
-                    type="submit" 
-                    onClick={handleSubmit} 
-                    className={`${ButtonStyles.addButton} w-24`}
-                    disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
-                    {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
-                    </button>
-                </div>  
+                    <div className='w-full flex justify-around items-center'>
+                        <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                        <button 
+                        type="submit" 
+                        onClick={handleSubmit} 
+                        className={`${ButtonStyles.addButton} w-24`}
+                        disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
+                        {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
+                        </button>
+                    </div>  
 
-            </form>
+                </form>
+            </div>
 
         </div> 
     );
