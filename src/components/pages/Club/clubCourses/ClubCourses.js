@@ -93,9 +93,11 @@ const ClubCourses = () => {
                         <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                     }
 
-                    {clubCourseDividerData && clubCourseDividerData.data.length < 1 &&
+                    {clubCourseDividerData && clubCourseDividerData.data &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
-                            <img src={<Attention />} alt='attention' className='w-20 h-20 mx-auto' />
+                            <span className='w-20 h-20 mb-2'>
+                                <Attention />
+                            </span>
                             <p>در حال حاضر دوره ای وجود ندارد</p>
                         </div>
                     }
