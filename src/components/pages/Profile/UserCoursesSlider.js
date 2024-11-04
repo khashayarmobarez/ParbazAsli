@@ -37,8 +37,8 @@ const UserCoursesSlider = ({coursesData}) => {
                 background-color: var(--bg-button-secondary-default);
                 box-shadow:var(--shadow-button-dark),var(--shadow-button-white);
                 padding: 5px;
-                width:12px;
-                height:12px;
+                width:14px;
+                height:14px;
                 border-radius: 100%;
                 color: var(--text-disabled);
                 z-index: 50;

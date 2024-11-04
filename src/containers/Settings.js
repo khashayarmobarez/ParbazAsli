@@ -9,7 +9,7 @@ import CertificateIcon from '../components/icons/CertificateIcon'
 import UserIcon from '../components/icons/UserIcon'
 
 // queries
-import { useClubStatus } from '../Utilities/Services/clubQueries';
+// import { useClubStatus } from '../Utilities/Services/clubQueries';
 
 // components
 import PageTitle from '../components/reuseable/PageTitle';
@@ -17,7 +17,7 @@ import DropDownLine from '../components/reuseable/DropDownLine';
 import WebColorMode from '../components/pages/Settings/WebColorMode';
 import EditUserSettings from '../components/pages/Settings/EditUserSettings';
 import CertificateSettings from '../components/pages/Settings/CertificateSettings';
-import AddClub from '../components/pages/Club/AddClub';
+// import AddClub from '../components/pages/Club/AddClub';
 
 
 const Settings = () => {
@@ -27,7 +27,7 @@ const Settings = () => {
     const [DropDown, setDropDown] = useState(['dropDown1']);
 
     // clubstatus could be NotAdded, Pending, Accepted
-    const { data: clubStatus , loading: clubStatusLoading } = useClubStatus();
+    // const { data: clubStatus , loading: clubStatusLoading } = useClubStatus();
 
     const handleOpenDropDowns = (dropDown) => {
         
@@ -86,7 +86,7 @@ const Settings = () => {
                     }
                 </div> */}
 
-                {   clubStatus &&
+                {/* {   clubStatus &&
                     clubStatus.data === 'NotAdded' &&
                     <div className='w-[90%] flex flex-col items-center'>
                         <DropDownLine  title='ثبت باشگاه' icon={<UserIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown5')} onClickActivation={() => handleOpenDropDowns('dropDown5')} />
@@ -102,7 +102,7 @@ const Settings = () => {
                             </>
                         }
                     </div>
-                }
+                } */}
                     
 
             </div>
