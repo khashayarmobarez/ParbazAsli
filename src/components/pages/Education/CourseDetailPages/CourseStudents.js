@@ -221,7 +221,7 @@ const CourseStudents = () => {
                                 <span onClick={() => handleClickStudent(student.id)}>
                                     <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}}  />
                                 </span>
-                                <p className={`${student.status === 'Active' ? 'text-textAccent' : 'text-textWarning'}`}
+                                <p className={`${student.status === 'Active' ? 'text-textWarning' : ''}`}
                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>
@@ -339,7 +339,7 @@ const CourseStudents = () => {
                                         <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
-                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl font-medium bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}
+                                        className={` w-24 h-12 flex justify-center items-center rounded-2xl bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}
                                         onClick={handleAddStudnetToCourse}
                                         disabled={addStudentToCourseLoading}
                                     >

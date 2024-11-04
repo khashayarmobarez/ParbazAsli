@@ -183,7 +183,7 @@ const ClubCourses = () => {
 
                                                                 <div className='flex gap-x-1'>
 
-                                                                    <p className='text-textDisabled'>وضعیت:
+                                                                    <p className='text-textButtonMainDisabled'>وضعیت:
                                                                         {course.status === 'Active' && 
                                                                             <span className='text-textAccent'> فعال</span>
                                                                         }

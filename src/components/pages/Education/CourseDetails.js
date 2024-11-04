@@ -167,7 +167,7 @@ const CourseDetails = () => {
                                         }
                                         {aCourseData && aCourseData.data.status === 'Pending' &&
                                             <>
-                                                <p className='text-textWarning'>در انتظار تایید</p>
+                                                <p>در انتظار تایید</p>
                                                 {/* below is a circle to show status of the app with color */}
                                                 {/* <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-default)'}}></div> */}
                                             </>
@@ -194,7 +194,7 @@ const CourseDetails = () => {
 
                             <p onClick={() => setShowExtra(!showExtra)}
                             className='w-full px-6 text-sm text-textAccent text-start self-start'>
-                                {showExtra ? 'بستن اطلاعات بیشتر' : 'نمایش اطلاعات بیشتر ...'}
+                                {showExtra ? 'بستن' : 'بیشتر ...'}
                             </p>
 
                         </div>
@@ -207,8 +207,8 @@ const CourseDetails = () => {
                                 هنرجویان
                             </Link> 
                             <Link 
-                                to={aCourseData.data.status === 'Pending' ? '#' : `/education/courseDetails/${id}/classes`} 
-                                className={`${ButtonStyles.ThreeStickedButtonButton} ${aCourseData.data.status === 'Pending' && 'opacity-55'} ${location.pathname === `/education/courseDetails/${id}/classes` ? ButtonStyles.activeYellow : ''}`} >
+                                to={`/education/courseDetails/${id}/classes`} 
+                                className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/education/courseDetails/${id}/classes` ? ButtonStyles.activeYellow : ''}`} >
                                 کلاس تئوری
                             </Link> 
                             <Link 

@@ -240,7 +240,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                             (
                                 popUpData.status === 'Expired' ?
                                 <button 
-                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10 opacity-45`} >تعیین وضعیت</button>
+                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >تعیین وضعیت</button>
                                 :
                                 <button 
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}
@@ -293,12 +293,12 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                         <button 
                                             type="submit" 
                                             disabled={true} 
-                                            className={`${ButtonStyles.normalButtonDisable} opacity-45 w-28`} >
+                                            className={`${ButtonStyles.normalButtonDisable} w-28`} >
                                                 تایید
                                             </button>
                                         <button 
                                         disabled={true} 
-                                        className={`${ButtonStyles.normalButtonDisable} opacity-45 `} >
+                                        className={`${ButtonStyles.normalButtonDisable} `} >
                                             رد
                                         </button>
                                     </div>
@@ -357,12 +357,12 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                         <button 
                                             type="submit" 
                                             disabled={true} 
-                                            className={`${ButtonStyles.normalButtonDisable} opacity-45 w-28`} >
+                                            className={`${ButtonStyles.normalButtonDisable} w-28`} >
                                                 تایید
                                             </button>
                                         <button 
                                         disabled={true} 
-                                        className={`${ButtonStyles.normalButtonDisable} opacity-45 `} >
+                                        className={`${ButtonStyles.normalButtonDisable} `} >
                                             رد
                                         </button>
                                     </div>
