@@ -17,6 +17,8 @@ const DropDownSyllabiData = (props) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
 
+    console.log(data)
+
     const toggleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
@@ -29,17 +31,11 @@ const DropDownSyllabiData = (props) => {
             borderColor: isExpanded ? 
                 'var(--border-input-success)' 
                 :
-                    percent === 100 ?
-                    'var(--border-input-success)'
-                    :
-                    'var(--border-input-selected)',
+                'var(--border-input-selected)',
             color: isExpanded ? 
                 'var(--border-input-success)' 
                 :
-                    percent === 100 ?
-                    'var(--border-input-success)'
-                    :
-                    'var(--border-input-selected)',
+                'var(--border-input-selected)',
         }}>
 
             <div className='flex gap-x-2' >
