@@ -175,7 +175,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
                             </div>
                         </nav>
 
-                        <div className={ `flex justify-between w-12 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
+                        <div className={ `flex justify-between w-12 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'} z-0`}>
 
                             {!token ?
                                 (windowWidth > 768) ?
@@ -183,22 +183,29 @@ const Navbar = ({toggleTheme ,userRole}) => {
                                     :
                                     <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon sx={{color: 'var(--text-default)', marginBottom: '-0.2rem'}} /> </Link>
                             :
-                            <div className='md:flex md:gap-x-4 md:mr-10'>
-                                <button >
+                            <div className='md:flex md:gap-x-4 md:mr-10 z-10'>
+                                <div className="relative flex items-center z-2">
                                     {
-                                        notificationCountsData && notificationCountsData.data > 0 &&
-                                            <div className='-mb-4 rounded-full w-4 h-4 text-xs mr-[-4px] flex justify-center items-center font-normal z-50  bg-[var(--text-error)]'>
+                                        notificationCountsData && notificationCountsData.data > 0 && (
+                                            <div className='absolute -top-[1px] -right-[5px] rounded-full w-4 h-4 text-xs flex justify-center items-center font-normal z-[0] bg-textError'>
                                                 <p>{notificationCountsData.data}</p>
                                             </div>
+                                        )
                                     }
-                                    {currentUrl === '/notifications' ?
-                                    <NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-accent)', height:'24px',width:'24px',zIndex:'10',}} />
-                                    :<NotificationsOutlinedIcon onClick={() => navigate('/notifications')} sx={{fill:'var(--text-default)', height:'24px',width:'24px',zIndex:'10'}} />
-                                    }
-                                </button>
+                                    <button onClick={() => navigate('/notifications')}>
+                                        <NotificationsOutlinedIcon 
+                                            sx={{
+                                                fill: currentUrl === '/notifications' ? 'var(--text-accent)' : 'var(--text-default)',
+                                                height: '24px',
+                                                width: '24px',
+                                                zIndex: '0',
+                                            }}
+                                        />
+                                    </button>
+                                </div>
 
-                                <div onClick={handleLogout} className={`hidden md:flex justify-center items-center w-6`} >
-                                    <Logout/>
+                                <div onClick={handleLogout} className="hidden md:flex justify-center items-center w-6">
+                                    <Logout />
                                 </div>
                             </div>
                             }
