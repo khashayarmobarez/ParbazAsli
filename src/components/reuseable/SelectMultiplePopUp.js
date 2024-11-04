@@ -73,8 +73,9 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
       </div>
 
       {isOpen && (
-        <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
-          <div className='w-[90%] md:w-[40%] top-32 z-30 max-h-[65dvh] bg-bgPopUpHeaderFooter flex flex-col items-center rounded-2xl '>
+        <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`}>
+          <div className='w-[90%] md:w-[40%] top-32 z-30 max-h-[65dvh] bg-bgPopUpHeaderFooter flex flex-col items-center rounded-2xl '
+          style={{boxShadow:'var(--shadow-all)'}}>
             <div className='w-full flex justify-between items-center bg-bgPopUpHeaderFooter px-2 py-4 rounded-t-2xl'>
               <CloseIcon onClick={handleIconClick} />
               <p>{name}</p>

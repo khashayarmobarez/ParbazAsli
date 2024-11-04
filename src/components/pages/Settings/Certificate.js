@@ -16,10 +16,10 @@ const Certificate = ({certificateData}) => {
                     <span className='w-7'>
                         <CertificateIcon/>
                     </span>
-                    <p className='flex-wrap text-xs' >{certificateData.organization} / {certificateData.level}</p>
+                    <p className='flex-wrap text-xs text-start' >{certificateData.organization} / {certificateData.level}</p>
                 </div>
                 <div className='flex flex-col items-start gap-y-2 text-start'>
-                    <p className='text-textDisabled '>
+                    <p className='text-textButtonMainDisabled '>
                         وضعیت:
                         {certificateData.status === 'Active' && <span className='text-textAccent'> فعال</span>}
                         {certificateData.status === 'Pending' && <span className='text-textWarning'> در انتظار تایید</span>}

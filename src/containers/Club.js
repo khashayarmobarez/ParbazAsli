@@ -9,6 +9,7 @@ import pencil from '../assets/icons/pencil-alt.svg'
 import ParachuteIcon from '../components/icons/ParachuteIcon'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // use club status
 import { useClubStatus } from '../Utilities/Services/clubQueries';
@@ -59,8 +60,8 @@ const Club = () => {
                             </Link>
                             
                             <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
-                                <ClassOutlinedIcon sx={{width:'18px', height:'18px'}} />
-                                <p>دوره‌ها</p>
+                                <AutoStoriesOutlinedIcon sx={{width:'18px', height:'18px'}} />
+                                <p>آموزش</p>
                             </Link>
                             
                             <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
