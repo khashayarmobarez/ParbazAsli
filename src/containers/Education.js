@@ -162,7 +162,6 @@ const Education = () => {
                                     <p>هنرجویان سابق ({courseCountsData.data.disableStudentCounts})</p>
                                 </div>
                             </div>
-
                     </div>
                 }
 
