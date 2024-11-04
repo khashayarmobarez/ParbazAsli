@@ -83,15 +83,15 @@ const PracticalFlightHistoryBox = (props) => {
                             <p>{flightBaseData.site && flightBaseData.site.slice(0, 14)}</p>
                             {
                             flightBaseData.status === 'Pending' &&
-                                <TimerOutlinedIcon sx={{width:'1.1rem', color:'var(--text-warning)'}} />
+                                <TimerOutlinedIcon sx={{width:'20px',height:'20px', color:'var(--text-warning)'}} />
                             }
                             {
                             flightBaseData.status === 'Accepted' &&
-                                <CheckIcon sx={{width:'1.1rem', color:'var(--text-accent)'}} />
+                                <CheckIcon sx={{width:'20px',height:'20px', color:'var(--text-accent)'}} />
                             }
                             {
                             flightBaseData.status === 'Rejected' &&
-                                <NotInterestedIcon sx={{width:'1rem', color:'var(--text-error)'}} />
+                                <NotInterestedIcon sx={{width:'20px',height:'20px', color:'var(--text-error)'}} />
                             }
                         </div>
                         {/* Trigger flight status */}
