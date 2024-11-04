@@ -40,7 +40,7 @@ const UserCoursesSlider = ({coursesData}) => {
                 width:12px;
                 height:12px;
                 border-radius: 100%;
-                color: var(--text-disabled);
+                color: var(--text-default);
                 z-index: 50;
               }
               .swiper-button-next {
