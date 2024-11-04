@@ -30,6 +30,6 @@
     box-shadow: -3px 4px 4.099999904632568px 2px rgba(0, 0, 0, 0.25);
 }
 .clipboardButtonBackgroundGradient {
-    background: var(--bg-button-profile-default);
+    background: var(--bg-input-dropdown);
     box-shadow: var(--shadow-all);
 }
