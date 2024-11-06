@@ -114,7 +114,7 @@ const AStudentClubCourses = () => {
                                             'textDefault'}
                                             `}>
                                             { courseData.organization && courseData.type !== 'Regular' &&
-                                                <p>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >>
                                                     <span >
                                                         ارگان:&nbsp;
                                                     </span>
@@ -122,7 +122,7 @@ const AStudentClubCourses = () => {
                                                 </p>
                                             }
                                             { courseData.clubName &&
-                                                <p>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >>
                                                     <span className=''>
                                                         باشگاه:&nbsp;
                                                     </span>
@@ -130,7 +130,7 @@ const AStudentClubCourses = () => {
                                                 </p>
                                             }
                                             { courseData.coach &&
-                                                <p>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >>
                                                     <span className=''>
                                                         مربی:&nbsp;
                                                     </span> 
