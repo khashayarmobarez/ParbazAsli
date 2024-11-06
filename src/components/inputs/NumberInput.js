@@ -26,7 +26,7 @@ const NumberInput = ({ id,value, onChange, placeholder, icon, IsEmptyAfterSubmit
 
   return (
     <div className="relative w-full min-h-12">
-      <span> 
+      <span onClick={handleLabelClick}> 
         { icon ?
           <span className={`absolute mt-3 mr-2 ${customIconSize ? customIconSize : 'w-6'}`}>  
             {icon}

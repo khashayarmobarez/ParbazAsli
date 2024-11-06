@@ -18,7 +18,7 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
 
   return (
     <div className="relative w-full min-h-12">
-      <span> 
+      <span htmlFor="floatingInput"> 
         { icon ?
           <span className={`absolute mt-3 mr-2 ${customIconSize ? customIconSize : 'w-6'}`}>  
             {icon}
