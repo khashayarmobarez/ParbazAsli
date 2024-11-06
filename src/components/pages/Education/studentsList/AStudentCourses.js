@@ -110,7 +110,7 @@ const AStudentCourses = () => {
                                     <div className='w-full flex justify-between text-start text-sm'>
                                         <div className='flex flex-col justify-between self-start'>
                                             { courseData.organization && courseData.type !== 'Regular' &&
-                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Canceled') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`}>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`}>
                                                     <span>
                                                         ارگان:&nbsp;
                                                     </span>
@@ -118,7 +118,7 @@ const AStudentCourses = () => {
                                                 </p>
                                             }
                                             { courseData.clubName &&
-                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Canceled') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span>
                                                         باشگاه:&nbsp;
                                                     </span>
@@ -126,7 +126,7 @@ const AStudentCourses = () => {
                                                 </p>
                                             }
                                             { courseData.coach &&
-                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Canceled') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span>
                                                         مربی:&nbsp;
                                                     </span> 

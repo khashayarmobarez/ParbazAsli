@@ -51,7 +51,6 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
     if (inputRef.current) {
       inputRef.current.focus();
       setIsOpen(!isOpen);
-      
     }
   };
 
@@ -61,36 +60,40 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
     setIsOpen(false);
   }
 
-
   return (
     <div className="flex relative w-[100%] h-12 rounded-xl" ref={dropdownRef}>
       <span className="absolute mt-3 mr-2 w-6">
-        {icon ? 
-          icon
-          :
-          <Cube />
-        }
+        {icon ? icon : <Cube />}
       </span>
       <input
         ref={inputRef}
         type="text"
-        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} placeholder-text-color w-full pl-10 pr-8`}
-        placeholder={name}
+        className={`${inputStyles.inputDropdown} ${filled ? inputStyles.inputFilledBorder : ''} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} placeholder-transparent w-full pl-10 pr-8`}
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
       />
+      <label
+        htmlFor="floatingInput"
+        className={`
+          absolute right-9 top-[14px] text-textInputDefault
+          transition-all duration-300 transform
+          ${filled ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-1' : 'text-sm'}
+          ${inputRef.current && inputRef.current === document.activeElement ? 'text-textAccent' : ''}
+        `}
+      >
+        {name || 'Search options'}
+      </label>
       <span 
         onClick={handleIconClick} 
         className="absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
       >
-        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)',  }} />
+        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
       {isOpen && (
         <ul className="absolute z-30 w-full bg-bgInputDropdown mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
-          
           {filteredOptions.map((option) => (
-            <div key={option.id} className=' flex flex-col w-full items-center justify-center '>
+            <div key={option.id} className='flex flex-col w-full items-center justify-center'>
               <li
                 className="px-4 w-full py-2 hover:bg-bgInputDropdown cursor-pointer"
                 onClick={() => handleOptionClick(option)}
@@ -100,15 +103,15 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
               <div className='w-full h-[1px] bg-textDisabled' />
             </div>
           ))}
-          <div className=' flex flex-col w-full items-center justify-center '>
-              <li
-                className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
-                onClick={handleClickOthers}
-              >
-                سایر ...
-              </li>
-              <div className='w-full h-[1px] bg-textDisabled' />
-            </div>
+          <div className='flex flex-col w-full items-center justify-center'>
+            <li
+              className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
+              onClick={handleClickOthers}
+            >
+              سایر ...
+            </li>
+            <div className='w-full h-[1px] bg-textDisabled' />
+          </div>
         </ul>
       )}
     </div>
@@ -116,12 +119,3 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
 };
 
 export default BrandsSearchInputWithDropdown;
-
-// Usage
-{/* <SearchInputWithDropdown
-    options={courseTypeOptionData}
-    selectedOption={selectedClassType}
-    handleSelectChange={handleSelectClassType}
-    name="Search options"
-    icon={Cube}
-/> */}
