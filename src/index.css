@@ -30,7 +30,7 @@ code {
   --text-accent:#23BC7C;
   --text-default:#3E3E3E;
   --text-default-opposite:#EEEEEE;
-  --text-disabled:#767779;
+  --text-disabled:#e5e5e5;
   --text-error:#DC3545;
   --text-warning:#FF9900;
 
@@ -123,7 +123,7 @@ code {
   --text-accent:#23BC7C;
   --text-default:#EEEEEE;
   --text-default-opposite:#3E3E3E;
-  --text-disabled:#767779;
+  --text-disabled:#535353;
   --text-error:#DC3545;
 
   /* main button */

@@ -108,9 +108,9 @@ const AStudentClubCourses = () => {
 
                                     <div className='w-full flex justify-between text-start text-sm'>
                                         <div className={`flex flex-col justify-between self-start 
-                                            text-${courseData.status === 'Active' ? 'textDefault' :
-                                                courseData.status === 'Completed' ? 'textButtonProfileDisable' :
-                                                courseData.status === 'Canceled' ? 'textButtonProfileDisable' :
+                                            text-${courseData.status === 'Active' ? 'text-textDefault' :
+                                                courseData.status === 'Completed' ? 'text-textButtonProfileDisable' :
+                                                courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' :
                                             'textDefault'}
                                             `}>
                                             { courseData.organization && courseData.type !== 'Regular' &&

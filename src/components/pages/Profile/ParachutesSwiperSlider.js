@@ -51,7 +51,7 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
               .swiper-pagination-bullet{
                 width: 6px;
                 height: 6px;
-                background-color: var(--text-disabled);
+                background-color: var(--text-default);
               }
               ${
                 isDesktop

@@ -51,7 +51,7 @@ const CourseStudentDetails = () => {
                                 
                                 {
                                     isMobile &&
-                                    <h1 className='text-lg font-medium'>{studentData.data.name}</h1>
+                                    <h1 className='text-lg'>{studentData.data.name}</h1>
                                 }
 
                                     
@@ -68,7 +68,7 @@ const CourseStudentDetails = () => {
                             {
                                 !isMobile && studentData.data &&
                                 <div className='w-full flex flex-col justify-center items-center gap-y-4'>
-                                    <h1 className='text-lg font-medium'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
+                                    <h1 className='text-lg'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
                                     <p className='text-xs text-lowOpacityWhite'>گواهینامه {studentData.data.levelName}</p>
                                 </div>
                             }

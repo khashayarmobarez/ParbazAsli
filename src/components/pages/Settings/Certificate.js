@@ -10,7 +10,7 @@ const Certificate = ({certificateData}) => {
         <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between pr-4 pl-3 py-4 ' 
         style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)', color:'var(--text-default) ' }}>
             
-            <div className=' w-full text-xs flex justify-between items-center gap-x-2'>
+            <div className=' w-full text-xs grid grid-cols-2 gap-x-4'>
 
                 <div className=' flex gap-x-1 '>
                     <span className='w-7'>
@@ -18,7 +18,7 @@ const Certificate = ({certificateData}) => {
                     </span>
                     <p className='flex-wrap text-xs text-start' >{certificateData.organization} / {certificateData.level}</p>
                 </div>
-                <div className='flex flex-col items-start gap-y-2 text-start'>
+                <div className='flex flex-col items-start gap-y-2 text-start pr-4'>
                     <p className='text-textButtonMainDisabled '>
                         وضعیت:
                         {certificateData.status === 'Active' && <span className='text-textAccent'> فعال</span>}
@@ -33,7 +33,7 @@ const Certificate = ({certificateData}) => {
 
             {certificateData.status === 'Rejected' &&
                 <div className='w-full flex items-center gap-x-2  mt-4'>
-                    <p className='text-sm text-textWarning font-medium'>دلیل رد شدن: {certificateData.rejectReason}</p>
+                    <p className='text-sm text-textWarning'>دلیل رد شدن: {certificateData.rejectReason}</p>
                 </div>
             }
 

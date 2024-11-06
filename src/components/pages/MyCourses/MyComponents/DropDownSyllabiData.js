@@ -31,11 +31,11 @@ const DropDownSyllabiData = (props) => {
             borderColor: isExpanded ? 
                 'var(--border-input-success)' 
                 :
-                'var(--border-input-selected)',
+                'var(--text-default)',
             color: isExpanded ? 
                 'var(--border-input-success)' 
                 :
-                'var(--border-input-selected)',
+                'var(--text-default)',
         }}>
 
             <div className='flex gap-x-2' >
