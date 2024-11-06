@@ -283,10 +283,11 @@ const AddHarness = () => {
                     <TextInput icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size} />
 
                     {/* Flight hour input */}
-                    <NumberInput icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                    <NumberInput icon={<ClockIcon/>} id={1} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput
+                      id={2}
                       icon={<CalenderIcon/>}
                       className='col-span-1'
                       value={year}

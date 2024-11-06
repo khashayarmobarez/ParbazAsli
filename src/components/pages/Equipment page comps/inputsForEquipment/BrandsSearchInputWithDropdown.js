@@ -78,7 +78,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
         className={`
           absolute right-9 top-[14px] text-textInputDefault
           transition-all duration-300 transform
-          ${filled ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-1' : 'text-sm'}
+          ${filled ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-sm'}
           ${inputRef.current && inputRef.current === document.activeElement ? 'text-textAccent' : ''}
         `}
       >

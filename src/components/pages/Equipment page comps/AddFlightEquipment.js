@@ -311,8 +311,8 @@ const AddFlightEquipment = () => {
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={<Cube/>} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                            <NumberInput icon={<Cube/>} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                            <NumberInput icon={<Cube/>} id={1} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={<Cube/>} id={2} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
@@ -340,6 +340,7 @@ const AddFlightEquipment = () => {
                         
                         {/* Year input */}
                         <NumberInput
+                          id={3}
                           icon={<CalenderIcon/>}
                           className='col-span-1'
                           value={year}
@@ -350,6 +351,7 @@ const AddFlightEquipment = () => {
                         
                         {/* flight hour model input */}
                         <NumberInput 
+                          id={4}
                           icon={<ClockIcon/>} 
                           className='col-span-1' 
                           value={flightHour} 

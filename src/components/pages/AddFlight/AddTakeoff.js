@@ -180,6 +180,7 @@ const AddTakeoff = () => {
                     {/* <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
                     <NumberInput
+                        id={1}
                         icon={<WindIcon/>}
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}

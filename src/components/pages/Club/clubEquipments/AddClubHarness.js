@@ -276,12 +276,13 @@ const AddClubHarness = () => {
                     <TextInput icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
 
                     {/* Flight hour input */}
-                    <NumberInput icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                    <NumberInput icon={<ClockIcon/>} id={1} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput
                       icon={<CalenderIcon/>}
                       className='col-span-1'
+                      id={2}
                       value={year}
                       onChange={handleTextInputYear}
                       placeholder='سال ساخت (میلادی)'

@@ -416,6 +416,7 @@ const AddLanding = () => {
                     />
                     
                     <NumberInput
+                        id={1}
                         icon={<WindIcon/>}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}

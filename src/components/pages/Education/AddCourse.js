@@ -594,7 +594,7 @@ const AddCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput id={1} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}
