@@ -225,7 +225,7 @@ const CourseStudents = () => {
                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>
-                                <p className='text-textDisabled'
+                                <p className='text-textButtonMainDisabled'
                                 onClick={() => handleClickStudent(student.id)}>وضعیت: 
                                     {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
                                     {student.status === 'CoachPending' && <span className='text-textWarning'> در انتظار تایید</span>}
@@ -371,7 +371,7 @@ const CourseStudents = () => {
                                                 <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
                                                 onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
                                                 <p onClick={() => handleClickStudent(student.id)}>{student.name}</p>
-                                                <p className='text-textDisabled'
+                                                <p className='text-textButtonMainDisabled'
                                                 onClick={() => handleClickStudent(student.id)}>
                                                     وضعیت: 
                                                     {student.status === 'Completed' && <span className='text-textAccent '> تمام شده</span>}

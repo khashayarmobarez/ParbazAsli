@@ -40,7 +40,7 @@ const UserCoursesSlider = ({coursesData}) => {
                 width:14px;
                 height:14px;
                 border-radius: 100%;
-                color: var(--text-disabled);
+                color: var(--text-default);
                 z-index: 50;
               }
               .swiper-button-next {
@@ -53,7 +53,7 @@ const UserCoursesSlider = ({coursesData}) => {
               .swiper-pagination-bullet{
                 width: 6px;
                 height: 6px;
-                background-color: var(--text-disabled);
+                background-color: var(--text-default);
               }
               ${
                 isDesktop

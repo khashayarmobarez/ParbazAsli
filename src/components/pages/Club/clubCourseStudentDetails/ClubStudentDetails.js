@@ -48,7 +48,7 @@ const ClubCourseStudentDetails = () => {
                                 
                                 {
                                     isMobile &&
-                                    <h1 className='text-lg font-medium'>{studentData.data.name}</h1>
+                                    <h1 className='text-lg '>{studentData.data.name}</h1>
                                 }
 
                                 <Avatar alt='user picture'  src={ studentData.data.image?.path || ''} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
@@ -60,7 +60,7 @@ const ClubCourseStudentDetails = () => {
                             {
                                 !isMobile && studentData.data &&
                                 <div className='w-full flex flex-col justify-center items-center gap-y-4'>
-                                    <h1 className='text-lg font-medium'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
+                                    <h1 className='text-lg '>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
                                     <p className='text-xs text-lowOpacityWhite'>گواهینامه {studentData.data.levelName}</p>
                                 </div>
                             }
