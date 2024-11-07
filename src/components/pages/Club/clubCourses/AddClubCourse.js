@@ -424,6 +424,7 @@ const AddClubCourse = () => {
                 {
                     coachNamesData && coachNamesData.data.length > 0 &&
                     <DropdownInput
+                        id={'ddi1'}
                         options={coachNamesData.data}
                         handleSelectChange={handleSelectCoachChange}
                         selectedOption={Coach}
@@ -434,7 +435,7 @@ const AddClubCourse = () => {
 
                 {
                     coachNamesData && coachNamesData.data.length > 0 &&
-                        <DropdownInput name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>} />
+                        <DropdownInput id={'ddi2'} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>} />
                 }
 
                 {selectedClassType && 
@@ -461,6 +462,7 @@ const AddClubCourse = () => {
                         { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
                             <>
                                 <DropdownInput
+                                id={'ddi3'}
                                 options={organsData.data}
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
@@ -477,6 +479,7 @@ const AddClubCourse = () => {
                                             <>
 
                                                 <DropdownInput
+                                                    id={'ddi4'}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     icon={<ChartIcon2/>}

@@ -287,7 +287,7 @@ const AddHarness = () => {
 
                     {/* Year input */}
                     <NumberInput
-                      id={2}
+                      id={'NI2'}
                       icon={<CalenderIcon/>}
                       className='col-span-1'
                       value={year}

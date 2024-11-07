@@ -230,6 +230,7 @@ const RenewCertificate = () => {
 
                                 
                                 <DropdownInput
+                                    id={'ddi1'}
                                     icon={<CertificateIcon/>}
                                     options={organsData.data}
                                     handleSelectChange={handleSelectOrganChange}
@@ -248,6 +249,7 @@ const RenewCertificate = () => {
 
 
                                                 <DropdownInput
+                                                    id={'ddi2'}
                                                     icon={<CertificateIcon/>}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}

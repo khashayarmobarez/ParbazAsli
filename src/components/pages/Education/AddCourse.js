@@ -402,7 +402,7 @@ const AddCourse = () => {
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <DropdownInput isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>}/>
+                <DropdownInput id={'ddi1'} isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>}/>
 
 
                 {selectedClassType && 
@@ -425,6 +425,7 @@ const AddCourse = () => {
                         { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
                             <>
                                 <DropdownInput
+                                id={'ddi2'}
                                 options={organsData.data}
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
@@ -440,6 +441,7 @@ const AddCourse = () => {
                                         {!levelsError && !levelsLoading &&
                                             <>
                                                 <DropdownInput
+                                                    id={'ddi3'}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
@@ -594,7 +596,7 @@ const AddCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput id={1} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput id={'NI1'} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}

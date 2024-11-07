@@ -397,6 +397,7 @@ const AddLanding = () => {
                     {
                         landingTypesData &&   
                         <DropdownInput 
+                            id={'ddi1'}
                             name={'شیوه'} 
                             icon={<ColorTagsIcon/>} 
                             options={landingTypesData.data} 
@@ -407,6 +408,7 @@ const AddLanding = () => {
                     }
 
                     <DropdownInput 
+                        id={'ddi2'}
                         name={'جهت باد'} 
                         icon={<WindDirectionCock/>} 
                         options={windDirectionOptions} 
@@ -416,7 +418,7 @@ const AddLanding = () => {
                     />
                     
                     <NumberInput
-                        id={1}
+                        id={'NI1'}
                         icon={<WindIcon/>}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}

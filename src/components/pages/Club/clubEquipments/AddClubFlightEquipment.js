@@ -308,13 +308,14 @@ const AddClubFlightEquipment = () => {
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={<Cube />} id={1} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                            <NumberInput icon={<Cube />} id={2} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                            <NumberInput icon={<Cube />} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={<Cube />} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
                         {/* class input */}
                         <DropdownInput
+                          id={'ddi1'}
                           className='col-span-1'
                           name={'کلاس'}
                           icon={<wingIcon/>}
@@ -326,6 +327,7 @@ const AddClubFlightEquipment = () => {
 
                         {/* wing type input */}
                         <DropdownInput
+                          id={'ddi2'}
                           className='col-span-1'
                           name={'نوع'}
                           icon={<ColorTagsIcon/>}
@@ -337,7 +339,7 @@ const AddClubFlightEquipment = () => {
                         
                         {/* Year input */}
                         <NumberInput
-                          id={4}
+                          id={'NI3'}
                           icon={<CalenderIcon/>}
                           className='col-span-1'
                           value={year}
@@ -347,7 +349,7 @@ const AddClubFlightEquipment = () => {
                         />
                         
                         {/* flight hour model input */}
-                        <NumberInput icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                        <NumberInput id={'NI4'} icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
                       
 
                       </div>

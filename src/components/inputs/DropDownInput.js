@@ -5,7 +5,7 @@ import Cube from '../../components/icons/ThreeDCube';
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit }) => {
+const DropdownInput = ({ id ,options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const selectRef = useRef(null);
@@ -35,6 +35,13 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
+  const handleLabelClick = () => {
+      // Focus the input field when the label is clicked
+      if (selectRef.current) {
+          selectRef.current.focus();
+      }
+  };
+
   return (
     <div className="relative w-full min-h-12">
       <span className="absolute right-3 top-3 w-5 z-10">
@@ -42,7 +49,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
       </span>
       <select
         ref={selectRef}
-        id="floatingDropdown"
+        id={id}
         className={`
           peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl appearance-none
           border-2 border-gray-300 bg-transparent
@@ -64,6 +71,7 @@ const DropdownInput = ({ options, selectedOption, handleSelectChange, name, icon
         ))}
       </select>
       <label
+        onClick={handleLabelClick}
         htmlFor="floatingDropdown"
         className={`
           absolute right-10 top-[14px] text-textInputDefault

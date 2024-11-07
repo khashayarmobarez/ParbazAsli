@@ -200,7 +200,7 @@ const FlightsAdvancedFilter = () => {
                     
                             {
                                 userCoursesData && userCoursesData.data.length > 0 &&
-                                <DropdownInput icon={<SingleTag/>} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                                <DropdownInput  id={'ddi1'} icon={<SingleTag/>} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
                             }
                             
                             {
@@ -214,7 +214,7 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 countriesData && 
-                                <DropdownInput icon={<EarthIcon/>} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                                <DropdownInput id={'ddi2'} icon={<EarthIcon/>} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
                             }
 
                             {
@@ -227,14 +227,14 @@ const FlightsAdvancedFilter = () => {
                                 (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
-                            <DropdownInput icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                            <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             
                             {
                                 userCoachesData && userCoachesData.data.length > 0 &&
-                                <DropdownInput icon={<UserIcon/>} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
+                                <DropdownInput id={'ddi4'} icon={<UserIcon/>} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
                             }
 
-                            <DropdownInput icon={<ColorTagsIcon/>} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+                            <DropdownInput id={'ddi5'} icon={<ColorTagsIcon/>} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
                             {
