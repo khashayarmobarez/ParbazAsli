@@ -545,6 +545,7 @@ const AddClubCourse = () => {
                                         />
 
                                         <TextInput
+                                        id={'TI1'}
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
@@ -562,6 +563,7 @@ const AddClubCourse = () => {
                             <>
 
                                     <TextInput
+                                        id={'TI2'}
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
@@ -570,7 +572,7 @@ const AddClubCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                        <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -600,7 +602,7 @@ const AddClubCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                        <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -650,7 +652,7 @@ const AddClubCourse = () => {
 
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-full flex flex-col'>
-                                            <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                            <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
                                         </div>
                                         {studentData?.data && (
                                             <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >

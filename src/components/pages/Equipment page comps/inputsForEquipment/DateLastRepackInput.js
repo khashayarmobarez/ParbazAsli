@@ -21,7 +21,7 @@ const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, pos
   };
 
   return (
-    <div className='w-full flex'>
+    <div className='w-full flex relative'>
         <span className="absolute mt-3 mr-2 w-5">
           {icon ? 
             icon
@@ -40,6 +40,18 @@ const DateLastRepackInput = ({ defaultValue, onChange, customShowDateFormat, pos
             inputAttributes={{ placeholder: placeH }}
             direction="rtl"
         />
+        {
+          filled &&
+          <label
+            htmlFor="floatingDropdown"
+            className={`
+              absolute right-10 top-[14px] text-textInputDefault
+              -translate-y-[21px] translate-x-2 text-xs bg-bgPageMain px-2
+            `}
+          >
+          {placeH || 'تاریخ'}
+        </label>
+        }
     </div>
   );
 };

@@ -41,31 +41,31 @@ const FilterVariables = () => {
     const handleRemoveFilter = (filter) => {
         switch(filter) {
             case 'courseFilter':
-                dispatch(updateCourseFilter({name:'', id:''}));
+                dispatch(updateCourseFilter(''));
                 break;
             case 'wingFilter':
-                dispatch(updateWingFilter({name:'', id:''}));
+                dispatch(updateWingFilter(''));
                 break;
             case 'harnessFilter':
-                dispatch(updateHarnessFilter({name:'', id:''}));
+                dispatch(updateHarnessFilter(''));
                 break;
             case 'countryFilter':
-                dispatch(updateCountryFilter({name:'', id:''}));
+                dispatch(updateCountryFilter(''));
                 break;
             case 'provinceFilter':
-                dispatch(updateProvinceFilter({name:'', id:''}));
+                dispatch(updateProvinceFilter(''));
                 break;
             case 'siteFilter':
-                dispatch(updateSiteFilter({name:'', id:''}));
+                dispatch(updateSiteFilter(''));
                 break;
             case 'flightTypeFilter':
-                dispatch(updateFlightTypeFilter({name:'', id:''}));
+                dispatch(updateFlightTypeFilter(''));
                 break;
             case 'coachNameFilter':
-                dispatch(updateCoachNameFilter({name:'', id:''}));
+                dispatch(updateCoachNameFilter(''));
                 break;
             case 'flightStatusFilter':
-                dispatch(updateFlightStatusFilter({name:'', id:''}));
+                dispatch(updateFlightStatusFilter(''));
                 break;
             case 'fromDateFilter':
                 dispatch(updateFromDateFilter(''));

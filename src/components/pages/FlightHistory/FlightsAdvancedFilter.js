@@ -76,6 +76,7 @@ const FlightsAdvancedFilter = () => {
     const resetDateFunc = () => {
         setResetDate(true)
         setTimeout(() => setResetDate(false), 50);
+        window.location.reload();
     }
 
     const handleSelectCourseFilter = (selectedOption) => {

@@ -402,6 +402,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                 <p className='text-textAccent text-xl'>شماره‌ تلفن یا ایمیل خود را وارد کنید</p>
 
                                 <TextInput
+                                    id={'TI1'}
                                     value={input}
                                     onChange={phoneOrEmailInputHandler}
                                     placeholder={'شماره موبایل یا ایمیل'}

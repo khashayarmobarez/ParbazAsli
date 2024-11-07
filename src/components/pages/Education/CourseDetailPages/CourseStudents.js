@@ -336,7 +336,7 @@ const CourseStudents = () => {
                             aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[70%] flex flex-col'>
-                                        <TextInput value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
+                                        <TextInput id={'TI1'} value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-24 h-12 flex justify-center items-center rounded-2xl bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}

@@ -137,6 +137,7 @@ const Syllabuses = () => {
                 <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
 
                 <TextInput
+                    id={'TI1'}
                     value={searchSyllabus}
                     onChange={(e) => setSearchSyllabus(e.target.value)}
                     placeholder='جستجو در سیلابس‌ها' 

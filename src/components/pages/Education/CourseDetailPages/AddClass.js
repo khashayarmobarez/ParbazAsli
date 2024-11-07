@@ -248,6 +248,7 @@ const AddClass = () => {
                         <form className='w-full flex flex-col items-center gap-y-4'>
 
                             <TextInput
+                                id={'TI1'}
                                 value={ClassName}
                                 onChange={handleClassName}
                                 placeholder='نام کلاس'
@@ -315,7 +316,7 @@ const AddClass = () => {
 
                             <div className='w-full flex flex-col items-center relative'>
                                 <div className='w-full flex flex-col'>
-                                    <TextInput value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
+                                    <TextInput id={'TI2'} value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
                                 </div>
                                 {/* <span
                                     className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}

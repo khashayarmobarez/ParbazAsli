@@ -198,6 +198,7 @@ const ContactUs = () => {
 
                         <div className='w-full flex flex-col'>
                             <TextInput  placeholder='نام' value={fullName}
+                            id={'TI1'}
                             onChange={(e) => setFullName(e.target.value)}
                             required  />
                             {showErrors && errorMessages.fullName && 
@@ -207,6 +208,7 @@ const ContactUs = () => {
 
                         <div className='w-full flex flex-col'>
                             <TextInput  placeholder='ایمیل' icon={<MailIcon />}
+                            id={'TI2'}
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}

@@ -229,7 +229,7 @@ const ClubCoaches = () => {
                         }
                         <div className='w-full flex justify-between relative items-center'>
                             <div className='w-[70%] flex flex-col'>
-                                <TextInput value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
+                                <TextInput id={'TI1'} value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
                             </div>
                             <span
                                 className={` w-24 h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}

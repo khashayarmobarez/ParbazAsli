@@ -264,6 +264,7 @@ const RenewCertificate = () => {
                                                     <>
 
                                                         <TextInput
+                                                        id={'TI1'}
                                                         value={certificateId}
                                                         onChange={handleCertificateIdChange}
                                                         placeholder={'شماره گواهینامه'}

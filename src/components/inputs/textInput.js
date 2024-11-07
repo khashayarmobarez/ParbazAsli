@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
-const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize }) => {
+const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
@@ -15,6 +15,12 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
+
+  const handleLabelClick = () => {
+    // Focus the input field when the label is clicked
+    document.getElementById(id).focus();
+  };
+
 
   return (
     <div className="relative w-full min-h-12">
@@ -29,7 +35,7 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
       </span>
       <input 
         type={Type || 'text'}
-        id="floatingInput"
+        id={id}
         placeholder=" "
         onChange={handleInputChange}
         onFocus={handleFocus}
@@ -46,6 +52,7 @@ const TextInput = ({ value, onChange, placeholder, Type, icon, IsEmptyAfterSubmi
         `}
       />
       <label
+        onClick={handleLabelClick}
         htmlFor="floatingInput"
         className={`
           absolute right-9 top-[13px] text-textInputDefault

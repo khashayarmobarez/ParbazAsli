@@ -428,6 +428,7 @@ const AddLanding = () => {
 
                     {flightType === 'Tandem' && 
                         <TextInput 
+                            id={'TI1'}
                             icon={<PhoneIcon/>}
                             value={passengerPhoneNumber} 
                             onChange={handlePassengerPhoneNum} 

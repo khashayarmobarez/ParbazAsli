@@ -84,6 +84,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
 
             <div className='w-full py-4 bg-bgHeader px-[5%] -mb-1'>
               <TextInput 
+                id={'TI1'}
                 customIconSize={'w-5'}
                 placeholder={name}
                 value={searchTerm} 

@@ -300,12 +300,12 @@ const AddFlightEquipment = () => {
                         {/* show custom brand input */}
                         {
                           showCustomBrandInput &&
-                            <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
+                            <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
                         }
 
                         
                         {/* aircraft model input */}
-                        <TextInput value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                        <TextInput id={'TI2'} value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>
@@ -374,6 +374,7 @@ const AddFlightEquipment = () => {
                         </p>
                       </div>
                         <TextInput
+                          id={'TI3'}
                           icon={<SerialNumberIcon/>}
                           className='col-span-1'
                           value={serialNumber}
