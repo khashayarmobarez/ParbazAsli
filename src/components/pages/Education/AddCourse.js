@@ -656,14 +656,11 @@ const AddCourse = () => {
 
 
                                 {/* description input */}
-                                <div className='w-full flex flex-col gap-y-2'>
-                                    <h1 className=' self-start'>توضیحات درباره دوره</h1>
                                     <DescriptionInput
                                         value={description}
                                         onChange={handleDescription}
                                         placeholder='توضیحات دوره را اینجا بنویسید ...'
                                     />
-                                </div>
 
 
                                 <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
