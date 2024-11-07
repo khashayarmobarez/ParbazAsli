@@ -656,11 +656,11 @@ const AddCourse = () => {
 
 
                                 {/* description input */}
-                                    <DescriptionInput
-                                        value={description}
-                                        onChange={handleDescription}
-                                        placeholder='توضیحات دوره را اینجا بنویسید ...'
-                                    />
+                                <DescriptionInput
+                                    value={description}
+                                    onChange={handleDescription}
+                                    placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                />
 
 
                                 <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
