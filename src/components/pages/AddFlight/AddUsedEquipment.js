@@ -175,7 +175,7 @@ const AddUsedEquipment = () => {
                     <div className='h-[1px] w-6/12 mt-2' style={{background: 'var(--text-accent)' }}></div>
                 </div>
 
-                <form className='w-full flex flex-col items-center justify-center gap-y-6'>
+                <form className='w-full flex flex-col items-center justify-center gap-y-4'>
 
                     {
                         (userParachuteLoading || userWingsLoading || userHarnessLoading) &&

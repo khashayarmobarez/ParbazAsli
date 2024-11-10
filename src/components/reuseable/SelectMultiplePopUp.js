@@ -69,7 +69,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
         <span className="absolute -mt-0 -mr-7 w-5">
           {Icon ? Icon : <Cube />}
         </span>
-        <p>{name}</p>
+        <p className='text-textInputDefault'>{name}</p>
       </div>
 
       {isOpen && (
