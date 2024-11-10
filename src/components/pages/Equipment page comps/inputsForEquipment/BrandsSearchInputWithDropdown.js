@@ -91,11 +91,12 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
       {isOpen && (
-        <ul className="absolute z-30 w-full bg-bgInputDropdown mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+        <ul className="absolute z-30 w-full bg-bgOutputSelectedOption mt-14 rounded-xl max-h-60 overflow-auto"
+        style={{boxShadow:'var(--shadow-button-dark)'}}>
           {filteredOptions.map((option) => (
             <div key={option.id} className='flex flex-col w-full items-center justify-center'>
               <li
-                className="px-4 w-full py-2 hover:bg-bgInputDropdown cursor-pointer"
+                className="px-4 w-full py-2 bg-bgOutputSelectedOption hover:bg-bgInputDropdown cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
                 {option.name}
