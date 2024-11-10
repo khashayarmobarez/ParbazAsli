@@ -267,21 +267,22 @@ const AddClubHarness = () => {
                     {/* show custom brand input */}
                     {
                       showCustomBrandInput &&
-                        <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand}  />
+                        <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand}  />
                     }
                     
-                    <TextInput placeholder='نام مدل' icon={<ClothesTag/>} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
+                    <TextInput id={'TI2'} placeholder='نام مدل' icon={<ClothesTag/>} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
 
                     {/* size input */}
-                    <TextInput icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
+                    <TextInput id={'TI3'} icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
 
                     {/* Flight hour input */}
-                    <NumberInput icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                    <NumberInput id={'NI1'} icon={<ClockIcon/>} id={1} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput
                       icon={<CalenderIcon/>}
                       className='col-span-1'
+                      id={'NI2'}
                       value={year}
                       onChange={handleTextInputYear}
                       placeholder='سال ساخت (میلادی)'
@@ -301,6 +302,7 @@ const AddClubHarness = () => {
 
                   {/* Serial number input */}
                   <TextInput
+                    id={'TI4'}
                     icon={<SerialNumberIcon/>}
                     className='col-span-1'
                     value={serialNumber}

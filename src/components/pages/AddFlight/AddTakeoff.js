@@ -168,18 +168,19 @@ const AddTakeoff = () => {
                         />
                     </div>
 
-                    {/* <DropdownInput name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} /> */}
+                    {/* <DropdownInput id={'ddi1'} name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} /> */}
 
                     {
                         takeOffTypesData &&
-                        <DropdownInput name={'شیوه'} icon={<ColorTagsIcon/>} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
-                    }
+                        <DropdownInput id={'ddi2'} name={'شیوه'} icon={<ColorTagsIcon/>} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
+                    } 
 
-                    <DropdownInput name={'جهت باد'} icon={<WindDirectionCock/>} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} IsEmptyAfterSubmit={submitted && !takeoffwindDirection} />
+                    <DropdownInput id={'ddi3'} name={'جهت باد'} icon={<WindDirectionCock/>} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} IsEmptyAfterSubmit={submitted && !takeoffwindDirection} />
                     
-                    {/* <DropdownInput name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
+                    {/* <DropdownInput id={'ddi4'} name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
                     <NumberInput
+                        id={'NI1'}
                         icon={<WindIcon/>}
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}

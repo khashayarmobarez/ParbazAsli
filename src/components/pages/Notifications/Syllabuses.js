@@ -137,6 +137,7 @@ const Syllabuses = () => {
                 <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
 
                 <TextInput
+                    id={'TI1'}
                     value={searchSyllabus}
                     onChange={(e) => setSearchSyllabus(e.target.value)}
                     placeholder='جستجو در سیلابس‌ها' 
@@ -168,11 +169,11 @@ const Syllabuses = () => {
                                     style={{ backgroundColor: 'transparent' }}
                                     className="rounded-lg w-4 text-center text-sm"
                                 />
-                                <span className={`text-white rounded-lg w-6 h-6 cursor-pointer ${counters[index] === 0 ? 'bg-textButtonMainDisabled' : 'bg-bgButtonProfileDefault'}`}
+                                <span className={`text-white rounded-lg w-6 h-6 cursor-pointer ${counters[index] === 0 ? 'bg-bgButtonProfileDisabled' : 'bg-bgButtonProfileDefault'}`}
                                 onClick={() => handleDecrement(index)}
-                                style={{ boxShadow:'var(--shadow-all)' }}>
+                                style={{ boxShadow: counters[index] !== 0 && 'var(--shadow-all)' }}>
                                     <RemoveIcon
-                                    sx={{color:counters[index] === 0 ? 'var(--text-disabled)' : 'var(--text-error)'}}
+                                        sx={{color:counters[index] === 0 ? 'var(--text-disabled)' : 'var(--text-error)'}}
                                     />
                                 </span>
                             </div>

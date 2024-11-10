@@ -16,7 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // assets
 import Cube from '../../../../components/icons/ThreeDCube'
-import wingIcon from '../../../../components/icons/WingIcon'
+import WingIcon from '../../../../components/icons/WingIcon'
 import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon'
 import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
@@ -298,26 +298,27 @@ const AddClubFlightEquipment = () => {
                         {/* show custom brand input */}
                         {
                           showCustomBrandInput &&
-                            <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !aircraft}  />
+                            <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !aircraft}  />
                         }
 
                         {/* aircraft model input */}
-                        <TextInput value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                        <TextInput id={'TI2'} value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={<Cube />} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                            <NumberInput icon={<Cube />} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                            <NumberInput icon={<Cube />} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={<Cube />} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
                         {/* class input */}
                         <DropdownInput
+                          id={'ddi1'}
                           className='col-span-1'
                           name={'کلاس'}
-                          icon={<wingIcon/>}
+                          icon={<WingIcon/>}
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
@@ -326,6 +327,7 @@ const AddClubFlightEquipment = () => {
 
                         {/* wing type input */}
                         <DropdownInput
+                          id={'ddi2'}
                           className='col-span-1'
                           name={'نوع'}
                           icon={<ColorTagsIcon/>}
@@ -337,6 +339,7 @@ const AddClubFlightEquipment = () => {
                         
                         {/* Year input */}
                         <NumberInput
+                          id={'NI3'}
                           icon={<CalenderIcon/>}
                           className='col-span-1'
                           value={year}
@@ -346,7 +349,7 @@ const AddClubFlightEquipment = () => {
                         />
                         
                         {/* flight hour model input */}
-                        <NumberInput icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                        <NumberInput id={'NI4'} icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
                       
 
                       </div>
@@ -361,6 +364,7 @@ const AddClubFlightEquipment = () => {
                       </div>
 
                       <TextInput
+                        id={'TI3'}
                         icon={<SerialNumberIcon/>}
                         className='col-span-1'
                         value={serialNumber}

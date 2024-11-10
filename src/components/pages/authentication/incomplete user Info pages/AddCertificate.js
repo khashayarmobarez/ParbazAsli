@@ -326,6 +326,7 @@ const AddCertificate = () => {
                                 {
                                     isStarter !== 'notAnsweredYet' &&
                                         <DropdownInput
+                                            id={'ddi1'}
                                             options={organsData.data}
                                             handleSelectChange={handleSelectOrganChange}
                                             selectedOption={organ}
@@ -351,6 +352,7 @@ const AddCertificate = () => {
                                             <>
 
                                                 <DropdownInput
+                                                    id={'ddi2'}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
@@ -365,6 +367,7 @@ const AddCertificate = () => {
                                                     <>
 
                                                         <TextInput
+                                                            id={'TI1'}
                                                             value={certificateId}
                                                             onChange={handleCertificateIdChange}
                                                             placeholder={'شماره گواهینامه'}

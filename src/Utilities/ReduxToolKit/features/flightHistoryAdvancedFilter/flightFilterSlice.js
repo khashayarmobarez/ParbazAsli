@@ -2,16 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    courseFilter: {name:'', id:''},
-    wingFilter:{name:'', id:''},
-    harnessFilter: {name:'', id:''},
-    countryFilter:{name:'', id:''},
-    provinceFilter:{name:'', id:''},
+    courseFilter: '',
+    wingFilter:'',
+    harnessFilter: '',
+    countryFilter:'',
+    provinceFilter:'',
     // site
-    siteFilter:{name:'', id:''},
-    flightTypeFilter:{name:'', id:''},
-    coachNameFilter:{name:'', id:''},
-    flightStatusFilter:{name:'', id:''},
+    siteFilter:'',
+    flightTypeFilter:'',
+    coachNameFilter:'',
+    flightStatusFilter:'',
     fromDateFilter:'',
     toDateFilter:'',
   };
@@ -58,15 +58,15 @@ const flightFilterSlice = createSlice({
             state.toDateFilter = action.payload;
         },
         resetAllFilters: (state) => {
-            state.courseFilter = {name:'', id:''};
-            state.wingFilter = {name:'', id:''};
-            state.harnessFilter = {name:'', id:''};
-            state.countryFilter = {name:'', id:''};
-            state.provinceFilter = {name:'', id:''};
-            state.siteFilter = {name:'', id:''};
-            state.flightTypeFilter = {name:'', id:''};
-            state.coachNameFilter = {name:'', id:''};
-            state.flightStatusFilter = {name:'', id:''};
+            state.courseFilter = '';
+            state.wingFilter = '';
+            state.harnessFilter = '';
+            state.countryFilter = '';
+            state.provinceFilter = '';
+            state.siteFilter = '';
+            state.flightTypeFilter = '';
+            state.coachNameFilter = '';
+            state.flightStatusFilter = '';
             state.fromDateFilter = '';
             state.toDateFilter = '';
         },

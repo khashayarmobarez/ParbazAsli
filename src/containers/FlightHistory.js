@@ -131,11 +131,11 @@ const FlightHistory = () => {
                         {userFlights && userFlights.data.length > 0 && (
                             <div className='w-full flex justify-between px-10 items-center'>
                                 <button
-                                    className={`w-6 h-6 justify-self-start ${(userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                    className={`w-6 h-6 justify-self-start `}
                                     disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
                                     onClick={handleNextPage}
                                 >
-                                    <ArrowButton isRight={true}/>
+                                    <ArrowButton isRight={true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -148,7 +148,7 @@ const FlightHistory = () => {
                                     onClick={handlePrevPage}
                                 >
 
-                                    <ArrowButton/>
+                                    <ArrowButton isDisable={pageNumber === 1}/>
 
                                 </button>
                                 

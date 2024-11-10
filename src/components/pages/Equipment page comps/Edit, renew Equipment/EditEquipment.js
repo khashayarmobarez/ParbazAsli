@@ -338,6 +338,7 @@ const EditEquipment = () => {
 
                                                 {/* text input to add parachute serial */}
                                                 <TextInput
+                                                id={'TI1'}
                                                 icon={<SerialNumberIcon/>}
                                                 className='col-span-1'
                                                 value={equipmentSerial}
@@ -371,6 +372,7 @@ const EditEquipment = () => {
                                                 {/* Last Packer ID input */}
                                                 <div className='w-full flex flex-col items-start gap-y-2'>
                                                     <TextInput
+                                                    id={'TI2'}
                                                     icon={<UserIcon/>}
                                                     className='col-span-1'
                                                     value={lastPackerId}

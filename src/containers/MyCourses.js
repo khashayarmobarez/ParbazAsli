@@ -257,11 +257,11 @@ const MyCourses = () => {
                                             { course.courseType !== 'Guest' && courseData && courseData.totalPagesCount > 1 && (
                                                 <div className='w-full flex justify-between px-10 items-center'>
                                                     <button
-                                                        className={`w-6 h-6 justify-self-start ${(courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                        className={`w-6 h-6 justify-self-start `}
                                                         disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
                                                         onClick={handleNextPageNumber}
                                                     >
-                                                        <ArrowButton isRight={true}/>
+                                                        <ArrowButton isRight={true} isDisable={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}/>
                                                     </button>
 
                                                     <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -269,11 +269,11 @@ const MyCourses = () => {
                                                     </p>
 
                                                     <button
-                                                        className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                                                        className={`transform w-6 h-6 justify-self-end`}
                                                         disabled={pageNumber === 1}
                                                         onClick={handleLastPageNumber}
                                                     >
-                                                        <ArrowButton/>
+                                                        <ArrowButton isDisable={pageNumber === 1}/>
                                                     </button>
                                                 </div>
                                             )}

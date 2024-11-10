@@ -16,7 +16,7 @@ const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, h
     <div className='flex flex-col w-full'>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
       <span className="absolute -mt-0 mr-2 w-5">
-          <Cube />
+        <Cube />
       </span>
         <select className={`${inputStyles.inputDropdown} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} w-[100%]`} id="dropdown" value="" onChange={handleSelection}>
           <option value="">{name}</option>

@@ -83,11 +83,11 @@ const Notifications = () => {
                 {   notificationsData && notificationsData.totalCount > 7 &&
                     <div className='w-full flex justify-between px-10 items-center'>
                         <button
-                            className={`transform w-6 h-6 justify-self-end ${PageNumber === 1 && 'opacity-60'}`}
+                            className={`transform w-6 h-6 justify-self-end `}
                             disabled={PageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
-                            <ArrowButton isRight={true}/>
+                            <ArrowButton isRight={true} isDisable={PageNumber === 1}/>
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -95,11 +95,11 @@ const Notifications = () => {
                         </p>
 
                         <button
-                            className={`w-6 h-6 justify-self-start ${(notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber) && 'opacity-60'}`}
+                            className={`w-6 h-6 justify-self-start `}
                             disabled={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}
                             onClick={handleNextPageNumber}
                         >
-                            <ArrowButton/>
+                            <ArrowButton isDisable={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}/>
                         </button>
                     </div>
                 }

@@ -206,6 +206,7 @@ const PossessionTransitionClub = () => {
                             
                             {/* Serial Number input */}
                             <TextInput
+                            id={'TI1'}
                             icon={<UserIcon/>}
                             className='col-span-1'
                             value={receiverId}

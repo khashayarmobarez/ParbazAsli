@@ -300,24 +300,25 @@ const AddFlightEquipment = () => {
                         {/* show custom brand input */}
                         {
                           showCustomBrandInput &&
-                            <TextInput value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
+                            <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
                         }
 
                         
                         {/* aircraft model input */}
-                        <TextInput value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                        <TextInput id={'TI2'} value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
 
                         {/* size inputs */}
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={<Cube/>} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                            <NumberInput icon={<Cube/>} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                            <NumberInput icon={<Cube/>} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={<Cube/>} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
                         {/* class input */}
                         <DropdownInput
+                          id={'ddi1'}
                           className='col-span-1'
                           name={'کلاس'}
                           icon={<WingIcon />}
@@ -329,6 +330,7 @@ const AddFlightEquipment = () => {
 
                         {/* wing type input */}
                         <DropdownInput
+                          id={'ddi2'}
                           className='col-span-1'
                           icon={<ColorTagsIcon/>}
                           name={'نوع بال'}
@@ -340,6 +342,7 @@ const AddFlightEquipment = () => {
                         
                         {/* Year input */}
                         <NumberInput
+                          id={'NI3'}
                           icon={<CalenderIcon/>}
                           className='col-span-1'
                           value={year}
@@ -350,6 +353,7 @@ const AddFlightEquipment = () => {
                         
                         {/* flight hour model input */}
                         <NumberInput 
+                          id={'NI4'}
                           icon={<ClockIcon/>} 
                           className='col-span-1' 
                           value={flightHour} 
@@ -370,6 +374,7 @@ const AddFlightEquipment = () => {
                         </p>
                       </div>
                         <TextInput
+                          id={'TI3'}
                           icon={<SerialNumberIcon/>}
                           className='col-span-1'
                           value={serialNumber}

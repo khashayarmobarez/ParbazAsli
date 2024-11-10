@@ -260,9 +260,9 @@ const AddClub = ({isForSetting}) => {
                 <p className='text-xl text-textAccent mt-[-0.5rem] mb-2'>آپلود عکس پروفایل</p>
 
                 {/* aircraft model input */}
-                <TextInput placeholder='نام باشگاه' value={clubName} onChange={handleChangeClubName}  />
+                <TextInput id={'TI1'} placeholder='نام باشگاه' value={clubName} onChange={handleChangeClubName}  />
                 
-                <TextInput placeholder='شماره مجوز' value={licenseNumber} onChange={handleLicenseNumber}  />
+                <TextInput id={'TI2'} placeholder='شماره مجوز' value={licenseNumber} onChange={handleLicenseNumber}  />
 
                 {/* the date picker component comes from equipment section */}
                 <DateLastRepackInput name={'تاریخ تاسیس'}  onChange={handleFoundationDateChange} placeH={'تاریخ تاسیس'} />

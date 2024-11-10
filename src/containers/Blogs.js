@@ -52,7 +52,7 @@ const Blogs = () => {
                             className='flex items-center justify-center'
                         >
                             <span className='w-6 h-6' >
-                                <ArrowButton isRight={true}/>
+                                <ArrowButton isRight={true} isDisable={pageNumber === Math.ceil(data.totalCount / pageSize)}/>
                             </span>
                             <p>صفحه بعد</p>
                         </button>
@@ -64,7 +64,7 @@ const Blogs = () => {
                         >
                             <p>صفحه قبل</p>
                             <span className=' w-6 h-6'>
-                                <ArrowButton/>
+                                <ArrowButton isDisable={pageNumber === 1}/>
                             </span>
                         </button>
 

@@ -167,7 +167,7 @@ const AddSituation = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
                     {
                         countriesData &&
-                        <DropdownInput name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} IsEmptyAfterSubmit={submitted && !country} />
+                        <DropdownInput id={'ddi1'} name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} IsEmptyAfterSubmit={submitted && !country} />
                     }
 
                     {
@@ -183,16 +183,16 @@ const AddSituation = () => {
 
                     {
                         flightSitesData && city && city.id &&
-                        <DropdownInput name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight}
+                        <DropdownInput id={'ddi2'} name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight}
                         IsEmptyAfterSubmit={submitted && !sight} />
                     }
 
                     {
                         flightSitesData && cloudTypesData &&
-                        <DropdownInput name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} IsEmptyAfterSubmit={submitted && !clouds}/>
+                        <DropdownInput id={'ddi3'} name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} IsEmptyAfterSubmit={submitted && !clouds}/>
                     }
                     
-                    {/* <DropdownInput name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
+                    {/* <DropdownInput id={'ddi4'} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
                 </form>
 
                 <div className='flex justify-between items-center w-full'>

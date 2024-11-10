@@ -397,6 +397,7 @@ const AddLanding = () => {
                     {
                         landingTypesData &&   
                         <DropdownInput 
+                            id={'ddi1'}
                             name={'شیوه'} 
                             icon={<ColorTagsIcon/>} 
                             options={landingTypesData.data} 
@@ -407,6 +408,7 @@ const AddLanding = () => {
                     }
 
                     <DropdownInput 
+                        id={'ddi2'}
                         name={'جهت باد'} 
                         icon={<WindDirectionCock/>} 
                         options={windDirectionOptions} 
@@ -416,6 +418,7 @@ const AddLanding = () => {
                     />
                     
                     <NumberInput
+                        id={'NI1'}
                         icon={<WindIcon/>}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
@@ -425,6 +428,7 @@ const AddLanding = () => {
 
                     {flightType === 'Tandem' && 
                         <TextInput 
+                            id={'TI1'}
                             icon={<PhoneIcon/>}
                             value={passengerPhoneNumber} 
                             onChange={handlePassengerPhoneNum} 

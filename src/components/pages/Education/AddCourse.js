@@ -402,7 +402,7 @@ const AddCourse = () => {
 
             <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                <DropdownInput isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>}/>
+                <DropdownInput id={'ddi1'} isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>}/>
 
 
                 {selectedClassType && 
@@ -425,6 +425,7 @@ const AddCourse = () => {
                         { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
                             <>
                                 <DropdownInput
+                                id={'ddi2'}
                                 options={organsData.data}
                                 handleSelectChange={handleSelectOrganChange}
                                 selectedOption={organ}
@@ -440,6 +441,7 @@ const AddCourse = () => {
                                         {!levelsError && !levelsLoading &&
                                             <>
                                                 <DropdownInput
+                                                    id={'ddi3'}
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
@@ -504,6 +506,7 @@ const AddCourse = () => {
                                         />
 
                                         <TextInput
+                                        id={'TI1'}
                                         value={courseName}
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
@@ -521,6 +524,7 @@ const AddCourse = () => {
                             <>
 
                                 <TextInput
+                                    id={'TI2'}
                                     value={courseName}  
                                     onChange={handleCourseName}
                                     placeholder='نام دوره'
@@ -529,7 +533,7 @@ const AddCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                        <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -559,7 +563,7 @@ const AddCourse = () => {
 
                                 <div className='w-full flex justify-between relative items-center'>
                                     <div className='w-[86%] flex flex-col'>
-                                        <TextInput icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                        <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                     </div>
                                     <span
                                         className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -594,7 +598,7 @@ const AddCourse = () => {
                             // add or later on add other types of courses
                             (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                             <>
-                                <NumberInput icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                <NumberInput id={'NI1'} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
                                 {/* add students */}
@@ -608,7 +612,7 @@ const AddCourse = () => {
 
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-full flex flex-col'>
-                                            <TextInput value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                            <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
                                         </div>
                                         {/* <span 
                                         className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
@@ -652,14 +656,11 @@ const AddCourse = () => {
 
 
                                 {/* description input */}
-                                <div className='w-full flex flex-col gap-y-2'>
-                                    <h1 className=' self-start'>توضیحات درباره دوره</h1>
-                                    <DescriptionInput
-                                        value={description}
-                                        onChange={handleDescription}
-                                        placeholder='توضیحات دوره را اینجا بنویسید ...'
-                                    />
-                                </div>
+                                <DescriptionInput
+                                    value={description}
+                                    onChange={handleDescription}
+                                    placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                />
 
 
                                 <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
