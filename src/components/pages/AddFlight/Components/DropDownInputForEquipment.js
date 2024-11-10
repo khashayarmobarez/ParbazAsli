@@ -103,7 +103,7 @@ const DropdownInputForEquipment = ({ id, options, selectedOption, handleSelectCh
         <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} 
         onClick={() => setIsOpen(false)}>
           <ul
-            className="fixed z-30 w-[90%] top-60 bg-bgOutputSelectedOption rounded-xl shadow-lg max-h-60 overflow-auto"
+            className="fixed z-30 w-[90%] top-40 bg-bgOutputSelectedOption rounded-xl shadow-lg max-h-[60dvh] overflow-auto"
             role="listbox"
           >
             <li
