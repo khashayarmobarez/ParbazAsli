@@ -141,11 +141,11 @@ const ClubCoaches = () => {
                                         {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
                                             <div className='w-full flex justify-between px-10 items-center'>
                                                 <button
-                                                    className={`  w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                                                    className={`  w-6 h-6 justify-self-end `}
                                                     disabled={pageNumber === 1}
                                                     onClick={handleLastPageNumber}
                                                 >
-                                                    <ArrowButton isRight={true} />
+                                                    <ArrowButton isRight={true} isDisable={pageNumber === 1} />
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -153,11 +153,11 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-6 h-6 justify-self-start ${(clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                                                    className={`w-6 h-6 justify-self-start`}
                                                     disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
                                                     onClick={handleNextPageNumber}
                                                 >
-                                                    <ArrowButton/>
+                                                    <ArrowButton isDisable={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}/>
                                                 </button>
                                             </div>
                                         }
@@ -187,13 +187,13 @@ const ClubCoaches = () => {
                                         ))}
 
                                         {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
-                                            <div className={`w-full flex justify-between px-10 items-center ${pageNumberPrevious === 1 && 'opacity-60'}`}>
+                                            <div className={`w-full flex justify-between px-10 items-center`}>
                                                 <button
-                                                    className={`' w-6 h-6 justify-self-end ${pageNumberPrevious === 1 && 'opacity-60'}`}
+                                                    className={`' w-6 h-6 justify-self-end `}
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
-                                                    <ArrowButton isRight={true}/>
+                                                    <ArrowButton isRight={true} isDisable={pageNumberPrevious === 1}/>
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -201,11 +201,11 @@ const ClubCoaches = () => {
                                                 </p>
 
                                                 <button
-                                                    className={`w-6 h-6 justify-self-start ${(clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious) && 'opacity-60'}`}
+                                                    className={`w-6 h-6 justify-self-start`}
                                                     disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
                                                     onClick={handleNextPageNumberPrevious}
                                                 >
-                                                    <ArrowButton/>
+                                                    <ArrowButton isDisable={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}/>
                                                 </button>
                                             </div>
                                         }

@@ -150,11 +150,11 @@ const AStudentCourses = () => {
                 { StudentCourses && StudentCourses.totalPagesCount && StudentCourses.totalPagesCount > 1 && (
                     <div className='w-full flex justify-between px-10 items-center'>
                         <button
-                            className={`w-6 h-6 justify-self-start ${(StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber) && 'opacity-60'}`}
+                            className={`w-6 h-6 justify-self-start`}
                             disabled={StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber}
                             onClick={handleNextPageNumber}
                         >
-                            <ArrowButton isRight={true}/>
+                            <ArrowButton isRight={true} isDisable={StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber}/>
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -162,11 +162,11 @@ const AStudentCourses = () => {
                         </p>
 
                         <button
-                            className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                            className={`transform w-6 h-6 justify-self-end`}
                             disabled={pageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
-                            <ArrowButton/>
+                            <ArrowButton isDisable={pageNumber === 1}/>
                         </button>
                     </div>
                 )}
