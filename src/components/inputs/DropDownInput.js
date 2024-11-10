@@ -100,35 +100,42 @@ const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, 
         <ArrowBackIosNewIcon sx={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(-90deg)', transition: 'transform 0.3s ease' }} />
       </span>
       {isOpen && (
-      <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
+      <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} 
+      onClick={() => setIsOpen(false)}>
           <ul
             className="fixed z-30 w-[90%] top-60 bg-bgOutputSelectedOption rounded-xl shadow-lg max-h-60 overflow-auto"
             role="listbox"
           >
             {!isDeselectDeactivated && (
               <li
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-4 hover:bg-gray-100 cursor-pointer flex text-textButtonProfileDisable"
                 onClick={() => handleOptionSelect(null)}
                 role="option"
                 aria-selected={!selectedOption}
               >
+                <span className="w-6 h-6 ml-2 border-2 border-textAccent rounded-full flex items-center justify-center">
+                  {!selectedOption && <span className="w-3 h-3 bg-textAccent rounded-full "></span>}
+                </span>
                 {name || 'انتخاب کنید'}
               </li>
             )}
-            <div className="w-full h-[1px] bg-[#1d1d1d]" />
+            {/* <div className="w-full h-[1px] bg-[#1d1d1d]" /> */}
               {options?.map((option, index) => (
                 <>
                   <li
                     key={option.id}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    className="px-4 py-4 hover:bg-gray-100 cursor-pointer flex items-center "
                     onClick={() => handleOptionSelect(option)}
                     role="option"
                     aria-selected={selectedOption?.id === option.id}
                   >
+                    <span className="w-6 h-6 ml-2 border-2 border-textAccent rounded-full flex items-center justify-center">
+                      {selectedOption?.id === option.id && <span className="w-3 h-3 bg-textAccent rounded-full"></span>}
+                    </span>
                     {option.name}
                   </li>
                   {/* Add a separator after each option except the last one */}
-                  {index < options.length - 1 && <div className="w-full h-[1px] bg-[#1d1d1d]" />}
+                  {index < options.length - 1 && <div className="w-full h-[1.8px] bg-[#535353]" />}
                 </>
               ))}
             </ul>
