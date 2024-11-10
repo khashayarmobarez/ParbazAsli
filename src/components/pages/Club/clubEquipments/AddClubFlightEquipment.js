@@ -16,7 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // assets
 import Cube from '../../../../components/icons/ThreeDCube'
-import wingIcon from '../../../../components/icons/WingIcon'
+import WingIcon from '../../../../components/icons/WingIcon'
 import ColorTagsIcon from '../../../../components/icons/ColorTagsIcon'
 import ClothesTag from '../../../../components/icons/ClothesTag'
 import CalenderIcon from '../../../../components/icons/CalenderIcon'
@@ -318,7 +318,7 @@ const AddClubFlightEquipment = () => {
                           id={'ddi1'}
                           className='col-span-1'
                           name={'کلاس'}
-                          icon={<wingIcon/>}
+                          icon={<WingIcon/>}
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
