@@ -9,54 +9,96 @@ import KeyIcon from '../../../../components/icons/KeyIcon';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder }) => {
-
   const [pwdFocus, setPwdFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);  
   const [filled, setFilled] = useState(false);
-
-
+  const [leftEmpty, setLeftEmpty] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleInputChange = (e) => {
+    onChange(e);
+    setFilled(e.target.value.trim() !== '');
+  };
+
+  const handleFocus = () => {
+    setPwdFocus(true);
+    onFocus();
+  };
+
+  const handleBlur = () => {
+    setPwdFocus(false);
+    onBlur();
+
+    if (value.trim() === '') {
+      setLeftEmpty(true);
+    }
+  };
+
+  const handleLabelClick = () => {
+    document.getElementById('password').focus();
+  };
+
   return (
-    <>
-      <div className={`${inputStyles['password-input']} flex relative w-full h-12 px-2`} htmlFor="password">
-        <span style={{ color: 'var(--disabled-button-text)'  }} className="absolute w-4 mt-4 mr-2"  >
+    <div className='flex flex-col relative w-full'>
+      <div className="relative w-full min-h-12 px-2">
+        <span className="absolute right-5 top-4 w-4 z-10"
+        style={{ color: 'var(--disabled-button-text)' }}>
           <KeyIcon />
         </span>
         <input
           type={showPassword ? 'text' : 'password'}
           id="password"
           value={value}
-          onChange={(e) => {
-            onChange(e); // Call the first function
-            setFilled(e.target.value.trim() !== ''); // Update filled state
-          }}
-          className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%]  pr-8`}
+          onChange={handleInputChange}
+          className={`
+            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            border-2 border-gray-300 bg-transparent
+            text-gray-900 placeholder-transparent
+            focus:outline-none focus:ring-0 focus:border-blue-600
+            ${filled && inputStyles.inputFilledBorder}
+            ${inputStyles.inputText2}
+          `}
           required
           aria-describedby="pwdnote"
-          onFocus={() => {
-            setPwdFocus(true);
-            onFocus();
-          }}
-          onBlur={() => {
-            setPwdFocus(false);
-            onBlur();
-          }}
-          placeholder={customPlaceHolder || "رمز عبور"}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder=" "
           autoComplete="new-password" 
         />
-        <span onClick={togglePasswordVisibility} style={{ color: 'var(--text-default)' }}>
+        <label
+          onClick={handleLabelClick}
+          htmlFor="password"
+          className={`
+            absolute right-11 top-[13px] text-textInputDefault
+            transition-all duration-300 transform
+            peer-placeholder-shown:translate-y-0
+            peer-placeholder-shown:text-sm
+            peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
+            ${(pwdFocus || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+            ${pwdFocus ? 'text-blue-600' : ''}
+          `}
+        >
+          {customPlaceHolder || "رمز عبور"}
+        </label>
+        <span 
+          onClick={togglePasswordVisibility} 
+          className="absolute left-5 top-3 cursor-pointer"
+          style={{ color: 'var(--text-default)' }}
+        >
           {showPassword ? (
-            <RemoveRedEyeOutlinedIcon sx={{ position: 'absolute', top: '0.8rem', left: '1rem' }} />
+            <RemoveRedEyeOutlinedIcon />
           ) : (
-            <VisibilityOffOutlinedIcon sx={{ position: 'absolute', top: '0.8rem', left: '1rem' }} />
+            <VisibilityOffOutlinedIcon />
           )}
         </span>
       </div>
-    </>
+      <p id="inputnote" className={`${(leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+        *رمز عبور الزامی است
+      </p>
+    </div>
   );
 };
 

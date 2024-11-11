@@ -22,7 +22,7 @@ const SignUpOrLogin = () => {
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/login' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/login')}>
                         ورود
-                    </button> 
+                    </button>
                     <button  
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/signUp' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/signUp')}>

@@ -60,12 +60,12 @@ const UserDataBox = ({hasCoach}) => {
                             </span>
                         </div>
 
-                        <div className=' gap-y-[8px] md:space-y-5 flex flex-col items-center' >
+                        <div className=' gap-y-2 md:space-y-5 flex flex-col items-center' >
                             <p className=' font-light text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data.data.levelName &&
-                                <p className=' font-normal text-xs w-36 text-textDisabled' >{!data.data.isStarter && 'گواهینامه' } {data.data.levelName} </p>
+                                <p className=' text-xs w-36' >{!data.data.isStarter && 'گواهینامه' } {data.data.levelName} </p>
                             }
-                            <p className=' font-normal text-xs w-36 text-textDisabled'>کد کاربری: {data.data.userId}</p>
+                            <p className=' text-xs w-36'>کد کاربری: {data.data.userId}</p>
                         </div>
 
                     </div>
