@@ -43,6 +43,15 @@
     font-size: 14px;
 }
 
+.inputText2Error {
+    background: none;
+    border: 1px solid var(--border-input-error);
+    box-shadow: none;
+    appearance: none;
+    border-radius: 1rem;
+    font-size: 14px;
+}
+
 .inputText2::placeholder {
     color: var(--text-input-default);
     font-size: 14px;

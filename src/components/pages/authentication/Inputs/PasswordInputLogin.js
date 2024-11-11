@@ -8,7 +8,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import KeyIcon from '../../../../components/icons/KeyIcon';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder }) => {
+const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder, isSubmitted }) => {
   const [pwdFocus, setPwdFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);  
   const [filled, setFilled] = useState(false);
@@ -26,6 +26,9 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   const handleFocus = () => {
     setPwdFocus(true);
     onFocus();
+
+
+    setLeftEmpty(false)
   };
 
   const handleBlur = () => {
@@ -95,7 +98,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           )}
         </span>
       </div>
-      <p id="inputnote" className={`${(leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="inputnote" className={`${(leftEmpty || (isSubmitted && !value)) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
         *رمز عبور الزامی است
       </p>
     </div>

@@ -39,6 +39,7 @@ const Login = () => {
     const [userInput, setUserInput] = useState('');
     const [userInputFocus, setUserInputFocus] = useState(false);
     const [validUserInput, setValidUserInput] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     
     const [termsChecked, setTermsChecked] = useState(false);
@@ -73,8 +74,9 @@ const Login = () => {
 
     // Define the login handler function
     const handleLoginSubmit = async (e) => {
+        
         e.preventDefault();
-
+        setIsSubmitted(true)
 
         // Add your validation logic here
         if (!userInput || !pwd || !validUserInput) {
@@ -189,6 +191,7 @@ const Login = () => {
 
                 <PhoneOrEmailInput
                     phoneRef={userRef}
+                    isSubmitted={isSubmitted}
                     onChange={(e) => setUserInput(e.target.value)}
                     value={userInput}
                     focus={userInputFocus}
@@ -198,6 +201,7 @@ const Login = () => {
 
                 <PasswordInputLogin    
                     onChange={(e) => setPwd(e.target.value)}
+                    isSubmitted={isSubmitted}
                     value={pwd}
                     focus={pwdFocus}
                     onFocus={() => setPwdFocus(true)}
@@ -216,7 +220,6 @@ const Login = () => {
 
                 <button type="submit" className={`${ButtonStyles.addButton} w-36 self-center `}
                     onClick={handleLoginSubmit} 
-                    disabled={!userInput || !pwd || submitLoading ? true : false}
                     >
                     {submitLoading ?
                         <CircularProgress sx={{ color: 'var(--dark-blue-bg)' }} size={25} />

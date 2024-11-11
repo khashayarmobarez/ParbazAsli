@@ -16,9 +16,22 @@ input[type=number] {
   -moz-appearance:textfield;
 }
 
+input:-webkit-autofill {
+  background-color: transparent !important; /* Removes the white background */
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Removes the border shadow */
+  box-shadow: 0 0 0px 1000px transparent inset !important; /* Removes the border shadow */
+}
+
 input:focus {
   outline: none; /* Removes the default outline */
-  border: 1.5px solid var(--border-input-selected); /* Add your custom border color */
+  border: 1px solid var(--border-input-selected);
+   /* Add your custom border color */
+}
+
+input.error:focus {
+  border-color: #dc3545; /* Red border color for error */
+  box-shadow: 0 0 5px #dc3545; /* Red shadow for error */
+  outline: none;
 }
 
 code {
