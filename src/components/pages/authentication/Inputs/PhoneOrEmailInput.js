@@ -15,6 +15,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
 
   const [inputFocus, setInputFocus] = useState(false);
   const [validInput, setValidInput] = useState(false);
+  const [leftEmpty, setLeftEmpty] = useState(false);
   const [filled, setFilled] = useState(false);
 
   useEffect(() => {
@@ -64,6 +65,10 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
           onBlur={() => {
             setInputFocus(false);
             onBlur();
+
+            if (value.trim() === '') {
+              setLeftEmpty(true);
+            }
           }}
           className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
           placeholder="ایمیل یا شماره موبایل"
@@ -72,6 +77,10 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
       <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}
       style={{color:'var(--text-error)'}}>
         <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> نام کاربری معتبر نمی باشد
+      </p>
+      <p id="inputnote" className={`${!value && leftEmpty ? "instructions" : "hidden"} mt-2 text-right`}
+      style={{color:'var(--text-error)'}}>
+        <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> نام کاربری الزامی می باشد
       </p>
     </div>
   );

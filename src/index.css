@@ -16,6 +16,11 @@ input[type=number] {
   -moz-appearance:textfield;
 }
 
+input:focus {
+  outline: none; /* Removes the default outline */
+  border: 1.5px solid var(--border-input-selected); /* Add your custom border color */
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
@@ -62,8 +67,8 @@ code {
   --bg-upload-file:#BFC2C4;
   --border-input-success: #23BC7C;
   --border-input-error: #DC3545;
-  --border-input-default: #535353;
-  --border-input-selected: #eee;
+  --border-input-default: #949597;
+  --border-input-selected: #3E3E3E;
   --text-input-default:#B1B2B5;
   --text-input-selected:#3E3E3E;
   --text-input-error:#DC3545;
