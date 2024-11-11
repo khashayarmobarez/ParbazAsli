@@ -77,10 +77,11 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     if(validInput) {
       setColor('var(--text-accent)');
     } else if (!filled) {
-      setColor('var(--text-input-default)');
+      setColor('var(--text-error)');
+    } else if(ErrorConditionMet) {
+      setColor('var(--text-error)');
     } else {
       setColor('var(--text-input-default)');
-      console.log('on blur 2');
     }
 
     setInputFocus(false);
@@ -96,7 +97,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
       <div className='relative w-full min-h-12'>
         <span className="absolute right-2 top-3 w-5 z-10">
           {!EMAIL_REGEX.test(value) && !PHONE_REGEX.test(value) && (
-            <PersonOutlineOutlinedIcon sx={{ color: ErrorConditionMet ? color : 'var(--text-default)' }} />
+            <PersonOutlineOutlinedIcon sx={{ color: color }} />
           )}
           {EMAIL_REGEX.test(value) && (
             <EmailRoundedIcon sx={{ color: color }} />
@@ -136,7 +137,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
-            ${(value && !validInput && filled && !inputFocus) ? 'text-textError' : validInput ? 'text-textAccent' : 'text-textInputDefault'} 
+            text-[${filled ? color : 'var(--text-input-default)'}]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
             ${inputFocus ? 'text-blue-600' : ''}
           `}
