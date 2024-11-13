@@ -68,7 +68,7 @@ const SyllabiDetails = () => {
                                 <div className=' w-full min-h-6 rounded-2xl bg-bgOutputDefault p-3'>
                                     {   
                                         // practicalSyllabi
-                                        syllabiData.data?.theorySyllabi.map((syllabi) => (
+                                        syllabiData.data?.practicalSyllabi.map((syllabi) => (
                                             <div className='w-full flex justify-start items-start gap-x-2 my-4' key={syllabi.id}>
                                                 <p className='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite  font-bold rounded-lg'>
                                                     {EnglishToPersianNumber(syllabi.order)}
@@ -85,7 +85,7 @@ const SyllabiDetails = () => {
                                 <div className=' w-full min-h-6 rounded-2xl bg-bgOutputDefault p-3'>
                                     {   
                                         // theorySyllabi
-                                        syllabiData.data?.practicalSyllabi.map((syllabi) => (
+                                        syllabiData.data?.theorySyllabi.map((syllabi) => (
                                             <div className='w-full flex justify-start items-start gap-x-2 my-4' key={syllabi.id}>
                                                 <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefaultOpposite font-medium rounded-lg'>
                                                     {EnglishToPersianNumber(syllabi.order)}
