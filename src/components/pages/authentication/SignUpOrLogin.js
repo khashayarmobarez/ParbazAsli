@@ -15,14 +15,14 @@ const SignUpOrLogin = () => {
 
     return (
         <div className='pt-12 flex flex-col items-center'>
-            <div className='w-full mt-6 flex flex-col items-center justify-center md:w-[55%]'>
+            <div className='w-full mt-6 flex flex-col items-center gap-y-7 justify-center md:w-[55%]'>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
                     <button 
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/login' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/login')}>
                         ورود
-                    </button> 
+                    </button>
                     <button  
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/signUp' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/signUp')}>

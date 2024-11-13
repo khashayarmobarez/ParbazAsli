@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 // mui
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // styles
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
@@ -11,16 +11,23 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 const PHONE_REGEX = /^09\d{9}$/;
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
-
+const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [validInput, setValidInput] = useState(false);
   const [filled, setFilled] = useState(false);
+  const [leftEmpty, setLeftEmpty] = useState(false)
+  
+  // Separate states for different elements
+  const [iconColor, setIconColor] = useState('var(--text-default)');
+  const [borderColorClass, setBorderColorClass] = useState('');
+
+  const ErrorConditionMet = (value && !validInput && filled) || (!value && isSubmitted);
 
   useEffect(() => {
     const isValidPhone = PHONE_REGEX.test(value);
     const isValidEmail = EMAIL_REGEX.test(value);
     setValidInput(isValidPhone || isValidEmail);
+    setFilled(value.trim() !== '');
   }, [value]);
 
   const persianToEnglishNumber = (input) => {
@@ -38,15 +45,55 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
     setFilled(newValue.trim() !== '');
   };
 
+  const updateColors = (isFocused, isValid, isFilled) => {
+    if (isFocused) {
+      setIconColor('var(--text-input-selected)');
+      setBorderColorClass(inputStyles.inputSelectedBorder);
+      setLeftEmpty(false)
+    } else if (isValid && isFilled) {
+      setIconColor('var(--text-accent)');
+      setBorderColorClass(inputStyles.inputValidBorder);
+    } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+    } else {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setLeftEmpty(true)
+    }
+  };
+
+  const handleFocus = () => {
+    setInputFocus(true);
+    updateColors(true, validInput, filled);
+    onFocus();
+  };
+
+  const handleBlur = () => {
+    setInputFocus(false);
+    updateColors(false, validInput, filled);
+    onBlur();
+  };
+
+  const handleLabelClick = () => {
+    document.getElementById('phoneOrEmail').focus();
+  };
+
+  const getIcon = () => {
+    if (EMAIL_REGEX.test(value)) {
+      return <EmailRoundedIcon sx={{ color: iconColor }} />;
+    }
+    if (PHONE_REGEX.test(value)) {
+      return <LocalPhoneRoundedIcon sx={{ color: iconColor }} />;
+    }
+    return <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />;
+  };
+
   return (
-    <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
-      <div className='flex w-full h-12'>
-        <span>
-          {!EMAIL_REGEX.test(value) ? (
-            <LocalPhoneRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
-          ) : (
-            <EmailRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
-          )}
+    <div className='flex flex-col relative w-full rounded-xl px-2'>
+      <div className='relative w-full min-h-12'>
+        <span className="absolute right-2 top-3 w-5 z-10">
+          {getIcon()}
         </span>
         <input
           type="text"
@@ -57,21 +104,40 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur }) => {
           required
           aria-invalid={validInput ? "false" : "true"}
           aria-describedby="inputnote"
-          onFocus={() => {
-            setInputFocus(true);
-            onFocus();
-          }}
-          onBlur={() => {
-            setInputFocus(false);
-            onBlur();
-          }}
-          className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
-          placeholder="ایمیل یا شماره موبایل"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          className={`
+            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            border-2 bg-transparent
+            text-gray-900 placeholder-transparent
+            focus:outline-none
+            ${borderColorClass}
+            ${inputStyles.inputText2}
+            ${ErrorConditionMet ? inputStyles.inputText2Error : inputStyles.inputText2}
+          `}
+          placeholder=" "
         />
+        <label
+          onClick={handleLabelClick}
+          htmlFor="phoneOrEmail"
+          className={`
+            absolute right-9 top-[13px]
+            transition-all duration-300 transform
+            peer-placeholder-shown:translate-y-0
+            peer-placeholder-shown:text-sm
+            peer-focus:-translate-y-5 peer-focus:text-xs
+            text-[var(--text-input-default)]
+            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+          `}
+        >
+          ایمیل یا شماره موبایل
+        </label>
       </div>
-      <p id="inputnote" className={`${value && !validInput && filled ? "instructions" : "hidden"} mt-2 text-right`}
-      style={{color:'var(--text-error)'}}>
-        <InfoOutlinedIcon sx={{marginLeft:'5px'}} /> نام کاربری معتبر نمی باشد
+      <p id="inputnote" aria-live="polite" className={`${(value && !validInput && filled) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+        *نام کاربری معتبر نمی باشد
+      </p>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+        *نام کاربری الزامی می باشد
       </p>
     </div>
   );

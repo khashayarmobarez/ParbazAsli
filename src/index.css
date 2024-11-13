@@ -16,6 +16,24 @@ input[type=number] {
   -moz-appearance:textfield;
 }
 
+input:-webkit-autofill {
+  background-color: transparent !important; /* Removes the white background */
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Removes the border shadow */
+  box-shadow: 0 0 0px 1000px transparent inset !important; /* Removes the border shadow */
+}
+
+input:focus {
+  outline: none; /* Removes the default outline */
+  border: 1px solid var(--border-input-selected);
+   /* Add your custom border color */
+}
+
+input.error:focus {
+  border-color: #dc3545; /* Red border color for error */
+  box-shadow: 0 0 5px #dc3545; /* Red shadow for error */
+  outline: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
@@ -62,8 +80,8 @@ code {
   --bg-upload-file:#BFC2C4;
   --border-input-success: #23BC7C;
   --border-input-error: #DC3545;
-  --border-input-default: #535353;
-  --border-input-selected: #eee;
+  --border-input-default: #949597;
+  --border-input-selected: #3E3E3E;
   --text-input-default:#B1B2B5;
   --text-input-selected:#3E3E3E;
   --text-input-error:#DC3545;

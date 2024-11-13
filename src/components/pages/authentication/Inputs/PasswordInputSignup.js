@@ -5,7 +5,6 @@
     import { selectAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
     // mui
-    import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
     import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
     import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
@@ -15,14 +14,22 @@
 
     const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 
-    const PasswordInputSignup = ({ onChange, value, focus, onFocus, onBlur }) => {
+    const PasswordInputSignup = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
 
       const authSettings = useSelector(selectAuthSettings);
 
-      const [pwdFocus, setPwdFocus] = useState(false);
       const [validPwd, setValidPwd] = useState(false);
       const [showPassword, setShowPassword] = useState(false);  
       const [filled, setFilled] = useState(false);
+      const [inputFocus, setInputFocus] = useState(false);
+      const [leftEmpty, setLeftEmpty] = useState(false)
+
+      // Separate states for different elements
+      const [iconColor, setIconColor] = useState('var(--text-default)');
+      const [borderColorClass, setBorderColorClass] = useState('');
+
+      const ErrorConditionMet = (value && !validPwd && filled) || (!value && isSubmitted);
+      
 
       const {
         passwordMinLength,
@@ -58,90 +65,163 @@
         passwordRequireUppercase, 
         passwordRequireLowercase
       ]);
-    
 
+      const handleChange = (e) => {
+        const inputValue = e.target.value;
+        onChange(e); // External onChange handler
+        setFilled(inputValue.trim() !== '');
+        
+        // Validate directly in onChange to ensure immediate updates
+        const isValid = 
+          inputValue.length >= passwordMinLength &&
+          inputValue.length <= passwordMaxLength &&
+          (!passwordRequireNonAlphanumeric || /[^\w\s]/.test(inputValue)) &&
+          (!passwordRequireDigit || /\d/.test(inputValue)) &&
+          (!passwordRequireUppercase || /[A-Z]/.test(inputValue)) &&
+          (!passwordRequireLowercase || /[a-z]/.test(inputValue)) &&
+          PWD_REGEX.test(inputValue);
+      
+        setValidPwd(isValid);
+      };
+  
 
       const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
       };
 
+
+      const handleLabelClick = () => {
+        document.getElementById('username').focus();
+      };
+    
+      const handleFocus = () => {
+        setInputFocus(true);
+        updateColors(true, validPwd, filled);
+        onFocus();
+      };
+    
+      const handleBlur = () => {
+        setInputFocus(false);
+        updateColors(false, validPwd, filled);
+        onBlur();
+      };
+    
+      const updateColors = (isFocused, isValid, isFilled) => {
+        if (isFocused) {
+          setIconColor('var(--text-input-selected)');
+          setBorderColorClass(inputStyles.inputSelectedBorder);
+          setLeftEmpty(false);
+        } else if (isValid && isFilled) {
+          setIconColor('var(--text-accent)');
+          setBorderColorClass(inputStyles.inputValidBorder);
+        } else if (!isValid && isFilled) {  // New condition for invalid input when filled
+          setIconColor('var(--text-error)');
+          setBorderColorClass(inputStyles.inputErrorBorder);
+        } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
+          setIconColor('var(--text-error)');
+          setBorderColorClass(inputStyles.inputErrorBorder);
+        } else {
+          setIconColor('var(--text-error)');
+          setBorderColorClass(inputStyles.inputErrorBorder);
+          setLeftEmpty(true)
+        }
+      };
+
       return (
         <>
           <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 px-2`} htmlFor="password">
-          <span style={{ color: 'var(--disabled-button-text)'  }} className="absolute w-4 mt-4 mr-2"  >
-            <KeyIcon />
+          <span className="absolute right-6 top-3 w-5 z-10"  >
+            <KeyIcon customColor={iconColor} />
           </span>
             <input
               type={showPassword ? 'text' : 'password'}
               id="password"
               value={value}
-              onChange={(e) => {
-                onChange(e); // Call the first function
-                setFilled(e.target.value.trim() !== ''); // Update filled state
-                setValidPwd(PWD_REGEX.test(e.target.value)); // Update validPwd state
-              }}
-              className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={`
+                peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+                border-2 bg-transparent
+                text-gray-900 placeholder-transparent
+                focus:outline-none
+                ${borderColorClass}
+                ${inputStyles.inputText2}
+                ${ErrorConditionMet ? inputStyles.inputText2Error : inputStyles.inputText2}
+              `}
               required
               aria-invalid={validPwd ? "false" : "true"}
               aria-describedby="pwdnote"
-              onFocus={() => {
-                setPwdFocus(true);
-                onFocus();
-              }}
-              onBlur={() => {
-                setPwdFocus(false);
-                onBlur();
-              }}
-              placeholder="رمز عبور جدید"
+              placeholder=" "
               autoComplete="new-password" 
             />
-            <span onClick={togglePasswordVisibility} style={{ color: '#cacaca' }}>
-              {showPassword ? (
-                <RemoveRedEyeOutlinedIcon sx={{ position: 'absolute', top: '0.8rem', left: '1rem' }} />
-              ) : (
-                <VisibilityOffOutlinedIcon sx={{ position: 'absolute', top: '0.8rem', left: '1rem' }} />
-              )}
+
+            <label
+              onClick={handleLabelClick}
+              htmlFor="username"
+              className={`
+                absolute right-14 top-[13px]
+                transition-all duration-300 transform
+                peer-placeholder-shown:translate-y-0
+                peer-placeholder-shown:text-sm
+                peer-focus:-translate-y-5 peer-focus:text-xs
+                text-[var(--text-input-default)]
+                ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+              `}
+            >
+              رمز عبور
+            </label>
+
+            <span 
+            onClick={togglePasswordVisibility} 
+            className="absolute left-5 top-3 cursor-pointer"
+            style={{ color: iconColor }}
+            >
+                {showPassword ? (
+                  <RemoveRedEyeOutlinedIcon />
+                ) : (
+                  <VisibilityOffOutlinedIcon />
+                )}
             </span>
           </div>
-          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} self-start text-start`}
-          style={{color:'var(--text-error)'}}>
+
+          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError gap-y-2`}>
             {
               (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
-                <>
-                  <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
-                  پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
-                </>
+                <p>
+                  *پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
+                </p>
             }
             {  passwordRequireDigit && !(/\d/.test(value)) &&
               (
-                <>
-                  <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
-                  رمز عبور باید حداقل شامل یک عدد باشد
+                <p>
+                  *رمز عبور باید حداقل شامل یک عدد باشد
                   <br />
-                </>
+                </p>
               ) 
             }
             {  passwordRequireUppercase && !(/[A-Z]/.test(value)) && (
-              <>
-                <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
-                رمز عبور باید حداقل شامل یک حرف بزرگ باشد
+              <p>
+                *رمز عبور باید حداقل شامل یک حرف بزرگ باشد
                 <br />
-              </>
+              </p>
               ) }
             {  passwordRequireLowercase && !(/[a-z]/.test(value)) && (
-              <>
-                <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
-                رمز عبور باید حداقل شامل یک حرف کوچک باشد
+              <p>
+                *رمز عبور باید حداقل شامل یک حرف کوچک باشد
                 <br />
-              </>
+              </p>
             ) }
             {  passwordRequireNonAlphanumeric && !(/[^\w\s]/.test(value)) && (
-              <>
-                <InfoOutlinedIcon sx={{marginLeft:'5px'}} />
-                رمز عبور باید حداقل شامل یک کارکتر ویژه باشد
+              <p>
+                *رمز عبور باید حداقل شامل یک کارکتر ویژه باشد
                 <br />
-              </>
+              </p>
               )  }
+          </p>
+
+          <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError`}>
+            *رمز عبور الزامی می باشد
           </p>
         </>
       );

@@ -5,10 +5,17 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const PHONE_REGEX = /^09\d{9}$/;
 
-const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
-  const [phoneFocus, setPhoneFocus] = useState(false);
+const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
   const [validPhone, setValidPhone] = useState(false);
   const [filled, setFilled] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false);
+  const [leftEmpty, setLeftEmpty] = useState(false)
+
+  // Separate states for different elements
+  const [iconColor, setIconColor] = useState('var(--text-default)');
+  const [borderColorClass, setBorderColorClass] = useState('');
+
+  const ErrorConditionMet = (value && !validPhone && filled) || (!value && isSubmitted);
 
   useEffect(() => {
     const result = PHONE_REGEX.test(value);
@@ -30,11 +37,48 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
     setFilled(newValue.trim() !== '');
   };
 
+  const handleLabelClick = () => {
+    document.getElementById('phone').focus();
+  };
+
+  const handleFocus = () => {
+    setInputFocus(true);
+    updateColors(true, validPhone, filled);
+    onFocus();
+  };
+
+  const handleBlur = () => {
+    setInputFocus(false);
+    updateColors(false, validPhone, filled);
+    onBlur();
+  };
+
+  const updateColors = (isFocused, isValid, isFilled) => {
+    if (isFocused) {
+      setIconColor('var(--text-input-selected)');
+      setBorderColorClass(inputStyles.inputSelectedBorder);
+      setLeftEmpty(false);
+    } else if (isValid && isFilled) {
+      setIconColor('var(--text-accent)');
+      setBorderColorClass(inputStyles.inputValidBorder);
+    } else if (!isValid && isFilled) {  // New condition for invalid input when filled
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+    } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+    } else {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setLeftEmpty(true)
+    }
+  };
+
   return (
     <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
-      <div className='flex w-full h-12'>
-        <span>
-          <LocalPhoneRoundedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+      <div className='relative w-full min-h-12'>
+        <span className="absolute right-3 top-3 w-5 z-10">
+          <LocalPhoneRoundedIcon sx={{ color: iconColor }} />
         </span>
         <input
           type="text"
@@ -43,24 +87,43 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
           autoComplete='tel'
           value={value}
           onChange={handleInputChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           required
           aria-invalid={validPhone ? "false" : "true"}
           aria-describedby="phonenote"
-          onFocus={() => {
-            setPhoneFocus(true);
-            onFocus();
-          }}
-          onBlur={() => {
-            setPhoneFocus(false);
-            onBlur();
-          }}
-          className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
-          placeholder="شماره موبایل"
+          className={`
+            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            border-2 bg-transparent
+            text-gray-900 placeholder-transparent
+            focus:outline-none
+            ${borderColorClass}
+            ${inputStyles.inputText2}
+            ${ErrorConditionMet ? inputStyles.inputText2Error : inputStyles.inputText2}
+          `}
+          placeholder=" "
         />
+        <label
+          onClick={handleLabelClick}
+          htmlFor="username"
+          className={`
+            absolute right-11 top-[13px]
+            transition-all duration-300 transform
+            peer-placeholder-shown:translate-y-0
+            peer-placeholder-shown:text-sm
+            peer-focus:-translate-y-5 peer-focus:text-xs
+            text-[var(--text-input-default)]
+            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+          `}
+        >
+          شماره تلفن
+        </label>
       </div>
-      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} self-start text-start`}
-      style={{color:'var(--text-error)'}}>
-        <InfoOutlinedIcon /> شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
+      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+       *شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
+      </p>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+        *شماره تلفن الزامی می باشد
       </p>
     </div>
   );
