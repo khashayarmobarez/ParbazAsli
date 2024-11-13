@@ -29,7 +29,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   };
 
   const handleLabelClick = () => {
-    document.getElementById('username').focus();
+    document.getElementById('userLastname').focus();
   };
 
   const handleFocus = () => {
@@ -96,7 +96,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
         />
         <label
           onClick={handleLabelClick}
-          htmlFor="username"
+          htmlFor="userLastname"
           className={`
             absolute right-11 top-[13px]
             transition-all duration-300 transform
@@ -107,7 +107,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
           `}
         >
-          نام
+          نام خانوادگی
         </label>
       </div>
       <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
@@ -115,7 +115,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
         *با حروف فارسی بنویسید
       </p>
       <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
-        *نام کاربری الزامی می باشد
+        *نام خانوادگی کاربری الزامی می باشد
       </p>
     </div>
   );

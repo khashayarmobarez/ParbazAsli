@@ -114,7 +114,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
         *با حروف فارسی بنویسید
       </p>
       <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
-        *نام کاربری الزامی می باشد
+        *نام الزامی می باشد
       </p>
     </div>
   );

@@ -330,7 +330,7 @@ const SignUp = () => {
             
             {!loading && !error && (
                 <>
-                    <form className='w-full flex flex-col gap-y-4 pt-0 pb-10'>
+                    <form className='w-full flex flex-col gap-y-6 pt-0 pb-10'>
 
                         <UserNameInputSignup
                             userRef={userRef}
@@ -368,15 +368,16 @@ const SignUp = () => {
                             focus={phoneFocus}
                             onFocus={() => setPhoneFocus(true)}
                             onBlur={() => setPhoneFocus(false)}
+                            isSubmitted={isSubmitted}
                         />
 
                         <PasswordInputSignup 
-                            
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             focus={pwdFocus}
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
+                            isSubmitted={isSubmitted}
                         />
 
                         <ConfirmPassInputSignup
@@ -386,6 +387,7 @@ const SignUp = () => {
                             focus={matchFocus}
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
+                            isSubmitted={isSubmitted}
                         />
 
                         <Checkbox

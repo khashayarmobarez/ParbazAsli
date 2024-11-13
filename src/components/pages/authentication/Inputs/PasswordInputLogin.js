@@ -121,7 +121,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           )}
         </span>
       </div>
-      <p id="inputnote" className={`${((!value && isSubmitted) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+      <p id="inputnote" className={`${((!value && isSubmitted) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
         *رمز عبور الزامی است
       </p>
     </div>
