@@ -95,6 +95,7 @@ const SignUp = () => {
     const [errMsg, setErrMsg] = useState('');
 
     const [codeRemainingTime, setCodeRemainingTime] = useState(null)
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     useEffect(() => {
         dispatch(getAuthSettings());
@@ -136,6 +137,8 @@ const SignUp = () => {
     const handlePopUp = async(e) => {
 
         e.preventDefault();
+        setIsSubmitted(true)
+
         if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !validLastName) { 
             toast("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید", {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -327,7 +330,7 @@ const SignUp = () => {
             
             {!loading && !error && (
                 <>
-                    <form className='w-full flex flex-col gap-y-4 pt-6 pb-10'>
+                    <form className='w-full flex flex-col gap-y-4 pt-0 pb-10'>
 
                         <UserNameInputSignup
                             userRef={userRef}
@@ -336,6 +339,7 @@ const SignUp = () => {
                             focus={userFocus}
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
+                            isSubmitted={isSubmitted}
                         />
 
                         <UserLastNameInputSignup
@@ -345,6 +349,7 @@ const SignUp = () => {
                             onFocus={() => setUserLastNameFocus(true)}
                             onBlur={() => setUserLastNameFocus(false)}
                             id='lastName'
+                            isSubmitted={isSubmitted}
                         />
 
                         {/* <NationalCodeInput

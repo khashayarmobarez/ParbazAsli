@@ -6,7 +6,6 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 const PHONE_REGEX = /^09\d{9}$/;
 
 const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
-  const [phoneFocus, setPhoneFocus] = useState(false);
   const [validPhone, setValidPhone] = useState(false);
   const [filled, setFilled] = useState(false);
 
@@ -46,14 +45,6 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur }) => {
           required
           aria-invalid={validPhone ? "false" : "true"}
           aria-describedby="phonenote"
-          onFocus={() => {
-            setPhoneFocus(true);
-            onFocus();
-          }}
-          onBlur={() => {
-            setPhoneFocus(false);
-            onBlur();
-          }}
           className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
           placeholder="شماره موبایل"
         />
