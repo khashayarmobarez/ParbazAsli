@@ -15,10 +15,13 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   const [inputFocus, setInputFocus] = useState(false);
   const [validInput, setValidInput] = useState(false);
   const [filled, setFilled] = useState(false);
-  const [color, setColor] = useState('var(--text-input-default)');
-  const [leftEmpty, setLeftEmpty] = useState(false);
+  const [leftEmpty, setLeftEmpty] = useState(false)
+  
+  // Separate states for different elements
+  const [iconColor, setIconColor] = useState('var(--text-default)');
+  const [borderColorClass, setBorderColorClass] = useState('');
 
-  const ErrorConditionMet = (value && !validInput && filled ) || (!value &&  isSubmitted);
+  const ErrorConditionMet = (value && !validInput && filled) || (!value && isSubmitted);
 
   useEffect(() => {
     const isValidPhone = PHONE_REGEX.test(value);
@@ -26,21 +29,6 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     setValidInput(isValidPhone || isValidEmail);
     setFilled(value.trim() !== '');
   }, [value]);
-
-  // const triggerAfterDelay = (callback) => {
-  //   setIsTyping(true);
-    
-  //   if (typingTimeout) {
-  //     clearTimeout(typingTimeout);
-  //   }
-    
-  //   const timeout = setTimeout(() => {
-  //     setIsTyping(false);
-  //     callback();
-  //   }, 1500);
-    
-  //   setTypingTimeout(timeout);
-  // };
 
   const persianToEnglishNumber = (input) => {
     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -55,36 +43,35 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     let newValue = persianToEnglishNumber(event.target.value);
     onChange({ ...event, target: { ...event.target, value: newValue } });
     setFilled(newValue.trim() !== '');
-  
-    // triggerAfterDelay(() => {
-    //   if (newValue.trim() === '' && inputFocus === false) {
-    //     setLeftEmpty(true);
-    //   } else {
-    //     setLeftEmpty(false);
-    //   }
-    // });
+  };
+
+  const updateColors = (isFocused, isValid, isFilled) => {
+    if (isFocused) {
+      setIconColor('var(--text-input-selected)');
+      setBorderColorClass(inputStyles.inputSelectedBorder);
+      setLeftEmpty(false)
+    } else if (isValid && isFilled) {
+      setIconColor('var(--text-accent)');
+      setBorderColorClass(inputStyles.inputValidBorder);
+    } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+    } else {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setLeftEmpty(true)
+    }
   };
 
   const handleFocus = () => {
-    setColor('var(--text-input-selected)');
     setInputFocus(true);
-    setLeftEmpty(false)
+    updateColors(true, validInput, filled);
     onFocus();
   };
 
   const handleBlur = () => {
-
-    if(validInput) {
-      setColor('var(--text-accent)');
-    } else if (!filled) {
-      setColor('var(--text-error)');
-    } else if(ErrorConditionMet) {
-      setColor('var(--text-error)');
-    } else {
-      setColor('var(--text-input-default)');
-    }
-
     setInputFocus(false);
+    updateColors(false, validInput, filled);
     onBlur();
   };
 
@@ -92,19 +79,21 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     document.getElementById('phoneOrEmail').focus();
   };
 
+  const getIcon = () => {
+    if (EMAIL_REGEX.test(value)) {
+      return <EmailRoundedIcon sx={{ color: iconColor }} />;
+    }
+    if (PHONE_REGEX.test(value)) {
+      return <LocalPhoneRoundedIcon sx={{ color: iconColor }} />;
+    }
+    return <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />;
+  };
+
   return (
     <div className='flex flex-col relative w-full rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
         <span className="absolute right-2 top-3 w-5 z-10">
-          {!EMAIL_REGEX.test(value) && !PHONE_REGEX.test(value) && (
-            <PersonOutlineOutlinedIcon sx={{ color: color }} />
-          )}
-          {EMAIL_REGEX.test(value) && (
-            <EmailRoundedIcon sx={{ color: color }} />
-          )}
-          {PHONE_REGEX.test(value) && (
-            <LocalPhoneRoundedIcon sx={{ color: color }} />
-          )}
+          {getIcon()}
         </span>
         <input
           type="text"
@@ -122,9 +111,9 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
             border-2 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none
-            ${filled && validInput && inputStyles.inputFilledBorder}
+            ${borderColorClass}
             ${inputStyles.inputText2}
-            ${ErrorConditionMet ? `${inputStyles.inputText2Error}` : `${inputStyles.inputText2}`}
+            ${ErrorConditionMet ? inputStyles.inputText2Error : inputStyles.inputText2}
           `}
           placeholder=" "
         />
@@ -136,19 +125,18 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
-            peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
-            text-[${filled ? color : 'var(--text-input-default)'}]
+            peer-focus:-translate-y-5 peer-focus:text-xs
+            text-[var(--text-input-default)]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
-            ${inputFocus ? 'text-blue-600' : ''}
           `}
         >
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" className={`${(value && !validInput && filled ) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${color}]`}>
+      <p id="inputnote" className={`${(value && !validInput && filled) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
         *نام کاربری معتبر نمی باشد
       </p>
-      <p id="inputnote" className={`${!value && ( isSubmitted) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${color}]`}>
+      <p id="inputnote" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
         *نام کاربری الزامی می باشد
       </p>
     </div>

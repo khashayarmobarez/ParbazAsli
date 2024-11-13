@@ -57,6 +57,18 @@
     font-size: 14px;
 }
 
+.inputSelectedBorder {
+    border-color: var(--text-input-selected);
+}
+
+.inputValidBorder {
+    border-color: var(--text-accent);
+}
+
+.inputErrorBorder {
+    border-color: var(--text-error);
+}
+
 .inputFilledBorder {
     border: 1px solid var(--border-input-success);
 }
