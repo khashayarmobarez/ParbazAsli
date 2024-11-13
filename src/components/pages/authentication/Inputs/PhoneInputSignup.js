@@ -113,7 +113,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
             text-[var(--text-input-default)]
-            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           شماره تلفن
