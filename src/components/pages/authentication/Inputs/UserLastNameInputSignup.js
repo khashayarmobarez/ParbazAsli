@@ -104,7 +104,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
             text-[var(--text-input-default)]
-            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           نام خانوادگی
@@ -115,7 +115,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
         *با حروف فارسی بنویسید
       </p>
       <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
-        *نام خانوادگی کاربری الزامی می باشد
+        *نام خانوادگی الزامی می باشد
       </p>
     </div>
   );

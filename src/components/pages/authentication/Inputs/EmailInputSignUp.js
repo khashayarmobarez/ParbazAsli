@@ -5,10 +5,18 @@ import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, autoComplete }) => {
-  const [emailFocus, setEmailFocus] = useState(false);
+const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, autoComplete, isSubmitted }) => {
+
   const [validEmail, setValidEmail] = useState(false);
   const [filled, setFilled] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false);
+  const [leftEmpty, setLeftEmpty] = useState(false)
+
+  // Separate states for different elements
+  const [iconColor, setIconColor] = useState('var(--text-default)');
+  const [borderColorClass, setBorderColorClass] = useState('');
+
+  const ErrorConditionMet = (value && !validEmail && filled) || (!value && isSubmitted);
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(value);
@@ -20,11 +28,49 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
     setFilled(event.target.value.trim() !== '');
   };
 
+  const handleLabelClick = () => {
+    document.getElementById('phone').focus();
+  };
+
+  const handleFocus = () => {
+    setInputFocus(true);
+    updateColors(true, validEmail, filled);
+    onFocus();
+  };
+
+  const handleBlur = () => {
+    setInputFocus(false);
+    updateColors(false, validEmail, filled);
+    onBlur();
+  };
+
+  const updateColors = (isFocused, isValid, isFilled) => {
+    if (isFocused) {
+      setIconColor('var(--text-input-selected)');
+      setBorderColorClass(inputStyles.inputSelectedBorder);
+      setLeftEmpty(false);
+    } else if (isValid && isFilled) {
+      setIconColor('var(--text-accent)');
+      setBorderColorClass(inputStyles.inputValidBorder);
+    } else if (!isValid && isFilled) {  // New condition for invalid input when filled
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+    } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+    } else {
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setLeftEmpty(true)
+    }
+  };
+
+
   return (
     <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
-      <div className='flex w-full h-12'>
-        <span>
-          <EmailOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+      <div className='relative w-full min-h-12'>
+      <span className="absolute right-3 top-3 w-5 z-10">
+          <EmailOutlinedIcon sx={{ color: iconColor }} />
         </span>
         <input
           type="email"
@@ -34,23 +80,42 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
           value={value}
           onChange={handleInputChange}
           required
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           aria-invalid={validEmail ? "false" : "true"}
           aria-describedby="emailnote"
-          onFocus={() => {
-            setEmailFocus(true);
-            onFocus();
-          }}
-          onBlur={() => {
-            setEmailFocus(false);
-            onBlur();
-          }}
-          className={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} w-[100%] pr-8`}
-          placeholder="ایمیل"
+          className={`
+            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            border-2 bg-transparent
+            text-gray-900 placeholder-transparent
+            focus:outline-none
+            ${borderColorClass}
+            ${inputStyles.inputText2}
+            ${ErrorConditionMet ? inputStyles.inputText2Error : inputStyles.inputText2}
+          `}
+          placeholder=" "
         />
+        <label
+          onClick={handleLabelClick}
+          htmlFor="username"
+          className={`
+            absolute right-11 top-[13px]
+            transition-all duration-300 transform
+            peer-placeholder-shown:translate-y-0
+            peer-placeholder-shown:text-sm
+            peer-focus:-translate-y-5 peer-focus:text-xs
+            text-[var(--text-input-default)]
+            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
+          `}
+        >
+          ایمیل
+        </label>
       </div>
-      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} self-start text-start`}
-      style={{color:'var(--text-error)'}}>
-        <InfoOutlinedIcon /> لطفا یک آدرس ایمیل معتبر وارد کنید.
+      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+         لطفا یک آدرس ایمیل معتبر وارد کنید.
+      </p>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+        *ایمیل الزامی می باشد
       </p>
     </div>
   );

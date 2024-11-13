@@ -166,7 +166,7 @@
                 peer-placeholder-shown:text-sm
                 peer-focus:-translate-y-5 peer-focus:text-xs
                 text-[var(--text-input-default)]
-                ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+                ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
               `}
             >
               رمز عبور
@@ -185,7 +185,7 @@
             </span>
           </div>
 
-          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError gap-y-2`}>
+          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError gap-y-2 `}>
             {
               (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
                 <p>

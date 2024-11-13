@@ -240,6 +240,7 @@ function App() {
           </>
           }
 
+          <Route path='/addEmail' element={<AddEmail />} />
           {/* add email, certificate and admin approval routes */}
           {token && isUserAuthenticated === 'noEmail' && (
             <>

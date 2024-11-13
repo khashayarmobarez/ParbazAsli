@@ -54,6 +54,7 @@ const AddCertificate = () => {
     const fileInputRef = useRef(null);
     
     const [errMsg, setErrMsg] = useState(null)
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const [isStarter, setIsStarter] = useState('notAnsweredYet')
     
@@ -160,6 +161,7 @@ const AddCertificate = () => {
     // mutate, post data
     const handleSubmit = (event) => {
 
+        setIsSubmitted(true)
         event.preventDefault();
 
         if(
@@ -373,6 +375,9 @@ const AddCertificate = () => {
                                                             placeholder={'شماره گواهینامه'}
                                                             Type={'text'}
                                                             icon={<CertificateIcon/>} // You can replace `null` with a specific icon if you have one
+                                                            // isSubmitted={isSubmitted}
+                                                            // isMandatory={true}
+                                                            // MandatoryMessage='شماره گواهینامه خود را وارد کنید'
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
