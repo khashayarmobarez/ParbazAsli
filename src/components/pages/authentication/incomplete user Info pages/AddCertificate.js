@@ -71,7 +71,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();
+        // window.location.reload();
     }
     
     // clear the other states if organ changes
@@ -262,7 +262,7 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-between w-[98%] text-xs'>
 
-                        <p className='' style={{color:'var(--text-warning)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
 
                         <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
 
@@ -286,10 +286,10 @@ const AddCertificate = () => {
                     {
                         organsData &&
                         <>
-                            <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
+                            <form className='w-full flex flex-col md:w-[50%] gap-y-5'>
 
 
-                                <div className='w-full flex flex-col items-center p-4 bg-bgOutputDefault rounded-2xl gap-y-4' >
+                                <div className='w-full flex flex-col items-center py-4 px-5 bg-bgOutputDefault rounded-2xl gap-y-4' >
 
                                     <p className='self-start text-base '>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
 
@@ -375,9 +375,9 @@ const AddCertificate = () => {
                                                             placeholder={'شماره گواهینامه'}
                                                             Type={'text'}
                                                             icon={<CertificateIcon/>} // You can replace `null` with a specific icon if you have one
-                                                            // isSubmitted={isSubmitted}
-                                                            // isMandatory={true}
-                                                            // MandatoryMessage='شماره گواهینامه خود را وارد کنید'
+                                                            isSubmitted={isSubmitted}
+                                                            isRequired={true}
+                                                            RequiredMessage='شماره گواهینامه الزامی می باشد'
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
@@ -387,9 +387,9 @@ const AddCertificate = () => {
                                                         <DateLastRepackInput icon={<CertificateIcon/>} name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
 
                                                         {/* upload picture */}
-                                                        <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
-                                                        <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
-                                                        style={{borderColor:'var(--text-default)'}}>
+                                                        <p className='text-sm mt-3'>آپلود عکس گواهینامه</p>
+                                                        <div onClick={handleUploadClick} 
+                                                        className='w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 border-textDefault rounded-3xl -mt-1'>
 
                                                             <input
                                                                 type="file"
@@ -415,7 +415,7 @@ const AddCertificate = () => {
                                                         </div>
 
 
-                                                        <p className='text-sm w-[85%] self-center'>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
+                                                        <p className='text-sm w-[85%] self-center -mt-3'>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
                                                         حجم عکس نباید بیشتر از 10 مگابایت باشد</p>
 
                                                     </>
@@ -429,9 +429,9 @@ const AddCertificate = () => {
                                 }
 
                                 {
-                                    isStarter !== 'notAnsweredYet' &&
+                                    (isStarter === 'true' || level) &&
                                     <>
-                                        <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-24 self-center mt-4`}
+                                        <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-24 self-center mt-0`}
                                         onClick={handleSubmit}
                                         disabled={isSubmitting} >
                                             ثبت
