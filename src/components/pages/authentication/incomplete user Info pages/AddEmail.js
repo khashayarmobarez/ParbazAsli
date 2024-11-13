@@ -253,7 +253,7 @@ const AddEmail = () => {
                 <DigilogbookLoading />
             }
 
-            <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
+            <div className='flex flex-col items-center justify-center gap-y-5 md:mt-4 w-[90%] md:w-[65%]'>
 
             {error && 
                 <div className='w-full min-h-[71vh]'>
@@ -271,7 +271,7 @@ const AddEmail = () => {
 
 
                     {/* line and circle of adding flight level */}
-                    <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
+                    <div className='w-full flex flex-col gap-y-2 justify-center items-center mb-1'>
 
                         <div className='flex items-center justify-center w-full'>
                             
@@ -288,7 +288,7 @@ const AddEmail = () => {
                         </div>
                         
 
-                        <div className='flex items-center justify-between w-[97%] text-xs'>
+                        <div className='flex items-center justify-between w-[95%] text-xs'>
 
                             <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
 
