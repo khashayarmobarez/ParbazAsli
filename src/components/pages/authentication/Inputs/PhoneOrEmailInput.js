@@ -30,6 +30,12 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     const isValidEmail = EMAIL_REGEX.test(value);
     setValidInput(isValidPhone || isValidEmail);
     setFilled(value.trim() !== '');
+
+    // if(value && validInput) {
+    //   setIconColor('var(--text-accent)')
+    //   setLabelColor('var(--text-accent)')
+    //   setBorderColorClass(inputStyles.inputValidBorder)
+    // } 
   }, [value, validInput]);
 
   const persianToEnglishNumber = (input) => {

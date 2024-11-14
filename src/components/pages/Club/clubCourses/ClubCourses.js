@@ -220,7 +220,7 @@ const ClubCourses = () => {
                                                                     } 
 
                                                                     <p>
-                                                                        <span className='text-textButtonProfileDisable'>تعداد پرواز: </span>{course.flightsCount}
+                                                                        <span className='text-textButtonProfileDisable'>تعداد پرواز: </span> {course.flightsCount}
                                                                     </p>
 
                                                                     { course.clubName &&

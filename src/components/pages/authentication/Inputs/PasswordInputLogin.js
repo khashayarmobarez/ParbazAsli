@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // mui
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -22,6 +22,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
   const ErrorConditionMet = !value && isSubmitted;
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

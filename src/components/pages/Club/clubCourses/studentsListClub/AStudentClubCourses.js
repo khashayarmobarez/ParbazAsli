@@ -125,7 +125,7 @@ const AStudentClubCourses = () => {
                                             'textDefault'}
                                             `}>
                                             { courseData.organization && courseData.type !== 'Regular' &&
-                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span >
                                                         ارگان:&nbsp;
                                                     </span>
@@ -133,7 +133,7 @@ const AStudentClubCourses = () => {
                                                 </p>
                                             }
                                             { courseData.clubName &&
-                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span className=''>
                                                         باشگاه:&nbsp;
                                                     </span>
@@ -141,7 +141,7 @@ const AStudentClubCourses = () => {
                                                 </p>
                                             }
                                             { courseData.coach &&
-                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >>
+                                                <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span className=''>
                                                         مربی:&nbsp;
                                                     </span> 
