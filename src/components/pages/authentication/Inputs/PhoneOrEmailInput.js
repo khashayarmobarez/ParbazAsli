@@ -15,8 +15,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   const [inputFocus, setInputFocus] = useState(false);
   const [validInput, setValidInput] = useState(false);
   const [filled, setFilled] = useState(false);
-  const [leftEmpty, setLeftEmpty] = useState(false)
-  const [errorsAccurred, setErrorsAccurred] = useState([]);
+  const [showErrors, setShowErrors] = useState(false);
   
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
@@ -31,9 +30,6 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     const isValidEmail = EMAIL_REGEX.test(value);
     setValidInput(isValidPhone || isValidEmail);
     setFilled(value.trim() !== '');
-    validInput && setErrorsAccurred([]);
-    value && setErrorsAccurred(errorsAccurred.filter((error) => error !== 'errorEmpty'));
-    !value && setErrorsAccurred(errorsAccurred.filter((error) => error !== 'errorInvalid'));
   }, [value, validInput]);
 
   const persianToEnglishNumber = (input) => {
@@ -50,7 +46,6 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     onChange({ ...event, target: { ...event.target, value: newValue } });
     setFilled(newValue.trim() !== '');
 
-    
   };
 
   const updateColors = (isFocused, isValid, isFilled) => {
@@ -59,7 +54,6 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
       setLabelColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
       setTextErrorColor('var(--text-input-selected)');
-      setLeftEmpty(false)
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
       setLabelColor('var(--text-accent)');
@@ -75,16 +69,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
       setBorderColorClass(inputStyles.inputErrorBorder);
       setLabelColor('var(--text-error)');
       setTextErrorColor('var(--text-error)');
-      setLeftEmpty(true)
     }
-  };
-
-  const updateErrorsAfterBlur = (isFocused, isValid, isFilled) => {
-    if (!isValid && isFilled) {
-      setErrorsAccurred([...errorsAccurred,'errorInvalid']);
-    } else if (!isFilled) {
-      setErrorsAccurred([...errorsAccurred,'errorEmpty']);
-    } 
   };
 
   const handleFocus = () => {
@@ -96,7 +81,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   const handleBlur = () => {
     setInputFocus(false);
     updateColors(false, validInput, filled);
-    updateErrorsAfterBlur(false, validInput, filled);
+    setShowErrors(true);
     onBlur();
   };
 
@@ -158,10 +143,10 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorInvalid') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`${(!validInput && value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام کاربری معتبر نمی باشد
       </p>
-      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorEmpty') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام کاربری الزامی می باشد
       </p>
     </div>

@@ -130,7 +130,7 @@ const Education = () => {
                 }
 
                 {
-                    !courseDividerLoading && !courseDividerError && courseDividerData?.data.length < 0  &&
+                    !courseDividerLoading && !courseDividerError && courseDividerData?.data.length < 1  &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
                         <span className='w-14 h-14 mb-2'>
                             <Attention />

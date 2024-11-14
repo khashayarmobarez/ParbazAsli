@@ -46,7 +46,7 @@ const Notifications = () => {
                 <PageTitle title={'اعلانات'} paddingRight={'40%'} />
 
                 {
-                    notificationsData.data.length < 1 && !notificationsLoading && !notificationsError &&
+                    notificationsData?.data.length < 1 && !notificationsLoading && !notificationsError &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
                         <span className='w-14 h-14 mb-2'>
                             <Attention />

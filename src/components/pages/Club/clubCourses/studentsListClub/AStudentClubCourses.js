@@ -64,7 +64,7 @@ const AStudentClubCourses = () => {
 
                 <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 '>
 
-                    { StudentCourses.data.length < 1 &&
+                    { StudentCourses?.data.length < 1 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
                             <span className='w-14 h-14 mb-2'>
                                 <Attention />

@@ -63,7 +63,7 @@ const AStudentCourses = () => {
 
                 {/* {studentId} normal */}
 
-                { StudentCourses.data.length < 1 && !StudentCoursesLoading && !StudentCoursesError &&
+                { StudentCourses?.data.length < 1 && !StudentCoursesLoading && !StudentCoursesError &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
                         <span className='w-14 h-14 mb-2'>
                             <Attention />
