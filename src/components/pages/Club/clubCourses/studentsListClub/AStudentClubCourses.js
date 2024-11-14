@@ -120,11 +120,12 @@ const AStudentClubCourses = () => {
                                     <div className='w-full flex justify-between text-start text-sm'>
                                         <div className={`flex flex-col justify-between self-start 
                                             text-${courseData.status === 'Active' ? 'text-textDefault' :
-                                                courseData.status === 'Completed' ? 'text-textButtonProfileDisable' :
-                                                courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' :
+                                            courseData.status === 'Completed' ? 'text-textButtonProfileDisable' :
+                                            courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' :
                                             'textDefault'}
                                             `}>
-                                            { courseData.organization && courseData.type !== 'Regular' &&
+                                            { 
+                                            courseData.organization && courseData.type !== 'Regular' &&
                                                 <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span >
                                                         ارگان:&nbsp;
@@ -132,7 +133,8 @@ const AStudentClubCourses = () => {
                                                     {courseData.organization}
                                                 </p>
                                             }
-                                            { courseData.clubName &&
+                                            { 
+                                            courseData.clubName &&
                                                 <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span className=''>
                                                         باشگاه:&nbsp;
@@ -140,7 +142,8 @@ const AStudentClubCourses = () => {
                                                     {courseData.clubName}
                                                 </p>
                                             }
-                                            { courseData.coach &&
+                                            { 
+                                            courseData.coach &&
                                                 <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`} >
                                                     <span className=''>
                                                         مربی:&nbsp;
