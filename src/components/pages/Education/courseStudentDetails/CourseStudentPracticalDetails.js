@@ -31,7 +31,7 @@ const CourseStudentPracticalDetails = () => {
             }
             {
             userFlights && userFlights.totalCount === 0 &&
-                <p> هنوز پروازی برای این دوره ثبت نشده است</p>
+                <p className='text-textWarning py-4'> هنوز پروازی برای این دوره ثبت نشده است</p>
             }
             {
                 userFlights && userFlights.totalCount > 0 &&

@@ -30,8 +30,8 @@ const CourseStudentTheoryDetails = () => {
                 </Box>
             }
 
-            {classesData && classesData.data.classesCount === 0 && 
-                <p> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
+            {classesData && classesData.data.classesCount < 1 && 
+                <p className='text-textWarning mb-4'> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
             }
 
             {classesData && classesData.data.classesCount > 0 &&

@@ -199,12 +199,12 @@ const CourseStudents = () => {
 
             {
                 studentsData && studentsData.totalCount < 1 &&
-                <p className='w-full text-center pb-6'>هنرجویی به دوره اضافه نشده</p>
+                <p className='w-full text-center pb-5 pt-4 text-textWarning'>هنرجویی به دوره اضافه نشده</p>
             }
 
             {
                 studentsData && !studentsDataLoading &&
-                <div className='w-full flex flex-col items-center gap-y-6'>
+                <div className='w-full flex flex-col items-center gap-y-6 -mt-2'>
                     {
                         studentsData.totalCount > 0 &&
                         <DropDownLine  
