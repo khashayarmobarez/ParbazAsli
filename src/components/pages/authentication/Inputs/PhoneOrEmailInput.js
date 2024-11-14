@@ -16,6 +16,8 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   const [validInput, setValidInput] = useState(false);
   const [filled, setFilled] = useState(false);
   const [leftEmpty, setLeftEmpty] = useState(false)
+  const [errorsAccurred, setErrorsAccurred] = useState([]);
+  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
   
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
@@ -28,7 +30,8 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     const isValidEmail = EMAIL_REGEX.test(value);
     setValidInput(isValidPhone || isValidEmail);
     setFilled(value.trim() !== '');
-  }, [value]);
+    validInput && setErrorsAccurred([]);
+  }, [value, validInput]);
 
   const persianToEnglishNumber = (input) => {
     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -43,24 +46,38 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     let newValue = persianToEnglishNumber(event.target.value);
     onChange({ ...event, target: { ...event.target, value: newValue } });
     setFilled(newValue.trim() !== '');
+
+    
   };
 
   const updateColors = (isFocused, isValid, isFilled) => {
     if (isFocused) {
       setIconColor('var(--text-input-selected)');
+      setLabelColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
       setLeftEmpty(false)
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
     } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
+      setLabelColor('var(--text-error)');
       setLeftEmpty(true)
     }
+  };
+
+  const updateErrorsAfterBlur = (isFocused, isValid, isFilled) => {
+    if (!isValid && isFilled) {
+      setErrorsAccurred([...errorsAccurred,'errorInvalid']);
+    } else if (!isFilled) {
+      setErrorsAccurred([...errorsAccurred,'errorEmpty']);
+    } 
   };
 
   const handleFocus = () => {
@@ -72,6 +89,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   const handleBlur = () => {
     setInputFocus(false);
     updateColors(false, validInput, filled);
+    updateErrorsAfterBlur(false, validInput, filled);
     onBlur();
   };
 
@@ -126,17 +144,17 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
-            text-[var(--text-input-default)]
+            text-[${labelColor}]
             ${(inputFocus || filled || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" aria-live="polite" className={`${(value && !validInput && filled && !inputFocus) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorInvalid') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
         *نام کاربری معتبر نمی باشد
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorEmpty') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
         *نام کاربری الزامی می باشد
       </p>
     </div>

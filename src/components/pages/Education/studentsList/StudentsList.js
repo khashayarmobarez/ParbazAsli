@@ -59,7 +59,7 @@ const StudentsList = () => {
                         }
 
                         <div className='w-[90%] flex flex-col gap-y-4 items-center'>
-                            {AllStudents.data.length > 0 && AllStudents.data &&
+                            {AllStudents?.data.length > 0 &&
                                 AllStudents.data.map((student) => (
                                     <ACourseStudentBox key={student.id} studentData={student} isForHistory={id === '1' ? false : true} />
                                 ))
@@ -67,7 +67,8 @@ const StudentsList = () => {
                         </div>
 
 
-                        { AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1 && (
+                        { 
+                        (AllStudents?.totalPagesCount && AllStudents.totalPagesCount > 1 && AllStudents.data.length > 0) ?
                             <div className='w-full flex justify-between px-10 items-center'>
                                 <button
                                     className={`w-6 h-6 justify-self-start`}
@@ -89,7 +90,9 @@ const StudentsList = () => {
                                     <ArrowButton isDisable={pageNumber === 1}/>
                                 </button>
                             </div>
-                        )}
+                            :
+                            ''
+                        }
                         
                     </div>
                 }

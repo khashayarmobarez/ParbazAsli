@@ -13,6 +13,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   const [showPassword, setShowPassword] = useState(false);  
   const [filled, setFilled] = useState(false);
   const [leftEmpty, setLeftEmpty] = useState(false);
+  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
   
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
@@ -33,18 +34,22 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   const updateColors = (isFocused, isFilled) => {
     if (isFocused) {
       setIconColor('var(--text-input-selected)');
+      setLabelColor('var(--text-input-selected)');
       setEyeIconColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
-    } else if (isFilled) {
+    } else if (value) {
       setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
       setEyeIconColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
-    } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
+    } else if (ErrorConditionMet || (!value && isSubmitted)) {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
       setEyeIconColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
       setEyeIconColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
       setLeftEmpty(true);
@@ -103,7 +108,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
-            text-[var(--text-input-default)]
+            text-[${labelColor}]
             ${(inputFocus || filled || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
