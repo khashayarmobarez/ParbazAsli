@@ -14,6 +14,9 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
+  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
+  const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
+
 
   const ErrorConditionMet = (value && !validName && filled) || (!value && isSubmitted);
 
@@ -46,16 +49,24 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
   const updateColors = (isFocused, isValid, isFilled) => {
     if (isFocused) {
       setIconColor('var(--text-input-selected)');
+      setLabelColor('var(--text-input-selected)');
+      setTextErrorColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
       setLeftEmpty(false);
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
     } else if (!isValid && isFilled) {  // New condition for invalid input when filled
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
@@ -102,18 +113,18 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
-            text-[var(--text-input-default)]
+            text-[${labelColor}]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           نام
         </label>
       </div>
-      <p id="uidnote" aria-live="polite" className={`${value && !validName && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="uidnote" aria-live="polite" className={`${value && !validName && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *3 تا 24 کاراکتر<br />
         *با حروف فارسی بنویسید
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام الزامی می باشد
       </p>
     </div>

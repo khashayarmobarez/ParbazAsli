@@ -23,10 +23,13 @@
       const [filled, setFilled] = useState(false);
       const [inputFocus, setInputFocus] = useState(false);
       const [leftEmpty, setLeftEmpty] = useState(false)
+      const [errorsAccurred, setErrorsAccurred] = useState([]);
 
       // Separate states for different elements
       const [iconColor, setIconColor] = useState('var(--text-default)');
       const [borderColorClass, setBorderColorClass] = useState('');
+      const [labelColor, setLabelColor] = useState('var(--text-input-default)');
+      const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
       const ErrorConditionMet = (value && !validPwd && filled) || (!value && isSubmitted);
       
@@ -53,6 +56,9 @@
 
           setValidPwd(isValid);
           setFilled(value.trim() !== '');
+
+          validPwd && setErrorsAccurred([]);
+          value && setErrorsAccurred(errorsAccurred.filter((error) => error !== 'errorEmpty'));
         }, 1000);
 
         return () => clearInterval(interval);

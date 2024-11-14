@@ -10,10 +10,12 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
   const [filled, setFilled] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
   const [leftEmpty, setLeftEmpty] = useState(false)
-
+  
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
+  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
+  const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
   const ErrorConditionMet = (value && !validPhone && filled) || (!value && isSubmitted);
 
@@ -56,19 +58,29 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
   const updateColors = (isFocused, isValid, isFilled) => {
     if (isFocused) {
       setIconColor('var(--text-input-selected)');
+      setLabelColor('var(--text-input-selected)');
+      setTextErrorColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
       setLeftEmpty(false);
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
     } else if (!isValid && isFilled) {  // New condition for invalid input when filled
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
       setLeftEmpty(true)
     }
@@ -111,17 +123,17 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
-            text-[var(--text-input-default)]
+            text-[${labelColor}]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           شماره تلفن
         </label>
       </div>
-      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
        *شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor }]`}>
         *شماره تلفن الزامی می باشد
       </p>
     </div>

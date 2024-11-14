@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
@@ -10,11 +9,13 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   const [validName, setValidName] = useState(false);
   const [filled, setFilled] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
-  const [leftEmpty, setLeftEmpty] = useState(false)
+  const [leftEmpty, setLeftEmpty] = useState(false);
 
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
+  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
+  const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
   const ErrorConditionMet = (value && !validName && filled) || (!value && isSubmitted);
 
@@ -47,26 +48,34 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   const updateColors = (isFocused, isValid, isFilled) => {
     if (isFocused) {
       setIconColor('var(--text-input-selected)');
+      setLabelColor('var(--text-input-selected)');
+      setTextErrorColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
       setLeftEmpty(false);
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
     } else if (!isValid && isFilled) {  // New condition for invalid input when filled
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
-      setLeftEmpty(true)
+      setLeftEmpty(true);
     }
   };
 
   return (
-    <div className='flex flex-col relative w-[100%]  rounded-xl px-2'>
+    <div className='flex flex-col relative w-full rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
         <span className="absolute right-3 top-3 w-5 z-10">
           <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />
@@ -103,18 +112,18 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
-            text-[var(--text-input-default)]
+            text-[${labelColor}]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           نام خانوادگی
         </label>
       </div>
-      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-${textErrorColor}`}>
         *3 تا 24 کاراکتر<br />
         *با حروف فارسی بنویسید
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-${textErrorColor}`}>
         *نام خانوادگی الزامی می باشد
       </p>
     </div>
