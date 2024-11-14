@@ -163,7 +163,7 @@ const ClubCoaches = () => {
                                         }
                                     </>
                                 : 
-                                <p style={{color:' var(--text-error)'}}>مربی فعالی در باشگاه وجود ندارد</p>
+                                <p className='text-textWarning'>مربی فعالی در باشگاه وجود ندارد</p>
                                 }
                             </div>
                         }
@@ -211,7 +211,7 @@ const ClubCoaches = () => {
                                         }
                                     </>
                                     :
-                                    <p style={{color:' var(--text-error)'}}>مربی سابقی در این باشکاه وجود ندارد</p>
+                                    <p className='text-textWarning'>مربی سابقی در این باشکاه وجود ندارد</p>
                                 }
                             </div>
                         }

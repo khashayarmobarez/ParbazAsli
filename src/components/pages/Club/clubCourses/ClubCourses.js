@@ -94,17 +94,12 @@ const ClubCourses = () => {
                     }
 
                     {clubCourseDividerData && clubCourseDividerData.data.length < 1 &&
-                        <div className='w-full h-[60vh] flex flex-col justify-center items-center'>
-                            <span className='w-20 h-20 mb-2'>
+                        <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
+                            <span className='w-14 h-14 mb-2'>
                                 <Attention />
                             </span>
                             <p>در حال حاضر دوره ای وجود ندارد</p>
                         </div>
-                    }
-
-                    {
-                        !clubCourseDividerData && !clubCourseDividerLoading && !clubCourseDividerError &&
-                        <p className='h-60vh w-full text-center flex justify-center items-center'> دوره ای اضافه نشده</p>
                     }
 
                     {courseCountsData && 

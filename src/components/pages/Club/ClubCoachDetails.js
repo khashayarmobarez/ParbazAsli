@@ -180,6 +180,13 @@ const ClubCoachDetails = () => {
                 }
 
                 {
+                     coachCoursesDetails && coachCoursesDetails.data < 1 &&
+                        <p className='w-full py-4 text-textWarning'>
+                            <p>هنوز دوره ای برای این مربی ثبت نشده است</p>
+                        </p>
+                }
+
+                {
                     coachCoursesDetails && coachCoursesDetails.data.map((course) => (
                         <div
                         key={course.id}

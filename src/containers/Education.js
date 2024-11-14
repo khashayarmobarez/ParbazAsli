@@ -22,6 +22,7 @@ import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus 
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
 import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
+import Attention from '../components/icons/Attention';
 
 
 
@@ -123,16 +124,22 @@ const Education = () => {
                         <CircularProgressLoader /> 
                 }
 
-                {courseDividerError &&
+                {  
+                    courseDividerError &&
                     <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                 }
 
                 {
-                    !courseDividerData && !courseDividerLoading && !courseDividerError &&
-                    <p className='h-60vh w-full text-center flex justify-center items-center text-textWarning'> دوره ای اضافه نشده</p>
+                    courseDividerData.data < 1  && !courseDividerLoading && !courseDividerError &&
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
+                        <span className='w-14 h-14 mb-2'>
+                            <Attention />
+                        </span>
+                        <p>در حال حاضر دوره ای وجود ندارد</p>
+                    </div>
                 }
 
-                {courseCountsData && 
+                {courseCountsData && courseCountsData > 0 &&
                     <div className='grid grid-cols-2 w-full justify-between gap-4'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>
