@@ -38,7 +38,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
   };
 
   const handleLabelClick = () => {
-    document.getElementById('phone').focus();
+    document.getElementById('phoneNum').focus();
   };
 
   const handleFocus = () => {
@@ -82,8 +82,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
         </span>
         <input
           type="text"
-          id="phone"
-          ref={phoneRef}
+          id="phoneNum"
           autoComplete='tel'
           value={value}
           onChange={handleInputChange}

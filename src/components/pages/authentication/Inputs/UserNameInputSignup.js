@@ -28,7 +28,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
   };
 
   const handleLabelClick = () => {
-    document.getElementById('username').focus();
+    document.getElementById('name').focus();
   };
 
   const handleFocus = () => {
@@ -72,7 +72,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
         </span>
         <input
           type="text"
-          id="username"
+          id="name"
           ref={userRef}
           autoComplete="name"
           value={value}

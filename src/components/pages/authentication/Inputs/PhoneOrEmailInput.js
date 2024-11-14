@@ -133,7 +133,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" aria-live="polite" className={`${(value && !validInput && filled) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+      <p id="inputnote" aria-live="polite" className={`${(value && !validInput && filled && !inputFocus) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
         *نام کاربری معتبر نمی باشد
       </p>
       <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>

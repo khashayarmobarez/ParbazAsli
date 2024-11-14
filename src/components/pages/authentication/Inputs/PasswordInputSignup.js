@@ -91,7 +91,7 @@
 
 
       const handleLabelClick = () => {
-        document.getElementById('username').focus();
+        document.getElementById('passwordSignup').focus();
       };
     
       const handleFocus = () => {
@@ -135,7 +135,7 @@
           </span>
             <input
               type={showPassword ? 'text' : 'password'}
-              id="password"
+              id="passwordSignup"
               value={value}
               onChange={handleChange}
               onFocus={handleFocus}
