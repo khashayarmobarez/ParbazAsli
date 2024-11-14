@@ -33,7 +33,8 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     setFilled(value.trim() !== '');
     validInput && setErrorsAccurred([]);
     value && setErrorsAccurred(errorsAccurred.filter((error) => error !== 'errorEmpty'));
-  }, [value, validInput, errorsAccurred]);
+    console.log(errorsAccurred)
+  }, [value, validInput]);
 
   const persianToEnglishNumber = (input) => {
     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -157,7 +158,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorInvalid') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`${(errorsAccurred.includes('errorInvalid') &&  value) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام کاربری معتبر نمی باشد
       </p>
       <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorEmpty') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
