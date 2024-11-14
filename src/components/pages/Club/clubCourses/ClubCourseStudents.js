@@ -138,7 +138,7 @@ const CourseStudents = () => {
 
             {
                 studentsData && studentsData.totalCount < 1 &&
-                <p className='w-full text-center pb-6'>هنرجویی به دوره اضافه نشده</p>
+                <p className='w-full text-center pb-6 text-textWarning'>هنرجویی به دوره اضافه نشده</p>
             }
 
             {

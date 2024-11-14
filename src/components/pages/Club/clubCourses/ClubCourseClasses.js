@@ -21,7 +21,7 @@ const ClubCourseClasses = () => {
         <div className='w-full flex flex-col gap-y-6 items-center pb-20'>
 
             {classesData && classesData.data.classesCount === 0 &&
-                <p className='w-full text-center'>کلاسی اضافه نشده است</p>
+                <p className='w-full text-center text-textWarning'>کلاسی اضافه نشده است</p>
             }
             
             {classesData && classesData.data.classesCount > 0 &&

@@ -32,7 +32,7 @@ const ClubCourseStudentTheoryDetails = () => {
             }
 
             {classesData && classesData.data.classesCount === 0 && 
-                <p> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
+                <p className='text-textWarning'> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
             }
 
             {classesData && classesData.data.classesCount > 0 &&

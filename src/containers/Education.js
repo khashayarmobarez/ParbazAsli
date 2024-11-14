@@ -130,7 +130,7 @@ const Education = () => {
                 }
 
                 {
-                    courseDividerData.data < 1  && !courseDividerLoading && !courseDividerError &&
+                    !courseDividerLoading && !courseDividerError && courseDividerData?.data.length < 0  &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
                         <span className='w-14 h-14 mb-2'>
                             <Attention />
@@ -139,7 +139,7 @@ const Education = () => {
                     </div>
                 }
 
-                {courseCountsData && courseCountsData > 0 &&
+                {courseCountsData && courseDividerData?.data.length > 0  &&
                     <div className='grid grid-cols-2 w-full justify-between gap-4'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>

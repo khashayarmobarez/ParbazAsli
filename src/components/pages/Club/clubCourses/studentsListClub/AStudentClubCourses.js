@@ -18,6 +18,7 @@ import Box from '@mui/material/Box';
 
 // comps
 import PageTitle from '../../../../reuseable/PageTitle';
+import Attention from '../../../../icons/Attention';
 
 const AStudentClubCourses = () => {
 
@@ -56,12 +57,22 @@ const AStudentClubCourses = () => {
 
                 <PageTitle 
                     title={StudentCourses ? `${StudentCourses.data[0].studentName}` : 'نام هنرجو' }
-                    navigateTo={`/education`} 
+                    navigateTo={`/club/clubCourses`} 
                 />
 
                 {/* {studentId} normal */}
 
                 <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 '>
+
+                    { StudentCourses.data.length < 1 &&
+                        <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
+                            <span className='w-14 h-14 mb-2'>
+                                <Attention />
+                            </span>
+                            <p>در حال حاضر دوره ای وجود ندارد</p>
+                        </div>
+                    }
+
                     {
                         StudentCourses && StudentCourses.data?.map((courseData, index) => (
                             

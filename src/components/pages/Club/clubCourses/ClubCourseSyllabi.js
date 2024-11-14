@@ -25,7 +25,7 @@ const ClubCourseSyllabi = () => {
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
             {
                 syllabiDataTheory && syllabiDataPractical && syllabiDataTheory.data.length < 1 && syllabiDataPractical.data.length < 1 &&
-                <p className='w-full text-center'>سیلابسی برای این دوره ثبت نشده</p>
+                <p className='w-full text-center text-textWarning'>سیلابسی برای این دوره ثبت نشده</p>
             }
             {
                 syllabiDataTheory && syllabiDataTheory.data.length > 0 &&

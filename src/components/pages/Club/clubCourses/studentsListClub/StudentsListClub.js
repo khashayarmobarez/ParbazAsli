@@ -49,7 +49,7 @@ const StudentsListClub = () => {
 
                     {
                         AllStudents && AllStudents.data.length < 1 && !AllStudentLoading && !AllStudentError &&
-                        <p className='h-60vh w-full text-center flex justify-center items-center mt-8'> هنرجویی یافت نشد</p>
+                        <p className='h-60vh w-full text-center flex justify-center items-center mt-8 text-textWarning'> هنرجویی یافت نشد</p>
                     }
 
                     <div className='w-[90%] flex flex-col gap-y-4 items-center'>

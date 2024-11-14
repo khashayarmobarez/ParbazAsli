@@ -18,6 +18,7 @@ import ArrowButton from '../../../../components/icons/ArrowButton';
 // mui
 import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
+import Attention from '../../../icons/Attention';
 
 
 const AStudentCourses = () => {
@@ -62,6 +63,15 @@ const AStudentCourses = () => {
 
                 {/* {studentId} normal */}
 
+                { StudentCourses.data.length < 1 && !StudentCoursesLoading && !StudentCoursesError &&
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
+                        <span className='w-14 h-14 mb-2'>
+                            <Attention />
+                        </span>
+                        <p>دوره ای یافت نشد</p>
+                    </div>
+                }
+
                 <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 '>
                     {
                         StudentCourses && StudentCourses.data?.map((courseData, index) => (
@@ -69,7 +79,6 @@ const AStudentCourses = () => {
                             <div key={index} className='w-full flex flex-col items-center'>
 
                                 <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
-
 
                                     <div className='w-full flex justify-between'>
                                         

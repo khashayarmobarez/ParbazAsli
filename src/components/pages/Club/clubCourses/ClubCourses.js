@@ -75,7 +75,7 @@ const ClubCourses = () => {
 
 
     return (
-        <div className='w-full flex flex-col items-center pt-14 gap-y-4 '>
+        <div className='w-full flex flex-col items-center pt-14 gap-y-4 pb-14 '>
 
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]' >
 
@@ -163,10 +163,9 @@ const ClubCourses = () => {
                                         <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                             {
                                                 courseData && courseData.data?.map((course) => (
-                                                    <div className='w-full flex flex-col items-center'>
+                                                    <div key={course.id} className='w-full flex flex-col items-center'>
 
                                                         <div
-                                                        key={course.id}
                                                         className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
                                                         style={{
                                                             boxShadow: 'var(--shadow-all)'

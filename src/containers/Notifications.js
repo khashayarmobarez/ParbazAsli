@@ -17,6 +17,7 @@ import RegularTextNotif from '../components/pages/Notifications/RegularTextNotif
 import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifTandemPassengerSurvey';
 import PopupForNotif from '../components/pages/Notifications/PopupForNotif';
 import NotifAcceptEquipment from '../components/pages/Notifications/NotifAcceptEquipment';
+import Attention from '../components/icons/Attention';
 
 
 const Notifications = () => {
@@ -43,6 +44,16 @@ const Notifications = () => {
             <div className='flex flex-col py-14 justify-center items-center w-full gap-y-8 md:w-[60%]'>
 
                 <PageTitle title={'اعلانات'} paddingRight={'40%'} />
+
+                {
+                    notificationsData.data.length < 1 && !notificationsLoading && !notificationsError &&
+                    <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
+                        <span className='w-14 h-14 mb-2'>
+                            <Attention />
+                        </span>
+                        <p>اعلانی یافت نشد</p>
+                    </div>
+                }
 
                 <div className='w-[90%] flex flex-col space-y-6'>
 
