@@ -129,7 +129,7 @@ const Education = () => {
 
                 {
                     !courseDividerData && !courseDividerLoading && !courseDividerError &&
-                    <p className='h-60vh w-full text-center flex justify-center items-center'> دوره ای اضافه نشده</p>
+                    <p className='h-60vh w-full text-center flex justify-center items-center text-textWarning'> دوره ای اضافه نشده</p>
                 }
 
                 {courseCountsData && 

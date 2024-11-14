@@ -177,7 +177,7 @@ const Harness = (props) => {
                 {
                     userEquipmentsData &&
                     !userEquipmentsData.data[0] &&
-                    <p className=' font-medium'>هیچ تجهیزات فعالی ثبت نشده است</p>
+                    <p className=' font-medium text-textWarning'>هیچ تجهیزات فعالی ثبت نشده است</p>
                 }
 
                 {/* Permanent */}
@@ -191,12 +191,12 @@ const Harness = (props) => {
                     />
                 }
 
-                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                     {
                         DropDown === 'Permanent' &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
+                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                             <div className='w-full flex flex-col items-center'>
 
                                 <div key={equipment.id} className={` z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6 bg-bgCard `}
@@ -284,9 +284,9 @@ const Harness = (props) => {
                                 }
 
                             </div>
-                            )
+                        </div>
+                        )
                     }
-                </div>
 
 
                 {/* temporary */}
@@ -301,12 +301,12 @@ const Harness = (props) => {
                         />
                 }
 
-                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                     {
                         DropDownForTemporary === 'Temporary' &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
+                            <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                 <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
                                 style={{boxShadow:'var(--shadow-all)'}} >
 
@@ -331,9 +331,9 @@ const Harness = (props) => {
                                     </div>
 
                                 </div>
-                            )
+                            </div>
+                        )
                     }
-                </div>
 
                 {/* history */}
                 {
@@ -347,12 +347,12 @@ const Harness = (props) => {
                         />
                 }
 
-                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                 {
                     DropDownForHistory === 'History' &&
                     userEquipmentsHistoryData &&
                     userEquipmentsHistoryData.data &&
                     userEquipmentsHistoryData.data.map(equipment =>
+                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                         <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard`} style={{ boxShadow:'var(--shadow-all)'}}>
 
                             <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
@@ -373,9 +373,9 @@ const Harness = (props) => {
                             </div>
 
                         </div>
+                    </div>
                     )
                 }
-                </div>
 
             </div>
 

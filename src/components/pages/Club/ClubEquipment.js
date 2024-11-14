@@ -12,9 +12,6 @@ const ClubEquipment = () => {
     const location = useLocation();
 
 
-     // Empty dependency array ensures the effect runs only once after initial render
-
-
     return (
         <div className=' flex flex-col mt-14 items-center '>
 

@@ -175,7 +175,7 @@ const Parachute = (props) => {
                 {
                     userEquipmentsData &&
                     !userEquipmentsData.data[0] &&
-                    <p className=' font-medium'>هیچ تجهیزات فعالی ثبت نشده است</p>
+                    <p className=' font-medium text-textWarning'>هیچ تجهیزات فعالی ثبت نشده است</p>
                 }
 
                 {/* Permanent */}
@@ -190,12 +190,12 @@ const Parachute = (props) => {
                     />
                 }
 
-                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                     {
                         DropDown === 'Permanent' &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
+                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                             <div className='w-full flex flex-col items-center'>
 
                                 <div key={equipment.id} className={` z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6 bg-bgCard `}
@@ -283,9 +283,9 @@ const Parachute = (props) => {
                                 }
 
                             </div>
-                            )
+                        </div>
+                        )
                     }
-                </div>
 
 
                 {/* temporary */}
@@ -300,12 +300,12 @@ const Parachute = (props) => {
                         />
                 }
 
-                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                     {
                         DropDownForTemporary === 'Temporary' &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
+                            <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                 <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
                                 style={{boxShadow:'var(--shadow-all)'}} >
 
@@ -330,9 +330,9 @@ const Parachute = (props) => {
                                     </div>
 
                                 </div>
+                            </div>
                             )
                     }
-                </div>
 
                 {/* history */}
                 {
@@ -346,12 +346,12 @@ const Parachute = (props) => {
                         />
                 }
 
-                <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                     {
                         DropDownForHistory === 'History' &&
                         userEquipmentsHistoryData &&
                         userEquipmentsHistoryData.data &&
                         userEquipmentsHistoryData.data.map(equipment =>
+                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                             <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard `}
                             style={{boxShadow:'var(--shadow-all)'}}>
 
@@ -369,12 +369,10 @@ const Parachute = (props) => {
                                 </div>
 
                             </div>
+                        </div>
                         )
                     }
-                </div>
-
             </div>
-
             
 
             <Link to='/club/addParachuteForClub' className='z-20 fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
