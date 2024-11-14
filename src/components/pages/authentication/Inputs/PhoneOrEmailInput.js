@@ -32,7 +32,8 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     setValidInput(isValidPhone || isValidEmail);
     setFilled(value.trim() !== '');
     validInput && setErrorsAccurred([]);
-  }, [value, validInput]);
+    value && setErrorsAccurred(errorsAccurred.filter((error) => error !== 'errorEmpty'));
+  }, [value, validInput, errorsAccurred]);
 
   const persianToEnglishNumber = (input) => {
     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
