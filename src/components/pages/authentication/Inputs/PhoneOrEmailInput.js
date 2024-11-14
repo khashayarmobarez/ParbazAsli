@@ -22,6 +22,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
+  const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
   const ErrorConditionMet = (value && !validInput && filled) || (!value && isSubmitted);
 
@@ -55,19 +56,23 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
       setIconColor('var(--text-input-selected)');
       setLabelColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
+      setTextErrorColor('var(--text-input-selected)');
       setLeftEmpty(false)
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
       setLabelColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
     } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
       setIconColor('var(--text-error)');
       setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
       setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setLeftEmpty(true)
     }
   };
@@ -151,10 +156,10 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorInvalid') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorInvalid') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام کاربری معتبر نمی باشد
       </p>
-      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorEmpty') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[var(--text-error)]`}>
+      <p id="inputnote" aria-live="polite" className={`${errorsAccurred.includes('errorEmpty') ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام کاربری الزامی می باشد
       </p>
     </div>

@@ -19,6 +19,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
   const [eyeIconColor, setEyeIconColor] = useState('var(--text-default)');
+  const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
   const ErrorConditionMet = !value && isSubmitted;
 
@@ -36,21 +37,25 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
       setIconColor('var(--text-input-selected)');
       setLabelColor('var(--text-input-selected)');
       setEyeIconColor('var(--text-input-selected)');
+      setTextErrorColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
     } else if (value) {
       setIconColor('var(--text-accent)');
       setLabelColor('var(--text-accent)');
       setEyeIconColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
       setBorderColorClass(inputStyles.inputValidBorder);
     } else if (ErrorConditionMet || (!value && isSubmitted)) {
       setIconColor('var(--text-error)');
       setLabelColor('var(--text-error)');
       setEyeIconColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
       setLabelColor('var(--text-error)');
       setEyeIconColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
       setLeftEmpty(true);
     }
@@ -126,7 +131,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           )}
         </span>
       </div>
-      <p id="inputnote" className={`${((!value && isSubmitted) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="inputnote" className={`${((!value && isSubmitted) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *رمز عبور الزامی است
       </p>
     </div>
