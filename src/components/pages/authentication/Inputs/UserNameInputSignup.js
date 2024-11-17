@@ -26,6 +26,8 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
 
     if(!value && isSubmitted && !inputFocus) {
       setIconColor('var(--text-error)');
+
+      
       setLabelColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
       setShowErrors(true);
