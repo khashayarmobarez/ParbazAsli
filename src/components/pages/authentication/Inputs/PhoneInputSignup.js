@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
 const PHONE_REGEX = /^09\d{9}$/;
 
-const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
   const [validPhone, setValidPhone] = useState(false);
   const [filled, setFilled] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
-  const [leftEmpty, setLeftEmpty] = useState(false)
-  
+  const [showErrors, setShowErrors] = useState(false);
+
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
@@ -22,25 +21,23 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
   useEffect(() => {
     const result = PHONE_REGEX.test(value);
     setValidPhone(result);
-  }, [value]);
 
-  const persianToEnglishNumber = (input) => {
-    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    
-    return input.replace(/[\u06F0-\u06F9]/g, (char) => {
-      return englishNumbers[persianNumbers.indexOf(char)];
-    });
-  };
+    if (!value && isSubmitted) {
+      setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setShowErrors(true);
+    }
+  }, [value, isSubmitted]);
 
   const handleInputChange = (event) => {
-    let newValue = persianToEnglishNumber(event.target.value);
-    onChange({ ...event, target: { ...event.target, value: newValue } });
-    setFilled(newValue.trim() !== '');
+    const englishValue = persianToEnglishNumber(event.target.value);
+    onChange({ ...event, target: { ...event.target, value: englishValue } });
+    setFilled(englishValue.trim() !== '');
   };
 
   const handleLabelClick = () => {
-    document.getElementById('phoneNum').focus();
+    document.getElementById('phoneSignup').focus();
   };
 
   const handleFocus = () => {
@@ -52,6 +49,7 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
   const handleBlur = () => {
     setInputFocus(false);
     updateColors(false, validPhone, filled);
+    setShowErrors(true);
     onBlur();
   };
 
@@ -61,7 +59,6 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
       setLabelColor('var(--text-input-selected)');
       setTextErrorColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
-      setLeftEmpty(false);
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
       setLabelColor('var(--text-accent)');
@@ -82,20 +79,29 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
       setLabelColor('var(--text-error)');
       setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
-      setLeftEmpty(true)
     }
   };
 
+  const persianToEnglishNumber = (input) => {
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    return input.replace(/[\u06F0-\u06F9]/g, (char) => {
+      return englishNumbers[persianNumbers.indexOf(char)];
+    });
+  };
+
   return (
-    <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
-      <div className='relative w-full min-h-12'>
-        <span className="absolute right-3 top-3 w-5 z-10">
+    <div className='flex flex-col relative w-full rounded-xl px-2'>
+      <div className='relative w-full min-h-12 cursor-text'>
+        <span className="absolute right-3 top-3 w-5 z-10 cursor-text">
           <LocalPhoneRoundedIcon sx={{ color: iconColor }} />
         </span>
         <input
           type="text"
-          id="phoneNum"
-          autoComplete='tel'
+          id="phoneSignup"
+          ref={phoneRef}
+          autoComplete="tel"
           value={value}
           onChange={handleInputChange}
           onFocus={handleFocus}
@@ -116,13 +122,14 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
         />
         <label
           onClick={handleLabelClick}
-          htmlFor="username"
+          htmlFor="phoneSignup"
           className={`
             absolute right-11 top-[13px]
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
+            cursor-text
             text-[${labelColor}]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
@@ -130,14 +137,14 @@ const PhoneInput = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmi
           شماره تلفن
         </label>
       </div>
-      <p id="phonenote" className={`${value && !validPhone && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
-       *شماره تلفن باید با 09 شروع شود و 11 رقمی باشد.
+      <p id="phonenote" className={`${filled && value && !validPhone ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+        *شماره تلفن باید با 09 شروع شود و 11 رقم باشد
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor }]`}>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *شماره تلفن الزامی می باشد
       </p>
     </div>
   );
 };
 
-export default PhoneInput;
+export default PhoneInputSignup;
