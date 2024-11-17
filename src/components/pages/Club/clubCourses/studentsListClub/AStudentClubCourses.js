@@ -163,7 +163,10 @@ const AStudentClubCourses = () => {
                                                 </p>
                                             }
                                         </div>
-                                        <button onClick={handleCourseDetails(courseData.id)} className={`${ButtonStyles.normalButton} self-end`} >
+                                        <button 
+                                        onClick={handleCourseDetails(courseData.id)} 
+                                        disabled={courseData.status === 'CoachPending'}
+                                        className={`${courseData.status === 'CoachPending' ? ButtonStyles.normalButtonDisable : ButtonStyles.normalButton} self-end`}>
                                             جزئیات  
                                         </button>
 
