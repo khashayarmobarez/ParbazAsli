@@ -110,7 +110,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   return (
     <div className='flex flex-col relative w-full rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
-        <span className="absolute right-2 top-3 w-5 z-10">
+        <span className="absolute right-2 top-3 w-5 z-10 cursor-text">
           {getIcon()}
         </span>
         <input
@@ -144,6 +144,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
+            cursor-text
             text-[${labelColor}]
             ${(inputFocus || filled || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
