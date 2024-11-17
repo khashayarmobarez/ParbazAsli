@@ -23,7 +23,16 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
 
   useEffect(() => {
     setValidMatch(value === password);
-  }, [value, password]);
+
+    if(!value && isSubmitted) {
+      setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setShowErrors(true);
+    }
+
+  }, [value, password, isSubmitted]);
 
   const handleInputChange = (event) => {
     onChange(event);

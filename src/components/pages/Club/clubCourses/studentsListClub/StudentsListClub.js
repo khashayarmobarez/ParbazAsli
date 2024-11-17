@@ -60,7 +60,7 @@ const StudentsListClub = () => {
                         }
                     </div>
 
-                    { AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1 && (
+                    { (AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1) ? (
                             <div className='w-full flex justify-between px-10 items-center'>
                                 <button
                                     className={`w-6 h-6 justify-self-start`}
@@ -82,7 +82,10 @@ const StudentsListClub = () => {
                                     <ArrowButton isDisable={pageNumber === 1}/>
                                 </button>
                             </div>
-                        )}
+                        )
+                        :
+                        ''
+                    }
                     
                 </div>
             }

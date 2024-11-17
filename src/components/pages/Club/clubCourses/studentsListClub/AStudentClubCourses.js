@@ -84,41 +84,52 @@ const AStudentClubCourses = () => {
                                     <div className='w-full flex justify-between'>
                                         
                                         {/* conditional course name */}
-                                        {courseData.status === 'Active' && <p className='text-base'>{courseData.name}</p>}
+                                        {(courseData.status === 'Active' || courseData.status === 'CoachPending') && <p className='text-base'>{courseData.name}</p>}
                                         {courseData.status === 'Completed' && <p className='text-base text-textAccent'>{courseData.name}(تمام شده)</p>}
                                         {courseData.status === 'Canceled' && <p className='text-base text-textError'>{courseData.name}(لغو شده)</p>}
+                                        
 
                                         {/* conditional course percent */}
-                                        <p
-                                        className={`
-                                            ${courseData.status === 'Completed'&& 'text-textAccent'}
-                                            ${courseData.status === 'Canceled'&& 'text-textError'}
-                                            ${courseData.status === 'Active'&& ''}
-                                        `}
-                                        >{courseData.percent}%</p>
+                                        {
+                                            courseData.status === 'CoachPending' ?
+                                            <p className={`text-textWarning`}>
+                                                در انتظار تایید...
+                                            </p>
+                                            :
+                                            <p
+                                            className={`
+                                                ${courseData.status === 'Completed'&& 'text-textAccent'}
+                                                ${courseData.status === 'Canceled'&& 'text-textError'}
+                                                ${courseData.status === 'Active'&& ''}
+                                            `}
+                                            >{courseData.percent}%</p>
+                                        }
                                     </div>
 
-                                    <Box sx={{ width: '100%' }}>
-                                        <LinearProgress 
-                                            variant="determinate" 
-                                            value={courseData.percent + (courseData.percent < 2 ? 2 : 0)} 
-                                            sx={{ 
-                                            height: '1rem', 
-                                            borderRadius: '1rem', 
-                                            backgroundColor: 'var(--bg-pop-up-header-footer)', 
-                                            '& .MuiLinearProgress-bar': {
-                                                backgroundColor: 
-                                                courseData.status === 'Active' ? 'var(--text-warning)' :
-                                                courseData.status === 'Completed' ? 'var(--text-accent)' :
-                                                courseData.status === 'Canceled' ? 'var(--text-error)' :
-                                                'var(--text-warning)', // Optional: A default value if none of the conditions match
-                                            }
-                                            }} 
-                                        />
-                                    </Box>
+                                    {
+                                        courseData.status !== 'CoachPending' &&
+                                        <Box sx={{ width: '100%' }}>
+                                            <LinearProgress 
+                                                variant="determinate" 
+                                                value={courseData.percent + (courseData.percent < 2 ? 2 : 0)} 
+                                                sx={{ 
+                                                height: '1rem', 
+                                                borderRadius: '1rem', 
+                                                backgroundColor: 'var(--bg-pop-up-header-footer)', 
+                                                '& .MuiLinearProgress-bar': {
+                                                    backgroundColor: 
+                                                    courseData.status === 'Active' ? 'var(--text-warning)' :
+                                                    courseData.status === 'Completed' ? 'var(--text-accent)' :
+                                                    courseData.status === 'Canceled' ? 'var(--text-error)' :
+                                                    'var(--text-warning)', // Optional: A default value if none of the conditions match
+                                                }
+                                                }} 
+                                            />
+                                        </Box>
+                                    }
 
                                     <div className='w-full flex justify-between text-start text-sm'>
-                                        <div className={`flex flex-col justify-between self-start 
+                                        <div className={`flex flex-col justify-between self-start gap-y-2
                                             text-${courseData.status === 'Active' ? 'text-textDefault' :
                                             courseData.status === 'Completed' ? 'text-textButtonProfileDisable' :
                                             courseData.status === 'Canceled' ? 'text-textButtonProfileDisable' :
