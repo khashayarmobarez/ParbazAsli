@@ -152,7 +152,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
       <p id="confirmnote" className={`${showErrors && !validMatch ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError gap-y-2`}>
         *باید با اولین قسمت ورودی رمز عبور مطابقت داشته باشد.
       </p>
-      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError`}>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-[${textErrorColor}]`}>
         *تکرار رمز عبور الزامی می باشد
       </p>
     </>

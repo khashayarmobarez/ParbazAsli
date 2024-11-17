@@ -152,7 +152,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           )}
         </span>
       </div>
-      <p id="inputnote" className={`${(!value && isSubmitted) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *رمز عبور الزامی است
       </p>
     </div>

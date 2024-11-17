@@ -21,7 +21,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
   const ErrorConditionMet = (value && !validName && filled) || (!value && isSubmitted);
 
   useEffect(() => {
-    const result = USER_REGEX.test(value);
+    const result = USER_REGEX.test(value) && value.length >= 3 && value.length <= 24;
     setValidName(result);
 
     if(!value && isSubmitted && !inputFocus) {
