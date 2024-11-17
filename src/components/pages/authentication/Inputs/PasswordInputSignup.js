@@ -22,8 +22,8 @@
       const [showPassword, setShowPassword] = useState(false);  
       const [filled, setFilled] = useState(false);
       const [inputFocus, setInputFocus] = useState(false);
-      const [leftEmpty, setLeftEmpty] = useState(false)
       const [errorsAccurred, setErrorsAccurred] = useState([]);
+      const [showErrors, setShowErrors] = useState(false);
 
       // Separate states for different elements
       const [iconColor, setIconColor] = useState('var(--text-default)');
@@ -61,9 +61,18 @@
           value && setErrorsAccurred(errorsAccurred.filter((error) => error !== 'errorEmpty'));
         }, 1000);
 
+        if(!value && isSubmitted) {
+          setIconColor('var(--text-error)');
+          setLabelColor('var(--text-error)');
+          setIconColor('var(--text-error)');
+          setBorderColorClass(inputStyles.inputErrorBorder);
+          setShowErrors(true);
+        }
+
         return () => clearInterval(interval);
       }, [
         value, 
+        isSubmitted,
         passwordMinLength, 
         passwordMaxLength, 
         passwordRequireNonAlphanumeric, 
@@ -109,6 +118,7 @@
       const handleBlur = () => {
         setInputFocus(false);
         updateColors(false, validPwd, filled);
+        setShowErrors(true);
         onBlur();
       };
     
@@ -116,27 +126,35 @@
         if (isFocused) {
           setIconColor('var(--text-input-selected)');
           setBorderColorClass(inputStyles.inputSelectedBorder);
-          setLeftEmpty(false);
+          setLabelColor('var(--text-input-selected)');
+          setTextErrorColor('var(--text-input-selected)');
         } else if (isValid && isFilled) {
           setIconColor('var(--text-accent)');
           setBorderColorClass(inputStyles.inputValidBorder);
+          setLabelColor('var(--text-accent)');
+          setTextErrorColor('var(--text-error)');
         } else if (!isValid && isFilled) {  // New condition for invalid input when filled
           setIconColor('var(--text-error)');
           setBorderColorClass(inputStyles.inputErrorBorder);
+          setLabelColor('var(--text-error)');
+          setTextErrorColor('var(--text-error)');
         } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
           setIconColor('var(--text-error)');
           setBorderColorClass(inputStyles.inputErrorBorder);
+          setLabelColor('var(--text-error)');
+          setTextErrorColor('var(--text-error)');
         } else {
           setIconColor('var(--text-error)');
           setBorderColorClass(inputStyles.inputErrorBorder);
-          setLeftEmpty(true)
+          setLabelColor('var(--text-error)');
+          setTextErrorColor('var(--text-error)');
         }
       };
 
       return (
         <>
           <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 px-2`} htmlFor="password">
-          <span className="absolute right-6 top-3 w-5 z-10"  >
+          <span className="absolute right-6 top-3 w-5 z-10 cursor-text"  >
             <KeyIcon customColor={iconColor} />
           </span>
             <input
@@ -170,8 +188,8 @@
                 transition-all duration-300 transform
                 peer-placeholder-shown:translate-y-0
                 peer-placeholder-shown:text-sm
-                peer-focus:-translate-y-5 peer-focus:text-xs
-                text-[var(--text-input-default)]
+                peer-focus:-translate-y-5 peer-focus:text-xs cursor-text
+                text-[${labelColor}]
                 ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
               `}
             >
@@ -191,7 +209,7 @@
             </span>
           </div>
 
-          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError gap-y-2 `}>
+          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-[${textErrorColor}] gap-y-2 `}>
             {
               (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
                 <p>
@@ -226,7 +244,7 @@
               )  }
           </p>
 
-          <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-textError`}>
+          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-[${textErrorColor}]`}>
             *رمز عبور الزامی می باشد
           </p>
         </>
