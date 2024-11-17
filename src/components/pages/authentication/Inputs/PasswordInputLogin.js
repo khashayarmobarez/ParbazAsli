@@ -32,6 +32,14 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
       setBorderColorClass(inputStyles.inputErrorBorder);
       setShowErrors(true);
     }
+
+    if(value && !inputFocus) {
+      setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
+      setEyeIconColor('var(--text-accent)');
+      setBorderColorClass(inputStyles.inputValidBorder);  
+    }
     
   }, [value, isSubmitted]);
 

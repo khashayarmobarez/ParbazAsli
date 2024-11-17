@@ -37,6 +37,13 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
       setBorderColorClass(inputStyles.inputErrorBorder);
       setShowErrors(true);
     }
+
+    if(value && validInput && !inputFocus) {
+      setIconColor('var(--text-accent)');
+      setLabelColor('var(--text-accent)');
+      setTextErrorColor('var(--text-accent)');
+      setBorderColorClass(inputStyles.inputValidBorder);  
+    }
     
   }, [value, validInput, isSubmitted]);
 
