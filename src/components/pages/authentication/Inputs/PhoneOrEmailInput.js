@@ -31,12 +31,14 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     setValidInput(isValidPhone || isValidEmail);
     setFilled(value.trim() !== '');
 
-    // if(value && validInput) {
-    //   setIconColor('var(--text-accent)')
-    //   setLabelColor('var(--text-accent)')
-    //   setBorderColorClass(inputStyles.inputValidBorder)
-    // } 
-  }, [value, validInput]);
+    if(!value && isSubmitted) {
+      setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setShowErrors(true);
+    }
+    
+  }, [value, validInput, isSubmitted]);
 
   const persianToEnglishNumber = (input) => {
     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -68,7 +70,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     } else if (ErrorConditionMet || (!isFilled && isSubmitted)) {
       setIconColor('var(--text-error)');
       setLabelColor('var(--text-error)');
-      setTextErrorColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)'); 
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
