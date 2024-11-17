@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        CI = false
         PUBLISH_DIR = 'C:/inetpub/wwwroot/DigiLogBook'
     }
 
