@@ -12,16 +12,28 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   const [inputFocus, setInputFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);  
   const [filled, setFilled] = useState(false);
-  const [leftEmpty, setLeftEmpty] = useState(false);
-  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
+  const [showErrors, setShowErrors] = useState(false);
   
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
   const [borderColorClass, setBorderColorClass] = useState('');
   const [eyeIconColor, setEyeIconColor] = useState('var(--text-default)');
+  const [labelColor, setLabelColor] = useState('var(--text-input-default)');
   const [textErrorColor, setTextErrorColor] = useState('var(--text-error)');
 
   const ErrorConditionMet = !value && isSubmitted;
+
+  useEffect(() => {
+
+    if(!value && isSubmitted) {
+      setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setEyeIconColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setShowErrors(true);
+    }
+    
+  }, [value, isSubmitted]);
 
 
   const togglePasswordVisibility = () => {
@@ -58,7 +70,6 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
       setEyeIconColor('var(--text-error)');
       setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
-      setLeftEmpty(true);
     }
   };
 
@@ -66,12 +77,12 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
     setInputFocus(true);
     updateColors(true, filled);
     onFocus();
-    setLeftEmpty(false);
   };
 
   const handleBlur = () => {
     setInputFocus(false);
     updateColors(false, filled);
+    setShowErrors(true);
     onBlur();
   };
 
@@ -81,9 +92,9 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
 
   return (
     <div className='flex flex-col relative w-full rounded-xl px-2'>
-      <div className='relative w-full min-h-12'>
+      <div className='relative w-full min-h-12 cursor-text'>
         <span className="absolute right-2 top-3 w-5 z-10">
-          <KeyIcon customColor={iconColor} />
+          <KeyIcon customColor={iconColor}  />
         </span>
         <input
           type={showPassword ? 'text' : 'password'}
@@ -114,6 +125,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
+            cursor-text
             text-[${labelColor}]
             ${(inputFocus || filled || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
@@ -132,7 +144,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           )}
         </span>
       </div>
-      <p id="inputnote" className={`${((!value && isSubmitted) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" className={`${(!value && isSubmitted) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *رمز عبور الزامی است
       </p>
     </div>

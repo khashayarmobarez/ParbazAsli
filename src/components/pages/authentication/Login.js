@@ -214,7 +214,7 @@ const Login = () => {
                     onToggle={handleTermsToggle}
                 />
 
-                <p className='text-lg text-start text-textAccent' onClick={handleForgetPassword}>
+                <p className='text-lg text-start text-textAccent cursor-pointer' onClick={handleForgetPassword}>
                     رمز عبور خود را فراموش کرده‌ام
                 </p>
 
