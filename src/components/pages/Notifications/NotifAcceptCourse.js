@@ -20,29 +20,37 @@ const NotifAcceptCourse = ({notif, handleActivatePopUp}) => {
             status: status
         }
 
-        triggerCourseStatus(triggerStatusForm,{
+        triggerCourseStatus(triggerStatusForm, {
             onSuccess: () => {
-                // Handle success, e.g., show a notification, reset the form, etc.
-                window.location.reload();
-                if(status === 'active') {
-                    toast('دوره تایید شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: "350px" }
-                    });
-                } else {
-                    toast('دوره رد شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                        autoClose: 3000,
-                        theme: 'dark',
-                        style: { width: "350px" }
-                    });
-                }
-                window.location.reload();
+            // Handle success, e.g., show a notification, reset the form, etc.
+            if (status === 'active') {
+                toast('دوره تایید شد', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+                });
+            } else if(status === 'rejected') {
+                toast('دوره رد شد', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+                });
+            }
+            window.location.reload();
             },
+            onError: () => {
+            toast('خطایی رخ داده است', {
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: 'dark',
+                style: { width: "350px" }
+            });
+            }
         });
     }
 

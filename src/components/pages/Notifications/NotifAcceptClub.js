@@ -22,7 +22,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
         triggerClubStatus(triggerStatusForm,{
             onSuccess: (data) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
-                if(status === 'Active') {
+                if(status === 'active') {
                     toast('باشگاه تایید شد', {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
