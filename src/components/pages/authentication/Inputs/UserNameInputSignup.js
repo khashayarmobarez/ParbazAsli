@@ -24,7 +24,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
     const result = USER_REGEX.test(value);
     setValidName(result);
 
-    if(!value && isSubmitted) {
+    if(!value && isSubmitted && !inputFocus) {
       setIconColor('var(--text-error)');
       setLabelColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);

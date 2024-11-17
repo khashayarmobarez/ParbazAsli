@@ -9,7 +9,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   const [validName, setValidName] = useState(false);
   const [filled, setFilled] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
-  const [leftEmpty, setLeftEmpty] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   // Separate states for different elements
   const [iconColor, setIconColor] = useState('var(--text-default)');
@@ -22,7 +22,14 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   useEffect(() => {
     const result = USER_REGEX.test(value);
     setValidName(result);
-  }, [value]);
+
+    if (!value && isSubmitted && !inputFocus) {
+      setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setBorderColorClass(inputStyles.inputErrorBorder);
+      setShowErrors(true);
+    }
+  }, [value, isSubmitted]);
 
   const handleInputChange = (event) => {
     onChange(event);
@@ -42,6 +49,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   const handleBlur = () => {
     setInputFocus(false);
     updateColors(false, validName, filled);
+    setShowErrors(true);
     onBlur();
   };
 
@@ -51,7 +59,6 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
       setLabelColor('var(--text-input-selected)');
       setTextErrorColor('var(--text-input-selected)');
       setBorderColorClass(inputStyles.inputSelectedBorder);
-      setLeftEmpty(false);
     } else if (isValid && isFilled) {
       setIconColor('var(--text-accent)');
       setLabelColor('var(--text-accent)');
@@ -69,15 +76,16 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
       setBorderColorClass(inputStyles.inputErrorBorder);
     } else {
       setIconColor('var(--text-error)');
+      setLabelColor('var(--text-error)');
+      setTextErrorColor('var(--text-error)');
       setBorderColorClass(inputStyles.inputErrorBorder);
-      setLeftEmpty(true);
     }
   };
 
   return (
     <div className='flex flex-col relative w-full rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
-        <span className="absolute right-3 top-3 w-5 z-10">
+        <span className="absolute right-3 top-3 w-5 z-10 cursor-text">
           <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />
         </span>
         <input
@@ -112,6 +120,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
+            cursor-text
             text-[${labelColor}]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
@@ -119,11 +128,13 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
           نام خانوادگی
         </label>
       </div>
-      <p id="uidnote" className={`${filled && value && !validName ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-${textErrorColor}`}>
-        *3 تا 24 کاراکتر<br />
+      <p id="uidnote" aria-live="polite" className={`${value && !validName && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *با حروف فارسی بنویسید
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-${textErrorColor}`}>
+      <p id="uidnote" aria-live="polite" className={`${(value?.length < 3 || value?.length > 24) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+        *3 تا 24 کاراکتر<br />
+      </p>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *نام خانوادگی الزامی می باشد
       </p>
     </div>
