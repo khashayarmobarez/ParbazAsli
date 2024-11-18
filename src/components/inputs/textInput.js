@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
-const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize }) => {
+const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
@@ -60,7 +60,7 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
           peer-placeholder-shown:translate-y-0
           peer-placeholder-shown:text-sm
           peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
-          ${(isFocused || isFilled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+          ${(isFocused || isFilled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
           ${isFocused ? 'text-blue-600' : ''}
         `}
       >

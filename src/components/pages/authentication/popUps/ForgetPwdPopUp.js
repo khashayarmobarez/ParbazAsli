@@ -408,6 +408,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     placeholder={'شماره موبایل یا ایمیل'}
                                     Type={'text'}
                                     icon={<UserIcon/>} // You can replace `null` with a specific icon if you have one
+                                    customActivePlaceHolderBgColor={'bg-bgCard'}
                                 />
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
@@ -463,7 +464,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                             showPassChangeInput && !showCodeInput &&
                             <>
                                 <PasswordInputSignup 
-                                
+                                    customActivePlaceHolderBgColor={'bg-bgCard'}
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
                                     focus={pwdFocus}
@@ -472,6 +473,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                 />
 
                                 <ConfirmPassInputSignup
+                                    customActivePlaceHolderBgColor={'bg-bgCard'}
                                     password={pwd}
                                     onChange={(e) => setMatchPwd(e.target.value)}
                                     value={matchPwd}

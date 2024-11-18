@@ -5,7 +5,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import KeyIcon from '../../../../components/icons/KeyIcon';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor }) => {
 
   const [validMatch, setValidMatch] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -130,7 +130,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
             text-[${labelColor}]
-            ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-base'}
+            ${(inputFocus || filled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
           `}
         >
           رمز عبور
