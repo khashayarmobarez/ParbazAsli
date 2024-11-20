@@ -14,7 +14,7 @@ const ClubCourseClasses = () => {
     
     const { id } = useParams();
 
-    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useGetClubCourseClasses(id);
+    const {  data: classesData } = useGetClubCourseClasses(id);
     
 
     return (

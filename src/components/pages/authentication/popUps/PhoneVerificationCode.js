@@ -9,7 +9,6 @@ import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css';
 
 const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode, isForEmail }) => {
 
-    const [ waitNotif, setWaitNotif ] = useState('')
 
     // Create an array of refs based on codeLength from api
     const inputRefs = useRef(Array.from({ length: codeLength }, () => React.createRef()));
@@ -87,7 +86,6 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     const handleSubmit = (e) => {
         e.preventDefault();
         handleFinalSubmit()
-        setWaitNotif(true)
     }
 
     useEffect(() => {

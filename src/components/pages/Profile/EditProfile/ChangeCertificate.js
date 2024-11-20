@@ -35,9 +35,9 @@ const ChangeCertificate = () => {
     return (
             <div className='w-[90%] flex flex-col items-center gap-y-6 mt-4'>
                 {
-                        userCertificates && userCertificates.data.map((certificate) => (
+                        userCertificates && userCertificates.data.map((certificate, index) => (
 
-                            <Certificate certificateData={certificate} />
+                            <Certificate key={index} certificateData={certificate} />
 
                         ))
                 }

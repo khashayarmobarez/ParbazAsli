@@ -87,8 +87,8 @@ const SearchMultipleSelect = ({ options, selectedOptions, handleSelectChange, na
 
       {isOpen && (
         <ul className="absolute z-20 w-[90%] mt-12 bg-[var(--dark-blue-bg)] rounded-2xl shadow-lg max-h-60 overflow-auto">
-          {filteredOptions.map((option) => (
-            <div className='flex flex-col w-full items-center justify-center '>
+          {filteredOptions.map((option,index) => (
+            <div key={index} className='flex flex-col w-full items-center justify-center '>
               <li
                 key={option.id}
                 className="px-4 py-2 w-full hover:bg-[var(--corn-flower-blue)] cursor-pointer"

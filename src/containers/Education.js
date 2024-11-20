@@ -196,8 +196,8 @@ const Education = () => {
 
                                     <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                         {
-                                            courseData && courseData.data?.map((course) => (
-                                                <div className='w-full flex flex-col items-center'>
+                                            courseData && courseData.data?.map((course,index) => (
+                                                <div key={index} className='w-full flex flex-col items-center'>
 
                                                     <div
                                                     key={course.id}

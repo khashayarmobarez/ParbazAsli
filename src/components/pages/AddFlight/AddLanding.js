@@ -48,7 +48,7 @@ const AddLanding = () => {
 
     const [submitted, setSubmitted] = useState(false);
 
-    const { data: landingTypesData , isLoading: landngTypesLoading} = useLandingTypes();
+    const { data: landingTypesData } = useLandingTypes();
 
     const { mutate: mutateCourseFlight , isLoading: courseLoading} = useAddCourseFlight();
     const { mutate: mutateSoloFlight , isLoading: SoloLoading} = useAddSoloFlight();

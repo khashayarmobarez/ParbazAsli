@@ -85,10 +85,10 @@ const AddClubCourse = () => {
     const [showPopup, setShowPopup] = useState(false)
     
     // queries
-    const { data: coachNamesData, isLoading: coachNamesLoading, error: coachNamesError } = useGetActiveClubCoaches();
+    const { data: coachNamesData, isLoading: coachNamesLoading} = useGetActiveClubCoaches();
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
-    const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level && level.id);
+    const { data: syllabiData } = useSyllabiForLevels(level && level.id);
     const { data: studentData, isLoading: loadingStudentLevel, error: studentError } = useUserLevelById(studentId && studentId, selectedClassType.id === 3 ? 1 : level && level.id, selectedClassType && selectedClassType.id, setErrorMessage);
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularClubCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingClubCourse();

@@ -11,8 +11,8 @@ import DropDownDataBox from '../../../reuseable/DropDownDataBox';
 const ClubCourseSyllabi = () => {
     const { id } = useParams();
     
-    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useGetClubCourseSyllabi(id,1);
-    const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useGetClubCourseSyllabi(id,2);
+    const {  data: syllabiDataTheory } = useGetClubCourseSyllabi(id,1);
+    const {  data: syllabiDataPractical } = useGetClubCourseSyllabi(id,2);
 
     useEffect(() => {
         if(syllabiDataTheory && syllabiDataPractical) {

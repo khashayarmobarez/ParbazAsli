@@ -22,7 +22,7 @@ const ClubCourseStudentAFlightDetails = () => {
     const [DropDownTakeoff, setDropDownTakeoff] = useState(true)
     const [DropDownLanding, setDropDownLanding] = useState(true)
     
-    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useGetClubStudentFlight(flightId);
+    const { data: fullFlightData } = useGetClubStudentFlight(flightId);
 
     // dropDown onClick
     const handleDropDownClick = (dropDown) => {

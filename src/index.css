@@ -98,6 +98,7 @@ code {
   --bg-output-default:#EBEBEC;  
   --bg-output-selected-option:#EBEBEC;
   --border-output: #BFC2C4;
+  --progress-bar-bg: #e0e1e3;
 
   /* pop ups */
   --bg-pop-up-default:#EBEBEC;
@@ -190,6 +191,7 @@ code {
   --bg-output-default:#262B31;  
   --bg-output-selected-option:#2D333B;
   --border-output: #EEEEEE;
+  --progress-bar-bg: #323941;
 
   /* pop ups */
   --bg-pop-up-default:#323941;

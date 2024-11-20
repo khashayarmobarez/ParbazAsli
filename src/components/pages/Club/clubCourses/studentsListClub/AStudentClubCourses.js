@@ -31,7 +31,7 @@ const AStudentClubCourses = () => {
     const [pageNumber, setPageNumber] = useState(1)
     let pageSize = 4
 
-    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError, refetch: reftchCourses } = useAClubStudentCourses(studentId && studentId, pageNumber, pageSize);
+    const { data: StudentCourses, refetch: reftchCourses } = useAClubStudentCourses(studentId && studentId, pageNumber, pageSize);
 
     // refetch courses when pageNumber changed
     useEffect(() => {
@@ -115,7 +115,7 @@ const AStudentClubCourses = () => {
                                                 sx={{ 
                                                 height: '1rem', 
                                                 borderRadius: '1rem', 
-                                                backgroundColor: 'var(--bg-pop-up-header-footer)', 
+                                                backgroundColor: 'var(--progress-bar-bg)', 
                                                 '& .MuiLinearProgress-bar': {
                                                     backgroundColor: 
                                                     courseData.status === 'Active' ? 'var(--text-warning)' :

@@ -4,8 +4,6 @@ import React from 'react';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
-// css styles 
-import gradients from '../../styles/gradients/Gradient.module.css'
 
 const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onChange, id, isForPhone, isLoading}) => {
 

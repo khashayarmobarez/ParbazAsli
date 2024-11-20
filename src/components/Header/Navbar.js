@@ -49,7 +49,7 @@ const Navbar = ({toggleTheme ,userRole}) => {
     const token = Cookies.get('token');
     
     const { data } = useUserData();
-    const {  data: notificationCountsData, isLoading: notificationCountsLoading, error: notificationCountsError, refetch: refetchNotificationCounts } = useUnreadNotificationCounts();
+    const {  data: notificationCountsData, refetch: refetchNotificationCounts } = useUnreadNotificationCounts();
     
     // state to check the width of the device to remove profile picture for desktop size devices 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);

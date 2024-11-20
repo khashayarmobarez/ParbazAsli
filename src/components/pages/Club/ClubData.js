@@ -20,7 +20,7 @@ import PlusWithCircularBorderIcon from '../../icons/PlusWithCircularBorderIcon';
 
 const ClubData = () => {
 
-    const { data, isLoading, error } = useGetClub();
+    const { data } = useGetClub();
 
     const [showPopUp,setShowPopup] = useState(false)
 

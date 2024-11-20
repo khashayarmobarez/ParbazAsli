@@ -41,12 +41,12 @@ const CourseStudents = () => {
     const [studentId, setStudentId] = useState('');
 
     const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useGetClubCourseStudents(id,pageNumber);
-    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useGetClubCourseStudentsHistory(id,historyPageNumber);
+    const { data: studentsHistoryData } = useGetClubCourseStudentsHistory(id,historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useGetClubCourse(id);
+    const { data: aCourseData } = useGetClubCourse(id);
 
     // post student to course
-    const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToClubCourse();
+    const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading } = useAddStudentToClubCourse();
     
 
     const handleNextPageNumber = () => {
@@ -153,8 +153,8 @@ const CourseStudents = () => {
                             isActive={DropDownActive === true}  
                         />
                     }
-                    {DropDownActive && studentsData.data?.map((student) => (
-                        <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}
+                    {DropDownActive && studentsData.data?.map((student, index) => (
+                        <div key={index} className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}
                         onClick={() => handleClickStudent(student.id)}>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-sm`}>
                                 <span>
@@ -242,8 +242,8 @@ const CourseStudents = () => {
 
                             {DropDownHistory &&
                                 <div className='w-full flex flex-col items-center gap-y-4'>
-                                    {studentsHistoryData.data?.map((student) => (
-                                        <div className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
+                                    {studentsHistoryData.data?.map((student,index) => (
+                                        <div key={index} className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
                                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
                                                 <span>
                                                     <PersonOutlineOutlinedIcon sx={{width:'20px', height:'20px'}} />

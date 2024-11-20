@@ -32,7 +32,7 @@ const ClubCourseClassBox = (props) => {
 
     const [formatedDuration, setFormatedDuration] = useState('')
 
-    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useAClubClass(classData.id);
+    const {  data: classDetails } = useAClubClass(classData.id);
 
     useEffect(() => {
         if (classDetails) {
@@ -144,8 +144,8 @@ const ClubCourseClassBox = (props) => {
                                                 <p className=' text-sm'>هنرجویان</p>
                                                 <div className='w-full flex flex-col gap-y-5'>
                                                 {
-                                                classDetails.data.userCourses.map((student) => (    
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                classDetails.data.userCourses.map((student, index) => (    
+                                                    <div key={index} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                         <p>{student.name}</p>
                                                     </div>
                                                 ))
@@ -160,8 +160,8 @@ const ClubCourseClassBox = (props) => {
                                             <p className=' text-sm'>هنرجویان مهمان</p>
                                             <div className='w-full flex flex-col gap-y-5'>   
                                             {
-                                            classDetails.data.guestUsers.map((student) => ( 
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            classDetails.data.guestUsers.map((student,index) => ( 
+                                                <div key={index} className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                     <p>{student.name}</p>
                                                 </div>))
                                             }

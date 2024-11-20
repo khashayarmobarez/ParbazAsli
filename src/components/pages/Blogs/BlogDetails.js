@@ -67,7 +67,7 @@ const BlogDetails = () => {
                         <div className='w-3/12 flex flex-col items-center'>
                             {/* <div className='absolute h-[50%] w-1 left-20 ' style={{backgroundColor:'var(--text-accent)'}}></div> */}
                             {blogSections.map((section, index) => (
-                                <div key={section.title} className='flex w-full h-14 mb-6 justify-center items-center'>
+                                <div key={index} className='flex w-full h-14 mb-6 justify-center items-center'>
                                     <p className='w-3/4' >{section.title}</p>
                                     <p className=' w-10 h-10 rounded-full text-center flex justify-center items-center z-10 bg-bgCard shadow-lg' >{section.order}</p>
                                     {index < blogSections.length - 1 && (
@@ -124,7 +124,7 @@ const BlogDetails = () => {
 
                         {/* comments */}
                         <div className='w-full grid grid-cols-1 gap-y-6 md:gap-x-4 md:grid-cols-2 '>
-                            {blogComments.map(comment => (
+                            {blogComments.map((comment) => (
                                 <div key={comment.id} className=' min-h-[130px] flex flex-col items-start gap-y-2 px-4 py-4 rounded-3xl bg-bgCard shadow-lg'>
                                     <p>{comment.userName}</p>
                                     <p>{comment.comment}</p>

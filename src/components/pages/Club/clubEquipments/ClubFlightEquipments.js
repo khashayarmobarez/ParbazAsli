@@ -192,8 +192,8 @@ const FlightEquipment = () => {
                         DropDown === 'Permanent' &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
-                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map(equipment =>
-                            <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map((equipment, index) =>
+                            <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                 <div className='w-full flex flex-col items-center'>
 
                                     <div key={equipment.id} className={` z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6 bg-bgCard `}
@@ -301,8 +301,8 @@ const FlightEquipment = () => {
                     DropDownForTemporary === 'Temporary' &&
                     userEquipmentsData &&
                     userEquipmentsData.data &&
-                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
-                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map((equipment, index) =>
+                        <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                             <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
                             style={{boxShadow:'var(--shadow-all)'}}>
 

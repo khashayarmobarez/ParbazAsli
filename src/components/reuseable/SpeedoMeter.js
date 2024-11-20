@@ -59,7 +59,7 @@ const SpeedoMeter = (props) => {
                             strokeLinecap: 'round',
                             transform: 'rotate(-126deg)',
                             transformOrigin: 'center center',
-                            stroke: 'var(--bg-pop-up-header-footer)'
+                            stroke: 'var(--progress-bar-bg)'
                             },
                             path: {
                             strokeLinecap: 'round',

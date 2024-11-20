@@ -100,7 +100,7 @@ const AStudentCourses = () => {
                                             sx={{ 
                                                 height: '1rem', 
                                                 borderRadius: '1rem', 
-                                                backgroundColor: 'var(--bg-pop-up-header-footer)', 
+                                                backgroundColor: 'var(--progress-bar-bg)', 
                                                 '& .MuiLinearProgress-bar': {
                                                     backgroundColor: 
                                                         courseData.status === 'Active' ? 'var(--text-warning)' :

@@ -28,9 +28,9 @@ const ClubCoachDetails = () => {
 
     const { id } = useParams();
 
-    const {  data: coachDetails, isLoading: coachDetailsLoading, error: coachDetailsError } = useGetCoachDetails(id);
-    const {  data: coachCoursesDetails, isLoading: coachCourseDetailsLoading, error: coachCourseDetailsError } = useGetCoachCourses(id);
-    const { mutate: triggerCoachStatus, isLoading: triggerCoachStatusLoading } = useTriggerCoachStatus();
+    const {  data: coachDetails, isLoading: coachDetailsLoading } = useGetCoachDetails(id);
+    const {  data: coachCoursesDetails } = useGetCoachCourses(id);
+    const { mutate: triggerCoachStatus } = useTriggerCoachStatus();
 
     // for handliung the back button of club course details
     Cookies.set('lastPathForClubCourseDetails',location.pathname)

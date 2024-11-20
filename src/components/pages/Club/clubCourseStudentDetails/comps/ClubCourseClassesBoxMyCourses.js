@@ -30,7 +30,7 @@ const ClubCourseClassesBoxMyCourses = (props) => {
     const [formatedDuration, setFormatedDuration] = useState('')
 
 
-    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useClubCourseStudentClass(classData.id);
+    const {  data: classDetails } = useClubCourseStudentClass(classData.id);
 
     useEffect(() => {
         if (classDetails) {
@@ -120,8 +120,8 @@ const ClubCourseClassesBoxMyCourses = (props) => {
                                         <div className='w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
                                                 <p className=' text-sm'>مباحث مطرح شده</p>
                                                 { 
-                                                    classDetails.data.syllabi.map((syllabus) => (
-                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 py-2 w-full min-h-12 rounded-xl`} id='data'>
+                                                    classDetails.data.syllabi.map((syllabus, index) => (
+                                                        <div key={index} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 py-2 w-full min-h-12 rounded-xl`} id='data'>
                                                             <p>{syllabus.description}</p>
                                                         </div>
                                                     ))

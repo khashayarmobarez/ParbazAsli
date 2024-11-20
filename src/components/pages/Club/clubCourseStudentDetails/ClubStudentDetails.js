@@ -135,7 +135,7 @@ const ClubCourseStudentDetails = () => {
                                     sx={{ 
                                         height: '1rem', 
                                         borderRadius: '1rem', 
-                                        backgroundColor: 'var(--bg-pop-up-header-footer)', 
+                                        backgroundColor: 'var(--progress-bar-bg)', 
                                         '& .MuiLinearProgress-bar': {
                                             backgroundColor: 
                                             studentData.data.status === 'Active' ? 'var(--text-warning)' :

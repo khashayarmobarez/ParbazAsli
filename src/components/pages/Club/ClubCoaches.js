@@ -28,8 +28,8 @@ const ClubCoaches = () => {
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
     
-    const {  data: clubCoachesData, isLoading: coachesDataLoading, error: coachesDataError } = useGetClubCoaches(pageNumber,4);
-    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading, error: coachesPreviousDataError } = useGetClubCoachesHistory(pageNumberPrevious,5);
+    const {  data: clubCoachesData, isLoading: coachesDataLoading } = useGetClubCoaches(pageNumber,4);
+    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading } = useGetClubCoachesHistory(pageNumberPrevious,5);
     const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId && coachId);
     const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
 

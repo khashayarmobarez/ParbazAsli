@@ -101,8 +101,8 @@ const MyGuestClassDetails = () => {
                                     <div className='flex flex-col items-start gap-y-2 col-span-8'>
                                             <p className=' text-sm'>مباحث مطرح شده</p>
                                             { 
-                                                aCourseData.data.syllabi.map((syllabus) => (
-                                                    <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
+                                                aCourseData.data.syllabi.map((syllabus, index) => (
+                                                    <div key={index} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
                                                         <p>{syllabus.description}</p>
                                                     </div>
                                                 ))

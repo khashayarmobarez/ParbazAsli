@@ -20,14 +20,14 @@ const CertificateSettings = () => {
 
     const [pageSize, setPageSize] = useState(3)
 
-    const { data: userCertificates, isLoading, error } = useAllUserCertificates(1,3);
+    const { data: userCertificates, isLoading } = useAllUserCertificates(1,3);
 
     return (
         <div className='w-full flex flex-col items-center gap-y-6 mt-4'>
                 {
-                    userCertificates && userCertificates.data.map((certificate) => (
+                    userCertificates && userCertificates.data.map((certificate, index) => (
 
-                        <Certificate certificateData={certificate} />
+                        <Certificate key={index} certificateData={certificate} />
 
                     ))
                 }
