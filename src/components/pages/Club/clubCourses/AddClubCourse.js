@@ -408,11 +408,11 @@ const AddClubCourse = () => {
 
                 {
                 coachNamesLoading &&
-                <CircularProgressLoader />
+                    <CircularProgressLoader />
                 }
 
                 {
-                    coachNamesData && coachNamesData.data.length < 1 &&
+                coachNamesData && coachNamesData.data.length < 1 &&
                     <div className='w-full h-[60vh] flex flex-col justify-center items-center gap-y-4'>
                         <span className='w-16 h-16'>
                             <Attention />
