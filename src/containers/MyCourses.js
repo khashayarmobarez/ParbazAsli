@@ -285,7 +285,7 @@ const MyCourses = () => {
                                                         <div className='w-full flex justify-between text-sm'>
                                                             <p className='text-base'>{guestClass.name}</p>
                                                             <p>
-                                                                <span className='text-textDisabled'>
+                                                                <span className=''>
                                                                     تاریخ:&nbsp;
                                                                 </span>
                                                                 {guestClass.dateTime}
@@ -294,7 +294,7 @@ const MyCourses = () => {
                                                         <div className='w-full flex justify-between items-center text-start text-sm'>
                                                             { guestClass.classDuration &&
                                                                 <p>
-                                                                    <span className='text-textDisabled'>
+                                                                    <span className=''>
                                                                         مدت زمان:&nbsp;
                                                                     </span> 
                                                                     {guestClass.classDuration}
