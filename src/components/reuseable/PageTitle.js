@@ -13,7 +13,7 @@ const PageTitle = (props) => {
         <>
             <div className={`sticky top-[56px] md:top-16 z-50  0 bg-bgHeader w-[90%] h-16 flex justify-center items-center py-2 rounded-b-2xl `}>
                 <p className=' text-base font-medium'>{title}</p>
-                <span className='w-8 h-8 flex justify-center items-center ml-2 absolute right-2'>
+                <span className='w-8 h-8 flex justify-center items-center ml-2 absolute right-2' onClick={() => navigate(navigateTo ? navigateTo : -1)}>
                     <ArrowButton isRight={true} />
                 </span>
             </div>
