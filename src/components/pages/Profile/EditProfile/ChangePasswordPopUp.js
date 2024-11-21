@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // redux
 import { getAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
@@ -21,6 +22,7 @@ import { toast } from 'react-toastify';
 const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
 
     const dispatch = useDispatch();
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [oldpwd, setOldPwd] = useState('');
     const [oldpwdFocus, setOldPwdFocus] = useState(false);
