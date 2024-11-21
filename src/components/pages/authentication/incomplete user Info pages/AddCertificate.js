@@ -249,25 +249,27 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-center w-full'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
-
-                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
-
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
                         <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+                        <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+                        </div>
+
+                        <div className='rounded-full w-[38%] md:w-[45%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[98%] text-xs'>
-
-                        <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
-
-                        <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
+                    <div className='flex items-center justify-between w-[97%] text-xs'>
 
                         <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
+
+                        <p className='ml-2 md:ml-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
+
+                        <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
 
                     </div>
 

@@ -266,7 +266,6 @@ function App() {
             )
           }
 
-          <Route path='/adminPending' element={<AdminPending />} />
           {/* user pages */}
           {token && isUserAuthenticated === 'noAdminApprovment' && (
             <>

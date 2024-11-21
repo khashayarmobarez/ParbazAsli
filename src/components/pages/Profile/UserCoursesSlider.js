@@ -21,10 +21,12 @@ const UserCoursesSlider = ({coursesData}) => {
         const swiperContainer = swiperRef.current;
         const params = {
         navigation: true,
-        pagination: true,
         centeredSlides: !isDesktop,
         spaceBetween: isDesktop ? '20' : '50',
         slidesPerView: isDesktop ? '2' : '1',
+        pagination:{
+          dynamicBullets: true,
+        },
         autoplay: {
           delay: 3500, // 3 seconds
           disableOnInteraction: true,

@@ -46,10 +46,10 @@ const ChangeCertificate = () => {
                     <div className={`w-full flex justify-between px-14 items-center mt-2 `}>
                         <button
                             className='transform  w-6 h-6 justify-self-end'
-                            disabled={pageNumber === 1}
-                            onClick={handleLastPageNumber}
+                            disabled={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}
+                            onClick={handleNextPageNumber}
                         >
-                            <ArrowButton isRight={true} isDisable={pageNumber === 1}/>
+                            <ArrowButton isRight={true} isDisable={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}/>
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -58,10 +58,10 @@ const ChangeCertificate = () => {
 
                         <button
                             className={`w-6 h-6 justify-self-start `}
-                            disabled={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}
-                            onClick={handleNextPageNumber}
+                            isDisable={pageNumber === 1}
+                            onClick={handleLastPageNumber}
                         >
-                            <ArrowButton isDisable={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}/>
+                            <ArrowButton  isDisable={pageNumber === 1}/>
                         </button>
                     </div>
                 }

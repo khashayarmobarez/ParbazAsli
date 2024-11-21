@@ -319,10 +319,10 @@ const Education = () => {
                                         <div className='w-full flex justify-between px-10 items-center'>
                                             <button
                                                 className={`w-6 h-6 justify-self-start`}
-                                                disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
-                                                onClick={handleNextPageNumber}
+                                                disabled={pageNumber === 1}
+                                                onClick={handleLastPageNumber}
                                             >
-                                                <ArrowButton isRight={true} isDisable={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}/>
+                                                <ArrowButton isRight={true} isDisable={pageNumber === 1}/>
                                             </button>
 
                                             <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -331,10 +331,10 @@ const Education = () => {
 
                                             <button
                                                 className={`transform w-6 h-6 justify-self-end`}
-                                                disabled={pageNumber === 1}
-                                                onClick={handleLastPageNumber}
+                                                disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
+                                                onClick={handleNextPageNumber}
                                             >
-                                                <ArrowButton isDisable={pageNumber === 1}/>
+                                                <ArrowButton isDisable={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}/>
                                             </button>
                                         </div>
                                     }
