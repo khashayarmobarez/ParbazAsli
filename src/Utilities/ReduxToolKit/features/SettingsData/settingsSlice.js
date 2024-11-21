@@ -10,8 +10,8 @@ const initialState = {
     name: 'settings',
     initialState,
     reducers: {
-      toggleDarkMode: (state) => {
-        state.isDarkMode = !state.isDarkMode;
+      setDarkMode: (state, action) => {
+        state.isDarkMode = action.payload;
       },
       setPassword1: (state, action) => {
         state.password1 = action.payload;
@@ -22,6 +22,6 @@ const initialState = {
     },
   });
 
-export const { toggleDarkMode, setPassword1, setPassword2 } = settingsSlice.actions;
+export const { setDarkMode, setPassword1, setPassword2 } = settingsSlice.actions;
 export default settingsSlice.reducer;
 export const selectSettings = (store) =>store.settings;

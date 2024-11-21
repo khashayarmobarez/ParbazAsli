@@ -20,7 +20,7 @@ import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
 import { useTheme } from './Utilities/Hooks/useTheme';
 
 // redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice';
 
 // react toastify
@@ -137,7 +137,7 @@ function App() {
   
   Hotjar.init(siteId, hotjarVersion);
 
-
+  const dispatch = useDispatch();
   const token = Cookies.get('token') || null;
   const userInput = Cookies.get('userInput') || null;
 
@@ -160,22 +160,22 @@ function App() {
 
   const navigate = useNavigate()
 
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
   // State to reload the page after authentication to rerender the components correctlu
   // This is a workaround to fix a bug that when user is logged in the components won't rerender until the page is reloaded
   const [isPageReloaded, setIsPageReloaded] = useState(false);
 
-  useAppModeEffect(isDarkMode)
+  useAppModeEffect(true)
 
   // Check if user is authenticated
   useEffect(() => {
-      const checkUserAuthentication = async () => {
-        const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
-        setIsUserAuthenticated(isAuthenticated);
-      };
 
-      checkUserAuthentication();
+    const checkUserAuthentication = async () => {
+      const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
+      setIsUserAuthenticated(isAuthenticated);
+    };
+
+    checkUserAuthentication();
+
   }, []);
 
 
@@ -202,16 +202,13 @@ function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const toggleTheme = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  };
 
 
   return (
     <QueryClientProvider client={queryClient}>
 
       <div className={`App ${token && 'pb-24'} `}>
-        <Navbar toggleTheme={toggleTheme} />
+        <Navbar />
           <Routes>
 
           {/* <Route path='/aboutUs' element={<AboutUs />} /> */}
@@ -255,7 +252,6 @@ function App() {
           )}
 
 
-<Route path='/addCertificate' element={<AddCertificate />} />
           {
             token && isUserAuthenticated === 'noCertificate' && (
               <>

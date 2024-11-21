@@ -44,7 +44,7 @@ const inlineStyles = {
 
 
 
-const Navbar = ({toggleTheme ,userRole}) => {
+const Navbar = ({ userRole}) => {
 
     const token = Cookies.get('token');
     

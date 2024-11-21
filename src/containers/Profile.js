@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import { useSelector } from 'react-redux';
+import { selectSettings } from '..//Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
+
 // styles
 import GradientStyles from '../styles/gradients/Gradient.module.css'
 import boxStyles from '../styles/Boxes/DataBox.module.css'
@@ -32,6 +35,10 @@ const Profile = () => {
     const navigate = useNavigate()
 
     const { data, isLoading, error } = useUserProfile();
+
+    const { isDarkMode } = useSelector(selectSettings);
+
+    console.log(isDarkMode);
 
     return (
         <div className='flex flex-col items-center pt-[75px] md:pt-28'>
