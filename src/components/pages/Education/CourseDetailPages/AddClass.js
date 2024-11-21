@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
@@ -33,6 +34,8 @@ const AddClass = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [pageNumber, setPageNumber] = useState(1);
     const pageSize = 1000
@@ -78,7 +81,7 @@ const AddClass = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -187,7 +190,7 @@ const AddClass = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
         } else if (StartSelectedTime > endSelectedTime) {
@@ -195,7 +198,7 @@ const AddClass = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
         } else {
@@ -205,7 +208,7 @@ const AddClass = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     navigate(`/education/courseDetails/${id}/classes`)
@@ -218,7 +221,7 @@ const AddClass = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                 }

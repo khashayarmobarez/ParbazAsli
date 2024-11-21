@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,6 +21,7 @@ const UploadIgc = () => {
     const {igcFile,
     flightType} = useSelector(selectAddFlight)
     const dispatch = useDispatch()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     // react router dom
     const navigate = useNavigate()
@@ -33,11 +35,11 @@ const UploadIgc = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
         }
-    }, [ flightType, navigate])
+    }, [ flightType, navigate, appTheme ]);
 
 
     // In your component

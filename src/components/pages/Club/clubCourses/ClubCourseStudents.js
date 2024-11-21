@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
+
 
 // styles
 import gradients from '../../../../styles/gradients/Gradient.module.css'
@@ -26,12 +28,15 @@ import DropDownLine from '../../../reuseable/DropDownLine';
 
 const CourseStudents = () => {
     
+    const appTheme = Cookies.get('theme') || 'dark';
+
     const navigate = useNavigate();
     const { id } = useParams();
     const [pageNumber, setPageNumber] = useState(1);
     const [historyPageNumber, sethistoryPageNumber] = useState(1);
     const [DropDownHistory, setDropDownHistory] = useState(false);
     const [DropDownActive, setDropDownActive] = useState(true);
+
 
     // show student options
     const [showActiveStudentOptions, setShowActiveStudentOptions] = useState(false);
@@ -93,7 +98,7 @@ const CourseStudents = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
 
@@ -111,7 +116,7 @@ const CourseStudents = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }

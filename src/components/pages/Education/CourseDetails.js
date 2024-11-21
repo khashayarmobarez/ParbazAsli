@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -20,6 +21,8 @@ const CourseDetails = () => {
     
     const navigate = useNavigate()
     const location = useLocation()
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const { id } = useParams();
 
@@ -46,7 +49,7 @@ const CourseDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchCourseData()
@@ -55,7 +58,7 @@ const CourseDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchCourseData()
@@ -65,7 +68,7 @@ const CourseDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchCourseData()

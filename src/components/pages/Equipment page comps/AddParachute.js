@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // queries and api
 import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
@@ -42,9 +43,10 @@ const AddParachute = () => {
   
   const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands('parachute');
 
-  
   const { mutate: mutateParachute , isLoading: isSubmitting, error: submitError} = useAddEquipment();
   
+  const appTheme = Cookies.get('theme') || 'dark';
+
   //going a page back function
   const navigate = useNavigate();
 
@@ -199,7 +201,7 @@ const AddParachute = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 5000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
       return;
@@ -211,7 +213,7 @@ const AddParachute = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 5000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
       return;
@@ -222,7 +224,7 @@ const AddParachute = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 5000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
       return;
@@ -233,7 +235,7 @@ const AddParachute = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 5000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
       return;
@@ -245,7 +247,7 @@ const AddParachute = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
       return;
@@ -288,7 +290,7 @@ const AddParachute = () => {
               type: 'success',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
             });
             setShowPopup(false);
@@ -306,7 +308,7 @@ const AddParachute = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
         // Add any additional error handling logic here

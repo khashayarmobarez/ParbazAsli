@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // Queries and api
 import { useEquipmentBrands, useWingClasses } from '../../../Utilities/Services/dataQueries';
@@ -37,6 +38,8 @@ import BrandsSearchInputWithDropdown from './inputsForEquipment/BrandsSearchInpu
 
 
 const AddFlightEquipment = () => {
+
+  const appTheme = Cookies.get('theme') || 'dark';
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('wing');
   const { data: wingsClasses, isLoading: WClassesIsLoading, error:WClassesError } = useWingClasses();

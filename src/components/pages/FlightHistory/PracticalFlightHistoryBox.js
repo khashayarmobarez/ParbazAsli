@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import gradients from '../../../styles/gradients/Gradient.module.css'
@@ -19,6 +20,8 @@ import NotInterestedIcon from '@mui/icons-material/NotInterested';
 
 
 const PracticalFlightHistoryBox = (props) => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -46,7 +49,7 @@ const PracticalFlightHistoryBox = (props) => {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                 });
             },
@@ -59,7 +62,7 @@ const PracticalFlightHistoryBox = (props) => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                 });
             }

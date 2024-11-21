@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // queries
 import { useAnEquipment, useEditEquipment } from '../../../../Utilities/Services/equipmentQueries';
@@ -32,6 +33,7 @@ import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 const EditEquipment = () => {
     const navigate = useNavigate()
     const { id } = useParams();
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [showPopup, setShowPopup] = useState(false);
     const [packageDate, setPackageDate] = useState('')
@@ -117,7 +119,7 @@ const EditEquipment = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     if(equipmentType === "Parachute") {
@@ -134,7 +136,7 @@ const EditEquipment = () => {
                             type: 'error',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "90%" }
                         });
                         console.error(error);
@@ -146,7 +148,7 @@ const EditEquipment = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             setShowPopup(false);

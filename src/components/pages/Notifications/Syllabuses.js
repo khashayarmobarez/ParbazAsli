@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
 import PageTitle from '../../reuseable/PageTitle';
@@ -13,7 +14,10 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import SearchIcon from '../../../components/icons/SearchIcon';
 
 const Syllabuses = () => {
+
     const navigate = useNavigate();
+    const appTheme = Cookies.get('theme') || 'dark';
+
     const { courseId, flightId } = useParams();
     const { data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(courseId, 2);
     const [searchSyllabus, setSearchSyllabus] = useState('');
@@ -95,7 +99,7 @@ const Syllabuses = () => {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: '90%' }
                         });
                         navigate(-2);
@@ -109,7 +113,7 @@ const Syllabuses = () => {
                             type: 'error',
                             position: 'top-right',
                             autoClose: 3000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: '350px' },
                         });
                     }
@@ -119,7 +123,7 @@ const Syllabuses = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: '350px' },
                 });
             }

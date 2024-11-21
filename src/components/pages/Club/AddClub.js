@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -26,6 +27,7 @@ import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/Date
 const AddClub = ({isForSetting}) => {
     
     const { formatDate } = useDateFormat();
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;
@@ -149,7 +151,7 @@ const AddClub = ({isForSetting}) => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
             });
         } else {
@@ -171,7 +173,7 @@ const AddClub = ({isForSetting}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
 
@@ -189,7 +191,7 @@ const AddClub = ({isForSetting}) => {
                         type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }

@@ -34,10 +34,10 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 const SignUp = () => {
 
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
     const {
@@ -144,7 +144,7 @@ const SignUp = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
             });
             return;
@@ -188,7 +188,7 @@ const SignUp = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else if (err.response?.status === 409) {
@@ -198,7 +198,7 @@ const SignUp = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else {
@@ -208,7 +208,7 @@ const SignUp = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -242,7 +242,7 @@ const SignUp = () => {
                 type: 'error', 
                 position: 'top-right', 
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -292,7 +292,7 @@ const SignUp = () => {
                     type: 'error', 
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else {
@@ -303,7 +303,7 @@ const SignUp = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }

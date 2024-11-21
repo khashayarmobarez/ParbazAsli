@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // Queries and api
 import { useEquipmentBrands, useWingClasses } from '../../../../Utilities/Services/dataQueries';
@@ -37,6 +38,8 @@ import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 
 const AddClubFlightEquipment = () => {
+
+  const appTheme = Cookies.get('theme') || 'dark';
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('wing');
   const { data: wingsClasses, isLoading: WClassesIsLoading, error:WClassesError } = useWingClasses();
@@ -160,7 +163,7 @@ const AddClubFlightEquipment = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 5000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -171,7 +174,7 @@ const AddClubFlightEquipment = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -182,7 +185,7 @@ const AddClubFlightEquipment = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -193,7 +196,7 @@ const AddClubFlightEquipment = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 10000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -235,7 +238,7 @@ const AddClubFlightEquipment = () => {
               type: 'success',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
             });
             setShowPopup(false);
@@ -253,7 +256,7 @@ const AddClubFlightEquipment = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
         // Add any additional error handling logic here

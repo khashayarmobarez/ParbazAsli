@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import gradients from '../../../styles/gradients/Gradient.module.css'
@@ -21,7 +22,7 @@ import PageTitle from '../../reuseable/PageTitle';
 
 const ClubCoaches = () => {
 
-    
+    const appTheme = Cookies.get('theme') || 'dark';
     const [DropDown, setDropDown] = useState('');
     const [pageNumber, setPageNumber] = useState(1);
     const [pageNumberPrevious, setPageNumberPrevious] = useState(1);
@@ -77,7 +78,7 @@ const ClubCoaches = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
 
@@ -95,7 +96,7 @@ const ClubCoaches = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                 }
@@ -105,7 +106,7 @@ const ClubCoaches = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
         }

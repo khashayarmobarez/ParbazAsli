@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import { Box, CircularProgress } from '@mui/material';
@@ -27,6 +28,7 @@ const AddUsedEquipment = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [submitted, setSubmitted] = useState(false);
 
@@ -58,7 +60,7 @@ const AddUsedEquipment = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
         }
@@ -76,7 +78,7 @@ const AddUsedEquipment = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
                 });
             return;
@@ -90,7 +92,7 @@ const AddUsedEquipment = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
                 });
             return;
@@ -119,7 +121,7 @@ const AddUsedEquipment = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
             });
         }

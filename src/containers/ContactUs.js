@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 
 // queries
 import { addGeneralComment } from '../Utilities/Services/queries';
@@ -26,6 +27,8 @@ import TextInput from '../components/inputs/textInput';
 import LongTextInput from '../components/inputs/LongTextInput';
 
 const ContactUs = () => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
@@ -85,7 +88,7 @@ const ContactUs = () => {
                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
         },
@@ -100,7 +103,7 @@ const ContactUs = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
             }
@@ -135,7 +138,7 @@ const ContactUs = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
           }

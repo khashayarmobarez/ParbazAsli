@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import boxStyles from '../styles/Boxes/DataBox.module.css'
@@ -29,6 +30,7 @@ import Attention from '../components/icons/Attention';
 const Education = () => {
 
     const navigate = useNavigate()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     // courseData
     const [courseType, setCourseType] = useState('')
@@ -91,7 +93,7 @@ const Education = () => {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                             position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "350px" }
                         });
                         courseDataRefetch()
@@ -100,7 +102,7 @@ const Education = () => {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                             position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "350px" }
                         });
                         courseDataRefetch()

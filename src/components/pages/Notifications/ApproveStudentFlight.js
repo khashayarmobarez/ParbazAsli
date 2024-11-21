@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -21,6 +22,7 @@ import DropDownLine from '../../reuseable/DropDownLine';
 const ApproveStudentFlight = () => {
 
     const { id } = useParams()
+    const appTheme = Cookies.get('theme') || 'dark';
     
     const [DropDownEquipment, setDropDownEquipment] = useState(true)
     const [DropDownSituation, setDropDownSituation] = useState(true)
@@ -56,7 +58,7 @@ const ApproveStudentFlight = () => {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                 });
                 navigate(`/notifications`)
@@ -70,7 +72,7 @@ const ApproveStudentFlight = () => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                 });
             }

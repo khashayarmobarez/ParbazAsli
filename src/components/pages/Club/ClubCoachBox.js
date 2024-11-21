@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // mui
 import { Avatar } from '@mui/material';
@@ -8,6 +9,7 @@ import { Avatar } from '@mui/material';
 const ClubCoachBox = ({ coachData }) => {
 
     const navigate = useNavigate();
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const clickHandler = (id) => () => {
         if(coachData.status === 'Active' || coachData.status === 'Disable') {
@@ -17,7 +19,7 @@ const ClubCoachBox = ({ coachData }) => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
         } else if(coachData.status === 'Rejected') {
@@ -25,7 +27,7 @@ const ClubCoachBox = ({ coachData }) => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
         }

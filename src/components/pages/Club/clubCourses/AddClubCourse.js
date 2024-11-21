@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
@@ -43,7 +44,7 @@ import SelectMultiplePopUp from '../../../reuseable/SelectMultiplePopUp';
 const AddClubCourse = () => {
 
     const navigate = useNavigate()
-
+    const appTheme = Cookies.get('theme') || 'dark';
     
     // states
     const [selectedClassType, setSelectedClassType] = useState('');
@@ -257,7 +258,7 @@ const AddClubCourse = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 return;
@@ -266,7 +267,7 @@ const AddClubCourse = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -275,7 +276,7 @@ const AddClubCourse = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -316,7 +317,7 @@ const AddClubCourse = () => {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "90%" }
                         });
                         navigate('/club/clubCourses');
@@ -327,7 +328,7 @@ const AddClubCourse = () => {
                             type: 'error',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "90%" }
                         });
                         console.error(error);
@@ -340,7 +341,7 @@ const AddClubCourse = () => {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "90%" }
                         });
                         navigate('/club/clubCourses');
@@ -351,7 +352,7 @@ const AddClubCourse = () => {
                             type: 'error',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "90%" }
                         });
                         console.error(error);
@@ -379,7 +380,7 @@ const AddClubCourse = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     navigate('/club/clubCourses');
@@ -390,7 +391,7 @@ const AddClubCourse = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     console.error(error);

@@ -2,6 +2,8 @@ import React, {  useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
+import Cookies from 'js-cookie';
+
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
@@ -29,6 +31,7 @@ const RenewCertificate = () => {
 
     const navigate = useNavigate()
     const { formatDate } = useDateFormat();
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;
@@ -165,7 +168,7 @@ const RenewCertificate = () => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                     setTimeout(() => {
@@ -181,7 +184,7 @@ const RenewCertificate = () => {
                         type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }

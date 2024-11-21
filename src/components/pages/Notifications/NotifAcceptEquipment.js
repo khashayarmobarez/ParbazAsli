@@ -1,10 +1,13 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 // queries
 import { useTriggerEquipmentStatus } from '../../../Utilities/Services/equipmentQueries';
 import { toast } from 'react-toastify';
 
 const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const { description ,externalId ,title, status, isRead, createdDateTime } = notif;
 
@@ -28,7 +31,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     // reload
@@ -45,7 +48,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -64,7 +67,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     // reload
@@ -82,7 +85,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }

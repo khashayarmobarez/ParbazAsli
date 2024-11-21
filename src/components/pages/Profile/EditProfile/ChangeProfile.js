@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
@@ -28,6 +29,8 @@ import ChangePasswordPopUp from './ChangePasswordPopUp';
 import PlusWithCircularBorderIcon from '../../../icons/PlusWithCircularBorderIcon';
 
 const ChangeProfile = () => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
     const {
@@ -108,7 +111,7 @@ const ChangeProfile = () => {
                 type: 'error', 
                 position: 'top-right', 
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -120,7 +123,7 @@ const ChangeProfile = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -132,7 +135,7 @@ const ChangeProfile = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -155,7 +158,7 @@ const ChangeProfile = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -165,7 +168,7 @@ const ChangeProfile = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -181,7 +184,7 @@ const ChangeProfile = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -202,7 +205,7 @@ const ChangeProfile = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setTimeout(() => {
@@ -216,7 +219,7 @@ const ChangeProfile = () => {
                     type: 'error',
                     position: 'top-right',  
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -231,7 +234,7 @@ const ChangeProfile = () => {
                 type: 'error', 
                 position: 'top-right', 
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -252,7 +255,7 @@ const ChangeProfile = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -262,7 +265,7 @@ const ChangeProfile = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -278,7 +281,7 @@ const ChangeProfile = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -299,7 +302,7 @@ const ChangeProfile = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setTimeout(() => {
@@ -313,7 +316,7 @@ const ChangeProfile = () => {
                     type: 'error',
                     position: 'top-right',  
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }

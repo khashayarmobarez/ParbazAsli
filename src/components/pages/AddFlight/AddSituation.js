@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import Cookies from 'js-cookie';
 
 // provider
 import { flightHourOptionData, flightTypeOptions } from '../../../Utilities/Providers/dropdownInputOptions';
@@ -28,6 +28,7 @@ const AddSituation = () => {
 
     const navigate= useNavigate('')
     const dispatch = useDispatch()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [submitted, setSubmitted] = useState(false);
 
@@ -35,11 +36,11 @@ const AddSituation = () => {
     const { country, city, sight, clouds ,
     wing, harness, parachute, flightType } = useSelector(selectAddFlight)
 
-    const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
-    const { data: provincesData, loading:provincesLoading, error:provincesError } = useProvincesByCountryId(country && country.id)
-    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError } = useSitesByProvinceId(city && city.id, country && country.id)
+    const { data: countriesData, } = useCountries()
+    const { data: provincesData, } = useProvincesByCountryId(country && country.id)
+    const { data: flightSitesData } = useSitesByProvinceId(city && city.id, country && country.id)
     // useCloudTypes
-    const { data: cloudTypesData, loading:cloudTypesLoading, error:cloudTypesError } = useCloudTypes()
+    const { data: cloudTypesData, } = useCloudTypes()
 
 
     // function to start from the bottom of the page
@@ -59,9 +60,9 @@ const AddSituation = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
-              });
+            });
         }
     }, [ wing, harness, parachute, flightType , navigate])
 
@@ -108,7 +109,7 @@ const AddSituation = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
                 });
         }

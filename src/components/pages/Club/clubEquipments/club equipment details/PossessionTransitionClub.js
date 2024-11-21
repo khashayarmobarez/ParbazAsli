@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../../../styles/Buttons/ButtonsBox.module.css'
@@ -28,6 +29,8 @@ const PossessionTransitionClub = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
+
+    const appTheme = Cookies.get('theme') || 'dark';
     
     const { data: EquipmentData, isLoading, error } = useAnEquipment(id,true)
 
@@ -95,7 +98,7 @@ const PossessionTransitionClub = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else if(!expirationDate) {
@@ -103,7 +106,7 @@ const PossessionTransitionClub = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else if(!expirationDate > new Date()) {
@@ -111,7 +114,7 @@ const PossessionTransitionClub = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else {
@@ -147,7 +150,7 @@ const PossessionTransitionClub = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     setShowPopup(false);
@@ -160,7 +163,7 @@ const PossessionTransitionClub = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     console.error(error);

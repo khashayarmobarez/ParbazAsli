@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -23,6 +24,8 @@ import PhoneVerificationCode from '../authentication/popUps/PhoneVerificationCod
 import ChangePasswordPopUp from '../Profile/EditProfile/ChangePasswordPopUp';
 
 const EditUserSettings = () => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
     const {
@@ -110,7 +113,7 @@ const EditUserSettings = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -131,7 +134,7 @@ const EditUserSettings = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -142,7 +145,7 @@ const EditUserSettings = () => {
                     type: 'error',
                     position: 'top-right',  
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -157,7 +160,7 @@ const EditUserSettings = () => {
                 type: 'error', 
                 position: 'top-right', 
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -179,7 +182,7 @@ const EditUserSettings = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -189,7 +192,7 @@ const EditUserSettings = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -203,7 +206,7 @@ const EditUserSettings = () => {
                 type: 'error', 
                 position: 'top-right', 
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -227,7 +230,7 @@ const EditUserSettings = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -237,7 +240,7 @@ const EditUserSettings = () => {
                     type: 'error', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -253,7 +256,7 @@ const EditUserSettings = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -274,7 +277,7 @@ const EditUserSettings = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -285,7 +288,7 @@ const EditUserSettings = () => {
                     type: 'error',
                     position: 'top-right',  
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }

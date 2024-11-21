@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import Cookies from 'js-cookie';
 
 // react toastify
 import { toast } from 'react-toastify';
@@ -37,8 +37,8 @@ const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     const dispatch = useDispatch();
-
     const userRef = useRef();
+    const appTheme = Cookies.get('theme') || 'dark';
     
     const [showCodeInput, setShowCodeInput] = useState(false);
     const [showPassChangeInput , setShowPassChangeInput] = useState(false);
@@ -230,7 +230,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             }); 
             return;
@@ -255,7 +255,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 }); 
             },
@@ -274,7 +274,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 type: 'error', 
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -295,7 +295,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     type: 'success', 
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -306,7 +306,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     type: 'error', 
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },
@@ -338,7 +338,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     type: 'success',
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setShowPopup(false);
@@ -350,7 +350,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     type: 'error',
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             },

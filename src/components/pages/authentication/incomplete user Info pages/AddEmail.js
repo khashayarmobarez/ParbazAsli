@@ -22,6 +22,7 @@ import { toast } from 'react-toastify';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+
 const AddEmail = () => {
 
     const authSettings = useSelector(selectAuthSettings);
@@ -41,6 +42,7 @@ const AddEmail = () => {
     }, [dispatch]);
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+    const appTheme = Cookies.get('theme') || 'dark';
     
     const token = Cookies.get('token')
 
@@ -82,7 +84,7 @@ const AddEmail = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -112,7 +114,7 @@ const AddEmail = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 // Update UI or perform any additional actions based on the response
@@ -125,7 +127,7 @@ const AddEmail = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else if (err.response?.status === 409) {
@@ -133,7 +135,7 @@ const AddEmail = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else {
@@ -141,7 +143,7 @@ const AddEmail = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -176,7 +178,7 @@ const AddEmail = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -216,7 +218,7 @@ const AddEmail = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }
@@ -227,7 +229,7 @@ const AddEmail = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             } else {
@@ -236,7 +238,7 @@ const AddEmail = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import Cookies from 'js-cookie';
+
 // queries
 import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
 
@@ -9,8 +11,6 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import CircularProgressLoader from '../../Loader/CircularProgressLoader';
 import { toast } from 'react-toastify';
 import DropDownLine from '../../reuseable/DropDownLine';
@@ -21,6 +21,7 @@ import DropDownLine from '../../reuseable/DropDownLine';
 const Harness = (props) => {
 
     const navigate = useNavigate()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [DropDown, setDropDown] = useState('')
     const [DropDownForTemporary, setDropDownForTemporary] = useState('')
@@ -85,7 +86,7 @@ const Harness = (props) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchHistory()
@@ -99,7 +100,7 @@ const Harness = (props) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -119,7 +120,7 @@ const Harness = (props) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchHistory()
@@ -134,7 +135,7 @@ const Harness = (props) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -155,7 +156,7 @@ const Harness = (props) => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 refetchHistory()

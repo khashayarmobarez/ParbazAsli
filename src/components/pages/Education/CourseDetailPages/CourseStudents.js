@@ -32,6 +32,8 @@ const CourseStudents = () => {
 
     const { id } = useParams();
 
+    const appTheme = Cookies.get('theme') || 'dark';
+
     const [pageNumber, setPageNumber] = useState(1);
     const [historyPageNumber, sethistoryPageNumber] = useState(1);
     const [DropDownHistory, setDropDownHistory] = useState(false);
@@ -103,7 +105,7 @@ const CourseStudents = () => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', 
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }
@@ -112,7 +114,7 @@ const CourseStudents = () => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else if(status === 'Completed') {
@@ -120,7 +122,7 @@ const CourseStudents = () => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else if(status === 'CoachRejected') {
@@ -128,7 +130,7 @@ const CourseStudents = () => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }
@@ -154,7 +156,7 @@ const CourseStudents = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
 
@@ -172,7 +174,7 @@ const CourseStudents = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
             }

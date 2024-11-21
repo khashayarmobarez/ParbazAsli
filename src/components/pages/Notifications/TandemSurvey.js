@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // styles
 import styles from './TandemSurvey.module.css';
@@ -19,6 +20,8 @@ import { toast } from 'react-toastify';
 import StarRating from '../../reuseable/StarRating';
 
 const TandemSurvey = () => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const navigate = useNavigate()
     const { id } = useParams();
@@ -51,7 +54,7 @@ const TandemSurvey = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 5000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: '90%' },
           });
         }
@@ -71,7 +74,7 @@ const TandemSurvey = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -95,7 +98,7 @@ const TandemSurvey = () => {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "90%" }
                         });
                         setTimeout(() => {
@@ -111,7 +114,7 @@ const TandemSurvey = () => {
                             type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                             position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
-                            theme: 'dark',
+                            theme: appTheme,
                             style: { width: "350px" }
                         });
                     }

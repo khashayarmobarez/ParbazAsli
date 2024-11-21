@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
@@ -37,6 +38,8 @@ const AddHarness = () => {
 
   //going a page back function
   const navigate = useNavigate();
+
+  const appTheme = Cookies.get('theme') || 'dark';
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('harness');
 
@@ -136,7 +139,7 @@ const AddHarness = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -148,7 +151,7 @@ const AddHarness = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 5000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -159,7 +162,7 @@ const AddHarness = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -170,7 +173,7 @@ const AddHarness = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 10000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -207,7 +210,7 @@ const AddHarness = () => {
               type: 'success',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
             });
             setShowPopup(false);
@@ -225,7 +228,7 @@ const AddHarness = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
         // Add any additional error handling logic here

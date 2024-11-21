@@ -27,6 +27,7 @@ const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z
 const Login = () => {
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const navigate = useNavigate()
 
@@ -84,7 +85,7 @@ const Login = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             }); 
             setErrMsg("اطلاعات درست نیست");
@@ -113,7 +114,7 @@ const Login = () => {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
 
@@ -148,7 +149,7 @@ const Login = () => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setSubmitLoading(false)
@@ -159,7 +160,7 @@ const Login = () => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setShowForgetPassPopUp(true)
@@ -172,7 +173,7 @@ const Login = () => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setSubmitLoading(false)

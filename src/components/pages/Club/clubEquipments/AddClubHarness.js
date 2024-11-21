@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +36,8 @@ import BrandsSearchInputWithDropdown from '../../Equipment page comps/inputsForE
 import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const AddClubHarness = () => {
+
+  const appTheme = Cookies.get('theme') || 'dark';
 
   //going a page back function
   const navigate = useNavigate();
@@ -132,7 +135,7 @@ const AddClubHarness = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 5000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -143,7 +146,7 @@ const AddClubHarness = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -154,7 +157,7 @@ const AddClubHarness = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -165,7 +168,7 @@ const AddClubHarness = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 10000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -203,7 +206,7 @@ const AddClubHarness = () => {
               type: 'success',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
             });
             setShowPopup(false);
@@ -221,7 +224,7 @@ const AddClubHarness = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
         // Add any additional error handling logic here

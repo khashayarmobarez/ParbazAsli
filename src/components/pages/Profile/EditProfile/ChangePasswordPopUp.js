@@ -46,7 +46,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                 type: 'error', 
                 position: 'top-right', 
                 autoClose: 5000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             });
             return;
@@ -64,7 +64,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     type: 'success', 
                     position: 'top-right', 
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 setShowPopUp(false);
@@ -78,7 +78,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                 });
             }

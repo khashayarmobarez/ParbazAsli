@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -42,6 +43,7 @@ const AddLanding = () => {
 
     const dispatch = useDispatch()
     const navigate= useNavigate('')
+    const appTheme = Cookies.get('theme') || 'dark';
 
     // states, submit pop up control
     const [showPopup, setShowPopup] = useState(false); 
@@ -77,11 +79,11 @@ const AddLanding = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
         }
-    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , takeoffTime, navigate])
+    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , takeoffTime, navigate, appTheme])
 
     useEffect(() => {
         if(landingTypesData) {console.log(landingTypesData)}
@@ -137,7 +139,7 @@ const AddLanding = () => {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                   });
             }
@@ -150,7 +152,7 @@ const AddLanding = () => {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                   });
             }
@@ -212,7 +214,7 @@ const AddLanding = () => {
                 type: 'error', // Specify the type of toast 
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
             });
             setShowPopup(false);
@@ -230,7 +232,7 @@ const AddLanding = () => {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
-                                theme: 'dark',
+                                theme: appTheme,
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
@@ -245,7 +247,7 @@ const AddLanding = () => {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
-                                theme: 'dark',
+                                theme: appTheme,
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
@@ -264,7 +266,7 @@ const AddLanding = () => {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
-                                theme: 'dark',
+                                theme: appTheme,
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
@@ -279,7 +281,7 @@ const AddLanding = () => {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
-                                theme: 'dark',
+                                theme: appTheme,
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
@@ -298,7 +300,7 @@ const AddLanding = () => {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
-                                theme: 'dark',
+                                theme: appTheme,
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);
@@ -313,7 +315,7 @@ const AddLanding = () => {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
-                                theme: 'dark',
+                                theme: appTheme,
                                 style: { width: "350px" }
                             });
                             setShowPopup(false);

@@ -1,10 +1,13 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 // queries
 import { useTriggerClubStatus } from '../../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 
 const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const {description ,externalId ,title, status, isRead, createdDateTime} = notif;
 
@@ -27,7 +30,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else {
@@ -35,7 +38,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }

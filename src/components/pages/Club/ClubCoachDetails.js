@@ -25,6 +25,10 @@ const ClubCoachDetails = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
+    
+    // for handliung the back button of club course details
+    Cookies.set('lastPathForClubCourseDetails',location.pathname)
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const { id } = useParams();
 
@@ -32,8 +36,6 @@ const ClubCoachDetails = () => {
     const {  data: coachCoursesDetails } = useGetCoachCourses(id);
     const { mutate: triggerCoachStatus } = useTriggerCoachStatus();
 
-    // for handliung the back button of club course details
-    Cookies.set('lastPathForClubCourseDetails',location.pathname)
 
     const handleClickDetails = (id) => {
 
@@ -59,7 +61,7 @@ const ClubCoachDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     navigate('/club/clubCoaches');
@@ -73,7 +75,7 @@ const ClubCoachDetails = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                 }
@@ -92,7 +94,7 @@ const ClubCoachDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     navigate('/club/clubCoaches');
@@ -106,7 +108,7 @@ const ClubCoachDetails = () => {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                 }

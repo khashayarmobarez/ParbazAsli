@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // queries
 import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../../../Utilities/Services/equipmentQueries';
@@ -18,6 +19,8 @@ import { toast } from 'react-toastify';
 const FlightEquipment = () => {
 
     const navigate = useNavigate()
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [DropDown, setDropDown] = useState('')
     const [DropDownForTemporary, setDropDownForTemporary] = useState('')
@@ -81,7 +84,7 @@ const FlightEquipment = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchHistory()
@@ -95,7 +98,7 @@ const FlightEquipment = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -115,7 +118,7 @@ const FlightEquipment = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchHistory()
@@ -130,7 +133,7 @@ const FlightEquipment = () => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -151,7 +154,7 @@ const FlightEquipment = () => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 refetchHistory()

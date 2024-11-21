@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // queries
 import { useTriggerClubStatus, useTriggerCourseStatus, useTriggerStudentStatus } from '../../../Utilities/Services/coursesQueries';
@@ -16,6 +17,8 @@ import { useTriggerEquipmentStatus } from '../../../Utilities/Services/equipment
 const PopupForNotif = ({popUpData, setPopUpData}) => {
 
     const navigate = useNavigate()
+    
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const { mutate: triggerClubStatus, isLoading: triggerClubStatusLoading } = useTriggerClubStatus();
 
@@ -36,7 +39,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else {
@@ -44,7 +47,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }
@@ -73,7 +76,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else {
@@ -81,7 +84,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }
@@ -108,7 +111,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', 
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else {
@@ -116,7 +119,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }
@@ -147,7 +150,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     // reload
@@ -164,7 +167,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -183,7 +186,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     // reload
@@ -201,7 +204,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }

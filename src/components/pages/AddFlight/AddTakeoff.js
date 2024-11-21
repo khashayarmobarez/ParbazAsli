@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 import { toast } from 'react-toastify';
 
@@ -30,6 +31,7 @@ const AddTakeoff = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [submitted, setSubmitted] = useState(false);
 
@@ -59,11 +61,11 @@ const AddTakeoff = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
         }
-    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate])
+    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate, appTheme ]);
 
 
     const handleTakeOffTimeChange = (newTime) => {
@@ -102,7 +104,7 @@ const AddTakeoff = () => {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "350px" }
               });
         }

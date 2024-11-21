@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // css classes 
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
@@ -21,6 +22,7 @@ import DropDownLine from '../../reuseable/DropDownLine';
 const Parachute = (props) => {
 
     const navigate = useNavigate()
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const [DropDown, setDropDown] = useState('')
     const [DropDownForTemporary, setDropDownForTemporary] = useState('')
@@ -82,7 +84,7 @@ const Parachute = (props) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchHistory()
@@ -96,7 +98,7 @@ const Parachute = (props) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -116,7 +118,7 @@ const Parachute = (props) => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchHistory()
@@ -131,7 +133,7 @@ const Parachute = (props) => {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 }
@@ -152,7 +154,7 @@ const Parachute = (props) => {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "90%" }
                 });
                 refetchHistory()

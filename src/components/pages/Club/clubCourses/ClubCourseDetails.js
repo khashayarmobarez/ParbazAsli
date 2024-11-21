@@ -21,6 +21,7 @@ const ClubCourseDetails = () => {
     
     const navigate = useNavigate()
     const location = useLocation()  
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const { id } = useParams();
 
@@ -51,7 +52,7 @@ const ClubCourseDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchCourseData()
@@ -60,7 +61,7 @@ const ClubCourseDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchCourseData()
@@ -70,7 +71,7 @@ const ClubCourseDetails = () => {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "90%" }
                     });
                     refetchCourseData()

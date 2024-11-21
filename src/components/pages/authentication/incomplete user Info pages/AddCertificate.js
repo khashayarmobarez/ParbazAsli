@@ -33,6 +33,7 @@ const AddCertificate = () => {
     const navigate = useNavigate();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const { formatDate } = useDateFormat();
 
@@ -71,7 +72,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        // window.location.reload();
+        window.location.reload();
     }
     
     // clear the other states if organ changes
@@ -171,7 +172,7 @@ const AddCertificate = () => {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 3000,
-                theme: 'dark',
+                theme: appTheme,
                 style: { width: "90%" }
             }); 
             return
@@ -210,7 +211,7 @@ const AddCertificate = () => {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
-                    theme: 'dark',
+                    theme: appTheme,
                     style: { width: "350px" }
                 });
                 setTimeout(() => {

@@ -1,11 +1,13 @@
 import React from 'react';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import Cookies from 'js-cookie';
 
 // queries
 import {  useTriggerStudentStatus } from '../../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 
 const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
+
+    const appTheme = Cookies.get('theme') || 'dark';
 
     const {description ,externalId ,title, status, isRead, createdDateTime} = notif;
 
@@ -27,7 +29,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', 
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else {
@@ -35,7 +37,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
-                        theme: 'dark',
+                        theme: appTheme,
                         style: { width: "350px" }
                     });
                 }

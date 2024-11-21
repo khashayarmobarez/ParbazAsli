@@ -137,7 +137,6 @@ function App() {
   
   Hotjar.init(siteId, hotjarVersion);
 
-  const dispatch = useDispatch();
   const token = Cookies.get('token') || null;
   const userInput = Cookies.get('userInput') || null;
 
