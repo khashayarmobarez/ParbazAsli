@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowButton from '../icons/ArrowButton';
 
 const PageTitle = (props) => {
