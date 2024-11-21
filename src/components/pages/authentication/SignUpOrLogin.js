@@ -21,15 +21,8 @@ const SignUpOrLogin = () => {
     const location = useLocation();
 
     return (
-        <div className='pt-0 flex flex-col items-center md:flex-row-reverse bg-bgPageMain h-full'>
-            {
-                isDesktop &&
-                <div className='w-[90%] h-[100dvh] relative'>
-                    <img src={authenticationBackground} alt='Authentication' className='w-full h-full object-cover' />
-                    <img src={logo} alt='logo' className='w-80 absolute left-[34%] top-[42dvh]' />
-                </div>
-            }
-            <div className='w-full mt-16 flex flex-col items-center gap-y-7 justify-center md:w-[40%] md:px-10'>
+        <div className='pt-0 flex flex-col items-center md:grid grid-cols-12 bg-bgPageMain h-full'>
+            <div className='w-full mt-16 flex flex-col items-center gap-y-7 justify-center md:col-span-4 md:px-[5%]'>
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
                     <button 
@@ -61,6 +54,13 @@ const SignUpOrLogin = () => {
                 }
                 
             </div>
+            {
+                isDesktop &&
+                <div className='w-full h-[100dvh] relative col-span-8'>
+                    <img src={authenticationBackground} alt='Authentication' className='w-full h-full object-cover' />
+                    <img src={logo} alt='logo' className='w-80 absolute left-[34%] top-[42dvh]' />
+                </div>
+            }
         </div>
     );
 };
