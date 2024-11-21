@@ -127,33 +127,41 @@ const AddSituation = () => {
                 {/* line and circle of adding flight level */}
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
 
-                    <div className='flex items-center justify-center w-full'>
+                    <div className='flex items-center justify-center w-[100%]'>
                         
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
-
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
-
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+                        <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
+                            <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+                        </div>
+
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[97%] text-xs'>
+                    <div className='flex items-center justify-between w-full text-xs'>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
 
                         <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+
+                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
 
                     </div>
                     
@@ -198,17 +206,17 @@ const AddSituation = () => {
 
                 <div className='flex justify-between items-center w-full'>
 
-                    <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <span className='w-8 h-8 flex justify-center items-center'>
+                    <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
+                        <span className='w-8 h-8 flex justify-center items-center ml-2'>
                             <ArrowButton isRight={true} />
                         </span>
-                        <p className='mr-2 '>بعدی</p>
+                        <p className=' '>قبلی</p>
                     </div>
 
-                    <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <p className='ml-2 '>قبلی</p>
-                        <span className='w-8 h-8 flex justify-center items-center'>
-                            <ArrowButton />
+                    <div onClick={handleNextPageButton} className='flex items-center justify-between'>
+                        <p className=''>بعدی</p>
+                        <span className='w-8 h-8 flex justify-center items-center mr-2'>
+                            <ArrowButton  />
                         </span>
                     </div>
                 

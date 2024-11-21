@@ -119,10 +119,6 @@ const AddLanding = () => {
 
 
     
-
-
-
-    
     // Event handler for form submission
     const handleSubmit = (event) => {
 
@@ -346,33 +342,41 @@ const AddLanding = () => {
                 {/* line and circle of adding flight level */}
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
 
-                    <div className='flex items-center justify-center w-full'>
+                    <div className='flex items-center justify-center w-[100%]'>
                         
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[25%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
                         <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+
+                        <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
+                            <div className='rounded-full w-3 h-3 mr-[0.3px]' style={{background:'var(--text-accent)'}}></div>
+                        </div>
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[97%] text-xs'>
+                    <div className='flex items-center justify-between w-full text-xs'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>Landing</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
 
                         <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>Takeoff</p>
+
+                        <p className='' style={{color:'var(--text-accent)'}}>Landing</p>
 
                     </div>
                     
@@ -456,14 +460,14 @@ const AddLanding = () => {
 
                 <div className='flex justify-between items-center w-full'>
 
-                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
-
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <p className='ml-2 '>قبلی</p>
-                        <span className='w-8 h-8 flex justify-center items-center'>
-                            <ArrowButton />
+                        <span className='w-8 h-8 flex justify-center items-center ml-2 '>
+                            <ArrowButton isRight={true} />
                         </span>
+                        <p className=''>قبلی</p>
                     </div>
+
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
                 
                 </div>
 

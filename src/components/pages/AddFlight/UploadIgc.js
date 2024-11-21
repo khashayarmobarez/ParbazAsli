@@ -59,37 +59,79 @@ const UploadIgc = () => {
         <>
             <div className='w-[90%] flex flex-col items-center gap-y-4'>
 
-            <span>
-                <img alt='icon' className='w-20' src={IGC} />
-            </span>
+                <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
 
-            <p className='text-center -mt-1 font-semibold text-textWarning'>(اختیاری)</p>
+                    <div className='flex items-center justify-center w-[100%]'>
+                            
+                        <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
+                            <div className='rounded-full w-3 h-3 mr-[0.3px]' style={{background:'var(--text-accent)'}}></div>
+                        </div>
 
-            <p className=' text-center w-full'>در صورت داشتن فایل IGC بارگزاری کنید تا مشخصات پرواز شما ثبت شود در غیر این صورت دکمه بعدی را بزنید و مشخصات پرواز خود را وارد کنید</p>
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-            </div>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-            <div className=' w-[90%] flex items-center justify-between' >
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                <div onClick={() => navigate('/addFlight/AddUsedEquipment')} className='flex items-center justify-between'>
-                    <span className='w-8 h-8 flex justify-center items-center'>
-                        <ArrowButton isRight={true} />
-                    </span>
-                    <p className='mr-3'>بعدی</p>
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+
+                    </div>
+
+                    <div className='flex items-center justify-between w-full text-xs'>
+
+                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+
+                        <p className='' style={{color:'var(--icon-disable)'}}>وسیله پروازی</p>
+
+                        <p className='' style={{color:'var(--icon-disable)'}}>شرایط پرواز</p>
+
+                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+
+                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+
+                    </div>
+
                 </div>
 
-                <input
-                    ref={fileInputRef}
-                    onChange={handleFileSelect}
-                    type="file"
-                    accept=".igc"
-                    className="hidden"
-                />
+                <span>
+                    <img alt='icon' className='w-20' src={IGC} />
+                </span>
 
-                <button className={ButtonStyles.normalButton} onClick={handleButtonClick}>آپلود IGC</button>
+                <p className='text-center -mt-1 font-semibold text-textWarning'>(اختیاری)</p>
 
-            </div>
-            <p>{igcFile && igcFile.name}</p>
+                <p className=' text-center w-full'>در صورت داشتن فایل IGC بارگزاری کنید تا مشخصات پرواز شما ثبت شود در غیر این صورت دکمه بعدی را بزنید و مشخصات پرواز خود را وارد کنید</p>
+
+                </div>
+
+                <div className=' w-[90%] flex items-center justify-between' >
+
+                    <button className={ButtonStyles.normalButton} onClick={handleButtonClick}>آپلود IGC</button>
+
+                    <input
+                        ref={fileInputRef}
+                        onChange={handleFileSelect}
+                        type="file"
+                        accept=".igc"
+                        className="hidden"
+                    />
+
+                    <div onClick={() => navigate('/addFlight/AddUsedEquipment')} className='flex items-center justify-between'>
+                        <p className=''>بعدی</p>
+                        <span className='w-8 h-8 flex justify-center items-center mr-3'>
+                            <ArrowButton />
+                        </span>
+                    </div>
+
+                </div>
+                <p>{igcFile && igcFile.name}</p>
         </>
     );
 };
