@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const {description ,externalId ,title, status, isRead, createdDateTime} = notif;
 

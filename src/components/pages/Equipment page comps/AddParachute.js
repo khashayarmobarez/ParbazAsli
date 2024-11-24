@@ -45,7 +45,7 @@ const AddParachute = () => {
 
   const { mutate: mutateParachute , isLoading: isSubmitting, error: submitError} = useAddEquipment();
   
-  const appTheme = Cookies.get('theme') || 'dark';
+  const appTheme = Cookies.get('themeApplied') || 'dark';
 
   //going a page back function
   const navigate = useNavigate();

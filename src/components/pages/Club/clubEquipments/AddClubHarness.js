@@ -37,7 +37,7 @@ import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const AddClubHarness = () => {
 
-  const appTheme = Cookies.get('theme') || 'dark';
+  const appTheme = Cookies.get('themeApplied') || 'dark';
 
   //going a page back function
   const navigate = useNavigate();

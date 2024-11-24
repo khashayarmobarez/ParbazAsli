@@ -37,7 +37,7 @@ const SignUp = () => {
     const dispatch = useDispatch();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
     const {

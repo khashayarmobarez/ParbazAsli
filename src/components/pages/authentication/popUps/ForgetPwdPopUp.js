@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 // react toastify
@@ -20,10 +20,8 @@ import boxStyles from '../../../../styles/Boxes/DataBox.module.css';
 import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css';
 
 // components 
-import InputWithButton from '../../../inputs/InputWithButton';
 import PasswordInputSignup from '../Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from '../Inputs/ConfirmPassInputSignup';
-import CodeInput from '../Inputs/CodeInput';
 import { useCheckForgotPasswordCode, useResetPassword, useSendVerificationCode } from '../../../../Utilities/Services/AuthenticationApi';
 import TextInput from '../../../inputs/textInput';
 
@@ -37,8 +35,7 @@ const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     const dispatch = useDispatch();
-    const userRef = useRef();
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
     
     const [showCodeInput, setShowCodeInput] = useState(false);
     const [showPassChangeInput , setShowPassChangeInput] = useState(false);
@@ -386,19 +383,6 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                         {
                             !showCodeInput && !showPassChangeInput &&
                             <div className='w-full flex flex-col items-center gap-y-6'>
-                                {/* <InputWithButton
-                                    id={'phoneOrEmail'}
-                                    onSubmit={sendCodeHandler}
-                                    icon={phoneIcon}
-                                    buttonText={'دریافت کد'}
-                                    placeH={'شماره موبایل یا ایمیل'}
-                                    inputRef={userRef}
-                                    onChange={phoneOrEmailInputHandler}
-                                    value={input}
-                                    focus={inputFocus}
-                                    onFocus={() => setInputFocus(true)}
-                                    onBlur={() => setInputFocus(false)}
-                                /> */}
                                 <p className='text-textAccent text-xl'>شماره‌ تلفن یا ایمیل خود را وارد کنید</p>
 
                                 <TextInput
@@ -409,6 +393,8 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     Type={'text'}
                                     icon={<UserIcon/>} // You can replace `null` with a specific icon if you have one
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
+                                    ErrorContdition={!input}
+                                    errorText={'وارد کردن شماره تلفن الزامی است'}
                                 />
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 

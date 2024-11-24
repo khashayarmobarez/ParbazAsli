@@ -21,7 +21,7 @@ import NotInterestedIcon from '@mui/icons-material/NotInterested';
 
 const PracticalFlightHistoryBox = (props) => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const navigate = useNavigate()
     const location = useLocation()

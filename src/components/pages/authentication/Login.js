@@ -27,7 +27,7 @@ const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z
 const Login = () => {
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const navigate = useNavigate()
 
@@ -180,10 +180,6 @@ const Login = () => {
             }
         }
     };
-
-    
-
-    
 
     return (
         <section className='w-full flex flex-col' role="main" aria-label="Login Section">

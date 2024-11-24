@@ -30,7 +30,7 @@ import PlusWithCircularBorderIcon from '../../../icons/PlusWithCircularBorderIco
 
 const ChangeProfile = () => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
     const {

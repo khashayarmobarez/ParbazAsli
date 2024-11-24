@@ -21,7 +21,7 @@ const UploadIgc = () => {
     const {igcFile,
     flightType} = useSelector(selectAddFlight)
     const dispatch = useDispatch()
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     // react router dom
     const navigate = useNavigate()

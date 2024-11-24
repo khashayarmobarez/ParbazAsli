@@ -22,7 +22,7 @@ import DropDownLine from '../../reuseable/DropDownLine';
 const ApproveStudentFlight = () => {
 
     const { id } = useParams()
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
     
     const [DropDownEquipment, setDropDownEquipment] = useState(true)
     const [DropDownSituation, setDropDownSituation] = useState(true)

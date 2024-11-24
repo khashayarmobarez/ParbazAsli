@@ -82,7 +82,7 @@ const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, 
         {selectedOption ? selectedOption.name : ''}
       </button>
       <label
-        onClick={(e) => { e.preventDefault(); buttonRef.current.focus(); }}
+        onClick={(e) => { e.preventDefault(); buttonRef.current.focus(); setIsOpen(true) }}
         htmlFor={id}
         className={`
           absolute right-10 top-[14px] text-textInputDefault

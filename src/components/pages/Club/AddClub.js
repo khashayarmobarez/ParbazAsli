@@ -27,7 +27,7 @@ import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/Date
 const AddClub = ({isForSetting}) => {
     
     const { formatDate } = useDateFormat();
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;

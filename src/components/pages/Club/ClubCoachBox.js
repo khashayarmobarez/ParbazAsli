@@ -9,7 +9,7 @@ import { Avatar } from '@mui/material';
 const ClubCoachBox = ({ coachData }) => {
 
     const navigate = useNavigate();
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const clickHandler = (id) => () => {
         if(coachData.status === 'Active' || coachData.status === 'Disable') {

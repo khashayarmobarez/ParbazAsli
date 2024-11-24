@@ -28,7 +28,7 @@ import DropDownLine from '../../../reuseable/DropDownLine';
 
 const CourseStudents = () => {
     
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const navigate = useNavigate();
     const { id } = useParams();

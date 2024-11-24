@@ -31,7 +31,7 @@ const RenewCertificate = () => {
 
     const navigate = useNavigate()
     const { formatDate } = useDateFormat();
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;

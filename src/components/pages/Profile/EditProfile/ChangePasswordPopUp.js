@@ -22,7 +22,7 @@ import { toast } from 'react-toastify';
 const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
 
     const dispatch = useDispatch();
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [oldpwd, setOldPwd] = useState('');
     const [oldpwdFocus, setOldPwdFocus] = useState(false);

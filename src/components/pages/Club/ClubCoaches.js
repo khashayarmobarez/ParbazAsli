@@ -22,7 +22,7 @@ import PageTitle from '../../reuseable/PageTitle';
 
 const ClubCoaches = () => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
     const [DropDown, setDropDown] = useState('');
     const [pageNumber, setPageNumber] = useState(1);
     const [pageNumberPrevious, setPageNumberPrevious] = useState(1);

@@ -42,7 +42,7 @@ const AddCourse = () => {
 
     const navigate = useNavigate()
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
     
     // states
     const [selectedClassType, setSelectedClassType] = useState('');

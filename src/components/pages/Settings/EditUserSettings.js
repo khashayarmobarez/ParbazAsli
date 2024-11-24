@@ -25,7 +25,7 @@ import ChangePasswordPopUp from '../Profile/EditProfile/ChangePasswordPopUp';
 
 const EditUserSettings = () => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
     const {

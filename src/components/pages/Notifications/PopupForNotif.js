@@ -18,7 +18,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
 
     const navigate = useNavigate()
     
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { mutate: triggerClubStatus, isLoading: triggerClubStatusLoading } = useTriggerClubStatus();
 

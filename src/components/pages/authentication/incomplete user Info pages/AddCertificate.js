@@ -33,7 +33,7 @@ const AddCertificate = () => {
     const navigate = useNavigate();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { formatDate } = useDateFormat();
 

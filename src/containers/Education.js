@@ -30,7 +30,7 @@ import Attention from '../components/icons/Attention';
 const Education = () => {
 
     const navigate = useNavigate()
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     // courseData
     const [courseType, setCourseType] = useState('')

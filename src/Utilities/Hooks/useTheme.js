@@ -12,6 +12,7 @@ export function useTheme() {
     }
     document.documentElement.setAttribute('data-theme', appliedTheme);
     Cookies.set('theme', theme, { expires: 30 }); // Save the user's preference for 30 days
+    Cookies.set('themeApplied', appliedTheme, { expires: 30 }); // Save the user's preference for 30 days
   };
 
   const toggleTheme = (newTheme) => {

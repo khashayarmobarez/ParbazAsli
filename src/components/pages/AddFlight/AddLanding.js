@@ -43,7 +43,7 @@ const AddLanding = () => {
 
     const dispatch = useDispatch()
     const navigate= useNavigate('')
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     // states, submit pop up control
     const [showPopup, setShowPopup] = useState(false); 

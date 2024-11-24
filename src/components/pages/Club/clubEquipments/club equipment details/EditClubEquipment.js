@@ -35,7 +35,7 @@ const EditClubEquipment = () => {
     const navigate = useNavigate()
     const { id } = useParams();
     
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [showPopup, setShowPopup] = useState(false);
     const [packageDate, setPackageDate] = useState('')

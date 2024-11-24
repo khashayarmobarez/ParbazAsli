@@ -16,7 +16,7 @@ import SearchIcon from '../../../components/icons/SearchIcon';
 const Syllabuses = () => {
 
     const navigate = useNavigate();
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { courseId, flightId } = useParams();
     const { data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(courseId, 2);

@@ -28,7 +28,7 @@ const AddUsedEquipment = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [submitted, setSubmitted] = useState(false);
 

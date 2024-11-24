@@ -209,7 +209,7 @@
             </span>
           </div>
 
-          <p id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-[${textErrorColor}] gap-y-2 `}>
+          <div id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-2 text-right text-xs mr-6 text-[${textErrorColor}] gap-y-2 flex flex-col items-start w-full `}>
             {
               (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
                 <p>
@@ -242,9 +242,9 @@
                 <br />
               </p>
               )  }
-          </p>
+          </div>
 
-          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-4 text-right text-xs mr-6 text-[${textErrorColor}]`}>
+          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-2 text-right text-xs mr-4 self-start text-textError`}>
             *رمز عبور الزامی می باشد
           </p>
         </>

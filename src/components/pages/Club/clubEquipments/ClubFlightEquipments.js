@@ -20,7 +20,7 @@ const FlightEquipment = () => {
 
     const navigate = useNavigate()
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [DropDown, setDropDown] = useState('')
     const [DropDownForTemporary, setDropDownForTemporary] = useState('')

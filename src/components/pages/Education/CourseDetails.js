@@ -22,7 +22,7 @@ const CourseDetails = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { id } = useParams();
 

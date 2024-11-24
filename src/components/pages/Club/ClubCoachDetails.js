@@ -28,7 +28,7 @@ const ClubCoachDetails = () => {
     
     // for handliung the back button of club course details
     Cookies.set('lastPathForClubCourseDetails',location.pathname)
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { id } = useParams();
 

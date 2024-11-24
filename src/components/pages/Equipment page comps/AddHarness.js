@@ -39,7 +39,7 @@ const AddHarness = () => {
   //going a page back function
   const navigate = useNavigate();
 
-  const appTheme = Cookies.get('theme') || 'dark';
+  const appTheme = Cookies.get('themeApplied') || 'dark';
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('harness');
 

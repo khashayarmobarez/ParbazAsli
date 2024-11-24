@@ -42,7 +42,7 @@ import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const AddParachute = () => {
 
-  const appTheme = Cookies.get('theme') || 'dark';
+  const appTheme = Cookies.get('themeApplied') || 'dark';
   
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('parachute');
   

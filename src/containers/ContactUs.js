@@ -28,7 +28,7 @@ import LongTextInput from '../components/inputs/LongTextInput';
 
 const ContactUs = () => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');

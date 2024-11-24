@@ -86,6 +86,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
         onBlur={handleBlur}
       />
       <label
+        onClick={(e) => { setIsOpen(true) }}
         htmlFor="searchInput"
         className={`
           absolute right-10 top-[14px] text-textInputDefault

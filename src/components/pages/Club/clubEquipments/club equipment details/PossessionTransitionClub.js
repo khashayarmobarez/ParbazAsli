@@ -30,7 +30,7 @@ const PossessionTransitionClub = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
     
     const { data: EquipmentData, isLoading, error } = useAnEquipment(id,true)
 

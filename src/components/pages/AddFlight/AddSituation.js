@@ -28,7 +28,7 @@ const AddSituation = () => {
 
     const navigate= useNavigate('')
     const dispatch = useDispatch()
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [submitted, setSubmitted] = useState(false);
 

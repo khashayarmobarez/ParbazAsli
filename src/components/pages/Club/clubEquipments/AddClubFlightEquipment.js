@@ -39,7 +39,7 @@ import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
 
 const AddClubFlightEquipment = () => {
 
-  const appTheme = Cookies.get('theme') || 'dark';
+  const appTheme = Cookies.get('themeApplied') || 'dark';
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('wing');
   const { data: wingsClasses, isLoading: WClassesIsLoading, error:WClassesError } = useWingClasses();

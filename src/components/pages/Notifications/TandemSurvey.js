@@ -21,7 +21,7 @@ import StarRating from '../../reuseable/StarRating';
 
 const TandemSurvey = () => {
 
-    const appTheme = Cookies.get('theme') || 'dark';
+    const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const navigate = useNavigate()
     const { id } = useParams();
