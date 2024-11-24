@@ -37,13 +37,13 @@ import 'react-toastify/dist/ReactToastify.css';
   import Navbar from './templates/Navbar';
   import SignUpOrLogin from './templates/Authentication/SignUpOrLogin';
   import Profile from './templates/profile/Profile';
-  import Equipment from './templates/Equipment';
-  import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
-  import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
-  import Parachute from './components/pages//Equipment page comps/Parachute'
-  import Harness from './components/pages//Equipment page comps/Harness'
-  import AddParachute from './components/pages/Equipment page comps/AddParachute';
-  import AddHarness from './components/pages/Equipment page comps/AddHarness';
+  import Equipment from './templates/equipments/Equipment';
+  import FlightEquipment from './templates/equipments/FlightEquipment';
+  import AddFlightEquipment from './templates/equipments/AddFlightEquipment';
+  import Parachute from './templates/equipments/Parachute'
+  import Harness from './templates/equipments/Harness'
+  import AddParachute from './templates/equipments/AddParachute';
+  import AddHarness from './templates/equipments/AddHarness';
 // education
   import Education from './templates/Education';
   import AddCourse from './components/pages/Education/AddCourse';

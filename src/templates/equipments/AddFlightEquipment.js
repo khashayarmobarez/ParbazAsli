@@ -4,37 +4,37 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // Queries and api
-import { useEquipmentBrands, useWingClasses } from '../../../Utilities/Services/dataQueries';
-import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
+import { useEquipmentBrands, useWingClasses } from '../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
 
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import Cube from '../../../components/icons/ThreeDCube'
-import WingIcon from '../../../components/icons/WingIcon'
-import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
-import ClothesTag from '../../../components/icons/ClothesTag'
-import CalenderIcon from '../../../components/icons/CalenderIcon'
-import ClockIcon from '../../../components/icons/ClockIcon'
-import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
+import Cube from '../../components/icons/ThreeDCube'
+import WingIcon from '../../components/icons/WingIcon'
+import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
+import ClothesTag from '../../components/icons/ClothesTag'
+import CalenderIcon from '../../components/icons/CalenderIcon'
+import ClockIcon from '../../components/icons/ClockIcon'
+import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
 
 // input options
-import {flightTypeOptionsEquipment} from '../../../Utilities/Providers/dropdownInputOptions'
+import {flightTypeOptionsEquipment} from '../../Utilities/Providers/dropdownInputOptions'
 
 // components 
-import DropdownInput from '../../inputs/DropDownInput';
-import TextInput from '../../inputs/textInput';
-import UploadFileInput from '../../inputs/UploadFileInput';
-import PageTitle from '../../reuseable/PageTitle';
-import NumberInput from '../../inputs/NumberInput';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from './inputsForEquipment/BrandsSearchInputWithDropdown';
+import DropdownInput from '../../components/inputs/DropDownInput';
+import TextInput from '../../components/inputs/textInput';
+import UploadFileInput from '../../components/inputs/UploadFileInput';
+import PageTitle from '../../components/reuseable/PageTitle';
+import NumberInput from '../../components/inputs/NumberInput';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import BrandsSearchInputWithDropdown from '../../components/pages/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 
 
 const AddFlightEquipment = () => {

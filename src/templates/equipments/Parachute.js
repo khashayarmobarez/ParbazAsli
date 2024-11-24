@@ -3,18 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // css classes 
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // query
-import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
+import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../Utilities/Services/equipmentQueries';
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import { toast } from 'react-toastify';
-import DropDownLine from '../../reuseable/DropDownLine';
+import DropDownLine from '../../components/reuseable/DropDownLine';
 
 // comps
 

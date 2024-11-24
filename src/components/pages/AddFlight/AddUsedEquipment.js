@@ -13,7 +13,7 @@ import HarnessIcon from '../../../components/icons/HarnessIcon'
 import ParachuteIcon from '../../../components/icons/ParachuteIcon'
 
 // queries
-import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
+import { useUserEquipmentsForDropDown } from '../../../Utilities/Services/equipmentQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,6 +22,8 @@ import { updateWing, updateHarness, updateParachute } from '../../../Utilities/R
 
 // components
 import DropdownInputForEquipment from './Components/DropDownInputForEquipment';
+import DropdownInput from '../../inputs/DropDownInput';
+import CustomDropdownInput from '../../inputs/DropDownInput';
 
 
 const AddUsedEquipment = () => {
@@ -33,9 +35,9 @@ const AddUsedEquipment = () => {
     const [submitted, setSubmitted] = useState(false);
 
     // user equipments data
-    const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipments(1,false)
-    const { data: userWingsData, isLoading:userWingsLoading, error:userWingsError } = useUserEquipments(2,false)
-    const { data: userHarnessData, isLoading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3,false)
+    const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipmentsForDropDown(1)
+    const { data: userWingsData, isLoading:userWingsLoading, error:userWingsError } = useUserEquipmentsForDropDown(2)
+    const { data: userHarnessData, isLoading:userHarnessLoading, error:userHarnessError } = useUserEquipmentsForDropDown(3)
 
 
     // redux
@@ -218,25 +220,25 @@ const AddUsedEquipment = () => {
                     {
                         userWingsData && userHarnessData && userParachuteData && 
                         <>
-
-                            {   wingType === 'Tandem' ?
-                                <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                            {   
+                            wingType === 'Tandem' ?
+                                <DropdownInput id={'ddi1'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 :
                                 wingType === 'Single' ?
-                                <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                                <DropdownInput id={'ddi2'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 :
-                                <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                                <DropdownInput id={'ddi3'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 
                             }
 
-                            <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
+                            <DropdownInput id={'ddi4'} icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
 
                             {
                                 flightType === 'Tandem' &&
-                                <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
+                                <DropdownInput id={'ddi5'} icon={<HarnessIcon/>} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
                             }
                             
-                            <DropdownInputForEquipment icon={<ParachuteIcon/>} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />
+                            <DropdownInput id={'ddi6'} icon={<ParachuteIcon/>} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />
                         </>
                     }
                 </form>

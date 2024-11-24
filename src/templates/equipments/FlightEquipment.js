@@ -4,21 +4,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // queries
-import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../../Utilities/Services/equipmentQueries';
+import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../Utilities/Services/equipmentQueries';
 
-// css classes 
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+// styles
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import DropDownLine from '../../components/reuseable/DropDownLine';
 import { toast } from 'react-toastify';
-import DropDownLine from '../../reuseable/DropDownLine';
 
-// compos
+// comps
 
-
-const Harness = (props) => {
+const FlightEquipment = () => {
 
     const navigate = useNavigate()
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -27,11 +26,10 @@ const Harness = (props) => {
     const [DropDownForTemporary, setDropDownForTemporary] = useState('')
     const [DropDownForHistory, setDropDownForHistory] = useState('')
 
-    const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(3, false)
-    const { data: userEquipmentsHistoryData, HistoryisL, historyError, refetch: refetchHistory } = useUserEquipmentsHistory(3, false)
+    const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(2, false)
+    const { data: userEquipmentsHistoryData, refetch: refetchHistory } = useUserEquipmentsHistory(2, false)
     const { mutate: mutateReturnEquipment, isLoading:loadingReturnEquipment } = useReturnEquipment()
     const { mutate: mutateTriggerEquipmentStatus, isLoading:loadingTriggerEquipmentStatus } = useTriggerEquipmentStatus()
-
 
     // useEffect to open active dropdown open at firt
     useEffect(() => {
@@ -40,6 +38,7 @@ const Harness = (props) => {
             setDropDownForTemporary('Temporary')
         }
     }, [ userEquipmentsData ])
+    
 
 
     // dropDown onClick
@@ -69,7 +68,6 @@ const Harness = (props) => {
         navigate(`/possessionTransitionEquipment/${id}`);
     };
 
-    
     const handleSubmittingTranfer = (action, id) => {
         if(action === 'accept') {
             // accept
@@ -166,10 +164,9 @@ const Harness = (props) => {
     }
 
     return (
-        <div className=' flex flex-col gap-y-12 items-center'>
+        <div className=' flex flex-col gap-y-6 items-center '>
 
             <div className='w-full flex flex-col gap-y-4 pb-10 items-center'>
-
                 {
                     isLoading && 
                     <CircularProgressLoader/>
@@ -177,7 +174,6 @@ const Harness = (props) => {
                 {
                     error && <p className='mt-10'>{error.response.data.ErrorMessages[0].ErrorMessage}</p>
                 }
-
                 {
                     userEquipmentsData &&
                     !userEquipmentsData.data[0] &&
@@ -187,6 +183,7 @@ const Harness = (props) => {
                 {/* Permanent */}
                 {
                 userEquipmentsData &&
+                userEquipmentsData.data[0] &&
                 userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
                     <DropDownLine  
                     onClickActivation={() => handleDropDownClick('Permanent')}
@@ -195,101 +192,101 @@ const Harness = (props) => {
                         isActive={DropDown === 'Permanent'}  
                     />
                 }
-
                     {
                         DropDown === 'Permanent' &&
                         userEquipmentsData &&
+                        userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map((equipment, index) =>
-                        <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                            <div className='w-full flex flex-col items-center'>
+                            <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                                <div className='w-full flex flex-col items-center'>
 
-                                <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
-                                style={{boxShadow:'var(--shadow-all)'}}>
+                                    <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
+                                    style={{boxShadow:'var(--shadow-all)'}}>
+
+                                        {
+                                            equipment.status === 'Pending' &&
+                                            <p className='text-textWarning font-bold -mb-2'>نیاز به تایید انتقال از {equipment?.transferorFullName}</p> 
+                                        }   
+
+                                        <div className=' w-full text-xs flex justify-between items-start gap-y-1 '>
+                                            <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                            {
+                                                equipment.status !== 'Pending' &&
+                                                <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                                            }
+                                        </div>
+
+                                        <div className={` w-full text-xs flex justify-between gap-y-1 items-center ${equipment.status === 'Pending' && '-mt-4'}`}>
+
+                                            
+                                            {
+                                                equipment.status === 'Pending' &&
+                                                    <p>{equipment.serialNumber}</p>
+                                            }
+
+                                            <button className={`${ButtonStyles.normalButton} ${equipment.status === 'Pending' && '-mt-2'}`} 
+                                            onClick={handleEditEquipment(equipment.id)} >
+                                                {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') && equipment.status !== 'Pending' ?
+                                                'ویرایش'
+                                                :
+                                                'جزئیات'
+                                                }
+                                            </button>
+
+                                            {
+                                                equipment.status !== 'Pending' &&
+                                                <button 
+                                                className={`
+                                                    ${!equipment?.isTransitionRestricted && ButtonStyles.normalButton} 
+                                                    ${equipment?.isTransitionRestricted && 'bg-bgButtonSecondaryDisabled text-textWarning w-[110px] h-[48px] rounded-3xl'}
+                                                `} 
+                                                onClick={handlePossession(equipment.id)}
+                                                disabled={equipment?.isTransitionRestricted} >
+                                                    {equipment?.isTransitionRestricted ?
+                                                    'در انتظار ...'
+                                                    :
+                                                    'انتقال مالکیت'
+                                                }
+                                                </button>
+                                            }
+
+                                        </div>
+
+                                    </div>
 
                                     {
                                         equipment.status === 'Pending' &&
-                                        <p className='text-textWarning font-bold -mb-2'>نیاز به تایید انتقال از {equipment?.transferorFullName}</p> 
-                                    }   
+                                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard'
+                                            style={{boxShadow:'var(--shadow-all)'}}>
 
-                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}</p>
-                                        {
-                                            equipment.status !== 'Pending' &&
-                                            <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
-                                        }
-                                    </div>
+                                                <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
+                                                    <div className='w-2 h-2 rounded-full bg-textError'></div>
+                                                    <p>آیا این ابزار مورد تایید شما است؟</p>
+                                                </div>
 
-                                    <div className={` w-full text-xs flex justify-between gap-y-1 items-center ${equipment.status === 'Pending' && '-mt-4'}`}>
+                                                <div className='flex gap-x-6 items-center px-2'>
+                                                    
+                                                    <p 
+                                                    onClick={() => handleSubmittingTranfer('accept', equipment.id)}
+                                                    disabled={loadingTriggerEquipmentStatus} 
+                                                    className='text-textAccent text-sm font-medium'  >
+                                                        تایید
+                                                    </p>
 
-                                        
-                                        {
-                                            equipment.status === 'Pending' &&
-                                                <p>{equipment.serialNumber}</p>
-                                        }
+                                                    <p 
+                                                    onClick={() => handleSubmittingTranfer('decline', equipment.id)}
+                                                    disabled={loadingTriggerEquipmentStatus} 
+                                                    className='text-textError text-sm font-medium' >
+                                                        رد
+                                                    </p>
 
-                                        <button className={`${ButtonStyles.normalButton} ${equipment.status === 'Pending' && '-mt-2'}`} 
-                                        onClick={handleEditEquipment(equipment.id)} >
-                                            {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') && equipment.status !== 'Pending' ?
-                                            'ویرایش'
-                                            :
-                                            'جزئیات'
-                                            }
-                                        </button>
-
-                                        {
-                                            equipment.status !== 'Pending' &&
-                                            <button 
-                                            className={`
-                                                ${!equipment?.isTransitionRestricted && ButtonStyles.normalButton} 
-                                                ${equipment?.isTransitionRestricted && 'bg-bgButtonSecondaryDisabled text-textWarning w-[110px] h-[48px] rounded-3xl'}
-                                            `}  
-                                            onClick={handlePossession(equipment.id)}
-                                            disabled={equipment?.isTransitionRestricted} >
-                                                {equipment?.isTransitionRestricted ?
-                                                'در انتظار ...'
-                                                :
-                                                'انتقال مالکیت'
-                                            }
-                                            </button>
-                                        }
-
-                                    </div>
+                                                </div>
+                                            </div>
+                                    }
 
                                 </div>
-
-                                {
-                                    equipment.status === 'Pending' &&
-                                        <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard '
-                                        style={{boxShadow:'var(--shadow-all)'}}>
-
-                                            <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
-                                                <div className='w-2 h-2 rounded-full bg-textError'></div>
-                                                <p>آیا این ابزار مورد تایید شما است؟</p>
-                                            </div>
-
-                                            <div className='flex gap-x-6 items-center px-2'>
-                                                
-                                                <p 
-                                                onClick={() => handleSubmittingTranfer('accept', equipment.id)}
-                                                disabled={loadingTriggerEquipmentStatus} 
-                                                className='text-textAccent text-sm font-medium'  >
-                                                    تایید
-                                                </p>
-
-                                                <p 
-                                                onClick={() => handleSubmittingTranfer('decline', equipment.id)}
-                                                disabled={loadingTriggerEquipmentStatus} 
-                                                className='text-textError text-sm font-medium' >
-                                                    رد
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                }
-
                             </div>
-                        </div>                
                         )
                     }
 
@@ -310,15 +307,15 @@ const Harness = (props) => {
                         DropDownForTemporary === 'Temporary' &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
-                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map((equipment, index) =>
-                            <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `} 
+                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
+                            <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
                                 style={{boxShadow:'var(--shadow-all)'}}>
 
                                     <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
                                     <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}</p>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
                                         <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                     </div>
 
@@ -333,11 +330,12 @@ const Harness = (props) => {
                                         </button>
 
                                         <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>
+                                    
                                     </div>
 
                                 </div>
                             </div>
-                        )
+                            )
                     }
 
                 {/* history */}
@@ -354,40 +352,40 @@ const Harness = (props) => {
 
                     {
                         DropDownForHistory === 'History' &&
-                    userEquipmentsHistoryData &&
-                    userEquipmentsHistoryData.data &&
-                    userEquipmentsHistoryData.data.map((equipment, index) =>
-                        <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                            <div key={equipment.id} className={`w-full justify-between items-center px-3 py-6 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard `} 
-                            style={{boxShadow:'var(--shadow-all)'}}>
+                        userEquipmentsHistoryData &&
+                        userEquipmentsHistoryData.data &&
+                        userEquipmentsHistoryData.data.map((equipment, index) =>
+                            <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                                <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard`} 
+                                style={{boxShadow:'var(--shadow-all)'}}>
 
-                                <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-4'>
-                                    <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}</p>
-                                    <p> شماره سریال: {equipment.serialNumber}</p>
+                                    <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                        <p> شماره سریال: {equipment.serialNumber}</p>
+                                    </div>
+
+                                    <div className=' w-auto text-xs flex justify-between items-start gap-y-1'>
+
+                                        <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
+                                            {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
+                                            'ویرایش'
+                                            :
+                                            'جزئیات'
+                                            }
+                                        </button>
+
+                                    </div>
+
                                 </div>
-
-                                <div className=' w-auto text-xs flex justify-between items-start gap-y-1'>
-
-                                    <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
-                                        {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
-                                        'ویرایش'
-                                        :
-                                        'جزئیات'
-                                        }
-                                    </button>
-
-                                </div>
-
                             </div>
-                        </div>
                         )
                     }
-
+                
             </div>
 
             
 
-            <Link to='/equipment/addHarness' className='z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
@@ -399,4 +397,4 @@ const Harness = (props) => {
     );
 };
 
-export default Harness;
+export default FlightEquipment;

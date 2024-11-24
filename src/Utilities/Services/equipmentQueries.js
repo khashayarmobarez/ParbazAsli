@@ -69,6 +69,33 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
+// get active equipments for dropdown input
+// /Equipment/GetActiveEquipmentsForDropDown?type=3
+    const getUserEquipmentsForDropDown = async (equipmentType) => {
+        try {
+            const token = Cookies.get('token');
+            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useUserEquipmentsForDropDown = (equipmentType) => {
+        return useQuery(['userEquipmentsForDropDown', equipmentType], () => getUserEquipmentsForDropDown(equipmentType));
+    };
+
+
+
 
 // get all active Equipment from one type
     const getUserEquipmentsHistoryByType = async (equipmentType, isForClub) => {
@@ -251,4 +278,4 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
-export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory, useReturnEquipment, useTriggerEquipmentStatus };
+export { useAddEquipment, useUserEquipments, useAnEquipment, usePossessionTransition, useEditEquipment, useUserEquipmentsHistory, useReturnEquipment, useTriggerEquipmentStatus, useUserEquipmentsForDropDown };

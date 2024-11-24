@@ -6,33 +6,33 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 // Queries and api
-import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
-import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
+import { useEquipmentBrands } from '../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import Cube from '../../../components/icons/ThreeDCube'
-import ClothesTag from '../../../components/icons/ClothesTag'
-import CalenderIcon from '../../../components/icons/CalenderIcon'
-import ClockIcon from '../../../components/icons/ClockIcon'
-import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
+import Cube from '../../components/icons/ThreeDCube'
+import ClothesTag from '../../components/icons/ClothesTag'
+import CalenderIcon from '../../components/icons/CalenderIcon'
+import ClockIcon from '../../components/icons/ClockIcon'
+import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
 
 
 // components
-import TextInput from '../../inputs/textInput';
-import UploadFileInput from '../../inputs/UploadFileInput';
+import TextInput from '../../components/inputs/textInput';
+import UploadFileInput from '../../components/inputs/UploadFileInput';
 
 // input options
-import PageTitle from '../../reuseable/PageTitle';
-import NumberInput from '../../inputs/NumberInput';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from './inputsForEquipment/BrandsSearchInputWithDropdown';
+import PageTitle from '../../components/reuseable/PageTitle';
+import NumberInput from '../../components/inputs/NumberInput';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import BrandsSearchInputWithDropdown from '../../components/pages/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 
 const AddHarness = () => {
 
