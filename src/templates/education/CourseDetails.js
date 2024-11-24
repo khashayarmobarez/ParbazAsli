@@ -3,19 +3,19 @@ import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-
 import Cookies from 'js-cookie';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useACourse, useTriggerCourseStatus } from '../../../Utilities/Services/coursesQueries';
+import { useACourse, useTriggerCourseStatus } from '../../Utilities/Services/coursesQueries';
 
 // components
-import PageTitle from '../../reuseable/PageTitle';
+import PageTitle from '../../components/reuseable/PageTitle';
 import { toast } from 'react-toastify';
-import StandardPopup from '../../reuseable/StandardPopup';
+import StandardPopup from '../../components/reuseable/StandardPopup';
 
 const CourseDetails = () => {
     

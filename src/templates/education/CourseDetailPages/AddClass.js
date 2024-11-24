@@ -4,31 +4,26 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import GradientStyles from '../../../../styles/gradients/Gradient.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import SingleTag from '../../../../components/icons/ADressTag';
-import ListIcon from '../../../../components/icons/ListIcon';
-import UsersIcon from '../../../../components/icons/UsersIcon';
+import SingleTag from '../../../components/icons/ADressTag';
+import ListIcon from '../../../components/icons/ListIcon';
+import UsersIcon from '../../../components/icons/UsersIcon';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // queries
-import { useACourseStudents, useACourseSyllabi, useAddCourseClass, useAllActiveCourseStudents, useAllStudents } from '../../../../Utilities/Services/coursesQueries';
-import { useUserById } from '../../../../Utilities/Services/queries';
+import {  useACourseSyllabi, useAddCourseClass, useAllStudents } from '../../../Utilities/Services/coursesQueries';
+import { useUserById } from '../../../Utilities/Services/queries';
 
-// mui
-import AddIcon from '@mui/icons-material/Add';
-import ClearIcon from '@mui/icons-material/Clear';
 
 // components
-import PageTitle from '../../../reuseable/PageTitle';
-import TextInput from '../../../inputs/textInput';
-import TimeInput from '../../../inputs/TimeInput';
-import SearchMultipleSelectStudent from '../../../inputs/SearchMultipleSelectStudent';
-import SearchMultipleSelect from '../../../inputs/SearchMultipleSelect';
-import DescriptionInput from '../../../inputs/DescriptionInput';
-import SelectMultiplePopUp from '../../../reuseable/SelectMultiplePopUp';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import TextInput from '../../../components/inputs/textInput';
+import TimeInput from '../../../components/inputs/TimeInput';
+import SearchMultipleSelectStudent from '../../../components/inputs/SearchMultipleSelectStudent';
+import DescriptionInput from '../../../components/inputs/DescriptionInput';
+import SelectMultiplePopUp from '../../../components/reuseable/SelectMultiplePopUp';
 
 const AddClass = () => {
 

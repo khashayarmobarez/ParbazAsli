@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 // queries
-import { useACourseSyllabi } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import DropDownDataBox from '../../../reuseable/DropDownDataBox';
+import DropDownDataBox from '../../../components/reuseable/DropDownDataBox';
 
 
 const CourseSyllabi = () => {

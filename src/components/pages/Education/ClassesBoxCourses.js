@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
 // hooks
-import useConvertMinutesToHours from '../../../../Utilities/Hooks/useConvertToHoursAndMinutes';
+import useConvertMinutesToHours from '../../../Utilities/Hooks/useConvertToHoursAndMinutes';
 
 // styles
-import gradients from '../../../../styles/gradients/Gradient.module.css'
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
+import gradients from '../../../styles/gradients/Gradient.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 
 // mui
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 
 // queiries
-import { useAClass } from '../../../../Utilities/Services/coursesQueries';
+import { useAClass } from '../../../Utilities/Services/coursesQueries';
 
 // redux
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../../Utilities/ReduxToolKit/features/userData/userSlice';
+import { selectUser } from '../../../Utilities/ReduxToolKit/features/userData/userSlice';
 
 
 const ClassesBoxCourses = (props) => {

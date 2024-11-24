@@ -4,39 +4,39 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
-import GradientStyles from '../../../styles/gradients/Gradient.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import GradientStyles from '../../styles/gradients/Gradient.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // assets 
 import AddIcon from '@mui/icons-material/Add';
-import ListIcon from '../../../components/icons/ListIcon';
-import ChartIcon from '../../../components/icons/ChartIcon';
-import ChartIcon2 from '../../../components/icons/ChartIcon2';
-import SingleTag from '../../../components/icons/ADressTag';
-import ColorTagsIcon from '../../../components/icons/ColorTagsIcon';
-import CertificateIcon from '../../../components/icons/CertificateIcon';
+import ListIcon from '../../components/icons/ListIcon';
+import ChartIcon from '../../components/icons/ChartIcon';
+import ChartIcon2 from '../../components/icons/ChartIcon2';
+import SingleTag from '../../components/icons/ADressTag';
+import ColorTagsIcon from '../../components/icons/ColorTagsIcon';
+import CertificateIcon from '../../components/icons/CertificateIcon';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 
 // drop down options
-import { courseTypeOptionData } from '../../../Utilities/Providers/dropdownInputOptions'
+import { courseTypeOptionData } from '../../Utilities/Providers/dropdownInputOptions'
 
 // queires
-import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../../Utilities/Services/queries';
-import { useAddCustomCourse, useAddRegularCourse, useAddRetrainingCourse, useSyllabiForLevels } from '../../../Utilities/Services/coursesQueries';
+import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../Utilities/Services/queries';
+import { useAddCustomCourse, useAddRegularCourse, useAddRetrainingCourse, useSyllabiForLevels } from '../../Utilities/Services/coursesQueries';
 
 // components
-import PageTitle from '../../reuseable/PageTitle';
-import DropdownInput from '../../inputs/DropDownInput';
-import TextInput from '../../inputs/textInput';
-import NumberInput from '../../inputs/NumberInput';
-import DescriptionInput from '../../inputs/DescriptionInput';
-import SearchMultipleSelect from '../../inputs/SearchMultipleSelect';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
-import SelectMultiplePopUp from '../../reuseable/SelectMultiplePopUp';
+import PageTitle from '../../components/reuseable/PageTitle';
+import DropdownInput from '../../components/inputs/DropDownInput';
+import TextInput from '../../components/inputs/textInput';
+import NumberInput from '../../components/inputs/NumberInput';
+import DescriptionInput from '../../components/inputs/DescriptionInput';
+import SearchMultipleSelect from '../../components/inputs/SearchMultipleSelect';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import SelectMultiplePopUp from '../../components/reuseable/SelectMultiplePopUp';
 
 const AddCourse = () => {
 

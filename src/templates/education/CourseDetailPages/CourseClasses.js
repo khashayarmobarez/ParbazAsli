@@ -5,14 +5,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 
 // styles
-import dataBox from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import dataBox from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useACourseClasses } from '../../../../Utilities/Services/coursesQueries';
+import { useACourseClasses } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import ClassesBoxCourses from '../Components/ClassesBoxCourses';
+import ClassesBoxCourses from '../../../components/pages/Education/ClassesBoxCourses';
 
 const CourseClasses = () => {
 

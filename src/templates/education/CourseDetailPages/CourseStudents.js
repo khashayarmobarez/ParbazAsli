@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import gradients from '../../../../styles/gradients/Gradient.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import gradients from '../../../styles/gradients/Gradient.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -14,16 +14,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
-import ArrowButton from '../../../../components/icons/ArrowButton';
+import ArrowButton from '../../../components/icons/ArrowButton';
 
 
 // queries
-import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../../Utilities/Services/coursesQueries';
+import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import TextInput from '../../../inputs/textInput';
-import { useUserById } from '../../../../Utilities/Services/queries';
-import DropDownLine from '../../../reuseable/DropDownLine';
+import TextInput from '../../../components/inputs/textInput';
+import { useUserById } from '../../../Utilities/Services/queries';
+import DropDownLine from '../../../components/reuseable/DropDownLine';
 
 const CourseStudents = () => {
     
