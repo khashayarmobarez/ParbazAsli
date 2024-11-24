@@ -29,7 +29,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 // not validated user component
-  import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
+  import AddEmail from './templates/Authentication/AddEmail';
   import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
   import AdminPending from './components/pages/authentication/incomplete user Info pages/AdminPending';
 // main and coach components

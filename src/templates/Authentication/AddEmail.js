@@ -5,22 +5,23 @@ import Cookies from 'js-cookie';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getAuthSettings, selectAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
+import { getAuthSettings, selectAuthSettings } from '../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
 // api
-import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
+import { postIsUserAuthenticated } from '../../Utilities/Services/AuthenticationApi';
 
 // styles
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // compponents
-import EmailInputSignup from '../Inputs/EmailInputSignUp';
-import PhoneVerificationCode from '../popUps/PhoneVerificationCode';
-import UserDataBox from '../../Profile/UserDataBox';
-import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
+import EmailInputSignup from '../../components/pages/authentication/Inputs/EmailInputSignUp';
+import PhoneVerificationCode from '../../components/pages/authentication/popUps/PhoneVerificationCode';
+import UserDataBox from '../../components/pages/Profile/UserDataBox';
+import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// regexes
+import { EMAIL_REGEX } from '../../Utilities/Providers/regexProvider';
 
 
 const AddEmail = () => {

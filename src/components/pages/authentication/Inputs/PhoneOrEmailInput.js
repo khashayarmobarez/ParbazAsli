@@ -8,8 +8,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // styles
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const PHONE_REGEX = /^09\d{9}$/;
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// regexes
+import { EMAIL_REGEX, PHONE_REGEX } from '../../../../Utilities/Providers/regexProvider';
 
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
   const [inputFocus, setInputFocus] = useState(false);

@@ -24,12 +24,9 @@ import Checkbox from './Inputs/CheckBox';
 import PhoneVerificationCode from './popUps/PhoneVerificationCode';
 import { postIsUserAuthenticated } from '../../../Utilities/Services/AuthenticationApi';
 
-// regex 
-const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
-const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
-const PHONE_REGEX = /^09\d{9}$/;
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-// const NATIONAL_CODE_REGEX = /^\d{10}$/;
+
+// regex
+import { USER_REGEX, PWD_REGEX, PHONE_REGEX  } from '../../../Utilities/Providers/regexProvider';
 
 const SignUp = () => {
 

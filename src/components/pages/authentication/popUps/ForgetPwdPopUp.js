@@ -25,10 +25,9 @@ import ConfirmPassInputSignup from '../Inputs/ConfirmPassInputSignup';
 import { useCheckForgotPasswordCode, useResetPassword, useSendVerificationCode } from '../../../../Utilities/Services/AuthenticationApi';
 import TextInput from '../../../inputs/textInput';
 
-// regex
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const PHONE_REGEX = /^09\d{9}$/;
-const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
+// regexes
+import { EMAIL_REGEX, PHONE_REGEX, PWD_REGEX } from '../../../../Utilities/Providers/regexProvider';
+
 
 
 

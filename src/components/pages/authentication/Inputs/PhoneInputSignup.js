@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const PHONE_REGEX = /^09\d{9}$/;
+// regexes
+import { PHONE_REGEX } from '../../../../Utilities/Providers/regexProvider';
 
 const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
   const [validPhone, setValidPhone] = useState(false);
