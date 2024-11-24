@@ -75,6 +75,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
       />
       <label
         htmlFor="floatingInput"
+        onClick={() => setIsOpen(true)}
         className={`
           absolute right-9 top-[14px] text-textInputDefault
           transition-all duration-300 transform
