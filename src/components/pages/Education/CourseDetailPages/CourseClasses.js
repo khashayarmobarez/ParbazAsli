@@ -19,7 +19,7 @@ const CourseClasses = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useACourseClasses(id);
+    const {  data: classesData } = useACourseClasses(id);
     
 
     return (
@@ -49,12 +49,13 @@ const CourseClasses = () => {
 
                 </div>
             
-                
+                <div className='w-full flex flex-col items-center gap-y-4'>
                 {
                     classesData.data.classes.map((classData) => {
                     return <ClassesBoxCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
+                </div>
             </>
             }
 

@@ -58,7 +58,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
   return (
     <div className='flex flex-col w-full md:items-center' ref={dropdownRef}>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
-        <span className="absolute -mt-0 mr-2 w-5">
+        <span className="absolute mt-3.5 mr-2 w-5">
           {Icon ? 
             Icon
             :

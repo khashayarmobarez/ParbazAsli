@@ -67,7 +67,7 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
-            ${(isFocused || isFilled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
+            ${(isFocused || value) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
             ${isFocused ? 'text-blue-600' : ''}
           `}
         >
