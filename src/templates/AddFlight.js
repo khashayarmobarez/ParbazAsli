@@ -17,7 +17,7 @@ const AddFlight = () => {
 
     const dispatch = useDispatch()
 
-    const { flightCount, flightDuration, courseLevel, clubName, coachName , takeoffTime, landingTime, flightType, courseName } = useSelector(selectAddFlight)
+    const { flightCount, flightDuration, clubName, coachName , takeoffTime, landingTime, flightType, courseName } = useSelector(selectAddFlight)
 
     const today = new Date();
     const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;

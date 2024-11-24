@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import { selectSettings } from '..//Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
+import { selectSettings } from '../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
 
 // styles
 import GradientStyles from '../styles/gradients/Gradient.module.css'

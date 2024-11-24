@@ -10,41 +10,6 @@ import Cookies from 'js-cookie';
 const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
-
-// landing page section query
-    // get home sections
-      const useLandingPage = () => {
-        return useQuery(['landing'], () => axios.get(`${BASE_URL}/Landing/GetHomeSections`));
-      };
-
-      // get section
-      const useSection = (sectionName) => {
-        return useQuery(
-          ['section', sectionName],
-          () => axios.get(`${BASE_URL}/Landing/GetSection?type=${sectionName}`),
-          {
-            onSuccess: (data) => {
-              console.log('Section data:', data);
-            },
-            onError: (error) => {
-              console.error('Error fetching section:', error);
-            },
-          }
-        );
-      };
-
-
-// post comments and opinion on aboutUs page
-    const addGeneralComment = async (commentData) => {
-      const response = await axios.post(`${BASE_URL}/GeneralComment/AddGeneralComment`, commentData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      return response.data;
-    };
-
-
 // Get blogs query with pagination
     // fetch blogs
     const fetchBlogs = async ({ queryKey }) => {
@@ -256,4 +221,4 @@ const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
 
   
 
-export { useLandingPage, addGeneralComment, useBlogs, useBlog, useSection, useOrgansData, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById, useLevelsByOrganizationId};
+export { useBlogs, useBlog, useOrgansData, useOrganLevelsForCourse, useAddCertificate, useUserById, useUserLevelById, useLevelsByOrganizationId};

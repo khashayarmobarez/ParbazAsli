@@ -28,9 +28,9 @@ import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiper
 const Club = () => {
 
     // clubstatus could be NotAdded, Pending, Accepted
-    const {data:clubStatus , isLoading: clubStatusLoading, error} = useClubStatus();
+    const {data:clubStatus , isLoading: clubStatusLoading} = useClubStatus();
 
-    const { data: userEquipmentsData, isLoading, error: equipmentError, refetch: refetchUserEquipmentsData } = useUserEquipments(1, true)
+    const { data: userEquipmentsData, } = useUserEquipments(1, true)
 
 
     return (

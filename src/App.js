@@ -27,13 +27,7 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// landing and overall section
-  // import LandingPage from './containers/LandingPage';
-  import FooterLanding from './components/pages/LandingPageComponents/FooterLanding';
-  // import AboutUs from './containers/AboutUs';
-  // import ContactUs from './containers/ContactUs';
-  // import Blogs from './containers/Blogs';
-  // import BlogDetails from './components/pages/Blogs/BlogDetails';
+
 // not validated user component
   import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
   import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
@@ -42,8 +36,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import Footer from './components/Footer/Footer';
   import Navbar from './components/Header/Navbar';
   import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
-  import Profile from './containers/Profile';
-  import Equipment from './containers/Equipment';
+  import Profile from './templates/Profile';
+  import Equipment from './templates/Equipment';
   import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
   import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
   import Parachute from './components/pages//Equipment page comps/Parachute'
@@ -51,26 +45,26 @@ import 'react-toastify/dist/ReactToastify.css';
   import AddParachute from './components/pages/Equipment page comps/AddParachute';
   import AddHarness from './components/pages/Equipment page comps/AddHarness';
 // education
-  import Education from './containers/Education';
+  import Education from './templates/Education';
   import AddCourse from './components/pages/Education/AddCourse';
   import StudentDetails from './components/pages/Education/StudentDetails';
   import ApproveStudentFlight from './components/pages/Notifications/ApproveStudentFlight';
   import Syllabuses from './components/pages/Notifications/Syllabuses';
-  import FlightHistory from './containers/FlightHistory';
-  import Club from './containers/Club';
-  import EditProfile from './containers/EditProfile';
+  import FlightHistory from './templates/FlightHistory';
+  import Club from './templates/Club';
+  import EditProfile from './templates/EditProfile';
   import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
   import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
 // addFlightComponents
-  import AddFlight from './containers/AddFlight';
+  import AddFlight from './templates/AddFlight';
     import UploadIgc from './components/pages/AddFlight/UploadIgc';
     import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
     import AddSituation from './components/pages/AddFlight/AddSituation';
     import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
     import AddLanding from './components/pages/AddFlight/AddLanding';
 // Student components 
-  import Settings from './containers/Settings';
-  import Notifications from './containers/Notifications';
+  import Settings from './templates/Settings';
+  import Notifications from './templates/Notifications';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
 import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
 import PossessionTransitionEquipment from './components/pages/Equipment page comps/PossessionTransitionEquipment';
@@ -79,7 +73,7 @@ import CourseStudents from './components/pages/Education/CourseDetailPages/Cours
 import CourseClasses from './components/pages/Education/CourseDetailPages/CourseClasses';
 import CourseSyllabi from './components/pages/Education/CourseDetailPages/CourseSyllabi';
 import AddClass from './components/pages/Education/CourseDetailPages/AddClass';
-import MyCourses from './containers/MyCourses';
+import MyCourses from './templates/MyCourses';
 import MyCourseDetails from './components/pages/MyCourses/MyCourseDetails';
 import PracticalMyCourse from './components/pages/MyCourses/MyCourseDetailPages/PracticalMyCourse';
 import TheoryMyCourse from './components/pages/MyCourses/MyCourseDetailPages/TheoryMyCourse';
@@ -98,7 +92,7 @@ import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddCl
 import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
 import TandemSurvey from './components/pages/Notifications/TandemSurvey';
-import SyllabiList from './containers/SyllabiList';
+import SyllabiList from './templates/SyllabiList';
 import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
 import EditClubEquipment from './components/pages/Club/clubEquipments/club equipment details/EditClubEquipment';
 import PossessionTransitionClub from './components/pages/Club/clubEquipments/club equipment details/PossessionTransitionClub';
@@ -210,9 +204,7 @@ function App() {
         <Navbar />
           <Routes>
 
-          {/* <Route path='/aboutUs' element={<AboutUs />} /> */}
           {/* <Route path='/contactUs' element={<ContactUs />} /> */}
-          {/* <Route path='/blogs' element={<Blogs />} /> */}
           {/* <Route path='/blog/:id' element={<BlogDetails />} /> */}
           {/* tandem flight survey, for passenger */}
           <Route path="/survey/:id" element={ <TandemSurvey />} />
