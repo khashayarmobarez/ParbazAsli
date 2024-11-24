@@ -57,7 +57,8 @@ const DropdownInputForEquipment = ({ id, options, selectedOption, handleSelectCh
 
   return (
     <div className="relative w-full min-h-12" ref={dropdownRef}>
-      <span className="absolute right-3 top-3 w-5 z-10">
+      <span className="absolute right-3 top-3 w-5 z-10"
+      onClick={() => setIsOpen(true)}>
         {icon ? icon : <Cube />}
       </span>
       <button

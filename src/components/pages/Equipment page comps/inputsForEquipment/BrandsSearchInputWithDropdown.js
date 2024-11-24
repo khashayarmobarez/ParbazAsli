@@ -111,7 +111,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
               onClick={handleClickOthers}
             >
               سایر ...
-            </li>
+            </li> 
             <div className='w-full h-[1px] bg-textDisabled' />
           </div>
         </ul>
