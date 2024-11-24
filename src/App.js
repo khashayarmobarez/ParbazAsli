@@ -32,7 +32,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import AddEmail from './components/pages/authentication/incomplete user Info pages/AddEmail';
   import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
   import AdminPending from './components/pages/authentication/incomplete user Info pages/AdminPending';
-// main and caoch components
+// main and coach components
   import Footer from './components/Footer/Footer';
   import Navbar from './components/Header/Navbar';
   import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
@@ -91,7 +91,7 @@ import AddClubCourse from './components/pages/Club/clubCourses/AddClubCourse';
 import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddClubFlightEquipment';
 import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
-import TandemSurvey from './components/pages/Notifications/TandemSurvey';
+import TandemSurvey from './templates/TandemSurvey';
 import SyllabiList from './templates/SyllabiList';
 import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
 import EditClubEquipment from './components/pages/Club/clubEquipments/club equipment details/EditClubEquipment';
@@ -204,12 +204,8 @@ function App() {
         <Navbar />
           <Routes>
 
-          {/* <Route path='/contactUs' element={<ContactUs />} /> */}
-          {/* <Route path='/blog/:id' element={<BlogDetails />} /> */}
           {/* tandem flight survey, for passenger */}
           <Route path="/survey/:id" element={ <TandemSurvey />} />
-          
-
 
           {/* landing page */}
           {!token &&

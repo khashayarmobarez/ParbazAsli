@@ -3,21 +3,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
-import styles from './TandemSurvey.module.css';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import { CircularProgress } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // assets
-import checkIcon from '../../../assets/icons/bigCheckIcon.svg'
+import checkIcon from '../assets/icons/bigCheckIcon.svg'
 
 // queries
-import { useIsSurveyAvailabe, useSubmitSurvey } from '../../../Utilities/Services/notificationAndSurveyQueries';
-import DescriptionInput from '../../inputs/DescriptionInput';
+import { useIsSurveyAvailabe, useSubmitSurvey } from '../Utilities/Services/notificationAndSurveyQueries';
+import DescriptionInput from '../components/inputs/DescriptionInput';
 import { toast } from 'react-toastify';
-import StarRating from '../../reuseable/StarRating';
+import StarRating from '../components/reuseable/StarRating';
 
 const TandemSurvey = () => {
 
