@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 
 // queries 
-import { useUserData } from '../../Utilities/Services/userQueries';
-import { useUnreadNotificationCounts } from '../../Utilities/Services/notificationAndSurveyQueries';
+import { useUserData } from '../Utilities/Services/userQueries';
+import { useUnreadNotificationCounts } from '../Utilities/Services/notificationAndSurveyQueries';
 
 // api
-import { postLogout } from '../../Utilities/Services/AuthenticationApi';
+import { postLogout } from '../Utilities/Services/AuthenticationApi';
 
 // hooks
-import useClickOutside from '../../Utilities/Hooks/useClickOutside';
+import useClickOutside from '../Utilities/Hooks/useClickOutside';
 
 // mui
 import { AppBar, Avatar } from '@mui/material';
@@ -23,16 +23,16 @@ import LoginIcon from '@mui/icons-material/Login';
 // import Button from '@mui/material/Button';
 
 // styles
-import GradientStyles from '../../styles/gradients/Gradient.module.css'
-import styles from './Navbar.module.css';
-import buttonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import GradientStyles from '../styles/gradients/Gradient.module.css'
+import styles from '../styles/others/Navbar.module.css';
+import buttonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // react router dom
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // assets
-import companyLogo from '../../assets/Logo/DigilogbookMainLogo.svg';
-import Logout from '../../components/icons/Logout';
+import companyLogo from '../assets/Logo/DigilogbookMainLogo.svg';
+import Logout from '../components/icons/Logout';
 
 
 
