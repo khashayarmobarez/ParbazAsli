@@ -33,9 +33,9 @@ import 'react-toastify/dist/ReactToastify.css';
   import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
   import AdminPending from './components/pages/authentication/incomplete user Info pages/AdminPending';
 // main and coach components
-  import Footer from './components/Footer/Footer';
+  import Footer from './templates/Footer';
   import Navbar from './templates/Navbar';
-  import SignUpOrLogin from './components/pages/authentication/SignUpOrLogin';
+  import SignUpOrLogin from './templates/Authentication/SignUpOrLogin';
   import Profile from './templates/Profile';
   import Equipment from './templates/Equipment';
   import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';

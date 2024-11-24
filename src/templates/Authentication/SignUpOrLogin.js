@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // components
-import SignUp from './SignUp';
-import Login from './Login';
+import SignUp from '../../components/pages/authentication/SignUp';
+import Login from '../../components/pages/authentication/Login';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // assets
-import authenticationBackground from '../../../assets/image/logInBackgroundReduced.png'
-import logo from '../../../assets/Logo/DigilogbookNoFeatherLogo.png'
+import authenticationBackground from '../../assets/image/logInBackgroundReduced.png'
+import logo from '../../assets/Logo/DigilogbookNoFeatherLogo.png'
 import { useMediaQuery } from '@mui/material';
 
 const SignUpOrLogin = () => {

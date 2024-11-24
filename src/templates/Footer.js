@@ -5,22 +5,12 @@ import Cookies from 'js-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
-// import styles from './Footer.module.css';
-import GradientStyles from '../../styles/gradients/Gradient.module.css'
-
-// // assets
-// import badgeCheck from '../../assets/icons/check-badge.svg'
-// import dashboard from '../../assets/icons/dashboard.svg'
-
 // mui 
 import { Box, BottomNavigation, BottomNavigationAction , Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
-import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
 
 
 const styles = {
