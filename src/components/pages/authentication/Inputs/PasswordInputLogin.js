@@ -8,7 +8,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import KeyIcon from '../../../../components/icons/KeyIcon';
 import inputStyles from '../../../../styles/Inputs/Inputs.module.css';
 
-const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder, isSubmitted }) => {
+const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder, isSubmitted, customLabelBgColor }) => {
   const [inputFocus, setInputFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);  
   const [filled, setFilled] = useState(false);
@@ -134,8 +134,8 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
             cursor-text
-            text-[${labelColor}]
-            ${(inputFocus || filled || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
+            text-[${ labelColor}]
+            ${(inputFocus || filled || value) ? `-translate-y-5 translate-x-2 text-xs ${customLabelBgColor ? `bg-${customLabelBgColor}` : 'bg-bgPageMain'} px-2 rounded` : 'text-base'}
           `}
         >
           {customPlaceHolder || "رمز عبور"}

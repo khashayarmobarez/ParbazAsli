@@ -107,6 +107,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     onFocus={() => setOldPwdFocus(true)}
                     onBlur={() => setOldPwdFocus(false)}
                     customPlaceHolder='رمز عبور قدیمی'
+                    customLabelBgColor='bgCard'
                 />
 
                 <PasswordInputSignup    
@@ -115,7 +116,8 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     focus={pwdFocus}
                     onFocus={() => setPwdFocus(true)}
                     onBlur={() => setPwdFocus(false)}
-                />
+                    customActivePlaceHolderBgColor='bg-bgCard'
+                    />
 
                 <ConfirmPassInputSignup
                     password={pwd}
@@ -124,6 +126,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     focus={matchFocus}
                     onFocus={() => setMatchFocus(true)}
                     onBlur={() => setMatchFocus(false)}
+                    customActivePlaceHolderBgColor='bg-bgCard'
                 />
 
 
