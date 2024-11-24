@@ -383,12 +383,6 @@ const AddLanding = () => {
                 </div>
 
 
-                <div id='title' className='flex justify-between items-center w-full mt-2' style={{color:'var(--text-accent'}}  >
-                    <h3 className=' text-base '>Landing</h3>
-                    <div className='h-[1px] w-9/12 mt-2' style={{background: 'var(--text-accent)' }}></div>
-                </div>
-
-
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
