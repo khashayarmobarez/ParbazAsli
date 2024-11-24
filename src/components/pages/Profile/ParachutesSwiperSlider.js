@@ -19,7 +19,9 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
         const swiperContainer = swiperRef.current;
         const params = {
         navigation: true,
-        pagination: true,
+        pagination:{
+          dynamicBullets: true,
+        },
         centeredSlides: !isDesktop,
         spaceBetween: isDesktop ? '20' : '50',
         slidesPerView: isDesktop ? '2' : '1',
@@ -31,7 +33,7 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
             `
               .swiper-button-next,
               .swiper-button-prev {
-                margin-top:4.6rem;
+                margin-top:4.65rem;
                 background-color: var(--bg-button-secondary-default);
                 box-shadow:var(--shadow-button-dark),var(--shadow-button-white);
                 padding: 5px;
@@ -74,7 +76,7 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
 
             
               <swiper-container
-                style={{ height:'12.8rem',...(!isDesktop && { marginRight: '0' }), }}
+                style={{ height:'12.2rem',...(!isDesktop && { marginRight: '0' }), }}
                 ref={swiperRef}
                 init="false"
                 >

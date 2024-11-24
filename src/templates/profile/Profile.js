@@ -122,7 +122,6 @@ const Profile = () => {
                         <UserCoursesSlider coursesData={data.data.userCourses} />
                     }
 
-                        
             </div>
             
         }
