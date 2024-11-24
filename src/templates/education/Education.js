@@ -4,11 +4,11 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import boxStyles from '../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // assests 
-import ArrowButton from '../components/icons/ArrowButton';
+import ArrowButton from '../../components/icons/ArrowButton';
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
@@ -17,13 +17,13 @@ import Box from '@mui/material/Box';
 
 
 // queries
-import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
+import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus } from '../../Utilities/Services/coursesQueries';
 
 // components 
-import PageTitle from '../components/reuseable/PageTitle';
-import DropDownLine from '../components/reuseable/DropDownLine';
-import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
-import Attention from '../components/icons/Attention';
+import PageTitle from '../../components/reuseable/PageTitle';
+import DropDownLine from '../../components/reuseable/DropDownLine';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import Attention from '../../components/icons/Attention';
 
 
 

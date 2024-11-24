@@ -4,31 +4,31 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // queries
-import { useAnEquipment, useEditEquipment } from '../../../../Utilities/Services/equipmentQueries';
-import { useUserById } from '../../../../Utilities/Services/queries';
+import { useAnEquipment, useEditEquipment } from '../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../Utilities/Services/queries';
 
 // utilities
-import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
+import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // styles
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import Cube from '../../../../components/icons/ThreeDCube'
-import UserIcon from '../../../../components/icons/UserIcon'
-import SerialNumberIcon from '../../../../components/icons/SerialNumberIcon'
+import Cube from '../../components/icons/ThreeDCube'
+import UserIcon from '../../components/icons/UserIcon'
+import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
 
 // comps
-import PageTitle from '../../../reuseable/PageTitle';
-import DateLastRepackInput from '../inputsForEquipment/DateLastRepackInput';
-import TextInput from '../../../inputs/textInput';
-import UploadFileInput from '../../../inputs/UploadFileInput';
-import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
+import PageTitle from '../../components/reuseable/PageTitle';
+import DateLastRepackInput from '../../components/pages/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import TextInput from '../../components/inputs/textInput';
+import UploadFileInput from '../../components/inputs/UploadFileInput';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
 const EditEquipment = () => {
     const navigate = useNavigate()
@@ -160,7 +160,7 @@ const EditEquipment = () => {
 
 
     return (
-        <div className='flex flex-col items-center pt-[4rem] '>
+        <div className='flex flex-col items-center pt-[3rem] '>
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
                 <PageTitle 

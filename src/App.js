@@ -45,7 +45,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import AddParachute from './templates/equipments/AddParachute';
   import AddHarness from './templates/equipments/AddHarness';
 // education
-  import Education from './templates/Education';
+  import Education from './templates/education/Education';
   import AddCourse from './components/pages/Education/AddCourse';
   import StudentDetails from './components/pages/Education/StudentDetails';
   import ApproveStudentFlight from './templates/notifications/ApproveStudentFlight';
@@ -66,8 +66,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import Settings from './templates/Settings';
   import Notifications from './templates/notifications/Notifications';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
-import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
-import PossessionTransitionEquipment from './components/pages/Equipment page comps/PossessionTransitionEquipment';
+import EditEquipment from './templates/equipments/EditEquipment';
+import PossessionTransitionEquipment from './templates/equipments/PossessionTransitionEquipment';
 import CourseDetails from './components/pages/Education/CourseDetails';
 import CourseStudents from './components/pages/Education/CourseDetailPages/CourseStudents';
 import CourseClasses from './components/pages/Education/CourseDetailPages/CourseClasses';
@@ -116,8 +116,6 @@ import StudentsList from './components/pages/Education/studentsList/StudentsList
 import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
 import AStudentCourses from './components/pages/Education/studentsList/AStudentCourses';
 import AStudentClubCourses from './components/pages/Club/clubCourses/studentsListClub/AStudentClubCourses';
-  
-
 
 
 const queryClient = new QueryClient();

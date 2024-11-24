@@ -35,7 +35,7 @@ const UserCoursesSlider = ({coursesData}) => {
             `
               .swiper-button-next,
               .swiper-button-prev {
-                margin-top:5.5rem;
+                margin-top:5.65rem;
                 background-color: var(--bg-button-secondary-default);
                 box-shadow:var(--shadow-button-dark),var(--shadow-button-white);
                 padding: 5px;
@@ -77,19 +77,17 @@ const UserCoursesSlider = ({coursesData}) => {
           <div className='w-full h-full py-2 md:pt-0'>
             
               <swiper-container
-                style={{ height:'14.6rem',...(!isDesktop && { marginRight: '0' }), }}
-                ref={swiperRef}
-                init="false"
-                >
+              style={{ height:'14.4rem',...(!isDesktop && { marginRight: '0' }), }}
+              ref={swiperRef}
+              init="false"
+              >
 
                   {/* map later */}
                   {
-                    coursesData.map( course => 
-
+                    coursesData.map(course => 
                       <swiper-slide key={course.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
                           <CourseSlide courseData={course} className='z-10' />
                       </swiper-slide>
-
                     )
                   }
 

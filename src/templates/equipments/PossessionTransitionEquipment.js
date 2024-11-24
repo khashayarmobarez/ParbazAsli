@@ -4,25 +4,25 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // assets
-import UserIcon from '../../../components/icons/UserIcon'
+import UserIcon from '../../components/icons/UserIcon'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // utilities and Queries
-import { useAnEquipment, usePossessionTransition } from '../../../Utilities/Services/equipmentQueries';
-import { useUserById } from '../../../Utilities/Services/queries';
-import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
+import { useAnEquipment, usePossessionTransition } from '../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../Utilities/Services/queries';
+import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // comps
-import PageTitle from '../../reuseable/PageTitle';
-import TextInput from '../../inputs/textInput';
-import DateLastRepackInput from './inputsForEquipment/DateLastRepackInput';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import PageTitle from '../../components/reuseable/PageTitle';
+import TextInput from '../../components/inputs/textInput';
+import DateLastRepackInput from '../../components/pages/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
 
 const PossessionTransitionEquipment = () => {
