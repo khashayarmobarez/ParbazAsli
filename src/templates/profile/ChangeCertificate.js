@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // styles
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useAllUserCertificates } from '../../../../Utilities/Services/userQueries';
+import { useAllUserCertificates } from '../../Utilities/Services/userQueries';
 
 // mui and assets
-import ArrowButton from '../../../../components/icons/ArrowButton';
+import ArrowButton from '../../components/icons/ArrowButton';
 import AddIcon from '@mui/icons-material/Add';
 
 // components
-import Certificate from '../../Settings/Certificate';
+import Certificate from '../../components/pages/Settings/Certificate';
 
 
 const ChangeCertificate = () => {

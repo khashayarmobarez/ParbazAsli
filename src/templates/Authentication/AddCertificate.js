@@ -1,30 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
-import { postIsUserAuthenticated } from '../../../../Utilities/Services/AuthenticationApi';
+import { postIsUserAuthenticated } from '../../Utilities/Services/AuthenticationApi';
 import {  useNavigate } from 'react-router-dom';
 
 // assets 
-import CertificateIcon from '../../../../components/icons/CertificateIcon'
+import CertificateIcon from '../../components/icons/CertificateIcon'
 
 // styles
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useAddCertificate, useOrganLevelsForCourse, useOrgansData } from '../../../../Utilities/Services/queries'
+import { useAddCertificate, useOrganLevelsForCourse, useOrgansData } from '../../Utilities/Services/queries'
 
 // utilities
-import useDateFormat from '../../../../Utilities/Hooks/useDateFormat';
+import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // components
-import UserDataBox from '../../Profile/UserDataBox';
-import DropdownInput from '../../../inputs/DropDownInput';
-import TextInput from '../../../inputs/textInput';
-import DateLastRepackInput from '../../Equipment page comps/inputsForEquipment/DateLastRepackInput';
-import DigilogbookLoading from '../../../Loader/DigilogbookLoading';
+import UserDataBox from '../../components/pages/Profile/UserDataBox';
+import DropdownInput from '../../components/inputs/DropDownInput';
+import TextInput from '../../components/inputs/textInput';
+import DateLastRepackInput from '../../components/pages/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 
 

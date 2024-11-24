@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // queries
-import { useNotifications } from '../Utilities/Services/notificationAndSurveyQueries';
+import { useNotifications } from '../../Utilities/Services/notificationAndSurveyQueries';
 
 // icons
-import ArrowButton from '../components/icons/ArrowButton';
+import ArrowButton from '../../components/icons/ArrowButton';
 
 // components
-import PageTitle from '../components/reuseable/PageTitle';
-import NotifVersionStudentFlightForm from '../components/pages/Notifications/NotifVersionStudentFlightForm';
-import NotifAcceptClub from '../components/pages/Notifications/NotifAcceptClub';
-import NotifAcceptCourse from '../components/pages/Notifications/NotifAcceptCourse';
-import NotifAcceptStudent from '../components/pages/Notifications/NotifAcceptStudent';
-import RegularTextNotif from '../components/pages/Notifications/RegularTextNotif';
-import NotifTandemPassengerSurvey from '../components/pages/Notifications/NotifTandemPassengerSurvey';
-import PopupForNotif from '../components/pages/Notifications/PopupForNotif';
-import NotifAcceptEquipment from '../components/pages/Notifications/NotifAcceptEquipment';
-import Attention from '../components/icons/Attention';
+import PageTitle from '../../components/reuseable/PageTitle';
+import NotifVersionStudentFlightForm from '../../components/pages/Notifications/NotifVersionStudentFlightForm';
+import NotifAcceptClub from '../../components/pages/Notifications/NotifAcceptClub';
+import NotifAcceptCourse from '../../components/pages/Notifications/NotifAcceptCourse';
+import NotifAcceptStudent from '../../components/pages/Notifications/NotifAcceptStudent';
+import RegularTextNotif from '../../components/pages/Notifications/RegularTextNotif';
+import NotifTandemPassengerSurvey from '../../components/pages/Notifications/NotifTandemPassengerSurvey';
+import PopupForNotif from '../../components/pages/Notifications/PopupForNotif';
+import NotifAcceptEquipment from '../../components/pages/Notifications/NotifAcceptEquipment';
+import Attention from '../../components/icons/Attention';
 
 
 const Notifications = () => {

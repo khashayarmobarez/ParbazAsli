@@ -3,21 +3,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useDeclineUserFlight, useUserCourseFlight } from '../../../Utilities/Services/coursesQueries';
+import { useDeclineUserFlight, useUserCourseFlight } from '../../Utilities/Services/coursesQueries';
 
 // mui
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 // comps
-import PageTitle from '../../reuseable/PageTitle';
+import PageTitle from '../../components/reuseable/PageTitle';
 import { toast } from 'react-toastify';
-import { useAUserFlight } from '../../../Utilities/Services/flightHistoriesQueries';
-import DropDownLine from '../../reuseable/DropDownLine';
+import { useAUserFlight } from '../../Utilities/Services/flightHistoriesQueries';
+import DropDownLine from '../../components/reuseable/DropDownLine';
 
 const ApproveStudentFlight = () => {
 

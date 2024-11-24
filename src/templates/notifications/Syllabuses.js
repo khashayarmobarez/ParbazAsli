@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
-import PageTitle from '../../reuseable/PageTitle';
-import { useAcceptUserFlight, useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import PageTitle from '../../components/reuseable/PageTitle';
+import { useAcceptUserFlight, useACourseSyllabi } from '../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
-import DescriptionInput from '../../inputs/DescriptionInput';
-import TextInput from '../../inputs/textInput';
+import DescriptionInput from '../../components/inputs/DescriptionInput';
+import TextInput from '../../components/inputs/textInput';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // assets
-import SearchIcon from '../../../components/icons/SearchIcon';
+import SearchIcon from '../../components/icons/SearchIcon';
 
 const Syllabuses = () => {
 
@@ -19,9 +19,9 @@ const Syllabuses = () => {
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { courseId, flightId } = useParams();
-    const { data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(courseId, 2);
+    const { data: syllabiDataPractical } = useACourseSyllabi(courseId, 2);
     const [searchSyllabus, setSearchSyllabus] = useState('');
-    const { mutate: mutateAccept, isLoading: isSubmitting, error: submitError } = useAcceptUserFlight();
+    const { mutate: mutateAccept, isLoading: isSubmitting} = useAcceptUserFlight();
 
     const [counters, setCounters] = useState([]);
     const [description, setDescription] = useState('');

@@ -30,13 +30,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // not validated user component
   import AddEmail from './templates/Authentication/AddEmail';
-  import AddCertificate from './components/pages/authentication/incomplete user Info pages/AddCertificate';
-  import AdminPending from './components/pages/authentication/incomplete user Info pages/AdminPending';
+  import AddCertificate from './templates/Authentication/AddCertificate';
+  import AdminPending from './templates/Authentication/AdminPending';
 // main and coach components
   import Footer from './templates/Footer';
   import Navbar from './templates/Navbar';
   import SignUpOrLogin from './templates/Authentication/SignUpOrLogin';
-  import Profile from './templates/Profile';
+  import Profile from './templates/profile/Profile';
   import Equipment from './templates/Equipment';
   import FlightEquipment from './components/pages/Equipment page comps/FlightEquipment';
   import AddFlightEquipment from './components/pages/Equipment page comps/AddFlightEquipment';
@@ -48,13 +48,13 @@ import 'react-toastify/dist/ReactToastify.css';
   import Education from './templates/Education';
   import AddCourse from './components/pages/Education/AddCourse';
   import StudentDetails from './components/pages/Education/StudentDetails';
-  import ApproveStudentFlight from './components/pages/Notifications/ApproveStudentFlight';
-  import Syllabuses from './components/pages/Notifications/Syllabuses';
+  import ApproveStudentFlight from './templates/notifications/ApproveStudentFlight';
+  import Syllabuses from './templates/notifications/Syllabuses';
   import FlightHistory from './templates/FlightHistory';
   import Club from './templates/Club';
-  import EditProfile from './templates/EditProfile';
-  import ChangeProfile from './components/pages/Profile/EditProfile/ChangeProfile';
-  import ChangeCertificate from './components/pages/Profile/EditProfile/ChangeCertificate';
+  import EditProfile from './templates/profile/EditProfile';
+  import ChangeProfile from './templates/profile/ChangeProfile';
+  import ChangeCertificate from './templates/profile/ChangeCertificate';
 // addFlightComponents
   import AddFlight from './templates/AddFlight';
     import UploadIgc from './components/pages/AddFlight/UploadIgc';
@@ -64,7 +64,7 @@ import 'react-toastify/dist/ReactToastify.css';
     import AddLanding from './components/pages/AddFlight/AddLanding';
 // Student components 
   import Settings from './templates/Settings';
-  import Notifications from './templates/Notifications';
+  import Notifications from './templates/notifications/Notifications';
   import RenewCertificate from './components/pages/Settings/RenewCertificate';
 import EditEquipment from './components/pages/Equipment page comps/Edit, renew Equipment/EditEquipment';
 import PossessionTransitionEquipment from './components/pages/Equipment page comps/PossessionTransitionEquipment';
@@ -229,12 +229,6 @@ function App() {
             <>
               <Route path='/addEmail' element={<AddEmail />} />
               <Route path='*' element={<Navigate to="/addEmail" replace />} />
-              {/* edit profile */}
-              <Route path='/editProfile' element={<EditProfile />}>
-                <Route index element={<ChangeProfile />} />
-                <Route path="changeProfile" element={<ChangeProfile />} />
-                <Route path="changeCertificate" element={<ChangeCertificate />} />
-              </Route>
             </>
           )}
 
@@ -244,12 +238,6 @@ function App() {
               <>
                 <Route path='/addCertificate' element={<AddCertificate />} />
                 <Route path='*' element={<Navigate to="/addCertificate" replace />} />
-                {/* edit profile */}
-                <Route path='/editProfile' element={<EditProfile />} >
-                  <Route index element={<ChangeProfile />} />
-                  <Route path="changeProfile" element={<ChangeProfile />} />
-                  <Route path="changeCertificate" element={<ChangeCertificate />} />
-                </Route>
               </>
             )
           }
@@ -259,14 +247,20 @@ function App() {
             <>
               <Route path='/adminPending' element={<AdminPending />} />
               <Route path='*' element={<Navigate to="/adminPending" replace />} />
-              {/* edit profile */}
-              <Route path='/editProfile' element={<EditProfile />}>
+            </>
+          )}
+
+          {
+            token && (isUserAuthenticated === 'noEmail' || isUserAuthenticated === 'noCertificate' || isUserAuthenticated === 'noAdminApprovment') && 
+            (
+              // edit profile
+              <Route path='/editProfile' element={<EditProfile />} >
                 <Route index element={<ChangeProfile />} />
                 <Route path="changeProfile" element={<ChangeProfile />} />
                 <Route path="changeCertificate" element={<ChangeCertificate />} />
               </Route>
-            </>
-          )}
+            )
+          }
 
           {token && isUserAuthenticated === 'authenticated' && (
             <>

@@ -3,30 +3,30 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSettings, setPassword1, setPassword2 } from '../../../../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
-import { selectAuthSettings } from '../../../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
+import { selectSettings, setPassword1, setPassword2 } from '../../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
+import { selectAuthSettings } from '../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
 // queries 
-import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange, useUserData } from '../../../../Utilities/Services/userQueries';
+import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange, useUserData } from '../../Utilities/Services/userQueries';
 
 // mui
 import { Avatar } from '@mui/material';
 
 // assets
-import PhoneIcon from '../../../../components/icons/PhoneIcon';
-import MailIcon from '../../../../components/icons/MailIcon';
+import PhoneIcon from '../../components/icons/PhoneIcon';
+import MailIcon from '../../components/icons/MailIcon';
 
 // components
-import FixedInput from '../../../inputs/FixedInput';
-import InputWithButton from '../../../inputs/InputWithButton';
-import ChangePicPopUp from './ChangePicPopUp';
-import PhoneVerificationCode from '../../authentication/popUps/PhoneVerificationCode';
-import ChangePasswordPopUp from './ChangePasswordPopUp';
-import PlusWithCircularBorderIcon from '../../../icons/PlusWithCircularBorderIcon';
+import FixedInput from '../../components/inputs/FixedInput';
+import InputWithButton from '../../components/inputs/InputWithButton';
+import ChangePicPopUp from '../../components/pages/Profile/EditProfile/ChangePicPopUp';
+import PhoneVerificationCode from '../../components/pages/authentication/popUps/PhoneVerificationCode';
+import ChangePasswordPopUp from '../../components/pages/Profile/EditProfile/ChangePasswordPopUp';
+import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
 
 const ChangeProfile = () => {
 

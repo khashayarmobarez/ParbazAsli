@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import { selectSettings } from '../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
+import { selectSettings } from '../../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
 
 // styles
-import GradientStyles from '../styles/gradients/Gradient.module.css'
-import boxStyles from '../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
+import GradientStyles from '../../styles/gradients/Gradient.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
 
 // queries 
-import { useUserProfile } from '../Utilities/Services/userQueries';
+import { useUserProfile } from '../../Utilities/Services/userQueries';
 
 
 // react router dom
 import { Link, useNavigate } from 'react-router-dom';
 
 // icons 
-import pencil from '../assets/icons/pencil-alt.svg'
+import pencil from '../../assets/icons/pencil-alt.svg'
 
 // components
-import UserDataBox from '../components/pages/Profile/UserDataBox';
-import ParachutesSwiperSlider from '../components/pages/Profile/ParachutesSwiperSlider';
-import UserCoursesSlider from '../components/pages/Profile/UserCoursesSlider';
-import DigilogbookLoading from '../components/Loader/DigilogbookLoading';
+import UserDataBox from '../../components/pages/Profile/UserDataBox';
+import ParachutesSwiperSlider from '../../components/pages/Profile/ParachutesSwiperSlider';
+import UserCoursesSlider from '../../components/pages/Profile/UserCoursesSlider';
+import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 
 
 

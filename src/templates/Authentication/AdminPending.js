@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 // button
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // components
-import UserDataBox from '../../Profile/UserDataBox';
+import UserDataBox from '../../components/pages/Profile/UserDataBox';
 
 const AdminPending = () => {
 
