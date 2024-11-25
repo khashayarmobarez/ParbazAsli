@@ -56,12 +56,12 @@ import 'react-toastify/dist/ReactToastify.css';
   import ChangeProfile from './templates/profile/ChangeProfile';
   import ChangeCertificate from './templates/profile/ChangeCertificate';
 // addFlightComponents
-  import AddFlight from './templates/AddFlight';
-    import UploadIgc from './components/pages/AddFlight/UploadIgc';
-    import AddUsedEquipment from './components/pages/AddFlight/AddUsedEquipment';
-    import AddSituation from './components/pages/AddFlight/AddSituation';
-    import AddTakeoff from './components/pages/AddFlight/AddTakeoff';
-    import AddLanding from './components/pages/AddFlight/AddLanding';
+  import AddFlight from './templates/addFlight/AddFlight';
+    import UploadIgc from './templates/addFlight/UploadIgc';
+    import AddUsedEquipment from './templates/addFlight/AddUsedEquipment';
+    import AddSituation from './templates/addFlight/AddSituation';
+    import AddTakeoff from './templates/addFlight/AddTakeoff';
+    import AddLanding from './templates/addFlight/AddLanding';
 // Student components 
   import Settings from './templates/Settings';
   import Notifications from './templates/notifications/Notifications';
@@ -78,7 +78,7 @@ import MyCourseDetails from './templates/myCourses/MyCourseDetails';
 import PracticalMyCourse from './templates/myCourses/PracticalMyCourse';
 import TheoryMyCourse from './templates/myCourses/TheoryMyCourse';
 import MySyllabiMyCourse from './templates/myCourses/MySyllabiMyCourse';
-import AddFlightType from './components/pages/AddFlight/AddFlightType';
+import AddFlightType from './templates/addFlight/AddFlightType';
 import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
 import ClubCoaches from './components/pages/Club/ClubCoaches';
 import ClubEquipment from './components/pages/Club/ClubEquipment';
@@ -92,7 +92,7 @@ import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddCl
 import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
 import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
 import TandemSurvey from './templates/TandemSurvey';
-import SyllabiList from './templates/SyllabiList';
+import SyllabiList from './templates/syllabiList/SyllabiList';
 import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
 import EditClubEquipment from './components/pages/Club/clubEquipments/club equipment details/EditClubEquipment';
 import PossessionTransitionClub from './components/pages/Club/clubEquipments/club equipment details/PossessionTransitionClub';
@@ -111,7 +111,7 @@ import CourseStudentPracticalDetails from './templates/education/studentList/Cou
 import CourseStudentTheoryDetails from './templates/education/studentList/CourseStudentTheoryDetails';
 import CourseStudentSyllabiDetails from './templates/education/studentList/CourseStudentSyllabiDetails';
 import CourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
-import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
+import SyllabiDetails from './templates/syllabiList/SyllabiDetails';
 import StudentsList from './templates/education/studentList/StudentsList';
 import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
 import AStudentCourses from './templates/education/studentList/AStudentCourses';

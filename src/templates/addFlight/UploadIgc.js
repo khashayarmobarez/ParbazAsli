@@ -5,15 +5,15 @@ import Cookies from 'js-cookie';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { processAndUpdateIgcFile, selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateIgcFile } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { processAndUpdateIgcFile, selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateIgcFile } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // assets
-import IGC from '../../../assets/icons/IGC-Download.svg'
-import ArrowButton from '../../../components/icons/ArrowButton'
+import IGC from '../../assets/icons/IGC-Download.svg'
+import ArrowButton from '../../components/icons/ArrowButton'
 
 // style
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 const UploadIgc = () => {
 

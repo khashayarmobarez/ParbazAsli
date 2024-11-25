@@ -23,7 +23,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // queries
-import { useUserEquipments } from '../../../Utilities/Services/equipmentQueries';
+import { useUserEquipmentsForDropDown } from '../../../Utilities/Services/equipmentQueries';
 import { useAllUsersCoaches } from '../../../Utilities/Services/userQueries';
 import { useAllUserCoursesForDropdown } from '../../../Utilities/Services/StudentCoursesQueries';
 import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
@@ -33,7 +33,6 @@ import { flightTypeOptions, flightStatusOptions } from '../../../Utilities/Provi
 
 // components
 import PageTitle from '../../reuseable/PageTitle';
-import DropdownInputForEquipment from '../AddFlight/Components/DropDownInputForEquipment';
 import DropdownInput from '../../inputs/DropDownInput';
 import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
@@ -65,13 +64,13 @@ const FlightsAdvancedFilter = () => {
     
 
     // user equipments data
-    const { data: userWingsData, loading:userWingsLoading, error:userWingsError } = useUserEquipments(2,false)
-    const { data: userHarnessData, loading:userHarnessLoading, error:userHarnessError } = useUserEquipments(3,false)
-    const { data: userCoachesData, loading:userCoachesLoading, error:userCoachesError } = useAllUsersCoaches()
-    const { data: userCoursesData, loading:userCoursesLoading, error:userCoursesError } = useAllUserCoursesForDropdown()
-    const { data: countriesData, loading:countriesLoading, error:countriesError } = useCountries()
-    const { data: provincesData, loading:provincesLoading, error:provincesError, refetch: refetchProvinces } = useProvincesByCountryId(countryFilter ? countryFilter.id : '')
-    const { data: flightSitesData, loading:flightSitesLoading, error:flightSitesError, refetch: refetchSites } = useSitesByProvinceId(provinceFilter  && provinceFilter.id, countryFilter && countryFilter.id)
+    const { data: userWingsData, loading:userWingsLoading } = useUserEquipmentsForDropDown(2,false)
+    const { data: userHarnessData, loading:userHarnessLoading } = useUserEquipmentsForDropDown(3,false)
+    const { data: userCoachesData, loading:userCoachesLoading } = useAllUsersCoaches()
+    const { data: userCoursesData, loading:userCoursesLoading } = useAllUserCoursesForDropdown()
+    const { data: countriesData, loading:countriesLoading } = useCountries()
+    const { data: provincesData, loading:provincesLoading } = useProvincesByCountryId(countryFilter ? countryFilter.id : '')
+    const { data: flightSitesData, loading:flightSitesLoading } = useSitesByProvinceId(provinceFilter  && provinceFilter.id, countryFilter && countryFilter.id)
     
     const resetDateFunc = () => {
         setResetDate(true)
@@ -207,9 +206,9 @@ const FlightsAdvancedFilter = () => {
                             {
                                 userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
                                 <>
-                                    <DropdownInputForEquipment icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
+                                    <DropdownInput id={'ddi1.2'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
-                                    <DropdownInputForEquipment icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
+                                    <DropdownInput id={'ddi1.4'} icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
                                 </>
                             }
 

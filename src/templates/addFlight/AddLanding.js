@@ -2,42 +2,42 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // provider
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import ArrowButton from '../../../components/icons/ArrowButton'
-import WindIcon from '../../../components/icons/WindIcon'
-import WindDirectionCock from '../../../components/icons/WindDirectionCock'
-import PhoneIcon from '../../../components/icons/PhoneIcon'
-import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
+import ArrowButton from '../../components/icons/ArrowButton'
+import WindIcon from '../../components/icons/WindIcon'
+import WindDirectionCock from '../../components/icons/WindDirectionCock'
+import PhoneIcon from '../../components/icons/PhoneIcon'
+import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
 
 // react-toastify
 import { toast } from 'react-toastify';
 
 // provider
-import { windDirectionOptions } from '../../../Utilities/Providers/dropdownInputOptions';
+import { windDirectionOptions } from '../../Utilities/Providers/dropdownInputOptions';
 
 // react-query
-import { useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes } from '../../../Utilities/Services/addFlightQueries';
+import { useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes } from '../../Utilities/Services/addFlightQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription, updateLandingType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription, updateLandingType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // mui
 import { CircularProgress } from '@mui/material';
 
 // components
-import DropdownInput from '../../inputs/DropDownInput';
-import TextInput from '../../inputs/textInput';
-import SubmitForm from '../../reuseable/SubmitForm';
-import TimeInput from '../../inputs/TimeInput';
-import NumberInput from '../../inputs/NumberInput';
-import DescriptionInput from '../../inputs/DescriptionInput';
+import DropdownInput from '../../components/inputs/DropDownInput';
+import TextInput from '../../components/inputs/textInput';
+import SubmitForm from '../../components/reuseable/SubmitForm';
+import TimeInput from '../../components/inputs/TimeInput';
+import NumberInput from '../../components/inputs/NumberInput';
+import DescriptionInput from '../../components/inputs/DescriptionInput';
 
 const AddLanding = () => {
 

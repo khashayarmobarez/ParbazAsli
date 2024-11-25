@@ -10,10 +10,8 @@ import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
 // mui
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
-
 // queiries
 import { useCourseStudentClass } from '../../../../Utilities/Services/coursesQueries';
-
 
 
 const CourseClassesBoxMyCourses = (props) => {

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 
 // queries
-import { useLevelsByOrganizationId, useOrganLevelsForCourse, useOrgansData } from '../Utilities/Services/queries';
-import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
+import { useOrganLevelsForCourse, useOrgansData } from '../../Utilities/Services/queries';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
 // mui
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 // assets
-import ClipboardIcon from '../components/icons/ClipboardIcon'
+import ClipboardIcon from '../../components/icons/ClipboardIcon'
 
 // comps
-import PageTitle from '../components/reuseable/PageTitle';
-import OrgansSlider from '../components/pages/SyllabiList/OrgansSlider';
-import { useSyllabiForLevels } from '../Utilities/Services/coursesQueries';
+import PageTitle from '../../components/reuseable/PageTitle';
+import OrgansSlider from '../../components/pages/SyllabiList/OrgansSlider';
 import { useNavigate } from 'react-router-dom';
 
 const SyllabiList = () => {
@@ -22,16 +21,10 @@ const SyllabiList = () => {
 
     // states
     const [organ, setOrgan] = useState('')
-    const [level, setLevel] = useState('')
-
-    const [pageNumber, setPageNumber] = useState(1)
-
-    // dropdown
-    const [DropDown, setDropDown] = useState('')
 
     // queries
-    const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
-    const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
+    const { data: organsData, isLoading: organsLoading } = useOrgansData();
+    const { data: levelsData, isLoading: levelsLoading } = useOrganLevelsForCourse(organ && organ.id);
     // const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError, refetch:refetchSyllabi } = useSyllabiForLevels(level && level);
 
 

@@ -2,18 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // queries
-import { useFlightTypes } from '../../../Utilities/Services/addFlightQueries';
+import { useFlightTypes } from '../../Utilities/Services/addFlightQueries';
 
 // components
-import PageTitle from '../../reuseable/PageTitle';
+import PageTitle from '../../components/reuseable/PageTitle';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight, updateCourseName, updateWingType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight, updateCourseName, updateWingType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 
 const AddFlightType = () => {

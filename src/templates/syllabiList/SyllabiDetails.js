@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 
 // styles
-import styles from './SyllabiDetails.module.css';
+import styles from '../../styles/others/SyllabiDetails.module.css';
 
 // queries
-import { useSyllabiForLevels, useSyllabusLandingContent } from '../../../Utilities/Services/coursesQueries';
+import { useSyllabiForLevels, useSyllabusLandingContent } from '../../Utilities/Services/coursesQueries';
 
 // comps
-import PageTitle from '../../reuseable/PageTitle';
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
+import PageTitle from '../../components/reuseable/PageTitle';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
 
 

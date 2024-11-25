@@ -3,15 +3,15 @@ import dayjs from 'dayjs';
 import jalaali from 'jalaali-js';
 
 // components
-import PageTitle from '../components/reuseable/PageTitle';
+import PageTitle from '../../components/reuseable/PageTitle';
 
 // style
-import boxStyles from '../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 import { Outlet } from 'react-router-dom';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAddFlight, updateFlightDuration } from '../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight, updateFlightDuration } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 const AddFlight = () => {
 

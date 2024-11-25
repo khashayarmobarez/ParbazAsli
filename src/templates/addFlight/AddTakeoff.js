@@ -1,46 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
+import { toast } from 'react-toastify';
+
+// components
+import DropdownInput from '../../components/inputs/DropDownInput';
+
 // provider
-import { flightHourOptionData, flightTypeOptions } from '../../../Utilities/Providers/dropdownInputOptions';
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import ArrowButton from '../../../components/icons/ArrowButton'
+import ArrowButton from '../../components/icons/ArrowButton'
+import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
+import WindIcon from '../../components/icons/WindIcon'
+import WindDirectionCock from '../../components/icons/WindDirectionCock'
 
-// reactToastify
-
-import { toast } from 'react-toastify';
-
-// queries
-import { useCloudTypes, useCountries, useProvincesByCountryId , useSitesByProvinceId } from '../../../Utilities/Services/addFlightQueries';
+// provider
+import { windDirectionOptions, windSpeedUnits } from '../../Utilities/Providers/dropdownInputOptions';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateCity, updateSight,updateClouds,updateCountry } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, updateTakeOffWindUnit } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { useTakeoffTypes } from '../../Utilities/Services/addFlightQueries';
+import TimeInput from '../../components/inputs/TimeInput';
+import NumberInput from '../../components/inputs/NumberInput';
 
-// components
-import DropdownInput from '../../inputs/DropDownInput';
-import SearchInputWithDropdown from '../../inputs/SearchInputWithDropdown';
 
-const AddSituation = () => {
+const AddTakeoff = () => {
 
-    const navigate= useNavigate('')
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [submitted, setSubmitted] = useState(false);
 
-    // redux, the first line are this page datas and the second line is for checking the form to be complete
-    const { country, city, sight, clouds ,
-    wing, harness, parachute, flightType } = useSelector(selectAddFlight)
+    // redux
+    const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection, takeOffWindUnit,
+    wing, harness, parachute, country, city, sight, clouds , flightType
+    } = useSelector(selectAddFlight)
 
-    const { data: countriesData, } = useCountries()
-    const { data: provincesData, } = useProvincesByCountryId(country && country.id)
-    const { data: flightSitesData } = useSitesByProvinceId(city && city.id, country && country.id)
-    // useCloudTypes
-    const { data: cloudTypesData, } = useCloudTypes()
+    // useTakeOffTypes
+    const { data: takeOffTypesData, loading:takeOffTypesLoading, error:takeOffTypesError } = useTakeoffTypes()
 
 
     // function to start from the bottom of the page
@@ -54,7 +55,7 @@ const AddSituation = () => {
     }, []);
 
     useEffect(() => {
-        if(!wing.id || !harness.id || !parachute.id || !flightType) {
+        if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id || !flightType) {
             navigate('/addFlight/AddFlightType')
             toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -62,36 +63,30 @@ const AddSituation = () => {
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
-            });
+              });
         }
-    }, [ wing, harness, parachute, flightType , navigate])
+    }, [ wing, harness, parachute, country, city , sight , clouds , flightType , navigate, appTheme ]);
 
 
-    const handleSelectSetCountry = (selectedOption) => {
-        dispatch(updateCountry(selectedOption));
-        dispatch(updateCity(''));
-        dispatch(updateSight(''));
-    };
+    const handleTakeOffTimeChange = (newTime) => {
+        dispatch(updateTakeoffTime(newTime));
+      };
 
-    const handleSelectSetCity = (selectedOption) => {
-        dispatch(updateCity(selectedOption));
-        dispatch(updateSight(''));
-    };
+    const handleSelectSetTakeoffType = (selectedOption) => {
+        dispatch(updateTakeOfftype(selectedOption));
+      };
 
-    const handleSelectSetSight = (selectedOption) => {
-        dispatch(updateSight(selectedOption));
-    };
-
-    const handleSelectSetClouds = (selectedOption) => {
-        dispatch(updateClouds(selectedOption));
-    };
-
-
-    // flight type moved to another page
-    // const handleSelectSetFlightType = (event) => {
-    //     dispatch(updateFlightType(event.target.value));
-    //     console.log({city, sight, clouds, flightType})
+    // const handleSelectSetWindUnit = (selectedOption) => {
+    //     dispatch(updateTakeOffWindUnit(selectedOption));
     //   };
+
+    const handleSetTakeoffWindspeedChange = (event) => {
+        dispatch(updateTakeoffWindSpeed(event.target.value));
+      };
+
+    const handleSelectSetTakeoffwindDirection = (selectedOption) => {
+        dispatch(updateTakeOffWindDirection(selectedOption));
+      };
 
 
 
@@ -100,10 +95,10 @@ const AddSituation = () => {
 
     const handleNextPageButton = () => {
 
-    setSubmitted(true);
+        setSubmitted(true);
 
-    if(city && sight && clouds) {
-            navigate('/addFlight/addTakeoff')
+        if(takeoffTime && takeoffType && takeoffWindSpeed && takeoffwindDirection && takeOffWindUnit) {
+            navigate('/addFlight/AddLanding')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -111,13 +106,12 @@ const AddSituation = () => {
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
-                });
+              });
         }
 
-    };
+      };
 
 
-    
 
     
     return (
@@ -137,13 +131,13 @@ const AddSituation = () => {
 
                         <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
+                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+
+                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+
                         <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
                             <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
                         </div>
-
-                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
-
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
                         <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
@@ -159,7 +153,7 @@ const AddSituation = () => {
 
                         <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>Takeoff</p>
 
                         <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
 
@@ -167,36 +161,37 @@ const AddSituation = () => {
                     
                 </div>
 
-
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-                    {
-                        countriesData &&
-                        <DropdownInput id={'ddi1'} name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} IsEmptyAfterSubmit={submitted && !country} />
-                    }
 
-                    {
-                        provincesData && country && country.id &&
-                        <SearchInputWithDropdown
-                            options={provincesData.data}
-                            selectedOption={city}
-                            handleSelectChange={handleSelectSetCity}
-                            name="استان"
-                            IsEmptyAfterSubmit={submitted && !city}
+                    <div className='w-full flex flex-col gap-y-1'>
+                        <p className='text-xs text-start self-start'>زمان take off (ورودی ساعت ۲۴ ساعته می باشد)</p>
+                        <TimeInput
+                            value={takeoffTime}
+                            onChange={handleTakeOffTimeChange}
+                            placeholder="Select time"
                         />
-                    }
+                    </div>
+
+                    {/* <DropdownInput id={'ddi1'} name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} /> */}
 
                     {
-                        flightSitesData && city && city.id &&
-                        <DropdownInput id={'ddi2'} name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight}
-                        IsEmptyAfterSubmit={submitted && !sight} />
-                    }
+                        takeOffTypesData &&
+                        <DropdownInput id={'ddi2'} name={'شیوه'} icon={<ColorTagsIcon/>} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
+                    } 
 
-                    {
-                        flightSitesData && cloudTypesData &&
-                        <DropdownInput id={'ddi3'} name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} IsEmptyAfterSubmit={submitted && !clouds}/>
-                    }
+                    <DropdownInput id={'ddi3'} name={'جهت باد'} icon={<WindDirectionCock/>} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} IsEmptyAfterSubmit={submitted && !takeoffwindDirection} />
                     
-                    {/* <DropdownInput id={'ddi4'} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
+                    {/* <DropdownInput id={'ddi4'} name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
+
+                    <NumberInput
+                        id={'NI1'}
+                        icon={<WindIcon/>}
+                        value={takeoffWindSpeed}
+                        onChange={handleSetTakeoffWindspeedChange}
+                        placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                        IsEmptyAfterSubmit={submitted && !takeoffWindSpeed}
+                    />
+
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
@@ -222,4 +217,4 @@ const AddSituation = () => {
     );
 };
 
-export default AddSituation;
+export default AddTakeoff;

@@ -7,23 +7,21 @@ import Cookies from 'js-cookie';
 import { Box, CircularProgress } from '@mui/material';
 
 // assets
-import ArrowButton from '../../../components/icons/ArrowButton'
-import WingIcon from '../../../components/icons/WingIcon'
-import HarnessIcon from '../../../components/icons/HarnessIcon'
-import ParachuteIcon from '../../../components/icons/ParachuteIcon'
+import ArrowButton from '../../components/icons/ArrowButton'
+import WingIcon from '../../components/icons/WingIcon'
+import HarnessIcon from '../../components/icons/HarnessIcon'
+import ParachuteIcon from '../../components/icons/ParachuteIcon'
 
 // queries
-import { useUserEquipmentsForDropDown } from '../../../Utilities/Services/equipmentQueries';
+import { useUserEquipmentsForDropDown } from '../../Utilities/Services/equipmentQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight, updatePassengerHarness } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateWing, updateHarness, updateParachute } from '../../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight, updatePassengerHarness } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateWing, updateHarness, updateParachute } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // components
-import DropdownInputForEquipment from './Components/DropDownInputForEquipment';
-import DropdownInput from '../../inputs/DropDownInput';
-import CustomDropdownInput from '../../inputs/DropDownInput';
+import DropdownInput from '../../components/inputs/DropDownInput';
 
 
 const AddUsedEquipment = () => {
