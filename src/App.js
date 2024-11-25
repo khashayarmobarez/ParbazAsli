@@ -73,11 +73,11 @@ import CourseStudents from './templates/education/CourseDetailPages/CourseStuden
 import CourseClasses from './templates/education/CourseDetailPages/CourseClasses';
 import CourseSyllabi from './templates/education/CourseDetailPages/CourseSyllabi';
 import AddClass from './templates/education/CourseDetailPages/AddClass';
-import MyCourses from './templates/MyCourses';
-import MyCourseDetails from './components/pages/MyCourses/MyCourseDetails';
-import PracticalMyCourse from './components/pages/MyCourses/MyCourseDetailPages/PracticalMyCourse';
-import TheoryMyCourse from './components/pages/MyCourses/MyCourseDetailPages/TheoryMyCourse';
-import MySyllabiMyCourse from './components/pages/MyCourses/MyCourseDetailPages/MySyllabiMyCourse';
+import MyCourses from './templates/myCourses/MyCourses';
+import MyCourseDetails from './templates/myCourses/MyCourseDetails';
+import PracticalMyCourse from './templates/myCourses/PracticalMyCourse';
+import TheoryMyCourse from './templates/myCourses/TheoryMyCourse';
+import MySyllabiMyCourse from './templates/myCourses/MySyllabiMyCourse';
 import AddFlightType from './components/pages/AddFlight/AddFlightType';
 import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
 import ClubCoaches from './components/pages/Club/ClubCoaches';
@@ -105,16 +105,16 @@ import ClubCourseStudentDetails from './components/pages/Club/clubCourseStudentD
 import ClubCourseStudentPracticalDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentPracticalDetails';
 import ClubCourseStudentTheoryDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentTheoryDetails';
 import ClubCourseStudentSyllabiDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentSyllabiDetails';
-import ClubCourseStudentAFlightDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentAFlightDetails';
+import ClubCourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import CourseStudentDetails from './templates/education/studentList/CourseStudentDetails';
 import CourseStudentPracticalDetails from './templates/education/studentList/CourseStudentPracticalDetails';
 import CourseStudentTheoryDetails from './templates/education/studentList/CourseStudentTheoryDetails';
 import CourseStudentSyllabiDetails from './templates/education/studentList/CourseStudentSyllabiDetails';
-import CourseStudentAFlightDetails from './components/pages/Education/courseStudentDetails/CourseStudentAFlightDetails';
+import CourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
-import StudentsList from './components/pages/Education/studentsList/StudentsList';
+import StudentsList from './templates/education/studentList/StudentsList';
 import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
-import AStudentCourses from './components/pages/Education/studentsList/AStudentCourses';
+import AStudentCourses from './templates/education/studentList/AStudentCourses';
 import AStudentClubCourses from './components/pages/Club/clubCourses/studentsListClub/AStudentClubCourses';
 
 

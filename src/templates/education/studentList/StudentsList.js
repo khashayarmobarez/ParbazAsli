@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PageTitle from '../../../reuseable/PageTitle';
-import { useAllStudents, useCourseCounts } from '../../../../Utilities/Services/coursesQueries';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import { useAllStudents, useCourseCounts } from '../../../Utilities/Services/coursesQueries';
 import { useParams } from 'react-router-dom';
-import ArrowButton from '../../../../components/icons/ArrowButton';
-import CircularProgressLoader from '../../../Loader/CircularProgressLoader';
-import ACourseStudentBox from '../../../reuseable/ACourseStudentBox';
+import ArrowButton from '../../../components/icons/ArrowButton';
+import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
+import ACourseStudentBox from '../../../components/reuseable/ACourseStudentBox';
 
 const StudentsList = () => {
 

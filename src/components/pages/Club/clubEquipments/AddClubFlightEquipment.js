@@ -286,6 +286,7 @@ const AddClubFlightEquipment = () => {
                       <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                       
                         {/* brand input / custom brand input */}
+                        {/* the reason this input is diffrent from the normal dropdown input, is the custom brand input option */}
                         <BrandsSearchInputWithDropdown
                             showCustomBrandInput={showCustomBrandInput}
                             setShowCustomBrandInput={setShowCustomBrandInput}

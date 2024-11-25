@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // styles
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useUserCourseClasses } from '../../../../Utilities/Services/StudentCoursesQueries';
+import { useUserCourseClasses } from '../../Utilities/Services/StudentCoursesQueries';
 
 // components
-import ClassesBoxMyCourses from '../MyComponents/ClassesBoxMyCourses';
+import ClassesBoxMyCourses from '../../components/pages/MyCourses/MyComponents/ClassesBoxMyCourses';
+
 
 const TheoryMyCourse = () => {
 
     const { id } = useParams();
 
-    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useUserCourseClasses(id);
+    const {  data: classesData, isLoading: classesDataLoading } = useUserCourseClasses(id);
 
 
     return (

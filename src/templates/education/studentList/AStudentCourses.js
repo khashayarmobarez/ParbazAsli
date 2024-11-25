@@ -3,22 +3,22 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // queries
-import { useAStudentCourses } from '../../../../Utilities/Services/coursesQueries';
+import { useAStudentCourses } from '../../../Utilities/Services/coursesQueries';
 
 // comps
-import PageTitle from '../../../reuseable/PageTitle';
+import PageTitle from '../../../components/reuseable/PageTitle';
 
 // styles
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import ArrowButton from '../../../../components/icons/ArrowButton';
+import ArrowButton from '../../../components/icons/ArrowButton';
 
 // mui
 import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
-import Attention from '../../../icons/Attention';
+import Attention from '../../../components/icons/Attention';
 
 const AStudentCourses = () => {
     const { studentId } = useParams();

@@ -5,16 +5,16 @@ import { useParams } from 'react-router-dom';
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useAUserCourseSyllabi } from '../../../../Utilities/Services/StudentCoursesQueries';
+import { useAUserCourseSyllabi } from '../../Utilities/Services/StudentCoursesQueries';
 
 // components
-import DropDownSyllabiData from '../MyComponents/DropDownSyllabiData';
+import DropDownSyllabiData from '../../components/pages/MyCourses/MyComponents/DropDownSyllabiData';
 
 const MySyllabiMyCourse = () => {
 
     const { id } = useParams();
 
-    const {  data: syllabiData, isLoading: syllabiDataLoading, error: syllabiDataError } = useAUserCourseSyllabi(id);
+    const {  data: syllabiData, isLoading: syllabiDataLoading } = useAUserCourseSyllabi(id);
 
 
     return (

@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useUserFlights } from '../../../../Utilities/Services/flightHistoriesQueries';
+import { useUserFlights } from '../../Utilities/Services/flightHistoriesQueries';
 
 // components
-import PracticalFlightHistoryBox from '../../FlightHistory/PracticalFlightHistoryBox';
+import PracticalFlightHistoryBox from '../../components/pages/FlightHistory/PracticalFlightHistoryBox';
 
 const PracticalMyCourse = () => {
 

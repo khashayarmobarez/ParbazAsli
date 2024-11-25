@@ -11,7 +11,7 @@ import { Box, CircularProgress } from '@mui/material';
 import { useCourseStudentClasses } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import ClubCourseClassesBoxMyCourses from '../../../components/pages/Education/courseStudentDetails/comps/CourseClassesBoxMyCourses';
+import CourseClassesBoxMyCourses from '../../../components/pages/Education/courseStudentDetails/CourseClassesBoxMyCourses';
 
 const CourseStudentTheoryDetails = () => {
 
@@ -57,7 +57,7 @@ const CourseStudentTheoryDetails = () => {
 
                 {
                     classesData.data.classes.map((classData) => {
-                    return <ClubCourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    return <CourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
 

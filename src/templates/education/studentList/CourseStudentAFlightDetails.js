@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // styles
-import boxStyles from '../../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useCourseStudentFlight } from '../../../../Utilities/Services/coursesQueries';
+import { useCourseStudentFlight } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import PageTitle from '../../../reuseable/PageTitle';
-import DropDownLine from '../../../reuseable/DropDownLine';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import DropDownLine from '../../../components/reuseable/DropDownLine';
 
 const CourseStudentAFlightDetails = () => {
     

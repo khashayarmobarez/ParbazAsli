@@ -9,21 +9,21 @@ import Box from '@mui/material/Box';
 import { LinearProgress } from '@mui/material';
 
 // assets
-import Attention from '../components/icons/Attention'
-import ArrowButton from '../components/icons/ArrowButton';
+import Attention from '../../components/icons/Attention'
+import ArrowButton from '../../components/icons/ArrowButton';
 
 // styles
-import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // queries
-import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../Utilities/Services/StudentCoursesQueries';
-import { useTriggerCourseStatus } from '../Utilities/Services/coursesQueries';
+import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../../Utilities/Services/StudentCoursesQueries';
+import { useTriggerCourseStatus } from '../../Utilities/Services/coursesQueries';
 
 // components 
-import PageTitle from '../components/reuseable/PageTitle';
-import DropDownLine from '../components/reuseable/DropDownLine';
-import CircularProgressLoader from '../components/Loader/CircularProgressLoader';
+import PageTitle from '../../components/reuseable/PageTitle';
+import DropDownLine from '../../components/reuseable/DropDownLine';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
 
 
