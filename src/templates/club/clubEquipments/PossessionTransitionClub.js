@@ -21,7 +21,7 @@ import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 // comps
 import PageTitle from '../../../components/reuseable/PageTitle';
 import TextInput from '../../../components/inputs/textInput';
-import DateLastRepackInput from '../../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../../modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
 

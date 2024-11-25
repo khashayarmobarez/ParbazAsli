@@ -11,7 +11,7 @@ import { Box, CircularProgress } from '@mui/material';
 import { useCourseStudentClasses } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import CourseClassesBoxMyCourses from '../../../components/modules/Education/courseStudentDetails/CourseClassesBoxMyCourses';
+import CourseClassesBoxMyCourses from '../../../modules/Education/courseStudentDetails/CourseClassesBoxMyCourses';
 
 const CourseStudentTheoryDetails = () => {
 

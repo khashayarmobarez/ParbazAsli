@@ -9,7 +9,7 @@ import { useGetClubCourseStudentSyllabi } from '../../../Utilities/Services/club
 
 
 // components
-import DropDownSyllabiData from '../../../components/modules/MyCourses/DropDownSyllabiData';
+import DropDownSyllabiData from '../../../modules/MyCourses/DropDownSyllabiData';
 
 const ClubCourseStudentSyllabiDetails = () => {
 

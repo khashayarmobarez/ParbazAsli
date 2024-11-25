@@ -12,7 +12,7 @@ import ArrowButton from '../../components/icons/ArrowButton';
 import AddIcon from '@mui/icons-material/Add';
 
 // components
-import Certificate from '../../components/modules/Settings/Certificate';
+import Certificate from '../../modules/Settings/Certificate';
 
 
 const ChangeCertificate = () => {

@@ -8,7 +8,7 @@ import dataBox from '../../../styles/Boxes/DataBox.module.css'
 import { useGetClubCourseClasses } from '../../../Utilities/Services/clubQueries';
 
 // components
-import ClubCourseClassBox from '../../../components/modules/Club/clubCourses/components/ClubCourseClassBox';
+import ClubCourseClassBox from '../../../modules/Club/clubCourses/components/ClubCourseClassBox';
 
 const ClubCourseClasses = () => {
     

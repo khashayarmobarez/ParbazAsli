@@ -12,7 +12,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import { useACourseClasses } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import ClassesBoxCourses from '../../../components/modules/Education/ClassesBoxCourses';
+import ClassesBoxCourses from '../../../modules/Education/ClassesBoxCourses';
 
 const CourseClasses = () => {
 

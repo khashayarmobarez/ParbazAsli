@@ -14,9 +14,9 @@ import { postIsUserAuthenticated } from '../../Utilities/Services/Authentication
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // compponents
-import EmailInputSignup from '../../components/modules/authentication/Inputs/EmailInputSignUp';
-import PhoneVerificationCode from '../../components/modules/authentication/popUps/PhoneVerificationCode';
-import UserDataBox from '../../components/modules/Profile/UserDataBox';
+import EmailInputSignup from '../../modules/authentication/Inputs/EmailInputSignUp';
+import PhoneVerificationCode from '../../modules/authentication/popUps/PhoneVerificationCode';
+import UserDataBox from '../../modules/Profile/UserDataBox';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 

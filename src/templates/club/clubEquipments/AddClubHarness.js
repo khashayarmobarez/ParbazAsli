@@ -32,7 +32,7 @@ import UploadFileInput from '../../../components/inputs/UploadFileInput';
 // input options
 import PageTitle from '../../../components/reuseable/PageTitle';
 import NumberInput from '../../../components/inputs/NumberInput';
-import BrandsSearchInputWithDropdown from '../../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import BrandsSearchInputWithDropdown from '../../../modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
 const AddClubHarness = () => {

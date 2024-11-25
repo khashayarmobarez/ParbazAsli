@@ -14,9 +14,9 @@ import UserIcon from '../components/icons/UserIcon'
 // components
 import PageTitle from '../components/reuseable/PageTitle';
 import DropDownLine from '../components/reuseable/DropDownLine';
-import WebColorMode from '../components/modules/Settings/WebColorMode';
-import EditUserSettings from '../components/modules/Settings/EditUserSettings';
-import CertificateSettings from '../components/modules/Settings/CertificateSettings';
+import WebColorMode from '../modules/Settings/WebColorMode';
+import EditUserSettings from '../modules/Settings/EditUserSettings';
+import CertificateSettings from '../modules/Settings/CertificateSettings';
 // import AddClub from '../components/modules/Club/AddClub';
 
 

@@ -34,7 +34,7 @@ import { flightTypeOptions, flightStatusOptions } from '../../Utilities/Provider
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
 import DropdownInput from '../../components/inputs/DropDownInput';
-import DateLastRepackInput from '../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 import SearchInputWithDropdown from '../../components/inputs/SearchInputWithDropdown';
 

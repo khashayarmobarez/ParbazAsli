@@ -16,7 +16,7 @@ import { useAddCoachToClub, useGetClubCoaches, useGetClubCoachesHistory } from '
 
 // components
 import DropDownLine from '../../../components/reuseable/DropDownLine';
-import ClubCoachBox from '../../../components/modules/Club/ClubCoachBox';
+import ClubCoachBox from '../../../modules/Club/ClubCoachBox';
 import TextInput from '../../../components/inputs/textInput';
 import PageTitle from '../../../components/reuseable/PageTitle';
 

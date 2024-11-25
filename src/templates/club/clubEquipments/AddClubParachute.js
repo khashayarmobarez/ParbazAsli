@@ -33,9 +33,9 @@ import UserIcon from '../../../components/icons/UserIcon'
 import TextInput from '../../../components/inputs/textInput';
 import UploadFileInput from '../../../components/inputs/UploadFileInput';
 import PageTitle from '../../../components/reuseable/PageTitle';
-import DateLastRepackInput from '../../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../../modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import NumberInput from '../../../components/inputs/NumberInput';
-import BrandsSearchInputWithDropdown from '../../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import BrandsSearchInputWithDropdown from '../../../modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
 import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
 

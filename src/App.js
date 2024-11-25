@@ -65,7 +65,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Student components 
   import Settings from './templates/Settings';
   import Notifications from './templates/notifications/Notifications';
-  import RenewCertificate from './components/modules/Settings/RenewCertificate';
+  import RenewCertificate from './modules/Settings/RenewCertificate';
 import EditEquipment from './templates/equipments/EditEquipment';
 import PossessionTransitionEquipment from './templates/equipments/PossessionTransitionEquipment';
 import CourseDetails from './templates/education/CourseDetails';

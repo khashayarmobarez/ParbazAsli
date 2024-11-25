@@ -21,8 +21,8 @@ import { useUserFlights } from '../../Utilities/Services/flightHistoriesQueries'
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
-import PracticalFlightHistoryBox from '../../components/modules/FlightHistory/PracticalFlightHistoryBox';
-import FilterVariables from '../../components/modules/FlightHistory/FilterVariables';
+import PracticalFlightHistoryBox from '../../modules/FlightHistory/PracticalFlightHistoryBox';
+import FilterVariables from '../../modules/FlightHistory/FilterVariables';
 
 const FlightHistory = () => {
 

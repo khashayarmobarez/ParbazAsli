@@ -9,14 +9,14 @@ import ArrowButton from '../../components/icons/ArrowButton';
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
-import NotifVersionStudentFlightForm from '../../components/modules/Notifications/NotifVersionStudentFlightForm';
-import NotifAcceptClub from '../../components/modules/Notifications/NotifAcceptClub';
-import NotifAcceptCourse from '../../components/modules/Notifications/NotifAcceptCourse';
-import NotifAcceptStudent from '../../components/modules/Notifications/NotifAcceptStudent';
-import RegularTextNotif from '../../components/modules/Notifications/RegularTextNotif';
-import NotifTandemPassengerSurvey from '../../components/modules/Notifications/NotifTandemPassengerSurvey';
-import PopupForNotif from '../../components/modules/Notifications/PopupForNotif';
-import NotifAcceptEquipment from '../../components/modules/Notifications/NotifAcceptEquipment';
+import NotifVersionStudentFlightForm from '../../modules/Notifications/NotifVersionStudentFlightForm';
+import NotifAcceptClub from '../../modules/Notifications/NotifAcceptClub';
+import NotifAcceptCourse from '../../modules/Notifications/NotifAcceptCourse';
+import NotifAcceptStudent from '../../modules/Notifications/NotifAcceptStudent';
+import RegularTextNotif from '../../modules/Notifications/RegularTextNotif';
+import NotifTandemPassengerSurvey from '../../modules/Notifications/NotifTandemPassengerSurvey';
+import PopupForNotif from '../../modules/Notifications/PopupForNotif';
+import NotifAcceptEquipment from '../../modules/Notifications/NotifAcceptEquipment';
 import Attention from '../../components/icons/Attention';
 
 

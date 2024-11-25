@@ -15,11 +15,11 @@ import { useUserEquipments } from '../../Utilities/Services/equipmentQueries';
 
 
 // components
-import ClubData from '../../components/modules/Club/ClubData';
-import AddClub from '../../components/modules/Club/AddClub';
-import PendingClubSubmission from '../../components/modules/Club/PendingClubSubmission';
+import ClubData from '../../modules/Club/ClubData';
+import AddClub from '../../modules/Club/AddClub';
+import PendingClubSubmission from '../../modules/Club/PendingClubSubmission';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import ParachutesSwiperSlider from '../../components/modules/Profile/ParachutesSwiperSlider';
+import ParachutesSwiperSlider from '../../modules/Profile/ParachutesSwiperSlider';
 // import ClubMemberCoach from '../components/modules/Club/ClubMemberCoach';
 // import StudentClubs from '../components/modules/Club/StudentClubs';
 

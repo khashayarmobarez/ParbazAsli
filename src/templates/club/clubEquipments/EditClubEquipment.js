@@ -24,7 +24,7 @@ import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
 
 // comps
 import PageTitle from '../../../components/reuseable/PageTitle';
-import DateLastRepackInput from '../../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../../modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import TextInput from '../../../components/inputs/textInput';
 import UploadFileInput from '../../../components/inputs/UploadFileInput';
 import DigilogbookLoading from '../../../components/Loader/DigilogbookLoading';

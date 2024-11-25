@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // components
-import UserDataBox from '../../components/modules/Profile/UserDataBox';
+import UserDataBox from '../../modules/Profile/UserDataBox';
 
 const AdminPending = () => {
 
