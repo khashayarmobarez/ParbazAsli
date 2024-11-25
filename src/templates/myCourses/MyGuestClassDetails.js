@@ -2,15 +2,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // queries
-import { useAGuestUserClass } from '../../../Utilities/Services/StudentCoursesQueries';
+import { useAGuestUserClass } from '../../Utilities/Services/StudentCoursesQueries';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // comps
-import CircularProgressLoader from '../../Loader/CircularProgressLoader';
-import PageTitle from '../../reuseable/PageTitle';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import PageTitle from '../../components/reuseable/PageTitle';
 
 const MyGuestClassDetails = () => {
 

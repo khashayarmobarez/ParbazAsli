@@ -8,7 +8,7 @@ import { Box, CircularProgress } from '@mui/material';
 import { useAUserCourseSyllabi } from '../../Utilities/Services/StudentCoursesQueries';
 
 // components
-import DropDownSyllabiData from '../../components/pages/MyCourses/MyComponents/DropDownSyllabiData';
+import DropDownSyllabiData from '../../components/pages/MyCourses/DropDownSyllabiData';
 
 const MySyllabiMyCourse = () => {
 

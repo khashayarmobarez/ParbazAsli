@@ -100,7 +100,7 @@ import ClubCourseDetails from './components/pages/Club/clubCourses/ClubCourseDet
 import ClubCourseStudents from './components/pages/Club/clubCourses/ClubCourseStudents';
 import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseClasses';
 import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
-import MyGuestClassDetails from './components/pages/MyCourses/MyGuestClassDetails';
+import MyGuestClassDetails from './templates/myCourses/MyGuestClassDetails';
 import ClubCourseStudentDetails from './components/pages/Club/clubCourseStudentDetails/ClubStudentDetails';
 import ClubCourseStudentPracticalDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentPracticalDetails';
 import ClubCourseStudentTheoryDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentTheoryDetails';
