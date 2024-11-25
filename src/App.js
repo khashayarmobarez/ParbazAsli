@@ -20,7 +20,7 @@ import useAppModeEffect from './Utilities/Hooks/useAppModeEffect';
 import { useTheme } from './Utilities/Hooks/useTheme';
 
 // redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice';
 
 // react toastify
@@ -47,7 +47,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // education
   import Education from './templates/education/Education';
   import AddCourse from './templates/education/AddCourse';
-  import StudentDetails from './components/pages/Education/StudentDetails';
+  import StudentDetails from './templates/education/studentList/StudentDetails';
   import ApproveStudentFlight from './templates/notifications/ApproveStudentFlight';
   import Syllabuses from './templates/notifications/Syllabuses';
   import FlightHistory from './templates/FlightHistory';
@@ -106,10 +106,10 @@ import ClubCourseStudentPracticalDetails from './components/pages/Club/clubCours
 import ClubCourseStudentTheoryDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentTheoryDetails';
 import ClubCourseStudentSyllabiDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentSyllabiDetails';
 import ClubCourseStudentAFlightDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentAFlightDetails';
-import CourseStudentDetails from './components/pages/Education/courseStudentDetails/CourseStudentDetails';
-import CourseStudentPracticalDetails from './components/pages/Education/courseStudentDetails/CourseStudentPracticalDetails';
-import CourseStudentTheoryDetails from './components/pages/Education/courseStudentDetails/CourseStudentTheoryDetails';
-import CourseStudentSyllabiDetails from './components/pages/Education/courseStudentDetails/CourseStudentSyllabiDetails';
+import CourseStudentDetails from './templates/education/studentList/CourseStudentDetails';
+import CourseStudentPracticalDetails from './templates/education/studentList/CourseStudentPracticalDetails';
+import CourseStudentTheoryDetails from './templates/education/studentList/CourseStudentTheoryDetails';
+import CourseStudentSyllabiDetails from './templates/education/studentList/CourseStudentSyllabiDetails';
 import CourseStudentAFlightDetails from './components/pages/Education/courseStudentDetails/CourseStudentAFlightDetails';
 import SyllabiDetails from './components/pages/SyllabiList/SyllabiDetails';
 import StudentsList from './components/pages/Education/studentsList/StudentsList';

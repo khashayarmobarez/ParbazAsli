@@ -5,11 +5,11 @@ import { useParams } from 'react-router-dom';
 import { Box, CircularProgress } from '@mui/material';
 
 // queries  
-import { useGetStudentSyllabi } from '../../../../Utilities/Services/coursesQueries';
+import { useGetStudentSyllabi } from '../../../Utilities/Services/coursesQueries';
 
 
 // components
-import DropDownSyllabiData from '../../MyCourses/MyComponents/DropDownSyllabiData';
+import DropDownSyllabiData from '../../../components/pages/MyCourses/MyComponents/DropDownSyllabiData';
 
 const CourseStudentSyllabiDetails = () => {
 

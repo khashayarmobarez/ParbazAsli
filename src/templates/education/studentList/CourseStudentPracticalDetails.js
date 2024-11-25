@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom';
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useCourseStudentFlights } from '../../../../Utilities/Services/coursesQueries';
+import { useCourseStudentFlights } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import PracticalFlightHistoryBox from '../../FlightHistory/PracticalFlightHistoryBox';
+import PracticalFlightHistoryBox from '../../../components/pages/FlightHistory/PracticalFlightHistoryBox';
 
 const CourseStudentPracticalDetails = () => {
 

@@ -8,14 +8,14 @@ import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 
 // styles
-import ButtonStyles from '../../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import ClockIcon from '../../../../components/icons/ClockIcon';
-import FlightQuantity from '../../../../components/icons/FlightQuantity';
-import ArrowButton from '../../../../components/icons/ArrowButton';
-import UserIcon from '../../../../components/icons/UserIcon';
-import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../../Utilities/Services/coursesQueries';
+import ClockIcon from '../../../components/icons/ClockIcon';
+import FlightQuantity from '../../../components/icons/FlightQuantity';
+import ArrowButton from '../../../components/icons/ArrowButton';
+import UserIcon from '../../../components/icons/UserIcon';
+import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../Utilities/Services/coursesQueries';
 
 const CourseStudentDetails = () => {
 
