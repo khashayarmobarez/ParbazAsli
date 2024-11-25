@@ -8,7 +8,7 @@ import { Box, CircularProgress } from '@mui/material';
 import { useCourseStudentFlights } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import PracticalFlightHistoryBox from '../../../components/pages/FlightHistory/PracticalFlightHistoryBox';
+import PracticalFlightHistoryBox from '../../../components/modules/FlightHistory/PracticalFlightHistoryBox';
 
 const CourseStudentPracticalDetails = () => {
 

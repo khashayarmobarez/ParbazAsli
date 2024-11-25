@@ -6,40 +6,41 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 // Queries and api
-import { useEquipmentBrands } from '../../Utilities/Services/dataQueries';
-import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
+import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import Cube from '../../components/icons/ThreeDCube'
-import ClothesTag from '../../components/icons/ClothesTag'
-import CalenderIcon from '../../components/icons/CalenderIcon'
-import ClockIcon from '../../components/icons/ClockIcon'
-import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
+import Cube from '../../../components/icons/ThreeDCube'
+import ClothesTag from '../../../components/icons/ClothesTag'
+import CalenderIcon from '../../../components/icons/CalenderIcon'
+import ClockIcon from '../../../components/icons/ClockIcon'
+import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
 
 
 // components
-import TextInput from '../../components/inputs/textInput';
-import UploadFileInput from '../../components/inputs/UploadFileInput';
+import DropdownInput from '../../../components/inputs/DropDownInput';
+import TextInput from '../../../components/inputs/textInput';
+import UploadFileInput from '../../../components/inputs/UploadFileInput';
 
 // input options
-import PageTitle from '../../components/reuseable/PageTitle';
-import NumberInput from '../../components/inputs/NumberInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from '../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import NumberInput from '../../../components/inputs/NumberInput';
+import BrandsSearchInputWithDropdown from '../../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
-const AddHarness = () => {
+const AddClubHarness = () => {
+
+  const appTheme = Cookies.get('themeApplied') || 'dark';
 
   //going a page back function
   const navigate = useNavigate();
-
-  const appTheme = Cookies.get('themeApplied') || 'dark';
 
   const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('harness');
 
@@ -58,13 +59,13 @@ const AddHarness = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [serialNumber, setSerialNumber] = useState('');
   const [year, setYear] = useState('');
-  
+
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
 
-  const [submitted, setSubmitted] = useState(false);
   
-  // Clear selected file if serial number is empty
+  const [submitted, setSubmitted] = useState(false);
+
   useEffect(() => {
     if(serialNumber.length < 1) {
       setSelectedFile(null);
@@ -73,12 +74,6 @@ const AddHarness = () => {
 
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
-
-  useEffect(() => {
-    if(serialNumber.length < 1) {
-      setSelectedFile(null);
-    }
-  }, [serialNumber])
 
   // Validation functions
   const validateSerialNumber = (serialNumber) => {
@@ -100,7 +95,7 @@ const AddHarness = () => {
   const handleCustomBrand = (event) => {
     setCustomBrand(event.target.value);
     setBrand('');
-  };
+};
 
   const handleAircraftChange = (event) => {
     setAircraft(event.target.value);
@@ -134,17 +129,6 @@ const AddHarness = () => {
       // Here you can handle form submission, such as sending data to a backend server
       const isSerialNumberValid = validateSerialNumber(serialNumber);
 
-      if (!(brand || customBrand) || !aircraft || !size || !flightHour || !year) {
-          toast('تمامی فیلدها را پر کنید', {
-              type: 'error',
-              position: 'top-right',
-              autoClose: 5000,
-              theme: appTheme,
-              style: { width: "90%" }
-          });
-          return;
-      }
-
       // Validate inputs
       if (!isSerialNumberValid) {
         toast('فرمت شماره سریال چتر اشتباه است', {
@@ -159,6 +143,17 @@ const AddHarness = () => {
 
       if (year <= 1979 || year > currentYear) {
           toast('سال تولید چتر را درست وارد کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: appTheme,
+              style: { width: "90%" }
+          });
+          return;
+      }
+
+      if (!(brand || customBrand) || !aircraft || !size || !flightHour || !year) {
+          toast('تمامی فیلدها را پر کنید', {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
@@ -200,6 +195,7 @@ const AddHarness = () => {
         formData.append('Size', size);
         formData.append('flightHours', flightHour);
         formData.append('year', year);
+        formData.append('isForClub', true);
 
         console.log(formData)
         console.log('submitting')
@@ -214,7 +210,7 @@ const AddHarness = () => {
               style: { width: "90%" }
             });
             setShowPopup(false);
-            navigate('/equipment/harness')
+            navigate('/club/clubEquipment/harnesses')
           }
         })
       
@@ -242,8 +238,9 @@ const AddHarness = () => {
 
             <PageTitle title={'افزودن هارنس'}  />
 
-            {brandsIsLoading &&
-              <CircularProgressLoader/>
+            {
+              brandsIsLoading &&
+              <CircularProgressLoader /> 
             }
 
             {
@@ -267,33 +264,28 @@ const AddHarness = () => {
                         handleSelectChange={handleBrandChange}
                         name={'برند'}
                         icon={<ClothesTag/>}
-                        IsEmptyAfterSubmit={submitted && !brand}
+                        IsEmptyAfterSubmit={submitted && !brand} 
                     />
 
                     {/* show custom brand input */}
                     {
                       showCustomBrandInput &&
-                        <TextInput 
-                          id={'TI1'}
-                          value={customBrand} 
-                          onChange={handleCustomBrand} 
-                          placeholder='نام برند خود را وارد کنید' 
-                        />
+                        <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !customBrand}  />
                     }
                     
-                    <TextInput id={'TI2'} placeholder='نام مدل' icon={<ClothesTag/>} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}  />
+                    <TextInput id={'TI2'} placeholder='نام مدل' icon={<ClothesTag/>} value={aircraft} onChange={handleAircraftChange} IsEmptyAfterSubmit={submitted && !aircraft}   />
 
                     {/* size input */}
-                    <TextInput id={'TI3'} icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size} />
+                    <TextInput id={'TI3'} icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size}  />
 
                     {/* Flight hour input */}
-                    <NumberInput icon={<ClockIcon/>} id={1} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                    <NumberInput id={'NI1'} icon={<ClockIcon/>} id={1} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
 
                     {/* Year input */}
                     <NumberInput
-                      id={'NI2'}
                       icon={<CalenderIcon/>}
                       className='col-span-1'
+                      id={'NI2'}
                       value={year}
                       onChange={handleTextInputYear}
                       placeholder='سال ساخت (میلادی)'
@@ -304,9 +296,11 @@ const AddHarness = () => {
 
                   <div className='w-full flex flex-col text-start gap-y-1'>
                     <p className=' self-start md:self-center text-textDefault'>ثبت سریال هارنس (اختیاری)</p>
-                    <p className=' text-xs self-start text-start '>با پرکردن این فیلد و سینک کردن سریال هارنس به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                    <p className=' text-xs text-right'>
+                      با پرکردن این فیلد و سینک کردن سریال هارنس به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
                       <br/>
-                    در صورت مفقودی هارنس ما را از طریق تیکت مطلع سازید.</p>
+                      در صورت مفقودی هارنس ما را از طریق تیکت مطلع سازید.
+                    </p>
                   </div>
 
                   {/* Serial number input */}
@@ -321,16 +315,14 @@ const AddHarness = () => {
 
                   {/* for uploading pictures */}
                   {
-                        serialNumber.length > 0 &&
-                        <>
-                          <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                          <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
-                        </>
+                    serialNumber.length > 0 &&
+                      <div className='w-full flex flex-col items-start space-y-3'>
+                        <UploadFileInput name={'هارنس'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                        <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
+                      </div>
                   }
-                  
 
-                  <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-2`} >ثبت</button>
-                  
+                  <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `} >ثبت</button>
                 </form>
               </>
             }
@@ -367,4 +359,4 @@ const AddHarness = () => {
     );
 };
 
-export default AddHarness;
+export default AddClubHarness;

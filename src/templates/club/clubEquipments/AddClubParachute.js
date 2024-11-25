@@ -3,16 +3,16 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // queries and api
-import { useEquipmentBrands } from '../../Utilities/Services/dataQueries';
-import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
-import { useUserById } from '../../Utilities/Services/queries';
+import { useEquipmentBrands } from '../../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../../Utilities/Services/queries';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // utilities
-import useDateFormat from '../../Utilities/Hooks/useDateFormat';
+import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
@@ -22,31 +22,31 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import Cube from '../../components/icons/ThreeDCube'
-import ClothesTag from '../../components/icons/ClothesTag'
-import CalenderIcon from '../../components/icons/CalenderIcon'
-import ClockIcon from '../../components/icons/ClockIcon'
-import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
-import UserIcon from '../../components/icons/UserIcon'
+import Cube from '../../../components/icons/ThreeDCube'
+import ClothesTag from '../../../components/icons/ClothesTag'
+import CalenderIcon from '../../../components/icons/CalenderIcon'
+import ClockIcon from '../../../components/icons/ClockIcon'
+import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
+import UserIcon from '../../../components/icons/UserIcon'
 
 // components 
-import TextInput from '../../components/inputs/textInput';
-import UploadFileInput from '../../components/inputs/UploadFileInput';
-import PageTitle from '../../components/reuseable/PageTitle';
-import DateLastRepackInput from '../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
-import NumberInput from '../../components/inputs/NumberInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from '../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import TextInput from '../../../components/inputs/textInput';
+import UploadFileInput from '../../../components/inputs/UploadFileInput';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import DateLastRepackInput from '../../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import NumberInput from '../../../components/inputs/NumberInput';
+import BrandsSearchInputWithDropdown from '../../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
 
 const AddParachute = () => {
+
+  const appTheme = Cookies.get('themeApplied') || 'dark';
   
   const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands('parachute');
-
+  
   const { mutate: mutateParachute , isLoading: isSubmitting, error: submitError} = useAddEquipment();
   
-  const appTheme = Cookies.get('themeApplied') || 'dark';
-
   //going a page back function
   const navigate = useNavigate();
 
@@ -82,18 +82,16 @@ const AddParachute = () => {
   const [packerIdError, setPackerIdError] = useState('');
 
   const [submitted, setSubmitted] = useState(false);
-  
-  // Clear selected file if serial number is empty
+
   useEffect(() => {
     if(serialNumber.length < 1) {
       setSelectedFile(null);
     }
   }, [serialNumber])
-
+  
   // Regex patterns
   const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
   const userIdPattern = /^[0-9]{3}[a-z]{3}$/;
-
 
   // Validation functions
   const validateSerialNumber = (serialNumber) => {
@@ -190,22 +188,11 @@ const AddParachute = () => {
   // Event handler for form submission
   const handlePopUp = (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitted(true)
     const currentYear = new Date().getFullYear();
 
     const isSerialNumberValid = validateSerialNumber(serialNumber);
     const isPackerIdValid = validatePackerId(lastPackerId);
-    
-    if (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year) {
-      toast('تمامی فیلدهای الزامی را پر کنید', {
-          type: 'error',
-          position: 'top-right',
-          autoClose: 5000,
-          theme: appTheme,
-          style: { width: "90%" }
-      });
-      return;
-    }
     
     // Validate inputs
     if (serialNumber && !isSerialNumberValid) {
@@ -218,7 +205,7 @@ const AddParachute = () => {
       });
       return;
     }
-    
+
     if (lastPackerId && !isPackerIdValid) {
       toast('فرمت کد بسته بندی کننده اشتباه است', {
           type: 'error',
@@ -241,6 +228,16 @@ const AddParachute = () => {
       return;
     }
 
+    if (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year) {
+      toast('تمامی فیلدهای الزامی را پر کنید', {
+          type: 'error',
+          position: 'top-right',
+          autoClose: 5000,
+          theme: appTheme,
+          style: { width: "90%" }
+      });
+      return;
+    }
 
     if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
       toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
@@ -280,6 +277,7 @@ const AddParachute = () => {
         formData.append('lastPackerId', lastPackerId);
         formData.append('flightHours', flightHour);
         formData.append('year', year);
+        formData.append('isForClub', true);
 
         console.log(formData)
         console.log('submitting')
@@ -294,7 +292,7 @@ const AddParachute = () => {
               style: { width: "90%" }
             });
             setShowPopup(false);
-            navigate('/equipment/parachute')
+            navigate('/club/clubEquipment/parachutes')
           }
         })
       
@@ -320,11 +318,12 @@ const AddParachute = () => {
 
           <div className='w-full flex flex-col items-center gap-y-5 md:w-[75%]'>
 
-            <PageTitle title={'افزودن چتر کمکی'}  /> 
+            <PageTitle title={'افزودن چتر کمکی'}  />  
 
-            {brandsIsLoading &&
-              <CircularProgressLoader/>
-            } 
+            {
+              brandsIsLoading &&
+              <CircularProgressLoader /> 
+            }
 
             {
               brandsData &&
@@ -356,32 +355,32 @@ const AddParachute = () => {
                       }
 
                       {/* aircraft model input */}
-                      <TextInput id={'TI2'} value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                      <TextInput id={'TI2'} icon={<ClothesTag/>} placeholder='نام مدل' value={aircraft} onChange={handleTextInputAircraft} IsEmptyAfterSubmit={submitted && !aircraft}  />
 
                       {/* size inputs */}
                       <div className='col-span-1 flex flex-col gap-y-2'>
                         <h1 className='text-textDefault'>بازه وزن قابل تحمل وسیله</h1>
                         <div className='flex justify-between gap-x-2'>
-                          <NumberInput icon={<Cube/>} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                          <NumberInput icon={<Cube/>} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                          <NumberInput icon={<Cube/>} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity}  />
+                          <NumberInput icon={<Cube/>} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity}  />
                         </div>
                       </div>
 
                       {/* FLight hour input */}
-                      <NumberInput icon={<ClockIcon/>} id={'NI3'}  className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
+                      <NumberInput id={'NI3'} icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour}  />
 
                       {/* Year input */}
                       <NumberInput
                         id={'NI4'}
                         icon={<CalenderIcon/>}
                         className='col-span-1'
-                        value={year}  
+                        value={year}
                         onChange={handleTextInputYear}
                         placeholder='سال ساخت (میلادی)'
-                        IsEmptyAfterSubmit={submitted && !year}
+                        IsEmptyAfterSubmit={submitted && !year} 
                       />
 
-                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} IsEmptyAfterSubmit={submitted && !packageDate} />
+                      <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} IsEmptyAfterSubmit={submitted && !packageDate}  />
 
                       {/* Last Packer ID input */}
                       <div className='w-full flex flex-col items-start gap-y-2'>
@@ -405,19 +404,22 @@ const AddParachute = () => {
 
                     <div className='w-full flex flex-col text-start gap-y-1'>
                       <p className=' self-start md:self-center text-textDefault'>ثبت سریال چتر کمکی (اختیاری)</p>
-                      <p className=' text-xs self-start text-start'>با پرکردن این فیلد و سینک کردن سریال چتر کمکی به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.<br/>
-                      در صورت مفقودی چتر کمکی ما را از طریق تیکت مطلع سازید.</p>
+                      <p className=' text-xs text-right'>
+                        با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
+                        <br/>
+                        در صورت مفقودی بال ما را از طریق تیکت مطلع سازید.
+                      </p>
                     </div>
   
-                        {/* Serial Number input */}
-                        <TextInput
-                          id={'TI4'}
-                          icon={<SerialNumberIcon/>}
-                          className='col-span-1'
-                          value={serialNumber}
-                          onChange={handleTextInputSerialNumber}
-                          placeholder='شماره سریال (اختیاری)'
-                        />
+                    {/* Serial Number input */}
+                    <TextInput
+                      id={'TI4'}
+                      icon={<SerialNumberIcon/>}
+                      className='col-span-1'
+                      value={serialNumber}
+                      onChange={handleTextInputSerialNumber}
+                      placeholder='شماره سریال (اختیاری)'
+                    />
 
                     {/* <p className=' self-start md:self-center'>در کادر زیر هر متنی را که دوست دارید تایپ کنید تا ما آن را برایتان نگه داریم و همیشه در دسترس شما قرار دهیم؛</p> */}
 
@@ -425,12 +427,14 @@ const AddParachute = () => {
                     {
                         serialNumber.length > 0 &&
                         <>
-                          <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                          <p className=' text-xs self-start text-start '>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                          <div className='w-full flex flex-col items-start space-y-3'>
+                            <UploadFileInput name={'چتر کمکی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                            <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
+                          </div>
                         </>
                     }
 
-                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-2`}>ثبت</button>
+                    <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
                 </form>
               </>

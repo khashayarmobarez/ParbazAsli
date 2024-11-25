@@ -50,8 +50,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import StudentDetails from './templates/education/studentList/StudentDetails';
   import ApproveStudentFlight from './templates/notifications/ApproveStudentFlight';
   import Syllabuses from './templates/notifications/Syllabuses';
-  import FlightHistory from './templates/FlightHistory';
-  import Club from './templates/Club';
+  import FlightHistory from './templates/flightHistory/FlightHistory';
+  import Club from './templates/club/Club';
   import EditProfile from './templates/profile/EditProfile';
   import ChangeProfile from './templates/profile/ChangeProfile';
   import ChangeCertificate from './templates/profile/ChangeCertificate';
@@ -65,7 +65,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Student components 
   import Settings from './templates/Settings';
   import Notifications from './templates/notifications/Notifications';
-  import RenewCertificate from './components/pages/Settings/RenewCertificate';
+  import RenewCertificate from './components/modules/Settings/RenewCertificate';
 import EditEquipment from './templates/equipments/EditEquipment';
 import PossessionTransitionEquipment from './templates/equipments/PossessionTransitionEquipment';
 import CourseDetails from './templates/education/CourseDetails';
@@ -79,32 +79,31 @@ import PracticalMyCourse from './templates/myCourses/PracticalMyCourse';
 import TheoryMyCourse from './templates/myCourses/TheoryMyCourse';
 import MySyllabiMyCourse from './templates/myCourses/MySyllabiMyCourse';
 import AddFlightType from './templates/addFlight/AddFlightType';
-import FlightsAdvancedFilter from './components/pages/FlightHistory/FlightsAdvancedFilter';
-import ClubCoaches from './components/pages/Club/ClubCoaches';
-import ClubEquipment from './components/pages/Club/ClubEquipment';
-import ClubCourses from './components/pages/Club/clubCourses/ClubCourses';
-import ClubFlightEquipments from './components/pages/Club/clubEquipments/ClubFlightEquipments';
-import ClubParachutes from './components/pages/Club/clubEquipments/ClubParachutes';
-import ClubHarnesses from './components/pages/Club/clubEquipments/ClubHarnesses';
-import ClubCoachDetails from './components/pages/Club/ClubCoachDetails';
-import AddClubCourse from './components/pages/Club/clubCourses/AddClubCourse';
-import AddClubFlightEquipment from './components/pages/Club/clubEquipments/AddClubFlightEquipment';
-import AddClubParachute from './components/pages/Club/clubEquipments/AddClubParachute';
-import AddClubHarness from './components/pages/Club/clubEquipments/AddClubHarness';
+import FlightsAdvancedFilter from './templates/flightHistory/FlightsAdvancedFilter';
+import ClubCoaches from './templates/club/clubCoaches/ClubCoaches';
+import ClubEquipment from './templates/club/clubEquipments/ClubEquipment';
+import ClubCourses from './templates/club/clubEducation/ClubCourses';
+import ClubFlightEquipments from './templates/club/clubEquipments/ClubFlightEquipments';
+import ClubParachutes from './templates/club/clubEquipments/ClubParachutes';
+import ClubCoachDetails from './templates/club/clubCoaches/ClubCoachDetails';
+import AddClubCourse from './templates/club/clubEducation/AddClubCourse';
+import AddClubFlightEquipment from './templates/club/clubEquipments/AddClubFlightEquipment';
+import AddClubParachute from './templates/club/clubEquipments/AddClubParachute';
+import AddClubHarness from './templates/club/clubEquipments/AddClubHarness';
 import TandemSurvey from './templates/TandemSurvey';
 import SyllabiList from './templates/syllabiList/SyllabiList';
-import FlightHistoryPage from './components/pages/FlightHistory/FlightHistoryPage';
-import EditClubEquipment from './components/pages/Club/clubEquipments/club equipment details/EditClubEquipment';
-import PossessionTransitionClub from './components/pages/Club/clubEquipments/club equipment details/PossessionTransitionClub';
-import ClubCourseDetails from './components/pages/Club/clubCourses/ClubCourseDetails';
-import ClubCourseStudents from './components/pages/Club/clubCourses/ClubCourseStudents';
-import ClubCourseClasses from './components/pages/Club/clubCourses/ClubCourseClasses';
-import ClubCourseSyllabi from './components/pages/Club/clubCourses/ClubCourseSyllabi';
+import FlightHistoryPage from './templates/flightHistory/FlightHistoryPage';
+import EditClubEquipment from './templates/club/clubEquipments/EditClubEquipment';
+import PossessionTransitionClub from './templates/club/clubEquipments/PossessionTransitionClub';
+import ClubCourseDetails from './templates/club/clubEducation/ClubCourseDetails';
+import ClubCourseStudents from './templates/club/clubEducation/ClubCourseStudents';
+import ClubCourseClasses from './templates/club/clubEducation/ClubCourseClasses';
+import ClubCourseSyllabi from './templates/club/clubEducation/ClubCourseSyllabi';
 import MyGuestClassDetails from './templates/myCourses/MyGuestClassDetails';
-import ClubCourseStudentDetails from './components/pages/Club/clubCourseStudentDetails/ClubStudentDetails';
-import ClubCourseStudentPracticalDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentPracticalDetails';
-import ClubCourseStudentTheoryDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentTheoryDetails';
-import ClubCourseStudentSyllabiDetails from './components/pages/Club/clubCourseStudentDetails/ClubCourseStudentSyllabiDetails';
+import ClubCourseStudentDetails from './templates/club/students/ClubStudentDetails';
+import ClubCourseStudentPracticalDetails from './templates/club/students/ClubCourseStudentPracticalDetails';
+import ClubCourseStudentTheoryDetails from './templates/club/students/ClubCourseStudentTheoryDetails';
+import ClubCourseStudentSyllabiDetails from './templates/club/students/ClubCourseStudentSyllabiDetails';
 import ClubCourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import CourseStudentDetails from './templates/education/studentList/CourseStudentDetails';
 import CourseStudentPracticalDetails from './templates/education/studentList/CourseStudentPracticalDetails';
@@ -113,9 +112,10 @@ import CourseStudentSyllabiDetails from './templates/education/studentList/Cours
 import CourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import SyllabiDetails from './templates/syllabiList/SyllabiDetails';
 import StudentsList from './templates/education/studentList/StudentsList';
-import StudentsListClub from './components/pages/Club/clubCourses/studentsListClub/StudentsListClub';
+import StudentsListClub from './templates/club/students/StudentsListClub';
 import AStudentCourses from './templates/education/studentList/AStudentCourses';
-import AStudentClubCourses from './components/pages/Club/clubCourses/studentsListClub/AStudentClubCourses';
+import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
+import ClubHarnesses from './templates/club/clubEquipments/ClubHarnesses';
 
 
 const queryClient = new QueryClient();
@@ -160,8 +160,8 @@ function App() {
   // Check if user is authenticated
   useEffect(() => {
 
-    const checkUserAuthentication = async () => {
-      const isAuthenticated = await Cookies.get('isUserAuthenticated') || 'false';
+    const checkUserAuthentication = () => {
+      const isAuthenticated = Cookies.get('isUserAuthenticated') || 'false';
       setIsUserAuthenticated(isAuthenticated);
     };
 
@@ -339,6 +339,7 @@ function App() {
 
               {/* club */}
               <Route path='/club' element={<Club  />} />
+              {/* club equipments */}
               <Route path="/club/clubEquipment" element={ < ClubEquipment />} >
                   <Route index element={<ClubFlightEquipments />} />
                   <Route path="flightEquipments" element={<ClubFlightEquipments />} />
@@ -348,10 +349,11 @@ function App() {
               <Route path='/club/addFlightEquipmentForClub' element={<AddClubFlightEquipment />} /> 
               <Route path='/club/addParachuteForClub' element={<AddClubParachute />} />
               <Route path='/club/addHarnessForClub' element={<AddClubHarness />} />
-              <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
-              <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
               <Route path='/EditClubEquipment/:id' element={<EditClubEquipment />} />
               <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionClub />} />
+              {/* club coaches */}
+              <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
+              <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
               {/* club education */}
               <Route path="/club/clubCourses" element={ < ClubCourses  />} />
               <Route path="/club/addCourseToClub" element={ < AddClubCourse  />} />
@@ -361,6 +363,7 @@ function App() {
                 <Route path="classes" element={<ClubCourseClasses />} />
                 <Route path="syllabi" element={<ClubCourseSyllabi />} />
               </Route> 
+              {/* student details */}
               <Route path='/club/courseDetails/studentDetails/:studentId' element={<ClubCourseStudentDetails />} >
                 <Route index element={<ClubCourseStudentPracticalDetails />} />
                 <Route path="practical" element={<ClubCourseStudentPracticalDetails />} />
@@ -375,9 +378,9 @@ function App() {
 
               {/* edit profile */}
               <Route path='/editProfile' element={<EditProfile />}>
-                  <Route index element={<ChangeProfile />} />
-                  <Route path="changeProfile" element={<ChangeProfile />} />
-                  <Route path="changeCertificate" element={<ChangeCertificate />} />
+                <Route index element={<ChangeProfile />} />
+                <Route path="changeProfile" element={<ChangeProfile />} />
+                <Route path="changeCertificate" element={<ChangeCertificate />} />
               </Route>
 
               {/* profile */}

@@ -20,10 +20,10 @@ import { useAddCertificate, useOrganLevelsForCourse, useOrgansData } from '../..
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // components
-import UserDataBox from '../../components/pages/Profile/UserDataBox';
+import UserDataBox from '../../components/modules/Profile/UserDataBox';
 import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../../components/pages/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 

@@ -8,16 +8,16 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useCourseStudentClasses } from '../../../Utilities/Services/coursesQueries';
+import { useClubStudentClasses } from '../../../Utilities/Services/clubQueries';
 
 // components
-import CourseClassesBoxMyCourses from '../../../components/modules/Education/courseStudentDetails/CourseClassesBoxMyCourses';
+import ClubCourseClassesBoxMyCourses from '../../../components/modules/Club/clubCourseStudentDetails/ClubCourseClassesBoxMyCourses';
 
-const CourseStudentTheoryDetails = () => {
+const ClubCourseStudentTheoryDetails = () => {
 
     const { studentId } = useParams();
 
-    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useCourseStudentClasses(studentId);
+    const {  data: classesData, isLoading: classesDataLoading } = useClubStudentClasses(studentId);
 
 
     return (
@@ -30,8 +30,8 @@ const CourseStudentTheoryDetails = () => {
                 </Box>
             }
 
-            {classesData && classesData.data.classesCount < 1 && 
-                <p className='text-textWarning mb-4'> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
+            {classesData && classesData.data.classesCount === 0 && 
+                <p className='text-textWarning'> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
             }
 
             {classesData && classesData.data.classesCount > 0 &&
@@ -57,7 +57,7 @@ const CourseStudentTheoryDetails = () => {
 
                 {
                     classesData.data.classes.map((classData) => {
-                    return <CourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                        return <ClubCourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
 
@@ -73,4 +73,4 @@ const CourseStudentTheoryDetails = () => {
     );
 };
 
-export default CourseStudentTheoryDetails;
+export default ClubCourseStudentTheoryDetails;

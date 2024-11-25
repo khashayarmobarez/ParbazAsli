@@ -4,35 +4,37 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // queries
-import { useAnEquipment, useEditEquipment } from '../../Utilities/Services/equipmentQueries';
-import { useUserById } from '../../Utilities/Services/queries';
+import { useAnEquipment, useEditEquipment } from '../../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../../Utilities/Services/queries';
 
 // utilities
-import useDateFormat from '../../Utilities/Hooks/useDateFormat';
+import useDateFormat from '../../../Utilities/Hooks/useDateFormat';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import Cube from '../../components/icons/ThreeDCube'
-import UserIcon from '../../components/icons/UserIcon'
-import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
+import UserIcon from '../../../components/icons/UserIcon'
+import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
-import DateLastRepackInput from '../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
-import TextInput from '../../components/inputs/textInput';
-import UploadFileInput from '../../components/inputs/UploadFileInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import DateLastRepackInput from '../../../components/modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import TextInput from '../../../components/inputs/textInput';
+import UploadFileInput from '../../../components/inputs/UploadFileInput';
+import DigilogbookLoading from '../../../components/Loader/DigilogbookLoading';
+import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
-const EditEquipment = () => {
+const EditClubEquipment = () => {
+
     const navigate = useNavigate()
     const { id } = useParams();
+    
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const [showPopup, setShowPopup] = useState(false);
@@ -41,17 +43,19 @@ const EditEquipment = () => {
     const [equipmentSerial, setEquipmentSerial] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     
-    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, false)
-    const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity} = EquipmentData?.data || {};
+    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, true)
+    const { brand, model, size, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     // useEditEquipment for submitting the form
-    const { mutate: editEquipment, isLoading } = useEditEquipment()
+    const { mutate: editEquipment, isLoading, isSuccess, isError } = useEditEquipment()
+
 
     useEffect(() => {
         if(equipmentSerial.length < 1) {
-          setSelectedFile(null);
+            setSelectedFile(null);
         }
-      }, [equipmentSerial])
+    }, [equipmentSerial])
+
 
     const handlePackageDate = (date) => {
         setPackageDate(date);
@@ -111,6 +115,7 @@ const EditEquipment = () => {
             formData.append('file', selectedFile);
         }
         formData.append('equipmentId', id);
+        formData.append('isForClub', true);
 
         if((packageDate) || (equipmentSerial && selectedFile)) {
             editEquipment(formData, {
@@ -122,13 +127,15 @@ const EditEquipment = () => {
                         theme: appTheme,
                         style: { width: "90%" }
                     });
+
                     if(equipmentType === "Parachute") {
-                        navigate('/equipment/parachute');
+                        navigate('/club/clubEquipment/parachutes');
                     } else if(equipmentType === "Wing") {
-                        navigate('/equipment/flightEquipment');
+                        navigate('/club/clubEquipment/flightEquipments');
                     } else if(equipmentType === "Harness") {
-                        navigate('/equipment/harness');
+                        navigate('/club/clubEquipment/harnesses');
                     }
+                    
                     },
                     onError: (error) => {
                         const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
@@ -160,7 +167,7 @@ const EditEquipment = () => {
 
 
     return (
-        <div className='flex flex-col items-center pt-[3rem] '>
+        <div className='flex flex-col items-center pt-[4rem] '>
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
                 <PageTitle 
@@ -210,6 +217,16 @@ const EditEquipment = () => {
                                                 <p>{flightCount}</p>
                                             </div>
                                         </div>
+                                }
+
+                                { 
+                                size &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                    <p className=' text-sm'>سایز</p>
+                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                        <p>{size}</p>
+                                    </div>
+                                </div>
                                 }
 
                                 {
@@ -284,17 +301,6 @@ const EditEquipment = () => {
                                     </div>
                                 }  
 
-                                {
-                                    minimumWeightCapacity && maximumWeightCapacity &&
-                                    <div className='flex flex-col items-start gap-y-2'>
-                                        <p className=' text-sm'>بازه وزن قابل تحمل</p>
-                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                            <p>{maximumWeightCapacity} - {minimumWeightCapacity}</p>
-                                        </div>
-                                    </div>
-                                }  
-
-
                             </div>
 
                             {/* to check if the equipment is editable  */}
@@ -352,11 +358,10 @@ const EditEquipment = () => {
                                                 {
                                                     equipmentSerial.length > 0 &&
                                                     <>
-                                                        <UploadFileInput name={'سریال وسیله'} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                                        <UploadFileInput name={'سریال وسیله پروازی'} selectedFile={selectedFile} onFileChange={handleFileChange} />
                                                         <p className=' text-xs mt-[-0.5rem]'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
                                                     </>
                                                 }
-
                                             </>
                                             }
                                             
@@ -364,7 +369,7 @@ const EditEquipment = () => {
                                             {equipmentType === "Parachute" && ownershipType !== 'Temporary' && EquipmentData.data.isExpired !== true &&
                                             <>
 
-                                                <h3 className=' text-textDefault text-sm mt-1 mb-[-10px]'>
+                                                <h3 className=' text-[var(--text-default)] text-sm mt-1 mb-[-10px]'>
                                                     تمدید چتر کمکی
                                                 </h3>
 
@@ -374,12 +379,12 @@ const EditEquipment = () => {
                                                 {/* Last Packer ID input */}
                                                 <div className='w-full flex flex-col items-start gap-y-2'>
                                                     <TextInput
-                                                    id={'TI2'}
-                                                    icon={<UserIcon/>}
-                                                    className='col-span-1'
-                                                    value={lastPackerId}
-                                                    onChange={handleTextInputLastPackerId}
-                                                    placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
+                                                        id={'TI2'}
+                                                        icon={<UserIcon/>}
+                                                        className='col-span-1'
+                                                        value={lastPackerId}
+                                                        onChange={handleTextInputLastPackerId}
+                                                        placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
                                                     />
                                                     {userByIdData &&
                                                     <div className='flex gap-x-1 text-[#A5E65E]'>
@@ -397,7 +402,7 @@ const EditEquipment = () => {
 
 
                                 <div className='w-full flex justify-center items-center'>
-                                    <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
+                                    <button onClick={handlePopup} className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
                                 </div>
                             </> 
                             }
@@ -428,4 +433,4 @@ const EditEquipment = () => {
     );
 };
 
-export default EditEquipment;
+export default EditClubEquipment;

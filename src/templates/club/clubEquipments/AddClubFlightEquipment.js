@@ -4,40 +4,40 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // Queries and api
-import { useEquipmentBrands, useWingClasses } from '../../Utilities/Services/dataQueries';
-import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
+import { useEquipmentBrands, useWingClasses } from '../../../Utilities/Services/dataQueries';
+import { useAddEquipment } from '../../../Utilities/Services/equipmentQueries';
 
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import Cube from '../../components/icons/ThreeDCube'
-import WingIcon from '../../components/icons/WingIcon'
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
-import ClothesTag from '../../components/icons/ClothesTag'
-import CalenderIcon from '../../components/icons/CalenderIcon'
-import ClockIcon from '../../components/icons/ClockIcon'
-import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
+import Cube from '../../../components/icons/ThreeDCube'
+import WingIcon from '../../../components/icons/WingIcon'
+import ColorTagsIcon from '../../../components/icons/ColorTagsIcon'
+import ClothesTag from '../../../components/icons/ClothesTag'
+import CalenderIcon from '../../../components/icons/CalenderIcon'
+import ClockIcon from '../../../components/icons/ClockIcon'
+import SerialNumberIcon from '../../../components/icons/SerialNumberIcon'
 
 // input options
-import {flightTypeOptionsEquipment} from '../../Utilities/Providers/dropdownInputOptions'
+import {flightTypeOptionsEquipment} from '../../../Utilities/Providers/dropdownInputOptions'
 
 // components 
-import DropdownInput from '../../components/inputs/DropDownInput';
-import TextInput from '../../components/inputs/textInput';
-import UploadFileInput from '../../components/inputs/UploadFileInput';
-import PageTitle from '../../components/reuseable/PageTitle';
-import NumberInput from '../../components/inputs/NumberInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from '../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import DropdownInput from '../../../components/inputs/DropDownInput';
+import TextInput from '../../../components/inputs/textInput';
+import UploadFileInput from '../../../components/inputs/UploadFileInput';
+import PageTitle from '../../../components/reuseable/PageTitle';
+import NumberInput from '../../../components/inputs/NumberInput';
+import BrandsSearchInputWithDropdown from '../../../components/modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
 
-const AddFlightEquipment = () => {
+const AddClubFlightEquipment = () => {
 
   const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -63,19 +63,18 @@ const AddFlightEquipment = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
 
-
   // popUp use state
   const [showPopup, setShowPopup] = useState(false);
 
   // Error states
   const [serialNumberError, setSerialNumberError] = useState('');
 
-  
+  // Submitted state
   const [submitted, setSubmitted] = useState(false);
 
   // useNavigate to go back one page
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if(serialNumber.length < 1) {
       setSelectedFile(null);
@@ -117,16 +116,6 @@ const AddFlightEquipment = () => {
   };
 
 
-  // Event handlers for weight capacity
-  const handleMinimumWeightCapacity = (event) => {
-    setMinimumWeightCapacity(event.target.value);
-  };
-
-  const handleMaximumWeightCapacity = (event) => {
-    setMaximumWeightCapacity(event.target.value);
-  };
-
-
   // Event handlers for text input changes
   const handleTextInputAircraft = (event) => {
     setAircraft(event.target.value);
@@ -149,6 +138,15 @@ const AddFlightEquipment = () => {
     setSelectedFile(file);
   };
 
+  // Event handlers for weight capacity
+  const handleMinimumWeightCapacity = (event) => {
+    setMinimumWeightCapacity(event.target.value);
+  };
+
+  const handleMaximumWeightCapacity = (event) => {
+    setMaximumWeightCapacity(event.target.value);
+  };
+
 
   //Event handler for pop up
     const handlePopUp= (event) => {
@@ -159,47 +157,46 @@ const AddFlightEquipment = () => {
       // Here you can handle form submission, such as sending data to a backend server
       const isSerialNumberValid = validateSerialNumber(serialNumber);
 
-      if (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
-          toast('تمامی فیلدها را پر کنید', {
-              type: 'error',
-              position: 'top-right',
-              autoClose: 5000,
-              theme: 'dark',
-              style: { width: "90%" }
-          });
-          return;
-      }
-
-      
-      if (year <= 1979 || year > currentYear) {
-        toast('سال تولید چتر را درست وارد کنید', {
-          type: 'error',
-          position: 'top-right',
-          autoClose: 5000,
-          theme: 'dark',
-          style: { width: "90%" }
-        });
-          return;
-        }
-        
       // Validate inputs
       if (!isSerialNumberValid) {
         toast('فرمت شماره سریال چتر اشتباه است', {
             type: 'error',
             position: 'top-right',
             autoClose: 5000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
       }
-        
+
+      if (year <= 1979 || year > currentYear) {
+          toast('سال تولید چتر را درست وارد کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: appTheme,
+              style: { width: "90%" }
+          });
+          return;
+      }
+
+      if (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year || !selectedOptionClass || !selectedOptionType) {
+          toast('تمامی فیلدها را پر کنید', {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 5000,
+              theme: appTheme,
+              style: { width: "90%" }
+          });
+          return;
+      }
+
     if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
         toast('در صورت تمایل به وارد کردن شماره سریال چتر, خود شماره سریال و عکس شماره سریال را با هم وارد کنید', {
             type: 'error',
             position: 'top-right',
             autoClose: 10000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -230,6 +227,7 @@ const AddFlightEquipment = () => {
         formData.append('year', year);
         formData.append('wingClassId', selectedOptionClass.id);
         formData.append('WingType', selectedOptionType.id);
+        formData.append('isForClub', true);
 
         console.log(formData)
         console.log('submitting')
@@ -240,11 +238,11 @@ const AddFlightEquipment = () => {
               type: 'success',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
             });
             setShowPopup(false);
-            navigate('/equipment/flightEquipment')
+            navigate('/club/clubEquipment/flightEquipments')
           }
         })
         
@@ -258,7 +256,7 @@ const AddFlightEquipment = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
         // Add any additional error handling logic here
@@ -270,11 +268,11 @@ const AddFlightEquipment = () => {
 
             <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%]'>
 
-              <PageTitle title={'افزودن بال'}  />
+              <PageTitle title={'افزودن وسیله پروازی'}  />  
 
               {
-                brandsIsLoading && WClassesIsLoading &&
-                <CircularProgressLoader/>
+                brandsIsLoading &&
+                <CircularProgressLoader /> 
               }
 
               {
@@ -288,6 +286,7 @@ const AddFlightEquipment = () => {
                       <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
                       
                         {/* brand input / custom brand input */}
+                        {/* the reason this input is diffrent from the normal dropdown input, is the custom brand input option */}
                         <BrandsSearchInputWithDropdown
                             showCustomBrandInput={showCustomBrandInput}
                             setShowCustomBrandInput={setShowCustomBrandInput}
@@ -303,10 +302,9 @@ const AddFlightEquipment = () => {
                         {/* show custom brand input */}
                         {
                           showCustomBrandInput &&
-                            <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
+                            <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید' IsEmptyAfterSubmit={submitted && !aircraft}  />
                         }
 
-                        
                         {/* aircraft model input */}
                         <TextInput id={'TI2'} value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
 
@@ -314,8 +312,8 @@ const AddFlightEquipment = () => {
                         <div className='col-span-1 flex flex-col gap-y-2'>
                           <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                           <div className='flex justify-between gap-x-2'>
-                            <NumberInput icon={<Cube/>} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                            <NumberInput icon={<Cube/>} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                            <NumberInput icon={<Cube />} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
+                            <NumberInput icon={<Cube />} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
                           </div>
                         </div>
 
@@ -324,7 +322,7 @@ const AddFlightEquipment = () => {
                           id={'ddi1'}
                           className='col-span-1'
                           name={'کلاس'}
-                          icon={<WingIcon />}
+                          icon={<WingIcon/>}
                           options={wingsClasses.data}
                           selectedOption={selectedOptionClass}
                           handleSelectChange={handleSelectChangeClass}
@@ -335,8 +333,8 @@ const AddFlightEquipment = () => {
                         <DropdownInput
                           id={'ddi2'}
                           className='col-span-1'
+                          name={'نوع'}
                           icon={<ColorTagsIcon/>}
-                          name={'نوع بال'}
                           options={flightTypeOptionsEquipment}
                           selectedOption={selectedOptionType} 
                           handleSelectChange={handleSelectChangeType}
@@ -355,15 +353,7 @@ const AddFlightEquipment = () => {
                         />
                         
                         {/* flight hour model input */}
-                        <NumberInput 
-                          id={'NI4'}
-                          icon={<ClockIcon/>} 
-                          className='col-span-1' 
-                          value={flightHour} 
-                          onChange={handleTextInputFlightHour} 
-                          placeholder='حدود ساعت کارکرد وسیله'  
-                          IsEmptyAfterSubmit={submitted && !flightHour}
-                        />
+                        <NumberInput id={'NI4'} icon={<ClockIcon/>} className='col-span-1' value={flightHour} onChange={handleTextInputFlightHour} placeholder='حدود ساعت کارکرد وسیله' IsEmptyAfterSubmit={submitted && !flightHour} />
                       
 
                       </div>
@@ -376,23 +366,27 @@ const AddFlightEquipment = () => {
                           در صورت مفقودی بال ما را از طریق تیکت مطلع سازید.
                         </p>
                       </div>
-                        <TextInput
-                          id={'TI3'}
-                          icon={<SerialNumberIcon/>}
-                          className='col-span-1'
-                          value={serialNumber}
-                          onChange={handleTextInputSerialNumber}
-                          placeholder='شماره سریال (اختیاری)'
-                        />
+
+                      <TextInput
+                        id={'TI3'}
+                        icon={<SerialNumberIcon/>}
+                        className='col-span-1'
+                        value={serialNumber}
+                        onChange={handleTextInputSerialNumber}
+                        placeholder='شماره سریال (اختیاری)'
+                      />
 
                       {/* for uploading pictures */}
                       {
                         serialNumber.length > 0 &&
-                          <div className={`w-full flex flex-col items-start space-y-3`}>
+                        <>
+                          <div className='w-full flex flex-col items-start space-y-3'>
                             <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                            <p className=' text-xs'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                            <p className=' text-xs'>*فرمت‌های مجاز فایل jpeg, jpg, gif, bmp یا png تا 10 مگابایت</p>
                           </div>
+                        </>
                       }
+
 
                       <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
 
@@ -400,7 +394,7 @@ const AddFlightEquipment = () => {
 
                   {/* submit pop up */}
                   <div className={`${showPopup ? 'fixed' : 'hidden'} w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
-                    <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52 `}>
+                    <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'}  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
 
                         <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 
@@ -408,7 +402,7 @@ const AddFlightEquipment = () => {
 
                         <p className='text-base w-[90%]' >در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید </p>
 
-                        <div className='w-full flex justify-around items-center'> 
+                        <div className='w-full flex justify-around items-center'>
                             <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
                             <button 
                             type="submit" 
@@ -421,6 +415,7 @@ const AddFlightEquipment = () => {
 
                     </form>
                   </div>
+                  
                 </>
               }
 
@@ -430,4 +425,4 @@ const AddFlightEquipment = () => {
     );
 };
 
-export default AddFlightEquipment;
+export default AddClubFlightEquipment;

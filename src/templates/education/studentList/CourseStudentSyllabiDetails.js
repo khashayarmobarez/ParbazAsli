@@ -9,7 +9,7 @@ import { useGetStudentSyllabi } from '../../../Utilities/Services/coursesQueries
 
 
 // components
-import DropDownSyllabiData from '../../../components/pages/MyCourses/DropDownSyllabiData';
+import DropDownSyllabiData from '../../../components/modules/MyCourses/DropDownSyllabiData';
 
 const CourseStudentSyllabiDetails = () => {
 

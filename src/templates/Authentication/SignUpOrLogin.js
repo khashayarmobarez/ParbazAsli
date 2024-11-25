@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // components
-import SignUp from '../../components/pages/authentication/SignUp';
-import Login from '../../components/pages/authentication/Login';
+import SignUp from '../../components/modules/authentication/SignUp';
+import Login from '../../components/modules/authentication/Login';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // assets

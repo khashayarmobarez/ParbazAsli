@@ -12,7 +12,7 @@ import ClipboardIcon from '../../components/icons/ClipboardIcon'
 
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
-import OrgansSlider from '../../components/pages/SyllabiList/OrgansSlider';
+import OrgansSlider from '../../components/modules/SyllabiList/OrgansSlider';
 import { useNavigate } from 'react-router-dom';
 
 const SyllabiList = () => {

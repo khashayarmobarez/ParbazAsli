@@ -22,9 +22,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import pencil from '../../assets/icons/pencil-alt.svg'
 
 // components
-import UserDataBox from '../../components/pages/Profile/UserDataBox';
-import ParachutesSwiperSlider from '../../components/pages/Profile/ParachutesSwiperSlider';
-import UserCoursesSlider from '../../components/pages/Profile/UserCoursesSlider';
+import UserDataBox from '../../components/modules/Profile/UserDataBox';
+import ParachutesSwiperSlider from '../../components/modules/Profile/ParachutesSwiperSlider';
+import UserCoursesSlider from '../../components/modules/Profile/UserCoursesSlider';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 
 

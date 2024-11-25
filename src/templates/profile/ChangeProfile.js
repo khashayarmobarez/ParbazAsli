@@ -23,9 +23,9 @@ import MailIcon from '../../components/icons/MailIcon';
 // components
 import FixedInput from '../../components/inputs/FixedInput';
 import InputWithButton from '../../components/inputs/InputWithButton';
-import ChangePicPopUp from '../../components/pages/Profile/EditProfile/ChangePicPopUp';
-import PhoneVerificationCode from '../../components/pages/authentication/popUps/PhoneVerificationCode';
-import ChangePasswordPopUp from '../../components/pages/Profile/EditProfile/ChangePasswordPopUp';
+import ChangePicPopUp from '../../components/modules/Profile/EditProfile/ChangePicPopUp';
+import PhoneVerificationCode from '../../components/modules/authentication/popUps/PhoneVerificationCode';
+import ChangePasswordPopUp from '../../components/modules/Profile/EditProfile/ChangePasswordPopUp';
 import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
 
 const ChangeProfile = () => {
