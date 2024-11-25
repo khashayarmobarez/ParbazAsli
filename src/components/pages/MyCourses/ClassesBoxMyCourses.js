@@ -10,7 +10,6 @@ import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 // mui
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
-
 // queiries
 import { useAUserCourseClass } from '../../../Utilities/Services/StudentCoursesQueries';
 
