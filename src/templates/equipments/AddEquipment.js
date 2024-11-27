@@ -8,9 +8,13 @@ import { toast } from 'react-toastify';
 import {flightTypeOptionsEquipment} from '../../Utilities/Providers/dropdownInputOptions'
 import { EQUIPMENT_SERIAL_NUMBER_PATTERN, USER_ID_PATTERN } from '../../Utilities/Providers/regexProvider';
 
+// hooks
+import useDateFormat from '../../Utilities/Hooks/useDateFormat';
+
 // req and queries
 import { useEquipmentBrands, useWingClasses } from '../../Utilities/Services/dataQueries';
 import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
+import { useUserById } from '../../Utilities/Services/queries';
 
 // styles
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
@@ -36,8 +40,6 @@ import SerialNumberIcon from '../../components/icons/SerialNumberIcon';
 import SubmitForm from '../../components/reuseable/SubmitForm';
 import DateInput from '../../components/inputs/DateInput';
 import UserIcon from '../../components/icons/UserIcon';
-import { useUserById } from '../../Utilities/Services/queries';
-import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 
 const AddEquipment = () => {
