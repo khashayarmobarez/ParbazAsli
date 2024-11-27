@@ -1,167 +1,163 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
 import Cookies from 'js-cookie';
-
-// queries
-import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../Utilities/Services/equipmentQueries';
-
-// styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
-
-// mui
-import AddIcon from '@mui/icons-material/Add';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-// comps
+// styles
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
 
-const FlightEquipment = () => {
+// assets
+import AddIcon from '@mui/icons-material/Add';
+
+// api
+import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../Utilities/Services/equipmentQueries';
+import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import DropDownLine from '../../components/reuseable/DropDownLine';
+
+const EquipmentsList = () => {
 
     const navigate = useNavigate()
+    const location = useLocation(); 
+    const { pathname } = location;
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
-    const [DropDown, setDropDown] = useState('')
-    const [DropDownForTemporary, setDropDownForTemporary] = useState('')
-    const [DropDownForHistory, setDropDownForHistory] = useState('')
+    const equipmentType = 
+    pathname.includes('flightEquipment') ? 'Wing' :
+        pathname.includes('harness') ? 'Harness' : 'Parachute';
 
-    const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(2, false)
-    const { data: userEquipmentsHistoryData, refetch: refetchHistory } = useUserEquipmentsHistory(2, false)
+    const AddEquipmentRouteBasedOnThePage = 
+    equipmentType === 'Wing' ? '/equipment/addFlightEquipment' :
+        equipmentType === 'Harness' ? '/equipment/addHarness' :
+            equipmentType === 'Parachute' && '/equipment/addParachute'
+
+    const [openDropDowns, setOpenDropDown] = useState([])
+
+    const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(equipmentType, false)
+    const { data: userEquipmentsHistoryData, refetch: refetchHistory } = useUserEquipmentsHistory(equipmentType, false)
     const { mutate: mutateReturnEquipment, isLoading:loadingReturnEquipment } = useReturnEquipment()
     const { mutate: mutateTriggerEquipmentStatus, isLoading:loadingTriggerEquipmentStatus } = useTriggerEquipmentStatus()
 
     // useEffect to open active dropdown open at firt
     useEffect(() => {
         if(userEquipmentsData && userEquipmentsData.data[0]){
-            setDropDown('Permanent')
-            setDropDownForTemporary('Temporary')
+            setOpenDropDown(['Permanent', 'Temporary'])
         }
     }, [ userEquipmentsData ])
+
+
+    // handlers
+        // handle dropdown click
+        const handleDropDownClick = (dropDown) => {
+            if(openDropDowns.includes(dropDown)){
+                setOpenDropDown(dropDown.filter(item => item !== dropDown))
+            } else {
+                setOpenDropDown([...openDropDowns, dropDown])
+            }
+        }
+
+        const handleEditEquipment = (id) => () => {
+            navigate(`/EditEquipment/${id}`);
+        };
+
+        const handlePossession = (id) => () => {
+            navigate(`/possessionTransitionEquipment/${id}`);
+        };
+
+        const handleSubmittingTranfer = (action, id) => {
+            if(action === 'accept') {
+                // accept
+                const formBody = {
+                    equipmentId: id,
+                    status: 'Accepted',
+                    isForClub: false
+                }
+                
+                mutateTriggerEquipmentStatus(formBody, {
+                    onSuccess: () => {
+                        refetchUserEquipmentsData()
+                        toast('وسیله پروازی با موفقیت تایید شد', {
+                            type: 'success',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: appTheme,
+                            style: { width: "90%" }
+                        });
+                        refetchHistory()
+                    }
+                }, { onError: (error) => {
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: appTheme,
+                        style: { width: "90%" }
+                    });
+                    }
+                })
+            } else {
+                // decline
+                const formBody = {
+                    equipmentId: id,
+                    status: 'Rejected',
+                    isForClub: false
+                }
     
+                mutateTriggerEquipmentStatus(formBody, {
+                    onSuccess: () => {
+                        refetchUserEquipmentsData()
+                        toast('وسیله پروازی با موفقیت رد شد', {
+                            type: 'success',
+                            position: 'top-right',
+                            autoClose: 5000,
+                            theme: appTheme,
+                            style: { width: "90%" }
+                        });
+                        refetchHistory()
+                    }
+                }, { onError: (error) => {
+                    console.log(error)
+                    let errorMessage = 'خطایی رخ داده است';
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                    }
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: appTheme,
+                        style: { width: "90%" }
+                    });
+                    }
+                })
+            }
+        }
 
-
-    // dropDown onClick
-    const handleDropDownClick = (newDropDown) => {
-        DropDown === newDropDown ?
-        setDropDown('') :
-        setDropDown(newDropDown)
-    }
-
-    const handleTemporaryDropDownClick = (newDropDown) => {
-        DropDownForTemporary === newDropDown ?
-        setDropDownForTemporary('') :
-        setDropDownForTemporary(newDropDown)
-    }
-
-    const handleHistoryDropDownClick = (newDropDown) => {
-        DropDownForHistory === newDropDown ?
-        setDropDownForHistory('') :
-        setDropDownForHistory(newDropDown)
-    }
-
-    const handleEditEquipment = (id) => () => {
-        navigate(`/EditEquipment/${id}`);
-    };
-
-    const handlePossession = (id) => () => {
-        navigate(`/possessionTransitionEquipment/${id}`);
-    };
-
-    const handleSubmittingTranfer = (action, id) => {
-        if(action === 'accept') {
-            // accept
+        const handleReturnEquipment = (id) => () => {
             const formBody = {
                 equipmentId: id,
-                status: 'Accepted',
                 isForClub: false
             }
+    
+            mutateReturnEquipment(formBody,{
+                onSuccess: () => {
+                    refetchUserEquipmentsData()
+                    toast('وسیله پروازی با موفقیت مرجوع شد', {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: appTheme,
+                        style: { width: "90%" }
+                    });
+                    refetchHistory()
+                }
+            })
             
-            mutateTriggerEquipmentStatus(formBody, {
-                onSuccess: () => {
-                    refetchUserEquipmentsData()
-                    toast('وسیله پروازی با موفقیت تایید شد', {
-                        type: 'success',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
-                    refetchHistory()
-                }
-            }, { onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
-                if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
-                }
-                toast(errorMessage, {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-                }
-            })
-        } else {
-            // decline
-            const formBody = {
-                equipmentId: id,
-                status: 'Rejected',
-                isForClub: false
-            }
-
-            mutateTriggerEquipmentStatus(formBody, {
-                onSuccess: () => {
-                    refetchUserEquipmentsData()
-                    toast('وسیله پروازی با موفقیت رد شد', {
-                        type: 'success',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
-                    refetchHistory()
-                }
-            }, { onError: (error) => {
-                console.log(error)
-                let errorMessage = 'خطایی رخ داده است';
-                if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
-                }
-                toast(errorMessage, {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-                }
-            })
-        }
-    }
-
-    const handleReturnEquipment = (id) => () => {
-        const formBody = {
-            equipmentId: id,
-            isForClub: false
         }
 
-        mutateReturnEquipment(formBody,{
-            onSuccess: () => {
-                refetchUserEquipmentsData()
-                toast('وسیله پروازی با موفقیت مرجوع شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-                refetchHistory()
-            }
-        })
-        
-    }
 
     return (
         <div className=' flex flex-col gap-y-6 items-center '>
@@ -185,23 +181,23 @@ const FlightEquipment = () => {
                 userEquipmentsData &&
                 userEquipmentsData.data[0] &&
                 userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
-                    <DropDownLine  
+                    <DropDownLine
                     onClickActivation={() => handleDropDownClick('Permanent')}
                     title={'دائمی'} 
-                        dropDown={DropDown} 
-                        isActive={DropDown === 'Permanent'}  
+                    isActive={openDropDowns.includes('Permanent')}  
                     />
                 }
+                <div className='w-full flex flex-col items-center gap-4 md:grid md:grid-cols-2'>
                     {
-                        DropDown === 'Permanent' &&
+                        openDropDowns.includes('Permanent') &&
                         userEquipmentsData &&
                         userEquipmentsData.data &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').length > 0 &&
                         userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Permanent').map((equipment, index) =>
-                            <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                            <div key={index} className='w-full flex flex-col gap-4 '>
                                 <div className='w-full flex flex-col items-center'>
 
-                                    <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6`} 
+                                    <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6 `} 
                                     style={{boxShadow:'var(--shadow-all)'}}>
 
                                         {
@@ -210,7 +206,9 @@ const FlightEquipment = () => {
                                         }   
 
                                         <div className=' w-full text-xs flex justify-between items-start gap-y-1 '>
-                                            <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                            <p className='text-start'>
+                                                برند {equipment.brand} / مدل {equipment.model}{equipmentType === "Wing" && ` / کلاس ${equipment.wingClass}`}
+                                            </p>
                                             {
                                                 equipment.status !== 'Pending' &&
                                                 <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
@@ -289,6 +287,7 @@ const FlightEquipment = () => {
                             </div>
                         )
                     }
+                </div>
 
 
                 {/* temporary */}
@@ -296,71 +295,69 @@ const FlightEquipment = () => {
                     userEquipmentsData &&
                     userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').length > 0 &&
                         <DropDownLine  
-                        onClickActivation={() => handleTemporaryDropDownClick('Temporary')}
-                            title={'موقت'} 
-                            dropDown={DropDownForTemporary} 
-                            isActive={DropDownForTemporary === 'Temporary'}  
+                        onClickActivation={() => handleDropDownClick('Temporary')}
+                        title={'موقت'} 
+                        isActive={openDropDowns.includes('Temporary')}  
                         />
                 }
 
-                    {
-                        DropDownForTemporary === 'Temporary' &&
-                        userEquipmentsData &&
-                        userEquipmentsData.data &&
-                        userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
-                            <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
-                                style={{boxShadow:'var(--shadow-all)'}}>
+                {
+                    openDropDowns.includes('Temporary') &&
+                    userEquipmentsData &&
+                    userEquipmentsData.data &&
+                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
+                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                            <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
+                            style={{boxShadow:'var(--shadow-all)'}}>
 
-                                    <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
+                                <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
 
-                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
-                                        <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
-                                    </div>
-
-                                    <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
-
-                                        <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
-                                            {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
-                                            'ویرایش'
-                                            :
-                                            'جزئیات'
-                                            }
-                                        </button>
-
-                                        <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>
-                                    
-                                    </div>
-
+                                <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+                                    <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}{equipmentType === "Wing" && ` / کلاس ${equipment.wingClass}`}</p>
+                                    <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
                                 </div>
+
+                                <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
+
+                                    <button className={`${ButtonStyles.normalButton}`} onClick={handleEditEquipment(equipment.id)} >
+                                        {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') ?
+                                        'ویرایش'
+                                        :
+                                        'جزئیات'
+                                        }
+                                    </button>
+
+                                    <button className={` ${ButtonStyles.normalButton} ${loadingReturnEquipment && 'opacity-55'}`} disabled={loadingReturnEquipment} onClick={handleReturnEquipment(equipment.id)} >مرجوع کردن</button>
+                                
+                                </div>
+
                             </div>
-                            )
-                    }
+                        </div>
+                        )
+                }
 
                 {/* history */}
                 {
                     userEquipmentsHistoryData &&
                     userEquipmentsHistoryData.data.length > 0 &&
                         <DropDownLine  
-                        onClickActivation={() => handleHistoryDropDownClick('History')}
-                            title={'تاریخچه'} 
-                            dropDown={DropDownForHistory} 
-                            isActive={DropDownForHistory === 'History'}  
+                        onClickActivation={() => handleDropDownClick('History')}
+                        title={'تاریخچه'} 
+                        isActive={openDropDowns.includes('History')}  
                         />
                 }
-
+                <div className='w-full flex flex-col items-center gap-4 md:grid md:grid-cols-2'>
                     {
-                        DropDownForHistory === 'History' &&
+                        openDropDowns.includes('History') &&
                         userEquipmentsHistoryData &&
                         userEquipmentsHistoryData.data &&
                         userEquipmentsHistoryData.data.map((equipment, index) =>
-                            <div key={index} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                            <div key={index} className='w-full flex flex-col gap-4 '>
                                 <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard`} 
                                 style={{boxShadow:'var(--shadow-all)'}}>
 
                                     <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
-                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model} / کلاس {equipment.wingClass}</p>
+                                        <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}{equipmentType === "Wing" && ` / کلاس ${equipment.wingClass}`}</p>
                                         <p> شماره سریال: {equipment.serialNumber}</p>
                                     </div>
 
@@ -371,7 +368,7 @@ const FlightEquipment = () => {
                                             'ویرایش'
                                             :
                                             'جزئیات'
-                                            }
+                                        }
                                         </button>
 
                                     </div>
@@ -380,12 +377,12 @@ const FlightEquipment = () => {
                             </div>
                         )
                     }
-                
+                </div>
             </div>
 
             
 
-            <Link to='/equipment/addFlightEquipment' className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to={AddEquipmentRouteBasedOnThePage} className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>
@@ -397,4 +394,4 @@ const FlightEquipment = () => {
     );
 };
 
-export default FlightEquipment;
+export default EquipmentsList;

@@ -38,9 +38,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import SignUpOrLogin from './templates/Authentication/SignUpOrLogin';
   import Profile from './templates/profile/Profile';
   import Equipment from './templates/equipments/Equipment';
-  import FlightEquipment from './templates/equipments/FlightEquipment';
-  import Parachute from './templates/equipments/Parachute'
-  import Harness from './templates/equipments/Harness'
 // education
   import Education from './templates/education/Education';
   import AddCourse from './templates/education/AddCourse';
@@ -52,7 +49,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import EditProfile from './templates/profile/EditProfile';
   import ChangeProfile from './templates/profile/ChangeProfile';
   import ChangeCertificate from './templates/profile/ChangeCertificate';
-// addFlightComponents
+// addFlightComponents  
   import AddFlight from './templates/addFlight/AddFlight';
     import UploadIgc from './templates/addFlight/UploadIgc';
     import AddUsedEquipment from './templates/addFlight/AddUsedEquipment';
@@ -114,6 +111,7 @@ import AStudentCourses from './templates/education/studentList/AStudentCourses';
 import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
 import ClubHarnesses from './templates/club/clubEquipments/ClubHarnesses';
 import AddEquipment from './templates/equipments/AddEquipment';
+import EquipmentsList from './templates/equipments/EquipmentsList';
 
 
 const queryClient = new QueryClient();
@@ -270,10 +268,10 @@ function App() {
 
               {/* equipment */}
               <Route path='/equipment' element={<Equipment />} >
-                  <Route index element={<FlightEquipment />} />
-                  <Route path="flightEquipment" element={<FlightEquipment />} />
-                  <Route path="parachute" element={<Parachute />} />
-                  <Route path="harness" element={<Harness />} />
+                  <Route index element={<EquipmentsList />} />
+                  <Route path="flightEquipment" element={<EquipmentsList />} />
+                  <Route path="parachute" element={<EquipmentsList />} />
+                  <Route path="harness" element={<EquipmentsList />} />
               </Route>
               <Route path='/equipment/addFlightEquipment' element={<AddEquipment />} /> 
               <Route path='/equipment/addParachute' element={<AddEquipment />} />

@@ -68,7 +68,7 @@ const AddEquipment = () => {
     // reqs and queries
     const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands(equipmentType);
     const { data: wingsClasses } = useWingClasses();
-    const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(lastPackerId)
+    const { data: userByIdData } = useUserById(lastPackerId)
     const { mutate: mutateWing , isLoading: isSubmitting, error: submitError} = useAddEquipment();
             
     
@@ -323,7 +323,7 @@ const AddEquipment = () => {
                     style: { width: "90%" }
                 });
                 setShowPopup(false);
-                navigate('/equipment/flightEquipment')
+                navigate(backButtonRoute)
                 },
                 onError: (error) => {
                 console.log('submitError', submitError.message);
