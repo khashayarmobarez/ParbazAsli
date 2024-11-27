@@ -21,7 +21,7 @@ import { useAddClub } from '../../Utilities/Services/clubQueries';
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../components/inputs/DateInput';
 
 
 const AddClub = ({isForSetting}) => {

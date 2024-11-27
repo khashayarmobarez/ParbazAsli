@@ -23,7 +23,7 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 // components
 import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../components/inputs/DateInput';
 import PageTitle from '../../components/reuseable/PageTitle';
 
 

@@ -34,7 +34,7 @@ import UploadFileInput from '../../components/inputs/UploadFileInput';
 import PageTitle from '../../components/reuseable/PageTitle';
 import NumberInput from '../../components/inputs/NumberInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from '../../modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import BrandsSearchInputWithDropdown from '../../modules/Equipment page comps/BrandsSearchInputWithDropdown';
 
 
 const AddFlightEquipment = () => {

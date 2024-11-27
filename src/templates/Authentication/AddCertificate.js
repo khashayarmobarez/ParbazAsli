@@ -23,7 +23,7 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 import UserDataBox from '../../modules/Profile/UserDataBox';
 import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../../modules/Equipment page comps/inputsForEquipment/DateLastRepackInput';
+import DateLastRepackInput from '../../components/inputs/DateInput';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 

@@ -33,7 +33,7 @@ import TextInput from '../../../components/inputs/textInput';
 import UploadFileInput from '../../../components/inputs/UploadFileInput';
 import PageTitle from '../../../components/reuseable/PageTitle';
 import NumberInput from '../../../components/inputs/NumberInput';
-import BrandsSearchInputWithDropdown from '../../../modules/Equipment page comps/inputsForEquipment/BrandsSearchInputWithDropdown';
+import BrandsSearchInputWithDropdown from '../../../modules/Equipment page comps/BrandsSearchInputWithDropdown';
 import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 
 
@@ -41,8 +41,8 @@ const AddClubFlightEquipment = () => {
 
   const appTheme = Cookies.get('themeApplied') || 'dark';
 
-  const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('wing');
-  const { data: wingsClasses, isLoading: WClassesIsLoading, error:WClassesError } = useWingClasses();
+  const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands('wing');
+  const { data: wingsClasses } = useWingClasses();
   const { mutate: mutateWing , isLoading: isSubmitting, error: submitError} = useAddEquipment();
 
 

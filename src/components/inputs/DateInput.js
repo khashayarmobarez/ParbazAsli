@@ -1,40 +1,59 @@
 import React, { useState } from 'react';
-import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import { DatePicker } from 'zaman';
 
-import { DatePicker } from "zaman";
-
-// css styles 
+// styles
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const TextInput = ({ value, onChange, placeholder, IsEmptyAfterSubmit }) => {
+// assets
+import CalenderIcon from '../icons/CalenderIcon'
 
+const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit }) => {
+
+  const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
 
-  // Function to handle changes in the input value
-  const handleInputChange = (event) => {
-    onChange(event); // Call the onChange function passed from the parent component
-    setFilled(event.target.value.trim() !== ''); // Check if the input is filled
+  const handleChange = (date) => {
+    setSelectedDate(date);
+    setFilled(true);
+    if (onChange) {
+      onChange(date);
+    }
   };
-  
+
   return (
-    <div className={`w-full flex h-12 `}> 
-      <span> 
-        {/* <CalendarTodayOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} /> */}
-      </span>
-      <DatePicker
-          onChange={handleInputChange}
-          show={true}
-          inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${inputStyles.customDateInput} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}`}
-          position='right'
-          round="thin"
-          accentColor="#23BC7C"
-          locale="fa"
-          inputAttributes={{ placeholder: placeholder }}
-          direction="rtl"
-          value={value}
-      />
+    <div className='w-full flex relative'>
+        <span className="absolute mt-3 mr-2 w-5">
+          {icon ? 
+            icon
+            :
+            <CalenderIcon />
+          }
+        </span>
+        <DatePicker
+            onChange={(e) => handleChange(e.value)}
+            show={true}
+            inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} ${inputStyles.customDateInput} `}
+            position={position}
+            round="thin"
+            accentColor="#0D59F2"
+            locale="fa"
+            inputAttributes={{ placeholder: placeH }}
+            direction="rtl"
+        />
+        {
+          filled &&
+          <label
+            htmlFor="floatingDropdown"
+            className={`
+              absolute right-10 top-[14px] text-textInputDefault
+              -translate-y-[21px] translate-x-2 text-xs bg-bgPageMain px-2
+            `}
+          >
+          {placeH || 'تاریخ'}
+        </label>
+        }
     </div>
   );
 };
 
-export default TextInput;
+export default DateInput;
