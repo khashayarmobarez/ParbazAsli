@@ -33,9 +33,9 @@ const EquipmentsList = () => {
             equipmentType === 'Parachute' && '/equipment/addParachute'
 
     const AddEquipmentRouteBasedOnThePageForClub = 
-    equipmentType === 'Wing' ? '/club/clubEquipment/flightEquipments' :
-        equipmentType === 'Harness' ? '/club/clubEquipment/harnesses' :
-            equipmentType === 'Parachute' && '/club/clubEquipment/parachutes'
+    equipmentType === 'Wing' ? '/club/addFlightEquipmentForClub' :
+        equipmentType === 'Harness' ? '/club/addHarnessForClub' :
+            equipmentType === 'Parachute' && '/club/addParachuteForClub'
 
     const [openDropDowns, setOpenDropDown] = useState([])
 
@@ -150,6 +150,7 @@ const EquipmentsList = () => {
         }
 
         const handleReturnEquipment = (id) => () => {
+            
             const formBody = {
                 equipmentId: id,
                 isForClub: isForClub
