@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
@@ -28,10 +28,14 @@ import CircularProgressLoader from '../../components/Loader/CircularProgressLoad
 const PossessionTransitionEquipment = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const { pathname } = location;
     const { id } = useParams();
     const appTheme = Cookies.get('themeApplied') || 'dark';
+
+    const isForClub = pathname.includes('possessionTransitionEquipmentClub');
     
-    const { data: EquipmentData, isLoading, error } = useAnEquipment(id, false)
+    const { data: EquipmentData, isLoading, error } = useAnEquipment(id, isForClub)
 
     useEffect(() => {
         if (EquipmentData && EquipmentData.data) {
@@ -59,6 +63,20 @@ const PossessionTransitionEquipment = () => {
 
     // date state
     const [expirationDate, setExpirationDate] = useState('')
+
+    const backButtonRoute = EquipmentData ? (
+        EquipmentData.equipmentType === 'Wing' ? '/equipment/flightEquipment' :
+        EquipmentData.equipmentType === 'Harness' ? '/equipment/harness' :
+        EquipmentData.equipmentType === 'Parachute' ? '/equipment/parachute' :
+        ''
+    ) : '';
+    
+    const backButtonRouteForClub = EquipmentData ? (
+        EquipmentData.equipmentType === 'Wing' ? '/club/clubEquipment/flightEquipments' :
+        EquipmentData.equipmentType === 'Harness' ? '/club/clubEquipment/harnesses' :
+        EquipmentData.equipmentType === 'Parachute' ? '/club/clubEquipment/parachutes' :
+        ''
+    ) : '';
 
     const handleTextInputReceiverId = (event) => {
         setReceiverId(event.target.value);
@@ -139,6 +157,7 @@ const PossessionTransitionEquipment = () => {
             if(activeLink === 'temporary') {
                 formData.append("expirationDateTime", formattedDate);
             }
+            formData.append('isForClub', isForClub);
     
             mutateTransitionData(formData, {
                 onSuccess: () => {
@@ -151,7 +170,7 @@ const PossessionTransitionEquipment = () => {
                         style: { width: "90%" }
                     });
                     setShowPopup(false);
-                    navigate('/equipment/flightEquipment')
+                    navigate(isForClub ? backButtonRouteForClub : backButtonRoute)
                 },
                 onError: (error) => {
                     // Code to execute when mutation encounters an error
@@ -209,20 +228,23 @@ const PossessionTransitionEquipment = () => {
                             onChange={handleTextInputReceiverId}
                             placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
                             />
-                            {userByIdData &&
+                            {
+                            userByIdData &&
                                 <div className='flex gap-x-1 text-textAccent self-start mt-[-12px]'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>{userByIdData.data.fullName}</p>
                                 </div>
                             }
-                            {receiverId && receiverId.length > 5 && !userByIdData &&
+                            {
+                            receiverId && receiverId.length > 5 && !userByIdData &&
                                 <div className='flex gap-x-1 text-textError self-start'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>کاربر یافت نشد</p>
                                 </div>
                             }
 
-                            {activeLink === 'temporary' && 
+                            {
+                            activeLink === 'temporary' && 
                                 <DateLastRepackInput name={'تاریخ پایان انتقال قرضی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
                             }
 
@@ -248,13 +270,15 @@ const PossessionTransitionEquipment = () => {
                         </div>
                     </>
                     }
-                    {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
+                    {
+                    EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
                             <h1 className=' text-xl font-medium text-textWarning'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
                             <h1 >بعد از تایید شما میتوانید مالکیت وسیله خود را انتقال دهید</h1>
                         </div>
                     }
-                    {(EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
+                    {
+                    (EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
                         <h1 className=' w-[90%] mt-10 text-xl font-medium text-textWarning'>برای فعال شدن انتقال مالکیت ابتدا باید در بخش ویرایش، سریال وسیله درج شود.</h1>
                     }
 

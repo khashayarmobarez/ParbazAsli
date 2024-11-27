@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
@@ -19,7 +19,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import Cube from '../../components/icons/ThreeDCube'
 import UserIcon from '../../components/icons/UserIcon'
 import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
 
@@ -31,9 +30,14 @@ import UploadFileInput from '../../components/inputs/UploadFileInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
 const EditEquipment = () => {
+
     const navigate = useNavigate()
+    const location = useLocation();
+    const { pathname } = location;
     const { id } = useParams();
     const appTheme = Cookies.get('themeApplied') || 'dark';
+
+    const isForClub = pathname.includes('EditClubEquipment')
 
     const [showPopup, setShowPopup] = useState(false);
     const [packageDate, setPackageDate] = useState('')
@@ -41,11 +45,21 @@ const EditEquipment = () => {
     const [equipmentSerial, setEquipmentSerial] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     
-    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, false)
+    // useEditEquipment for submitting the form
+    const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, isForClub)
     const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
-    // useEditEquipment for submitting the form
     const { mutate: editEquipment, isLoading } = useEditEquipment()
+
+    const backButtonRoute = 
+    equipmentType === 'Wing' ? '/equipment/flightEquipment' :
+        equipmentType === 'Harness' ? '/equipment/harness' :
+            equipmentType === 'Parachute' && '/equipment/parachute'
+
+    const backButtonRouteForClub = 
+    equipmentType === 'Wing' ? '/club/clubEquipment/flightEquipments' :
+        equipmentType === 'Harness' ? '/club/clubEquipment/harnesses' :
+            equipmentType === 'Parachute' && '/club/clubEquipment/parachutes'
 
     useEffect(() => {
         if(equipmentSerial.length < 1) {
@@ -111,6 +125,7 @@ const EditEquipment = () => {
             formData.append('file', selectedFile);
         }
         formData.append('equipmentId', id);
+        formData.append('isForClub', isForClub);
 
         if((packageDate) || (equipmentSerial && selectedFile)) {
             editEquipment(formData, {
@@ -122,13 +137,7 @@ const EditEquipment = () => {
                         theme: appTheme,
                         style: { width: "90%" }
                     });
-                    if(equipmentType === "Parachute") {
-                        navigate('/equipment/parachute');
-                    } else if(equipmentType === "Wing") {
-                        navigate('/equipment/flightEquipment');
-                    } else if(equipmentType === "Harness") {
-                        navigate('/equipment/harness');
-                    }
+                    navigate(isForClub ? backButtonRouteForClub : backButtonRoute);
                     },
                     onError: (error) => {
                         const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;

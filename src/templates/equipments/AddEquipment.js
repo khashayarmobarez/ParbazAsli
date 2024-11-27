@@ -50,6 +50,7 @@ const AddEquipment = () => {
     const navigate = useNavigate();
     const { formatDate } = useDateFormat();
 
+    const isForClub = pathname.includes('club')
 
     const equipmentType = 
     pathname.includes('addFlightEquipment') ? 'Wing' :
@@ -64,6 +65,11 @@ const AddEquipment = () => {
     equipmentType === 'Wing' ? '/equipment/flightEquipment' :
         equipmentType === 'Harness' ? '/equipment/harness' :
             equipmentType === 'Parachute' && '/equipment/parachute'
+
+    const backButtonRouteForClub = 
+    equipmentType === 'Wing' ? '/club/clubEquipment/flightEquipments' :
+        equipmentType === 'Harness' ? '/club/clubEquipment/harnesses' :
+            equipmentType === 'Parachute' && '/club/clubEquipment/parachutes'
 
     const [lastPackerId, setLastPackerId] = useState('');
            
@@ -311,6 +317,7 @@ const AddEquipment = () => {
             equipmentType === "Wing" && formData.append('WingType', selectedOptionType.id);
             packageDate && equipmentType === "Parachute" && formData.append('LastPackingDateTime', formattedPackedDate);
             equipmentType === "Parachute" && formData.append('lastPackerId', lastPackerId);
+            isForClub && formData.append('isForClub', true);
     
             console.log(formData)
             console.log('submitting')
@@ -325,7 +332,7 @@ const AddEquipment = () => {
                     style: { width: "90%" }
                 });
                 setShowPopup(false);
-                navigate(backButtonRoute)
+                navigate(isForClub ? backButtonRouteForClub : backButtonRoute)
                 },
                 onError: (error) => {
                 console.log('submitError', submitError.message);
@@ -349,7 +356,7 @@ const AddEquipment = () => {
 
                 <PageTitle 
                     title={`افزودن ${equipmentTypeInPersian}`}
-                    navigateTo={backButtonRoute}
+                    navigateTo={isForClub ? backButtonRouteForClub : backButtonRoute}
                 />
 
                 {
@@ -410,7 +417,7 @@ const AddEquipment = () => {
 
                                 {/* class input */}
                                 {
-                                    equipmentType === 'Wing' &&
+                                    equipmentType === 'Wing' && wingsClasses &&
                                     <DropdownInput
                                         id={'ddi1'}
                                         className='col-span-1'

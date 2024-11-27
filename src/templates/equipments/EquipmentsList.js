@@ -20,6 +20,8 @@ const EquipmentsList = () => {
     const location = useLocation(); 
     const { pathname } = location;
     const appTheme = Cookies.get('themeApplied') || 'dark';
+    
+    const isForClub = pathname.includes('club')
 
     const equipmentType = 
     pathname.includes('flightEquipment') ? 'Wing' :
@@ -30,10 +32,15 @@ const EquipmentsList = () => {
         equipmentType === 'Harness' ? '/equipment/addHarness' :
             equipmentType === 'Parachute' && '/equipment/addParachute'
 
+    const AddEquipmentRouteBasedOnThePageForClub = 
+    equipmentType === 'Wing' ? '/club/clubEquipment/flightEquipments' :
+        equipmentType === 'Harness' ? '/club/clubEquipment/harnesses' :
+            equipmentType === 'Parachute' && '/club/clubEquipment/parachutes'
+
     const [openDropDowns, setOpenDropDown] = useState([])
 
-    const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(equipmentType, false)
-    const { data: userEquipmentsHistoryData, refetch: refetchHistory } = useUserEquipmentsHistory(equipmentType, false)
+    const { data: userEquipmentsData, isLoading, error, refetch: refetchUserEquipmentsData } = useUserEquipments(equipmentType, isForClub)
+    const { data: userEquipmentsHistoryData, refetch: refetchHistory } = useUserEquipmentsHistory(equipmentType, isForClub)
     const { mutate: mutateReturnEquipment, isLoading:loadingReturnEquipment } = useReturnEquipment()
     const { mutate: mutateTriggerEquipmentStatus, isLoading:loadingTriggerEquipmentStatus } = useTriggerEquipmentStatus()
 
@@ -49,17 +56,23 @@ const EquipmentsList = () => {
         // handle dropdown click
         const handleDropDownClick = (dropDown) => {
             if(openDropDowns.includes(dropDown)){
-                setOpenDropDown(dropDown.filter(item => item !== dropDown))
+                setOpenDropDown(openDropDowns.filter(item => item !== dropDown))
             } else {
                 setOpenDropDown([...openDropDowns, dropDown])
             }
         }
 
         const handleEditEquipment = (id) => () => {
+            isForClub ?
+            navigate(`/EditClubEquipment/${id}`)
+            :
             navigate(`/EditEquipment/${id}`);
         };
 
         const handlePossession = (id) => () => {
+            isForClub ?
+            navigate(`/possessionTransitionEquipmentClub/${id}`)
+            :
             navigate(`/possessionTransitionEquipment/${id}`);
         };
 
@@ -69,7 +82,7 @@ const EquipmentsList = () => {
                 const formBody = {
                     equipmentId: id,
                     status: 'Accepted',
-                    isForClub: false
+                    isForClub: isForClub
                 }
                 
                 mutateTriggerEquipmentStatus(formBody, {
@@ -103,7 +116,7 @@ const EquipmentsList = () => {
                 const formBody = {
                     equipmentId: id,
                     status: 'Rejected',
-                    isForClub: false
+                    isForClub: isForClub
                 }
     
                 mutateTriggerEquipmentStatus(formBody, {
@@ -139,7 +152,7 @@ const EquipmentsList = () => {
         const handleReturnEquipment = (id) => () => {
             const formBody = {
                 equipmentId: id,
-                isForClub: false
+                isForClub: isForClub
             }
     
             mutateReturnEquipment(formBody,{
@@ -382,7 +395,7 @@ const EquipmentsList = () => {
 
             
 
-            <Link to={AddEquipmentRouteBasedOnThePage} className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
+            <Link to={isForClub ? AddEquipmentRouteBasedOnThePageForClub : AddEquipmentRouteBasedOnThePage} className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
                 <button className={`${ButtonStyles.addButton} w-full`} >
                     <AddIcon />
                     <p>افزودن مورد جدید</p>

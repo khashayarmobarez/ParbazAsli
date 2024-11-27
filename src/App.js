@@ -77,18 +77,11 @@ import FlightsAdvancedFilter from './templates/flightHistory/FlightsAdvancedFilt
 import ClubCoaches from './templates/club/clubCoaches/ClubCoaches';
 import ClubEquipment from './templates/club/clubEquipments/ClubEquipment';
 import ClubCourses from './templates/club/clubEducation/ClubCourses';
-import ClubFlightEquipments from './templates/club/clubEquipments/ClubFlightEquipments';
-import ClubParachutes from './templates/club/clubEquipments/ClubParachutes';
 import ClubCoachDetails from './templates/club/clubCoaches/ClubCoachDetails';
 import AddClubCourse from './templates/club/clubEducation/AddClubCourse';
-import AddClubFlightEquipment from './templates/club/clubEquipments/AddClubFlightEquipment';
-import AddClubParachute from './templates/club/clubEquipments/AddClubParachute';
-import AddClubHarness from './templates/club/clubEquipments/AddClubHarness';
 import TandemSurvey from './templates/TandemSurvey';
 import SyllabiList from './templates/syllabiList/SyllabiList';
 import FlightHistoryPage from './templates/flightHistory/FlightHistoryPage';
-import EditClubEquipment from './templates/club/clubEquipments/EditClubEquipment';
-import PossessionTransitionClub from './templates/club/clubEquipments/PossessionTransitionClub';
 import ClubCourseDetails from './templates/club/clubEducation/ClubCourseDetails';
 import ClubCourseStudents from './templates/club/clubEducation/ClubCourseStudents';
 import ClubCourseClasses from './templates/club/clubEducation/ClubCourseClasses';
@@ -109,7 +102,6 @@ import StudentsList from './templates/education/studentList/StudentsList';
 import StudentsListClub from './templates/club/students/StudentsListClub';
 import AStudentCourses from './templates/education/studentList/AStudentCourses';
 import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
-import ClubHarnesses from './templates/club/clubEquipments/ClubHarnesses';
 import AddEquipment from './templates/equipments/AddEquipment';
 import EquipmentsList from './templates/equipments/EquipmentsList';
 
@@ -337,16 +329,16 @@ function App() {
               <Route path='/club' element={<Club  />} />
               {/* club equipments */}
               <Route path="/club/clubEquipment" element={ < ClubEquipment />} >
-                  <Route index element={<ClubFlightEquipments />} />
-                  <Route path="flightEquipments" element={<ClubFlightEquipments />} />
-                  <Route path="parachutes" element={<ClubParachutes />} />
-                  <Route path="harnesses" element={<ClubHarnesses />} />
+                  <Route index element={<EquipmentsList />} />
+                  <Route path="flightEquipments" element={<EquipmentsList />} />
+                  <Route path="parachutes" element={<EquipmentsList />} />
+                  <Route path="harnesses" element={<EquipmentsList />} />
               </Route >
-              <Route path='/club/addFlightEquipmentForClub' element={<AddClubFlightEquipment />} /> 
-              <Route path='/club/addParachuteForClub' element={<AddClubParachute />} />
-              <Route path='/club/addHarnessForClub' element={<AddClubHarness />} />
-              <Route path='/EditClubEquipment/:id' element={<EditClubEquipment />} />
-              <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionClub />} />
+              <Route path='/club/addFlightEquipmentForClub' element={<AddEquipment />} /> 
+              <Route path='/club/addParachuteForClub' element={<AddEquipment />} />
+              <Route path='/club/addHarnessForClub' element={<AddEquipment />} />
+              <Route path='/EditClubEquipment/:id' element={<EditEquipment />} />
+              <Route path='/possessionTransitionEquipmentClub/:id' element={<PossessionTransitionEquipment />} />
               {/* club coaches */}
               <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
               <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
