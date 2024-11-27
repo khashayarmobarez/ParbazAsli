@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 // providers
 import {flightTypeOptionsEquipment} from '../../Utilities/Providers/dropdownInputOptions'
-import { EQUIPMENT_SERIAL_NUMBER_PATTERN } from '../../Utilities/Providers/regexProvider';
+import { EQUIPMENT_SERIAL_NUMBER_PATTERN, USER_ID_PATTERN } from '../../Utilities/Providers/regexProvider';
 
 // req and queries
 import { useEquipmentBrands, useWingClasses } from '../../Utilities/Services/dataQueries';
@@ -17,7 +17,8 @@ import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
 import ClothesTag from '../../components/icons/ClothesTag';
-import Cube from '../../components/icons/ThreeDCube'
+import Cube from '../../components/icons/ThreeDCube';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
@@ -33,6 +34,10 @@ import ClockIcon from '../../components/icons/ClockIcon';
 import UploadFileInput from '../../components/inputs/UploadFileInput';
 import SerialNumberIcon from '../../components/icons/SerialNumberIcon';
 import SubmitForm from '../../components/reuseable/SubmitForm';
+import DateInput from '../../components/inputs/DateInput';
+import UserIcon from '../../components/icons/UserIcon';
+import { useUserById } from '../../Utilities/Services/queries';
+import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 
 const AddEquipment = () => {
@@ -41,6 +46,7 @@ const AddEquipment = () => {
     const { pathname } = location;
     const appTheme = Cookies.get('themeApplied') || 'dark';
     const navigate = useNavigate();
+    const { formatDate } = useDateFormat();
 
 
     const equipmentType = 
@@ -51,10 +57,18 @@ const AddEquipment = () => {
     equipmentType === 'Wing' ? 'بال' :
         equipmentType === 'Harness' ? 'هارنس' :
             equipmentType === 'Parachute' && 'چتر کمکی'
+
+    const backButtonRoute = 
+    equipmentType === 'Wing' ? '/equipment/flightEquipment' :
+        equipmentType === 'Harness' ? '/equipment/harness' :
+            equipmentType === 'Parachute' && '/equipment/parachute'
+
+    const [lastPackerId, setLastPackerId] = useState('');
            
     // reqs and queries
     const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands(equipmentType);
     const { data: wingsClasses } = useWingClasses();
+    const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(lastPackerId)
     const { mutate: mutateWing , isLoading: isSubmitting, error: submitError} = useAddEquipment();
             
     
@@ -71,6 +85,7 @@ const AddEquipment = () => {
     const [flightHour, setFlightHour] = useState('');
     const [serialNumber, setSerialNumber] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [packageDate, setPackageDate] = useState('')
 
     const [showCustomBrandInput, setShowCustomBrandInput] = useState('');
     
@@ -94,6 +109,14 @@ const AddEquipment = () => {
             } else {
             // setSerialNumberError('');
             return true;
+            }
+        };
+
+        const validatePackerId = (lastPackerId) => {
+            if (!USER_ID_PATTERN.test(lastPackerId)) {
+              return false;
+            } else {
+              return true;
             }
         };
 
@@ -159,6 +182,33 @@ const AddEquipment = () => {
             setSelectedFile(file);
         };
 
+        // last packer id for parachute
+        const handleTextInputLastPackerId = (event) => {
+            setLastPackerId(event.target.value);
+        };
+        
+        // Event handler for package date selection
+        const handlePackageDate = (date) => {
+        setPackageDate(date);
+    
+        clickOnRightSide()
+        };  
+    
+        // function to close the datePicker
+        const clickOnRightSide = () => {
+        // Create a new mouse event
+        const clickEvent = new MouseEvent('mousedown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            clientX: window.innerWidth - 1, // Right edge of the screen
+            clientY: window.innerHeight / 2 // Middle of the screen vertically
+        });
+        
+        // Dispatch the event to the document
+        document.dispatchEvent(clickEvent);
+        };
+
 
     // submission handlers
         //Event handler for pop up
@@ -169,11 +219,14 @@ const AddEquipment = () => {
             
             // Here you can handle form submission, such as sending data to a backend server
             const isSerialNumberValid = validateSerialNumber(serialNumber);
+            const isPackerIdValid = validatePackerId(lastPackerId);
     
             if (
             (equipmentType === 'Wing' && (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year || !selectedOptionClass || !selectedOptionType))
             ||
             (equipmentType === 'Harness' && (!(selectedOptionBrand || customBrand) || !aircraft || !size || !flightHour || !year))
+            ||
+            (equipmentType === 'Parachute' && (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year))
             ) {
                 toast('تمامی فیلدها را پر کنید', {
                     type: 'error',
@@ -194,6 +247,17 @@ const AddEquipment = () => {
                 theme: appTheme,
                 style: { width: "90%" }
             });
+                return;
+            }
+
+            if (lastPackerId && !isPackerIdValid) {
+                toast('فرمت کد بسته بندی کننده اشتباه است', {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
                 return;
             }
             
@@ -226,6 +290,7 @@ const AddEquipment = () => {
         const handleSubmit = (event) => {
 
             event.preventDefault();
+            const formattedPackedDate = formatDate(packageDate) + " 00:00";
     
             const formData = new FormData();
             // type 1 for Hamutate Harness
@@ -235,13 +300,15 @@ const AddEquipment = () => {
             formData.append('file', selectedFile);
             formData.append('serialNumber', serialNumber);
             formData.append('Model', aircraft);
+            formData.append('flightHours', flightHour);
+            formData.append('year', year);
             equipmentType !== "Harness" && formData.append('minimumWeightCapacity', minimumWeightCapacity);
             equipmentType !== "Harness" && formData.append('maximumWeightCapacity', maximumWeightCapacity);
             equipmentType === "Harness" && formData.append('Size', size);
             equipmentType === "Wing" && formData.append('wingClassId', selectedOptionClass.id);
             equipmentType === "Wing" && formData.append('WingType', selectedOptionType.id);
-            formData.append('flightHours', flightHour);
-            formData.append('year', year);
+            packageDate && equipmentType === "Parachute" && formData.append('LastPackingDateTime', formattedPackedDate);
+            equipmentType === "Parachute" && formData.append('lastPackerId', lastPackerId);
     
             console.log(formData)
             console.log('submitting')
@@ -280,6 +347,7 @@ const AddEquipment = () => {
 
                 <PageTitle 
                     title={`افزودن ${equipmentTypeInPersian}`}
+                    navigateTo={backButtonRoute}
                 />
 
                 {
@@ -378,6 +446,31 @@ const AddEquipment = () => {
                                 placeholder='سال ساخت (میلادی)'
                                 IsEmptyAfterSubmit={submitted && !year}
                                 />
+
+                                {   
+                                equipmentType === 'Parachute' &&
+                                <>
+                                    <DateInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} IsEmptyAfterSubmit={submitted && !packageDate} />
+
+                                    {/* Last Packer ID input */}
+                                    <div className='w-full flex flex-col items-start gap-y-2'>
+                                        <TextInput
+                                            id={'TI3'}
+                                            icon={<UserIcon/>}
+                                            className='col-span-1'
+                                            value={lastPackerId}
+                                            onChange={handleTextInputLastPackerId}
+                                            placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
+                                        />
+                                        {userByIdData &&
+                                            <div className='flex gap-x-1 text-[#A5E65E]'>
+                                            <PersonOutlineOutlinedIcon />
+                                            <p>{userByIdData.data.fullName}</p>
+                                            </div>
+                                        }
+                                    </div>
+                                </>
+                                }
 
                                 {/* total of functioning hours model input */}
                                 <NumberInput 

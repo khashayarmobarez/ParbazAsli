@@ -39,11 +39,8 @@ import 'react-toastify/dist/ReactToastify.css';
   import Profile from './templates/profile/Profile';
   import Equipment from './templates/equipments/Equipment';
   import FlightEquipment from './templates/equipments/FlightEquipment';
-  import AddFlightEquipment from './templates/equipments/AddFlightEquipment';
   import Parachute from './templates/equipments/Parachute'
   import Harness from './templates/equipments/Harness'
-  import AddParachute from './templates/equipments/AddParachute';
-  import AddHarness from './templates/equipments/AddHarness';
 // education
   import Education from './templates/education/Education';
   import AddCourse from './templates/education/AddCourse';
@@ -279,7 +276,7 @@ function App() {
                   <Route path="harness" element={<Harness />} />
               </Route>
               <Route path='/equipment/addFlightEquipment' element={<AddEquipment />} /> 
-              <Route path='/equipment/addParachute' element={<AddParachute />} />
+              <Route path='/equipment/addParachute' element={<AddEquipment />} />
               <Route path='/equipment/addHarness' element={<AddEquipment />} />
               <Route path='/EditEquipment/:id' element={<EditEquipment />} />
               <Route path='/possessionTransitionEquipment/:id' element={<PossessionTransitionEquipment />} />
