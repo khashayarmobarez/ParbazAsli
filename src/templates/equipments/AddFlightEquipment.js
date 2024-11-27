@@ -164,7 +164,7 @@ const AddFlightEquipment = () => {
               type: 'error',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
           });
           return;
@@ -176,7 +176,7 @@ const AddFlightEquipment = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 5000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
         });
           return;
@@ -188,7 +188,7 @@ const AddFlightEquipment = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 5000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -199,7 +199,7 @@ const AddFlightEquipment = () => {
             type: 'error',
             position: 'top-right',
             autoClose: 10000,
-            theme: 'dark',
+            theme: appTheme,
             style: { width: "90%" }
         });
         return;
@@ -240,7 +240,7 @@ const AddFlightEquipment = () => {
               type: 'success',
               position: 'top-right',
               autoClose: 5000,
-              theme: 'dark',
+              theme: appTheme,
               style: { width: "90%" }
             });
             setShowPopup(false);
@@ -258,7 +258,7 @@ const AddFlightEquipment = () => {
           type: 'error',
           position: 'top-right',
           autoClose: 10000,
-          theme: 'dark',
+          theme: appTheme,
           style: { width: "90%" }
       });
         // Add any additional error handling logic here
