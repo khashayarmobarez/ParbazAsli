@@ -116,6 +116,7 @@ import StudentsListClub from './templates/club/students/StudentsListClub';
 import AStudentCourses from './templates/education/studentList/AStudentCourses';
 import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
 import ClubHarnesses from './templates/club/clubEquipments/ClubHarnesses';
+import AddEquipment from './templates/equipments/AddEquipment';
 
 
 const queryClient = new QueryClient();
@@ -277,9 +278,9 @@ function App() {
                   <Route path="parachute" element={<Parachute />} />
                   <Route path="harness" element={<Harness />} />
               </Route>
-              <Route path='/equipment/addFlightEquipment' element={<AddFlightEquipment />} /> 
+              <Route path='/equipment/addFlightEquipment' element={<AddEquipment />} /> 
               <Route path='/equipment/addParachute' element={<AddParachute />} />
-              <Route path='/equipment/addHarness' element={<AddHarness />} />
+              <Route path='/equipment/addHarness' element={<AddEquipment />} />
               <Route path='/EditEquipment/:id' element={<EditEquipment />} />
               <Route path='/possessionTransitionEquipment/:id' element={<PossessionTransitionEquipment />} />
 

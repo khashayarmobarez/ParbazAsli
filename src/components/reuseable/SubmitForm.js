@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
-const SubmitForm = ({ handleSubmit, showPopup, setShowPopup, handlePost, text }) => {
+const SubmitForm = ({ showPopup, setShowPopup, handlePost, text, isLoading }) => {
 
     
 
@@ -23,8 +23,22 @@ const SubmitForm = ({ handleSubmit, showPopup, setShowPopup, handlePost, text })
 
 
                 <div className='w-full flex justify-around items-center'>
-                    <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                    <button type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={() => handlePost()}>تایید</button>
+                    <button 
+                    type="reset" 
+                    disabled={isLoading} 
+                    className={`${ButtonStyles.normalButton} w-24`} 
+                    onClick={() => setShowPopup(false)}>
+                        لغو
+                    </button>
+                    <button 
+                    type="submit" 
+                    disabled={isLoading} 
+                    className={`${ButtonStyles.addButton} w-24`} 
+                    onClick={handlePost}>
+                        {isLoading ? 'در حال ارسال...' : 'تایید'}
+                    </button>
+
+                    
                 </div>
 
             </div>

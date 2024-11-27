@@ -53,8 +53,8 @@ const SyllabiList = () => {
                 <PageTitle title={'سرفصل ها'} navigateTo={'/profile'} /> 
 
                 {
-                    organsLoading &&
-                        <CircularProgressLoader /> 
+                organsLoading &&
+                    <CircularProgressLoader /> 
                 }
 
                 {

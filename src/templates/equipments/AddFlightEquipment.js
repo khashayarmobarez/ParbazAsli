@@ -35,14 +35,15 @@ import PageTitle from '../../components/reuseable/PageTitle';
 import NumberInput from '../../components/inputs/NumberInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import BrandsSearchInputWithDropdown from '../../modules/Equipment page comps/BrandsSearchInputWithDropdown';
+import { EQUIPMENT_SERIAL_NUMBER_PATTERN } from '../../Utilities/Providers/regexProvider';
 
 
 const AddFlightEquipment = () => {
 
   const appTheme = Cookies.get('themeApplied') || 'dark';
 
-  const { data: brandsData, isLoading: brandsIsLoading, error:brandsError } = useEquipmentBrands('wing');
-  const { data: wingsClasses, isLoading: WClassesIsLoading, error:WClassesError } = useWingClasses();
+  const { data: brandsData, isLoading: brandsIsLoading } = useEquipmentBrands('wing');
+  const { data: wingsClasses, isLoading: WClassesIsLoading } = useWingClasses();
   const { mutate: mutateWing , isLoading: isSubmitting, error: submitError} = useAddEquipment();
 
 
@@ -82,12 +83,10 @@ const AddFlightEquipment = () => {
     }
   }, [serialNumber])
 
-  // Regex patterns
-  const equipmentSerialNumberPattern = /^[a-zA-Z0-9\-_ ]*$/;
 
   // Validation functions
   const validateSerialNumber = (serialNumber) => {
-    if (!equipmentSerialNumberPattern.test(serialNumber)) {
+    if (!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber)) {
       setSerialNumberError('Invalid serial number format.');
       return false;
     } else {
@@ -245,25 +244,22 @@ const AddFlightEquipment = () => {
             });
             setShowPopup(false);
             navigate('/equipment/flightEquipment')
+          },
+          onError: (error) => {
+            console.log('submitError', submitError.message);
+            toast(submitError.response.data.ErrorMessages[0].ErrorMessage , {
+              type: 'error',
+              position: 'top-right',
+              autoClose: 10000,
+              theme: appTheme,
+              style: { width: "90%" }
+            });
           }
         })
         
       }
     }
 
-    useEffect(() => {
-      if (submitError) {
-        console.log('submitError', submitError.message);
-        toast(submitError.response.data.ErrorMessages[0].ErrorMessage , {
-          type: 'error',
-          position: 'top-right',
-          autoClose: 10000,
-          theme: appTheme,
-          style: { width: "90%" }
-      });
-        // Add any additional error handling logic here
-      }
-    },[submitError])
 
     return (
         <div className='flex flex-col mt-14 items-center'>
