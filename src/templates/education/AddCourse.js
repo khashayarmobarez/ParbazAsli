@@ -602,7 +602,6 @@ const AddCourse = () => {
                                 <>
                                     <NumberInput id={'NI1'} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
-
                                     {/* add students */}   
                                     <div className='w-full flex flex-col justify-between relative items-center'>
                                         <div className='w-full flex flex-col'>
