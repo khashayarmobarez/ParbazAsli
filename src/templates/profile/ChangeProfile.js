@@ -102,6 +102,13 @@ const ChangeProfile = () => {
         }
     }, [codeRemainingTimeEmail]);
 
+    useEffect(() => {
+        if(userData) {
+            setEmail(userData.data.email)
+            setPhoneNumber(userData.data.phoneNumber)
+        }
+    },[userData])
+
 
 
     const changePhoneNumberPopUp = async(e) => {
@@ -346,7 +353,7 @@ const ChangeProfile = () => {
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
                                 <InputWithButton isLoading={phoneNumLoading} isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
-                                <InputWithButton isLoading={emailLoading} Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
+                                <InputWithButton isLoading={emailLoading} Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} value={email} />
 
                                 <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
                                 onClick={() => setShowPopupType('changePassword')}>

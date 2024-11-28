@@ -72,7 +72,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        // window.location.reload();    
+        window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -176,6 +176,15 @@ const AddCertificate = () => {
                 style: { width: "90%" }
             }); 
             return
+        } else if (new Date(dateEndValue) <= new Date() || new Date(dateStartValue) >= new Date()) {
+            toast("تاریخ انقضا نباید قبل از امروز باشد و تاریخ صدور نباید بعد از امروز باشد", {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 3000,
+                theme: appTheme,
+                style: { width: "90%" }
+            });
+            return;
         }
 
         const formattedStartDate = formatDate(dateStartValue);
@@ -416,7 +425,7 @@ const AddCertificate = () => {
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-3'>آپلود عکس گواهینامه</p>
                                                         <div onClick={handleUploadClick} 
-                                                        className='w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 border-textDefault rounded-3xl -mt-1'>
+                                                        className='w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 border-textDefault rounded-3xl -mt-1 -mb-3'>
 
                                                             <input
                                                                 type="file"
@@ -428,8 +437,9 @@ const AddCertificate = () => {
                                                             <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem'}} />
 
                                                             
-                                                            {uploadedFile && (
-                                                                <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center">
+                                                            {
+                                                            uploadedFile && (
+                                                                <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center ">
                                                                     {uploadedFile.type.startsWith('image/') && (
                                                                     <img
                                                                         src={URL.createObjectURL(uploadedFile)}
@@ -442,8 +452,12 @@ const AddCertificate = () => {
                                                         </div>
 
 
-                                                        <p className='text-sm w-[85%] self-center -mt-3'>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
+                                                        <p className='text-sm w-[85%] self-center '>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
                                                         حجم عکس نباید بیشتر از 10 مگابایت باشد</p>
+                                                        {
+                                                            !uploadedFile && isSubmitted &&
+                                                            <p className='text-textError -mt-3 mb-0'>عکس گواهینامه الزامی می باشد</p>
+                                                        }
 
                                                     </>
                                                 }
