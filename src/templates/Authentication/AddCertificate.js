@@ -72,7 +72,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();
+        // window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -381,13 +381,37 @@ const AddCertificate = () => {
                                                             isSubmitted={isSubmitted}
                                                             isRequired={true}
                                                             RequiredMessage='شماره گواهینامه الزامی می باشد'
+                                                            ErrorContdition={!certificateId}
+                                                            ErrorText={'شماره گواهینامه الزامی می باشد'}
+                                                            ErrorContdition2={certificateId.length > 99}
+                                                            ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput icon={<CertificateIcon/>} name={'تاریخ صدور'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'}  />
+                                                        <DateLastRepackInput 
+                                                        icon={<CertificateIcon/>} 
+                                                        name={'تاریخ صدور'}  
+                                                        onChange={handleCertificateStartDateChange} 
+                                                        placeH={'تاریخ صدور'}  
+                                                        ErrorContdition={!dateStartValue}
+                                                        ErrorText={'تاریخ صدور الزامی می باشد'}
+                                                        ErrorContdition2={new Date(dateStartValue) >= new Date()}
+                                                        ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
+                                                        isSubmitted={isSubmitted}
+                                                        />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput icon={<CertificateIcon/>} name={'تاریخ انقضا'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
+                                                        <DateLastRepackInput 
+                                                        icon={<CertificateIcon/>} 
+                                                        name={'تاریخ انقضا'}  
+                                                        onChange={handleCertificateEndDateChange} 
+                                                        placeH={'تاریخ انقضا'} 
+                                                        ErrorContdition={!dateEndValue}
+                                                        ErrorText={'تاریخ انقضا الزامی می باشد'}
+                                                        ErrorContdition2={new Date(dateEndValue) <= new Date()}
+                                                        ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                                                        isSubmitted={isSubmitted}
+                                                        />
 
                                                         {/* upload picture */}
                                                         <p className='text-sm mt-3'>آپلود عکس گواهینامه</p>

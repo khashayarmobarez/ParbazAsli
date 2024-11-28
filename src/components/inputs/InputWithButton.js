@@ -12,15 +12,17 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
     return (
             <div className={` flex relative w-[100%] h-12 px-2`}>
                 <span style={{color:'var(--text-input-default)'}} >
-                {(isPhoneNumber || isForPhone) ? (
-                    <LocalPhoneRoundedIcon
-                        sx={{ position: 'absolute', margin: '12px 5px 0 0', color:'var(--text-default)' }}
-                    />
-                ) : (
-                    <EmailOutlinedIcon
-                        sx={{ position: 'absolute', margin: '12px 5px 0 0', color:'var(--text-default)' }}
-                    />
-                )}
+                {
+                    (isPhoneNumber || isForPhone) ? (
+                        <LocalPhoneRoundedIcon
+                            sx={{ position: 'absolute', margin: '12px 5px 0 0', color:'var(--text-default)' }}
+                        />
+                    ) : (
+                        <EmailOutlinedIcon
+                            sx={{ position: 'absolute', margin: '12px 5px 0 0', color:'var(--text-default)' }}
+                        />
+                    )
+                }
                 </span>
                 <input
                     value={value}

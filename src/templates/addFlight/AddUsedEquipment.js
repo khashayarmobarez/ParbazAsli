@@ -32,15 +32,17 @@ const AddUsedEquipment = () => {
 
     const [submitted, setSubmitted] = useState(false);
 
-    // user equipments data
-    const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipmentsForDropDown(1)
-    const { data: userWingsData, isLoading:userWingsLoading, error:userWingsError } = useUserEquipmentsForDropDown(2)
-    const { data: userHarnessData, isLoading:userHarnessLoading, error:userHarnessError } = useUserEquipmentsForDropDown(3)
-
-
     // redux
     const {wing, harness, parachute, passengerHarness,
     flightType, wingType} = useSelector(selectAddFlight)
+
+    console.log(wingType)
+    
+    // user equipments data
+    const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipmentsForDropDown(1)
+    const { data: userWingsData, isLoading:userWingsLoading, error:userWingsError } = useUserEquipmentsForDropDown(2, wingType)
+    const { data: userHarnessData, isLoading:userHarnessLoading, error:userHarnessError } = useUserEquipmentsForDropDown(3)
+
 
     // function to start from the bottom of the page
     useEffect(() => {
@@ -218,16 +220,8 @@ const AddUsedEquipment = () => {
                     {
                         userWingsData && userHarnessData && userParachuteData && 
                         <>
-                            {   
-                            wingType === 'Tandem' ?
-                                <DropdownInput id={'ddi1'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Tandem')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
-                                :
-                                wingType === 'Single' ?
-                                <DropdownInput id={'ddi2'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data.filter((wing) => wing.wingType === 'Single')} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
-                                :
                                 <DropdownInput id={'ddi3'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
                                 
-                            }
 
                             <DropdownInput id={'ddi4'} icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
 

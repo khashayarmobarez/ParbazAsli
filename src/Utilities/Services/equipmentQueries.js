@@ -71,10 +71,10 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
 // get active equipments for dropdown input
 // /Equipment/GetActiveEquipmentsForDropDown?type=3
-    const getUserEquipmentsForDropDown = async (equipmentType) => {
+    const getUserEquipmentsForDropDown = async (equipmentType,wingType) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}`, {
+            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -90,8 +90,8 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         }
     };
 
-    const useUserEquipmentsForDropDown = (equipmentType) => {
-        return useQuery(['userEquipmentsForDropDown', equipmentType], () => getUserEquipmentsForDropDown(equipmentType));
+    const useUserEquipmentsForDropDown = (equipmentType, wingType) => {
+        return useQuery(['userEquipmentsForDropDown', equipmentType, wingType], () => getUserEquipmentsForDropDown(equipmentType, wingType));
     };
 
 

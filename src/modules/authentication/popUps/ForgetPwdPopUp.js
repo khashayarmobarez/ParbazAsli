@@ -64,6 +64,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     const isEmail = EMAIL_REGEX.test(input);
     const codeLength = isEmail ? 6 : 4;
     const [inputRefs, setInputRefs] = useState([]);
+    const [submitted, setSubmitted] = useState(false)
 
     
     const { mutate: mutateVerificationCode , isLoading: VerificationLoading} = useSendVerificationCode();
@@ -221,6 +222,9 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     // send code handler
     const sendCodeHandler = async(e) => {
         e.preventDefault();
+        
+        setSubmitted(true)
+
         if (!validInput) { 
             toast('فرمت ایمیل یا شماره تلفن صحیح نمیباشد', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -254,6 +258,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     theme: appTheme,
                     style: { width: "90%" }
                 }); 
+                setSubmitted(false)
             },
         });
     }
@@ -392,8 +397,11 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     Type={'text'}
                                     icon={<UserIcon/>} // You can replace `null` with a specific icon if you have one
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
-                                    ErrorContdition={!input}
-                                    errorText={'وارد کردن شماره تلفن الزامی است'}
+                                    ErrorContdition={input.length < 1}
+                                    ErrorText={'وارد کردن شماره تلفن الزامی است'}
+                                    ErrorContdition2={!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0}
+                                    ErrorText2={'فرمت شماره تلفن یا ایمیل درست نمی باشد'}
+                                    isSubmitted={submitted} 
                                 />
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 

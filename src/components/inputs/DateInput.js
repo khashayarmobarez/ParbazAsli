@@ -7,10 +7,11 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css';
 // assets
 import CalenderIcon from '../icons/CalenderIcon'
 
-const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit }) => {
+const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit, isSubmitted, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2 }) => {
 
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleChange = (date) => {
     setSelectedDate(date);
@@ -21,38 +22,47 @@ const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'r
   };
 
   return (
-    <div className='w-full flex relative'>
-        <span className="absolute mt-3 mr-2 w-5">
-          {icon ? 
-            icon
-            :
-            <CalenderIcon />
+    <>
+      <div className='w-full flex relative'>
+          <span className="absolute mt-3 mr-2 w-5">
+            {icon ? 
+              icon
+              :
+              <CalenderIcon />
+            }
+          </span>
+          <DatePicker
+              onChange={(e) => handleChange(e.value)}
+              show={true}
+              inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} ${inputStyles.customDateInput} `}
+              position={position}
+              round="thin"
+              accentColor="#0D59F2"
+              locale="fa"
+              inputAttributes={{ placeholder: placeH }}
+              direction="rtl"
+          />
+          {
+            filled &&
+            <label
+              htmlFor="floatingDropdown"
+              className={`
+                absolute right-10 top-[14px] text-textInputDefault
+                -translate-y-[21px] translate-x-2 text-xs bg-bgPageMain px-2
+              `}
+            >
+            {placeH || 'تاریخ'}
+          </label>
           }
-        </span>
-        <DatePicker
-            onChange={(e) => handleChange(e.value)}
-            show={true}
-            inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} ${inputStyles.customDateInput} `}
-            position={position}
-            round="thin"
-            accentColor="#0D59F2"
-            locale="fa"
-            inputAttributes={{ placeholder: placeH }}
-            direction="rtl"
-        />
-        {
-          filled &&
-          <label
-            htmlFor="floatingDropdown"
-            className={`
-              absolute right-10 top-[14px] text-textInputDefault
-              -translate-y-[21px] translate-x-2 text-xs bg-bgPageMain px-2
-            `}
-          >
-          {placeH || 'تاریخ'}
-        </label>
-        }
-    </div>
+      </div>
+      {
+        (selectedDate || isSubmitted) && (ErrorContdition || ErrorContdition2) &&
+        <div id='errors' className='w-full flex flex-col items-start -mt-4'>
+          {ErrorContdition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
+          {ErrorContdition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
+        </div>
+      }
+    </>
   );
 };
 

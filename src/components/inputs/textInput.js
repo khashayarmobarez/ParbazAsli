@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
-const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2, disablePlaceholderFloating }) => {
+const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
   
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -17,10 +17,12 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
 
   const handleFocus = () => {
     setIsFocused(true)
-    setShowErrors(true)
   };
-
-  const handleBlur = () => setIsFocused(false);
+  
+  const handleBlur = () => {
+    setIsFocused(false);
+    setShowErrors(true)
+  }
 
   const handleLabelClick = () => {
     // Focus the input field when the label is clicked
@@ -29,7 +31,7 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
 
 
   return (
-    <div className='flex flex-col w-full items-start'>
+    <div className={`flex flex-col w-full items-start ${className}`}>
       <div className="relative w-full min-h-12">
         <span htmlFor="floatingInput"> 
           { icon ?
@@ -75,8 +77,8 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
         </label>
       </div>
       <div id='errors' className='w-full flex flex-col items-start'>
-        {showErrors && ErrorContdition && <span className='text-textError text-xs'>{ErrorText}</span>}
-        {showErrors && ErrorContdition2 && <span className='text-textError text-xs'>{ErrorText2}</span>}
+        {(showErrors || isSubmitted) && ErrorContdition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
+        {(showErrors || isSubmitted) && ErrorContdition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
       </div>
     </div>
   );
