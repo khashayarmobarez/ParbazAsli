@@ -55,10 +55,10 @@ const AddClass = () => {
     const allStudentIds = [...studentIds, ...guestStudentIds];
 
 
-    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
-    const {  data: courseStudents, isLoading: courseStudentsLoading, error: courseStudentsError } = useAllStudents(1, pageNumber, pageSize );
-    const { data: userByIdData, loading: userByIdLoad, error: userByIdError } = useUserById(guestStudentId)
-    const { mutate: addCourseClass, isLoading: addCourseClassLoading } = useAddCourseClass();
+    const {  data: syllabiDataTheory } = useACourseSyllabi(id,1);
+    const {  data: courseStudents } = useAllStudents(1, pageNumber, pageSize );
+    const { data: userByIdData } = useUserById(guestStudentId)
+    const { mutate: addCourseClass } = useAddCourseClass();
     
 
 
@@ -293,14 +293,12 @@ const AddClass = () => {
                                 Icon={<ListIcon/>}
                             />
 
-                            <div className='w-full flex flex-col gap-y-2'>
-                                <h1 className=' self-start'>توضیحات کلاس</h1>
-                                <DescriptionInput
-                                    value={description}
-                                    onChange={handleDescription}
-                                    placeholder='هر متنی را که دوست دارید تایپ کنید...'
-                                />
-                            </div>
+                            
+                            <DescriptionInput
+                                value={description}
+                                onChange={handleDescription}
+                                placeholder='توضیحات کلاس'
+                            />
 
                             <SearchMultipleSelectStudent
                                 name={'هنرجویان'}
@@ -316,12 +314,6 @@ const AddClass = () => {
                                 <div className='w-full flex flex-col'>
                                     <TextInput id={'TI2'} value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
                                 </div>
-                                {/* <span
-                                    className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                    onClick={() => handleAddguestStudent()}
-                                >
-                                    <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
-                                </span> */}
                                 {userByIdData?.data && (
                                     <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
                                     

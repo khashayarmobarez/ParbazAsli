@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
-const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2 }) => {
+const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2, disablePlaceholderFloating }) => {
   
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -63,11 +63,11 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
           htmlFor="floatingInput"
           className={`
             absolute right-9 top-[13px] text-textInputDefault
-            transition-all duration-300 transform
+            transition-all ${disablePlaceholderFloating ? 'duration-0' : 'duration-300'} transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
-            peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
-            ${(isFocused || value) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
+            peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600 
+            ${(isFocused || value) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2 ${disablePlaceholderFloating && 'invisible'}` : 'text-base'}
             ${isFocused ? 'text-blue-600' : ''}
           `}
         >

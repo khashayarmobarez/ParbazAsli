@@ -90,6 +90,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                 value={searchTerm} 
                 onChange={handleInputChange} 
                 icon={<SearchIcon anotherColor={'var(--text-input-default)'} />}
+                disablePlaceholderFloating={true}
               />
             </div>
 
