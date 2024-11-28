@@ -57,7 +57,7 @@ const ChangeProfile = () => {
     const [emailCode, setEmailCode] = useState('')
     
     // queries
-    const { data: userData, isLoading:userDataLoading, error:userDataError } = useUserData();
+    const { data: userData } = useUserData();
     const { mutate: mutateCodeRequestToChange} = useSendVerificattionCodeToChange();
     const { mutate: mutateChangePhone, isLoading: phoneNumLoading } = useChangePhoneNumber();
     const { mutate: mutateChangeEmail, isLoading: emailLoading } = useChangeEmail();
@@ -350,6 +350,7 @@ const ChangeProfile = () => {
                         {
                             userData && userData.data &&
                             <div className='flex flex-col w-full space-y-6 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
+
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
                                 <InputWithButton isLoading={phoneNumLoading} isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />

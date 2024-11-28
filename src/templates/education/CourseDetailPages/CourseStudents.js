@@ -282,16 +282,16 @@ const CourseStudents = () => {
                             }
                             {
                                 student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
-                                <div className=' absolute w-full flex justify-end left-[5%] h-32'>
+                                <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-10'>
                                     <div className='w-1/3 h-full bg-bgInputDropdown text-textDefault rounded-2xl flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
-                                            className='w-full text-center py-3 active:bg-textAccent'
+                                            className='w-full text-center py-1.5 active:bg-textAccent'
                                             >
                                                 اتمام دوره 
                                         </p>
                                         <div className='w-[90%] h-[2px] bg-bgPageMain'/>
-                                        <p className=' w-full text-center py-3 active:bg-textAccent'
+                                        <p className=' w-full text-center py-1.5 active:bg-textAccent'
                                         onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
                                             لغو دوره
                                         </p>
