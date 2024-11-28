@@ -603,41 +603,39 @@ const AddCourse = () => {
                                     <NumberInput id={'NI1'} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
 
 
-                                    {/* add students */}
-                                    <div className='w-full flex flex-col gap-y-1'>
+                                    {/* add students */}   
+                                    <div className='w-full flex flex-col justify-between relative items-center'>
+                                        <div className='w-full flex flex-col'>
+                                            <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                        </div>
+
                                         { studentNameLoading && studentId.length > 5 &&
-                                            <p className=' self-start'>در حال بررسی هنرجو ... </p>
+                                        <p className=' self-start mt-1'>در حال بررسی هنرجو ... </p>
                                         }
                                         { studentError && studentId.length > 5 &&
-                                            <p className='text-[var(--text-error)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                                            <p className='text-[var(--text-error)] self-start text-right mt-1'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                                         }
+                                        {/* <span 
+                                        className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                        onClick={studentData ? handleAddStudent : null}
+                                        >
+                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
+                                        </span> */}
+                                        {studentData?.data && (
+                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                            
+                                                <div className='flex flex-col w-full items-center justify-center '>
+                                                    <li
+                                                        key={studentData.data.id}
+                                                        className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
+                                                        onClick={() => handleAddStudent()}
+                                                    >
+                                                        {studentData.data.fullName}
+                                                    </li>
+                                                </div>
 
-                                        <div className='w-full flex justify-between relative items-center'>
-                                            <div className='w-full flex flex-col'>
-                                                <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
-                                            </div>
-                                            {/* <span 
-                                            className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                            onClick={studentData ? handleAddStudent : null}
-                                            >
-                                                <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
-                                            </span> */}
-                                            {studentData?.data && (
-                                                <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
-                                                
-                                                    <div className='flex flex-col w-full items-center justify-center '>
-                                                        <li
-                                                            key={studentData.data.id}
-                                                            className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
-                                                            onClick={() => handleAddStudent()}
-                                                        >
-                                                            {studentData.data.fullName}
-                                                        </li>
-                                                    </div>
-
-                                                </ul>
-                                            )}
-                                        </div>
+                                            </ul>
+                                        )}
                                     </div>
 
                                     <ul className=' w-full py-0 mt-[-1rem] gap-2'>
