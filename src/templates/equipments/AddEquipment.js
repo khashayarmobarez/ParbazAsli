@@ -429,17 +429,17 @@ const AddEquipment = () => {
 
                                 {/* wing type input */}
                                 {
-                                    equipmentType === 'Wing' &&
-                                    <DropdownInput
-                                    id={'ddi2'}
-                                    className='col-span-1'
-                                    icon={<ColorTagsIcon/>}
-                                    name={'نوع بال'}
-                                    options={flightTypeOptionsEquipment}
-                                    selectedOption={selectedOptionType} 
-                                    handleSelectChange={handleSelectChangeType}
-                                    IsEmptyAfterSubmit={submitted && !selectedOptionType}
-                                    />
+                                equipmentType === 'Wing' &&
+                                <DropdownInput
+                                id={'ddi2'}
+                                className='col-span-1'
+                                icon={<ColorTagsIcon/>}
+                                name={'نوع بال'}
+                                options={flightTypeOptionsEquipment}
+                                selectedOption={selectedOptionType} 
+                                handleSelectChange={handleSelectChangeType}
+                                IsEmptyAfterSubmit={submitted && !selectedOptionType}
+                                />
                                 }   
 
                                 {/* Year input */}

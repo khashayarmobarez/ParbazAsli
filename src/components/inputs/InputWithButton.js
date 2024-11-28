@@ -27,14 +27,14 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
                     onChange={onChange}
                     id={id}
                     placeholder={placeH}
-                    className={`w-[100%] text-xs font-medium pr-8 rounded-r-2xl rounded-l-none border border-borderInputDefault`}
+                    className={`w-[100%] text-xs font-medium pr-8 rounded-2xl border border-borderInputDefault`}
                     style={{
                         background: 'none',
                         boxShadow: 'var(--shadow-all)',
                     }}
                 />
-                <button disabled={isLoading} onClick={onSubmit} className={`bg-bgButtonSecondaryDefault ${isLoading && 'opacity-50'} 
-                w-24 h-[47px] flex items-center justify-center rounded-l-2xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}
+                <button disabled={isLoading} onClick={onSubmit} className={`bg-bgButtonSecondaryDefault mr-2 ${isLoading && 'opacity-50'} 
+                w-24 h-[47px] flex items-center justify-center rounded-2xl px-2 text-sm whitespace-nowrap backdrop-blur-lg `}
                 style={{boxShadow: 'var(--shadow-button-dark), var(--shadow-button-white)'}}>
                     <p>{buttonText}</p> 
                 </button>
