@@ -34,7 +34,6 @@ import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
-import SearchMultipleSelect from '../../components/inputs/SearchMultipleSelect';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import SelectMultiplePopUp from '../../components/reuseable/SelectMultiplePopUp';
 

@@ -95,7 +95,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     }, [inputRefs]);
 
     return (
-        <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm z-[100] ${showPopup ? 'visible' : 'invisible'}`}>
+        <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm z-[120] ${showPopup ? 'visible' : 'invisible'}`}>
             <form
                 className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 pt-8 rounded-lg shadow-lg`}
             >

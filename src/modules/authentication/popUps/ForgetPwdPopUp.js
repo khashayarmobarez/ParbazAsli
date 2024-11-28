@@ -355,7 +355,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
 
     return (
-        <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? 'visible' : 'invisible'}`}>
+        <div className={`fixed inset-0 flex items-center justify-center z-[100] ${showPopup ? 'visible' : 'invisible'}`}>
 
             {loading && 
                 <div className='w-full min-h-[71vh]'>
@@ -370,7 +370,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             }
             
             {!loading && !error && (
-                <div className='w-full h-full flex justify-center items-center backdrop-blur-sm'>
+                <div className='w-full h-full flex justify-center items-center backdrop-blur-sm '>
                     <form
                         className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[384px] pt-16 pb-6 flex flex-col gap-y-4 items-center relative bg-white p-5 rounded-lg shadow-lg`}
                     >
