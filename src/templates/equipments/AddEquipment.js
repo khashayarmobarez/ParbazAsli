@@ -139,7 +139,6 @@ const AddEquipment = () => {
         // Event handler for custom brand input
         const handleCustomBrand = (event) => {
             setCustomBrand(event.target.value);
-            setSelectedOptionBrand('');
         };
 
         const handleTextInputAircraft = (event) => {
