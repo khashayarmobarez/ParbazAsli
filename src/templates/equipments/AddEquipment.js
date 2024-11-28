@@ -303,8 +303,8 @@ const AddEquipment = () => {
             const formData = new FormData();
             // type 1 for Hamutate Harness
             formData.append('Type', equipmentType);
-            !showCustomBrandInput && formData.append('brandId', selectedOptionBrand.id);
-            showCustomBrandInput && formData.append('brandName', customBrand);
+            selectedOptionBrand.id !== 0 && formData.append('brandId', selectedOptionBrand.id);
+            selectedOptionBrand.id === 0 && formData.append('brandName', customBrand);
             formData.append('file', selectedFile);
             formData.append('serialNumber', serialNumber);
             formData.append('Model', aircraft);
@@ -376,9 +376,7 @@ const AddEquipment = () => {
                             <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
 
                                 {/* brand input / custom brand input */}
-                                <BrandsSearchInputWithDropdown
-                                    showCustomBrandInput={showCustomBrandInput}
-                                    setShowCustomBrandInput={setShowCustomBrandInput}
+                                <DropdownInput
                                     className='col-span-1'
                                     options={brandsData.data}
                                     selectedOption={selectedOptionBrand}
@@ -390,7 +388,7 @@ const AddEquipment = () => {
 
                                 {/* show custom brand input */}
                                 {
-                                showCustomBrandInput &&
+                                selectedOptionBrand.id === 0 &&
                                     <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
                                 }
 
