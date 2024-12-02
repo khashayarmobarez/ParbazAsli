@@ -125,7 +125,7 @@ const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, 
                 {options?.map((option, index) => (
                   <>
                     <li
-                      key={option.id}
+                      key={index}
                       className="px-4 py-4 hover:bg-gray-100 cursor-pointer flex items-center "
                       onClick={() => handleOptionSelect(option)}
                       role="option"

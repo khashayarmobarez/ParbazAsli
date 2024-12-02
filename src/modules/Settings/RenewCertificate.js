@@ -8,7 +8,6 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // mui
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { CircularProgress } from '@mui/material';
 
 // assets
@@ -25,6 +24,7 @@ import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
 import DateLastRepackInput from '../../components/inputs/DateInput';
 import PageTitle from '../../components/reuseable/PageTitle';
+import UploadPicture from '../../components/inputs/UploadPicture';
 
 
 const RenewCertificate = () => {
@@ -53,6 +53,8 @@ const RenewCertificate = () => {
     const fileInputRef = useRef(null);
 
     const [errMsg, setErrMsg] = useState(null)
+
+    const [isSubmitted, setIsSubmitted] = useState(false)
     
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useLevelsByOrganizationId(organ.id);
 
@@ -107,37 +109,26 @@ const RenewCertificate = () => {
     };
 
 
-    const handleUploadClick = () => {
-        fileInputRef.current.click();
-      };
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-
-        if (file) {
-            // Check file format
-            if (!allowedFormats.includes(file.type)) {
-                setErrMsg('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
-                return;
-            }
-    
-            // Check file size
-            if (file.size > maxFileSize) {
-                setErrMsg('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
-                return;
-            }
-    
-            // Set the uploaded file if it passes all checks
-            setUploadedFile(file);
-            console.log('Selected file:', file);
-        }
+    const handleFileUpload = (file) => {
+        setUploadedFile(file);
     };
 
     // mutate, post data
     const handleSubmit = (event) => {
         
-
         event.preventDefault();
+        setIsSubmitted(true)
+
+        if(!organ || !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile) {
+            toast('اطلاعات گواهینامه را کامل وارد کنید', {
+                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                autoClose: 3000,
+                theme: appTheme,
+                style: { width: "350px" }
+            });
+            return
+        }
 
         const formattedStartDate = formatDate(dateStartValue);
         const formattedEndDate = formatDate(dateEndValue);
@@ -199,7 +190,6 @@ const RenewCertificate = () => {
 
             <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%] md:w-[65%]'>
 
-
                 {
                     isSubmitting &&
                         <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
@@ -211,7 +201,6 @@ const RenewCertificate = () => {
 
                 {/* line and circle of adding flight level */}
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center pt-4'>
-
 
                     {
                         organsLoading && 
@@ -226,11 +215,11 @@ const RenewCertificate = () => {
                             <p>Error fetching organization settings</p>
                         </div>
                     }
+
                     {
                         organsData &&
                         <>
                             <form className='w-full flex flex-col md:w-[50%] gap-y-4'>
-
                                 
                                 <DropdownInput
                                     id={'ddi1'}
@@ -240,6 +229,9 @@ const RenewCertificate = () => {
                                     selectedOption={organ}
                                     name={'صدور گواهینامه از'}
                                     isDeselectDeactivated={true}
+                                    ErrorContdition={!organ}
+                                    ErrorText={'ارگان مربوطه را انتخاب کنید'}
+                                    isSubmitted={isSubmitted}
                                 />
                                 {
                                     organ && 
@@ -248,8 +240,6 @@ const RenewCertificate = () => {
                                         {levelsError && <p>Error fetching levels</p>}
                                         {!levelsError && !levelsLoading &&
                                             <>
-
-
 
                                                 <DropdownInput
                                                     id={'ddi2'}
@@ -273,49 +263,41 @@ const RenewCertificate = () => {
                                                         placeholder={'شماره گواهینامه'}
                                                         Type={'text'}
                                                         icon={<CertificateIcon/>}
+                                                        isSubmitted={isSubmitted}
+                                                        isRequired={true}
+                                                        RequiredMessage='شماره گواهینامه الزامی می باشد'
+                                                        ErrorContdition={!certificateId}
+                                                        ErrorText={'شماره گواهینامه الزامی می باشد'}
+                                                        ErrorContdition2={certificateId.length > 99}
+                                                        ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateStartDateChange} placeH={'تاریخ صدور'} />
+                                                        <DateLastRepackInput 
+                                                            name={'تاریخ آخرین بسته‌بندی'}  
+                                                            onChange={handleCertificateStartDateChange} 
+                                                            placeH={'تاریخ صدور'} 
+                                                            ErrorContdition={!dateStartValue}
+                                                            ErrorText={'تاریخ صدور الزامی می باشد'}
+                                                            ErrorContdition2={new Date(dateStartValue) >= new Date()}
+                                                            ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
+                                                            isSubmitted={isSubmitted}
+                                                        />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'}  onChange={handleCertificateEndDateChange} placeH={'تاریخ انقضا'} />
+                                                        <DateLastRepackInput 
+                                                            name={'تاریخ آخرین بسته‌بندی'}  
+                                                            onChange={handleCertificateEndDateChange} 
+                                                            placeH={'تاریخ انقضا'} 
+                                                            ErrorContdition={!dateEndValue}
+                                                            ErrorText={'تاریخ انقضا الزامی می باشد'}
+                                                            ErrorContdition2={new Date(dateEndValue) <= new Date()}
+                                                            ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                                                            isSubmitted={isSubmitted}
+                                                        />
 
                                                         {/* upload picture */}
-                                                        <p className='text-sm mt-4'>آپلود عکس گواهینامه</p>
-                                                        <div onClick={handleUploadClick} className='w-[320px] md:w-[370px] h-40 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
-                                                        style={{borderColor:'var(--text-default)', backgroundColor:'var(--bg-upload-file) '}}>
-
-                                                            <input
-                                                                type="file"
-                                                                ref={fileInputRef}
-                                                                style={{ display: 'none' }}
-                                                                onChange={handleFileChange}
-                                                            />
-
-                                                            <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem'}} />
-
-                                                            
-                                                            {uploadedFile && (
-                                                                <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center">
-                                                                    {uploadedFile.type.startsWith('image/') && (
-                                                                    <img
-                                                                        src={URL.createObjectURL(uploadedFile)}
-                                                                        alt="Uploaded Preview"
-                                                                        className=" rounded-3xl w-full h-full object-cover"
-                                                                    />
-                                                                    )}
-                                                                </div>
-                                                            )} 
-
-                                                        </div>
-                                                        
-                                                        <p className='text-sm w-[85%] self-center'>
-                                                            فرمت عکس باید jpeg, jpg, gif, bmp یا png 
-                                                            باشد حجم عکس نباید بیشتر از 10 مگابایت باشد
-                                                        </p>
-
-
+                                                        <UploadPicture onFileUpload={handleFileUpload} isSubmitted={isSubmitted} />
 
                                                     </>
                                                 }
@@ -326,7 +308,7 @@ const RenewCertificate = () => {
                                                     تایید
                                                 </button>
 
-                                                {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}
+                                                {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response?.data.ErrorMessages[0].ErrorMessage}</p>}
                                                 {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
                                                 {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
 

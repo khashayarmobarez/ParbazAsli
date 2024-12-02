@@ -26,6 +26,7 @@ import TextInput from '../../components/inputs/textInput';
 import DateInput from '../../components/inputs/DateInput';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
+import UploadPicture from '../../components/inputs/UploadPicture';
 
 
 const AddCertificate = () => {
@@ -58,7 +59,6 @@ const AddCertificate = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const [isStarter, setIsStarter] = useState('notAnsweredYet')
-    
     
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
@@ -420,41 +420,7 @@ const AddCertificate = () => {
                                                         />
 
                                                         {/* upload picture */}
-                                                        <p className='text-sm mt-3'>آپلود عکس گواهینامه</p>
-                                                        <div onClick={handleUploadClick} 
-                                                        className='w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 border-textDefault rounded-3xl -mt-1 -mb-3'>
-
-                                                            <input
-                                                                type="file"
-                                                                ref={fileInputRef}
-                                                                style={{ display: 'none' }}
-                                                                onChange={handleFileChange}
-                                                            />
-
-                                                            <AddCircleOutlineOutlinedIcon sx={{width:'2rem', height:'2rem'}} />
-
-                                                            
-                                                            {
-                                                            uploadedFile && (
-                                                                <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center ">
-                                                                    {uploadedFile.type.startsWith('image/') && (
-                                                                    <img
-                                                                        src={URL.createObjectURL(uploadedFile)}
-                                                                        alt="Uploaded Preview"
-                                                                        className=" rounded-3xl w-full h-full object-cover"
-                                                                    />
-                                                                    )}
-                                                                </div>
-                                                            )}   
-                                                        </div>
-
-
-                                                        <p className='text-sm w-[85%] self-center '>فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد
-                                                        حجم عکس نباید بیشتر از 10 مگابایت باشد</p>
-                                                        {
-                                                            !uploadedFile && isSubmitted &&
-                                                            <p className='text-textError -mt-3 mb-0'>عکس گواهینامه الزامی می باشد</p>
-                                                        }
+                                                        <UploadPicture onFileUpload={handleFileChange} isSubmitted={isSubmitted} />
 
                                                     </>
                                                 }

@@ -319,9 +319,9 @@ const EquipmentsList = () => {
                     openDropDowns.includes('Temporary') &&
                     userEquipmentsData &&
                     userEquipmentsData.data &&
-                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map(equipment =>
-                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                            <div key={equipment.id} className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
+                    userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map((equipment, index) =>
+                        <div key={equipment.id} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                            <div className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
                             style={{boxShadow:'var(--shadow-all)'}}>
 
                                 <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
