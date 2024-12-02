@@ -62,6 +62,8 @@ code {
   --bg-button-main-default:#23BC7C;
   --bg-button-main-hover:#20A970;
   --bg-button-main-active:#1C9663;
+  /* newly added var(--bg-button-main-disable)*/
+  --bg-button-main-disable:#323232; 
   --text-button-main-default:#EEE;
   --text-button-main-disabled:#cacaca;
 
@@ -118,12 +120,12 @@ code {
   /* Headers */
   --bg-header:#EBEBEC;
 
-  /* check box */
+  /* check box(not used) */
   --border-checkbox:#23BC7C;
 
   /* divider */
-  --bg-divider-active:#23BC7C;
-  --bg-divider-default:#3E3E3E;
+  --bg-dropdown-active:#23BC7C;
+  --bg-dropdown-default:#3E3E3E;
 
   /* icons */
   --icon-active:#23BC7C;
@@ -133,8 +135,6 @@ code {
   --shadow-all: -0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
   --shadow-button-white: 1px -1px 2.6px 0px rgba(235, 224, 224, 0.51);
   --shadow-button-dark: -2px 3px 4.3px 1px rgba(0, 0, 0, 0.48);
-
-  
 
 
   
@@ -217,8 +217,7 @@ code {
   --border-checkbox:#23BC7C;
 
   /* divider */
-  --bg-divider-active:#23BC7C;
-  --bg-divider-default:#EEEEEE;
+  --bg-dropdown-default:#EEEEEE;
 
   /* icons */
   --icon-active:#23BC7C;

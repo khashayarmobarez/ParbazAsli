@@ -75,8 +75,8 @@ module.exports = {
       borderCheckbox: 'var(--border-checkbox)',
 
       // divider
-      bgDividerActive: 'var(--bg-divider-active)',
-      bgDividerDefault: 'var(--bg-divider-default)',
+      bgDropdownActive: 'var(--bg-dropdown-active)',
+      bgDropdownDefault: 'var(--bg-dropdown-default)',
 
       // icon
       iconActive: 'var(--icon-active)',
