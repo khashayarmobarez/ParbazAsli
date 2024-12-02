@@ -251,8 +251,10 @@ const PossessionTransitionEquipment = () => {
                                     defaultValue={expirationDate} 
                                     onChange={handleExpirationDate} 
                                     placeH={'تاریخ پایان انتقال قرضی'} 
-                                    ErrorCondition={expirationDate}
+                                    ErrorCondition={!expirationDate}
                                     ErrorText={'تاریخ الزامی میباشد'}
+                                    ErrorCondition2={new Date(expirationDate) <= new Date() && expirationDate}
+                                    ErrorText2={'تاریخ انقضا باید برای بعد از امروز انتخاب شود'}
                                 />
                             }
 
