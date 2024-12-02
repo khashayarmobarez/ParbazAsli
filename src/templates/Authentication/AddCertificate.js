@@ -23,7 +23,7 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 import UserDataBox from '../../modules/Profile/UserDataBox';
 import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../../components/inputs/DateInput';
+import DateInput from '../../components/inputs/DateInput';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 
@@ -59,12 +59,6 @@ const AddCertificate = () => {
 
     const [isStarter, setIsStarter] = useState('notAnsweredYet')
     
-    useEffect(() => {
-        if(organ) {
-            console.log(organ)
-        }
-    },[organ])
-    
     
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
@@ -72,7 +66,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();    
+        // window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -351,6 +345,9 @@ const AddCertificate = () => {
                                                 'صدور گواهینامه از'
                                             }
                                             icon={<CertificateIcon/>}
+                                            ErrorContdition={!organ}
+                                            ErrorText={'ارگان مربوطه را انتخاب کنید'}
+                                            isSubmitted={isSubmitted}
                                         />
                                 }
                                 
@@ -397,7 +394,7 @@ const AddCertificate = () => {
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput 
+                                                        <DateInput 
                                                         icon={<CertificateIcon/>} 
                                                         name={'تاریخ صدور'}  
                                                         onChange={handleCertificateStartDateChange} 
@@ -410,7 +407,7 @@ const AddCertificate = () => {
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                        <DateLastRepackInput 
+                                                        <DateInput 
                                                         icon={<CertificateIcon/>} 
                                                         name={'تاریخ انقضا'}  
                                                         onChange={handleCertificateEndDateChange} 

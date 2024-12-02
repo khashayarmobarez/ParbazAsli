@@ -175,7 +175,7 @@ const AddEmail = () => {
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if ( !validEmail || !code) { 
-            toast("اشکالی در اطلاعات وارد شده وجود دارد", {
+            toast("لطفا کد را درست وارد کنید", {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
