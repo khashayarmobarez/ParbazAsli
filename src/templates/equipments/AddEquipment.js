@@ -385,7 +385,7 @@ const AddEquipment = () => {
                                     icon={<ClothesTag/>}
                                     IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
                                     isSubmitted={submitted}
-                                    ErrorContdition={(!selectedOptionBrand && selectedOptionBrand?.id !== 0)}
+                                    ErrorCondition={(!selectedOptionBrand && selectedOptionBrand?.id !== 0)}
                                     ErrorText={'برند دستگاه الزامی می باشد'}
                                 />
 
@@ -398,7 +398,7 @@ const AddEquipment = () => {
                                         onChange={handleCustomBrand} 
                                         placeholder='نام برند خود را وارد کنید' 
                                         isSubmitted={submitted}
-                                        ErrorContdition={selectedOptionBrand?.id === 0 && customBrand} 
+                                        ErrorCondition={selectedOptionBrand?.id === 0 && customBrand} 
                                         ErrorText={'برند دستگاه الزامی می باشد'}
                                     />
                                 }
@@ -412,7 +412,7 @@ const AddEquipment = () => {
                                     placeholder='نام مدل' 
                                     IsEmptyAfterSubmit={submitted && !aircraft} 
                                     isSubmitted={submitted}
-                                    ErrorContdition={!aircraft }
+                                    ErrorCondition={!aircraft }
                                     ErrorText={'نام مدل دستگاه الزامی می باشد'}
                                 />
 
@@ -431,9 +431,9 @@ const AddEquipment = () => {
                                                 placeholder='حداقل وزن' 
                                                 IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} 
                                                 isSubmitted={submitted}
-                                                ErrorContdition={!minimumWeightCapacity}
+                                                ErrorCondition={!minimumWeightCapacity}
                                                 ErrorText={'حداقل وزن الزامی میباشد'}
-                                                ErrorContdition2={minimumWeightCapacity >= maximumWeightCapacity && minimumWeightCapacity}
+                                                ErrorCondition2={minimumWeightCapacity >= maximumWeightCapacity && minimumWeightCapacity}
                                                 ErrorText2={'حداقل وزن باید از حداکثر کمتر باشد'}
                                             />
                                             <NumberInput 
@@ -445,9 +445,9 @@ const AddEquipment = () => {
                                                 placeholder='حداکثر وزن' 
                                                 IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} 
                                                 isSubmitted={submitted}
-                                                ErrorContdition={!maximumWeightCapacity}
+                                                ErrorCondition={!maximumWeightCapacity}
                                                 ErrorText={'حداکثر وزن الزامی میباشد'}
-                                                ErrorContdition2={maximumWeightCapacity <= minimumWeightCapacity && maximumWeightCapacity}
+                                                ErrorCondition2={maximumWeightCapacity <= minimumWeightCapacity && maximumWeightCapacity}
                                                 ErrorText2={'حداکثر وزن باید از حداقل بیشتر باشد'}
                                             />
                                         </div>
@@ -466,7 +466,7 @@ const AddEquipment = () => {
                                         placeholder='سایز' 
                                         IsEmptyAfterSubmit={submitted && !size} 
                                         isSubmitted={submitted}
-                                        ErrorContdition={!size}
+                                        ErrorCondition={!size}
                                         ErrorText={'سایز دستگاه الزامی میباشد'}
                                     />
                                 }
@@ -484,7 +484,7 @@ const AddEquipment = () => {
                                         handleSelectChange={handleSelectChangeClass}
                                         IsEmptyAfterSubmit={submitted && !selectedOptionClass}
                                         isSubmitted={submitted}
-                                        ErrorContdition={!selectedOptionClass}
+                                        ErrorCondition={!selectedOptionClass}
                                         ErrorText={'کلاس دستگاه الزامی میباشد'}
                                     />
                                 }
@@ -502,7 +502,7 @@ const AddEquipment = () => {
                                 handleSelectChange={handleSelectChangeType}
                                 IsEmptyAfterSubmit={submitted && !selectedOptionType}
                                 isSubmitted={submitted}
-                                ErrorContdition={!selectedOptionType}
+                                ErrorCondition={!selectedOptionType}
                                 ErrorText={'نوع بال الزامی میباشد'}
                                 />
                                 }   
@@ -517,9 +517,9 @@ const AddEquipment = () => {
                                 placeholder='سال ساخت (میلادی)'
                                 IsEmptyAfterSubmit={submitted && !year}
                                 isSubmitted={submitted}
-                                ErrorContdition={!year}
+                                ErrorCondition={!year}
                                 ErrorText={'سال ساخت الزامی میباشد'}
-                                ErrorContdition2={year <= 1980 || year > new Date().getFullYear()}
+                                ErrorCondition2={year <= 1980 || year > new Date().getFullYear()}
                                 ErrorText2={`سال ساخت باید بعد از 1980 و قبل از ${new Date().getFullYear() + 1} باشد`}
                                 />
 
@@ -533,9 +533,9 @@ const AddEquipment = () => {
                                         placeH={'تاریخ اخرین بسته بندی'} 
                                         IsEmptyAfterSubmit={submitted && !packageDate} 
                                         isSubmitted={submitted}
-                                        ErrorContdition={!packageDate}
+                                        ErrorCondition={!packageDate}
                                         ErrorText={'سال ساخت الزامی میباشد'}
-                                        ErrorContdition2={packageDate && new Date(packageDate) > new Date()}
+                                        ErrorCondition2={packageDate && new Date(packageDate) > new Date()}
                                         ErrorText2={'تاریخ بسته بندی باید قبل از امروز یا همین امروز باشد'}
                                     />
 
@@ -549,7 +549,7 @@ const AddEquipment = () => {
                                             onChange={handleTextInputLastPackerId}
                                             placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
                                             isSubmitted={submitted}
-                                            ErrorContdition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
+                                            ErrorCondition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
                                             ErrorText={'فرمت شناسه آخرین بسته‌بندی کننده درست نمی باشد'}
                                         />
                                         {userByIdData &&
@@ -572,9 +572,9 @@ const AddEquipment = () => {
                                 placeholder='حدود ساعت کارکرد وسیله'  
                                 IsEmptyAfterSubmit={submitted && !flightHour}
                                 isSubmitted={submitted}
-                                ErrorContdition={!flightHour}
+                                ErrorCondition={!flightHour}
                                 ErrorText={'حدود ساعت کارکرد الزامی میباشد'}
-                                ErrorContdition2={flightHour <= 0 && flightHour}
+                                ErrorCondition2={flightHour <= 0 && flightHour}
                                 ErrorText2={'ساعت کارکرد باید بزرگتر یا مساوی 0 باشد'}
                                 />
 
@@ -597,7 +597,7 @@ const AddEquipment = () => {
                                 onChange={handleTextInputSerialNumber}
                                 placeholder='شماره سریال (اختیاری)'
                                 isSubmitted={submitted}
-                                ErrorContdition={!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
+                                ErrorCondition={!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
                                 ErrorText={'فرمت شماره سریال درست نمیباشد '}
                             />
 

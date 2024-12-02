@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs/Inputs.module.css'
 
-const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
+const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
   
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -77,8 +77,8 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
         </label>
       </div>
       <div id='errors' className='w-full flex flex-col items-start'>
-        {(showErrors || isSubmitted) && ErrorContdition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
-        {(showErrors || isSubmitted) && ErrorContdition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
+        {(showErrors || isSubmitted) && ErrorCondition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
+        {(showErrors || isSubmitted) && ErrorCondition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
       </div>
     </div>
   );

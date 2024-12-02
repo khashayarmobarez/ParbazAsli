@@ -5,7 +5,7 @@ import Cube from '../../components/icons/ThreeDCube';
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorContdition, ErrorContdition2, ErrorText, ErrorText2 }) => {
+const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -145,10 +145,10 @@ const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, 
           )}
       </div>
       {
-        (selectedOption || isSubmitted) && (ErrorContdition || ErrorContdition2) &&
+        (selectedOption || isSubmitted) && (ErrorCondition || ErrorCondition2) &&
         <div id='errors' className='w-full flex flex-col items-start -mt-1'>
-          {ErrorContdition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
-          {ErrorContdition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
+          {ErrorCondition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
+          {ErrorCondition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
         </div>
       }
     </div>

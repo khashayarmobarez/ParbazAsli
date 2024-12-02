@@ -229,7 +229,7 @@ const RenewCertificate = () => {
                                     selectedOption={organ}
                                     name={'صدور گواهینامه از'}
                                     isDeselectDeactivated={true}
-                                    ErrorContdition={!organ}
+                                    ErrorCondition={!organ}
                                     ErrorText={'ارگان مربوطه را انتخاب کنید'}
                                     isSubmitted={isSubmitted}
                                 />
@@ -266,9 +266,9 @@ const RenewCertificate = () => {
                                                         isSubmitted={isSubmitted}
                                                         isRequired={true}
                                                         RequiredMessage='شماره گواهینامه الزامی می باشد'
-                                                        ErrorContdition={!certificateId}
+                                                        ErrorCondition={!certificateId}
                                                         ErrorText={'شماره گواهینامه الزامی می باشد'}
-                                                        ErrorContdition2={certificateId.length > 99}
+                                                        ErrorCondition2={certificateId.length > 99}
                                                         ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
                                                         />
 
@@ -277,9 +277,9 @@ const RenewCertificate = () => {
                                                             name={'تاریخ آخرین بسته‌بندی'}  
                                                             onChange={handleCertificateStartDateChange} 
                                                             placeH={'تاریخ صدور'} 
-                                                            ErrorContdition={!dateStartValue}
+                                                            ErrorCondition={!dateStartValue}
                                                             ErrorText={'تاریخ صدور الزامی می باشد'}
-                                                            ErrorContdition2={new Date(dateStartValue) >= new Date()}
+                                                            ErrorCondition2={new Date(dateStartValue) >= new Date()}
                                                             ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
                                                             isSubmitted={isSubmitted}
                                                         />
@@ -289,9 +289,9 @@ const RenewCertificate = () => {
                                                             name={'تاریخ آخرین بسته‌بندی'}  
                                                             onChange={handleCertificateEndDateChange} 
                                                             placeH={'تاریخ انقضا'} 
-                                                            ErrorContdition={!dateEndValue}
+                                                            ErrorCondition={!dateEndValue}
                                                             ErrorText={'تاریخ انقضا الزامی می باشد'}
-                                                            ErrorContdition2={new Date(dateEndValue) <= new Date()}
+                                                            ErrorCondition2={new Date(dateEndValue) <= new Date()}
                                                             ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
                                                             isSubmitted={isSubmitted}
                                                         />

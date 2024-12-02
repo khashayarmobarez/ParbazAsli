@@ -224,9 +224,9 @@ const PossessionTransitionEquipment = () => {
                                 onChange={handleTextInputReceiverId}
                                 placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
                                 isSubmitted={isSubmitted}
-                                ErrorContdition={!receiverId}
+                                ErrorCondition={!receiverId}
                                 ErrorText={'کد کاربر الزامی می باشد'}
-                                ErrorContdition2={!USER_ID_PATTERN.test(receiverId) && receiverId}
+                                ErrorCondition2={!USER_ID_PATTERN.test(receiverId) && receiverId}
                                 ErrorText2={'فرمت کد کاربری صحیح نمی باشد'}
                             />
                             {
@@ -251,7 +251,7 @@ const PossessionTransitionEquipment = () => {
                                     defaultValue={expirationDate} 
                                     onChange={handleExpirationDate} 
                                     placeH={'تاریخ پایان انتقال قرضی'} 
-                                    ErrorContdition={expirationDate}
+                                    ErrorCondition={expirationDate}
                                     ErrorText={'تاریخ الزامی میباشد'}
                                 />
                             }

@@ -397,9 +397,9 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     Type={'text'}
                                     icon={<UserIcon/>} // You can replace `null` with a specific icon if you have one
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
-                                    ErrorContdition={input.length < 1}
+                                    ErrorCondition={input.length < 1}
                                     ErrorText={'وارد کردن شماره تلفن الزامی است'}
-                                    ErrorContdition2={!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0}
+                                    ErrorCondition2={!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0}
                                     ErrorText2={'فرمت شماره تلفن یا ایمیل درست نمی باشد'}
                                     isSubmitted={submitted} 
                                 />

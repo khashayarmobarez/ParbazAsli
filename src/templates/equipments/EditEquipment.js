@@ -360,9 +360,9 @@ const EditEquipment = () => {
                                                 onChange={handleTextInputEquipmentSerial}
                                                 placeholder='سریال وسیله'
                                                 isSubmitted={isSubmitted}
-                                                ErrorContdition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(equipmentSerial) && equipmentSerial}
+                                                ErrorCondition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(equipmentSerial) && equipmentSerial}
                                                 ErrorText={'فرمت شماره سریال درست نمیباشد '}
-                                                ErrorContdition2={!equipmentSerial}
+                                                ErrorCondition2={!equipmentSerial}
                                                 ErrorText2={
                                                     equipmentType !== 'Parachute' ?
                                                     'شماره سریال برای ثبت الزامی میباشد'
@@ -398,9 +398,9 @@ const EditEquipment = () => {
                                                     onChange={handlePackageDate} 
                                                     placeH={'تاریخ اخرین بسته بندی'} 
                                                     isSubmitted={isSubmitted}
-                                                    ErrorContdition={!packageDate}
+                                                    ErrorCondition={!packageDate}
                                                     ErrorText={'وارد کردن این ورودی یا ورودی‌های مربوط به ثبت سریال الزامی است'}
-                                                    ErrorContdition2={new Date(packageDate) > new Date()}
+                                                    ErrorCondition2={new Date(packageDate) > new Date()}
                                                     ErrorText2={'تاریخ وارد شده باید قبل از امروز باشد'}
                                                 />
 
