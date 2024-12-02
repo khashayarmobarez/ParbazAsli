@@ -547,7 +547,7 @@ const AddEquipment = () => {
                                             placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
                                         />
                                         {userByIdData &&
-                                            <div className='flex gap-x-1 text-[#A5E65E]'>
+                                            <div className='flex gap-x-1 text-textAccent'>
                                             <PersonOutlineOutlinedIcon />
                                             <p>{userByIdData.data.fullName}</p>
                                             </div>
@@ -590,6 +590,9 @@ const AddEquipment = () => {
                             value={serialNumber}
                             onChange={handleTextInputSerialNumber}
                             placeholder='شماره سریال (اختیاری)'
+                            isSubmitted={submitted}
+                            ErrorContdition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
+                            ErrorText={'فرمت شماره سریال درست نمیباشد '}
                             />
 
                             {/* for uploading pictures */}

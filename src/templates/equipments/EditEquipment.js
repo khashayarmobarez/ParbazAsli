@@ -28,6 +28,7 @@ import DateLastRepackInput from '../../components/inputs/DateInput';
 import TextInput from '../../components/inputs/textInput';
 import UploadFileInput from '../../components/inputs/UploadFileInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import { EQUIPMENT_SERIAL_NUMBER_PATTERN } from '../../Utilities/Providers/regexProvider';
 
 const EditEquipment = () => {
 
@@ -44,6 +45,7 @@ const EditEquipment = () => {
     const [lastPackerId, setLastPackerId] = useState('');
     const [equipmentSerial, setEquipmentSerial] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [isSubmitted, setIsSubmitted] = useState(false)
     
     // useEditEquipment for submitting the form
     const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, isForClub)
@@ -109,7 +111,9 @@ const EditEquipment = () => {
     };
 
     const handleSubmit = (event) => {
+        
         event.preventDefault();
+        setIsSubmitted(true);
         console.log('submitting')
         
         // Create a new FormData object
@@ -347,7 +351,7 @@ const EditEquipment = () => {
                                                 }
 
 
-                                                {/* text input to add parachute serial */}
+                                                {/* text input to add equipment serial */}
                                                 <TextInput
                                                 id={'TI1'}
                                                 icon={<SerialNumberIcon/>}
@@ -355,6 +359,11 @@ const EditEquipment = () => {
                                                 value={equipmentSerial}
                                                 onChange={handleTextInputEquipmentSerial}
                                                 placeholder='سریال وسیله'
+                                                isSubmitted={isSubmitted}
+                                                ErrorContdition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(equipmentSerial) && equipmentSerial}
+                                                ErrorText={'فرمت شماره سریال درست نمیباشد '}
+                                                ErrorContdition2={isSubmitted && !equipmentSerial}
+                                                ErrorText2={'سریال وسیله را وارد کنید'}
                                                 />
 
                                                 {/* for uploading pictures */}
@@ -391,7 +400,7 @@ const EditEquipment = () => {
                                                     placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
                                                     />
                                                     {userByIdData &&
-                                                    <div className='flex gap-x-1 text-[#A5E65E]'>
+                                                    <div className='flex gap-x-1 text-textAccent'>
                                                         <PersonOutlineOutlinedIcon />
                                                         <p>{userByIdData.data.fullName}</p>
                                                     </div>

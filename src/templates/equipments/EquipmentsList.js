@@ -174,7 +174,7 @@ const EquipmentsList = () => {
 
 
     return (
-        <div className=' flex flex-col gap-y-6 items-center '>
+        <div className=' flex flex-col gap-y-4 items-center '>
 
             <div className='w-full flex flex-col gap-y-4 pb-10 items-center'>
                 {
@@ -201,7 +201,7 @@ const EquipmentsList = () => {
                     isActive={openDropDowns.includes('Permanent')}  
                     />
                 }
-                <div className='w-full flex flex-col items-center gap-4 md:grid md:grid-cols-2'>
+                <div className='w-full flex flex-col items-center gap-4 -mb-4 md:grid md:grid-cols-2'>
                     {
                         openDropDowns.includes('Permanent') &&
                         userEquipmentsData &&
@@ -347,7 +347,7 @@ const EquipmentsList = () => {
 
                             </div>
                         </div>
-                        )
+                    )
                 }
 
                 {/* history */}
