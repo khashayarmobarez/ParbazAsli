@@ -383,16 +383,37 @@ const AddEquipment = () => {
                                     name={'برند'}
                                     icon={<ClothesTag/>}
                                     IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
+                                    isSubmitted={submitted}
+                                    ErrorContdition={(!selectedOptionBrand && selectedOptionBrand?.id !== 0)}
+                                    ErrorText={'برند دستگاه الزامی می باشد'}
                                 />
 
                                 {/* show custom brand input */}
                                 {
                                 selectedOptionBrand.id === 0 &&
-                                    <TextInput id={'TI1'} value={customBrand} onChange={handleCustomBrand} placeholder='نام برند خود را وارد کنید'  />
+                                    <TextInput 
+                                        id={'TI1'} 
+                                        value={customBrand} 
+                                        onChange={handleCustomBrand} 
+                                        placeholder='نام برند خود را وارد کنید' 
+                                        isSubmitted={submitted}
+                                        ErrorContdition={selectedOptionBrand?.id === 0 && customBrand} 
+                                        ErrorText={'برند دستگاه الزامی می باشد'}
+                                    />
                                 }
 
                                 {/* aircraft model input */}
-                                <TextInput id={'TI2'} value={aircraft} icon={<ClothesTag/>} onChange={handleTextInputAircraft} placeholder='نام مدل' IsEmptyAfterSubmit={submitted && !aircraft} />
+                                <TextInput 
+                                    id={'TI2'} 
+                                    value={aircraft} 
+                                    icon={<ClothesTag/>} 
+                                    onChange={handleTextInputAircraft} 
+                                    placeholder='نام مدل' 
+                                    IsEmptyAfterSubmit={submitted && !aircraft} 
+                                    isSubmitted={submitted}
+                                    ErrorContdition={!aircraft }
+                                    ErrorText={'نام مدل دستگاه الزامی می باشد'}
+                                />
 
                                 {/* size inputs for wing and parachute */}
                                 {
@@ -400,8 +421,34 @@ const AddEquipment = () => {
                                     <div className='col-span-1 flex flex-col gap-y-2'>
                                         <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                                         <div className='flex justify-between gap-x-2'>
-                                            <NumberInput icon={<Cube/>} id={'NI1'} className='w-full' value={minimumWeightCapacity} onChange={handleMinimumWeightCapacity} placeholder='حداقل وزن' IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} />
-                                            <NumberInput icon={<Cube/>} id={'NI2'} className='w-full' value={maximumWeightCapacity} onChange={handleMaximumWeightCapacity} placeholder='حداکثر وزن' IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} />
+                                            <NumberInput 
+                                                icon={<Cube/>} 
+                                                id={'NI1'} 
+                                                className='w-full' 
+                                                value={minimumWeightCapacity} 
+                                                onChange={handleMinimumWeightCapacity} 
+                                                placeholder='حداقل وزن' 
+                                                IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} 
+                                                isSubmitted={submitted}
+                                                ErrorContdition={!minimumWeightCapacity}
+                                                ErrorText={'حداقل وزن الزامی میباشد'}
+                                                ErrorContdition2={minimumWeightCapacity >= maximumWeightCapacity && minimumWeightCapacity}
+                                                ErrorText2={'حداقل وزن باید از حداکثر کمتر باشد'}
+                                            />
+                                            <NumberInput 
+                                                icon={<Cube/>} 
+                                                id={'NI2'} 
+                                                className='w-full' 
+                                                value={maximumWeightCapacity} 
+                                                onChange={handleMaximumWeightCapacity} 
+                                                placeholder='حداکثر وزن' 
+                                                IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} 
+                                                isSubmitted={submitted}
+                                                ErrorContdition={!maximumWeightCapacity}
+                                                ErrorText={'حداکثر وزن الزامی میباشد'}
+                                                ErrorContdition2={maximumWeightCapacity <= minimumWeightCapacity && maximumWeightCapacity}
+                                                ErrorText2={'حداکثر وزن باید از حداقل بیشتر باشد'}
+                                            />
                                         </div>
                                     </div>
                                 }
@@ -409,7 +456,18 @@ const AddEquipment = () => {
                                 {/* size input for harness */}
                                 {
                                     equipmentType === 'Harness' &&
-                                    <TextInput id={'TI3'} icon={<Cube/>} className='col-span-1' value={size} onChange={handleTextInputSize} placeholder='سایز' IsEmptyAfterSubmit={submitted && !size} />
+                                    <TextInput 
+                                        id={'TI3'} 
+                                        icon={<Cube/>} 
+                                        className='col-span-1' 
+                                        value={size} 
+                                        onChange={handleTextInputSize} 
+                                        placeholder='سایز' 
+                                        IsEmptyAfterSubmit={submitted && !size} 
+                                        isSubmitted={submitted}
+                                        ErrorContdition={!size}
+                                        ErrorText={'سایز دستگاه الزامی میباشد'}
+                                    />
                                 }
 
                                 {/* class input */}
@@ -424,6 +482,9 @@ const AddEquipment = () => {
                                         selectedOption={selectedOptionClass}
                                         handleSelectChange={handleSelectChangeClass}
                                         IsEmptyAfterSubmit={submitted && !selectedOptionClass}
+                                        isSubmitted={submitted}
+                                        ErrorContdition={!selectedOptionClass}
+                                        ErrorText={'کلاس دستگاه الزامی میباشد'}
                                     />
                                 }
 
@@ -439,6 +500,9 @@ const AddEquipment = () => {
                                 selectedOption={selectedOptionType} 
                                 handleSelectChange={handleSelectChangeType}
                                 IsEmptyAfterSubmit={submitted && !selectedOptionType}
+                                isSubmitted={submitted}
+                                ErrorContdition={!selectedOptionType}
+                                ErrorText={'نوع بال الزامی میباشد'}
                                 />
                                 }   
 
@@ -451,12 +515,26 @@ const AddEquipment = () => {
                                 onChange={handleTextInputYear}
                                 placeholder='سال ساخت (میلادی)'
                                 IsEmptyAfterSubmit={submitted && !year}
+                                isSubmitted={submitted}
+                                ErrorContdition={!year}
+                                ErrorText={'سال ساخت الزامی میباشد'}
+                                ErrorContdition2={year <= 1980}
+                                ErrorText2={'سال ساخت باید بعد از 1980 باشد'}
                                 />
 
                                 {   
                                 equipmentType === 'Parachute' &&
                                 <>
-                                    <DateInput name={'تاریخ آخرین بسته‌بندی '} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} IsEmptyAfterSubmit={submitted && !packageDate} />
+                                    <DateInput 
+                                        name={'تاریخ آخرین بسته‌بندی '} 
+                                        defaultValue={packageDate} 
+                                        onChange={handlePackageDate} 
+                                        placeH={'تاریخ اخرین بسته بندی'} 
+                                        IsEmptyAfterSubmit={submitted && !packageDate} 
+                                        isSubmitted={submitted}
+                                        ErrorContdition={!packageDate}
+                                        ErrorText={'سال ساخت الزامی میباشد'}
+                                    />
 
                                     {/* Last Packer ID input */}
                                     <div className='w-full flex flex-col items-start gap-y-2'>
@@ -487,6 +565,11 @@ const AddEquipment = () => {
                                 onChange={handleTextInputFlightHour} 
                                 placeholder='حدود ساعت کارکرد وسیله'  
                                 IsEmptyAfterSubmit={submitted && !flightHour}
+                                isSubmitted={submitted}
+                                ErrorContdition={!flightHour}
+                                ErrorText={'حدود ساعت کارکرد الزامی میباشد'}
+                                ErrorContdition2={flightHour <= 0}
+                                ErrorText2={'ساعت کارکرد باید بزرگتر یا مساوی 0 باشد'}
                                 />
 
                             </div>
