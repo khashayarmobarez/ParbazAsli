@@ -568,7 +568,7 @@ const AddEquipment = () => {
                                 isSubmitted={submitted}
                                 ErrorContdition={!flightHour}
                                 ErrorText={'حدود ساعت کارکرد الزامی میباشد'}
-                                ErrorContdition2={flightHour <= 0}
+                                ErrorContdition2={flightHour <= 0 && flightHour}
                                 ErrorText2={'ساعت کارکرد باید بزرگتر یا مساوی 0 باشد'}
                                 />
 
