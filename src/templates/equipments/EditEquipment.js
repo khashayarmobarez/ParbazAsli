@@ -24,7 +24,7 @@ import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
 
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
-import DateLastRepackInput from '../../components/inputs/DateInput';
+import DateInput from '../../components/inputs/DateInput';
 import TextInput from '../../components/inputs/textInput';
 import UploadFileInput from '../../components/inputs/UploadFileInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
@@ -362,8 +362,13 @@ const EditEquipment = () => {
                                                 isSubmitted={isSubmitted}
                                                 ErrorContdition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(equipmentSerial) && equipmentSerial}
                                                 ErrorText={'فرمت شماره سریال درست نمیباشد '}
-                                                ErrorContdition2={isSubmitted && !equipmentSerial}
-                                                ErrorText2={'سریال وسیله را وارد کنید'}
+                                                ErrorContdition2={!equipmentSerial}
+                                                ErrorText2={
+                                                    equipmentType !== 'Parachute' ?
+                                                    'شماره سریال برای ثبت الزامی میباشد'
+                                                    :
+                                                    'این ورودی یا ورودی‌های مربوط به تمدید چتر کمکی الزامی است'
+                                                }
                                                 />
 
                                                 {/* for uploading pictures */}
@@ -387,29 +392,41 @@ const EditEquipment = () => {
                                                 </h3>
 
                                                 {/* Last package date input */}
-                                                <DateLastRepackInput name={'تاریخ آخرین بسته‌بندی'} defaultValue={packageDate} onChange={handlePackageDate} placeH={'تاریخ اخرین بسته بندی'} />
+                                                <DateInput 
+                                                    name={'تاریخ آخرین بسته‌بندی'} 
+                                                    defaultValue={packageDate} 
+                                                    onChange={handlePackageDate} 
+                                                    placeH={'تاریخ اخرین بسته بندی'} 
+                                                    isSubmitted={isSubmitted}
+                                                    ErrorContdition={!packageDate}
+                                                    ErrorText={'وارد کردن این ورودی یا ورودی‌های مربوط به ثبت سریال الزامی است'}
+                                                    ErrorContdition2={new Date(packageDate) > new Date()}
+                                                    ErrorText2={'تاریخ وارد شده باید قبل از امروز باشد'}
+                                                />
 
                                                 {/* Last Packer ID input */}
-                                                <div className='w-full flex flex-col items-start gap-y-2'>
-                                                    <TextInput
-                                                    id={'TI2'}
-                                                    icon={<UserIcon/>}
-                                                    className='col-span-1'
-                                                    value={lastPackerId}
-                                                    onChange={handleTextInputLastPackerId}
-                                                    placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
-                                                    />
-                                                    {userByIdData &&
-                                                    <div className='flex gap-x-1 text-textAccent'>
-                                                        <PersonOutlineOutlinedIcon />
-                                                        <p>{userByIdData.data.fullName}</p>
-                                                    </div>
-                                                    }
-                                                </div>
+                                                {
+                                                    packageDate &&
+                                                        <div className='w-full flex flex-col items-start gap-y-2'>
+                                                            <TextInput
+                                                            id={'TI2'}
+                                                            icon={<UserIcon/>}
+                                                            className='col-span-1'
+                                                            value={lastPackerId}
+                                                            onChange={handleTextInputLastPackerId}
+                                                            placeholder='شناسه آخرین بسته‌بندی کننده(اختیاری)'
+                                                            />
+                                                            {userByIdData &&
+                                                            <div className='flex gap-x-1 text-textAccent'>
+                                                                <PersonOutlineOutlinedIcon />
+                                                                <p>{userByIdData.data.fullName}</p>
+                                                            </div>
+                                                            }
+                                                        </div>
+                                                }
                                             </>
                                             }
                                     </div>
-
 
                                 </div>
 

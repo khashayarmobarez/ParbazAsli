@@ -21,8 +21,9 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../../components/inputs/DateInput';
+import DateInput from '../../components/inputs/DateInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import { USER_ID_PATTERN } from '../../Utilities/Providers/regexProvider';
 
 
 const PossessionTransitionEquipment = () => {
@@ -37,13 +38,6 @@ const PossessionTransitionEquipment = () => {
     
     const { data: EquipmentData, isLoading, error } = useAnEquipment(id, isForClub)
 
-    useEffect(() => {
-        if (EquipmentData && EquipmentData.data) {
-            console.log(EquipmentData);
-        }
-    }, [EquipmentData]);
-
-
     const { mutate: mutateTransitionData, loading:possessionLoading } = usePossessionTransition();
 
     const { formatDate } = useDateFormat();
@@ -57,6 +51,7 @@ const PossessionTransitionEquipment = () => {
     const [receiverId, setReceiverId] = useState('');
 
     const [showPopup, setShowPopup] = useState(false);
+    const [ isSubmitted, setIsSubmitted ] = useState(false)
 
     // getting the receiver name
     const { data: userByIdData, error: userByIdError } = useUserById(receiverId)
@@ -107,6 +102,7 @@ const PossessionTransitionEquipment = () => {
 
     const handlePopUp = (event) => {
         event.preventDefault()
+        setIsSubmitted(true)
 
         if(activeLink === 'temporary') {
             if(!userByIdData) {
@@ -221,23 +217,28 @@ const PossessionTransitionEquipment = () => {
                             
                             {/* Serial Number input */}
                             <TextInput
-                            id={'TI1'}
-                            icon={<UserIcon/>}
-                            className='col-span-1'
-                            value={receiverId}
-                            onChange={handleTextInputReceiverId}
-                            placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
+                                id={'TI1'}
+                                icon={<UserIcon/>}
+                                className='col-span-1'
+                                value={receiverId}
+                                onChange={handleTextInputReceiverId}
+                                placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
+                                isSubmitted={isSubmitted}
+                                ErrorContdition={!receiverId}
+                                ErrorText={'کد کاربر الزامی می باشد'}
+                                ErrorContdition2={!USER_ID_PATTERN.test(receiverId) && receiverId}
+                                ErrorText2={'فرمت کد کاربری صحیح نمی باشد'}
                             />
                             {
                             userByIdData &&
-                                <div className='flex gap-x-1 text-textAccent self-start mt-[-12px]'>
+                                <div className='flex gap-x-1 text-textAccent self-start mt-[-12px] items-center'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>{userByIdData.data.fullName}</p>
                                 </div>
                             }
                             {
-                            receiverId && receiverId.length > 5 && !userByIdData &&
-                                <div className='flex gap-x-1 text-textError self-start'>
+                            receiverId && USER_ID_PATTERN.test(receiverId) && !userByIdData &&
+                                <div className='flex gap-x-1 text-textError self-start -mt-2.5 items-center'>
                                     <PersonOutlineOutlinedIcon />
                                     <p>کاربر یافت نشد</p>
                                 </div>
@@ -245,7 +246,14 @@ const PossessionTransitionEquipment = () => {
 
                             {
                             activeLink === 'temporary' && 
-                                <DateLastRepackInput name={'تاریخ پایان انتقال قرضی'} defaultValue={expirationDate} onChange={handleExpirationDate} placeH={'تاریخ پایان انتقال قرضی'} />
+                                <DateInput 
+                                    name={'تاریخ پایان انتقال قرضی'} 
+                                    defaultValue={expirationDate} 
+                                    onChange={handleExpirationDate} 
+                                    placeH={'تاریخ پایان انتقال قرضی'} 
+                                    ErrorContdition={expirationDate}
+                                    ErrorText={'تاریخ الزامی میباشد'}
+                                />
                             }
 
                             <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-6`}>ثبت</button>

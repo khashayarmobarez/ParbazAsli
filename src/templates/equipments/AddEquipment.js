@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 // providers
 import {flightTypeOptionsEquipment} from '../../Utilities/Providers/dropdownInputOptions'
-import { EQUIPMENT_SERIAL_NUMBER_PATTERN, USER_ID_PATTERN } from '../../Utilities/Providers/regexProvider';
+import { EQUIPMENT_SERIAL_NUMBER_PATTERN, USER_ID_PATTERN, USER_REGEX } from '../../Utilities/Providers/regexProvider';
 
 // hooks
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
@@ -99,6 +99,7 @@ const AddEquipment = () => {
     
     const [showPopup, setShowPopup] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+
 
     
     // hooks and use effects
@@ -518,8 +519,8 @@ const AddEquipment = () => {
                                 isSubmitted={submitted}
                                 ErrorContdition={!year}
                                 ErrorText={'سال ساخت الزامی میباشد'}
-                                ErrorContdition2={year <= 1980}
-                                ErrorText2={'سال ساخت باید بعد از 1980 باشد'}
+                                ErrorContdition2={year <= 1980 || year > new Date().getFullYear()}
+                                ErrorText2={`سال ساخت باید بعد از 1980 و قبل از ${new Date().getFullYear() + 1} باشد`}
                                 />
 
                                 {   
@@ -534,6 +535,8 @@ const AddEquipment = () => {
                                         isSubmitted={submitted}
                                         ErrorContdition={!packageDate}
                                         ErrorText={'سال ساخت الزامی میباشد'}
+                                        ErrorContdition2={packageDate && new Date(packageDate) > new Date()}
+                                        ErrorText2={'تاریخ بسته بندی باید قبل از امروز یا همین امروز باشد'}
                                     />
 
                                     {/* Last Packer ID input */}
@@ -545,6 +548,9 @@ const AddEquipment = () => {
                                             value={lastPackerId}
                                             onChange={handleTextInputLastPackerId}
                                             placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
+                                            isSubmitted={submitted}
+                                            ErrorContdition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
+                                            ErrorText={'فرمت شناسه آخرین بسته‌بندی کننده درست نمی باشد'}
                                         />
                                         {userByIdData &&
                                             <div className='flex gap-x-1 text-textAccent'>
@@ -584,15 +590,15 @@ const AddEquipment = () => {
                             </div>
                             
                             <TextInput
-                            id={'TI4'}
-                            icon={<SerialNumberIcon/>}
-                            className='col-span-1'
-                            value={serialNumber}
-                            onChange={handleTextInputSerialNumber}
-                            placeholder='شماره سریال (اختیاری)'
-                            isSubmitted={submitted}
-                            ErrorContdition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
-                            ErrorText={'فرمت شماره سریال درست نمیباشد '}
+                                id={'TI4'}
+                                icon={<SerialNumberIcon/>}
+                                className='col-span-1'
+                                value={serialNumber}
+                                onChange={handleTextInputSerialNumber}
+                                placeholder='شماره سریال (اختیاری)'
+                                isSubmitted={submitted}
+                                ErrorContdition={!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
+                                ErrorText={'فرمت شماره سریال درست نمیباشد '}
                             />
 
                             {/* for uploading pictures */}

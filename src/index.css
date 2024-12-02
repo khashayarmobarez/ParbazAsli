@@ -74,9 +74,9 @@ code {
   --bg-button-secondary-disabled:#CACACA;
 
   /* button profile */
-  --bg-button-profile-default:#EBEBEC;
-  --bg-button-profile-hover:#E0E1E3;
-  --bg-button-profile-active:#BFC2C4;
+  --bg-button-profile-default:#F9F9FA;
+  --bg-button-profile-hover:#F6F6F7;
+  --bg-button-profile-active:#EDEDEE;
   --bg-button-profile-disabled:#CACACA;
   --text-button-profile-default:#23BC7C;
   --text-button-profile-Disable:#CACACA;
@@ -169,7 +169,7 @@ code {
   /* button profile */
   --bg-button-profile-default:#323941;
   --bg-button-profile-hover:#2D333B;
-  --bg-button-profile-active:#2D333B;
+  --bg-button-profile-active:#282E34;
   --bg-button-profile-disabled:#323232;
   --text-button-profile-default:#23BC7C;
   --text-button-profile-Disable:#535353;
