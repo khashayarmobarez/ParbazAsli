@@ -43,7 +43,7 @@ const Settings = () => {
 
             <div className='flex flex-col py-14 justify-center items-center w-full gap-y-8 md:w-[80%]'>
                 
-                <PageTitle title={'تنظیمات'} navigateTo={'profile'} paddingRight={'40%'} /> 
+                <PageTitle title={'تنظیمات'} paddingRight={'40%'} /> 
 
                 <div className='w-[90%] flex flex-col items-center gap-y-6'>
                     <DropDownLine  title='مود و ظاهر' icon={<SettingIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown1')} onClickActivation={() => handleOpenDropDowns('dropDown1')} />

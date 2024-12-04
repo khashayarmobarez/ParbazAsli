@@ -109,9 +109,6 @@ const RenewCertificate = () => {
     };
 
 
-    const handleFileUpload = (file) => {
-        setUploadedFile(file);
-    };
 
     // mutate, post data
     const handleSubmit = (event) => {
@@ -297,7 +294,11 @@ const RenewCertificate = () => {
                                                         />
 
                                                         {/* upload picture */}
-                                                        <UploadPicture onFileUpload={handleFileUpload} isSubmitted={isSubmitted} />
+                                                        <UploadPicture 
+                                                            setUploadedFile={setUploadedFile} 
+                                                            uploadedFile={uploadedFile}  
+                                                            isSubmitted={isSubmitted} 
+                                                        />
 
                                                     </>
                                                 }

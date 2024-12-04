@@ -4,11 +4,10 @@ import { toast } from 'react-toastify';
 
 import Cookies from 'js-cookie';
 
-const UploadPicture = ({ onFileUpload, isSubmitted }) => {
+const UploadPicture = ({ isSubmitted, setUploadedFile, uploadedFile }) => {
 
   const appTheme = Cookies.get('themeApplied') || 'dark';
 
-  const [uploadedFile, setUploadedFile] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleUploadClick = () => {
@@ -44,9 +43,6 @@ const UploadPicture = ({ onFileUpload, isSubmitted }) => {
       }
 
       setUploadedFile(file);
-      if (onFileUpload) {
-        onFileUpload(file);
-      }
     }
   };
 

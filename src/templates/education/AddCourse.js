@@ -508,11 +508,11 @@ const AddCourse = () => {
                                             />
 
                                             <TextInput
-                                            id={'TI1'}
-                                            value={courseName}
-                                            onChange={handleCourseName}
-                                            placeholder='نام دوره'
-                                            icon={<SingleTag/>}
+                                                id={'TI1'}
+                                                value={courseName}
+                                                onChange={handleCourseName}
+                                                placeholder='نام دوره'
+                                                icon={<SingleTag/>}
                                             />
                                         </>
 

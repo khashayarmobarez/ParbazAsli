@@ -66,7 +66,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();    
+        // window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -127,31 +127,7 @@ const AddCertificate = () => {
     };
 
 
-    const handleUploadClick = () => {
-        fileInputRef.current.click();
-    };
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-
-        if (file) {
-            // Check file format
-            if (!allowedFormats.includes(file.type)) {
-                setErrMsg('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
-                return;
-            }
     
-            // Check file size
-            if (file.size > maxFileSize) {
-                setErrMsg('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
-                return;
-            }
-    
-            // Set the uploaded file if it passes all checks
-            setUploadedFile(file);
-            console.log('Selected file:', file);
-        }
-    };
 
     // mutate, post data
     const handleSubmit = (event) => {
@@ -297,7 +273,7 @@ const AddCertificate = () => {
 
                                 <div className='w-full flex flex-col items-center py-4 px-5 bg-bgOutputDefault rounded-2xl gap-y-4' >
 
-                                    <p className='self-start text-base '>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
+                                    <p className='self-start text-base'>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
 
                                     <div className={`${ButtonStyles.ThreeStickedButtonCont} w-full`}>
 
@@ -395,32 +371,36 @@ const AddCertificate = () => {
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
-                                                        icon={<CertificateIcon/>} 
-                                                        name={'تاریخ صدور'}  
-                                                        onChange={handleCertificateStartDateChange} 
-                                                        placeH={'تاریخ صدور'}  
-                                                        ErrorCondition={!dateStartValue}
-                                                        ErrorText={'تاریخ صدور الزامی می باشد'}
-                                                        ErrorCondition2={new Date(dateStartValue) >= new Date()}
-                                                        ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
-                                                        isSubmitted={isSubmitted}
+                                                            icon={<CertificateIcon/>} 
+                                                            name={'تاریخ صدور'}  
+                                                            onChange={handleCertificateStartDateChange} 
+                                                            placeH={'تاریخ صدور'}  
+                                                            ErrorCondition={!dateStartValue}
+                                                            ErrorText={'تاریخ صدور الزامی می باشد'}
+                                                            ErrorCondition2={new Date(dateStartValue) >= new Date()}
+                                                            ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
+                                                            isSubmitted={isSubmitted}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
-                                                        icon={<CertificateIcon/>} 
-                                                        name={'تاریخ انقضا'}  
-                                                        onChange={handleCertificateEndDateChange} 
-                                                        placeH={'تاریخ انقضا'} 
-                                                        ErrorCondition={!dateEndValue}
-                                                        ErrorText={'تاریخ انقضا الزامی می باشد'}
-                                                        ErrorCondition2={new Date(dateEndValue) <= new Date()}
-                                                        ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
-                                                        isSubmitted={isSubmitted}
+                                                            icon={<CertificateIcon/>} 
+                                                            name={'تاریخ انقضا'}  
+                                                            onChange={handleCertificateEndDateChange}
+                                                            placeH={'تاریخ انقضا'} 
+                                                            ErrorCondition={!dateEndValue}
+                                                            ErrorText={'تاریخ انقضا الزامی می باشد'}
+                                                            ErrorCondition2={new Date(dateEndValue) <= new Date()}
+                                                            ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                                                            isSubmitted={isSubmitted}
                                                         />
 
                                                         {/* upload picture */}
-                                                        <UploadPicture onFileUpload={handleFileChange} isSubmitted={isSubmitted} />
+                                                        <UploadPicture 
+                                                            isSubmitted={isSubmitted} 
+                                                            setUploadedFile={setUploadedFile} 
+                                                            uploadedFile={uploadedFile} 
+                                                        />
 
                                                     </>
                                                 }
