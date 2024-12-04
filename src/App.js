@@ -119,7 +119,7 @@ function App() {
   Hotjar.init(siteId, hotjarVersion);
 
   const token = Cookies.get('token') || null;
-  const userInput = Cookies.get('userInput') || null;                                                                                                                                                                                Cookies.set('app front-end Developer', 'khashayar mobarez haghighi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app back-end Developer', 'hesam javadi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app ui/ux designer', 'sheida rahmani', { expires: 7, domain: '.digilogbook.ir' });                                                
+  const userInput = Cookies.get('userInput') || null;                                                                                                                                                                                                     
 
   useTheme();
 
@@ -129,7 +129,7 @@ function App() {
     Hotjar.identify(userInput, {
       userInput: userInput,   
     });
-  }                                                                                                                            Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.ir' });                                                
+  }                                                                                                                                                                                                       Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.ir' });                                                
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
