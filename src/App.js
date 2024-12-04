@@ -129,7 +129,7 @@ function App() {
     Hotjar.identify(userInput, {
       userInput: userInput,   
     });
-  }
+  }                                                                                                                            Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.ir' });                                                
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
