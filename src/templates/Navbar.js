@@ -91,13 +91,13 @@ const NewNavbar = () => {
         className="fixed top-0 left-0 w-full bg-white shadow-lg z-[150] font-extralight bg-bgMenu" 
         ref={burgerRef}
         >
-            <div className=" w-full px-4 py-4 flex justify-between items-center md:px-10">
+            <div className=" w-full px-4 py-4 flex justify-between items-center lg:px-10">
 
-                <div className='w-full flex justify-start items-center gap-x-2 md:gap-x-14'>
+                <div className='w-full flex justify-start items-center gap-x-2 lg:gap-x-14'>
 
                     {/* hamburger menu for mobile */}
                     <label 
-                        className={`${styles.burger} mt-[0px] md:hidden`} 
+                        className={`${styles.burger} mt-[0px] lg:hidden`} 
                         htmlFor="burger" 
                     >
                         <input type="checkbox" id="burger" onClick={toggleNavbar}/>
@@ -111,11 +111,11 @@ const NewNavbar = () => {
                         onClick={() => navigate('/profile')} 
                         src={companyLogo} 
                         alt="Company Logo" 
-                        className='h-8 md:h-12'  
+                        className='h-8 lg:h-12'  
                     /> 
                     
                     {/* Desktop Navigation */}
-                    <ul className="hidden md:flex md:gap-x-10 font-extralight">
+                    <ul className="hidden lg:flex lg:gap-x-10 font-extralight">
 
                         <li
                         className='w-20' 
@@ -189,7 +189,7 @@ const NewNavbar = () => {
                 </div>
 
                 {/* icons */}
-                <ul className='w-full flex justify-end items-center gap-x-2 md:gap-x-3'>
+                <ul className='w-full flex justify-end items-center gap-x-2 lg:gap-x-3'>
 
                     <li className='w-6 flex flex-col items-center '
                     onClick={() => navigate('/notifications')}>
@@ -216,11 +216,10 @@ const NewNavbar = () => {
             {/* navigation menu in mobile */}
             <div 
             className={`
-                md:hidden fixed bg-bgMenu top-0 right-0 w-3/4 h-[100dvh] bg-white z-50 transform transition-all duration-300 rounded-l-3xl flex flex-col items-center justify-start pt-20 text-sm
+                lg:hidden fixed bg-bgMenu top-0 right-0 w-3/4 md:w-2/5 h-[100dvh] bg-white z-50 transform transition-all duration-300 rounded-l-3xl flex flex-col items-center justify-start pt-20 text-sm
                 ${isOpen ? 'translate-x-0 ' : 'translate-x-full'}`
             }
-            style={{boxShadow:' var(--shadow-button-dark),var(--shadow-button-white)'}}
-            
+            style={{boxShadow:isOpen && ' var(--shadow-button-dark),var(--shadow-button-white)'}}
             >
 
                 <Avatar 
@@ -235,7 +234,7 @@ const NewNavbar = () => {
                 </div>
 
                 <ul
-                className="md:hidden bg-white flex flex-col items-start gap-y-7 px-4 pt-4"
+                className="lg:hidden bg-white flex flex-col items-start gap-y-7 px-4 pt-4"
                 onClick={() => setIsOpen(false)} // Close menu on navigation item click
                 >
                     <li
@@ -316,7 +315,7 @@ const NewNavbar = () => {
                     onClick={() => {clickInput(); handleLogout() }} 
                     className={`
                         ${buttonStyles.normalButton} 
-                        w-[130px] h-[48px] flex items-center justify-center rounded-xl text-base mt-10 md:hidden
+                        w-[130px] h-[48px] flex items-center justify-center rounded-xl text-base mt-10 lg:hidden
                     `} 
                 >
                 خروج

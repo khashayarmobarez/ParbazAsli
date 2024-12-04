@@ -36,9 +36,6 @@ const Profile = () => {
 
     const { data, isLoading, error } = useUserProfile();
 
-    const { isDarkMode } = useSelector(selectSettings);
-
-    console.log(isDarkMode);
 
     return (
         <div className='flex flex-col items-center pt-[75px] md:pt-28'>
