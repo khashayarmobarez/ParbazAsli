@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+
+// styles
+import styles from '../styles/others/Navbar.module.css'
+import buttonStyles from '../styles/Buttons/ButtonsBox.module.css'
 
 // queries 
 import { useUserData } from '../Utilities/Services/userQueries';
@@ -11,223 +16,316 @@ import { postLogout } from '../Utilities/Services/AuthenticationApi';
 // hooks
 import useClickOutside from '../Utilities/Hooks/useClickOutside';
 
-// mui
-import { AppBar, Avatar } from '@mui/material';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-// mui icons 
-import {EditOutlined, GroupsOutlined, HomeOutlined, InfoOutlined, PhoneOutlined, SettingsOutlined }from '@mui/icons-material';
-import LoginIcon from '@mui/icons-material/Login';
-// import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
-
-// styles
-import GradientStyles from '../styles/gradients/Gradient.module.css'
-import styles from '../styles/others/Navbar.module.css';
-import buttonStyles from '../styles/Buttons/ButtonsBox.module.css'
-
-// react router dom
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-
 // assets
 import companyLogo from '../assets/Logo/DigilogbookMainLogo.svg';
 import Logout from '../components/icons/Logout';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import { Avatar } from '@mui/material';
+import { EditOutlined, GroupsOutlined, HomeOutlined, PhoneOutlined, SettingsOutlined } from '@mui/icons-material';
 
 
 
-const inlineStyles = {
-    hideOnLarge: {
-        display: 'none',
-    }
-}
-
-
-
-const Navbar = ({ userRole}) => {
-
-    const token = Cookies.get('token');
-    
-    const { data } = useUserData();
-    const {  data: notificationCountsData, refetch: refetchNotificationCounts } = useUnreadNotificationCounts();
-    
-    // state to check the width of the device to remove profile picture for desktop size devices 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    const burgerRef = useRef(null);
+const NewNavbar = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
+    const token = Cookies.get('token');
 
+    const { data } = useUserData();
+    const {  data: notificationCountsData, refetch: refetchNotificationCounts } = useUnreadNotificationCounts();
+    
     // Accessing current URL
     const currentUrl = location.pathname;
+    
+    const burgerRef = useRef(null);
 
     const [isOpen, setIsOpen] = useState(false);
 
+    // hooks
+        // hook to close navbar when you click outside the navbar on the page
+        useClickOutside(burgerRef, clickOutside);
 
-    // function to reactive notificationCountsData when the location of the user changes
-    useEffect(() => {
-        refetchNotificationCounts();
-    }, [location, refetchNotificationCounts]);
-
-    const toggleNavbar = () => {
-        setIsOpen(!isOpen);
-    };
-
-    
-    // hook to close navbar when you click outside the navbar on the page
-    useClickOutside(burgerRef, clickOutside);
-
-    function clickOutside() {
-        if(isOpen) {
-            clickInput()
-        }
-    }
+        // function to reactive notificationCountsData when the location of the user changes
+        useEffect(() => {
+            refetchNotificationCounts();
+        }, [location, refetchNotificationCounts]);
 
 
 
-    // function to close navigation list when you choose an item from the navlist
-    function clickInput() {
-        const input = document.getElementById('burger');
-        if (input) {
-          input.click();
-        } else {
-          console.error('Input element not found.');
-        }
-      }
+    // funcs
 
-    
-    // handle logout
-    const handleLogout = () => {
-        Cookies.remove('token');
-        navigate('/landing');
-        postLogout(token)
-    };
-
-
-    // function to set the width of the device in the windowWidth state
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
+        // toggle navbar
+        const toggleNavbar = () => {
+            setIsOpen(!isOpen);
         };
 
-        // Listen to window resize event
-        window.addEventListener('resize', handleResize);
-
-        // Clean up event listener on component unmount
-        return () => {
-            window.removeEventListener('resize', handleResize);
+        // handle logout
+        const handleLogout = async () => {
+            await postLogout(token)
+            Cookies.remove('token');
+            navigate('/landing');
         };
-    }, []); 
 
-    if (token) return (
-        <Box position="fixed" sx={{ flexGrow: 1,zIndex:'1000', }} >
-                         
-            <AppBar  sx={{
-                height:'58px',
-                direction: 'rtl',
-                background: 'var(--bg-menu)',
-                padding: '0rem 5px 0 5px',
-                '@media (max-width: 768px)': {
-                    height: '80', // Adjust height for smaller screens}   
-                    padding:'0'              
-                },
-                }} ref={burgerRef}>
+
+        // function to close navigation list when you choose an item from the navlist
+        function clickInput() {
+            const input = document.getElementById('burger');
+            if (input) {
+            input.click();
+            } else {
+            console.error('Input element not found.');
+            }
+        }
+
+
+        // click outside to close the navbar
+         function clickOutside() {
+            if(isOpen) {
+                clickInput()
+            }
+        }
+
+
+    return (
+        <nav 
+        className="fixed top-0 left-0 w-full bg-white shadow-lg z-[150] font-extralight bg-bgMenu" 
+        ref={burgerRef}
+        >
+            <div className=" w-full px-4 py-4 flex justify-between items-center md:px-10">
+
+                <div className='w-full flex justify-start items-center gap-x-2 md:gap-x-14'>
+
+                    {/* hamburger menu for mobile */}
+                    <label 
+                        className={`${styles.burger} mt-[0px] md:hidden`} 
+                        htmlFor="burger" 
+                    >
+                        <input type="checkbox" id="burger" onClick={toggleNavbar}/>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                    </label>
+
+                    {/* app logo */}
+                    <img 
+                        onClick={() => navigate('/profile')} 
+                        src={companyLogo} 
+                        alt="Company Logo" 
+                        className='h-8 md:h-12'  
+                    /> 
                     
-                    <Toolbar sx={{
-                    display:'flex',
-                    justifyContent: 'space-between',
-                    background: 'var(--bg-menu)',
-                    boxShadow: 'var(--shadow-all)',}}>
+                    {/* Desktop Navigation */}
+                    <ul className="hidden md:flex md:gap-x-10 font-extralight">
 
-                        <nav className='flex items-center justify-center md:w-[85%] md:mr-[-7%] '>
-
-                            {/* app logo */}
-                            <img onClick={() => navigate('/profile')} src={companyLogo} alt="Company Logo" className={`${styles.logo}`} /> 
-                        
-                            <div className={` ${styles.navList} ${isOpen ? styles.open : ''}`} 
-                            style={{ background: isOpen ? 'var(--bg-menu)' : 'none',
-                            boxShadow: isOpen ? 'var(--shadow-all)' : 'none',
-                                }}
+                        <li
+                        className='w-20' 
+                        onClick={() => (isOpen ? clickInput() : null)}
+                        > 
+                            <Link
+                            className={`${currentUrl === '/profile' && 'underline underline-offset-8 text-textAccent'}`} 
+                            to='/'
+                            title="صفحه اصلی" 
+                            aria-label="صفحه اصلی"
                             >
-                                {
-                                // (windowWidth < 768 && userRole && userRole !== '') &&
-                                (windowWidth < 768 && token) && data &&
-                                <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'110px', width:'110px', zIndex:'0'}} />
-                                }
-                                <ul className={`${!token ? 'pt-10 mt-[10vh] md:mt-0 md:pt-0 md:w-[50%]' : 'md:w-[80%]'} h-[260px] w-[50%] flex flex-col justify-between items-start text-base md:flex-row md:h-auto md:text-sm z-[101]`}>
-                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)} > <HomeOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/'>صفحه اصلی</a></li>
-                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <EditOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/blogs/1'>بلاگ</a></li>
-                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <GroupsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/aboutUs'>درباره ما</a></li>
-                                    <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <PhoneOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <a className={styles.link} href='https://digilogbook.ir/contactUs'>تماس با ما</a></li>
-                                    {!token ?
-                                    null
-                                    :
-                                    <>
-                                        <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <SettingsOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/settings'>تنظیمات</Link></li>
-                                        {/* <li className={styles.navItem} onClick={() => (isOpen ? clickInput() : null)}> <InfoOutlined fontSize="small" sx={inlineStyles.hideOnLarge}  /> <Link className={styles.link} to='/profile'>راهنما</Link></li> */}
-                                    </>
-                                    }
-                                </ul>
-                                {token &&
-                                <Link to='/' onClick={() => {clickInput(); handleLogout() }} className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-xl text-base md:hidden`} > خروج</Link>
-                                }
-                            </div>
-                        </nav>
+                            صفحه اصلی
+                            </Link>
+                        </li>
 
-                        <div className={ `flex justify-between w-12 md:w-32  xl:ml-[2%] ${(userRole === '' && windowWidth > 768) && 'md:w-32 w-32'}`}>
+                        <li
+                        className='w-20' 
+                        onClick={() => (isOpen ? clickInput() : null)}
+                        > 
+                            <a 
+                            href='https://digilogbook.ir/blogs/1'
+                            title="بلاگ" 
+                            aria-label="بلاگ"
+                            >
+                            بلاگ
+                            </a>
+                        </li>
 
-                            {!token ?
-                                (windowWidth > 768) ?
-                                    <Link to='/signUpLogin' className={`${GradientStyles.container} rounded-3xl w-full h-12 flex items-center justify-center`} style={{border: '1px solid var(--text-accent)'}}><p>ورود / ثبت نام</p></Link>
-                                    :
-                                    <Link to='/signUpLogin' className=' self-center justify-self-end'> <LoginIcon sx={{color: 'var(--text-default)', marginBottom: '-0.2rem'}} /> </Link>
-                            :
-                            <div className='md:flex md:gap-x-4 md:mr-10 z-10'>
-                                <div className="relative flex items-center z-2">
-                                    {
-                                        notificationCountsData && notificationCountsData.data > 0 && (
-                                            <div className='absolute -top-[1px] -right-[5px] rounded-full w-4 h-4 text-xs flex justify-center items-center font-normal z-[0] bg-textError'>
-                                                <p>{notificationCountsData.data}</p>
-                                            </div>
-                                        )
-                                    }
-                                    <button onClick={() => navigate('/notifications')}>
-                                        <NotificationsOutlinedIcon 
-                                            sx={{
-                                                fill: currentUrl === '/notifications' ? 'var(--text-accent)' : 'var(--text-default)',
-                                                height: '24px',
-                                                width: '24px',
-                                                zIndex: '0',
-                                            }}
-                                        />
-                                    </button>
-                                </div>
+                        <li
+                        className='w-20' 
+                        onClick={() => (isOpen ? clickInput() : null)}
+                        > 
+                            <a 
+                            href='https://digilogbook.ir/aboutUs'
+                            title="بلاگ" 
+                            aria-label="بلاگ"
+                            >
+                            درباره ما
+                            </a>
+                        </li>
 
-                                <div onClick={handleLogout} className="hidden md:flex justify-center items-center w-6">
-                                    <Logout />
-                                </div>
-                            </div>
-                            }
+                        <li
+                        className='w-20' 
+                        onClick={() => (isOpen ? clickInput() : null)}
+                        > 
+                            <a 
+                            href='https://digilogbook.ir/contactUs'
+                            title="تماس با ما" 
+                            aria-label="تماس با ما"
+                            >
+                            تماس با ما
+                            </a>
+                        </li>
 
-                            
-
-                            <label className={`${styles.burger} mt-[0px]`} htmlFor="burger" >
-                                <input type="checkbox" id="burger" onClick={toggleNavbar}/>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                            </label>
-
-
-                        </div>
+                        <li
+                        className='w-20' 
+                        onClick={() => (isOpen ? clickInput() : null)}
+                        > 
+                            <Link  
+                            className={`${currentUrl === '/settings' && 'underline underline-offset-8 text-textAccent'}`} 
+                            to='/settings'
+                            title="تنظیمات"
+                            aria-label="تنظیمات"
+                            >
+                            تنظیمات
+                            </Link>
+                        </li>
                         
-                    </Toolbar>
+                    </ul>
 
-                </AppBar>
+                </div>
 
-            </Box>
+                {/* icons */}
+                <ul className='w-full flex justify-end items-center gap-x-2 md:gap-x-3'>
+
+                    <li className='w-6 flex flex-col items-center '
+                    onClick={() => navigate('/notifications')}>
+                        { notificationCountsData?.data !== 0 &&
+                            <p 
+                                className='w-3.5 h-3.5 -mb-3.5 -mr-4 bg-textError z-50 flex items-center justify-center rounded-full'
+                            >
+                                {notificationCountsData?.data}
+                            </p>
+                        }
+                        <NotificationsOutlinedIcon 
+                            sx={{ fill: currentUrl === '/notifications' ? 'var(--text-accent)' : 'var(--text-default)',}}
+                        />
+                    </li>
+
+                    <li className='w-6' onClick={() => handleLogout()}>
+                        <Logout />
+                    </li>
+
+                </ul>
+
+            </div>
+
+            {/* navigation menu in mobile */}
+            <div 
+            className={`
+                md:hidden fixed bg-bgMenu top-0 right-0 w-3/4 h-[100dvh] bg-white z-50 transform transition-all duration-300 rounded-l-3xl flex flex-col items-center justify-start pt-20 text-sm
+                ${isOpen ? 'translate-x-0 ' : 'translate-x-full'}`
+            }
+            style={{boxShadow:' var(--shadow-button-dark),var(--shadow-button-white)'}}
+            
+            >
+
+                <Avatar 
+                    alt={data?.data.firstName || ''} 
+                    src={data?.data.image.path || '/'} 
+                    sx={{height:'110px', width:'110px', zIndex:'0'}} 
+                />
+
+                <div id='name' className='flex flex-col items-center py-6 gap-y-3'>
+                    <p className='text-lg'>{data?.data.firstName} {data?.data.lastName}</p>
+                    <p>کد کاربری: {data?.data.userId}</p>
+                </div>
+
+                <ul
+                className="md:hidden bg-white flex flex-col items-start gap-y-7 px-4 pt-4"
+                onClick={() => setIsOpen(false)} // Close menu on navigation item click
+                >
+                    <li
+                    className='flex gap-x-3' 
+                    onClick={() => (isOpen ? clickInput() : null)}
+                    >
+                        <HomeOutlined fontSize="small" sx={{color: currentUrl === '/profile' && 'var(--text-accent)' }}   />
+                        <Link 
+                        to='/'
+                        className={`${currentUrl === '/profile' && 'underline underline-offset-8 text-textAccent'}`} 
+                        title="پروفایل" 
+                        aria-label="پروفایل"
+                        >
+                        پروفایل
+                        </Link>
+                    </li>
+
+                    <li
+                    className='flex gap-x-3' 
+                    onClick={() => (isOpen ? clickInput() : null)}
+                    > 
+                        <EditOutlined fontSize="small"   />
+                        <a 
+                        href='https://digilogbook.ir/blogs/1'
+                        title="بلاگ" 
+                        aria-label="بلاگ"
+                        >
+                        بلاگ
+                        </a>
+                    </li>
+
+                    <li
+                    className='flex gap-x-3' 
+                    onClick={() => (isOpen ? clickInput() : null)}
+                    > 
+                        <GroupsOutlined fontSize="small"   />
+                        <a 
+                        href='https://digilogbook.ir/aboutUs'
+                        title="بلاگ" 
+                        aria-label="بلاگ"
+                        >
+                        درباره ما
+                        </a>
+                    </li>
+
+                    <li
+                    className='flex gap-x-3' 
+                    onClick={() => (isOpen ? clickInput() : null)}
+                    > 
+                        <PhoneOutlined fontSize="small"   />
+                        <a 
+                        href='https://digilogbook.ir/contactUs'
+                        title="تماس با ما" 
+                        aria-label="تماس با ما"
+                        >
+                        تماس با ما
+                        </a>
+                    </li>
+
+                    <li
+                    className='flex gap-x-3' 
+                    onClick={() => (isOpen ? clickInput() : null)}
+                    > 
+                        <SettingsOutlined fontSize="small" sx={{color: currentUrl === '/settings' && 'var(--text-accent)' }}  />
+                        <Link  
+                        to='/settings'
+                        className={`${currentUrl === '/settings' && 'underline underline-offset-8 text-textAccent'}`} 
+                        title="تنظیمات"
+                        aria-label="تنظیمات"
+                        >
+                        تنظیمات
+                        </Link>
+                    </li>
+                </ul>
+
+                <Link 
+                to='/' 
+                    onClick={() => {clickInput(); handleLogout() }} 
+                    className={`
+                        ${buttonStyles.normalButton} 
+                        w-[130px] h-[48px] flex items-center justify-center rounded-xl text-base mt-10 md:hidden
+                    `} 
+                >
+                خروج
+                </Link>
+
+            </div>
+
+        </nav>
     );
 };
 
-export default Navbar;
+export default NewNavbar;

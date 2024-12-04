@@ -34,7 +34,7 @@ import 'react-toastify/dist/ReactToastify.css';
   import AdminPending from './templates/Authentication/AdminPending';
 // main and coach components
   import Footer from './templates/Footer';
-  import Navbar from './templates/Navbar';
+  import OldNavbar from './templates/OldNavbar';
   import SignUpOrLogin from './templates/Authentication/SignUpOrLogin';
   import Profile from './templates/profile/Profile';
   import Equipment from './templates/equipments/Equipment';
@@ -104,6 +104,7 @@ import AStudentCourses from './templates/education/studentList/AStudentCourses';
 import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
 import AddEquipment from './templates/equipments/AddEquipment';
 import EquipmentsList from './templates/equipments/EquipmentsList';
+import Navbar from './templates/Navbar';
 
 
 const queryClient = new QueryClient();
@@ -187,7 +188,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
 
       <div className={`App ${token && 'pb-24'} `}>
+        {location.pathname !== '/login' && location.pathname !== '/signUp' &&
         <Navbar />
+        }
           <Routes>
 
           {/* tandem flight survey, for passenger */}
@@ -220,7 +223,7 @@ function App() {
 
 
           {
-            token && isUserAuthenticated !== 'noCertificate' && 
+            token && isUserAuthenticated === 'noCertificate' && 
             (
               <>
                 <Route path='/addCertificate' element={<AddCertificate />} />
