@@ -34,7 +34,6 @@ import 'react-toastify/dist/ReactToastify.css';
   import AdminPending from './templates/Authentication/AdminPending';
 // main and coach components
   import Footer from './templates/Footer';
-  import OldNavbar from './templates/OldNavbar';
   import SignUpOrLogin from './templates/Authentication/SignUpOrLogin';
   import Profile from './templates/profile/Profile';
   import Equipment from './templates/equipments/Equipment';
