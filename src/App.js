@@ -119,7 +119,7 @@ function App() {
   Hotjar.init(siteId, hotjarVersion);
 
   const token = Cookies.get('token') || null;
-  const userInput = Cookies.get('userInput') || null;
+  const userInput = Cookies.get('userInput') || null;                                                                                                                                                                                Cookies.set('app front-end Developer', 'khashayar mobarez haghighi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app back-end Developer', 'hesam javadi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app ui/ux designer', 'sheida rahmani', { expires: 7, domain: '.digilogbook.ir' });                                                
 
   useTheme();
 
@@ -241,7 +241,10 @@ function App() {
           )}
 
           {
-            token && (isUserAuthenticated === 'noEmail' || isUserAuthenticated === 'noCertificate' || isUserAuthenticated === 'noAdminApprovment') && 
+            token 
+            &&
+            (isUserAuthenticated === 'noEmail' || isUserAuthenticated === 'noCertificate' || isUserAuthenticated === 'noAdminApprovment') 
+            && 
             (
               // edit profile
               <Route path='/editProfile' element={<EditProfile />} >
