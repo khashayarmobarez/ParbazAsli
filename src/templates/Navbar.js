@@ -63,6 +63,7 @@ const NewNavbar = () => {
         const handleLogout = async () => {
             await postLogout(token)
             Cookies.remove('token');
+            Cookies.set('userIsLoggedInCrossPlatforms', false, { expires: 7, domain: '.digilogbook.ir' });   
             navigate('/landing');
         };
 
