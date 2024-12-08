@@ -83,6 +83,8 @@ const AddClubCourse = () => {
 
     // popUp
     const [showPopup, setShowPopup] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
     
     // queries
     const { data: coachNamesData, isLoading: coachNamesLoading} = useGetActiveClubCoaches();
@@ -250,6 +252,8 @@ const AddClubCourse = () => {
     };
 
     const handlePopUp= (event) => {
+
+        setIsSubmitted(true)
         event.preventDefault();
 
         if(selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level || !Coach) ) {

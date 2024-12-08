@@ -46,6 +46,9 @@ const CourseStudents = () => {
     // add student
     const [studentId, setStudentId] = useState('');
 
+
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
     const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id,pageNumber);
     const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id,historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
@@ -144,6 +147,8 @@ const CourseStudents = () => {
 
     // handle add student
     const handleAddStudnetToCourse = () => {
+
+        setIsSubmitted(true)
 
         const customCourseData = {
             courseId: id,
@@ -336,9 +341,18 @@ const CourseStudents = () => {
                         }
                         {
                             aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
-                                <div className='w-full flex justify-between relative items-center'>
-                                    <div className='w-[70%] flex flex-col'>
-                                        <TextInput id={'TI1'} value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
+                                <div className='w-full flex justify-between relative items-center gap-x-4'>
+                                    <div className='w-[70%] md:w-full flex flex-col'>
+                                        <TextInput 
+                                        id={'TI1'} 
+                                        value={studentId} 
+                                        onChange={handleInputStudentId} 
+                                        placeholder='افزودن هنرجو' 
+                                        className='w-full' 
+                                        isSubmitted={isSubmitted}
+                                        ErrorCondition={!studentId}
+                                        ErrorText={'کد هنرجو را وارد کنید'}
+                                        />
                                     </div>
                                     <span
                                         className={` w-24 h-12 flex justify-center items-center rounded-2xl bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}
