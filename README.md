@@ -1,6 +1,6 @@
 # Digilogbook
 ## An app to log your paragliding flights and manage your courses and club as a coach or improve and get your flight certificates through leveling up as a student
-### [digilogbook.ir](https://digilogbook.ir/)
+### [digilogbook.app](https://digilogbook.app/)
 
 # documentation table of contents
 1. How to run the project, npm commands

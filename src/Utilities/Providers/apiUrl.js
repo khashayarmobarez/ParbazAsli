@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'http://195.177.255.109:1010/api'
+export const API_BASE_URL = 'https://api.digilogbook.app/api'

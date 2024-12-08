@@ -63,7 +63,7 @@ const NewNavbar = () => {
         const handleLogout = async () => {
             await postLogout(token)
             Cookies.remove('token');
-            Cookies.set('userIsLoggedInCrossPlatforms', false, { expires: 7, domain: '.digilogbook.ir' });   
+            Cookies.set('userIsLoggedInCrossPlatforms', false, { expires: 7, domain: '.digilogbook.app' });   
             navigate('/landing');
         };
 
@@ -137,7 +137,7 @@ const NewNavbar = () => {
                         onClick={() => (isOpen ? clickInput() : null)}
                         > 
                             <a 
-                            href='https://digilogbook.ir/blogs/1'
+                            href='https://digilogbook.app/blogs/1'
                             title="بلاگ" 
                             aria-label="بلاگ"
                             >
@@ -150,7 +150,7 @@ const NewNavbar = () => {
                         onClick={() => (isOpen ? clickInput() : null)}
                         > 
                             <a 
-                            href='https://digilogbook.ir/aboutUs'
+                            href='https://digilogbook.app/aboutUs'
                             title="بلاگ" 
                             aria-label="بلاگ"
                             >
@@ -163,7 +163,7 @@ const NewNavbar = () => {
                         onClick={() => (isOpen ? clickInput() : null)}
                         > 
                             <a 
-                            href='https://digilogbook.ir/contactUs'
+                            href='https://digilogbook.app/contactUs'
                             title="تماس با ما" 
                             aria-label="تماس با ما"
                             >
@@ -259,7 +259,7 @@ const NewNavbar = () => {
                     > 
                         <EditOutlined fontSize="small"   />
                         <a 
-                        href='https://digilogbook.ir/blogs/1'
+                        href='https://digilogbook.app/blogs/1'
                         title="بلاگ" 
                         aria-label="بلاگ"
                         >
@@ -273,7 +273,7 @@ const NewNavbar = () => {
                     > 
                         <GroupsOutlined fontSize="small"   />
                         <a 
-                        href='https://digilogbook.ir/aboutUs'
+                        href='https://digilogbook.app/aboutUs'
                         title="بلاگ" 
                         aria-label="بلاگ"
                         >
@@ -287,7 +287,7 @@ const NewNavbar = () => {
                     > 
                         <PhoneOutlined fontSize="small"   />
                         <a 
-                        href='https://digilogbook.ir/contactUs'
+                        href='https://digilogbook.app/contactUs'
                         title="تماس با ما" 
                         aria-label="تماس با ما"
                         >

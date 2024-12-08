@@ -133,7 +133,7 @@ const Login = () => {
 
                 // Save the token in a cookie
                 Cookies.set('token', response.data.data.token, { expires: response.data.data.loginExpireInDays});
-                Cookies.set('userIsLoggedInCrossPlatforms', true, { expires: response.data.data.loginExpireInDays, domain: '.digilogbook.ir' });                                                                                                                                                                                                                                         Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.ir' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.ir' });                                               
+                Cookies.set('userIsLoggedInCrossPlatforms', true, { expires: response.data.data.loginExpireInDays, domain: '.digilogbook.app' });                                                                                                                                                                                                                                         Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.app' });                                               
                 
 
                 await postIsUserAuthenticated(response.data.data.token, navigate, isUserAuthenticated);
