@@ -121,7 +121,7 @@ const AddSituation = () => {
     
     return (
         <>
-            <div className='flex flex-col justify-center items-center w-[90%] gap-y-7 pb-6'>
+            <div className='flex flex-col justify-center items-center w-[90%] gap-y-7 pb-20'>
 
                 {/* line and circle of adding flight level */}
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
