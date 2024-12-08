@@ -182,7 +182,7 @@ const FlightsAdvancedFilter = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center'>
 
-            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-6'>
+            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-6 lg:gap-y-12'>
 
                 <PageTitle title={'فیلتر جست‌وجو'} navigateTo={-1} />
 

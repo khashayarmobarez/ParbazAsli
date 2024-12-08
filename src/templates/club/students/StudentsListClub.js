@@ -30,65 +30,69 @@ const StudentsListClub = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
 
-            { (courseCountsLoading || AllStudentLoading) &&
-                <CircularProgressLoader /> 
-            }
+            <div className='w-full md:w-[60%]'>
 
-            {
-                AllStudentError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
-            }
+                { (courseCountsLoading || AllStudentLoading) &&
+                    <CircularProgressLoader /> 
+                }
 
-            {
-                courseCountsData && AllStudents &&
-                <div className='w-full flex flex-col justify-center items-center gap-y-8'>
-                    <PageTitle 
-                        title={`${id === '1' ? `هنرجویان فعال (${courseCountsData.data.activeStudentCounts})` : `هنرجویان سابق (${courseCountsData.data.disableStudentCounts})`}`} 
-                        navigateTo={'/club/clubCourses'} 
-                    />
+                {
+                    AllStudentError &&
+                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                }
 
-                    {
-                        AllStudents && AllStudents.data.length < 1 && !AllStudentLoading && !AllStudentError &&
-                        <p className='h-60vh w-full text-center flex justify-center items-center mt-8 text-textWarning'> هنرجویی یافت نشد</p>
-                    }
+                {
+                    courseCountsData && AllStudents &&
+                    <div className='w-full flex flex-col justify-center items-center gap-y-8 lg:gap-y-12'>
+                        <PageTitle 
+                            title={`${id === '1' ? `هنرجویان فعال (${courseCountsData.data.activeStudentCounts})` : `هنرجویان سابق (${courseCountsData.data.disableStudentCounts})`}`} 
+                            navigateTo={'/club/clubCourses'} 
+                        />
 
-                    <div className='w-[90%] flex flex-col gap-y-4 items-center'>
-                        {AllStudents.data.length > 0 && AllStudents.data &&
-                            AllStudents.data.map((student) => (
-                                <ACourseStudentBox key={student.id} studentData={student} isForClub={true} isForHistory={id === '1' ? false : true} />
-                            ))
+                        {
+                            AllStudents && AllStudents.data.length < 1 && !AllStudentLoading && !AllStudentError &&
+                            <p className='h-60vh w-full text-center flex justify-center items-center mt-8 text-textWarning'> هنرجویی یافت نشد</p>
                         }
+
+                        <div className='w-[90%] flex flex-col gap-y-4 items-center'>
+                            {AllStudents.data.length > 0 && AllStudents.data &&
+                                AllStudents.data.map((student) => (
+                                    <ACourseStudentBox key={student.id} studentData={student} isForClub={true} isForHistory={id === '1' ? false : true} />
+                                ))
+                            }
+                        </div>
+
+                        { (AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1) ? (
+                                <div className='w-full flex justify-between px-10 items-center'>
+                                    <button
+                                        className={`w-6 h-6 justify-self-start`}
+                                        disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
+                                        onClick={handleNextPageNumber}
+                                    >
+                                        <ArrowButton isRight={true} isDisable={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}/>
+                                    </button>
+
+                                    <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
+                                        صفحه ی {pageNumber}
+                                    </p>
+
+                                    <button
+                                        className={`transform w-6 h-6 justify-self-end`}
+                                        disabled={pageNumber === 1}
+                                        onClick={handleLastPageNumber}
+                                    >
+                                        <ArrowButton isDisable={pageNumber === 1}/>
+                                    </button>
+                                </div>
+                            )
+                            :
+                            ''
+                        }
+                        
                     </div>
+                }
 
-                    { (AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1) ? (
-                            <div className='w-full flex justify-between px-10 items-center'>
-                                <button
-                                    className={`w-6 h-6 justify-self-start`}
-                                    disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
-                                    onClick={handleNextPageNumber}
-                                >
-                                    <ArrowButton isRight={true} isDisable={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}/>
-                                </button>
-
-                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                    صفحه ی {pageNumber}
-                                </p>
-
-                                <button
-                                    className={`transform w-6 h-6 justify-self-end`}
-                                    disabled={pageNumber === 1}
-                                    onClick={handleLastPageNumber}
-                                >
-                                    <ArrowButton isDisable={pageNumber === 1}/>
-                                </button>
-                            </div>
-                        )
-                        :
-                        ''
-                    }
-                    
-                </div>
-            }
+            </div>
             
         </div>
     );

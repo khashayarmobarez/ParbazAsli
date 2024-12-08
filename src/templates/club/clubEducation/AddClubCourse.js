@@ -405,340 +405,370 @@ const AddClubCourse = () => {
 
     return (
         <div className='flex flex-col items-center mt-14 gap-y-8'>
-            
-            <PageTitle title={'افزودن دوره'} /> 
 
-            <form className='w-[90%] flex flex-col items-center gap-y-6'>
+            <div className='w-full md:w-[55%] flex flex-col items-center gap-y-14'>
+                
+                <PageTitle title={'افزودن دوره'} /> 
 
-                {
-                coachNamesLoading &&
-                    <CircularProgressLoader />
-                }
+                <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                {
-                coachNamesData && coachNamesData.data.length < 1 &&
-                    <div className='w-full h-[60vh] flex flex-col justify-center items-center gap-y-4'>
-                        <span className='w-16 h-16'>
-                            <Attention />
-                        </span>
-                        <p className='text-textWarning'>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
-                    </div>
-                }
+                    {
+                    coachNamesLoading &&
+                        <CircularProgressLoader />
+                    }
 
-                {
-                    coachNamesData && coachNamesData.data.length > 0 &&
-                    <DropdownInput
-                        id={'ddi1'}
-                        options={coachNamesData.data}
-                        handleSelectChange={handleSelectCoachChange}
-                        selectedOption={Coach}
-                        name={'انتخاب مربی'}
-                        icon={<UserIcon/>}
-                    />
-                }
+                    {
+                    coachNamesData && coachNamesData.data.length < 1 &&
+                        <div className='w-full h-[60vh] flex flex-col justify-center items-center gap-y-4'>
+                            <span className='w-16 h-16'>
+                                <Attention />
+                            </span>
+                            <p className='text-textWarning'>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                        </div>
+                    }
 
-                {
-                    coachNamesData && coachNamesData.data.length > 0 &&
-                        <DropdownInput id={'ddi2'} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>} />
-                }
+                    {
+                        coachNamesData && coachNamesData.data.length > 0 &&
+                        <DropdownInput
+                            id={'ddi1'}
+                            options={coachNamesData.data}
+                            handleSelectChange={handleSelectCoachChange}
+                            selectedOption={Coach}
+                            name={'انتخاب مربی'}
+                            icon={<UserIcon/>}
+                        />
+                    }
 
-                {selectedClassType && 
-                    <>
-                        {
-                            organsLoading && 
-                            <div className='w-full min-h-[71vh]'>
-                                <p> 
-                                    در حال دریافت اطلاعات سازمان ها...    
-                                </p>
-                            </div>
-                        }
+                    {
+                        coachNamesData && coachNamesData.data.length > 0 &&
+                            <DropdownInput id={'ddi2'} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>} />
+                    }
 
-                        {
-                            organsError && 
-                            <div className='w-full min-h-[71vh]'>
-                                <p> 
-                                    خطا در دریافت اطلاعات سازمان ها...
-                                </p>
-                            </div>
-                        }
+                    {selectedClassType && 
+                        <>
+                            {
+                                organsLoading && 
+                                <div className='w-full min-h-[71vh]'>
+                                    <p> 
+                                        در حال دریافت اطلاعات سازمان ها...    
+                                    </p>
+                                </div>
+                            }
 
-                        {/* only دوره های مطابق سیلابس */}
-                        { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
-                            <>
-                                <DropdownInput
-                                id={'ddi3'}
-                                options={organsData.data}
-                                handleSelectChange={handleSelectOrganChange}
-                                selectedOption={organ}
-                                name={'ارگان مربوطه'}
-                                icon={<CertificateIcon/>}
-                                />
-                                {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
-                                {
-                                    levelsData && organ && !levelsError &&
-                                    <>
-                                        {levelsLoading && <p>Loading levels...</p>}
-                                        {levelsError && <p>Error fetching levels</p>}
-                                        {!levelsError && !levelsLoading &&
-                                            <>
+                            {
+                                organsError && 
+                                <div className='w-full min-h-[71vh]'>
+                                    <p> 
+                                        خطا در دریافت اطلاعات سازمان ها...
+                                    </p>
+                                </div>
+                            }
 
-                                                <DropdownInput
-                                                    id={'ddi4'}
-                                                    options={levelsData.data}
-                                                    handleSelectChange={handleSelectLevelChange}
-                                                    icon={<ChartIcon2/>}
-                                                    selectedOption={level}
-                                                    name={'مقطع'}
-                                                />
+                            {/* only دوره های مطابق سیلابس */}
+                            { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
+                                <>
+                                    <DropdownInput
+                                    id={'ddi3'}
+                                    options={organsData.data}
+                                    handleSelectChange={handleSelectOrganChange}
+                                    selectedOption={organ}
+                                    name={'ارگان مربوطه'}
+                                    icon={<CertificateIcon/>}
+                                    />
+                                    {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
+                                    {
+                                        levelsData && organ && !levelsError &&
+                                        <>
+                                            {levelsLoading && <p>Loading levels...</p>}
+                                            {levelsError && <p>Error fetching levels</p>}
+                                            {!levelsError && !levelsLoading &&
+                                                <>
 
-                                            </>
-                                        }
-                                    </>
-                                }
+                                                    <DropdownInput
+                                                        id={'ddi4'}
+                                                        options={levelsData.data}
+                                                        handleSelectChange={handleSelectLevelChange}
+                                                        icon={<ChartIcon2/>}
+                                                        selectedOption={level}
+                                                        name={'مقطع'}
+                                                    />
 
-                                {
-                                    syllabiData && selectedClassType.id === 2 && 
-                                    <>
-                                        {/* <SearchMultipleSelect
-                                            options={syllabiData.data}
-                                            selectedOptions={selectedSyllabi}
-                                            handleSelectChange={handleSelectChangeSyllabi}
-                                            name="سیلابس ها"
-                                            handleRemove={handleRemoveSyllabi}
-                                            isForSyllabi={true}
-                                        /> */}
+                                                </>
+                                            }
+                                        </>
+                                    }
 
-                                        {/* <SearchMultipleSelect
-                                            Icon={<ListIcon/>}
-                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
-                                            selectedOptions={selectedSyllabiPractical}
-                                            handleSelectChange={handleSelectChangeSyllabiPractical}
-                                            name="سرفصل های عملی"
-                                            handleRemove={handleRemoveSyllabiPractical}
-                                            isForSyllabi={true}
-                                        />
+                                    {
+                                        syllabiData && selectedClassType.id === 2 && 
+                                        <>
+                                            {/* <SearchMultipleSelect
+                                                options={syllabiData.data}
+                                                selectedOptions={selectedSyllabi}
+                                                handleSelectChange={handleSelectChangeSyllabi}
+                                                name="سیلابس ها"
+                                                handleRemove={handleRemoveSyllabi}
+                                                isForSyllabi={true}
+                                            /> */}
 
-                                        <SearchMultipleSelect
-                                            Icon={<ListIcon/>}
-                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
-                                            selectedOptions={selectedSyllabiTheory}
-                                            handleSelectChange={handleSelectChangeSyllabiTheory}
-                                            name="سرفصل های تئوری"
-                                            handleRemove={handleRemoveSyllabiTheory}
-                                            isForSyllabi={true}
-                                        /> */}
+                                            {/* <SearchMultipleSelect
+                                                Icon={<ListIcon/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
+                                                selectedOptions={selectedSyllabiPractical}
+                                                handleSelectChange={handleSelectChangeSyllabiPractical}
+                                                name="سرفصل های عملی"
+                                                handleRemove={handleRemoveSyllabiPractical}
+                                                isForSyllabi={true}
+                                            />
 
-                                        <SelectMultiplePopUp
-                                            Icon={<ListIcon/>}
-                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
-                                            selectedOptions={selectedSyllabiPractical}
-                                            handleSelectChange={handleSelectChangeSyllabiPractical}
-                                            name="سرفصل های عملی"
-                                            handleRemove={handleRemoveSyllabiPractical}
-                                            isForSyllabi={true}
-                                        />
+                                            <SearchMultipleSelect
+                                                Icon={<ListIcon/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
+                                                selectedOptions={selectedSyllabiTheory}
+                                                handleSelectChange={handleSelectChangeSyllabiTheory}
+                                                name="سرفصل های تئوری"
+                                                handleRemove={handleRemoveSyllabiTheory}
+                                                isForSyllabi={true}
+                                            /> */}
 
-                                        <SelectMultiplePopUp
-                                            Icon={<ListIcon/>}
-                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
-                                            selectedOptions={selectedSyllabiTheory}
-                                            handleSelectChange={handleSelectChangeSyllabiTheory}
-                                            name="سرفصل های تئوری"
-                                            handleRemove={handleRemoveSyllabiTheory}
-                                            isForSyllabi={true}
-                                        />
+                                            <SelectMultiplePopUp
+                                                Icon={<ListIcon/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
+                                                selectedOptions={selectedSyllabiPractical}
+                                                handleSelectChange={handleSelectChangeSyllabiPractical}
+                                                name="سرفصل های عملی"
+                                                handleRemove={handleRemoveSyllabiPractical}
+                                                isForSyllabi={true}
+                                            />
+                                            
+                                            {
+                                                selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                            } 
+
+                                            <SelectMultiplePopUp
+                                                Icon={<ListIcon/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
+                                                selectedOptions={selectedSyllabiTheory}
+                                                handleSelectChange={handleSelectChangeSyllabiTheory}
+                                                name="سرفصل های تئوری"
+                                                handleRemove={handleRemoveSyllabiTheory}
+                                                isForSyllabi={true}
+                                            />
+                                            {
+                                                selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                            } 
+
+                                            <TextInput
+                                            id={'TI1'}
+                                            value={courseName}
+                                            onChange={handleCourseName}
+                                            placeholder='نام دوره'
+                                            icon={<SingleTag/>}
+                                            isSubmitted={isSubmitted}
+                                            ErrorCondition={!courseName}
+                                            ErrorText={'نام دوره الزامی است'}
+                                            />
+                                        </>
+
+                                    }
+
+                                </>
+                            }
+
+
+                            {selectedClassType.id === 3 && (
+                                <>
 
                                         <TextInput
-                                        id={'TI1'}
-                                        value={courseName}
-                                        onChange={handleCourseName}
-                                        placeholder='نام دوره'
-                                        icon={<SingleTag/>}
+                                            id={'TI2'}
+                                            value={courseName}
+                                            onChange={handleCourseName}
+                                            placeholder='نام دوره'
+                                            icon={<SingleTag/>}
+                                            isSubmitted={isSubmitted}
+                                            ErrorCondition={!courseName}
+                                            ErrorText={'نام دوره الزامی است'}
                                         />
-                                    </>
-
-                                }
-
-                            </>
-                        }
-
-
-                        {selectedClassType.id === 3 && (
-                            <>
-
-                                    <TextInput
-                                        id={'TI2'}
-                                        value={courseName}
-                                        onChange={handleCourseName}
-                                        placeholder='نام دوره'
-                                        icon={<SingleTag/>}
-                                    />
-
-                                <div className='w-full flex justify-between relative items-center'>
-                                    <div className='w-[86%] flex flex-col'>
-                                        <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
-                                    </div>
-                                    <span
-                                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                        onClick={() => handleAddCustomCourse(1)}
-                                    >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--text-accent)' }} />
-                                    </span>
-                                </div>
-
-                                <ul className='w-full py-0 mt-[-1rem] gap-2'>
-                                    {customCourses
-                                    .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
-                                    .map((course,index) => (
-                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                            <p className=' text-sm mx-1' >{index + 1}</p>
-                                            <p className='text-sm px-6 w-full text-start'>{course.description} </p>
-                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                            boxShadow: 'var(--shadow-all)',
-                                            borderRadius:'0.5rem',
-                                            color:'var(--text-error)'}}
-                                            onClick={() => handleRemoveCustomCourse(course.order)} />
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <div className='w-full flex justify-between relative items-center'>
-                                    <div className='w-[86%] flex flex-col'>
-                                        <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
-                                    </div>
-                                    <span
-                                        className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                        onClick={() => handleAddCustomCourse(2)}
-                                    >
-                                        <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--text-accent)' }} />
-                                    </span>
-                                </div>
-
-                                <ul className=' w-full py-0 mt-[-1rem] gap-2'>
-                                    {customCourses
-                                    .filter(course => course.type === 2) // Filter for practical courses (type 2)
-                                    .map((course,index) => (
-                                        <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                            <p className=' text-sm mx-1' >{index + 1}</p>
-                                            <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                            boxShadow: 'var(--shadow-all)',
-                                            borderRadius:'0.5rem',
-                                            color:'var(--text-error)'}}
-                                            onClick={() => handleRemoveCustomCourse(course.order)} />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </>
-                        )}
-                        
-
-                        {
-                            // add or later on add other types of courses
-                            (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
-                            <>
-                                <NumberInput icon={<ChartIcon/>} id={1} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
-
-
-                                {/* add students */}
-                                <div className='w-full flex flex-col gap-y-1'>
-                                    {
-                                    loadingStudentLevel && studentId.length > 5 &&
-                                        <p className='text-[var(--text-accent)] self-start'>در حال جستجو ...</p>
-                                    }
-                                    { studentError && studentId.length > 5 &&
-                                        <p className='text-[var(--text-error)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
-                                    }
 
                                     <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-full flex flex-col'>
-                                            <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                        <div className='w-[86%] flex flex-col'>
+                                            <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                         </div>
-                                        {studentData?.data && (
-                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
-                                            
-                                                <div className='flex flex-col w-full items-center justify-center '>
-                                                    <li
-                                                        key={studentData.data.id}
-                                                        className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
-                                                        onClick={() => handleAddStudent()}
-                                                    >
-                                                        {studentData.data.fullName}
-                                                    </li>
-                                                </div>
-
-                                            </ul>
-                                        )}
+                                        <span
+                                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                            onClick={() => handleAddCustomCourse(1)}
+                                        >
+                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--text-accent)' }} />
+                                        </span>
                                     </div>
-                                </div>
 
-                                <ul className=' w-full py-0 mt-[-1rem] gap-2'>
-                                    {studentsData && studentsData?.map((student,index) => (
-                                        <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                        style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                            <p className=' text-sm mx-1' >{index + 1}</p>
-                                            <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
-                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                            boxShadow: 'var(--shadow-all)',
-                                            borderRadius:'0.5rem',
-                                            color:'var(--text-error)'}}
-                                             onClick={() => handleRemoveStudent(student)} />
-                                        </li>
-                                    ))}
-                                </ul>
+                                    <ul className='w-full py-0 mt-[-1rem] gap-2'>
+                                        {customCourses
+                                        .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
+                                        .map((course,index) => (
+                                            <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                            style={{background:  'var(--bg-output-default)',
+                                                boxShadow: 'var(--shadow-all)'}}>
+                                                <p className=' text-sm mx-1' >{index + 1}</p>
+                                                <p className='text-sm px-6 w-full text-start'>{course.description} </p>
+                                                <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                boxShadow: 'var(--shadow-all)',
+                                                borderRadius:'0.5rem',
+                                                color:'var(--text-error)'}}
+                                                onClick={() => handleRemoveCustomCourse(course.order)} />
+                                            </li>
+                                        ))}
+                                    </ul>
 
+                                    <div className='w-full flex justify-between relative items-center'>
+                                        <div className='w-[86%] flex flex-col'>
+                                            <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                        </div>
+                                        <span
+                                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                            onClick={() => handleAddCustomCourse(2)}
+                                        >
+                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color: 'var(--text-accent)' }} />
+                                        </span>
+                                    </div>
 
-                                {/* description input */}
-                                <div className='w-full flex flex-col gap-y-2'>
-                                    <h1 className=' self-start'>توضیحات درباره دوره</h1>
-                                    <DescriptionInput
-                                        value={description}
-                                        onChange={handleDescription}
-                                        placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                    <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                        {customCourses
+                                        .filter(course => course.type === 2) // Filter for practical courses (type 2)
+                                        .map((course,index) => (
+                                            <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                            style={{background:  'var(--bg-output-default)',
+                                                boxShadow: 'var(--shadow-all)'}}>
+                                                <p className=' text-sm mx-1' >{index + 1}</p>
+                                                <p className='text-sm px-6 w-full text-start'>{course.description}</p>
+                                                <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                boxShadow: 'var(--shadow-all)',
+                                                borderRadius:'0.5rem',
+                                                color:'var(--text-error)'}}
+                                                onClick={() => handleRemoveCustomCourse(course.order)} />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            )}
+                            
+
+                            {
+                                // add or later on add other types of courses
+                                (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
+                                <>
+                                    <NumberInput 
+                                        icon={<ChartIcon/>} 
+                                        id={1} 
+                                        name={'تعداد پرواز'} 
+                                        value={flightCount} 
+                                        onChange={handleFlightCount} 
+                                        placeholder='تعداد پرواز' 
+                                        isSubmitted={isSubmitted}
+                                        ErrorCondition={!flightCount}
+                                        ErrorText={'تعداد پرواز الزامی است'}
+                                        ErrorCondition2={flightCount && flightCount < 0}
+                                        ErrorText2={'تعداد پرواز باید بزرگتر از 0 باشد'}
                                     />
-                                </div>
+
+
+                                    {/* add students */}
+                                    <div className='w-full flex flex-col gap-y-1'>
+                                        {
+                                        loadingStudentLevel && studentId.length > 5 &&
+                                            <p className='text-[var(--text-accent)] self-start'>در حال جستجو ...</p>
+                                        }
+                                        { studentError && studentId.length > 5 &&
+                                            <p className='text-[var(--text-error)] self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                                        }
+
+                                        <div className='w-full flex justify-between relative items-center'>
+                                            <div className='w-full flex flex-col'>
+                                                <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                            </div>
+                                            {studentData?.data && (
+                                                <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                                
+                                                    <div className='flex flex-col w-full items-center justify-center '>
+                                                        <li
+                                                            key={studentData.data.id}
+                                                            className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
+                                                            onClick={() => handleAddStudent()}
+                                                        >
+                                                            {studentData.data.fullName}
+                                                        </li>
+                                                    </div>
+
+                                                </ul>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                        {studentsData && studentsData?.map((student,index) => (
+                                            <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                            style={{background:  'var(--bg-output-default)',
+                                                boxShadow: 'var(--shadow-all)'}}>
+                                                <p className=' text-sm mx-1' >{index + 1}</p>
+                                                <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
+                                                <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                boxShadow: 'var(--shadow-all)',
+                                                borderRadius:'0.5rem',
+                                                color:'var(--text-error)'}}
+                                                onClick={() => handleRemoveStudent(student)} />
+                                            </li>
+                                        ))}
+                                    </ul>
+
+
+                                    {/* description input */}
+                                    <div className='w-full flex flex-col gap-y-2'>
+                                        <h1 className=' self-start'>توضیحات درباره دوره</h1>
+                                        <DescriptionInput
+                                            value={description}
+                                            onChange={handleDescription}
+                                            placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                        />
+                                    </div>
 
 
 
-                                <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
-                            </>
-                        }
-                        
-                        
-                    </>
-                }
-
-            </form>
-
-            {/* submit pop up */}
-            <div className={`${showPopup ? 'fixed' : 'hidden'} w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
-
-                <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'} w-[80%] md:w-[314px] h-[280px] flex flex-col justify-around items-center top-52`}>
-
-                    <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
-
-                    <h3 className=' text-textWarning text-xl mt-[-3rem] '>تاییدیه</h3>
-
-                    <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
-
-                    <div className='w-full flex justify-around items-center'>
-                        <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                        <button 
-                        type="submit" 
-                        onClick={handleSubmit} 
-                        className={`${ButtonStyles.addButton} w-24`}
-                        disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
-                        {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
-                        </button>
-                    </div>  
+                                    <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-4`}>ثبت </button>
+                                </>
+                            }
+                            
+                            
+                        </>
+                    }
 
                 </form>
-            
+
+                {/* submit pop up */}
+                <div className={`${showPopup ? 'fixed' : 'hidden'} w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} >
+
+                    <form  className={` ${boxStyles.containerChangeOwnership} ${showPopup ? 'fixed' : 'hidden'} w-[80%] md:w-[314px] h-[280px] flex flex-col justify-around items-center top-52`}>
+
+                        <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
+
+                        <h3 className=' text-textWarning text-xl mt-[-3rem] '>تاییدیه</h3>
+
+                        <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
+
+                        <div className='w-full flex justify-around items-center'>
+                            <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
+                            <button 
+                            type="submit" 
+                            onClick={handleSubmit} 
+                            className={`${ButtonStyles.addButton} w-24`}
+                            disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
+                            {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
+                            </button>
+                        </div>  
+
+                    </form>
+                
+                </div>
             </div>
 
         </div> 

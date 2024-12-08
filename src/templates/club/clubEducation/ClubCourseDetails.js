@@ -85,7 +85,7 @@ const ClubCourseDetails = () => {
 
     return (
         <div className='flex flex-col mt-14 items-center'>
-            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12'>
 
                 <PageTitle title={'جزئیات دوره'} navigateTo={historyPageUrl} /> 
 
@@ -104,9 +104,9 @@ const ClubCourseDetails = () => {
                 {
                     aCourseData &&
                     <>
-                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-6`}>
+                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-6 `}>
 
-                            <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
+                            <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0 '>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
                                     <p className=' text-xs pr-2'>نام</p>

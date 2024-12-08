@@ -174,7 +174,7 @@ const EditEquipment = () => {
 
     return (
         <div className='flex flex-col items-center pt-[3rem] '>
-            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-16'>
 
                 <PageTitle 
                 title={EquipmentData && (equipmentType === "Parachute" || EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected') ? 'ویرایش وسیله' : 'جزئیات وسیله'} />  

@@ -176,7 +176,7 @@ const EquipmentsList = () => {
     return (
         <div className=' flex flex-col gap-y-4 items-center '>
 
-            <div className='w-full flex flex-col gap-y-4 pb-10 items-center'>
+            <div className='w-full flex flex-col gap-y-4 pb-10 items-center '>
                 {
                     isLoading && 
                     <CircularProgressLoader/>

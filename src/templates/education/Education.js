@@ -116,7 +116,7 @@ const Education = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
 
-            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12'>
 
                 <PageTitle title={'آموزش'} navigateTo={'/profile'} />  
 

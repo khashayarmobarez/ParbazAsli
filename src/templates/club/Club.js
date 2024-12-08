@@ -45,7 +45,7 @@ const Club = () => {
                 {clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission /> }
 
                 {clubStatus && clubStatus.data === 'Accepted' && 
-                    <div className=' flex flex-col items-center w-[90%] gap-y-6 mt-6'>
+                    <div className=' flex flex-col items-center w-[90%] gap-y-6 mt-6 lg:mt-16'>
 
                         <ClubData />
 
