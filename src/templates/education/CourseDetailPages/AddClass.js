@@ -247,7 +247,7 @@ const AddClass = () => {
                     {
                         syllabiDataTheory && courseStudents &&
 
-                        <form className='w-full flex flex-col items-center gap-y-4'>
+                        <form className='w-full flex flex-col items-center gap-y-6'>
 
                             <TextInput
                                 id={'TI1'}
@@ -317,6 +317,9 @@ const AddClass = () => {
                                 value={description}
                                 onChange={handleDescription}
                                 placeholder='توضیحات کلاس'
+                                isSubmitted={isSubmitted}
+                                ErrorCondition={!description}
+                                ErrorText={'توضیحات کلاس الزامی است'}
                             />
 
                             <SearchMultipleSelectStudent
@@ -327,6 +330,10 @@ const AddClass = () => {
                                 handleRemove={handleRemoveStudents}
                                 Icon={<UsersIcon/>}
                             />
+                            {
+                                isSubmitted && !(selectedStudents.length > 0 || guestStudentDatas.length > 0) &&
+                                <p className='text-textError self-start text-xs -mt-3'>حداقل یک هنرجو را برای کلاس انتخاب کنید</p>
+                            }
                             
 
                             <div className='w-full flex flex-col items-center relative'>
@@ -348,6 +355,10 @@ const AddClass = () => {
 
                                     </ul>
                                 )}
+                                {
+                                    isSubmitted && !(selectedStudents.length > 0 || guestStudentDatas.length > 0) &&
+                                    <p className='text-textError self-start text-xs mt-2'>حداقل یک هنرجو را برای کلاس انتخاب کنید</p>
+                                }
                             </div>
 
                             {
