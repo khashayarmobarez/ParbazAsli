@@ -184,7 +184,7 @@ const CourseStudents = () => {
 
 
     return (
-        <div className='w-full flex flex-col items-center pb-14'>
+        <div className='w-full flex flex-col items-center pb-20'>
             <div className='w-full flex flex-col'>
 
             {
@@ -282,8 +282,8 @@ const CourseStudents = () => {
                             }
                             {
                                 student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
-                                <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-10'>
-                                    <div className='w-1/3 h-full bg-bgInputDropdown text-textDefault rounded-2xl flex flex-col items-center justify-end'>
+                                <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-10 md:left-[15%]'>
+                                    <div className='w-1/3 md:w-1/6 lg:w-1/12 h-full bg-bgInputDropdown text-textDefault rounded-2xl flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
                                             className='w-full text-center py-1.5 active:bg-textAccent'
@@ -402,9 +402,9 @@ const CourseStudents = () => {
                                             </div>
                                             {
                                                 student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
-                                                <div className=' absolute w-full flex justify-end left-[5%] h-24'>
-                                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled rounded-2xl flex flex-col items-center justify-end'>
-                                                        <p className=' text-center py-3 active:bg-textAccent'
+                                                <div className=' absolute w-full flex justify-end left-[5%] h-[40px] mt-14 md:left-[15%]'>
+                                                    <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled rounded-2xl flex flex-col items-center justify-center'>
+                                                        <p className=' text-center active:bg-textAccent'
                                                         onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
                                                             بازگردانی به دوره
                                                         </p>
