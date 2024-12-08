@@ -81,6 +81,7 @@ const AddCourse = () => {
 
     // popUp
     const [showPopup, setShowPopup] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState()
     
     // queries
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
@@ -399,7 +400,7 @@ const AddCourse = () => {
     return (
         <div className='flex flex-col items-center mt-14 gap-y-8'>
 
-            <div className='w-full md:w-[55%] flex flex-col items-center gap-y-8'>
+            <div className='w-full md:w-[55%] flex flex-col items-center gap-y-10'>
             
                 <PageTitle title={'افزودن دوره'} /> 
 
