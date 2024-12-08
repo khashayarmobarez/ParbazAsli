@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
+
 
 
 
@@ -12,7 +13,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Notification/GetNotifications?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+        const response = await axios.get(`${API_BASE_URL}/Notification/GetNotifications?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         // }
 
         try {
-        const response = await axios.get(`${BASE_URL}/Notification/GetUnreadNotificationsCount`, {
+        const response = await axios.get(`${API_BASE_URL}/Notification/GetUnreadNotificationsCount`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -84,7 +85,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getIsSurveyAvailable = async (surveyId) => {
 
         try {
-        const response = await axios.get(`${BASE_URL}/Survey/IsSurveyAvailable?id=${surveyId}`, {
+        const response = await axios.get(`${API_BASE_URL}/Survey/IsSurveyAvailable?id=${surveyId}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -118,7 +119,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
         
         try {
-            const response = await axios.post(`${BASE_URL}/Survey/SubmitSurvey`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/Survey/SubmitSurvey`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

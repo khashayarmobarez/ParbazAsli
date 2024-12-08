@@ -81,7 +81,7 @@ const AddCourse = () => {
 
     // popUp
     const [showPopup, setShowPopup] = useState(false)
-    const [isSubmitted, setIsSubmitted] = useState()
+    const [isSubmitted, setIsSubmitted] = useState(false)
     
     // queries
     const { data: organsData, isLoading: organsLoading, error: organsError } = useOrgansData();
@@ -243,6 +243,8 @@ const AddCourse = () => {
     };
 
     const handlePopUp= (event) => {
+
+        setIsSubmitted(true)
         event.preventDefault();
 
         if(selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
@@ -280,6 +282,8 @@ const AddCourse = () => {
     
     
     const handleSubmit = (e) => {
+        
+        setIsSubmitted(true)
         e.preventDefault();
     
         if ( selectedClassType && flightCount && level) {
@@ -400,13 +404,21 @@ const AddCourse = () => {
     return (
         <div className='flex flex-col items-center mt-14 gap-y-8'>
 
-            <div className='w-full md:w-[55%] flex flex-col items-center gap-y-10'>
+            <div className='w-full md:w-[55%] flex flex-col items-center gap-y-14'>
             
                 <PageTitle title={'افزودن دوره'} /> 
 
                 <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                    <DropdownInput id={'ddi1'} isDeselectDeactivated={true} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>}/>
+                    <DropdownInput 
+                        id={'ddi1'} 
+                        isDeselectDeactivated={true} 
+                        name={'نوع دوره'} 
+                        options={courseTypeOptionData} 
+                        selectedOption={selectedClassType} 
+                        handleSelectChange={handleSelectClassType} 
+                        icon={<ColorTagsIcon/>}
+                    />
 
                     {selectedClassType && 
                         <>
@@ -497,6 +509,10 @@ const AddCourse = () => {
                                                 handleRemove={handleRemoveSyllabiPractical}
                                                 isForSyllabi={true}
                                             />
+                                            {
+                                                selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                            } 
 
                                             <SelectMultiplePopUp
                                                 Icon={<ListIcon/>}
@@ -507,6 +523,10 @@ const AddCourse = () => {
                                                 handleRemove={handleRemoveSyllabiTheory}
                                                 isForSyllabi={true}
                                             />
+                                            {
+                                                selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                            }
 
                                             <TextInput
                                                 id={'TI1'}
@@ -514,6 +534,9 @@ const AddCourse = () => {
                                                 onChange={handleCourseName}
                                                 placeholder='نام دوره'
                                                 icon={<SingleTag/>}
+                                                isSubmitted={isSubmitted}
+                                                ErrorCondition={!courseName}
+                                                ErrorText={'نام دوره الزامی است'}
                                             />
                                         </>
 
@@ -532,10 +555,13 @@ const AddCourse = () => {
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
                                         icon={<SingleTag/>}
+                                        isSubmitted={isSubmitted}
+                                        ErrorCondition={!courseName}
+                                        ErrorText={'نام دوره الزامی است'}
                                     />
 
                                     <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[86%] flex flex-col'>
+                                        <div className='w-[86%] md:w-[92%] flex flex-col'>
                                             <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                         </div>
                                         <span
@@ -545,6 +571,11 @@ const AddCourse = () => {
                                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                         </span>
                                     </div>
+
+                                    {
+                                        customCourses.length < 1 && isSubmitted &&
+                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی وارد کنید</p>
+                                    }
 
                                     <ul className='w-full py-0 mt-[-1rem] gap-2'>
                                         {customCourses
@@ -565,7 +596,7 @@ const AddCourse = () => {
                                     </ul>
 
                                     <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[86%] flex flex-col'>
+                                        <div className='w-[86%] md:w-[92%] flex flex-col'>
                                             <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                         </div>
                                         <span
@@ -575,6 +606,11 @@ const AddCourse = () => {
                                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                         </span>
                                     </div>
+
+                                    {
+                                        customCourses.length < 1 && isSubmitted &&
+                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی وارد کنید</p>
+                                    }
 
                                     <ul className=' w-full py-0 mt-[-1rem] gap-2'>
                                         {customCourses
@@ -601,7 +637,17 @@ const AddCourse = () => {
                                 // add or later on add other types of courses
                                 (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                                 <>
-                                    <NumberInput id={'NI1'} icon={<ChartIcon/>} name={'تعداد پرواز'} value={flightCount} onChange={handleFlightCount} placeholder='تعداد پرواز' />
+                                    <NumberInput 
+                                    id={'NI1'} 
+                                    icon={<ChartIcon/>} 
+                                    name={'تعداد پرواز'} 
+                                    value={flightCount} 
+                                    onChange={handleFlightCount} 
+                                    placeholder='تعداد پرواز' 
+                                    isSubmitted={isSubmitted}
+                                    ErrorCondition={!flightCount}
+                                    ErrorText={'تعداد پرواز الزامی است'}
+                                    />
 
                                     {/* add students */}   
                                     <div className='w-full flex flex-col justify-between relative items-center'>

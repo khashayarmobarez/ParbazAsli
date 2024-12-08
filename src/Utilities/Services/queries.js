@@ -1,20 +1,19 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 // axios instance
 // import axiosInstance from "./axiosConfig";
 
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
-
 
 // Get blogs query with pagination
     // fetch blogs
     const fetchBlogs = async ({ queryKey }) => {
       const [, { pageSize, pageNumber }] = queryKey;
-      const response = await axios.get(`${BASE_URL}/Blog/GetBlogs`, {
+      const response = await axios.get(`${API_BASE_URL}/Blog/GetBlogs`, {
           params: {
               pageSize,
               pageNumber,
@@ -36,7 +35,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     // fetch data
     const getBlogById = async (blogId) => {
       try {
-        const response = await axios.get(`${BASE_URL}/Blog/GetBlog?Id=${blogId}`);
+        const response = await axios.get(`${API_BASE_URL}/Blog/GetBlog?Id=${blogId}`);
         return response.data;
       } catch (error) {
         throw new Error('Failed to fetch blog');
@@ -55,7 +54,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
   const getOrganizationsData = async () => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/Organization/GetAllOrganizations`, {
+      const response = await axios.get(`${API_BASE_URL}/Organization/GetAllOrganizations`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -80,7 +79,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
   const getOrganizationLevelsForCourse = async (organId) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/Level/GetNoneStarterLevels?organizationId=${organId}`, {
+      const response = await axios.get(`${API_BASE_URL}/Level/GetNoneStarterLevels?organizationId=${organId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -105,7 +104,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // post certificate
   const addCertificate = async (formData) => {
     const token = Cookies.get('token');
-    const response = await axios.post(`${BASE_URL}/Certificate/AddCertificate`, formData, {
+    const response = await axios.post(`${API_BASE_URL}/Certificate/AddCertificate`, formData, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -132,7 +131,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     if(userId.length > 5) {
       try {
         const token = Cookies.get('token');
-        const response = await axios.get(`${BASE_URL}/User/GetAnotherUser?userId=${userId}`, {
+        const response = await axios.get(`${API_BASE_URL}/User/GetAnotherUser?userId=${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -163,7 +162,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, {
+      const response = await axios.get(`${API_BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -195,7 +194,7 @@ const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
   const getLevelsByOrganizationId = async (organId) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/Level/GetLevels?organizationId=${organId}`, {
+      const response = await axios.get(`${API_BASE_URL}/Level/GetLevels?organizationId=${organId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

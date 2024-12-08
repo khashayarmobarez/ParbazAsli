@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
+
 
 
 // get brandData query
@@ -11,7 +12,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 
         try {
             // the equipment type can be one of the "Parachute," "Wing," or "Harness" values
-            const response = await axios.get(`${BASE_URL}/Brand/GetAllBrands?equipmentType=${equipmentType}`, {
+            const response = await axios.get(`${API_BASE_URL}/Brand/GetAllBrands?equipmentType=${equipmentType}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/WingClass/GetAllWingClasses`, {
+        const response = await axios.get(`${API_BASE_URL}/WingClass/GetAllWingClasses`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

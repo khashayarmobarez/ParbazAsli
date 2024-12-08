@@ -22,6 +22,7 @@ import { toast } from 'react-toastify';
 
 // regexes
 import { EMAIL_REGEX } from '../../Utilities/Providers/regexProvider';
+import { API_BASE_URL } from '../../Utilities/Providers/apiUrl';
 
 
 const AddEmail = () => {
@@ -101,7 +102,7 @@ const AddEmail = () => {
     
             // Send a POST request to the endpoint with the specified body
             const response = await axios.post(
-                'https://api.digilogbook.ir/api/Auth/SendVerificationCode',
+                `${API_BASE_URL}/Auth/SendVerificationCode`,
                 requestBody,
             );
     
@@ -194,7 +195,7 @@ const AddEmail = () => {
             }
 
             const response = await axios.post(
-                'https://api.digilogbook.ir/api/Auth/AddEmail',
+                `${API_BASE_URL}/Auth/AddEmail`,
                 requestBody,
                 {
                     headers: {

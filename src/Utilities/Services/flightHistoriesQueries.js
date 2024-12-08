@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // get flights histories
@@ -10,7 +10,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {   
-            const response = await axios.get(`${BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}userCourseId=${courseId}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${typeId}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}${countryId  && `&countryId=${countryId}`}${provinceId && `&provinceId=${provinceId}`}`,
+            const response = await axios.get(`${API_BASE_URL}/Flight/GetFlights?${pageNumber && `pageNumber=${pageNumber}&`}${pageSize && `pageSize=${pageSize}&`}userCourseId=${courseId}&wingId=${wingId}&harnessId=${harnessId}&siteId=${siteId}&type=${typeId}&fromDate=${fromData}&toDate=${toData}&coachUserId=${coachUserId}&status=${status}${countryId  && `&countryId=${countryId}`}${provinceId && `&provinceId=${provinceId}`}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Flight/GetFlight?flightId=${flightId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Flight/GetFlight?flightId=${flightId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',

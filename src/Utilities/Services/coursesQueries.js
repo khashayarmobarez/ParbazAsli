@@ -2,15 +2,15 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // get Syllabi by level id
 const getSyllabiForLevels = async (levelId) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.get(`${BASE_URL}/Syllabus/GetSyllabiByLevelId?levelId=${levelId}`, {
+      const response = await axios.get(`${API_BASE_URL}/Syllabus/GetSyllabiByLevelId?levelId=${levelId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const getSyllabiForLevels = async (levelId) => {
 // add regular course query
     const addRegularCourse = async (course) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Course/AddRegularCourse`, course, {
+        const response = await axios.post(`${API_BASE_URL}/Course/AddRegularCourse`, course, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const getSyllabiForLevels = async (levelId) => {
 // add retraining course query
     const addRetrainingCourse = async (course) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Course/AddRetrainingCourse`, course, {
+        const response = await axios.post(`${API_BASE_URL}/Course/AddRetrainingCourse`, course, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const getSyllabiForLevels = async (levelId) => {
 // add custom course query 
     const addCustomCourse = async (course) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Course/AddCustomCourse`, course, {
+        const response = await axios.post(`${API_BASE_URL}/Course/AddCustomCourse`, course, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Course/GetCourseDividers`, {
+        const response = await axios.get(`${API_BASE_URL}/Course/GetCourseDividers`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourses`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -195,7 +195,7 @@ const getSyllabiForLevels = async (levelId) => {
 
         try {
             const response = await axios.post(
-                `${BASE_URL}/Course/TriggerCourseStatus`,
+                `${API_BASE_URL}/Course/TriggerCourseStatus`,
                 { courseId, status },
                 {
                     headers: {
@@ -246,7 +246,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
         
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourse?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourse?courseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -278,7 +278,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -310,7 +310,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -339,7 +339,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Course/AddStudentToCourse`, student, {
+            const response = await axios.post(`${API_BASE_URL}/Course/AddStudentToCourse`, student, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -375,7 +375,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -404,7 +404,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseClasses?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClasses?courseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -434,7 +434,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetAllActiveCourseStudents?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllActiveCourseStudents?courseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -463,7 +463,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Course/AddCourseClass`, courseClass, {
+            const response = await axios.post(`${API_BASE_URL}/Course/AddCourseClass`, courseClass, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -499,7 +499,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseClass?classId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClass?classId=${classId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -528,7 +528,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentFlight?flightId=${flightId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentFlight?flightId=${flightId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -560,7 +560,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Course/RejectStudentFlight?flightId=${flightId}`, {}, {
+            const response = await axios.post(`${API_BASE_URL}/Course/RejectStudentFlight?flightId=${flightId}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -596,7 +596,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Course/AcceptStudentFlight`, submitData, {
+            const response = await axios.post(`${API_BASE_URL}/Course/AcceptStudentFlight`, submitData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -631,7 +631,7 @@ const getSyllabiForLevels = async (levelId) => {
 
         try {
             const response = await axios.post(
-                `${BASE_URL}/Course/TriggerCoachClubStatus`,
+                `${API_BASE_URL}/Course/TriggerCoachClubStatus`,
                 triggerStatusForm,
                 {
                     headers: {
@@ -683,7 +683,7 @@ const getSyllabiForLevels = async (levelId) => {
 
         try {
             const response = await axios.post(
-                `${BASE_URL}/Course/TriggerStudentStatus`,
+                `${API_BASE_URL}/Course/TriggerStudentStatus`,
                 triggerStatusForm,
                 {
                     headers: {
@@ -733,7 +733,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseCounts`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCounts`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -768,7 +768,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -802,7 +802,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -834,7 +834,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentFlight?flightId=${flightId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentFlight?flightId=${flightId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -864,7 +864,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentClasses?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentClasses?userCourseId=${userCourseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -898,7 +898,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentClass?classId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentClass?classId=${classId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -932,7 +932,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentSyllabi?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentSyllabi?userCourseId=${userCourseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -960,7 +960,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Course/GetStudentPendingFlightCounts?${userCourseId && `userCourseId=${userCourseId}&`} `, {
+        const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPendingFlightCounts?${userCourseId && `userCourseId=${userCourseId}&`} `, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -994,7 +994,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetAllActiveStudents?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllActiveStudents?courseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1026,7 +1026,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Syllabus/GetSyllabusLandingContent?levelId=${levelId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Syllabus/GetSyllabusLandingContent?levelId=${levelId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1062,7 +1062,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetAllStudents?type=${type}${pageNumber && `&pageNumber=${pageNumber}`}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllStudents?type=${type}${pageNumber && `&pageNumber=${pageNumber}`}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1095,7 +1095,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Course/GetStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',

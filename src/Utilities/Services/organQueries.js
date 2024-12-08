@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 // get cities by ProvinceId
@@ -11,7 +11,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/City/GetCitiesByProvinceId?${provinceId && `provinceId=${provinceId}&`} `, {
+        const response = await axios.get(`${API_BASE_URL}/City/GetCitiesByProvinceId?${provinceId && `provinceId=${provinceId}&`} `, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const getFlightCounts = async (siteId, provinceId, fromDate, toDate) => {
     const token = Cookies.get('token');
 
     try {
-    const response = await axios.get(`${BASE_URL}/Flight/Organization/GetFlightCount?${siteId && `siteId=${siteId}&`}${provinceId && `provinceId=${provinceId}&`}${fromDate && `fromDate=${fromDate}&`}${toDate && `toDate=${toDate}&`}`, {
+    const response = await axios.get(`${API_BASE_URL}/Flight/Organization/GetFlightCount?${siteId && `siteId=${siteId}&`}${provinceId && `provinceId=${provinceId}&`}${fromDate && `fromDate=${fromDate}&`}${toDate && `toDate=${toDate}&`}`, {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',

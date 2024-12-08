@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
+
 
 
 
@@ -17,7 +18,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         // }
 
         try {
-        const response = await axios.get(`${BASE_URL}/User/GetUser`, {
+        const response = await axios.get(`${API_BASE_URL}/User/GetUser`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -38,7 +39,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // add profile picture
     const uploadProfilePicture = async (formData) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/User/EditProfilePicture`, formData, {
+        const response = await axios.post(`${API_BASE_URL}/User/EditProfilePicture`, formData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
@@ -71,7 +72,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // remove profile picture
     const deleteProfilePicture = async () => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/User/DeleteProfilePicture`, {}, {
+        const response = await axios.post(`${API_BASE_URL}/User/DeleteProfilePicture`, {}, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -103,7 +104,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/User/GetUserProfile`, {
+        const response = await axios.get(`${API_BASE_URL}/User/GetUserProfile`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -135,7 +136,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/User/GetAllUsersCoaches`, {
+            const response = await axios.get(`${API_BASE_URL}/User/GetAllUsersCoaches`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -168,7 +169,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Certificate/GetAllCertificates?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Certificate/GetAllCertificates?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -197,7 +198,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const postSendCodeToChangePhoneNumber = async (newPhoneOrEmail) => {
         const token = Cookies.get('token');
         try {
-            const response = await axios.post(`${BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneOrEmail, {
+            const response = await axios.post(`${API_BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneOrEmail, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -226,7 +227,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const postChangePhoneNumber = async (newPhoneNumber) => {
         const token = Cookies.get('token');
         try {
-            const response = await axios.post(`${BASE_URL}/user/ChangePhoneNumber`, newPhoneNumber, {
+            const response = await axios.post(`${API_BASE_URL}/user/ChangePhoneNumber`, newPhoneNumber, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -255,7 +256,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const postChangeEmail = async (newEmail) => {
         const token = Cookies.get('token');
         try {
-            const response = await axios.post(`${BASE_URL}/user/ChangeEmail`, newEmail, {
+            const response = await axios.post(`${API_BASE_URL}/user/ChangeEmail`, newEmail, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -288,7 +289,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const postChangePassword = async (newPassword) => {
         const token = Cookies.get('token');
         try {
-            const response = await axios.post(`${BASE_URL}/User/ChangePassword`, newPassword, {
+            const response = await axios.post(`${API_BASE_URL}/User/ChangePassword`, newPassword, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',

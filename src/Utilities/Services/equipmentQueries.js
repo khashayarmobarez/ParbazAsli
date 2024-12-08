@@ -1,14 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
-const BASE_URL = 'https://api.digilogbook.ir/api'
+import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 // post equipment
     const addEquipment = async (formData) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Equipment/AddEquipment`, formData, {
+        const response = await axios.post(`${API_BASE_URL}/Equipment/AddEquipment`, formData, {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',
@@ -45,7 +44,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getUserEquipmentsByType = async (equipmentType, isForClub) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}&isForClub=${isForClub}`, {
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}&isForClub=${isForClub}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -74,7 +73,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getUserEquipmentsForDropDown = async (equipmentType,wingType) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, {
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -101,7 +100,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getUserEquipmentsHistoryByType = async (equipmentType, isForClub) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetEquipmentHistories?type=${equipmentType}&isForClub=${isForClub}`, {
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetEquipmentHistories?type=${equipmentType}&isForClub=${isForClub}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -130,7 +129,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const getAnEquipmentData = async (equipmentId, isForClub) => {
         try {
             const token = Cookies.get('token');
-            const response = await axios.get(`${BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}&isForClub=${isForClub}`, {
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}&isForClub=${isForClub}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -156,7 +155,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // change equipment possession mutation
     const possessionTransition = async (formData) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Equipment/PossessionTransition`, formData, {
+        const response = await axios.post(`${API_BASE_URL}/Equipment/PossessionTransition`, formData, {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',
@@ -192,7 +191,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // return euipment mutation
     const returnEquipment = async (formBody) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Equipment/ReturnEquipment`, formBody, {
+        const response = await axios.post(`${API_BASE_URL}/Equipment/ReturnEquipment`, formBody, {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -217,7 +216,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // post Edit Equipments
     const postEditEquipment = async (formData) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Equipment/EditEquipment`, formData, {
+        const response = await axios.post(`${API_BASE_URL}/Equipment/EditEquipment`, formData, {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',
@@ -257,7 +256,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
 // /Equipment/TriggerEquipmentStatus
     const triggerEquipmentStatus = async (formData) => {
         const token = Cookies.get('token');
-        const response = await axios.post(`${BASE_URL}/Equipment/TriggerEquipmentStatus`, formData, {
+        const response = await axios.post(`${API_BASE_URL}/Equipment/TriggerEquipmentStatus`, formData, {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',

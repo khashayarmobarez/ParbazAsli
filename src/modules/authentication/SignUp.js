@@ -27,6 +27,7 @@ import { postIsUserAuthenticated } from '../../Utilities/Services/Authentication
 
 // regex
 import { USER_REGEX, PWD_REGEX, PHONE_REGEX  } from '../../Utilities/Providers/regexProvider';
+import { API_BASE_URL } from '../../Utilities/Providers/apiUrl';
 
 const SignUp = () => {
 
@@ -160,7 +161,7 @@ const SignUp = () => {
     
             // Send a POST request to the endpoint with the specified body
             const response = await axios.post(
-                'https://api.digilogbook.ir/api/Auth/SendVerificationCode',
+                `${API_BASE_URL}/Auth/SendVerificationCode`,
                 requestBody
             );
     
@@ -258,7 +259,7 @@ const SignUp = () => {
             }
 
             const response = await axios.post(
-                'https://api.digilogbook.ir/api/Auth/Register',
+                `${API_BASE_URL}/Auth/Register`,
                 requestBody
             );
 

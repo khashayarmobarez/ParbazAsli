@@ -18,6 +18,7 @@ import PasswordInputLogin from './Inputs/PasswordInputLogin';
 import Checkbox from './Inputs/CheckBox';
 import ForgetPwdPopUp from './popUps/ForgetPwdPopUp';
 import PhoneOrEmailInput from './Inputs/PhoneOrEmailInput';
+import { API_BASE_URL } from '../../Utilities/Providers/apiUrl';
 
 // regex
 const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)$/;
@@ -103,7 +104,7 @@ const Login = () => {
             };
 
             const response = await axios.post(
-                'https://api.digilogbook.ir/api/Auth/Login',
+                `${API_BASE_URL}/Auth/Login`,
                 requestBody
             );
 

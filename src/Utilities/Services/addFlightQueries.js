@@ -1,8 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
-const BASE_URL = 'https://api.digilogbook.ir/api'
+import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
@@ -12,7 +11,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/CloudCoverType/GetAllCloudCoverTypes`, {
+        const response = await axios.get(`${API_BASE_URL}/CloudCoverType/GetAllCloudCoverTypes`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -47,7 +46,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Country/GetAllCountries`, {
+        const response = await axios.get(`${API_BASE_URL}/Country/GetAllCountries`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -85,7 +84,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Province/GetProvinces?${countryId && `countryId=${countryId}`}`, {
+        const response = await axios.get(`${API_BASE_URL}/Province/GetProvinces?${countryId && `countryId=${countryId}`}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -121,7 +120,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Site/GetSites?${provinceId && `provinceId=${provinceId}&`}${countryId && `countryId=${countryId}&`} `, {
+        const response = await axios.get(`${API_BASE_URL}/Site/GetSites?${provinceId && `provinceId=${provinceId}&`}${countryId && `countryId=${countryId}&`} `, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -154,7 +153,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/TakeoffType/GetAllTakeoffTypes`, {
+        const response = await axios.get(`${API_BASE_URL}/TakeoffType/GetAllTakeoffTypes`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -190,7 +189,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Flight/GetFlightTypes`, {
+        const response = await axios.get(`${API_BASE_URL}/Flight/GetFlightTypes`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -224,7 +223,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Flight/AddCourseFlight`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/Flight/AddCourseFlight`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -255,7 +254,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Flight/AddSoloFlight`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/Flight/AddSoloFlight`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -286,7 +285,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Flight/AddTandemFlight`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/Flight/AddTandemFlight`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -315,7 +314,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/LandingType/GetAllLandingTypes`, {
+        const response = await axios.get(`${API_BASE_URL}/LandingType/GetAllLandingTypes`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

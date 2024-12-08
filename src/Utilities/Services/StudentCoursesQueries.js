@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
+
 
 
 
@@ -12,7 +13,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseDividers`, {
+        const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseDividers`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourses`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
         
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -111,7 +112,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -141,7 +142,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseClasses?userCourseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseClasses?userCourseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -172,7 +173,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetUserCourseClass?classId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseClass?classId=${classId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -205,7 +206,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetAllUserCoursesForDropdown`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetAllUserCoursesForDropdown`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -238,7 +239,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetGuestUserClasses`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetGuestUserClasses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -272,7 +273,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/UserCourse/GetGuestUserClass?guestUserClassId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetGuestUserClass?guestUserClassId=${classId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',

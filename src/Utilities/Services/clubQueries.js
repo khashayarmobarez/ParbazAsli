@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_BASE_URL } from "../Providers/apiUrl";
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
@@ -12,7 +12,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${BASE_URL}/Club/GetClubStatus`, {
+        const response = await axios.get(`${API_BASE_URL}/Club/GetClubStatus`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Club/AddClub`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/Club/AddClub`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -77,7 +77,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClub`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClub`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Club/EditClubProfilePicture`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/Club/EditClubProfilePicture`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -145,7 +145,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
     const deleteClubProfilePicture = async () => {
         const token = Cookies.get('token');
         try {
-            const response = await axios.post(`${BASE_URL}/Club/DeleteClubProfilePicture`, {}, {
+            const response = await axios.post(`${API_BASE_URL}/Club/DeleteClubProfilePicture`, {}, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -186,7 +186,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Club/AddCoachToClub?coachUserId=${coachUserId}`, {}, {
+            const response = await axios.post(`${API_BASE_URL}/Club/AddCoachToClub?coachUserId=${coachUserId}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -220,7 +220,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCoaches?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCoaches?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -253,7 +253,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCoachesHistory?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCoachesHistory?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -286,7 +286,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetCoachDetails?coachId=${coachId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetCoachDetails?coachId=${coachId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -318,7 +318,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetCoachCourses?coachId=${coachId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetCoachCourses?coachId=${coachId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -352,7 +352,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseDividers`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseDividers`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -385,7 +385,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourses`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -427,7 +427,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
             const token = Cookies.get('token');
 
             try {
-                const response = await axios.post(`${BASE_URL}/Club/AddRegularClubCourse`, course, {
+                const response = await axios.post(`${API_BASE_URL}/Club/AddRegularClubCourse`, course, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
@@ -463,7 +463,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
             const token = Cookies.get('token');
 
             try {
-                const response = await axios.post(`${BASE_URL}/Club/AddRetrainingClubCourse`, course, {
+                const response = await axios.post(`${API_BASE_URL}/Club/AddRetrainingClubCourse`, course, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
@@ -497,7 +497,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
             const token = Cookies.get('token');
 
             try {
-                const response = await axios.post(`${BASE_URL}/Club/AddCustomClubCourse`, course, {
+                const response = await axios.post(`${API_BASE_URL}/Club/AddCustomClubCourse`, course, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
@@ -537,7 +537,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Club/TriggerCoachStatus`, course, {
+            const response = await axios.post(`${API_BASE_URL}/Club/TriggerCoachStatus`, course, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -577,7 +577,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetActiveClubCoaches`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetActiveClubCoaches`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -609,7 +609,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourse?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourse?courseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -640,7 +640,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${BASE_URL}/Club/TriggerClubCourseStatus`, data, {
+            const response = await axios.post(`${API_BASE_URL}/Club/TriggerClubCourseStatus`, data, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -680,7 +680,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -712,7 +712,7 @@ const BASE_URL = 'https://api.digilogbook.ir/api'
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -744,7 +744,7 @@ const addStudentToClubCourse = async (student) => {
     const token = Cookies.get('token');
 
     try {
-        const response = await axios.post(`${BASE_URL}/Club/AddStudentToClubCourse`, student, {
+        const response = await axios.post(`${API_BASE_URL}/Club/AddStudentToClubCourse`, student, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -783,7 +783,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseClasses?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseClasses?courseId=${courseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -818,7 +818,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseSyllabi?courseId=${courseId}&type=${type}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseSyllabi?courseId=${courseId}&type=${type}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -848,7 +848,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseClass?classId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseClass?classId=${classId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -882,7 +882,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseStudent?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseStudent?userCourseId=${userCourseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -914,7 +914,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -948,7 +948,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentFlight?flightId=${flightId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubStudentFlight?flightId=${flightId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -980,7 +980,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentClasses?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubStudentClasses?userCourseId=${userCourseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1015,7 +1015,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentClass?classId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubStudentClass?classId=${classId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1048,7 +1048,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentSyllabi?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubStudentSyllabi?userCourseId=${userCourseId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1080,7 +1080,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubCourseCounts`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourseCounts`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1109,7 +1109,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetAllClubStudents?type=${type}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetAllClubStudents?type=${type}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1139,7 +1139,7 @@ const useAddStudentToClubCourse = () => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${BASE_URL}/Club/GetClubStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',

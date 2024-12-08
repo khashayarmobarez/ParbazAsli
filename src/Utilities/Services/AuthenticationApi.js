@@ -1,16 +1,16 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { API_BASE_URL } from '../Providers/apiUrl';
 
 
 
-const BASE_URL = 'https://api.digilogbook.ir/api'
 
 
 
 const fetchAuthSettings = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/Auth/GetAuthenticationSettings`);
+        const response = await axios.get(`${API_BASE_URL}/Auth/GetAuthenticationSettings`);
         return response.data.data;
         } catch (error) {
         console.error('Failed to fetch authentication settings:', error);
@@ -23,7 +23,7 @@ const fetchAuthSettings = async () => {
 const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, setIsPageReloaded) => {
   try {
     const response = await axios.post(
-      `${BASE_URL}/Auth/IsUserAuthenticated`,
+      `${API_BASE_URL}/Auth/IsUserAuthenticated`,
       {},
       {
         headers: {
@@ -103,7 +103,7 @@ const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, set
 const postLogout = async (token) => {
   try {
     const response = await axios.post(
-      'https://api.digilogbook.ir/api/Auth/Logout',
+      `${API_BASE_URL}/Auth/Logout`,
       {},
       {
         headers: {
@@ -138,7 +138,7 @@ const postLogout = async (token) => {
 // }
   const postSendVerificationCode = async (input) => {
     try {
-        const response = await axios.post(`${BASE_URL}/Auth/SendVerificationCode`, input, {
+        const response = await axios.post(`${API_BASE_URL}/Auth/SendVerificationCode`, input, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -166,7 +166,7 @@ const postLogout = async (token) => {
 // }
   const postCheckForgotPasswordCode = async (input) => {
     try {
-        const response = await axios.post(`${BASE_URL}/Auth/CheckForgotPasswordCode`, input, {
+        const response = await axios.post(`${API_BASE_URL}/Auth/CheckForgotPasswordCode`, input, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -187,8 +187,7 @@ const postLogout = async (token) => {
 
 
 // reset password
-// https://api.digilogbook.ir/api/Auth/ForgotPassword
-//   const requestBody = {
+// $`{API_BASE_URL}/Auth/ForgotPassword`//   const requestBody = {
 //     "username": input,
 //     "password": pwd,
 //     "confirmPassword": matchPwd,
@@ -196,7 +195,7 @@ const postLogout = async (token) => {
 // };
   const postResetPassword = async (input) => {
     try {
-        const response = await axios.post(`${BASE_URL}/Auth/ForgotPassword`, input, {
+        const response = await axios.post(`${API_BASE_URL}/Auth/ForgotPassword`, input, {
             headers: {
                 'Content-Type': 'application/json',
             },
