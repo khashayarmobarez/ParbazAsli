@@ -50,6 +50,8 @@ const AddClass = () => {
     const [guestStudentDatas, setGuestStudentDatas] = useState([]);
 
     const [description, setDescription] = useState('');
+
+    const [isSubmitted, setIsSubmitted] = useState(false)
     
     // all student ids together(studentIds, guestStudentIds)
     const allStudentIds = [...studentIds, ...guestStudentIds];
@@ -156,7 +158,27 @@ const AddClass = () => {
 
 
     const handleSubmit = (e) => {
+
+        setIsSubmitted(true)
         e.preventDefault();
+
+        if(!id || !ClassName || !StartSelectedTime || !endSelectedTime || syllabusIds.length === 0 || studentIds.length === 0){
+            return toast('لطفا تمامی فیلد ها را پر کنید', {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: appTheme,
+                        style: { width: "90%" }
+                    });
+        } else if (StartSelectedTime > endSelectedTime) {
+            return toast('تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: appTheme,
+                style: { width: "90%" }
+            });
+        }
 
 
         // turn the startSelectedTime and end selected time into HH:mm format
@@ -180,48 +202,30 @@ const AddClass = () => {
             "studentUserIds": allStudentIds,
         };
 
-        if(!id || !ClassName || !startTime || !endTime || syllabusIds.length === 0 || studentIds.length === 0){
-            return toast('لطفا تمامی فیلد ها را پر کنید', {
-                        type: 'error',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
-        } else if (StartSelectedTime > endSelectedTime) {
-            return toast('تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.', {
-                type: 'error',
-                position: 'top-right',
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
-        } else {
-            addCourseClass(classData, {
-                onSuccess: () => {
-                    toast('کلاس با موفقیت اضافه شد', {
-                        type: 'success',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
-                    navigate(`/education/courseDetails/${id}/classes`)
-                }, onError: (error) => {
-                    let errorMessage = 'خطایی رخ داده است';
-                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
-                    }
-                    toast(errorMessage, {
-                        type: 'error',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
+        addCourseClass(classData, {
+            onSuccess: () => {
+                toast('کلاس با موفقیت اضافه شد', {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+                navigate(`/education/courseDetails/${id}/classes`)
+            }, onError: (error) => {
+                let errorMessage = 'خطایی رخ داده است';
+                if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
-            });
-        }
+                toast(errorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            }
+        });
             
 
 
@@ -233,7 +237,7 @@ const AddClass = () => {
     return (
         <div className='w-full pt-14 flex flex-col justify-center items-center gap-y-8'>
 
-            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-4 lg:gap-y-12 md:w-[70%]'>
             
                 <PageTitle title={'افزودن کلاس'} />
 
@@ -251,6 +255,9 @@ const AddClass = () => {
                                 onChange={handleClassName}
                                 placeholder='نام کلاس'
                                 icon={<SingleTag/>}
+                                isSubmitted={isSubmitted}
+                                ErrorCondition={!ClassName}
+                                ErrorText={'نام کلاس الزامی است'}
                             />
 
                             <div className='w-full flex flex-col gap-y-2'>
@@ -260,6 +267,10 @@ const AddClass = () => {
                                 onChange={handleStartTimeChange}
                                 placeholder="Select time"
                                 />
+                                {
+                                    isSubmitted && !StartSelectedTime &&
+                                    <p className='text-textError self-start text-xs -mt-1'>تایم شروع کلاس را وارد کنید</p>
+                                }
                             </div>
 
                             <div className='w-full flex flex-col gap-y-2'>
@@ -273,6 +284,10 @@ const AddClass = () => {
                                     (StartSelectedTime > endSelectedTime) &&
                                     <p className='text-start text-sm text-textError' >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
                                 }
+                                {
+                                    isSubmitted && !StartSelectedTime &&
+                                    <p className='text-textError self-start text-xs -mt-1'>تایم پایان کلاس را وارد کنید</p>
+                                }
                             </div>
 
                             {/* < SearchMultipleSelect
@@ -284,7 +299,7 @@ const AddClass = () => {
                                 Icon={<ListIcon/>}
                             /> */}
 
-                            < SelectMultiplePopUp
+                            <SelectMultiplePopUp
                                 name={'مباحث مورد نظر'}
                                 options={syllabiDataTheory.data}
                                 selectedOptions={selectedSyllabi}
@@ -292,6 +307,10 @@ const AddClass = () => {
                                 handleRemove={handleRemoveSyllabi}
                                 Icon={<ListIcon/>}
                             />
+                            {
+                                isSubmitted && selectedSyllabi.length < 1 &&
+                                <p className='text-textError self-start text-xs -mt-3'>حداقل یک مورد را انتخاب کنید</p>
+                            }
 
                             
                             <DescriptionInput

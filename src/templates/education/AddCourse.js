@@ -647,6 +647,8 @@ const AddCourse = () => {
                                     isSubmitted={isSubmitted}
                                     ErrorCondition={!flightCount}
                                     ErrorText={'تعداد پرواز الزامی است'}
+                                    ErrorCondition2={flightCount && flightCount < 0}
+                                    ErrorText2={'تعداد پرواز باید بزرگتر از 0 باشد'}
                                     />
 
                                     {/* add students */}   
