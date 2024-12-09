@@ -10,7 +10,7 @@ import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 import { useDeclineUserFlight, useUserCourseFlight } from '../../Utilities/Services/coursesQueries';
 
 // mui
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
 // comps
@@ -353,9 +353,12 @@ const ApproveStudentFlight = () => {
                             
                             <div className='w-full flex justify-around'>
 
-                                <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 flex`}><ArrowForwardIosIcon sx={{position:'absolute', marginLeft:'7.5rem'}} />تایید</button>
-
                                 <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-36 `}>رد پرواز</button>
+
+                                <div className='w-36 flex items-center flex-row-reverse'>
+                                    <ArrowBackIosNewIcon sx={{position:'absolute'}} />
+                                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 flex`}>تایید</button>
+                                </div>
 
                             </div>
 

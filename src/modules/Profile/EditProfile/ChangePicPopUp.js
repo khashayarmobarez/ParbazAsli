@@ -133,17 +133,17 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
                 
                 <div className='w-full flex justify-around items-center mt-4'>
 
-                    <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
-                    onClick={handleSubmit} >
-                        {isLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
-                    </button>
-                    
                     {
                         isUserPhotoAvailable &&
                             <button type="reset" disabled={isDeleting}  className={`${ButtonStyles.normalButton} w-28 text-sm `} onClick={handleRemove} >
                                 {isDeleting ? 'در حال حذف...' : 'حذف عکس فعلی'}
                             </button>
                     }
+                    
+                    <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
+                    onClick={handleSubmit} >
+                        {isLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
+                    </button>
 
                 </div>
 

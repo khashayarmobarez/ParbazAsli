@@ -197,17 +197,17 @@ const Syllabuses = () => {
                 <div className="w-full flex justify-around mt-8">
                     <button
                         disabled={isSubmitting}
-                        type="submit"
-                        className={`${ButtonStyles.addButton} w-32`}
-                    >
-                        ثبت نهایی {countersSum > 0 && `(${countersSum})`}
-                    </button>
-                    <button
-                        disabled={isSubmitting}
                         onClick={handleReset}
                         className={`${ButtonStyles.normalButton} w-32`}
                     >
                         تنظیم مجدد
+                    </button>
+                    <button
+                        disabled={isSubmitting}
+                        type="submit"
+                        className={`${ButtonStyles.addButton} w-32`}
+                    >
+                        ثبت نهایی {countersSum > 0 && `(${countersSum})`}
                     </button>
                 </div>
                 
