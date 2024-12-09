@@ -104,7 +104,7 @@ const ClubCourseDetails = () => {
                 {
                     aCourseData &&
                     <>
-                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-6 `}>
+                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-6 -mb-2`}>
 
                             <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0 '>
 
@@ -206,8 +206,9 @@ const ClubCourseDetails = () => {
 
                         </div>
 
+                        <div className=' w-[91%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-30' />
                     
-                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
+                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                             <Link 
                                 to={`/club/courseDetails/${id}/students`} 
                                 className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/${id}/students` ? ButtonStyles.activeYellow : ''} `} >

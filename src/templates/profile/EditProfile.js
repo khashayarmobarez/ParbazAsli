@@ -22,7 +22,9 @@ const EditProfile = () => {
 
                 <PageTitle title={'ویرایش پروفایل'} navigateTo={'/profile'} />  
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
+                <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-30' />
+
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
 
                     <Link to='/editProfile/changeProfile' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/editProfile/changeProfile' ? ButtonStyles.activeYellow : ''}`} >پروفایل</Link> 
 

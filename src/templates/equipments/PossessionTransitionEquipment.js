@@ -208,7 +208,7 @@ const PossessionTransitionEquipment = () => {
 
                 {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Accepted' &&
                     <>
-                        <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[6.6rem] z-10`}>
+                        <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                             <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button>
                             <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >انتقال دائمی</button>
                         </div>

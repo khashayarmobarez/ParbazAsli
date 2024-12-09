@@ -17,6 +17,7 @@ import { useGetClubCourseStudent } from '../../../Utilities/Services/clubQueries
 import ClockIcon from '../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../components/icons/FlightQuantity';
 import ArrowButton from '../../../components/icons/ArrowButton';
+import PageTitle from '../../../components/reuseable/PageTitle';
 
 const ClubCourseStudentDetails = () => {
 
@@ -33,10 +34,12 @@ const ClubCourseStudentDetails = () => {
 
 
     return (
-        <div className='flex flex-col py-20 items-center'>
-            <div  className='w-full flex flex-col items-center gap-y-8 md:w-[70%]'>
+        <div className='flex flex-col py-16 items-center'>
+            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault`}
+                <PageTitle title={'جزئیات هنرجو '} /> 
+
+                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault -mb-2`}
                 style={{ boxShadow:'var(--shadow-all)'}}>
                     { 
                     studentData && 
@@ -158,7 +161,9 @@ const ClubCourseStudentDetails = () => {
                     
                 </div>
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
+                <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-30' />
+
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                     <Link to={`/club/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
                     <Link to={`/club/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
                     <Link to={`/club/courseDetails/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت هنرجو</Link>

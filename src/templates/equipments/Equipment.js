@@ -14,12 +14,14 @@ const Equipment = () => {
     return (
         <div className=' flex flex-col mt-14 items-center '>
 
-            <div className='w-full flex flex-col items-center gap-y-6 md:w-[65%] lg:gap-y-8'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[65%] lg:gap-y-8'>
 
-                <PageTitle title={'تجهیزات'} navigateTo={'/profile'} />  
+                <PageTitle title={'تجهیزات'} navigateTo={'/profile'} /> 
+
+                <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-50' /> 
                 
                 {/* buttons */}
-                <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[7.6rem] lg:top-[9rem] z-50`}>
+                <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                     <Link to='/equipment/flightEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`} >بال</Link> 
                     <Link to='/equipment/parachute' className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === '/equipment/parachute' ? ButtonStyles.activeYellow : ''}`}  >چتر کمکی</Link> 
                     <Link to='/equipment/harness' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/equipment/harness' ? ButtonStyles.activeYellow : ''}`}  >هارنس</Link> 

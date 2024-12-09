@@ -202,8 +202,9 @@ const CourseDetails = () => {
 
                         </div>
 
-                    
-                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.7rem] bg-white z-10`}>
+                        <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-30' />
+                        
+                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-10`}>
                             <Link 
                                 to={`/education/courseDetails/${id}/students`} 
                                 className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/${id}/students` ? ButtonStyles.activeYellow : ''} `} >
