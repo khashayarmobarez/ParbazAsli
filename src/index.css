@@ -12,12 +12,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media screen and (max-width: 1024px) {
-  html, body {
-      z-index: 0 !important;
-      overflow: scroll !important;
-  }
-}
 
 input[type=number] {
   -moz-appearance:textfield;
