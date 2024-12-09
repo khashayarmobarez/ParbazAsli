@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
@@ -15,6 +15,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight, updateCourseName, updateWingType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+// comps
+import StandardPopup from '../../components/reuseable/StandardPopup';
+
 
 const AddFlightType = () => {
 
@@ -26,20 +29,32 @@ const AddFlightType = () => {
 
     const flightTypeRef = useRef(flightType)
 
+    const [showErrorPopUp, setShowErrorPopUp] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
+
     const { data: flightTypesData, loading:flightTypesLoading, error:flightTypesError } = useFlightTypes()
     
 
     const handleSelectSetFlightType = (flightType) => {
 
         if( flightType.type !== flightTypeRef.current) {
+            // reseting the data
             dispatch(resetFlightDataExceptType());
         }
 
+        if(!flightType.hasNecessaryEquipment) {
+            setShowErrorPopUp(true)
+            setErrorMessage(flightType?.equipmentValidationError)
+            return;
+        }
+
+        // dispatchin base data to redux
         dispatch(updateFlightType(flightType.type));
         dispatch(updateWingType(flightType.wingType));
         dispatch(updateFlightCount(flightType.flightsCount));
 
         if(flightType.type === 'Course') {
+            // dispatching course data
             dispatch(updateCourseId(flightType.userCourseId));
             dispatch(updateClubName(flightType.club));
             dispatch(updateCoachName(flightType.coach));
@@ -53,6 +68,12 @@ const AddFlightType = () => {
 
         navigate('/addFlight/UploadIgc')
     };
+
+
+
+    const handleNavigateToEquipment = () => {
+        navigate('/equipment/flightEquipment')
+    }
 
 
 
@@ -98,6 +119,16 @@ const AddFlightType = () => {
                 </div>
 
             </div>
+
+            <StandardPopup 
+                showPopup={showErrorPopUp} 
+                setShowPopup={setShowErrorPopUp} 
+                topicText={'ثبت تجهیزات'}
+                isFormWithOneButton={true}
+                explanationtext={errorMessage}
+                submitText={'تجهیزات'}
+                handleSubmit={handleNavigateToEquipment}
+            />
 
         </div>
     );

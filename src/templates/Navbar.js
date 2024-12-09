@@ -225,7 +225,7 @@ const NewNavbar = () => {
 
                 <Avatar 
                     alt={data?.data.firstName || ''} 
-                    src={data?.data.image.path || '/'} 
+                    src={data?.data.image?.path || '/'} 
                     sx={{height:'110px', width:'110px', zIndex:'0'}} 
                 />
 

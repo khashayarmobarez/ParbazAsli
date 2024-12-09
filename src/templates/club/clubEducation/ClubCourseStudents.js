@@ -42,6 +42,7 @@ const CourseStudents = () => {
 
     // add student
     const [studentId, setStudentId] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useGetClubCourseStudents(id,pageNumber);
     const { data: studentsHistoryData } = useGetClubCourseStudentsHistory(id,historyPageNumber);
@@ -84,6 +85,8 @@ const CourseStudents = () => {
     
     // handle add student
     const handleAddStudnetToCourse = () => {
+
+        setIsSubmitted(true)
 
         const customCourseData = {
             courseId: id,
@@ -216,9 +219,18 @@ const CourseStudents = () => {
                         }
                         {
                             aCourseData && aCourseData.data.status === 'Active' &&
-                                <div className='w-full flex justify-between relative items-center'>
-                                    <div className='w-[70%] flex flex-col'>
-                                        <TextInput id={'TI1'} value={studentId} onChange={handleInputStudentId} placeholder='افزودن هنرجو' className='w-full' />
+                                <div className='w-full flex justify-between relative items-start gap-x-4'>
+                                    <div className='w-[70%] md:w-full flex flex-col'>
+                                        <TextInput 
+                                            id={'TI1'} 
+                                            value={studentId} 
+                                            onChange={handleInputStudentId} 
+                                            placeholder='افزودن هنرجو' 
+                                            className='w-full' 
+                                            isSubmitted={isSubmitted}
+                                            ErrorCondition={!studentId}
+                                            ErrorText={'کد هنرجو را وارد کنید'}
+                                        />
                                     </div>
                                     <span
                                         className={` w-24 h-12 flex justify-center items-center rounded-2xl cursor-pointer text-textDefault`}
