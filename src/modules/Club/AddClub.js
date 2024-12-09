@@ -21,7 +21,7 @@ import { useAddClub } from '../../Utilities/Services/clubQueries';
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
 import TextInput from '../../components/inputs/textInput';
-import DateLastRepackInput from '../../components/inputs/DateInput';
+import DateInput from '../../components/inputs/DateInput';
 
 
 const AddClub = ({isForSetting}) => {
@@ -44,6 +44,7 @@ const AddClub = ({isForSetting}) => {
     const [licenseNumber, setLicenseNumber] = useState('');
     const [foundationDate, setFoundationDate] = useState('');
     const [expirationDate, setExpirationDate] = useState('');
+    const [isSubmitted, setIsSubmitted ] = useState(false)
     
 
 
@@ -58,13 +59,25 @@ const AddClub = ({isForSetting}) => {
         if (file) {
             // Check file format
             if (!allowedFormats.includes(file.type)) {
-                toast.error('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
+                toast('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.', {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                }); 
                 return;
             }
     
             // Check file size
             if (file.size > maxFileSize) {
-                toast.error('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
+                toast('حداکثر حجم برای آپلود عکس 10 مگابایت است', {
+                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                }); 
                 return;
             }
     
@@ -143,6 +156,8 @@ const AddClub = ({isForSetting}) => {
 
 
     const handleSubmit = (event) => {
+
+        setIsSubmitted(true)
         event.preventDefault();
 
 
@@ -262,15 +277,49 @@ const AddClub = ({isForSetting}) => {
                 <p className='text-xl text-textAccent mt-[-0.5rem] mb-2'>آپلود عکس پروفایل</p>
 
                 {/* aircraft model input */}
-                <TextInput id={'TI1'} placeholder='نام باشگاه' value={clubName} onChange={handleChangeClubName}  />
+                <TextInput 
+                id={'TI1'} 
+                placeholder='نام باشگاه' 
+                value={clubName} 
+                onChange={handleChangeClubName}  
+                isSubmitted={isSubmitted}
+                ErrorCondition={!clubName}
+                ErrorText={'نام باشگاه الزامی می باشد'}
+                />
                 
-                <TextInput id={'TI2'} placeholder='شماره مجوز' value={licenseNumber} onChange={handleLicenseNumber}  />
+                <TextInput 
+                id={'TI2'} 
+                placeholder='شماره مجوز' 
+                value={licenseNumber} 
+                onChange={handleLicenseNumber}  
+                isSubmitted={isSubmitted}
+                ErrorCondition={!licenseNumber}
+                ErrorText={'شماره مجوز الزامی می باشد'}
+                />
 
                 {/* the date picker component comes from equipment section */}
-                <DateLastRepackInput name={'تاریخ تاسیس'}  onChange={handleFoundationDateChange} placeH={'تاریخ تاسیس'} />
+                <DateInput 
+                    name={'تاریخ تاسیس'}  
+                    onChange={handleFoundationDateChange} 
+                    placeH={'تاریخ تاسیس'} 
+                    isSubmitted={isSubmitted}
+                    ErrorCondition={!foundationDate}
+                    ErrorText={'تاریخ تاسیس الزامی می باشد'}
+                    ErrorCondition2={foundationDate > expirationDate && foundationDate && expirationDate}
+                    ErrorText2={'تاریخ تاسیس باید قبل از تاریخ انقضا باشد'}
+                />
                 
                 {/* the date picker component comes from equipment section */}
-                <DateLastRepackInput name={'تاریخ انقضا'}  onChange={handleExpirationDataChange} placeH={'تاریخ انقضا'} />
+                <DateInput 
+                    name={'تاریخ انقضا'}  
+                    onChange={handleExpirationDataChange} 
+                    placeH={'تاریخ انقضا'} 
+                    isSubmitted={isSubmitted}
+                    ErrorCondition={!expirationDate}
+                    ErrorText={'تاریخ انقضا الزامی می باشد'}
+                    ErrorCondition2={expirationDate < foundationDate && foundationDate && expirationDate}
+                    ErrorText2={'تاریخ انقضا باید بعد از تاریخ تاسیس باشد'}
+                />
 
                 {/* upload license */}
                 <div className='w-full flex flex-col items-center gap-y-4'>
@@ -307,6 +356,11 @@ const AddClub = ({isForSetting}) => {
                         فرمت عکس باید jpeg, jpg, gif, bmp یا png 
                         باشد حجم عکس نباید بیشتر از 10 مگابایت باشد
                     </p>
+
+                    {
+                        !uploadedLicense && isSubmitted &&
+                        <p className='text-sm text-textError self-center -mt-1'>عکس الزامی میباشد</p>
+                    }
 
                 </div>
 

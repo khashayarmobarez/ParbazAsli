@@ -76,51 +76,6 @@ const Club = () => {
                     </div>
                 }
 
-
-                {/* {   
-                    userRole === 'coach' ? 
-
-                    // return for coach
-                    (
-                    club ?
-
-                        // return for coach with club
-                        (
-                        manager ?
-
-                            // club manager 
-                            (<div className=' flex flex-col items-center w-[100%] gap-y-6 mt-10'>
-
-                                <ClubData />
-
-                                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
-                                    <Link to='/club/clubEquipment' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'clubEquipment' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubEquipment')}>وسایل باشگاه</Link> 
-                                    <Link to='/club/clubCoaches' className={`${ButtonStyles.ThreeStickedButtonButton}  ${activeLink === 'clubCoaches' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubCoaches')} >مربیان باشگاه</Link> 
-                                    <Link ref={buttonRef} to='/club/clubStudents' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'clubStudents' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('clubStudents')} >هنرجویان</Link>
-                                </div>
-
-
-                                <Outlet />
-                                
-                            </div>)
-
-                            :
-
-                            // coach who is part of a club
-                            <ClubMemberCoach />
-                        )
-
-                        :
-
-                        // return for coach without club 
-                        <StudentClubs />
-                    )
-
-                    :
-
-                    // return for student
-                    <StudentClubs />
-                } */}
             </div>
         </div>
     );

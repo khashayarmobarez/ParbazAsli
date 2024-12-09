@@ -37,7 +37,7 @@ const AddTakeoff = () => {
 
     // redux
     const { takeoffTime, takeoffType, takeoffWindSpeed, takeoffwindDirection, takeOffWindUnit,
-    wing, harness, parachute, country, city, sight, clouds , flightType
+    wing, harness, parachute, country, city, sight, clouds , flightType, landingTime
     } = useSelector(selectAddFlight)
 
     // useTakeOffTypes
@@ -170,16 +170,51 @@ const AddTakeoff = () => {
                             onChange={handleTakeOffTimeChange}
                             placeholder="Select time"
                         />
+                        {
+                            !takeoffTime && submitted &&
+                            <p className='text-xs text-start self-start text-textError'>زمان take off الزامی می باشد</p>
+                        }
+                        {
+                            landingTime < takeoffTime && landingTime &&
+                            <p className='text-xs text-start self-start text-textError'>زمان take off باید قبل از زمان land ( {landingTime?.$d?.getHours()}:{landingTime?.$d?.getMinutes()} ) باشد</p>
+                        }
+                        {
+                            takeoffTime && takeoffTime.$d.getHours() > new Date().getHours() && (
+                                <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
+                            )
+                        }
                     </div>
 
                     {/* <DropdownInput id={'ddi1'} name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} /> */}
 
                     {
                         takeOffTypesData &&
-                        <DropdownInput id={'ddi2'} name={'شیوه'} icon={<ColorTagsIcon/>} options={takeOffTypesData.data} selectedOption={takeoffType} handleSelectChange={handleSelectSetTakeoffType} IsEmptyAfterSubmit={submitted && !takeoffType} />
+                        <DropdownInput 
+                            id={'ddi2'} 
+                            name={'شیوه'} 
+                            icon={<ColorTagsIcon/>} 
+                            options={takeOffTypesData.data} 
+                            selectedOption={takeoffType} 
+                            handleSelectChange={handleSelectSetTakeoffType} 
+                            IsEmptyAfterSubmit={submitted && !takeoffType} 
+                            isSubmitted={submitted}
+                            ErrorCondition={!takeoffType}
+                            ErrorText={'شیوه take off الزامی می باشد'}
+                        />
                     } 
 
-                    <DropdownInput id={'ddi3'} name={'جهت باد'} icon={<WindDirectionCock/>} options={windDirectionOptions} selectedOption={takeoffwindDirection} handleSelectChange={handleSelectSetTakeoffwindDirection} IsEmptyAfterSubmit={submitted && !takeoffwindDirection} />
+                    <DropdownInput 
+                        id={'ddi3'} 
+                        name={'جهت باد'} 
+                        icon={<WindDirectionCock/>} 
+                        options={windDirectionOptions} 
+                        selectedOption={takeoffwindDirection} 
+                        handleSelectChange={handleSelectSetTakeoffwindDirection} 
+                        IsEmptyAfterSubmit={submitted && !takeoffwindDirection} 
+                        isSubmitted={submitted}
+                        ErrorCondition={!takeoffwindDirection}
+                        ErrorText={'جهت باد الزامی می باشد'}
+                    />
                     
                     {/* <DropdownInput id={'ddi4'} name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
@@ -190,6 +225,9 @@ const AddTakeoff = () => {
                         onChange={handleSetTakeoffWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
                         IsEmptyAfterSubmit={submitted && !takeoffWindSpeed}
+                        isSubmitted={submitted}
+                        ErrorCondition={!takeoffWindSpeed}
+                        ErrorText={'سرعت باد الزامی می باشد'}
                     />
 
                 </form>

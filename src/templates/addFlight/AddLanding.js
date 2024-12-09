@@ -38,6 +38,7 @@ import SubmitForm from '../../components/reuseable/SubmitForm';
 import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
+import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
 
 const AddLanding = () => {
 
@@ -392,6 +393,19 @@ const AddLanding = () => {
                             onChange={handleLandingTimeChange}
                             placeholder="Select time"
                         />
+                        {
+                            !landingTime && submitted &&
+                            <p className='text-xs text-start self-start text-textError'>زمان land الزامی می باشد</p>
+                        }
+                        {
+                            landingTime && landingTime < takeoffTime && 
+                            <p className='text-xs text-start self-start text-textError'>زمان land باید بعد از زمان take off ( {takeoffTime.$d.getHours()}:{takeoffTime.$d.getMinutes()} ) باشد</p>
+                        }
+                        {
+                            landingTime && landingTime.$d.getHours() > new Date().getHours() && (
+                                <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
+                            )
+                        }
                     </div>
 
                     {
@@ -404,6 +418,9 @@ const AddLanding = () => {
                             selectedOption={landingType} 
                             handleSelectChange={handleSelectSetLandingType} 
                             IsEmptyAfterSubmit={submitted && !landingType}
+                            isSubmitted={submitted}
+                            ErrorCondition={!landingType}
+                            ErrorText={'شیوه الزامی می باشد'}
                         />
                     }
 
@@ -415,6 +432,9 @@ const AddLanding = () => {
                         selectedOption={landingWindDirection} 
                         handleSelectChange={handleSelectSetLandingWindDirection} 
                         IsEmptyAfterSubmit={submitted && !landingWindDirection}
+                        isSubmitted={submitted}
+                        ErrorCondition={!landingWindDirection}
+                        ErrorText={'جهت باد الزامی می باشد'}
                     />
                     
                     <NumberInput
@@ -424,6 +444,9 @@ const AddLanding = () => {
                         onChange={handleSetLandingWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
                         IsEmptyAfterSubmit={submitted && !landingWindSpeed}
+                        isSubmitted={submitted}
+                        ErrorCondition={!landingWindSpeed}
+                        ErrorText={'سرعت باد الزامی می باشد'}
                     />
 
                     {flightType === 'Tandem' && 
@@ -434,6 +457,11 @@ const AddLanding = () => {
                             onChange={handlePassengerPhoneNum} 
                             placeholder='درج شماره تماس مسافر' 
                             IsEmptyAfterSubmit={submitted && !passengerPhoneNumber}
+                            isSubmitted={submitted}
+                            ErrorCondition={!passengerPhoneNumber}
+                            ErrorText={'شماره تماس مسافر الزامی می باشد'}
+                            ErrorCondition2={PHONE_REGEX.test(passengerPhoneNumber)}
+                            ErrorText2={'فرمت شماره تماس اشتباه میباشد'}
                         />
                     }
 
