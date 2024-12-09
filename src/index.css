@@ -197,11 +197,11 @@ code {
   --progress-bar-bg: #323941;
 
   /* pop ups */
-  --bg-pop-up-default:#323941;
+  --bg-pop-up-default:#282e34;
   --bg-pop-up-header-footer:#2D333B;
 
   /* cards */
-  --bg-card:#282E34;
+  --bg-card:#262b31;
 
   /* menu(navbar,footer) */
   --bg-menu:#1E2227;

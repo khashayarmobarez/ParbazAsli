@@ -35,14 +35,19 @@ const Club = () => {
         <div className='pt-14 flex justify-center w-full'>
 
             <div className='w-full md:w-[75%] flex flex-col items-center'>
+
                 {
                     clubStatusLoading && 
                     <CircularProgressLoader/>
                 }
 
-                {clubStatus && clubStatus.data === 'NotAdded' && <AddClub />}
+                {
+                    clubStatus && clubStatus.data === 'NotAdded' && <AddClub />
+                }
 
-                {clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission /> }
+                {
+                    clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission /> 
+                }
 
                 {clubStatus && clubStatus.data === 'Accepted' && 
                     <div className=' flex flex-col items-center w-[90%] gap-y-6 mt-6 lg:mt-16'>
@@ -77,6 +82,7 @@ const Club = () => {
                 }
 
             </div>
+            
         </div>
     );
 };

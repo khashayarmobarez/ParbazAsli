@@ -19,6 +19,7 @@ import DropDownLine from '../../../components/reuseable/DropDownLine';
 import ClubCoachBox from '../../../modules/Club/ClubCoachBox';
 import TextInput from '../../../components/inputs/textInput';
 import PageTitle from '../../../components/reuseable/PageTitle';
+import { USER_ID_PATTERN } from '../../../Utilities/Providers/regexProvider';
 
 const ClubCoaches = () => {
 
@@ -28,6 +29,7 @@ const ClubCoaches = () => {
     const [pageNumberPrevious, setPageNumberPrevious] = useState(1);
     // State to hold the value of the input
     const [coachId, setCoachId] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false)
     
     const {  data: clubCoachesData, isLoading: coachesDataLoading } = useGetClubCoaches(pageNumber,4);
     const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading } = useGetClubCoachesHistory(pageNumberPrevious,5);
@@ -70,6 +72,8 @@ const ClubCoaches = () => {
 
 
     const handleAddCoachToClub = () => {
+
+        setIsSubmitted(true)
 
         if (coachId.length > 5) {
             addCoachToClub( coachId , {
@@ -219,27 +223,38 @@ const ClubCoaches = () => {
                     </div>    
 
                     <div className='flex flex-col w-full gap-y-2 mt-2'>
-                        { coachData && 
-                            <p className=' self-start text-[var(--text-accent)]'>{coachData.data.fullName}</p>
-                        }
-                        { coachDataLoading && coachId.length > 5 &&
-                            <p className=' self-start text-[var(--text-error)]'>...در حال جستجوی مربی</p>
-                        }
-                        { coachDataError && coachId.length > 5 &&
-                            <p className=' self-start text-[var(--text-error)]'>مربی یافت نشد!</p>
-                        }
-                        <div className='w-full flex justify-between relative items-center'>
-                            <div className='w-[70%] flex flex-col'>
-                                <TextInput id={'TI1'} value={coachId} onChange={handleInputCoachId} placeholder='افزودن مربی' className='w-full' />
+                        <div className='w-full flex justify-between relative items-start gap-x-4'>
+                            <div className='w-[70%] flex flex-col md:w-full'>
+                                <TextInput 
+                                    id={'TI1'} 
+                                    value={coachId} 
+                                    onChange={handleInputCoachId} 
+                                    placeholder='افزودن مربی' 
+                                    className='w-full' 
+                                    isSubmitted={isSubmitted}
+                                    ErrorCondition={!USER_ID_PATTERN.test(coachId) && coachId}
+                                    ErrorText={'فرمت کد کاربری اشتباه می باشد'}
+                                    ErrorCondition2={!coachId}
+                                    ErrorText2={'کد کاربری الزامی می باشد'}
+                                    />
                             </div>
                             <span
                                 className={` w-24 h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
                                 onClick={handleAddCoachToClub}
                                 disabled={addCoachToClubLoading}
-                            >
+                                >
                                 افزودن
                             </span>
                         </div>
+                        { coachData && 
+                            <p className=' self-start text-textAccent -mt-1'>{coachData.data.fullName}</p>
+                        }
+                        { coachDataLoading && USER_ID_PATTERN.test(coachId) &&
+                            <p className=' self-start text-textWarning text-xs -mt-1'>...در حال جستجوی مربی</p>
+                        }
+                        { coachDataError && USER_ID_PATTERN.test(coachId) &&
+                            <p className=' self-start text-textError text-xs -mt-1'>مربی یافت نشد!</p>
+                        }
                     </div>
 
                 </div>

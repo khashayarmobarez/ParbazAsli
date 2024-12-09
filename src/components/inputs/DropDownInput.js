@@ -105,7 +105,7 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
         <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} 
         onClick={() => setIsOpen(false)}>
             <ul
-              className="fixed z-30 w-[90%] top-60 bg-bgOutputSelectedOption rounded-xl shadow-lg max-h-80 overflow-auto md:w-[40%]"
+              className="fixed z-30 w-[90%] top-60 bg-bgPopUpDefault rounded-xl shadow-lg max-h-80 overflow-auto md:w-[40%]"
               role="listbox"
             >
               {!isDeselectDeactivated && (
