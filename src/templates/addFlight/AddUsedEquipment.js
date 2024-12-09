@@ -220,17 +220,61 @@ const AddUsedEquipment = () => {
                     {
                         userWingsData && userHarnessData && userParachuteData && 
                         <>
-                                <DropdownInput id={'ddi3'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wing} handleSelectChange={handleSelectSetWing} IsEmptyAfterSubmit={submitted && !wing} />
+                            <DropdownInput 
+                            id={'ddi3'} 
+                            icon={<WingIcon/>} 
+                            name={'بال'} 
+                            options={userWingsData.data} 
+                            selectedOption={wing} 
+                            handleSelectChange={handleSelectSetWing} 
+                            IsEmptyAfterSubmit={submitted && !wing} 
+                            isSubmitted={submitted}
+                            ErrorCondition={!wing}
+                            ErrorText={'انتخاب بال الزامی است'}
+                            />
                                 
 
-                            <DropdownInput id={'ddi4'} icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harness} handleSelectChange={handleSelectSetHarness} IsEmptyAfterSubmit={submitted && !harness} />
+                            <DropdownInput 
+                            id={'ddi4'} 
+                            icon={<HarnessIcon/>} 
+                            name={'هارنس'} 
+                            options={userHarnessData.data} 
+                            selectedOption={harness} 
+                            handleSelectChange={handleSelectSetHarness} 
+                            IsEmptyAfterSubmit={submitted && !harness} 
+                            isSubmitted={submitted}
+                            ErrorCondition={!harness}
+                            ErrorText={'انتخاب هارنس الزامی است'}
+                            />
 
                             {
                                 flightType === 'Tandem' &&
-                                <DropdownInput id={'ddi5'} icon={<HarnessIcon/>} name={'هارنس مسافر'} options={userHarnessData.data} selectedOption={passengerHarness} handleSelectChange={handleSelectSetPassengerHarness} IsEmptyAfterSubmit={submitted && !passengerHarness} />
+                                <DropdownInput 
+                                id={'ddi5'} 
+                                icon={<HarnessIcon/>} 
+                                name={'هارنس مسافر'} 
+                                options={userHarnessData.data} 
+                                selectedOption={passengerHarness} 
+                                handleSelectChange={handleSelectSetPassengerHarness} 
+                                IsEmptyAfterSubmit={submitted && !passengerHarness} 
+                                isSubmitted={submitted}
+                                ErrorCondition={!passengerHarness}
+                                ErrorText={'انتخاب هارنس مسافر الزامی است'}
+                                />
                             }
                             
-                            <DropdownInput id={'ddi6'} icon={<ParachuteIcon/>} name={'چتر کمکی'} options={userParachuteData.data} selectedOption={parachute} handleSelectChange={handleSelectSetParachute} IsEmptyAfterSubmit={submitted && !parachute} />
+                            <DropdownInput 
+                            id={'ddi6'} 
+                            icon={<ParachuteIcon/>} 
+                            name={'چتر کمکی'} 
+                            options={userParachuteData.data} 
+                            selectedOption={parachute} 
+                            handleSelectChange={handleSelectSetParachute} 
+                            IsEmptyAfterSubmit={submitted && !parachute} 
+                            isSubmitted={submitted}
+                            ErrorCondition={!parachute}
+                            ErrorText={'انتخاب چتر کمکی الزامی است'}
+                            />
                         </>
                     }
                 </form>

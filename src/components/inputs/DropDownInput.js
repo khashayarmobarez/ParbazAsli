@@ -5,7 +5,7 @@ import Cube from '../../components/icons/ThreeDCube';
 // css styles 
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
+const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -155,4 +155,4 @@ const CustomDropdownInput = ({ id, options, selectedOption, handleSelectChange, 
   );
 };
 
-export default CustomDropdownInput;
+export default DropdownInput;

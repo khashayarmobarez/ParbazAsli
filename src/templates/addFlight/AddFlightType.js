@@ -32,7 +32,7 @@ const AddFlightType = () => {
     const [showErrorPopUp, setShowErrorPopUp] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
 
-    const { data: flightTypesData, loading:flightTypesLoading, error:flightTypesError } = useFlightTypes()
+    const { data: flightTypesData } = useFlightTypes()
     
 
     const handleSelectSetFlightType = (flightType) => {

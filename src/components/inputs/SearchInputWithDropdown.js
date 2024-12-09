@@ -107,7 +107,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
       </span>
       {isOpen && (
-        <ul className="absolute z-30 w-full bg-bgInputDropdown mt-1 rounded-xl shadow-lg max-h-60 overflow-auto">
+        <ul className="absolute z-[150] w-full bg-bgInputDropdown mt-1 rounded-xl shadow-lg max-h-60 overflow-auto">
           {filteredOptions.map((option) => (
             <div key={option.id} className='flex flex-col w-full items-center justify-center text-sm'>
               <li

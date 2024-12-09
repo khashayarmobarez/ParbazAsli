@@ -170,7 +170,17 @@ const AddSituation = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
                     {
                         countriesData &&
-                        <DropdownInput id={'ddi1'} name={'کشور'} options={countriesData.data} selectedOption={country} handleSelectChange={handleSelectSetCountry} IsEmptyAfterSubmit={submitted && !country} />
+                        <DropdownInput 
+                            id={'ddi1'} 
+                            name={'کشور'} 
+                            options={countriesData.data} 
+                            selectedOption={country} 
+                            handleSelectChange={handleSelectSetCountry} 
+                            IsEmptyAfterSubmit={submitted && !country} 
+                            isSubmitted={submitted}
+                            ErrorCondition={!country}
+                            ErrorText={'انتخاب کشور الزامی است'}
+                        />
                     }
 
                     {
@@ -181,18 +191,40 @@ const AddSituation = () => {
                             handleSelectChange={handleSelectSetCity}
                             name="استان"
                             IsEmptyAfterSubmit={submitted && !city}
+                            isSubmitted={submitted}
+                            ErrorCondition={!city}
+                            ErrorText={'انتخاب استان الزامی است'}
                         />
                     }
 
                     {
                         flightSitesData && city && city.id &&
-                        <DropdownInput id={'ddi2'} name={'سایت'} options={flightSitesData.data} selectedOption={sight} handleSelectChange={handleSelectSetSight}
-                        IsEmptyAfterSubmit={submitted && !sight} />
+                        <DropdownInput 
+                        id={'ddi2'} 
+                        name={'سایت'} 
+                        options={flightSitesData.data} 
+                        selectedOption={sight} 
+                        handleSelectChange={handleSelectSetSight}
+                        IsEmptyAfterSubmit={submitted && !sight} 
+                        isSubmitted={submitted}
+                        ErrorCondition={!sight}
+                        ErrorText={'انتخاب سایت الزامی است'}
+                        />
                     }
 
                     {
                         flightSitesData && cloudTypesData &&
-                        <DropdownInput id={'ddi3'} name={'نوع پوشش ابری'} options={cloudTypesData.data} selectedOption={clouds} handleSelectChange={handleSelectSetClouds} IsEmptyAfterSubmit={submitted && !clouds}/>
+                        <DropdownInput 
+                        id={'ddi3'} 
+                        name={'نوع پوشش ابری'} 
+                        options={cloudTypesData.data} 
+                        selectedOption={clouds} 
+                        handleSelectChange={handleSelectSetClouds} 
+                        IsEmptyAfterSubmit={submitted && !clouds}
+                        isSubmitted={submitted}
+                        ErrorCondition={!clouds}
+                        ErrorText={'انتخاب نوع ابر الزامی است'}
+                        />
                     }
                     
                     {/* <DropdownInput id={'ddi4'} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
