@@ -16,6 +16,7 @@ import { useACourse, useTriggerCourseStatus } from '../../Utilities/Services/cou
 import PageTitle from '../../components/reuseable/PageTitle';
 import { toast } from 'react-toastify';
 import StandardPopup from '../../components/reuseable/StandardPopup';
+import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const CourseDetails = () => {
     
@@ -202,8 +203,8 @@ const CourseDetails = () => {
 
                         </div>
 
-                        <div className=' w-[90%] h-8 bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
-                        
+                        <LowOpacityBackForStickedButtons />
+
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-10`}>
                             <Link 
                                 to={`/education/courseDetails/${id}/students`} 

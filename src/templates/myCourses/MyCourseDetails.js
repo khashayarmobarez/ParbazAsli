@@ -13,6 +13,7 @@ import { useAUserCourse } from '../../Utilities/Services/StudentCoursesQueries';
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
+import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const MyCourseDetails = () => {
 
@@ -186,8 +187,8 @@ const MyCourseDetails = () => {
 
                         </div>
 
-                        <div className=' w-[90%]  h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
-                    
+                        <LowOpacityBackForStickedButtons />
+
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                             <Link to={`/MyCourses/courseDetails/${id}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/MyCourses/courseDetails/${id}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
                             <Link to={`/MyCourses/courseDetails/${id}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/MyCourses/courseDetails/${id}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 

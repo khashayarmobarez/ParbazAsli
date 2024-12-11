@@ -18,9 +18,11 @@ const ClubEquipment = () => {
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6 lg:gap-y-12'>
 
                 <PageTitle title={'تجهیزات'} navigateTo={'/club'} />  
+
+                <div className=' w-[90%] h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
                 
                 {/* buttons */}
-                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[6.6rem] z-50`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                     <Link to='/club/clubEquipment/flightEquipments' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/club/clubEquipment/flightEquipments' ? ButtonStyles.activeYellow : ''}`} >بال</Link> 
                     <Link to='/club/clubEquipment/parachutes' className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === '/club/clubEquipment/parachutes' ? ButtonStyles.activeYellow : ''}`}  >چتر کمکی</Link> 
                     <Link to='/club/clubEquipment/harnesses'     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/club/clubEquipment/harnesses' ? ButtonStyles.activeYellow : ''}`}  >هارنس</Link> 

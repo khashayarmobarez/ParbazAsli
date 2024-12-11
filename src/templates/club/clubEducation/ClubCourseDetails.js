@@ -16,6 +16,7 @@ import { useGetClubCourse, useTriggerClubCourseStatus } from '../../../Utilities
 import PageTitle from '../../../components/reuseable/PageTitle';
 import { toast } from 'react-toastify';
 import StandardPopup from '../../../components/reuseable/StandardPopup';
+import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const ClubCourseDetails = () => {
     
@@ -206,8 +207,8 @@ const ClubCourseDetails = () => {
 
                         </div>
 
-                        <div className=' w-[91%] h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
-                    
+                        <LowOpacityBackForStickedButtons />
+
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                             <Link 
                                 to={`/club/courseDetails/${id}/students`} 

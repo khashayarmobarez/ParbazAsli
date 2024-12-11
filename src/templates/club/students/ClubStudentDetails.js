@@ -18,6 +18,7 @@ import ClockIcon from '../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../components/icons/FlightQuantity';
 import ArrowButton from '../../../components/icons/ArrowButton';
 import PageTitle from '../../../components/reuseable/PageTitle';
+import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const ClubCourseStudentDetails = () => {
 
@@ -161,7 +162,7 @@ const ClubCourseStudentDetails = () => {
                     
                 </div>
 
-                <div className=' w-[90%] h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
+                <LowOpacityBackForStickedButtons />
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
                     <Link to={`/club/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/club/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 

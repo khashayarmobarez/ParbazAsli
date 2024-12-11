@@ -6,6 +6,7 @@ import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
+import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const EditProfile = () => {
 
@@ -22,7 +23,7 @@ const EditProfile = () => {
 
                 <PageTitle title={'ویرایش پروفایل'} navigateTo={'/profile'} />  
 
-                <div className=' w-[90%] h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
+                <LowOpacityBackForStickedButtons />
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
 
