@@ -18,7 +18,7 @@ const Equipment = () => {
 
                 <PageTitle title={'تجهیزات'} navigateTo={'/profile'} /> 
 
-                <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-50' /> 
+                <div className=' w-[94%]   h-8  bg-bgPageMain opacity-90  -mb-4 -mt-4 sticky top-[6.7rem] z-50' /> 
                 
                 {/* buttons */}
                 <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>

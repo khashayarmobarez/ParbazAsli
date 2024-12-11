@@ -202,7 +202,7 @@ const CourseDetails = () => {
 
                         </div>
 
-                        <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-30' />
+                        <div className=' w-[90%] h-8 bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
                         
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-10`}>
                             <Link 

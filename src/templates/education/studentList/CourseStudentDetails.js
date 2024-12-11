@@ -16,6 +16,7 @@ import FlightQuantity from '../../../components/icons/FlightQuantity';
 import ArrowButton from '../../../components/icons/ArrowButton';
 import UserIcon from '../../../components/icons/UserIcon';
 import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../Utilities/Services/coursesQueries';
+import PageTitle from '../../../components/reuseable/PageTitle';
 
 const CourseStudentDetails = () => {
 
@@ -34,8 +35,11 @@ const CourseStudentDetails = () => {
 
 
     return (
-        <div className='flex flex-col py-20 items-center'>
-            <div  className='w-full flex flex-col items-center gap-y-10 md:w-[70%]'>
+        <div className='flex flex-col py-14 items-center'>
+            
+            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
+
+                <PageTitle navigateTo={historyPageUrl} title={'جزئیات هنرجو '} />
 
                 {/* the data box */}
                 <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start pb-8 px-4 py-2  relative`}
@@ -159,14 +163,14 @@ const CourseStudentDetails = () => {
                     }
 
                     {/* back button */}
-                    <span className=' absolute left-4 top-4 w-6 h-6 transform'
+                    {/* <span className=' absolute left-4 top-4 w-6 h-6 transform'
                     onClick={() => navigate(historyPageUrl)}>
                         <ArrowButton />
-                    </span>
+                    </span> */}
                     
                 </div>
 
-                <div className=' w-[90%] h-4  backdrop-blur-3xl -mb-4 -mt-4 sticky top-[7.2rem] z-30' />
+                <div className=' w-[90%] h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-20`}>
                     <Link to={`/education/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >

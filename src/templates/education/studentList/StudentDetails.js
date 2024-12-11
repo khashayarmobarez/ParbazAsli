@@ -15,7 +15,7 @@ const StudentDetails = () => {
     return (
         <div className='  mt-14 w-full flex flex-col items-center gap-y-7 pb-40'>
 
-            <PageTitle title={'سوابق  رضا نظری'} navigateTo={'education'} paddingRight={'33%'} />
+            {/* <PageTitle title={'جزئیات هنرجو '} navigateTo={'education'} paddingRight={'33%'} /> */}
 
             <div className='w-[90%] flex flex-col gap-y-7'>
                 

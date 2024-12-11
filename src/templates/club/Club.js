@@ -20,6 +20,7 @@ import AddClub from '../../modules/Club/AddClub';
 import PendingClubSubmission from '../../modules/Club/PendingClubSubmission';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import ParachutesSwiperSlider from '../../modules/Profile/ParachutesSwiperSlider';
+import PageTitle from '../../components/reuseable/PageTitle';
 // import ClubMemberCoach from '../components/modules/Club/ClubMemberCoach';
 // import StudentClubs from '../components/modules/Club/StudentClubs';
 
@@ -32,9 +33,11 @@ const Club = () => {
 
 
     return (
-        <div className='pt-14 flex justify-center w-full'>
+        <div className='pt-14 flex flex-col items-center justify-center w-full'>
 
             <div className='w-full md:w-[75%] flex flex-col items-center'>
+
+            <PageTitle title={'پروفایل باشگاه'} navigateTo={'/profile'} />
 
                 {
                     clubStatusLoading && 
