@@ -37,7 +37,7 @@ const ClubCourseStudentDetails = () => {
         <div className='flex flex-col py-16 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'جزئیات هنرجو '} /> 
+                <PageTitle title={'جزئیات هنرجو '} navigateTo={historyPageUrl} /> 
 
                 <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault -mb-2`}
                 style={{ boxShadow:'var(--shadow-all)'}}>
@@ -47,7 +47,7 @@ const ClubCourseStudentDetails = () => {
 
                         <div className='flex w-full justify-between items-center'>
                             {/* avatar and name */}
-                            <div className='w-full h-full flex flex-col justify-between items-center gap-y-6'>
+                            <div className='w-full h-full flex flex-col justify-between items-center gap-y-6'>  
                                 
                                 {
                                     isMobile &&
@@ -70,7 +70,7 @@ const ClubCourseStudentDetails = () => {
 
 
                             {/* user studentData.data */}
-                            <div className='w-full flex flex-col justify-between items-center gap-y-6  py-2'>
+                            <div className='w-full flex flex-col justify-between items-center gap-y-6'>
 
                                 {
                                     isMobile && studentData.data &&
@@ -154,10 +154,10 @@ const ClubCourseStudentDetails = () => {
                     }
 
                     {/* back button */}
-                    <span className='absolute left-4 top-3 w-6 h-6'
+                    {/* <span className='absolute left-4 top-3 w-6 h-6'
                     onClick={() => {navigate(historyPageUrl); console.log(document.referrer);}}>
                         <ArrowButton />
-                    </span>
+                    </span> */}
                     
                 </div>
 

@@ -19,6 +19,7 @@ import ClockIcon from '../../../components/icons/ClockIcon'
 import DocumentIcon from '../../../components/icons/DocumentIcon'
 import UsersIcon from '../../../components/icons/UsersIcon'
 import ArrowButton from '../../../components/icons/ArrowButton'
+import PageTitle from '../../../components/reuseable/PageTitle';
 
 
 const ClubCoachDetails = () => {
@@ -120,7 +121,10 @@ const ClubCoachDetails = () => {
 
 
     return (
-        <div className='w-full flex flex-col items-center pt-20'>
+        <div className='w-full flex flex-col items-center pt-14 gap-y-6'>
+
+            <PageTitle title={'جزئیات مربی'} navigateTo={'/club/clubCoaches'} />
+
             <div className='w-[90%] md:w-[60%] flex flex-col items-center gap-y-6'>
 
                 {
@@ -134,9 +138,9 @@ const ClubCoachDetails = () => {
                     <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
                     style={{ boxShadow:'var(--shadow-all)'}}>
 
-                        <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
+                        {/* <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
                             <ArrowButton />
-                        </span>
+                        </span> */}
 
                         <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
                             <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>
