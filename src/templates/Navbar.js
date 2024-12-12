@@ -22,6 +22,8 @@ import Logout from '../components/icons/Logout';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { Avatar } from '@mui/material';
 import { EditOutlined, GroupsOutlined, HomeOutlined, PhoneOutlined, SettingsOutlined } from '@mui/icons-material';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import BookIcon from '../components/icons/BookIcon';
 
 
 
@@ -242,7 +244,7 @@ const NewNavbar = () => {
                     className='flex gap-x-3' 
                     onClick={() => (isOpen ? clickInput() : null)}
                     >
-                        <HomeOutlined fontSize="small" sx={{color: currentUrl === '/profile' && 'var(--text-accent)' }}   />
+                        <PersonOutlineOutlinedIcon fontSize="small" sx={{color: currentUrl === '/profile' && 'var(--text-accent)' }}   />
                         <Link 
                         to='/'
                         className={`${currentUrl === '/profile' && 'underline underline-offset-8 text-textAccent'}`} 
@@ -257,7 +259,9 @@ const NewNavbar = () => {
                     className='flex gap-x-3' 
                     onClick={() => (isOpen ? clickInput() : null)}
                     > 
-                        <EditOutlined fontSize="small"   />
+                        <div>
+                            <BookIcon  />
+                        </div>
                         <a 
                         href='https://digilogbook.app/blogs/1'
                         title="بلاگ" 
