@@ -6,6 +6,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // comps
 import PageTitle from '../../../components/reuseable/PageTitle';
+import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const ClubEquipment = () => {
 
@@ -19,7 +20,7 @@ const ClubEquipment = () => {
 
                 <PageTitle title={'تجهیزات'} navigateTo={'/club'} />  
 
-                <div className=' w-[90%] h-8  bg-bgPageMain opacity-90 -mb-4 -mt-4 sticky top-[7rem] z-30' />
+                <LowOpacityBackForStickedButtons />
                 
                 {/* buttons */}
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
