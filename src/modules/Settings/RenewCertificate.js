@@ -1,6 +1,6 @@
 import React, {  useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Cookies from 'js-cookie';
 
@@ -30,6 +30,7 @@ import UploadPicture from '../../components/inputs/UploadPicture';
 const RenewCertificate = () => {
 
     const navigate = useNavigate()
+    const pathname = useLocation()
     const { formatDate } = useDateFormat();
     const appTheme = Cookies.get('themeApplied') || 'dark';
 

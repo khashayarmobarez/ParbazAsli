@@ -1,10 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// styles
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 //  assets
 import CertificateIcon from '../../components/icons/CertificateIcon'
 
 
 const Certificate = ({certificateData}) => {
+
+    const navigate = useNavigate();
+
+    const handleRenewal = () => {
+        navigate(`/Settings/renewCertificate/${certificateData.id}`)
+    }
 
     return (
         <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between pr-4 pl-3 py-4 ' 
@@ -35,6 +45,15 @@ const Certificate = ({certificateData}) => {
                 <div className='w-full flex items-center gap-x-2  mt-4'>
                     <p className='text-sm text-textWarning'>دلیل رد شدن: {certificateData.rejectReason}</p>
                 </div>
+            }
+
+            {
+                ( certificateData.status === 'Active' || certificateData.status === 'Expired' ) &&
+                <button 
+                className={`${ButtonStyles.normalButton} self-center mt-5 text-xs`}
+                onClick={handleRenewal}>
+                    تمدید گواهینامه
+                </button>
             }
 
         </div>

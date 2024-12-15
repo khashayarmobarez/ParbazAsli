@@ -383,6 +383,7 @@ function App() {
               {/* settings */}
               <Route path='/Settings' element={<Settings />} />
               <Route path='/Settings/certificate' element={<RenewCertificate />} />
+              <Route path='/Settings/renewCertificate/:id' element={<RenewCertificate />} />
 
             </>
           )}
