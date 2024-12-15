@@ -17,10 +17,10 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
     }, [closeBox]);
 
     return (
-        <div className={`w-full relative ${(userCertificateStatus || closeBox) && 'hidden'}`}>
+        <div className={`w-full relative ${(!userCertificateStatus || closeBox) && 'hidden'}`}>
 
 
-            {userCertificateStatus !== 'Expired' && 
+            {userCertificateStatus === 'Expired' && 
             <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textError px-4 text-[#eee]`}>
 
                 <div className='h-full flex flex-col justify-between py-4'>
