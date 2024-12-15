@@ -26,6 +26,7 @@ import UserDataBox from '../../modules/Profile/UserDataBox';
 import ParachutesSwiperSlider from '../../modules/Profile/ParachutesSwiperSlider';
 import UserCoursesSlider from '../../modules/Profile/UserCoursesSlider';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
+import UserCertificateStatus from '../../modules/Profile/UserCertificateStatus';
 
 
 
@@ -58,9 +59,16 @@ const Profile = () => {
             data && 
             <div className='flex flex-col items-center justify-center gap-y-2 md:gap-y-4 w-[90%] md:w-[65%]'>
 
-
                     {/* first data box  */}
                     <UserDataBox hasCoach={data.data.hasCoach} />
+
+                    {/* certificate situation */}
+                    {
+                        <UserCertificateStatus
+                        userCertificateStatus={data?.data.userCertificateStatus || ''} 
+                        daysToCertificateExpiration={data?.data.daysToCertificateExpiration || ''} 
+                        />
+                    }
 
                     {/* parachute renewal box*/}
                     {

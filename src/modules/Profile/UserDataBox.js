@@ -78,16 +78,14 @@ const UserDataBox = ({hasCoach}) => {
                                 <span className='w-6 h-6'>
                                     <FlightQuantity />
                                 </span>
-                                {/* <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p> */}
-                                <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز 583</p>
+                                <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center w-[80%]' >
                                 <span className='w-6 h-5'>
                                     <ClockIcon/>
                                 </span>
-                                {/* <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p> */}
-                                <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز 842</p>
+                                <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
                             </div>
                             
                             {/* condition based on coach  */}
@@ -96,8 +94,7 @@ const UserDataBox = ({hasCoach}) => {
                                     <span className='w-6 h-5'>
                                         <ClockIcon/>
                                     </span>
-                                    {/* <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p> */}
-                                    <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری 432</p>
+                                    <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
                                 </div>
                                 :
                                 <div/>
