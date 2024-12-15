@@ -63,12 +63,10 @@ const Profile = () => {
                     <UserDataBox hasCoach={data.data.hasCoach} />
 
                     {/* certificate situation */}
-                    {
-                        <UserCertificateStatus
-                        userCertificateStatus={data?.data.userCertificateStatus || ''} 
-                        daysToCertificateExpiration={data?.data.daysToCertificateExpiration || ''} 
-                        />
-                    }
+                    <UserCertificateStatus
+                    userCertificateStatus={data?.data.userCertificateStatus || ''} 
+                    daysToCertificateExpiration={data?.data.daysToCertificateExpiration || ''} 
+                    />
 
                     {/* parachute renewal box*/}
                     {
