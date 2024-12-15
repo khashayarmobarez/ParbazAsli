@@ -5,8 +5,11 @@ import Attention from '../../components/icons/Attention';
 import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 import DoNotDisturbRoundedIcon from '@mui/icons-material/DoNotDisturbRounded';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpiration }) => {
+
+    const navigate = useNavigate()
 
     const [closeBox, setCloseBox] = useState(() => {
         // Initialize state from sessionStorage
@@ -18,8 +21,13 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
         sessionStorage.setItem('closeBox', JSON.stringify(closeBox));
     }, [closeBox]);
 
+    const handleRenewalClick = () => {
+        navigate('/editProfile/changeCertificate')
+    }
+
+
     return (
-        <div className={`w-full ${(userCertificateStatus || closeBox) && 'hidden'}`}>
+        <div className={`w-full ${(!userCertificateStatus || closeBox) && 'hidden'}`}>
 
             {
             userCertificateStatus === 'Expired' && 
@@ -46,7 +54,8 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                     onClick={() => setCloseBox(true)}
                     />
                     
-                    <p className='text-xs underline underline-offset-4'>تمدید گواهینامه</p>
+                    <p className='text-xs underline underline-offset-4'
+                    onClick={handleRenewalClick}>تمدید گواهینامه</p>
                     
                 </div>
                 
@@ -54,7 +63,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
             }
 
             {
-            userCertificateStatus === 'ExpireSoon' && 
+            userCertificateStatus === 'AdminPending' && 
             <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-[#17a2bb] px-4 text-[#eee]`}>
 
                 <div className='h-full flex flex-col justify-between py-4'>
@@ -88,8 +97,8 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
             }
 
             {
-            userCertificateStatus === 'AdminPending' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textError px-4 text-[#eee]`}>
+            userCertificateStatus === 'ExpireSoon' && 
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textWarning px-4 text-[#eee]`}>
 
                 <div className='h-full flex flex-col justify-between py-4'>
 
@@ -97,11 +106,11 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                         
                         <DoNotDisturbRoundedIcon sx={{width:'20px', height:'20px'}} />
 
-                        <p className='mt-1 text-sm font-semibold'>گواهینامه شما منقضی شده است!</p>
+                        <p className='mt-1 text-xs font-semibold text-start text-nowrap'>اخطار! {daysToCertificateExpiration} روز مانده تا انقضاء گواهینامه.</p>
 
                     </div>
 
-                    <p className='mr-8 text-xs'>دسترسی شما به پنل محدود می‌باشد.</p>
+                    <p className='mr-2 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
 
                 </div>
 
@@ -112,7 +121,8 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                     onClick={() => setCloseBox(true)}
                     />
                     
-                    <p className='text-xs underline underline-offset-4'>تمدید گواهینامه</p>
+                    <p className='text-xs underline underline-offset-4'
+                    onClick={handleRenewalClick}>تمدید گواهینامه</p>
                     
                 </div>
                 
