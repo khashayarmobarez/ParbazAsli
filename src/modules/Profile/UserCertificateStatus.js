@@ -27,7 +27,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
 
     return (
-        <div className={`w-full ${(userCertificateStatus || closeBox) && 'hidden'}`}>
+        <div className={`w-full ${(!userCertificateStatus || closeBox) && 'hidden'}`}>
 
             {
             userCertificateStatus === 'Expired' && 
