@@ -27,7 +27,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
 
     return (
-        <div className={`w-full ${(!userCertificateStatus || closeBox) && 'hidden'}`}>
+        <div className={`w-full ${(userCertificateStatus || closeBox) && 'hidden'}`}>
 
             {
             userCertificateStatus === 'Expired' && 
@@ -104,7 +104,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
                     <div className='flex gap-x-2 items-center justify-center'>
                         
-                        <DoNotDisturbRoundedIcon sx={{width:'20px', height:'20px'}} />
+                        <WarningAmberRoundedIcon sx={{width:'20px', height:'20px'}} />
 
                         <p className='mt-1 text-xs font-semibold text-start text-nowrap'>اخطار! {daysToCertificateExpiration} روز مانده تا انقضاء گواهینامه.</p>
 
