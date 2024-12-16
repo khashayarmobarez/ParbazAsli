@@ -260,7 +260,7 @@ const RenewCertificate = () => {
                             setUploadedFile={setUploadedFile} 
                             uploadedFile={uploadedFile}  
                             isSubmitted={isSubmitted} 
-                            />
+                        />
                         
                         
                     </div>
