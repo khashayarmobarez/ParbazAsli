@@ -66,7 +66,7 @@ const ChangeCertificate = () => {
                     </div>
                 }
 
-                <div onClick={() => navigate('/Settings/certificate')} className='fixed bottom-[4.5rem] w-[90%] bg-bgCard rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
+                <div onClick={() => navigate('/Settings/AddNewCertificate')} className='fixed bottom-[4.5rem] w-[90%] bg-bgCard rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
                     <button className={`${ButtonStyles.addButton} w-[100%]`} >
                         <AddIcon />
                         <p>افزودن گواهینامه</p>

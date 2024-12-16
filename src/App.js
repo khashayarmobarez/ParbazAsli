@@ -56,9 +56,9 @@ import 'react-toastify/dist/ReactToastify.css';
     import AddTakeoff from './templates/addFlight/AddTakeoff';
     import AddLanding from './templates/addFlight/AddLanding';
 // Student components 
-  import Settings from './templates/Settings';
+  import Settings from './templates/settings/Settings';
   import Notifications from './templates/notifications/Notifications';
-  import RenewCertificate from './modules/Settings/RenewCertificate';
+  import AddNewCertificate from './templates/settings/AddNewCertificate';
 import EditEquipment from './templates/equipments/EditEquipment';
 import PossessionTransitionEquipment from './templates/equipments/PossessionTransitionEquipment';
 import CourseDetails from './templates/education/CourseDetails';
@@ -104,6 +104,7 @@ import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
 import AddEquipment from './templates/equipments/AddEquipment';
 import EquipmentsList from './templates/equipments/EquipmentsList';
 import Navbar from './templates/Navbar';
+import RenewCertificate from './templates/settings/RenewCertificate';
 
 
 const queryClient = new QueryClient();
@@ -382,8 +383,8 @@ function App() {
 
               {/* settings */}
               <Route path='/Settings' element={<Settings />} />
-              <Route path='/Settings/certificate' element={<RenewCertificate />} />
-              <Route path='/Settings/renewCertificate/:id' element={<RenewCertificate />} />
+              <Route path='/Settings/AddNewCertificate' element={<AddNewCertificate />} />
+              <Route path='/Settings/RenewCertificate/:id' element={<RenewCertificate />} />
 
             </>
           )}

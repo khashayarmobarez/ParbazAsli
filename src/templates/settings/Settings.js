@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 
 // styles
-import ButtonStyles from '../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import SettingIcon from '../components/icons/SettingIcon'
-import CertificateIcon from '../components/icons/CertificateIcon'
-import UserIcon from '../components/icons/UserIcon'
+import SettingIcon from '../../components/icons/SettingIcon'
+import CertificateIcon from '../../components/icons/CertificateIcon'
+import UserIcon from '../../components/icons/UserIcon'
 
 // queries
 // import { useClubStatus } from '../Utilities/Services/clubQueries';
 
 // components
-import PageTitle from '../components/reuseable/PageTitle';
-import DropDownLine from '../components/reuseable/DropDownLine';
-import WebColorMode from '../modules/Settings/WebColorMode';
-import EditUserSettings from '../modules/Settings/EditUserSettings';
-import CertificateSettings from '../modules/Settings/CertificateSettings';
+import PageTitle from '../../components/reuseable/PageTitle';
+import DropDownLine from '../../components/reuseable/DropDownLine';
+import WebColorMode from '../../modules/Settings/WebColorMode';
+import EditUserSettings from '../../modules/Settings/EditUserSettings';
+import CertificateSettings from '../../modules/Settings/CertificateSettings';
 // import AddClub from '../components/modules/Club/AddClub';
 
 

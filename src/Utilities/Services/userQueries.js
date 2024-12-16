@@ -310,8 +310,37 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
+// get a certificate
+const getACertificate = async (id) => {
+
+    const token = Cookies.get('token');
+
+    try {
+        const response = await axios.get(`${API_BASE_URL}/Certificate/GetCertificate?certificateId=${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
+        }
+    }
+};
+
+const useACertificate = (id) => {
+    return useQuery(['aCertificate', id], () => getACertificate(id));
+}
 
 
 
 
-export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChange , useChangePhoneNumber, useChangeEmail, useChangePassword};
+
+
+
+
+export {useUserData, useUploadProfilePicture, useDeleteProfilePicture, useUserProfile, useAllUsersCoaches, useAllUserCertificates, useSendVerificattionCodeToChange , useChangePhoneNumber, useChangeEmail, useChangePassword, useACertificate };

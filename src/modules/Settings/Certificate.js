@@ -13,7 +13,7 @@ const Certificate = ({certificateData}) => {
     const navigate = useNavigate();
 
     const handleRenewal = () => {
-        navigate(`/Settings/renewCertificate/${certificateData.id}`)
+        navigate(`/Settings/RenewCertificate/${certificateData.id}`)
     }
 
     return (

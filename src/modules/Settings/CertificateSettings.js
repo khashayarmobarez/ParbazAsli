@@ -46,7 +46,7 @@ const CertificateSettings = () => {
                     </p>
                 }
 
-                <Link to='/Settings/certificate' className='flex w-full rounded-xl mt-4 '>
+                <Link to='/Settings/AddNewCertificate' className='flex w-full rounded-xl mt-4 '>
                     <button className={`${ButtonStyles.addButton} w-[100%]`} >
                         <AddIcon />
                         <p>افزودن گواهینامه</p>
