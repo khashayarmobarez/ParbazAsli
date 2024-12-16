@@ -274,7 +274,7 @@ const AddCertificate = () => {
 
                                                             {/* the date picker component comes from equipment section, try moving it into this component */}
                                                             <DateInput 
-                                                                name={'تاریخ آخرین بسته‌بندی'}  
+                                                                name={'تاریخ انقضا'}  
                                                                 onChange={handleCertificateStartDateChange} 
                                                                 placeH={'تاریخ صدور'} 
                                                                 ErrorCondition={!dateStartValue}

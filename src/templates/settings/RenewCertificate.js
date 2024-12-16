@@ -228,7 +228,14 @@ const RenewCertificate = () => {
                             value={certificateId} 
                             onChange={handleCertificateInputChange} 
                             icon={<CertificateIcon anotherColor={'var(--text-input-default)'} />}
-                            />
+                            isSubmitted={isSubmitted}
+                            isRequired={true}
+                            RequiredMessage='شماره گواهینامه الزامی می باشد'
+                            ErrorCondition={!certificateId}
+                            ErrorText={'شماره گواهینامه الزامی می باشد'}
+                            ErrorCondition2={certificateId.length > 99}
+                            ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
+                        />
 
                         {/* the date picker component comes from equipment section, try moving it into this component */}
                         <DateInput
