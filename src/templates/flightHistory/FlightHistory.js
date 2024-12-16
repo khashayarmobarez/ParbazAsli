@@ -24,6 +24,7 @@ import PageTitle from '../../components/reuseable/PageTitle';
 import PracticalFlightHistoryBox from '../../modules/FlightHistory/PracticalFlightHistoryBox';
 import FilterVariables from '../../modules/FlightHistory/FilterVariables';
 
+
 const FlightHistory = () => {
 
     const dispatch = useDispatch();

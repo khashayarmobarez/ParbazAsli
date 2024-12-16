@@ -20,6 +20,7 @@ const FlightHistoryPage = () => {
     const [DropDownSituation, setDropDownSituation] = useState(true)
     const [DropDownTakeoff, setDropDownTakeoff] = useState(true)
     const [DropDownLanding, setDropDownLanding] = useState(true)
+    const [DropDownPassenger, setDropDownPassenger] = useState(true)
     
     const { data: fullFlightData } = useAUserFlight(id);
     
@@ -332,6 +333,49 @@ const FlightHistoryPage = () => {
                                                 </div>
                                             }
 
+                                        </>
+                                    }
+
+                                    {/* passenger data */}
+                                    {
+                                        fullFlightData.data.passengerHarness && fullFlightData.data.passengerPhoneNumber &&
+                                        <>
+                                            <div className='w-full flex col-span-6'>
+                                                <DropDownLine 
+                                                    onClickActivation={() => setDropDownPassenger(!DropDownPassenger)}
+                                                    title={'passenger'} 
+                                                    dropDown={DropDownPassenger} 
+                                                    isActive={DropDownPassenger}  
+                                                />
+                                            </div>
+    
+                                            {
+                                                DropDownPassenger &&
+                                                <>
+                                                
+                                                    {
+                                                        fullFlightData.data.landingTime &&
+                                                        <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                            <p className=' text-xs pr-2'>هارنس مسافر</p>
+                                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                                <p>{fullFlightData.data.passengerHarness}</p>
+                                                            </div>
+                                                        </div>
+                                                    }
+    
+    
+                                                    {
+                                                        fullFlightData.data.landingWindDirection &&
+                                                        <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                            <p className=' text-xs pr-2'>تلفن مسافر</p>
+                                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                                <p>{fullFlightData.data.passengerPhoneNumber}</p>
+                                                            </div>
+                                                        </div>
+                                                    }
+    
+                                                </>
+                                            }
                                         </>
                                     }
 
