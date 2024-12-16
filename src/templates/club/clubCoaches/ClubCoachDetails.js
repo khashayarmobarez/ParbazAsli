@@ -123,178 +123,182 @@ const ClubCoachDetails = () => {
     return (
         <div className='w-full flex flex-col items-center pt-14 gap-y-6'>
 
-            <PageTitle title={'جزئیات مربی'} navigateTo={'/club/clubCoaches'} />
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:w-[55%] lg:gap-y-12'>
 
-            <div className='w-[90%] md:w-[60%] flex flex-col items-center gap-y-6'>
+                <PageTitle title={'جزئیات مربی'} navigateTo={'/club/clubCoaches'} />
 
-                {
-                    coachDetailsLoading &&
-                    <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'10rem' }}>
-                        <CircularProgress /> 
-                    </Box>
-                }
+                <div className='w-[90%] flex flex-col items-center gap-y-6'>
 
-                {coachDetails &&
-                    <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
-                    style={{ boxShadow:'var(--shadow-all)'}}>
+                    {
+                        coachDetailsLoading &&
+                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'10rem' }}>
+                            <CircularProgress /> 
+                        </Box>
+                    }
 
-                        {/* <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
-                            <ArrowButton />
-                        </span> */}
+                    {coachDetails &&
+                        <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
+                        style={{ boxShadow:'var(--shadow-all)'}}>
 
-                        <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
-                            <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>
-                            <p className='text-textButtonMainDisabled'>
-                                وضعیت:
-                                {coachDetails.data.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
-                                {coachDetails.data.status === 'Pending' && <span style={{color:'var(--text-warning)'}}> در انتظار تایید</span>}
-                                {coachDetails.data.status === 'Disable' && <span className='text-textButtonMainDisabled'> غیر فعال</span>}
-                                {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
+                            {/* <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
+                                <ArrowButton />
+                            </span> */}
+
+                            <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
+                                <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>
+                                <p className='text-textButtonMainDisabled'>
+                                    وضعیت:
+                                    {coachDetails.data.status === 'Active' && <span style={{color:'var(--text-accent)'}}> فعال</span>}
+                                    {coachDetails.data.status === 'Pending' && <span style={{color:'var(--text-warning)'}}> در انتظار تایید</span>}
+                                    {coachDetails.data.status === 'Disable' && <span className='text-textButtonMainDisabled'> غیر فعال</span>}
+                                    {coachDetails.data.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
+                                </p>
+                            </div>
+
+                            <div className='w-full flex items-center justify-between gap-y-4 bg'>
+
+                                <Avatar src={coachDetails.data.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'100px', width:'100px', zIndex:'0'}} />
+
+                                <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
+
+                                    <div className=' flex justify-start items-center w-32' >
+                                        <span className='w-5 h-5'>
+                                            <UsersIcon/>
+                                        </span>
+                                        <p className=' font-normal text-xs mr-1  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
+                                    </div> 
+
+                                    <div className=' flex justify-start items-center w-32' >
+                                        <span className='w-5 h-5'>
+                                            <ClockIcon/>
+                                        </span>
+                                        <p className=' font-normal text-xs mr-1  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
+                                    </div>
+
+                                    <div className=' flex justify-start items-center w-32 -mt-1' >
+                                        <span className='w-5 h-5' >
+                                            <DocumentIcon/>
+                                        </span>
+                                        <p className=' font-normal text-xs mr-1 mt-[2px] text-start'>کد عضویت: {coachDetails.data.id}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    {
+                        coachCoursesDetails && coachCoursesDetails.data < 1 &&
+                            <p className='w-full py-4 text-textWarning'>
+                                <p>هنوز دوره ای برای این مربی ثبت نشده است</p>
                             </p>
-                        </div>
+                    }
 
-                        <div className='w-full flex items-center justify-between gap-y-4 bg'>
+                    {
+                        coachCoursesDetails && coachCoursesDetails.data.map((course) => (
+                            <div
+                            key={course.id}
+                            className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
+                            style={{
+                                boxShadow: 'var(--shadow-all)'
+                            }}
+                            >
+                                <div className='w-full flex justify-between items-center'>
 
-                            <Avatar src={coachDetails.data.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'100px', width:'100px', zIndex:'0'}} />
+                                    <h1 className='text-sm'>{course.name}</h1>
 
-                            <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm'>
+                                    <div className='flex gap-x-1'>
 
-                                <div className=' flex justify-start items-center w-32' >
-                                    <span className='w-5 h-5'>
-                                        <UsersIcon/>
-                                    </span>
-                                    <p className=' font-normal text-xs mr-1  text-start'>تعداد هنرجویان: {coachDetails.data.studentsCount}</p>
-                                </div> 
+                                        <p className='text-textButtonMainDisabled'>وضعیت:&nbsp; 
+                                            
+                                                {course.status === 'Active' && 
+                                                    <span className='text-textAccent'>فعال</span>
+                                                }
+                                                {course.status === 'Pending' &&
+                                                    <span className='text-textWarning'>در انتظار...</span>
+                                                }
+                                                {course.status === 'Disable' &&
+                                                    <span className='text-textButtonMainDisabled'>غیر فعال</span>
+                                                }
+                                                {course.status === 'Rejected' &&
+                                                    <span className='text-[var(--text-error)]'>رد شده</span>
+                                                }
+                                        </p>
 
-                                <div className=' flex justify-start items-center w-32' >
-                                    <span className='w-5 h-5'>
-                                        <ClockIcon/>
-                                    </span>
-                                    <p className=' font-normal text-xs mr-1  text-start'>{coachDetails.data.coachingHours} ساعت مربیگری</p>
+                                    </div>
+
                                 </div>
 
-                                <div className=' flex justify-start items-center w-32 -mt-1' >
-                                    <span className='w-5 h-5' >
-                                        <DocumentIcon/>
-                                    </span>
-                                    <p className=' font-normal text-xs mr-1 mt-[2px] text-start'>کد عضویت: {coachDetails.data.id}</p>
-                                </div>
+                                <div className='w-full flex justify-between items-center'>
 
-                            </div>
-                        </div>
-                    </div>
-                }
+                                    <div className='flex flex-col text-start gap-y-1'>
 
-                {
-                     coachCoursesDetails && coachCoursesDetails.data < 1 &&
-                        <p className='w-full py-4 text-textWarning'>
-                            <p>هنوز دوره ای برای این مربی ثبت نشده است</p>
-                        </p>
-                }
+                                        {
+                                            course.organization &&
+                                                <p className='text-sm'>
+                                                    {course.organization}
+                                                </p>
+                                        }
 
-                {
-                    coachCoursesDetails && coachCoursesDetails.data.map((course) => (
-                        <div
-                        key={course.id}
-                        className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
-                        style={{
-                            boxShadow: 'var(--shadow-all)'
-                        }}
-                        >
-                            <div className='w-full flex justify-between items-center'>
+                                        { course.clubName &&
+                                            <p><span className='text-textButtonMainDisabled'>باشگاه:</span> {course.clubName}</p>
+                                        }
 
-                                <h1 className='text-base'>{course.name}</h1>
+                                        {
+                                        course.level &&
+                                            <p><span className='text-textButtonMainDisabled'>مقطع: </span> {course.level}</p>
+                                        }
+                                        <p><span className='text-textButtonMainDisabled'>تعداد پرواز:</span> {course.flightsCount}</p>
 
-                                <div className='flex gap-x-1'>
-
-                                    <p className='text-textButtonMainDisabled'>وضعیت:&nbsp; 
                                         
-                                            {course.status === 'Active' && 
-                                                <span className='text-textAccent'>فعال</span>
-                                            }
-                                            {course.status === 'Pending' &&
-                                                <span className='text-textWarning'>در انتظار...</span>
-                                            }
-                                            {course.status === 'Disable' &&
-                                                <span className='text-textButtonMainDisabled'>غیر فعال</span>
-                                            }
-                                            {course.status === 'Rejected' &&
-                                                <span className='text-[var(--text-error)]'>رد شده</span>
-                                            }
-                                    </p>
+
+                                    </div>
+
+                                    <div className='flex flex-col text-start gap-y-1'>
+
+                                            <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
+                                        
+                                            <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
+
+                                    </div>
+
 
                                 </div>
+
+                                {
+                                    course.status !== 'Rejected' &&
+                                        <button 
+                                        onClick={() => handleClickDetails(course.id)}
+                                        className={`${ButtonStyles.normalButton}`} >
+                                            جزئیات
+                                        </button>
+                                }
 
                             </div>
+                            ))
+                        }    
 
-                            <div className='w-full flex justify-between items-center'>
-
-                                <div className='flex flex-col text-start gap-y-1'>
-
-                                    {
-                                        course.organization &&
-                                            <p className='text-base'>
-                                                {course.organization}
-                                            </p>
-                                    }
-
-                                    { course.clubName &&
-                                        <p><span className='text-textButtonMainDisabled'>باشگاه:</span> {course.clubName}</p>
-                                    }
-
-                                    {
-                                    course.level &&
-                                        <p><span className='text-textButtonMainDisabled'>مقطع: </span> {course.level}</p>
-                                    }
-                                    <p><span className='text-textButtonMainDisabled'>تعداد پرواز:</span> {course.flightsCount}</p>
-
-                                    
-
-                                </div>
-
-                                <div className='flex flex-col text-start gap-y-1'>
-
-                                        <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
-                                    
-                                        <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
-
-                                </div>
-
-
-                            </div>
-
-                            {
-                                course.status !== 'Rejected' &&
-                                    <button 
-                                    onClick={() => handleClickDetails(course.id)}
-                                    className={`${ButtonStyles.normalButton}`} >
-                                        جزئیات
+                        {/* trigger coach status button */}
+                        {
+                            coachDetails && coachDetails.data.status === 'Disable' &&
+                                <div className='fixed bottom-[4rem] w-[90%]  rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                                    <button className={`${ButtonStyles.addButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
+                                        <p>درخواست همکاری مجدد </p>
                                     </button>
-                            }
+                                </div>
+                        }
 
-                        </div>
-                        ))
-                    }    
+                        {
+                            coachDetails && coachDetails.data.status === 'Active'  &&
+                                <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                                    <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
+                                        <p>پایان همکاری</p>
+                                    </button>
+                                </div>
+                        }
+                        
+                </div>
 
-                    {/* trigger coach status button */}
-                    {
-                        coachDetails && coachDetails.data.status === 'Disable' &&
-                            <div className='fixed bottom-[4rem] w-[90%]  rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
-                                <button className={`${ButtonStyles.addButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
-                                    <p>درخواست همکاری مجدد </p>
-                                </button>
-                            </div>
-                    }
-
-                    {
-                        coachDetails && coachDetails.data.status === 'Active'  &&
-                            <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
-                                <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
-                                    <p>پایان همکاری</p>
-                                </button>
-                            </div>
-                    }
-                    
             </div>
         </div>
     );

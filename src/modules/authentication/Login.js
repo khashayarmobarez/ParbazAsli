@@ -213,11 +213,11 @@ const Login = () => {
                     onToggle={handleTermsToggle}
                 />
 
-                <p className='text-lg text-start text-textAccent cursor-pointer' onClick={handleForgetPassword}>
+                <p className='text-sm text-start text-textAccent cursor-pointer' onClick={handleForgetPassword}>
                     رمز عبور خود را فراموش کرده‌ام
                 </p>
 
-                <button type="submit" className={`${ButtonStyles.addButton} w-36 self-center `}
+                <button type="submit" className={`${ButtonStyles.addButton} w-36 mt-1 self-center `}
                     onClick={handleLoginSubmit} 
                     >
                     {submitLoading ?

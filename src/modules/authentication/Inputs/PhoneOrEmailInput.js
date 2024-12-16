@@ -10,6 +10,7 @@ import inputStyles from '../../../styles/Inputs/Inputs.module.css';
 
 // regexes
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';
+import UserIcon from '../../../components/icons/UserIcon';
 
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
   const [inputFocus, setInputFocus] = useState(false);
@@ -111,13 +112,13 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
     if (PHONE_REGEX.test(value)) {
       return <LocalPhoneRoundedIcon sx={{ color: iconColor }} />;
     }
-    return <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />;
+    return <UserIcon  customColor={iconColor} />;
   };
 
   return (
     <div className='flex flex-col relative w-full rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
-        <span className="absolute right-2 top-3 w-5 z-10 cursor-text">
+        <span className="absolute right-3 top-3 flex items-center justify-center w-5 z-10 cursor-text">
           {getIcon()}
         </span>
         <input

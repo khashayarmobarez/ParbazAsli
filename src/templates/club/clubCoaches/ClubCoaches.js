@@ -119,11 +119,11 @@ const ClubCoaches = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center pt-14'>
 
-            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] '>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:w-[55%]'>
 
             <PageTitle  title='مربیان' navigateTo={'/club'} />
 
-                <div className='w-[90%] flex flex-col gap-y-2'>
+                <div className='w-[90%] flex flex-col gap-y-2 '>
 
 
                     <DropDownLine  
@@ -133,15 +133,17 @@ const ClubCoaches = () => {
                         isActive={DropDown === `activeCoaches`}  
                     />
 
-                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2'>
+                    <div className='w-full flex flex-col gap-4 '>
                         {DropDown === `activeCoaches` &&  clubCoachesData &&
-                            <div className='w-full flex flex-col gap-y-4 mt-[-1rem] py-4'>
+                            <div className='w-full flex flex-col gap-y-6 mt-[-1rem] py-4'>
                             {/* map clubCoachesData */}
                                 {(clubCoachesData && clubCoachesData.data.length > 0 && !coachesDataLoading) ?
                                     <>
-                                        {clubCoachesData.data.map((coach) => (
-                                        <ClubCoachBox key={coach.id} coachData={coach} />   
-                                        ))}
+                                        <div className='w-full flex flex-col items-center gap-4 md:grid md:grid-cols-2'>
+                                            {clubCoachesData.data.map((coach) => (
+                                                <ClubCoachBox key={coach.id} coachData={coach} />   
+                                            ))}
+                                        </div>
 
                                         {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
                                             <div className='w-full flex justify-between px-10 items-center'>
@@ -181,15 +183,17 @@ const ClubCoaches = () => {
                         isActive={DropDown === `PreviousCoaches`}  
                     />
 
-                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                    <div className='w-full flex flex-col gap-4'>
                         {DropDown === `PreviousCoaches` && clubCoachesPreviousData &&
                             <div className='w-full flex flex-col gap-y-4 mt-[-1rem] py-4'>
                             {/* map clubCoachesData */}
                                 {(clubCoachesPreviousData && clubCoachesPreviousData.data.length > 0 && !coachesPreviousDataLoading) ?
                                     <>
-                                        {clubCoachesPreviousData.data.map((coach) => (
-                                        <ClubCoachBox key={coach.id} coachData={coach} />
-                                        ))}
+                                        <div className='w-full flex flex-col items-center gap-4 md:grid md:grid-cols-2'>
+                                            {clubCoachesPreviousData.data.map((coach) => (
+                                            <ClubCoachBox key={coach.id} coachData={coach} />
+                                            ))}
+                                        </div>
 
                                         {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
                                             <div className={`w-full flex justify-between px-10 items-center`}>
