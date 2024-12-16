@@ -35,7 +35,7 @@ const Club = () => {
     return (
         <div className='pt-14 flex flex-col items-center justify-center w-full'>
 
-            <div className='w-full md:w-[75%] flex flex-col items-center'>
+            <div className='w-full md:w-[75%] flex flex-col items-center lg:w-[55%]'>
 
             <PageTitle title={'پروفایل باشگاه'} navigateTo={'/profile'} />
 

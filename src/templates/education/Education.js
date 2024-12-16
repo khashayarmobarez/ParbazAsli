@@ -116,7 +116,7 @@ const Education = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
 
-            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12'>
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
                 <PageTitle title={'آموزش'} navigateTo={'/profile'} />  
 
@@ -203,7 +203,7 @@ const Education = () => {
 
                                                     <div
                                                     key={course.id}
-                                                    className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgCard"
+                                                    className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgCard "
                                                     style={{boxShadow:'var(--shadow-all)'}}
                                                     >
                                                         <div className='w-full flex justify-between items-center'>

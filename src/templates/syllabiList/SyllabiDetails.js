@@ -50,7 +50,7 @@ const SyllabiDetails = () => {
 
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
-            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:w-[55%]'>
                 <PageTitle title={syllabiData?.data?.levelName || 'سیلابس ها'} navigateTo={'/syllabi'} />
                 
                 <div className={`w-[90%] flex flex-col items-center gap-y-4 py-6 ${styles.container}`}>

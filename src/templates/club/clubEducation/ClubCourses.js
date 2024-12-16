@@ -77,7 +77,7 @@ const ClubCourses = () => {
     return (
         <div className='w-full flex flex-col items-center pt-14 gap-y-4 pb-14 '>
 
-            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12' >
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12 lg:w-[55%]' >
 
             <PageTitle  title='دوره ها' navigateTo={'/club'} />
 

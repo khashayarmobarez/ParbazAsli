@@ -16,7 +16,7 @@ const ClubEquipment = () => {
     return (
         <div className=' flex flex-col mt-14 items-center '>
 
-            <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6 lg:gap-y-12'>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[80%] md:gap-y-6 lg:gap-y-12 lg:w-[55%]'>
 
                 <PageTitle title={'تجهیزات'} navigateTo={'/club'} />  
 

@@ -27,7 +27,7 @@ const FlightHistoryPage = () => {
     return (
         <div className='w-full flex flex-col items-center py-14'>
 
-            <div className='w-full md:w-[75%] flex flex-col justify-center items-center gap-y-0 lg:gap-y-12'>
+            <div className='w-full md:w-[75%] flex flex-col justify-center items-center gap-y-0 lg:gap-y-12 lg:w-[55%]'>
 
                 <PageTitle title={'جزئیات پرواز'} />
 
@@ -149,7 +149,7 @@ const FlightHistoryPage = () => {
                                             }
         
                                             {
-                                                fullFlightData.data.harness &&
+                                                fullFlightData.data.harness &&  
                                                     <div className='flex flex-col items-start gap-y-3 col-span-6'>
                                                         <p className=' text-xs pr-2'>هارنس</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >

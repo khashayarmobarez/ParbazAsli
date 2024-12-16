@@ -30,7 +30,7 @@ const StudentsListClub = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
 
-            <div className='w-full md:w-[60%]'>
+            <div className='w-full md:w-[60%] lg:w-[55%]'>
 
                 { (courseCountsLoading || AllStudentLoading) &&
                     <CircularProgressLoader /> 

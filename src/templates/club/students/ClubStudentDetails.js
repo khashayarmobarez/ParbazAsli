@@ -36,7 +36,7 @@ const ClubCourseStudentDetails = () => {
 
     return (
         <div className='flex flex-col py-16 items-center'>
-            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:w-[55%]'>
 
                 <PageTitle title={'جزئیات هنرجو '} navigateTo={historyPageUrl} /> 
 

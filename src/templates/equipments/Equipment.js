@@ -15,7 +15,7 @@ const Equipment = () => {
     return (
         <div className=' flex flex-col mt-14 items-center '>
 
-            <div className='w-full flex flex-col items-center gap-y-4 md:w-[65%] lg:gap-y-8'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[65%] lg:gap-y-8 lg:w-[55%]'>
 
                 <PageTitle title={'تجهیزات'} navigateTo={'/profile'} /> 
 

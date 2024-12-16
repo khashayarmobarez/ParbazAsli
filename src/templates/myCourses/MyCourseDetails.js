@@ -44,7 +44,7 @@ const MyCourseDetails = () => {
 
     return (
         <div className='flex flex-col mt-14 items-center'>
-            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12'>
+            <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
                 <PageTitle title={'جزئیات دوره'} navigateTo={'/myCourses'} /> 
 
@@ -63,9 +63,9 @@ const MyCourseDetails = () => {
                 {
                     aCourseData &&
                     <>
-                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-8 -mb-2 z-[60]`}>
+                        <div className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col items-center py-6 gap-y-8 -mb-2 z-[60] lg:-mb-10`}>
 
-                            <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0 '>
+                            <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
                                     <p className=' text-xs pr-2'>نام</p>

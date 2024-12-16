@@ -198,7 +198,7 @@ const PossessionTransitionEquipment = () => {
     return (
         <div className='w-full flex flex-col justify-start items-center'>
 
-            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-2 lg:gap-y-8 '>
+            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-2 lg:gap-y-8 lg:w-[55%]'>
 
                 <PageTitle title={'انتقال مالکیت وسیله'}/>
 

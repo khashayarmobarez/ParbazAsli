@@ -40,8 +40,7 @@
 }
 
 .classDetailsData {
-    background-color: var(--bg-output-default);  
-    border: 1px solid var(--border-output);
+    background-color: var(--bg-output-selected-option);  
     box-shadow: var(--shadow-all);
     border-radius: 16px;
 }

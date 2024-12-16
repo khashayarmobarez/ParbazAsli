@@ -53,7 +53,7 @@ const AStudentClubCourses = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14 gap-y-6'>
 
-            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[75%] lg:w-[55%]'>
 
                 <PageTitle 
                     title={StudentCourses ? `${StudentCourses.data[0].studentName}` : 'نام هنرجو' }
@@ -62,7 +62,7 @@ const AStudentClubCourses = () => {
 
                 {/* {studentId} normal */}
 
-                <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 lg:mt-6'>
 
                     { StudentCourses?.data.length < 1 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
