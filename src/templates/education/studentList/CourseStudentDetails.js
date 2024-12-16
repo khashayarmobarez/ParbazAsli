@@ -13,7 +13,6 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 // assets
 import ClockIcon from '../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../components/icons/FlightQuantity';
-import ArrowButton from '../../../components/icons/ArrowButton';
 import UserIcon from '../../../components/icons/UserIcon';
 import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../Utilities/Services/coursesQueries';
 import PageTitle from '../../../components/reuseable/PageTitle';
@@ -43,7 +42,7 @@ const CourseStudentDetails = () => {
                 <PageTitle navigateTo={historyPageUrl} title={'جزئیات هنرجو '} />
 
                 {/* the data box */}
-                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start pb-8 px-4 py-2  relative`}
+                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start pb-8 px-4 py-2  relative z-[60]`}
                     style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)'}}
                 >
                     { 

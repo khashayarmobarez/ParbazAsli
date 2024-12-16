@@ -40,7 +40,7 @@ const ClubCourseStudentDetails = () => {
 
                 <PageTitle title={'جزئیات هنرجو '} navigateTo={historyPageUrl} /> 
 
-                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault -mb-2`}
+                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault -mb-2 z-[60]`}
                 style={{ boxShadow:'var(--shadow-all)'}}>
                     { 
                     studentData && 
