@@ -57,7 +57,7 @@ const UploadIgc = () => {
 
     return (
         <>
-            <div className='w-[90%] flex flex-col items-center gap-y-4'>
+            <div className='w-[90%] flex flex-col items-center gap-y-4 '>
 
                 <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
 
@@ -85,7 +85,7 @@ const UploadIgc = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-full text-xs'>
+                    <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
                         <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
 

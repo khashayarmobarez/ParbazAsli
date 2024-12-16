@@ -367,7 +367,7 @@ const AddLanding = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-full text-xs'>
+                    <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
                         <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
 

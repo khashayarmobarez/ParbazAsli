@@ -352,7 +352,7 @@ const AddEquipment = () => {
     return (
         <div className='flex flex-col mt-14 items-center'>
 
-            <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%] lg:gap-y-12'>
+            <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%] lg:gap-y-12 lg:w-[55%]'>
 
                 <PageTitle 
                     title={`افزودن ${equipmentTypeInPersian}`}

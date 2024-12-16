@@ -73,7 +73,7 @@ const AddFlight = () => {
 
     return (
         <div className='flex flex-col items-center pt-14 pb-8'>
-            <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10'>
+            <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10 lg:w-[55%]'>
 
             <PageTitle title={'ثبت پرواز'} navigateTo={-1} />
 

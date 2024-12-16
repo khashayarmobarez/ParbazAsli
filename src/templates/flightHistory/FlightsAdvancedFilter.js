@@ -182,7 +182,7 @@ const FlightsAdvancedFilter = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center'>
 
-            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-6 lg:gap-y-12'>
+            <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-6 lg:gap-y-12 lg:w-[55%]'>
 
                 <PageTitle title={'فیلتر جست‌وجو'} navigateTo={-1} />
 
@@ -196,7 +196,7 @@ const FlightsAdvancedFilter = () => {
                     (userWingsData && userHarnessData && userCoachesData && userCoursesData && countriesData) &&
 
                     <>
-                        <div className='w-[90%] md:w-[65%] flex flex-col gap-y-4'>
+                        <div className='w-[90%] flex flex-col gap-y-4'>
                     
                             {
                                 userCoursesData && userCoursesData.data.length > 0 &&
