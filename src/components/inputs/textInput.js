@@ -55,8 +55,8 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
             border-2 border-gray-300 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none focus:ring-0 focus:border-blue-600
-            ${isFilled && inputStyles.inputFilledBorder}
-            ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}
+            ${value && !ErrorCondition && !ErrorCondition2 && inputStyles.inputFilledBorder}
+            ${(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
             ${inputStyles.inputText2}
           `}
         />

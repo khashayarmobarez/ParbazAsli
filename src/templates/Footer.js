@@ -16,7 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 const styles = {
     container: {
       width: '100%',
-      zIndex: 40,
+      zIndex: 60,
       background: 'var(--bg-menu)',
       borderRadius: '0',
       Bottom:'2rem',

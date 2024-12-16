@@ -52,7 +52,7 @@ const Certificate = ({certificateData}) => {
                 <button 
                 className={`${ButtonStyles.normalButton} self-center mt-5 text-xs`}
                 onClick={handleRenewal}>
-                    تمدید گواهینامه
+                    تمدید
                 </button>
             }
 
