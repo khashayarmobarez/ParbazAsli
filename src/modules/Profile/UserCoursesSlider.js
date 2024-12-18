@@ -57,6 +57,9 @@ const UserCoursesSlider = ({coursesData}) => {
                 height: 6px;
                 background-color: var(--text-default);
               }
+              .swiper-pagination {
+                bottom: 14px !important; 
+              }
               ${
                 isDesktop
                   ? `.swiper-slide {
@@ -77,7 +80,7 @@ const UserCoursesSlider = ({coursesData}) => {
           <div className='w-full h-full py-2 md:pt-0'>
             
               <swiper-container
-              style={{ height:'14.4rem',...(!isDesktop && { marginRight: '0' }), }}
+              style={{ height:'15rem',...(!isDesktop && { marginRight: '0' }), }}
               ref={swiperRef}
               init="false"
               >

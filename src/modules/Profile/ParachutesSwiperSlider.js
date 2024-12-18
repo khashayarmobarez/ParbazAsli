@@ -55,6 +55,10 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
                 height: 6px;
                 background-color: var(--text-default);
               }
+
+              .swiper-pagination {
+                bottom: 14px !important; 
+              }
               ${
                 isDesktop
                   ? `.swiper-slide {
@@ -76,7 +80,7 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
 
             
               <swiper-container
-                style={{ height:'12.2rem',...(!isDesktop && { marginRight: '0' }), }}
+                style={{ height:'12.85rem',...(!isDesktop && { marginRight: '0' }), }}
                 ref={swiperRef}
                 init="false"
                 >

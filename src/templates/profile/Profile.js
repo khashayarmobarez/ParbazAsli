@@ -86,7 +86,7 @@ const Profile = () => {
 
 
                     {/* buttons */}
-                    <div className={`flex justify-around w-full lg:absolute lg:left-0 lg:top-28 lg:flex-col lg:w-28 lg:h-[24rem]
+                    <div className={`flex justify-around w-full -mt-1 lg:absolute lg:left-0 lg:top-28 lg:flex-col lg:w-28 lg:h-[24rem]
                     ${!data.data.hasCoach ? 'px-12 justify-center gap-x-8' : 'justify-around' }`}>
 
                         <Link to='/equipment/flightEquipment' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
