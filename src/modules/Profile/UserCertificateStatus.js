@@ -43,7 +43,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
                     </div>
 
-                    <p className='mr-8 text-xs'>دسترسی شما به پنل محدود می‌باشد.</p>
+                    <p className='mr-6 text-xs'>دسترسی شما به پنل محدود می‌باشد.</p>
 
                 </div>
 
@@ -64,7 +64,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
             {
             userCertificateStatus === 'AdminPending' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-[#17a2bb] px-4 text-[#eee]`}>
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-[#17a2bb] pl-2 text-[#eee]`}>
 
                 <div className='h-full flex flex-col justify-between py-4'>
 
@@ -78,7 +78,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
                     </div>
 
-                    <p className='mr-10 text-xs'>تا زمان تایید دسترسی شما محدود می‌باشد.</p>
+                    <p className='mr-12 text-xs'>تا زمان تایید دسترسی شما محدود می‌باشد.</p>
 
                 </div>
 
@@ -110,7 +110,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
                     </div>
 
-                    <p className='mr-2 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
+                    <p className='mr-4 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
 
                 </div>
 

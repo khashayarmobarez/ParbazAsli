@@ -209,7 +209,7 @@ const ClubCoachDetails = () => {
 
                                     <div className='flex gap-x-1'>
 
-                                        <p className='text-textButtonMainDisabled'>وضعیت:&nbsp; 
+                                        <p className='text-textButtonMainDisabled text-sm'>وضعیت:&nbsp; 
                                             
                                                 {course.status === 'Active' && 
                                                     <span className='text-textAccent'>فعال</span>
@@ -254,7 +254,7 @@ const ClubCoachDetails = () => {
 
                                     </div>
 
-                                    <div className='flex flex-col text-start gap-y-1'>
+                                    <div className='flex flex-col text-start gap-y-1 text-sm'>
 
                                             <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
                                         

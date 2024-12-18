@@ -128,7 +128,7 @@ const ClubCourseStudentDetails = () => {
                         </div>
                         
                         <div className='w-full flex flex-col justify-between items-center gap-y-2'>
-                            <div className='w-full flex justify-between'>
+                            <div className='w-full flex justify-between text-base'>
                                 <p>درصد پیشرفت</p>
                                 <p>{studentData.data.percent}%</p>
                             </div>
