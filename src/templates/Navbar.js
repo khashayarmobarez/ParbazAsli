@@ -198,7 +198,7 @@ const NewNavbar = () => {
                     onClick={() => navigate('/notifications')}>
                         { notificationCountsData?.data !== 0 &&
                             <p 
-                                className='w-3.5 h-3.5 -mb-3.5 -mr-4 bg-textError z-50 flex items-center justify-center rounded-full'
+                                className='w-3.5 h-3.5 -mb-3.5 -mr-4 bg-textError text-[#eee] z-50 flex items-center justify-center rounded-full'
                             >
                                 {notificationCountsData?.data}
                             </p>
