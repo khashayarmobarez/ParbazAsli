@@ -360,7 +360,7 @@ const EditEquipment = () => {
                                                 onChange={handleTextInputEquipmentSerial}
                                                 placeholder='سریال وسیله'
                                                 isSubmitted={isSubmitted}
-                                                ErrorCondition={EQUIPMENT_SERIAL_NUMBER_PATTERN.test(equipmentSerial) && equipmentSerial}
+                                                ErrorCondition={!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(equipmentSerial) && equipmentSerial}
                                                 ErrorText={'فرمت شماره سریال درست نمیباشد '}
                                                 ErrorCondition2={!equipmentSerial}
                                                 ErrorText2={

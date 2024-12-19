@@ -40,7 +40,7 @@ const ClubCourseStudentDetails = () => {
 
                 <PageTitle title={'جزئیات هنرجو '} navigateTo={historyPageUrl} /> 
 
-                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-4 relative bg-bgOutputDefault -mb-2 z-[60]`}
+                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start p-[18px] relative bg-bgOutputDefault -mb-2 z-[60]`}
                 style={{ boxShadow:'var(--shadow-all)'}}>
                     { 
                     studentData && 
@@ -48,11 +48,11 @@ const ClubCourseStudentDetails = () => {
 
                         <div className='flex w-full justify-between items-center'>
                             {/* avatar and name */}
-                            <div className='w-full h-full flex flex-col justify-between items-center gap-y-6'>  
+                            <div className='w-full h-full flex flex-col justify-between items-start gap-y-4'>  
                                 
                                 {
                                     isMobile &&
-                                    <h1 className='text-lg '>{studentData.data.name}</h1>
+                                    <h1 className='text-sm '>{studentData.data.name}</h1>
                                 }
 
                                 <Avatar alt='user picture'  src={ studentData.data.image?.path || ''} sx={{height:'99px', width:'100px', zIndex:'0'}}/>

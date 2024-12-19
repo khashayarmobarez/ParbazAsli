@@ -283,13 +283,13 @@ const PossessionTransitionEquipment = () => {
                     {
                     EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
-                            <h1 className=' text-xl font-medium text-textWarning'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
+                            <h1 className=' text-xl text-textWarning'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
                             <h1 >بعد از تایید شما میتوانید مالکیت وسیله خود را انتقال دهید</h1>
                         </div>
                     }
                     {
                     (EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
-                        <h1 className=' w-[90%] mt-10 text-xl font-medium text-textWarning'>برای فعال شدن انتقال مالکیت ابتدا باید در بخش ویرایش، سریال وسیله درج شود.</h1>
+                        <h1 className=' w-[90%] mt-10 text-xl text-textWarning'>برای فعال شدن انتقال مالکیت ابتدا باید در بخش ویرایش، سریال وسیله درج شود.</h1>
                     }
 
             </div>

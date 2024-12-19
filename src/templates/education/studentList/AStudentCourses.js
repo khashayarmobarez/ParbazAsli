@@ -51,13 +51,13 @@ const AStudentCourses = () => {
 
     return (
         <div className='flex flex-col mt-14 items-center pb-14 gap-y-6'>
-            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] '>
                 <PageTitle 
                     title={StudentCourses ? `${StudentCourses.data[0].studentName}` : 'نام هنرجو' }
                     navigateTo={`/student/studentCourses`} 
                 />
 
-                <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 '>
+                <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 lg:mt-8'>
                     { StudentCourses?.data.length < 1 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
                             <span className='w-14 h-14 mb-2'>
