@@ -50,7 +50,8 @@ const Certificate = ({certificateData}) => {
             {
                 ( certificateData.status === 'Active' || certificateData.status === 'Expired' ) &&
                 <button 
-                className={`${ButtonStyles.normalButton} self-center mt-5 text-xs`}
+                className={`${ButtonStyles.normalButton} self-center mt-5 text-xs h-10`}
+                style={{minHeight:'0'}}
                 onClick={handleRenewal}>
                     تمدید
                 </button>

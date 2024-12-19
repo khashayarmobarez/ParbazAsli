@@ -306,7 +306,7 @@ const AddCertificate = () => {
                                                         </>
                                                     }
 
-                                                    <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
+                                                    <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center mt-4`}
                                                     onClick={handleSubmit}
                                                     disabled={isSubmitting} >
                                                         تایید
