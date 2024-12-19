@@ -28,7 +28,7 @@ const SignUpOrLogin = () => {
         <div className='pt-0 flex flex-col items-center md:grid grid-cols-12 bg-bgPageMain h-full'>
             <div className='w-full mt-11 flex flex-col items-center gap-y-7 justify-center md:col-span-4 md:px-[5%]'>
 
-                <img src={logo} alt='logo' className='w-[55%] mb-4' />
+                <img src={logo} alt='logo' className='w-[55%] mb-4' onClick={() => !isDesktop && handleLogoClick()} />
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
                     <button 

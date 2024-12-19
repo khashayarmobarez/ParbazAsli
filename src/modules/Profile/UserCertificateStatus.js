@@ -27,10 +27,10 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
 
     return (
-        <div className={`w-full ${(userCertificateStatus || closeBox) && 'hidden'}`}>
+        <div className={`w-full ${(!userCertificateStatus || closeBox) && 'hidden'}`}>
 
             {
-            userCertificateStatus !== 'Expired' &&
+            userCertificateStatus === 'Expired' &&
             <div className={`w-full h-20 mt-2 rounded-3xl flex justify-start gap-x-1 bg-textError px-4 text-[#eee] relative`}>
 
                 <div className='h-full mt-[18px]'>
@@ -57,7 +57,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
             }
 
             {
-            userCertificateStatus !== 'AdminPending' && 
+            userCertificateStatus === 'AdminPending' && 
             <div className={`w-full h-20 mt-2 rounded-3xl flex justify-start gap-x-1 bg-[#17a2bb]  px-4 text-[#eee] relative`}>
 
                 <div className=' mt-[18px] w-5 h-5'>
@@ -87,7 +87,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
             }
 
             {
-            userCertificateStatus !== 'ExpireSoon' && 
+            userCertificateStatus === 'ExpireSoon' && 
             <div className={`w-full h-20 mt-2 rounded-3xl flex justify-start gap-x-1 bg-textWarning px-4 text-[#eee] relative`}>
 
                 <div className=' mt-[18px] w-5 h-5'>
