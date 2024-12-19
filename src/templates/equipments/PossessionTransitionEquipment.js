@@ -229,6 +229,7 @@ const PossessionTransitionEquipment = () => {
                                 ErrorCondition2={!USER_ID_PATTERN.test(receiverId) && receiverId}
                                 ErrorText2={'فرمت کد کاربری صحیح نمی باشد'}
                             />
+                            
                             {
                             userByIdData &&
                                 <div className='flex gap-x-1 text-textAccent self-start mt-[-12px] items-center'>
@@ -236,6 +237,7 @@ const PossessionTransitionEquipment = () => {
                                     <p>{userByIdData.data.fullName}</p>
                                 </div>
                             }
+
                             {
                             receiverId && USER_ID_PATTERN.test(receiverId) && !userByIdData &&
                                 <div className='flex gap-x-1 text-textError self-start -mt-2.5 items-center'>
@@ -258,7 +260,7 @@ const PossessionTransitionEquipment = () => {
                                 />
                             }
 
-                            <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 mt-6`}>ثبت</button>
+                            <button type="submit" onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 h-12 mt-6`}>ثبت</button>
 
 
                         </form>

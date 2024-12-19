@@ -432,7 +432,7 @@ const EditEquipment = () => {
 
 
                                 <div className='w-full flex justify-center items-center'>
-                                    <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-36 `}>ثبت </button>
+                                    <button onClick={handlePopup } className={`${ButtonStyles.addButton} w-32 `}>ثبت </button>
                                 </div>
                             </> 
                             }
@@ -451,7 +451,7 @@ const EditEquipment = () => {
 
                             <div className='w-full flex justify-around items-center'>
                                 <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                                <button disabled={isLoading} type="submit" className={`${ButtonStyles.addButton} w-24`} onClick={handleSubmit} >{isLoading ? 'صبر کنید ...' : 'تایید'}</button>
+                                <button disabled={isLoading} type="submit" className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit} >{isLoading ? 'صبر کنید ...' : 'تایید'}</button>
                             </div>
 
                         </form>

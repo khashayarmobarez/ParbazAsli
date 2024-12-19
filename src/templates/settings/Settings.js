@@ -57,7 +57,7 @@ const Settings = () => {
                     <DropDownLine  title='شخصی' icon={<UserIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown2')} onClickActivation={() => handleOpenDropDowns('dropDown2')} />
                     {
                         DropDown.includes('dropDown2') &&
-                            <EditUserSettings />
+                        <EditUserSettings />
                     }
                 </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
                                                                                                                                                                                                                                                                                                                          

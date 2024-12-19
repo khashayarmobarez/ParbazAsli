@@ -381,7 +381,7 @@ const AddClass = () => {
                             }
 
 
-                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 mt-2`}>ثبت </button>
+                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 mt-2`}>ثبت </button>
 
                         </form>
                     }

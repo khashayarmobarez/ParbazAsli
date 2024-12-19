@@ -298,6 +298,7 @@ const EditUserSettings = () => {
     if(userData && userData.data) return (
         <div className='w-full flex flex-col'>
             <div className='flex flex-col w-full space-y-4 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
+
                 <FixedInput textData={userData.data.firstName} />
                 <FixedInput textData={userData.data.lastName} />
                 <InputWithButton isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
@@ -308,6 +309,7 @@ const EditUserSettings = () => {
                     تغییر رمز عبور
                 </button>
             </div>
+            
             <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
 
             <PhoneVerificationCode handleResendCode={changePhoneNumberPopUp}  isLoading={LoadingStatus} showPopup={showPopupType === 'confirmPhone'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimePhone} code={phoneNumberCode} setCode={setPhoneNumberCode}
