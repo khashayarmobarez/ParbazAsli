@@ -130,7 +130,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                 />
 
 
-                <button type="submit" disabled={changePassLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
+                <button type="submit" disabled={changePassLoading} className={`${ButtonStyles.addButton} w-[108px] self-center text-sm`}
                 onClick={handleSubmit} >
                     {changePassLoading ? 'در حال بارگذاری...' : 'تغییر'}
                 </button>

@@ -217,7 +217,7 @@ const Login = () => {
                     رمز عبور خود را فراموش کرده‌ام
                 </p>
 
-                <button type="submit" className={`${ButtonStyles.addButton} w-36 mt-1 self-center `}
+                <button type="submit" className={`${ButtonStyles.addButton} w-32 mt-1 self-center `}
                     onClick={handleLoginSubmit} 
                     >
                     {submitLoading ?

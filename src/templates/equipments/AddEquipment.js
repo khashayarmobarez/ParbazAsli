@@ -610,7 +610,7 @@ const AddEquipment = () => {
                                 </div>
                             }
 
-                            <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                            <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 `}>ثبت</button>
 
                         </form>
 

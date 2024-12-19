@@ -364,7 +364,7 @@ const AddClub = ({isForSetting}) => {
 
                 </div>
 
-                <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
+                <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center mt-6`}
                 onClick={handleSubmit}
                 disabled={mutateClubLoading} >
                     ثبت

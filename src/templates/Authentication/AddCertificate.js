@@ -415,7 +415,7 @@ const AddCertificate = () => {
                                 {
                                     (isStarter === 'true' || level) &&
                                     <>
-                                        <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-24 self-center mt-0`}
+                                        <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-32 self-center mt-0`}
                                         onClick={handleSubmit}
                                         disabled={isSubmitting} >
                                             ثبت

@@ -265,7 +265,6 @@ const AddEmail = () => {
                 </div>
             }
 
-            
             <UserDataBox />
 
             {
@@ -316,7 +315,7 @@ const AddEmail = () => {
                         onBlur={() => setEmailFocus(false)}
                     />
 
-                    <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center `} 
+                    <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center `} 
                     onClick={handlePopUp} 
                     disabled={Submitloading}
                     >

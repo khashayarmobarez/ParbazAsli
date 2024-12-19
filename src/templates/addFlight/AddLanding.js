@@ -489,7 +489,7 @@ const AddLanding = () => {
                         <p className=''>قبلی</p>
                     </div>
 
-                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 `}>ثبت</button>
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 `}>ثبت</button>
                 
                 </div>
 
