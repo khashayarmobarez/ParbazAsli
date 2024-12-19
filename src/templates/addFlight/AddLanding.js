@@ -460,7 +460,7 @@ const AddLanding = () => {
                             isSubmitted={submitted}
                             ErrorCondition={!passengerPhoneNumber}
                             ErrorText={'شماره تماس مسافر الزامی می باشد'}
-                            ErrorCondition2={PHONE_REGEX.test(passengerPhoneNumber)}
+                            ErrorCondition2={!PHONE_REGEX.test(passengerPhoneNumber)}
                             ErrorText2={'فرمت شماره تماس اشتباه میباشد'}
                         />
                     }
@@ -498,7 +498,6 @@ const AddLanding = () => {
                     showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
                 </div>
                 
-
             </div>                                                                                                                                                                                                                                                                                           <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>
     );
