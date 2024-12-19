@@ -98,19 +98,19 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
             {
             userCertificateStatus === 'ExpireSoon' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textWarning px-4 text-[#eee]`}>
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textWarning px-3 text-[#eee]`}>
 
                 <div className='h-full flex flex-col justify-between py-4'>
 
-                    <div className='flex gap-x-2 items-center justify-center'>
+                    <div className='flex gap-x-1 items-center justify-center'>
                         
                         <WarningAmberRoundedIcon sx={{width:'20px', height:'20px'}} />
 
-                        <p className='mt-1 text-xs font-semibold text-start text-nowrap'>اخطار! {daysToCertificateExpiration} روز مانده تا انقضاء گواهینامه.</p>
+                        <p className='mt-1 text-sm font-semibold text-start text-nowrap'>اخطار! {daysToCertificateExpiration} روز تا انقضاء گواهینامه.</p>
 
                     </div>
 
-                    <p className='mr-4 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
+                    <p className='mr-3 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
 
                 </div>
 
@@ -121,7 +121,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                     onClick={() => setCloseBox(true)}
                     />
                     
-                    <p className='text-xs underline underline-offset-4'
+                    <p className='text-xs underline underline-offset-4 '
                     onClick={handleRenewalClick}>تمدید گواهینامه</p>
                     
                 </div>
