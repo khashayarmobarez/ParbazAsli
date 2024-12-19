@@ -106,7 +106,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
                     onToggle={() => handleOptionClick(option)}
                     noLabel={true}
                   />
-                  <span className="flex-grow">{option.description}</span>
+                  <span className="flex-grow text-xs">{option.description}</span>
                   <div/>
                 </li>
               ))}

@@ -402,7 +402,7 @@ const AddCourse = () => {
 
 
     return (
-        <div className='flex flex-col items-center mt-14 gap-y-8'>
+        <div className='flex flex-col items-center mt-6 gap-y-8'>
 
             <div className='w-full md:w-[55%] flex flex-col items-center gap-y-14'>
             
@@ -411,13 +411,13 @@ const AddCourse = () => {
                 <form className='w-[90%] flex flex-col items-center gap-y-6'>
 
                     <DropdownInput 
-                        id={'ddi1'} 
-                        isDeselectDeactivated={true} 
-                        name={'نوع دوره'} 
-                        options={courseTypeOptionData} 
-                        selectedOption={selectedClassType} 
-                        handleSelectChange={handleSelectClassType} 
-                        icon={<ColorTagsIcon/>}
+                    id={'ddi1'} 
+                    isDeselectDeactivated={true} 
+                    name={'نوع دوره'}
+                    options={courseTypeOptionData}
+                    selectedOption={selectedClassType}
+                    handleSelectChange={handleSelectClassType}
+                    icon={<ColorTagsIcon/>}
                     />
 
                     {selectedClassType && 

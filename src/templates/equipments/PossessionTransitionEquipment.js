@@ -267,7 +267,7 @@ const PossessionTransitionEquipment = () => {
                         <div className={` ${showPopup ? 'fixed' : 'hidden'}  backdrop-blur-lg absolute w-full h-[100vh] flex justify-center items-center z-[120]`}>
                             <div className={`${boxStyles.containerChangeOwnership}   w-[88vw] md:w-[324px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
                                 
-                                <h1 className='text-xl font-medium text-textWarning'>تاییدیه</h1>
+                                <h1 className='text-xl text-textWarning'>تاییدیه</h1>
 
                                 <h3 className=' w-[90%] text-base font-normal'>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
                             

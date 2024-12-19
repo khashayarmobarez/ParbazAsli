@@ -20,7 +20,7 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
                         </p>
                     </>
                     :
-                    <p className='text-xs font-light whitespace-nowrap' > 
+                    <p className='text-sm font-light whitespace-nowrap' > 
                         {title}
                     </p>
                     }
