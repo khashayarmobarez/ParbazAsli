@@ -98,7 +98,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
             {
             userCertificateStatus === 'ExpireSoon' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textWarning px-3 text-[#eee]`}>
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textWarning pl-2 text-[#eee]`}>
 
                 <div className='h-full flex flex-col justify-between py-4'>
 
@@ -110,7 +110,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
                     </div>
 
-                    <p className='mr-3 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
+                    <p className='mr-9 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
 
                 </div>
 
