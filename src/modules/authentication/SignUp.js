@@ -389,6 +389,7 @@ const SignUp = () => {
                         />
 
                         <Checkbox
+                            hasUnderLine={true}
                             label="با قوانین و مقررات موافقم"
                             isChecked={termsChecked}
                             onToggle={handleTermsToggle}

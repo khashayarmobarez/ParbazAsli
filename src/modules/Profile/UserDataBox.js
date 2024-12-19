@@ -78,14 +78,14 @@ const UserDataBox = ({hasCoach}) => {
                                 <span className='w-6 h-6'>
                                     <FlightQuantity />
                                 </span>
-                                <p className=' font-normal text-sm mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
+                                <p className=' font-normal text-xs mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center w-[80%]' >
                                 <span className='w-6 h-5'>
                                     <ClockIcon/>
                                 </span>
-                                <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
+                                <p className=' font-normal text-xs mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
                             </div>
                             
                             {/* condition based on coach  */}
@@ -94,7 +94,7 @@ const UserDataBox = ({hasCoach}) => {
                                     <span className='w-6 h-5'>
                                         <ClockIcon/>
                                     </span>
-                                    <p className=' font-normal text-sm mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
+                                    <p className=' font-normal text-xs mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
                                 </div>
                                 :
                                 <div/>
@@ -102,7 +102,7 @@ const UserDataBox = ({hasCoach}) => {
 
                         </div>
 
-                        <Link to='/editProfile/changeProfile' className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-full text-sm ml-[5%] `} >ویرایش پروفایل</Link>
+                        <Link to='/editProfile/changeProfile' className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-full text-base ml-[5%] `} >ویرایش پروفایل</Link>
 
                     </div>
                     <ChangePicPopUp isUserPhotoAvailable={data.data.image} showPopup={showPopUp} setShowPopup={setShowPopup} />

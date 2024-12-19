@@ -2,7 +2,7 @@ import React from 'react';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { useNavigate } from 'react-router-dom';
 
-const Checkbox = ({ label, isChecked, onToggle, openTerms, noLabel }) => {
+const Checkbox = ({ label, isChecked, onToggle, openTerms, noLabel, hasUnderLine }) => {
 
   const toggleCheckbox = () => {
     onToggle(!isChecked); // Pass the new checked state to the parent component
@@ -15,7 +15,7 @@ const Checkbox = ({ label, isChecked, onToggle, openTerms, noLabel }) => {
       </div>
       {
         !noLabel &&
-        <div className=" cursor-pointer" >{label}</div>
+        <div className={` cursor-pointer ${hasUnderLine && 'underline underline-offset-4'}`} >{label}</div>
       }
     </div>
   );

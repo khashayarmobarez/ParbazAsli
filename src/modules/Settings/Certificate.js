@@ -17,7 +17,7 @@ const Certificate = ({certificateData}) => {
     }
 
     return (
-        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between pr-4 pl-3 py-4 ' 
+        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between pr-4 pl-3 py-5 ' 
         style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)', color:'var(--text-default) ' }}>
             
             <div className=' w-full text-xs grid grid-cols-2 gap-x-4'>

@@ -75,12 +75,12 @@ const AdminPending = () => {
 
                 </div>
 
-                <p className=' text-xl'>در انتظار تایید...</p>
-                <p className=' text-base'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
+                <p className=' text-lg'>در انتظار تایید...</p>
+                <p className=' text-base -mt-4'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
 
-                <button className={`${ButtonStyles.normalButton} w-[36%] self-center mt-8 md:w-32`}
+                <button className={`${ButtonStyles.normalButton} w-[36%] self-center md:w-32`}
                 onClick={() => window.location.reload()}>
-                    تازه سازی
+                    تازه‌سازی
                 </button>
 
 

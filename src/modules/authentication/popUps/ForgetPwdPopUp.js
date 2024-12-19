@@ -442,7 +442,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                                 {
                                     codeRemainingTime < 1 &&
-                                        <p onClick={sendCodeHandler} className="text-textAccent my-2 cursor-pointer" aria-live="assertive">ارسال مجدد</p>
+                                        <p onClick={sendCodeHandler} className="text-textAccent my-2 cursor-pointer text-xs font-medium" aria-live="assertive">ارسال مجدد</p>
                                 }
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${CheckCodeLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
