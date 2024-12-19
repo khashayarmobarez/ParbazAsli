@@ -408,7 +408,7 @@ const AddCourse = () => {
             
                 <PageTitle title={'افزودن دوره'} /> 
 
-                <form className='w-[90%] flex flex-col items-center gap-y-6'>
+                <form className='w-[90%] flex flex-col items-center gap-y-6 lg:mt-8'>
 
                     <DropdownInput 
                     id={'ddi1'} 
@@ -561,14 +561,15 @@ const AddCourse = () => {
                                     />
 
                                     <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[86%] md:w-[92%] flex flex-col'>
+                                        <div className='w-[70%] md:w-[92%] flex flex-col'>
                                             <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                         </div>
                                         <span
-                                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                            className={` w-[26%] h-[48px] flex justify-center items-center rounded-lg ${ButtonStyles.normalButton}`}
+                                            style={{ borderRadius: '16px', minWidth: '0px' }}
                                             onClick={() => handleAddCustomCourse(1)}
                                         >
-                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
+                                            افزودن
                                         </span>
                                     </div>
 
@@ -595,15 +596,16 @@ const AddCourse = () => {
                                         ))}
                                     </ul>
 
-                                    <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[86%] md:w-[92%] flex flex-col'>
+                                    <div className='w-full flex justify-between relative items-center gap-y-2'>
+                                        <div className='w-[70%] flex flex-col'>
                                             <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
                                         </div>
                                         <span
-                                            className={` w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                            className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
+                                            style={{ borderRadius: '16px', minWidth: '0px' }}
                                             onClick={() => handleAddCustomCourse(2)}
                                         >
-                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
+                                            افزودن
                                         </span>
                                     </div>
 

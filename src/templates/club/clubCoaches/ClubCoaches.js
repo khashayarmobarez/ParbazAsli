@@ -227,7 +227,7 @@ const ClubCoaches = () => {
                     </div>    
 
                     <div className='flex flex-col w-full gap-y-2 mt-2'>
-                        <div className='w-full flex justify-between relative items-start gap-x-4'>
+                        <div className='w-full flex justify-between relative items-start gap-x-2'>
                             <div className='w-[70%] flex flex-col md:w-full'>
                                 <TextInput 
                                     id={'TI1'} 
@@ -243,7 +243,7 @@ const ClubCoaches = () => {
                                     />
                             </div>
                             <span
-                                className={` w-24 h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
+                                className={` w-[26%] h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
                                 onClick={handleAddCoachToClub}
                                 disabled={addCoachToClubLoading}
                                 >

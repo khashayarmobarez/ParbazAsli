@@ -37,11 +37,14 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                     <DoNotDisturbRoundedIcon sx={{width:'20px', height:'20px'}} />
                 </div>
 
-                <div className='h-full flex flex-col justify-between py-4 items-start'>
+                <div className='h-full flex flex-col justify-center gap-y-2 py-4 items-start'>
+
                     <div className='flex items-start justify-center'>
                         <p className='mt-1 text-sm font-semibold'>گواهینامه شما منقضی شده است!</p>
                     </div>
+
                     <p className='text-xs'>دسترسی شما به پنل محدود می‌باشد.</p>
+
                 </div>
 
                 <div className='absolute left-4 h-full bottom-0 flex flex-col items-end justify-between pb-4 pt-3'>
@@ -65,11 +68,14 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                 </div>
 
 
-                <div className='h-full flex flex-col justify-between py-4 items-start'>
+                <div className='h-full flex flex-col justify-center gap-y-2 py-4 items-start'>
+
                     <div className='flex items-start justify-center'>
                         <p className='mt-1 text-sm font-semibold'>گواهینامه شما در انتظار تایید است</p>
                     </div>
+
                     <p className='text-xs'>تا زمان تایید دسترسی شما محدود می‌باشد.</p>
+
                 </div>
 
                 <div className='absolute left-4 h-full bottom-0 flex flex-col items-end justify-between pb-4 pt-3'>
@@ -94,7 +100,7 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
                     <WarningAmberRoundedIcon sx={{width:'20px', height:'20px'}} />
                 </div>
 
-                <div className='h-full flex flex-col justify-between py-4 items-start'>
+                <div className='h-full flex flex-col justify-center gap-y-2 py-4 items-start'>
 
                     <div className='flex items-start justify-center'>
                         <p className='mt-1 text-sm font-semibold'>اخطار! {daysToCertificateExpiration} روز تا انقضاء گواهینامه.</p>
