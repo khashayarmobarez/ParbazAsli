@@ -20,6 +20,10 @@ const SignUpOrLogin = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const handleLogoClick = () => {
+        window.location.href = 'https://digilogbook.app/';
+    };
+
     return (
         <div className='pt-0 flex flex-col items-center md:grid grid-cols-12 bg-bgPageMain h-full'>
             <div className='w-full mt-11 flex flex-col items-center gap-y-7 justify-center md:col-span-4 md:px-[5%]'>
@@ -38,7 +42,6 @@ const SignUpOrLogin = () => {
                         ثبت نام
                     </button>
                 </div>
-
 
                 {
                     location.pathname === '/login' &&
@@ -60,7 +63,7 @@ const SignUpOrLogin = () => {
                 isDesktop &&
                 <div className='w-full h-[100dvh] relative col-span-8'>
                     <img src={authenticationBackground} alt='Authentication' className='w-full h-full object-cover' />
-                    <img src={logo} alt='logo' className='w-80 absolute left-[34%] top-[42dvh]'  />
+                    <img src={logo} alt='logo' className='w-80 absolute left-[34%] top-[42dvh] cursor-pointer' onClick={handleLogoClick} />
                 </div>
             }
         </div>

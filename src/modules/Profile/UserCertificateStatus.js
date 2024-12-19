@@ -27,62 +27,52 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
 
 
     return (
-        <div className={`w-full ${(!userCertificateStatus || closeBox) && 'hidden'}`}>
+        <div className={`w-full ${(userCertificateStatus || closeBox) && 'hidden'}`}>
 
             {
-            userCertificateStatus === 'Expired' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textError px-4 text-[#eee]`}>
+            userCertificateStatus !== 'Expired' &&
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-start gap-x-1 bg-textError px-4 text-[#eee] relative`}>
 
-                <div className='h-full flex flex-col justify-between py-4'>
-
-                    <div className='flex gap-x-2 items-center justify-center'>
-                        
-                        <DoNotDisturbRoundedIcon sx={{width:'20px', height:'20px'}} />
-
-                        <p className='mt-1 text-sm font-semibold'>گواهینامه شما منقضی شده است!</p>
-
-                    </div>
-
-                    <p className='mr-6 text-xs'>دسترسی شما به پنل محدود می‌باشد.</p>
-
+                <div className='h-full mt-[18px]'>
+                    <DoNotDisturbRoundedIcon sx={{width:'20px', height:'20px'}} />
                 </div>
 
-                <div className='flex flex-col items-end justify-between pb-4 pt-2'>
+                <div className='h-full flex flex-col justify-between py-4 items-start'>
+                    <div className='flex items-start justify-center'>
+                        <p className='mt-1 text-sm font-semibold'>گواهینامه شما منقضی شده است!</p>
+                    </div>
+                    <p className='text-xs'>دسترسی شما به پنل محدود می‌باشد.</p>
+                </div>
 
+                <div className='absolute left-4 h-full bottom-0 flex flex-col items-end justify-between pb-4 pt-3'>
                     <CloseOutlinedIcon 
                     sx={{width:'18px', height:'18px'}}
                     onClick={() => setCloseBox(true)}
                     />
-                    
                     <p className='text-xs underline underline-offset-4'
-                    onClick={handleRenewalClick}>تمدید گواهینامه</p>
-                    
+                        onClick={handleRenewalClick}>تمدید گواهینامه</p>
                 </div>
-                
+
             </div>
             }
 
             {
-            userCertificateStatus === 'AdminPending' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-[#17a2bb] pl-2 text-[#eee]`}>
+            userCertificateStatus !== 'AdminPending' && 
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-start gap-x-1 bg-[#17a2bb]  px-4 text-[#eee] relative`}>
 
-                <div className='h-full flex flex-col justify-between py-4'>
-
-                    <div className='flex gap-x-2 items-center justify-center'>
-                        
-                        <div className='w-6'>
-                            <Attention customColor={'var(--text-default)'} />
-                        </div>
-
-                        <p className='mt-1 text-sm font-semibold'>گواهینامه شما در انتظار تایید است</p>
-
-                    </div>
-
-                    <p className='mr-12 text-xs'>تا زمان تایید دسترسی شما محدود می‌باشد.</p>
-
+                <div className=' mt-[18px] w-5 h-5'>
+                    <Attention customColor={'var(--text-default)'} />
                 </div>
 
-                <div className='flex flex-col items-end justify-between pb-4 pt-2'>
+
+                <div className='h-full flex flex-col justify-between py-4 items-start'>
+                    <div className='flex items-start justify-center'>
+                        <p className='mt-1 text-sm font-semibold'>گواهینامه شما در انتظار تایید است</p>
+                    </div>
+                    <p className='text-xs'>تا زمان تایید دسترسی شما محدود می‌باشد.</p>
+                </div>
+
+                <div className='absolute left-4 h-full bottom-0 flex flex-col items-end justify-between pb-4 pt-3'>
 
                     <CloseOutlinedIcon 
                     sx={{width:'18px', height:'18px'}}
@@ -97,24 +87,24 @@ const UserCertificateStatus = ({userCertificateStatus, daysToCertificateExpirati
             }
 
             {
-            userCertificateStatus === 'ExpireSoon' && 
-            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-between bg-textWarning pl-2 text-[#eee]`}>
+            userCertificateStatus !== 'ExpireSoon' && 
+            <div className={`w-full h-20 mt-2 rounded-3xl flex justify-start gap-x-1 bg-textWarning px-4 text-[#eee] relative`}>
 
-                <div className='h-full flex flex-col justify-between py-4'>
+                <div className=' mt-[18px] w-5 h-5'>
+                    <WarningAmberRoundedIcon sx={{width:'20px', height:'20px'}} />
+                </div>
 
-                    <div className='flex gap-x-1 items-center justify-center'>
-                        
-                        <WarningAmberRoundedIcon sx={{width:'20px', height:'20px'}} />
+                <div className='h-full flex flex-col justify-between py-4 items-start'>
 
-                        <p className='mt-1 text-sm font-semibold text-start text-nowrap'>اخطار! {daysToCertificateExpiration} روز تا انقضاء گواهینامه.</p>
-
+                    <div className='flex items-start justify-center'>
+                        <p className='mt-1 text-sm font-semibold'>اخطار! {daysToCertificateExpiration} روز تا انقضاء گواهینامه.</p>
                     </div>
 
-                    <p className='mr-9 text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
+                    <p className='text-xs'>دسترسی شما به پنل محدود خواهد شد.</p>
 
                 </div>
 
-                <div className='flex flex-col items-end justify-between pb-4 pt-2'>
+                <div className='absolute left-4 h-full bottom-0 flex flex-col items-end justify-between pb-4 pt-3'>
 
                     <CloseOutlinedIcon 
                     sx={{width:'18px', height:'18px'}}
