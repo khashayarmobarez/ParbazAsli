@@ -380,7 +380,6 @@ const AddClass = () => {
                                 </ul>
                             }
 
-
                             <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 mt-2`}>ثبت </button>
 
                         </form>
