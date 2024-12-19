@@ -162,7 +162,7 @@ const MyCourseDetails = () => {
                             </div>
                             
                             <Box sx={{ width: '90%', display:'flex', flexDirection:'column', rowGap:'1rem' }}>
-                                <div className='w-full flex justify-between px-1'>
+                                <div className='w-full flex justify-between px-1 text-base'>
                                         <p>درصد پیشرفت</p>
                                         <p>{aCourseData.data.percent}%</p>
                                 </div>
