@@ -125,7 +125,7 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
                 {options?.map((option, index) => (
                   <>
                     <li
-                      key={index}
+                      key={option.id}
                       className="px-4 py-4 hover:bg-gray-100 cursor-pointer flex items-center "
                       onClick={() => handleOptionSelect(option)}
                       role="option"

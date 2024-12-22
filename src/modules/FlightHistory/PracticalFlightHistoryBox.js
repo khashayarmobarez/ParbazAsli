@@ -81,9 +81,15 @@ const PracticalFlightHistoryBox = (props) => {
                             <button className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-full flex items-center justify-center rounded-r-xl`}>
                                 <p>{flightBaseData.index}</p>
                             </button>
-                            <p>{flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}</p>
-                            <p>{flightBaseData.city && flightBaseData.city.slice(0, 10)}</p>
-                            <p>{flightBaseData.site && flightBaseData.site.slice(0, 14)}</p>
+                            <p>
+                                {flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}
+                            </p>
+                            <p>
+                                {flightBaseData.city && flightBaseData.city.slice(0, 10)}
+                            </p>
+                            <p>
+                                {flightBaseData.site && flightBaseData.site.slice(0, 14)}
+                            </p>
                             {
                             flightBaseData.status === 'Pending' &&
                                 <TimerOutlinedIcon sx={{width:'20px',height:'20px', color:'var(--text-warning)'}} />

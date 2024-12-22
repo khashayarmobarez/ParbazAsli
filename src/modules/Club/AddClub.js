@@ -100,6 +100,8 @@ const AddClub = ({isForSetting}) => {
         const formattedFromDate = formatDate(value);
         setFoundationDate(formattedFromDate);
 
+        console.log(foundationDate)
+
         // function to close the datePicker
         clickOnRightSide()
     }
@@ -107,6 +109,8 @@ const AddClub = ({isForSetting}) => {
     const handleExpirationDataChange = (value) => {
         const formattedToDate = formatDate(value);
         setExpirationDate(formattedToDate);
+
+        console.log(expirationDate)
 
         clickOnRightSide()
     }
@@ -305,7 +309,7 @@ const AddClub = ({isForSetting}) => {
                     isSubmitted={isSubmitted}
                     ErrorCondition={!foundationDate}
                     ErrorText={'تاریخ تاسیس الزامی می باشد'}
-                    ErrorCondition2={foundationDate > expirationDate && foundationDate && expirationDate}
+                    ErrorCondition2={new Date(foundationDate) > new Date(expirationDate) && foundationDate && expirationDate}
                     ErrorText2={'تاریخ تاسیس باید قبل از تاریخ انقضا باشد'}
                 />
                 
@@ -317,7 +321,7 @@ const AddClub = ({isForSetting}) => {
                     isSubmitted={isSubmitted}
                     ErrorCondition={!expirationDate}
                     ErrorText={'تاریخ انقضا الزامی می باشد'}
-                    ErrorCondition2={expirationDate < foundationDate && foundationDate && expirationDate}
+                    ErrorCondition2={new Date(expirationDate) < new Date(foundationDate) && foundationDate && expirationDate}
                     ErrorText2={'تاریخ انقضا باید بعد از تاریخ تاسیس باشد'}
                 />
 

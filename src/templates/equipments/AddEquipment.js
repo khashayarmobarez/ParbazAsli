@@ -40,6 +40,7 @@ import SerialNumberIcon from '../../components/icons/SerialNumberIcon';
 import SubmitForm from '../../components/reuseable/SubmitForm';
 import DateInput from '../../components/inputs/DateInput';
 import UserIcon from '../../components/icons/UserIcon';
+import StandardPopup from '../../components/reuseable/StandardPopup';
 
 
 const AddEquipment = () => {
@@ -615,13 +616,18 @@ const AddEquipment = () => {
                         </form>
 
                         {/* submit pop up */}
-                        <SubmitForm 
+                        <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
+                            <StandardPopup
+                            explanationtext={'در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید '}
                             showPopup={showPopup}
-                            setShowPopup={setShowPopup} 
-                            handlePost={handleSubmit} 
-                            text={'در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید'} 
-                            isLoading={isSubmitting}
-                        />
+                            setShowPopup={setShowPopup}
+                            handleSubmit={handleSubmit}
+                            loading={isSubmitting}
+                            submitText='تایید'
+                            declineText='لغو'
+                            />
+                        </div>
+                        
 
                     </>
                 }

@@ -152,7 +152,7 @@ const ClubCourses = () => {
 
                                         {courseDataLoading && 
                                             <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                                <CircularProgress /> 
+                                                <CircularProgress />
                                             </Box>
                                         }
 
@@ -248,7 +248,7 @@ const ClubCourses = () => {
                                                             {
                                                                 course.status !== 'Rejected' &&
                                                                     <button onClick={handleClubCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
-                                                                        جزئیات  
+                                                                        جزئیات
                                                                     </button>
                                                             }
 

@@ -22,7 +22,7 @@ const StandardPopup = ({ showPopup, setShowPopup, handleSubmit, topicText,explan
                 {/* for two button */}
                 {
                     !isFormWithOneButton &&
-                    <div className='w-full flex justify-center px-4 items-center gap-x-10 -mt-2'>
+                    <div className='w-full flex justify-center px-4 items-center gap-x-10'>
                         <button 
                         type="reset" 
                         className={`${ButtonStyles.normalButton} w-[108px]`} 

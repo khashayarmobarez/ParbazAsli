@@ -254,7 +254,8 @@ const ClubCourseDetails = () => {
 
             <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
                 <StandardPopup
-                showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading} 
+                showPopup={showPopup} setShowPopup={setShowPopup} 
+                loading={triggerCourseStatusLoading} 
                 handleSubmit={(event) => {
                     !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id);
                     setShowPopup(false);

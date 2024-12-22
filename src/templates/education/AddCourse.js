@@ -36,6 +36,7 @@ import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import SelectMultiplePopUp from '../../components/reuseable/SelectMultiplePopUp';
+import StandardPopup from '../../components/reuseable/StandardPopup';
 
 const AddCourse = () => {
 
@@ -584,7 +585,7 @@ const AddCourse = () => {
                                         .map((course,index) => (
                                             <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                             style={{background:  'var(--bg-output-default)',
-                                                boxShadow: 'var(--shadow-all)'}}>
+                                            boxShadow: 'var(--shadow-all)'}}>
                                                 <p className=' text-sm mx-1' >{index + 1}</p>
                                                 <p className='text-sm px-6 w-full text-start'>{course.description} </p>
                                                 <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
@@ -728,27 +729,16 @@ const AddCourse = () => {
                 </form>
 
                 {/* submit pop up */}
-                <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm z-[100] ${showPopup ? 'visible' : 'invisible'}`}>
-                    <form  className={` ${boxStyles.containerChangeOwnership} fixed  w-[304px] h-[280px] flex flex-col justify-around items-center top-52`}>
-
-                        <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
-
-                        <h3 className=' text-textWarning text-xl mt-[-3rem] '>تاییدیه</h3>
-
-                        <p className='text-base w-[90%]' >در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید </p>
-
-                        <div className='w-full flex justify-around items-center'>
-                            <button type="reset" className={`${ButtonStyles.normalButton} w-24`} onClick={() => setShowPopup(false)}>لغو</button>
-                            <button 
-                            type="submit" 
-                            onClick={handleSubmit}
-                            className={`${ButtonStyles.addButton} w-24`}
-                            disabled={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}>
-                            {addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading ? 'در حال ارسال...' : 'تایید'}
-                            </button>
-                        </div>  
-
-                    </form>
+                <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
+                    <StandardPopup 
+                    explanationtext={'در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید '}
+                    showPopup={showPopup} 
+                    setShowPopup={setShowPopup} 
+                    handleSubmit={handleSubmit}
+                    loading={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}
+                    submitText='بله' 
+                    declineText='خیر'
+                    />
                 </div>
             </div>
 

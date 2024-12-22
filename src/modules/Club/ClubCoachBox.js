@@ -39,10 +39,15 @@ const ClubCoachBox = ({ coachData }) => {
                 coachData && 
                 <div
                 onClick={clickHandler(coachData.id)} 
-                className='flex w-full justify-between items-center rounded-2xl text-xs h-16 px-2' 
-                style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)'}} >
-                    <Avatar src={coachData.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'40px', width:'40px', zIndex:'0'}} />
-                    <p>{coachData.name}</p>
+                className='flex w-full justify-between items-center rounded-2xl text-xs h-16 px-4 py-5'
+                style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)'}} 
+                >
+
+                    <div className='flex items-center justify-start gap-x-2'>
+                        <Avatar src={coachData.profilePicture?.path || ''} alt="Remy Sharp" sx={{height:'34px', width:'34px', zIndex:'0'}} />
+                        <p>{coachData.name}</p>
+                    </div>
+
                     {/* <p>کد عضویت: {coachData.id}</p> */}
                     <p className='text-textButtonMainDisabled'>
                         وضعیت:
@@ -51,6 +56,9 @@ const ClubCoachBox = ({ coachData }) => {
                         {coachData.status === 'Disable' && <span className='text-textButtonMainDisabled'> غیر فعال</span>}
                         {coachData.status === 'Rejected' && <span style={{color:'var(--text-error)'}}> رد شده</span>}
                     </p>
+
+                    <div/>
+
                 </div>
             }
         </>

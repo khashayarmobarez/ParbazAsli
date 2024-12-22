@@ -17,7 +17,7 @@ const SubmitForm = ({ showPopup, setShowPopup, handlePost, text, isLoading }) =>
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 
-                <h3 className=' text-textWarning text-xl mt-[-3rem] '>تاییدیه</h3>
+                <h3 className=' text-textWarning text-xl '>تاییدیه</h3>
 
                 <p className='text-base w-[90%]' >{text}</p>
 

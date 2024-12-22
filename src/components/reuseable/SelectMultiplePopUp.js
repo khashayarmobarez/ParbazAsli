@@ -61,10 +61,10 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
   return (
     <div className='flex flex-col w-full md:items-center ' ref={dropdownRef}>
       <div
-        ref={inputRef}
-        className={`${inputStyles.inputText2} pr-9 w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4`}
-        onClick={handleIconClick}
-        onFocus={() => setIsOpen(true)}
+      ref={inputRef}
+      className={`${inputStyles.inputText2} pr-9 w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4`}
+      onClick={handleIconClick}
+      onFocus={() => setIsOpen(true)}
       >
         <span className="absolute -mt-0 -mr-7 w-5">
           {Icon ? Icon : <Cube />}
@@ -74,15 +74,15 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
 
       {isOpen && (
         <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`}>
-          <div className='w-[90%] md:w-[40%] top-32 z-30 max-h-[65dvh] bg-bgPopUpHeaderFooter flex flex-col items-center rounded-2xl '
+          <div className='w-[90%] md:w-[40%] top-32 z-30 max-h-[65dvh] bg-bgPopUpHeaderFooter flex flex-col items-center rounded-3xl '
           style={{boxShadow:'var(--shadow-all)'}}>
-            <div className='w-full flex justify-between items-center bg-bgPopUpHeaderFooter px-2 py-4 rounded-t-2xl'>
+            <div className='w-full flex justify-between items-center bg-bgPopUpHeaderFooter px-2 py-4 rounded-t-3xl text-base'>
               <CloseIcon onClick={handleIconClick} />
               <p>{name}</p>
               <div />
             </div>
 
-            <div className='w-full py-4 bg-bgHeader px-[5%] -mb-1'>
+            <div className='w-full pt-4 bg-bgHeader px-4 '>
               <TextInput 
                 id={'TI1'}
                 customIconSize={'w-5'}
@@ -94,12 +94,12 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
               />
             </div>
 
-            <ul className="w-full bg-bgHeader flex flex-col shadow-lg max-h-[80%] overflow-auto">
+            <ul className="w-full bg-bgHeader flex flex-col shadow-lg max-h-[80%] overflow-auto px-4 py-5">
               {filteredOptions.map((option) => (
                 <li
-                  key={option.id}
-                  className="flex w-full py-3 items-center justify-between text-start px-2 hover:bg-bgHeader cursor-pointer"
-                  onClick={() => handleOptionClick(option)}
+                key={option.id}
+                className="flex w-full py-3 items-center justify-between text-start hover:bg-bgHeader cursor-pointer"
+                onClick={() => handleOptionClick(option)}
                 >
                   <Checkbox
                     isChecked={selectedOptions.some(selected => selected.id === option.id)}
@@ -112,10 +112,10 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
               ))}
             </ul>
 
-            <div className='w-full bg-bgPopUpHeaderFooter p-4 rounded-b-2xl flex item-center justify-center'>
+            <div className='w-full bg-bgPopUpHeaderFooter p-4 rounded-b-3xl flex item-center justify-center'>
               <button 
                 onClick={handleIconClick}
-                className={`${ButtonStyles.addButton} w-28 self-center`}
+                className={`${ButtonStyles.addButton} w-[108px] self-center`}
               >
                 اعمال ({selectedOptions.length})
               </button>
@@ -126,7 +126,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
 
       <div className={`flex flex-wrap items-center w-full ${selectedOptions.length > 0 && 'pt-4'} gap-y-4`}>
         {selectedOptions?.map((option, index) => (
-          <div key={option.id} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center bg-bgOutputDefault shadow-lg'>
+          <div key={option.id} className='w-full px-4 py-3 rounded-3xl flex justify-between items-center bg-bgOutputDefault shadow-lg'>
             <p className='text-sm mx-1'>{index + 1}</p>
             <p className='text-sm px-6 w-full text-start'>{option.description}</p>
             <RemoveIcon 

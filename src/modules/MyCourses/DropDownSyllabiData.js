@@ -45,7 +45,7 @@ const DropDownSyllabiData = (props) => {
                 <h3 className='text-base'>{title}</h3>
             </div>
 
-            <div className='flex gap-x-3 justify-center'>
+            <div className='flex gap-x-2 justify-center'>
                 {percent !== null &&
                     <p className={`${isExpanded && 'mt-2'} text-xs`}>{percent}%</p>
                 }
@@ -68,8 +68,10 @@ const DropDownSyllabiData = (props) => {
                     :
                     'var(--border-input-selected)',
                 }}>
-                    <p className={` text-center self-center text-xs`} >{index + 1}</p>
-                    <p className={` text-start mx-3 w-full self-center text-xs`} >{data.description}</p>
+                    <div className='flex items-center justify-start gap-x-2'>
+                        <p className={` text-center self-center text-xs`} >{index + 1}</p>
+                        <p className={` text-start mx-3 w-full self-center text-xs`} >{data.description}</p>
+                    </div>
                     {
                         data.percent === 100 ?
                         <CheckIcon sx={{color:'var(--text-accent)', width:'20px',height:'20px',}} />
