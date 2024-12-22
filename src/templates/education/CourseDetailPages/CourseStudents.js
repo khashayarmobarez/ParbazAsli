@@ -427,8 +427,9 @@ const CourseStudents = () => {
                                             }
                                         </div>
                                     ))}
-                                    {   studentsHistoryData &&
-                                        studentsData.totalPagesCount < studentsData.currentPage && 
+                                    {   
+                                    studentsHistoryData &&
+                                    studentsData.totalPagesCount < studentsData.currentPage && 
                                         <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem] text-textAccent ' >بقیه ی هنرجو ها ...</p>
                                     }
                                 </div>

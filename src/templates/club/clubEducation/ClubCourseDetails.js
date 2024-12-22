@@ -250,7 +250,6 @@ const ClubCourseDetails = () => {
                     </>
                 }
 
-
             </div>
 
             <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-50 backdrop-blur-sm`}>

@@ -250,9 +250,9 @@ const FlightsAdvancedFilter = () => {
 
                         </div>
 
-                        <div className='w-[90%] md:w-[65%] flex justify-between mt-2'>
-                            <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-40 h-12`}>اعمال فیلتر</button>
-                            <button onClick={() => {dispatch(resetAllFilters()); resetDateFunc()}} className={` ${buttonStyles.normalButton} w-40 h-12`}>حذف فیلترها</button>
+                        <div className='w-[90%] md:w-[65%] flex justify-between gap-x-[6%] mt-2'>
+                            <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-full h-12`}>اعمال فیلتر</button>
+                            <button onClick={() => {dispatch(resetAllFilters()); resetDateFunc()}} className={` ${buttonStyles.normalButton} w-full h-12`}>حذف فیلترها</button>
                         </div>
                     </>
                     

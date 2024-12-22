@@ -104,7 +104,7 @@ const ClubCourses = () => {
 
                     {
                     courseCountsData && clubCourseDividerData?.data.length > 0 &&
-                        <div className='grid grid-cols-2 w-full justify-between gap-4'>
+                        <div className='grid grid-cols-2 w-full justify-between gap-y-4 gap-x-[6%]'>
                             
                                 <div className='w-full flex flex-col items-center gap-y-2'>
                                     <p className=' text-xs'>دوره های فعال</p>

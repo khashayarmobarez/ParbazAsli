@@ -304,8 +304,8 @@ const ApproveStudentFlight = () => {
                                     </>
                                 }
 
-                                {/* landing */}
-                                <div className='w-full flex col-span-6'>
+                                    {/* landing */}
+                                    <div className='w-full flex col-span-6'>
                                         <DropDownLine 
                                             onClickActivation={() => setDropDownLanding(!DropDownLanding)}
                                             title={'Landing'} 
@@ -348,16 +348,15 @@ const ApproveStudentFlight = () => {
                                             }
                                         </>
                                     }
-
                             </div>
                             
-                            <div className='w-full flex justify-around'>
+                            <div className='w-full flex justify-between gap-x-[6%]'>
 
-                                <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-36 `}>رد پرواز</button>
+                                <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-full `}>رد پرواز</button>
 
-                                <div className='w-36 flex items-center flex-row-reverse'>
+                                <div className='w-full flex items-center flex-row-reverse'>
                                     <ArrowBackIosNewIcon sx={{position:'absolute'}} />
-                                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-36 flex`}>تایید</button>
+                                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-full flex`}>تایید</button>
                                 </div>
 
                             </div>

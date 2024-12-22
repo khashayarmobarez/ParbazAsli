@@ -281,7 +281,7 @@ const ClubCoachDetails = () => {
                         {/* trigger coach status button */}
                         {
                             coachDetails && coachDetails.data.status === 'Disable' &&
-                                <div className='fixed bottom-[4rem] w-[90%]  rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                                <div className='fixed bottom-[4rem] w-[90%]  rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30' >
                                     <button className={`${ButtonStyles.addButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
                                         <p>درخواست همکاری مجدد </p>
                                     </button>
@@ -290,7 +290,7 @@ const ClubCoachDetails = () => {
 
                         {
                             coachDetails && coachDetails.data.status === 'Active'  &&
-                                <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
+                                <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30' >
                                     <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
                                         <p>پایان همکاری</p>
                                     </button>

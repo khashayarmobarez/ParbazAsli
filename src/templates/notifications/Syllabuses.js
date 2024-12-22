@@ -135,7 +135,9 @@ const Syllabuses = () => {
 
     return (
         <div className="py-14 flex flex-col justify-center items-center gap-y-6">
+
             <PageTitle title={'سیلابس‌ها'} />
+
             <form className="w-[90%] flex flex-col gap-y-4" onSubmit={handleSubmit}>
 
                 <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
@@ -194,18 +196,18 @@ const Syllabuses = () => {
                     />
                 </div>
 
-                <div className="w-full flex justify-around mt-8">
+                <div className="w-full flex justify-between  gap-x-[6%]">
                     <button
                         disabled={isSubmitting}
                         onClick={handleReset}
-                        className={`${ButtonStyles.normalButton} w-32`}
+                        className={`${ButtonStyles.normalButton} w-full`}
                     >
                         تنظیم مجدد
                     </button>
                     <button
                         disabled={isSubmitting}
                         type="submit"
-                        className={`${ButtonStyles.addButton} w-32`}
+                        className={`${ButtonStyles.addButton} w-full`}
                     >
                         ثبت نهایی {countersSum > 0 && `(${countersSum})`}
                     </button>
