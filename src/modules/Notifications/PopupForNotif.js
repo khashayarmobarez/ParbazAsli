@@ -216,17 +216,17 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
         <div className={`z-30 w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm ${popUpData ? 'visible' : 'invisible'}`}>
             <form
             className={`${boxStyles.containerChangeOwnership} 
-            w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 rounded-lg shadow-lg gap-y-6 py-8 `}
-            >
+            w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-4 rounded-lg shadow-lg gap-y-4 `}>
+                
                 <CloseIcon
-                    sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
-                    onClick={() => setPopUpData(null)}
+                sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
+                onClick={() => setPopUpData(null)}
                 />
 
                 {
                     popUpData &&
                     <>
-                        <h1 className='text-xl text-textAccent' >توضیحات</h1>
+                        <h1 className='text-xl text-textAccent mt-6 mb-6' >توضیحات</h1>
                         <p className='text-sm  md:text-base' >{popUpData.description}</p>
                         {   popUpData.type === 'StudentFlightForm' &&
                             (
@@ -287,7 +287,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                     </button>
                                </div>
                            }
-                       </>
+                        </>
                         }
                         {   popUpData.type === 'AcceptStudentInCourse' &&
                             <>
@@ -356,14 +356,14 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         {   (popUpData.type === 'AcceptUserEquipment' || popUpData.type === 'AcceptClubEquipment') &&
                             <>
                                 {
-                                    popUpData.status === 'Expired' ?
+                                popUpData.status === 'Expired' ?
                                     <div className='flex w-full justify-between gap-x-2'>
                                         <button 
-                                            type="submit" 
-                                            disabled={true} 
-                                            className={`${ButtonStyles.normalButtonDisable} w-28`} >
-                                                تایید
-                                            </button>
+                                        type="submit" 
+                                        disabled={true} 
+                                        className={`${ButtonStyles.normalButtonDisable} w-28`} >
+                                            تایید
+                                        </button>
                                         <button 
                                         disabled={true} 
                                         className={`${ButtonStyles.normalButtonDisable} `} >
