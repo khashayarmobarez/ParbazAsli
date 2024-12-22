@@ -356,7 +356,7 @@ const ChangeProfile = () => {
                                 <InputWithButton isLoading={phoneNumLoading} isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
                                 <InputWithButton isLoading={emailLoading} Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} value={email} />
 
-                                <button type="submit" className={`${ButtonStyles.normalButton} w-24 self-center mt-4`} 
+                                <button type="submit" className={`${ButtonStyles.normalButton} w-[170px] self-center mt-4`} 
                                 onClick={() => setShowPopupType('changePassword')}>
                                     تغییر رمز عبور
                                 </button>

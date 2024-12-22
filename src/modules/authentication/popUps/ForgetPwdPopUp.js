@@ -422,7 +422,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                             className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                                             key={index}
                                             type="text"
-                                            autocomplete="one-time-code"
+                                            autoComplete="one-time-code"
                                             maxLength={1}
                                             onChange={(e) => handleCodeInput(e, index)}
                                             ref={ref}

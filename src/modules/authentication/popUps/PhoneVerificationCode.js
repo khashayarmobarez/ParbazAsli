@@ -111,7 +111,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                             className={`text-2xl rounded-none shadow-none w-10 flex p-2 text-center border`}
                             key={index}
                             type="text"
-                            autocomplete="one-time-code"
+                            autoComplete="one-time-code"
                             maxLength={1}
                             onChange={(e) => handleInput(e, index)}
                             ref={ref}

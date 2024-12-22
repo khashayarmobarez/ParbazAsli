@@ -72,16 +72,16 @@ const AddFlight = () => {
 
 
     return (
-        <div className='flex flex-col items-center pt-14 pb-8'>
+        <div className='flex flex-col items-center pt-12 pb-4'>
             <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10 lg:w-[55%]'>
 
             <PageTitle title={'ثبت پرواز'} navigateTo={-1} />
 
-            <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col py-10 gap-y-8 md:py-8`}>
+            <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col gap-y-8 md:py-8`}>
 
-                    <div className=' grid grid-cols-12 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-12 md:gap-y-4'>
+                    <div className=' grid grid-cols-12 gap-2 w-full p-4 md:grid-cols-12 md:gap-y-4'>
 
-                        <div className='flex w-full flex-col items-start gap-y-1 col-span-4 md:col-span-4'>
+                        <div className='flex w-full flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
                             <p className=' text-xs pr-2'>پرواز</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p>{flightCount && flightCount}</p>
@@ -89,14 +89,14 @@ const AddFlight = () => {
                         </div>
                         
 
-                        <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-4'>
+                        <div className='flex flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
                             <p className=' text-xs pr-2'>تاریخ پرواز</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-2 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p className=' text-end'>{ shamsiFlightData}</p>
                             </div>
                         </div>
 
-                        <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-4'>
+                        <div className='flex flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
                             <p className=' text-xs pr-2'>زمان پرواز</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p>{ flightDuration ? flightDuration : '0' } min</p>
@@ -105,7 +105,7 @@ const AddFlight = () => {
 
                         {
                             coachName && flightType === 'Course' &&
-                            <div className='flex flex-col items-start gap-y-1 col-span-12 md:col-span-12'>
+                            <div className='flex flex-col items-start gap-y-2 col-span-12 md:col-span-12'>
                                 <p className=' text-xs pr-2'>نام مربی</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                     <p>{coachName}</p>
@@ -115,7 +115,7 @@ const AddFlight = () => {
 
                         {
                             courseName && 
-                            <div className='flex flex-col items-start gap-y-1 col-span-6 md:col-span-6'>
+                            <div className='flex flex-col items-start gap-y-2 col-span-6 md:col-span-6'>
                                 <p className=' text-xs pr-2'>نام دوره</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                     <p>{courseName}</p> 
@@ -125,7 +125,7 @@ const AddFlight = () => {
                         
                         {
                             clubName &&
-                            <div className='flex flex-col items-start gap-y-1 col-span-6 md:col-span-6'>
+                            <div className='flex flex-col items-start gap-y-2 col-span-6 md:col-span-6'>
                                 <p className=' text-xs pr-2'>نام باشگاه</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data' >
                                     <p>{clubName}</p>
@@ -135,7 +135,7 @@ const AddFlight = () => {
 
                         {
                             flightType && flightType !== 'Course' &&
-                            <div className='flex flex-col items-start gap-y-1 col-span-12 md:col-span-14'>
+                            <div className='flex flex-col items-start gap-y-2 col-span-12 md:col-span-14'>
                                 <p className=' text-xs pr-2'>نوع پرواز</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                     <p>{flightType === 'Tandem' && 'تندم'}</p>

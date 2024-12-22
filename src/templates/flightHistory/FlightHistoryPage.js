@@ -407,9 +407,10 @@ const FlightHistoryPage = () => {
 
                             </div>
 
-                            {fullFlightData.data.igcFile &&
+                            {
+                            !fullFlightData.data.igcFile &&
                                 <div className='w-full'>
-                                    <button onClick={() => window.open(fullFlightData.data.igcFile.path, '_blank')} className={`${ButtonStyles.normalButton} text-base w-12`}>مشاهده IGC</button>
+                                    <button onClick={() => window.open(fullFlightData.data.igcFile.path, '_blank')} className={`${ButtonStyles.normalButton} text-base w-[120px]`}>مشاهده IGC</button>
                                 </div>
                             }
 
