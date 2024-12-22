@@ -18,10 +18,10 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
     }, [notif])
 
     return (
-        <div className=' w-full h-auto rounded-2xl flex items-center justify-between px-4 py-2'
+        <div className=' w-full h-auto rounded-2xl flex items-center justify-between px-4 py-4'
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
-            <div className='text-xs flex flex-col justify-center items-start space-y-2'
+            <div className='text-xs h-full flex flex-col justify-between items-start gap-y-2'
             onClick={handleActivatePopUp}>
 
                 <div className=' flex justify-center items-center gap-x-2'>
@@ -45,7 +45,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
             <div>
                 {
                     notif.status === 'Expired' ?
-                    <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2'>
+                    <div className='flex flex-col w-45% h-full justify-center items-end gap-y-2'>
 
                         <button 
                         className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >
@@ -56,7 +56,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
 
                     </div>
                     :
-                    <div className='flex flex-col w-45% h-full justify-around items-end gap-y-2'>
+                    <div className='flex flex-col w-45% h-full justify-center items-end gap-y-2'>
 
                         <button 
                         onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}

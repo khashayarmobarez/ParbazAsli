@@ -279,9 +279,9 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                                            تایید
                                     </button>
                                     <button 
-                                        disabled={triggerStudentStatusLoading} 
-                                        onClick={(event) => handleTriggerClubStatus( 'rejected', parseInt(popUpData.externalId), event) }
-                                        className={`${ButtonStyles.normalButton}`} 
+                                    disabled={triggerStudentStatusLoading} 
+                                    onClick={(event) => handleTriggerClubStatus( 'rejected', parseInt(popUpData.externalId), event) }
+                                    className={`${ButtonStyles.normalButton}`} 
                                     >
                                             رد
                                     </button>
