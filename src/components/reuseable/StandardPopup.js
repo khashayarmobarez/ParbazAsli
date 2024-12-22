@@ -15,14 +15,14 @@ const StandardPopup = ({ showPopup, setShowPopup, handleSubmit, topicText,explan
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{position:'absolute', top:'1rem', right:'1rem'  }} />
 
-                <h3 className=' text-textError text-xl '>{topicText || 'تاییدیه'}</h3>
+                <h3 className=' text-textWarning text-xl '>{topicText || 'تاییدیه'}</h3>
 
-                <p className='text-sm w-[90%] mt-4' >{explanationtext || 'توضیحات'}</p>
+                <p className='text-base w-[90%] mt-4' >{explanationtext || 'توضیحات'}</p>
 
                 {/* for two button */}
                 {
                     !isFormWithOneButton &&
-                    <div className='w-full flex justify-center px-4 items-center gap-x-10'>
+                    <div className='w-full flex justify-center px-4 items-center gap-x-10 mt-4'>
                         <button 
                         type="reset" 
                         className={`${ButtonStyles.normalButton} w-[108px]`} 

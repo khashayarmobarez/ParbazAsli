@@ -91,7 +91,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
     return (
         <div className={` w-full h-full backdrop-blur-sm fixed inset-0 flex items-center justify-center z-[50] ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] gap-y-2 flex flex-col z-[50] justify-around items-center relative bg-white p-5 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] gap-y-4 flex flex-col z-[50] justify-around items-center relative bg-white p-4 rounded-lg shadow-lg`}
             >
                 <CloseIcon
                     onClick={() => setShowPopup(false)}
@@ -99,9 +99,9 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
                 />
 
                 {/* upload picture */}
-                <p className='text-xl text-textAccent mt-4 mb-2'>آپلود عکس پروفایل</p>
+                <p className='text-xl text-textAccent mt-4'>آپلود عکس پروفایل</p>
                 
-                <div onClick={handleUploadClick} className='w-32 h-32 self-center flex justify-center items-center border-dashed border-2 rounded-full'
+                <div onClick={handleUploadClick} className='w-28 h-28 mt-4 self-center flex justify-center items-center border-dashed border-2 rounded-full'
                 style={{borderColor:'var(--text-default)', backgroundColor:'var(--bg-upload-file)'}}>
 
                     <input
@@ -128,19 +128,19 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
                     
                 </div>
                 
-                <p className='text-xs mt-2'>فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد</p>
-                <p className='text-xs'>حجم عکس ها نباید بیشتر از 10 مگابایت باشد</p>
+                <p className='text-xs mt-4'>فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد</p>
+                <p className='text-xs -mt-4'>حجم عکس ها نباید بیشتر از 10 مگابایت باشد</p>
                 
-                <div className='w-full flex justify-around items-center mt-4'>
+                <div className='w-full flex justify-center items-center gap-x-10 mt-4'>
 
                     {
                         isUserPhotoAvailable &&
-                            <button type="reset" disabled={isDeleting}  className={`${ButtonStyles.normalButton} w-28 text-sm `} onClick={handleRemove} >
+                            <button type="reset" disabled={isDeleting}  className={`${ButtonStyles.normalButton} w-[108px] text-sm `} onClick={handleRemove} >
                                 {isDeleting ? 'در حال حذف...' : 'حذف عکس فعلی'}
                             </button>
                     }
                     
-                    <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
+                    <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-[108px] self-center text-sm`}
                     onClick={handleSubmit} >
                         {isLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
                     </button>
