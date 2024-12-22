@@ -672,7 +672,7 @@ const AddCourse = () => {
                                             <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
                                         </span> */}
                                         {studentData?.data && (
-                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-20 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
                                             
                                                 <div className='flex flex-col w-full items-center justify-center '>
                                                     <li
@@ -692,9 +692,11 @@ const AddCourse = () => {
                                         {studentsData && studentsData?.map((student,index) => (
                                             <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                             style={{background:  'var(--bg-output-default)',
-                                                boxShadow: 'var(--shadow-all)'}}>
-                                                <p className=' text-sm mx-1' >{index + 1}</p>
-                                                <p className=' text-sm px-6 w-full text-start' >{student.name}</p>
+                                            boxShadow: 'var(--shadow-all)'}}>
+                                                <div className='flex items-center justify-start gap-x-2'>
+                                                    <p className=' text-sm px-1' >{index + 1}</p>
+                                                    <p className=' text-sm  w-full text-start' >{student.name}</p>
+                                                </div>
                                                 <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
                                                 boxShadow: 'var(--shadow-all)',
                                                 borderRadius:'0.5rem',

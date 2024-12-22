@@ -344,28 +344,28 @@ const CourseStudents = () => {
                             <p className='text-textError self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                         }
                         {
-                            aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
-                                <div className='w-full flex justify-between relative items-center gap-x-4'>
-                                    <div className='w-[70%] md:w-full flex flex-col'>
-                                        <TextInput 
-                                        id={'TI1'} 
-                                        value={studentId} 
-                                        onChange={handleInputStudentId} 
-                                        placeholder='افزودن هنرجو' 
-                                        className='w-full' 
-                                        isSubmitted={isSubmitted}
-                                        ErrorCondition={!studentId}
-                                        ErrorText={'کد هنرجو را وارد کنید'}
-                                        />
-                                    </div>
-                                    <span
-                                        className={` w-[26%] h-12 flex justify-center items-center rounded-2xl bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}
-                                        onClick={handleAddStudnetToCourse}
-                                        disabled={addStudentToCourseLoading}
-                                    >
-                                       افزودن
-                                    </span>
+                        aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
+                            <div className='w-full flex justify-between relative items-center gap-x-4'>
+                                <div className='w-[70%] md:w-full flex flex-col'>
+                                    <TextInput 
+                                    id={'TI1'} 
+                                    value={studentId} 
+                                    onChange={handleInputStudentId} 
+                                    placeholder='افزودن هنرجو' 
+                                    className='w-full' 
+                                    isSubmitted={isSubmitted}
+                                    ErrorCondition={!studentId}
+                                    ErrorText={'کد هنرجو را وارد کنید'}
+                                    />
                                 </div>
+                                <span
+                                    className={` w-[26%] h-12 flex justify-center items-center rounded-2xl bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}
+                                    onClick={handleAddStudnetToCourse}
+                                    disabled={addStudentToCourseLoading}
+                                >
+                                    افزودن
+                                </span>
+                            </div>
                         }
                     </div>
 
