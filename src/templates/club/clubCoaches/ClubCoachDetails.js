@@ -137,14 +137,14 @@ const ClubCoachDetails = () => {
                     }
 
                     {coachDetails &&
-                        <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-6 relative bg-bgOutputDefault'
+                        <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-4 relative bg-bgOutputDefault'
                         style={{ boxShadow:'var(--shadow-all)'}}>
 
                             {/* <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
                                 <ArrowButton />
                             </span> */}
 
-                            <div className=' w-full flex items-center justify-between gap-y-4 pl-8'>
+                            <div className=' w-full flex items-center justify-between gap-y-4 pl-[15%] md:pl-[13%] lg:pl-[7%]'>
                                 <p className='text-base' style={{color:'var(--text-accent)'}}>{coachDetails.data.name}</p>
                                 <p className='text-textButtonMainDisabled'>
                                     وضعیت:

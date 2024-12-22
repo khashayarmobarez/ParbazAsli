@@ -211,7 +211,7 @@ const EquipmentsList = () => {
                             <div key={index} className='w-full flex flex-col gap-4 '>
                                 <div className='w-full flex flex-col items-center'>
 
-                                    <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:gap-6 `} 
+                                    <div key={equipment.id} className={`bg-bgCard z-10 w-full justify-between items-center px-5 py-4 rounded-[34px] flex flex-col gap-y-4 md:gap-6 `} 
                                     style={{boxShadow:'var(--shadow-all)'}}>
 
                                         {
@@ -321,7 +321,7 @@ const EquipmentsList = () => {
                     userEquipmentsData.data &&
                     userEquipmentsData.data.filter(equipment => equipment.ownershipType === 'Temporary').map((equipment, index) =>
                         <div key={equipment.id} className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                            <div className={`w-full justify-between items-center px-5 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 bg-bgCard `}
+                            <div className={`w-full justify-between items-center px-5 py-4 rounded-[34px] flex flex-col gap-y-4 md:col-span-1 bg-bgCard `}
                             style={{boxShadow:'var(--shadow-all)'}}>
 
                                 <p className='font-medium text-sm'>{equipment.remainingDaysToExpire} روز از دوره انتقال مانده</p>
@@ -367,7 +367,7 @@ const EquipmentsList = () => {
                         userEquipmentsHistoryData.data &&
                         userEquipmentsHistoryData.data.map((equipment, index) =>
                             <div key={index} className='w-full flex flex-col gap-4 '>
-                                <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[1.6rem] flex gap-y-6 md:col-span-1 bg-bgCard`} 
+                                <div key={equipment.id} className={`w-full justify-between items-center px-2 py-4 rounded-[34px] flex gap-y-4 md:col-span-1 bg-bgCard`} 
                                 style={{boxShadow:'var(--shadow-all)'}}>
 
                                     <div className=' w-auto text-xs flex flex-col justify-between items-start gap-y-2'>
