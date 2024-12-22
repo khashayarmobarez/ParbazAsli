@@ -77,8 +77,8 @@ const PracticalFlightHistoryBox = (props) => {
                 {
                     flightBaseData &&
                     <div className='w-full flex flex-col items-center'>
-                        <div onClick={() => handleClick(flightBaseData.id)} className={`${gradients.container} flex w-full justify-between items-center h-12 pl-3 rounded-2xl text-xs z-10`} >
-                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-14 h-full flex items-center justify-center rounded-r-xl`}>
+                        <div onClick={() => handleClick(flightBaseData.id)} className={`${gradients.container} flex w-full justify-between items-center h-12 pl-4 rounded-2xl text-xs z-10`} >
+                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-full flex items-center justify-center rounded-r-xl`}>
                                 <p>{flightBaseData.index}</p>
                             </button>
                             <p>{flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}</p>

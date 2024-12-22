@@ -225,11 +225,15 @@ const CourseStudents = () => {
                         <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-xs`}
                             >
-                                <span onClick={() => handleClickStudent(student.id)}>
-                                    <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}}  />
-                                </span>
-                                <p className={`${student.status === 'Active' ? 'text-textWarning' : ''}`}
-                                onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
+                                <div className='flex items-center justify-start gap-x-2'>
+                                    <span onClick={() => handleClickStudent(student.id)}>
+                                        <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}} />
+                                    </span>
+                                    <p className={`${student.status === 'Active' ? 'text-textWarning' : ''}`}
+                                    onClick={() => handleClickStudent(student.id)}>
+                                        {student.percent}%
+                                    </p>
+                                </div>
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>
                                 <p className='text-textButtonMainDisabled'
@@ -250,7 +254,7 @@ const CourseStudents = () => {
                                     :
                                     student.id
                                 )}
-                                className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-12 flex items-center justify-center rounded-l-2xl`}>
+                                className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-12 flex items-center justify-center rounded-l-2xl`}>
                                     <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
                                 </button>
                                 }
@@ -371,7 +375,7 @@ const CourseStudents = () => {
                         <div  className='w-full flex flex-col items-center gap-y-4'>
                             <DropDownLine  
                                 onClickActivation={() => setDropDownHistory(!DropDownHistory)}
-                                title={'هنر جویان سابق'} 
+                                title={'هنرجویان سابق'} 
                                 dropDown={DropDownHistory} 
                                 isActive={DropDownHistory === true}  
                             />
@@ -380,14 +384,17 @@ const CourseStudents = () => {
                                 <div className='w-full flex flex-col items-center gap-y-4'>
                                     {studentsHistoryData.data?.map((student,index) => (
                                         <div key={index} className={`flex flex-col w-full ${showHistoryStudentOptions === student.id && 'z-30'}`}>
-                                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm`}>
-                                                <span onClick={() => handleClickStudent(student.id)}>
-                                                    <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}} />
-                                                </span>
-                                                <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
-                                                onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
+                                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-xs`}>
+                                                
+                                                <div className='flex items-center justify-start gap-x-2'>
+                                                    <span onClick={() => handleClickStudent(student.id)}>
+                                                        <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}} />
+                                                    </span>
+                                                    <p className={`${student.percent > 50 ? 'text-textAccent' : 'text-textError'}`}
+                                                    onClick={() => handleClickStudent(student.id)}>{student.percent}%</p>
+                                                </div>
                                                 <p onClick={() => handleClickStudent(student.id)}>{student.name}</p>
-                                                <p className='text-textButtonMainDisabled'
+                                                <p className='text-textButtonMainDisabled '
                                                 onClick={() => handleClickStudent(student.id)}>
                                                     وضعیت: 
                                                     {student.status === 'Completed' && <span className='text-textAccent '> تمام شده</span>}
@@ -408,7 +415,7 @@ const CourseStudents = () => {
                                                             student.id
                                                         )}
                                                     // onClick={() => navigate('/education/StudentDetails')}
-                                                    className={`${gradients.clipboardButtonBackgroundGradient} w-12 h-full flex items-center justify-center rounded-l-2xl`}
+                                                    className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-full flex items-center justify-center rounded-l-2xl`}
                                                     >
                                                         <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
                                                     </button>
