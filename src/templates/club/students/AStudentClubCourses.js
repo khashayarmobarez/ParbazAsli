@@ -62,7 +62,7 @@ const AStudentClubCourses = () => {
 
                 {/* {studentId} normal */}
 
-                <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 lg:mt-6'>
+                <div className='w-[90%] flex flex-col gap-y-4 md:grid md:grid-cols-2 lg:mt-6'>
 
                     { StudentCourses?.data.length < 1 &&
                         <div className='w-full h-[60vh] flex flex-col justify-center items-center text-textWarning'>
@@ -78,7 +78,7 @@ const AStudentClubCourses = () => {
                             
                             <div key={index} className='w-full flex flex-col items-center'>
 
-                                <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
+                                <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center p-4 gap-y-4 mt-1`}>
 
 
                                     <div className='w-full flex justify-between'>
@@ -98,9 +98,9 @@ const AStudentClubCourses = () => {
                                             :
                                             <p
                                             className={`
-                                                ${courseData.status === 'Completed'&& 'text-textAccent'}
-                                                ${courseData.status === 'Canceled'&& 'text-textError'}
-                                                ${courseData.status === 'Active'&& ''}
+                                            ${courseData.status === 'Completed' && 'text-textAccent' }
+                                            ${courseData.status === 'Canceled' && 'text-textError' }
+                                            ${courseData.status === 'Active' && '' }
                                             `}
                                             >{courseData.percent}%</p>
                                         }

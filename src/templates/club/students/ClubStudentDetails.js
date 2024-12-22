@@ -46,7 +46,7 @@ const ClubCourseStudentDetails = () => {
                     studentData && 
                     <div className='w-full flex flex-col justify-between items-center gap-y-6'>
 
-                        <div className='flex w-full justify-between items-center'>
+                        <div className='flex w-full justify-between items-start'>
                             {/* avatar and name */}
                             <div className='w-full h-full flex flex-col justify-between items-start gap-y-4'>  
                                 
@@ -71,7 +71,7 @@ const ClubCourseStudentDetails = () => {
 
 
                             {/* user studentData.data */}
-                            <div className='w-full flex flex-col justify-between items-center gap-y-6'>
+                            <div className='w-full flex flex-col justify-between items-start gap-y-6'>
 
                                 {
                                     isMobile && studentData.data &&
@@ -95,7 +95,7 @@ const ClubCourseStudentDetails = () => {
                                     </p>
                                 }
 
-                                <div className='w-full flex flex-col items-start justify-between gap-y-2 mr-4 text-sm md:pr-[20%]'>
+                                <div className='w-full flex flex-col items-start justify-between gap-y-2  text-sm md:pr-[20%]'>
                                     <p className='flex gap-x-2'>
                                         <span className='w-5 h-5'>
                                             <FlightQuantity/>
