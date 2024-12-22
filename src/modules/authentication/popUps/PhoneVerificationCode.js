@@ -97,14 +97,14 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
     return (
         <div className={` w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm z-[120] ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-5 pt-8 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-4 rounded-lg shadow-lg`}
             >
                 <CloseIcon
                     onClick={() => setShowPopup(false)}
                     sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
-                <h3 className="text-textAccent text-xl">کد تایید ارسال شده را وارد کنید</h3>
-                <div dir="ltr" className="w-full flex justify-center gap-5 relative my-6">
+                <h3 className="text-textAccent text-xl mt-10">کد تایید ارسال شده را وارد کنید</h3>
+                <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-[10px] mb-[60px]">
                     {inputRefs.current.map((ref, index) => (
                         <input
                             style={{ border: 'none', borderBottom: '2px var(--text-default) solid ', background: 'transparent'}}

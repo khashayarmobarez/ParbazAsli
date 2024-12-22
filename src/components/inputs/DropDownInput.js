@@ -6,6 +6,7 @@ import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
 const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
+  
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -109,37 +110,39 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
               role="listbox"
             >
               {!isDeselectDeactivated && (
-                <li
-                  className="px-4 py-4 hover:bg-gray-100 cursor-pointer flex text-textButtonProfileDisable"
-                  onClick={() => handleOptionSelect(null)}
-                  role="option"
-                  aria-selected={!selectedOption}
-                >
-                  <span className="w-6 h-6 ml-2 border-2 border-textAccent rounded-full flex items-center justify-center">
-                    {!selectedOption && <span className="w-3 h-3 bg-textAccent rounded-full "></span>}
-                  </span>
-                  {name || 'انتخاب کنید'}
-                </li>
+                <>
+                  <li
+                    className="p-5 hover:bg-gray-100 cursor-pointer flex"
+                    onClick={() => handleOptionSelect(null)}
+                    role="option"
+                    aria-selected={!selectedOption}
+                  >
+                    <span className="w-6 h-6 ml-2 border-2 border-textAccent rounded-full flex items-center justify-center">
+                      {!selectedOption && <span className="w-3 h-3 bg-textAccent rounded-full "></span>}
+                    </span>
+                    {name || 'انتخاب کنید'}
+                  </li>
+                  <div className="w-full h-[1px] bg-[#535353]" />
+                </>
               )}
-              {/* <div className="w-full h-[1px] bg-[#1d1d1d]" /> */}
-                {options?.map((option, index) => (
-                  <>
-                    <li
-                      key={option.id}
-                      className="px-4 py-4 hover:bg-gray-100 cursor-pointer flex items-center "
-                      onClick={() => handleOptionSelect(option)}
-                      role="option"
-                      aria-selected={selectedOption?.id === option.id}
-                    >
-                      <span className="w-6 h-6 ml-2 border-2 border-textAccent rounded-full flex items-center justify-center">
-                        {selectedOption?.id === option.id && <span className="w-3 h-3 bg-textAccent rounded-full"></span>}
-                      </span>
-                      {option.name}
-                    </li>
-                    {/* Add a separator after each option except the last one */}
-                    {index < options.length - 1 && <div className="w-full h-[1.8px] bg-[#535353]" />}
-                  </>
-                ))}
+              {options?.map((option, index) => (
+                <>
+                  <li
+                    key={option.id}
+                    className="p-5 hover:bg-gray-100 cursor-pointer flex items-center "
+                    onClick={() => handleOptionSelect(option)}
+                    role="option"
+                    aria-selected={selectedOption?.id === option.id}
+                  >
+                    <span className="w-6 h-6 ml-2 border-2 border-textAccent rounded-full flex items-center justify-center">
+                      {selectedOption?.id === option.id && <span className="w-3 h-3 bg-textAccent rounded-full"></span>}
+                    </span>
+                    {option.name}
+                  </li>
+                  {/* Add a separator after each option except the last one */}
+                  {index < options.length - 1 && <div className="w-full h-[1.8px] bg-[#535353]" />}
+                </>
+              ))}
               </ul>
           </div>
           )}

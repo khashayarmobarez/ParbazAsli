@@ -255,17 +255,18 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                            {
                                popUpData.status === 'Expired' ?
                                <div className='flex w-full justify-between gap-x-2'>
-                                   <button 
-                                       type="submit" 
-                                       disabled={true} 
-                                       className={`${ButtonStyles.normalButtonDisable}  w-28`} >
-                                           تایید
-                                       </button>
-                                   <button 
-                                   disabled={true} 
-                                   className={`${ButtonStyles.normalButtonDisable}  `} >
+                                    <button
+                                    type="submit"
+                                    disabled={true}
+                                    className={`${ButtonStyles.normalButtonDisable}  w-28`}>
+                                        تایید
+                                    </button>
+                                    <button
+                                    disabled={true}
+                                    className={`${ButtonStyles.normalButtonDisable}`}
+                                    >
                                        رد
-                                   </button>
+                                    </button>
                                </div>
                                :
                                <div className='flex w-full justify-between gap-x-2'>

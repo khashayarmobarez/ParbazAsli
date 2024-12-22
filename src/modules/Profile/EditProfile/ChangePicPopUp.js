@@ -91,17 +91,17 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
     return (
         <div className={` w-full h-full backdrop-blur-sm fixed inset-0 flex items-center justify-center z-[50] ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] gap-y-4 flex flex-col z-[50] justify-around items-center relative bg-white p-4 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[324px] gap-y-4 flex flex-col z-[50] justify-around items-center relative bg-white p-4 rounded-lg shadow-lg`}
             >
                 <CloseIcon
-                    onClick={() => setShowPopup(false)}
-                    sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
+                onClick={() => setShowPopup(false)}
+                sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 />
 
                 {/* upload picture */}
                 <p className='text-xl text-textAccent mt-4'>آپلود عکس پروفایل</p>
                 
-                <div onClick={handleUploadClick} className='w-28 h-28 mt-4 self-center flex justify-center items-center border-dashed border-2 rounded-full'
+                <div onClick={handleUploadClick} className='w-28 h-28 self-center flex justify-center items-center border-dashed border-2 rounded-full'
                 style={{borderColor:'var(--text-default)', backgroundColor:'var(--bg-upload-file)'}}>
 
                     <input
@@ -128,10 +128,10 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
                     
                 </div>
                 
-                <p className='text-xs mt-4'>فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد</p>
+                <p className='text-xs'>فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد</p>
                 <p className='text-xs -mt-4'>حجم عکس ها نباید بیشتر از 10 مگابایت باشد</p>
                 
-                <div className='w-full flex justify-center items-center gap-x-10 mt-4'>
+                <div className='w-full flex justify-center items-center gap-x-10'>
 
                     {
                         isUserPhotoAvailable &&

@@ -160,9 +160,9 @@ const Syllabuses = () => {
                         <div className="flex w-full justify-between items-center">
                             <div className='flex items-center justify-start gap-x-2'>
                                 <p>{index + 1}.</p>
-                                <p className='w-[60%]'>{syllabus.description}</p>
+                                <p className='w-[70%] text-start'>{syllabus.description}</p>
                             </div>
-                            <div className="flex items-center justify-between w-24">
+                            <div className="flex items-center justify-between gap-x-2">
                                 <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault`}
                                 style={{ boxShadow:'var(--shadow-all)' }}
                                 onClick={() => handleIncrement(index)}>
