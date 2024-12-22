@@ -42,8 +42,8 @@ const DropDownDataBox = (props) => {
 
         {
             data && isExpanded &&
-            data.map((data,index) => (
-                <div key={data.id} className='w-full flex justify-start gap-x-8 px-6 h-12 items-center rounded-2xl bg-bgOutputDefault'>
+            data.map((data) => (
+                <div key={data.id} className='w-full flex justify-start gap-x-2 px-6 h-12 items-center rounded-2xl bg-bgOutputDefault'>
                     <p className={`${isExpanded ? 'block' : 'hidden'} text-xs`} >{data.order}</p>
                     <p className={`${isExpanded ? 'block' : 'hidden'} text-xs text-start`} >{data.description}</p>
                 </div>

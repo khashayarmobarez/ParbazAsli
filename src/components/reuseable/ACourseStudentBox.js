@@ -20,21 +20,26 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
 
 
     return (
-            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 px-4 rounded-2xl text-sm`}
+            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 p-4 rounded-2xl text-sm`}
             onClick={handleClickStudent}>
 
-                <span>
-                    <PersonOutlineOutlinedIcon />
-                </span>
-                
-                <p className='-mr-4'>{studentData.fullName}</p>
+
+                <div className='w-full flex items-center justify-start gap-x-2'>
+
+                    <span>
+                        <PersonOutlineOutlinedIcon />
+                    </span>
+                    
+                    <p className=''>{studentData.fullName}</p>
+                    
+                </div>
 
                 {
                     !isForHistory &&
-                    <p className='text-[var(--text-accent)]'>دوره فعال:{studentData.activeCourseCount}</p>
+                    <p className='text-[var(--text-accent)] w-full'>دوره فعال:{studentData.activeCourseCount}</p>
                 }
                  
-                <p>دوره غیر فعال:{studentData.disableCourseCount}</p>
+                <p className='w-full'>دوره غیر فعال:{studentData.disableCourseCount}</p>
 
             </div>
     );
