@@ -136,86 +136,87 @@ const Syllabuses = () => {
     return (
         <div className="py-14 flex flex-col justify-center items-center gap-y-6">
 
-            <PageTitle title={'سیلابس‌ها'} />
+            <div className='flex flex-col items-center w-full lg:w-[55%]'>
 
-            <form className="w-[90%] flex flex-col gap-y-4" onSubmit={handleSubmit}>
+                <PageTitle title={'سیلابس‌ها'} />
 
-                <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
+                <form className="w-[90%] flex flex-col gap-y-4" onSubmit={handleSubmit}>
 
-                <TextInput
-                    id={'TI1'}
-                    value={searchSyllabus}
-                    onChange={(e) => setSearchSyllabus(e.target.value)}
-                    placeholder='جستجو در سیلابس‌ها' 
-                    icon={<SearchIcon/>}
-                />
+                    <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
 
-                {filteredSyllabi &&
-                filteredSyllabi.map((syllabus, index) => (
-                    <div
-                        key={syllabus.id}
-                        className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full bg-bgOutputDefault"
-                        style={{ boxShadow:'var(--shadow-all)' }}
-                    > 
-                        <div className="flex w-full justify-between items-center">
-                            <div className='flex items-center justify-start gap-x-2'>
-                                <p>{index + 1}.</p>
-                                <p className='w-[70%] text-start'>{syllabus.description}</p>
-                            </div>
-                            <div className="flex items-center justify-between gap-x-2">
-                                <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault`}
-                                style={{ boxShadow:'var(--shadow-all)' }}
-                                onClick={() => handleIncrement(index)}>
-                                    <AddIcon
-                                    sx={{color:'var(--text-accent)'}}
-                                    />
-                                </span>
-                                <input
-                                    type="number"
-                                    value={counters[index] || 0}
-                                    readOnly
-                                    style={{ backgroundColor: 'transparent' }}
-                                    className="rounded-lg w-4 text-center text-sm"
-                                />
-                                <span className={`text-white rounded-lg w-6 h-6 cursor-pointer ${counters[index] === 0 ? 'bg-bgButtonProfileDisabled' : 'bg-bgButtonProfileDefault'}`}
-                                onClick={() => handleDecrement(index)}
-                                style={{ boxShadow: counters[index] !== 0 && 'var(--shadow-all)' }}>
-                                    <RemoveIcon
+                    <TextInput
+                        id={'TI1'}
+                        value={searchSyllabus}
+                        onChange={(e) => setSearchSyllabus(e.target.value)}
+                        placeholder='جستجو در سیلابس‌ها' 
+                        icon={<SearchIcon/>}
+                    />
+
+                    {filteredSyllabi &&
+                    filteredSyllabi.map((syllabus, index) => (
+                        <div
+                            key={syllabus.id}
+                            className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full bg-bgOutputDefault"
+                            style={{ boxShadow:'var(--shadow-all)' }}
+                        > 
+                            <div className="flex w-full justify-between items-center">
+                                <div className='flex items-center justify-start gap-x-2'>
+                                    <p>{index + 1}.</p>
+                                    <p className='w-[70%] text-start'>{syllabus.description}</p>
+                                </div>
+                                <div className="flex items-center justify-between gap-x-2">
+                                    <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault`}
+                                    style={{ boxShadow:'var(--shadow-all)' }}
+                                    onClick={() => handleIncrement(index)}>
+                                        <AddIcon
+                                        sx={{color:'var(--text-accent)'}}
+                                        />
+                                    </span>
+                                    <p className='p-1'>
+                                        {counters[index]}
+                                    </p>
+                                    <span className={`text-white rounded-lg w-6 h-6 cursor-pointer ${counters[index] === 0 ? 'bg-bgButtonProfileDisabled' : 'bg-bgButtonProfileDefault'}`}
+                                    onClick={() => handleDecrement(index)}
+                                    style={{ boxShadow: counters[index] !== 0 && 'var(--shadow-all)' }}>
+                                        <RemoveIcon
                                         sx={{color:counters[index] === 0 ? 'var(--text-disabled)' : 'var(--text-error)'}}
-                                    />
-                                </span>
+                                        />
+                                    </span>
+                                </div>
                             </div>
                         </div>
+                    ))}
+
+                    <div className="w-full flex flex-col gap-y-2">
+                        <h1 className="self-center">توضیحات</h1>
+                        <DescriptionInput
+                            value={description}
+                            onChange={handleDescription}
+                            placeholder="توضیحات پرواز را اینجا بنویسید"
+                        />
                     </div>
-                ))}
 
-                <div className="w-full flex flex-col gap-y-2">
-                    <h1 className="self-center">توضیحات</h1>
-                    <DescriptionInput
-                        value={description}
-                        onChange={handleDescription}
-                        placeholder="توضیحات پرواز را اینجا بنویسید"
-                    />
-                </div>
-
-                <div className="w-full flex justify-between  gap-x-[6%]">
-                    <button
+                    <div className="w-full flex justify-between  gap-x-[6%]">
+                        <button
                         disabled={isSubmitting}
                         onClick={handleReset}
                         className={`${ButtonStyles.normalButton} w-full`}
-                    >
-                        تنظیم مجدد
-                    </button>
-                    <button
+                        >
+                            تنظیم مجدد
+                        </button>
+                        <button
                         disabled={isSubmitting}
                         type="submit"
                         className={`${ButtonStyles.addButton} w-full`}
-                    >
-                        ثبت نهایی {countersSum > 0 && `(${countersSum})`}
-                    </button>
-                </div>
+                        >
+                            ثبت نهایی {countersSum > 0 && `(${countersSum})`}
+                        </button>
+                    </div>
+                    
+                </form>
                 
-            </form>
+            </div>
+
         </div>
     );
 };
