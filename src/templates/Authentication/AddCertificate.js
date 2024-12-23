@@ -271,11 +271,11 @@ const AddCertificate = () => {
                             <form className='w-full flex flex-col md:w-[50%] gap-y-5'>
 
 
-                                <div className='w-full flex flex-col items-center py-4 px-5 bg-bgOutputDefault rounded-2xl gap-y-4' >
+                                <div className='w-full flex flex-col items-center p-4 bg-bgOutputDefault rounded-2xl gap-y-4' >
 
                                     <p className='self-start text-base'>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
 
-                                    <div className={`${ButtonStyles.ThreeStickedButtonCont} w-10`}>
+                                    <div className={`${ButtonStyles.ThreeStickedButtonCont} w-full`}>
 
                                         {/* booleans identified as a string for more precision */}
                                         <button 
