@@ -93,7 +93,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
     return (
         <div className={` w-full h-full backdrop-blur-sm fixed inset-0 flex items-center justify-center z-50 ${showPopUp ? 'visible' : 'invisible'}`}>
 
-            <form className={`${boxStyles.containerChangeOwnership} w-[90%] h-auto gap-y-4 md:w-[454px] flex flex-col items-center relative bg-white px-5 pt-12 pb-6 rounded-lg shadow-lg`}>
+            <form className={`${boxStyles.containerChangeOwnership} w-[90%] h-auto gap-y-4 md:w-[454px] flex flex-col items-center relative bg-white px-4 pt-12 pb-4 rounded-lg shadow-lg`}>
                 
                 <CloseIcon
                     onClick={() => setShowPopUp(false)}

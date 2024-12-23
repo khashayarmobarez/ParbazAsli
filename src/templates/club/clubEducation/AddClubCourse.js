@@ -404,7 +404,7 @@ const AddClubCourse = () => {
     };
 
     return (
-        <div className='flex flex-col items-center mt-14 gap-y-8'>
+        <div className='flex flex-col items-center mt-8 gap-y-8'>
 
             <div className='w-full md:w-[55%] flex flex-col items-center gap-y-14'>
                 
@@ -592,7 +592,7 @@ const AddClubCourse = () => {
                                         />
 
                                     <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[70%] md:w-[92%] flex flex-col'>
+                                        <div className='w-[70%] flex flex-col'>
                                             <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
                                         </div>
                                         <span

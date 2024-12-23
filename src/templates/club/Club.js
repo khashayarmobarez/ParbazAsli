@@ -53,7 +53,7 @@ const Club = () => {
                 }
 
                 {clubStatus && clubStatus.data === 'Accepted' && 
-                    <div className=' flex flex-col items-center w-[90%] gap-y-6 mt-6 lg:mt-16'>
+                    <div className=' flex flex-col items-center w-[90%] gap-y-5 mt-5 lg:mt-16'>
 
                         <ClubData />
 

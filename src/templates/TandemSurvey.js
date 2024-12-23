@@ -212,7 +212,7 @@ const TandemSurvey = () => {
                                     </ul>
                                 )}
 
-                                <button type="submit" disabled={!rating || submitSubmitSurveyLoading} className={`${ButtonStyles.addButton} ${(!rating || submitSubmitSurveyLoading) && 'opacity-45'} w-36 h-12 mt-8`}>ثبت</button>
+                                <button type="submit" disabled={!rating || submitSubmitSurveyLoading} className={`${ButtonStyles.addButton} ${(!rating || submitSubmitSurveyLoading) && 'opacity-45'} w-32 h-12 mt-8`}>ثبت</button>
 
                             </form>
                         }

@@ -138,7 +138,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
 
         <span 
           onClick={togglePasswordVisibility} 
-          className="absolute left-5 top-3 cursor-pointer"
+          className="absolute left-3 top-3 cursor-pointer"
           style={{ color: iconColor }}
           >
               {showPassword ? (
