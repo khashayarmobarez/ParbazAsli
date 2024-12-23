@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // mui
@@ -14,7 +14,11 @@ const ClubCourseStudentPracticalDetails = () => {
 
     const { studentId } = useParams();
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useClubCourseStudentFlights(studentId,1,10);
+    const [pageNumber, setPageNumber] = useState(1)
+    const pageSize = 10
+
+
+    const { data: userFlights, isLoading: userFlightsLoading } = useClubCourseStudentFlights(studentId,pageNumber,pageSize);
 
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>

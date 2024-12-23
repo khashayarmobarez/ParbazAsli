@@ -137,7 +137,7 @@ const ClubCoachDetails = () => {
                     }
 
                     {coachDetails &&
-                        <div className='flex flex-col w-full justify-between items-center rounded-2xl text-sm min-h-16 p-6 gap-y-4 relative bg-bgOutputDefault'
+                        <div className='flex flex-col w-full justify-between items-center rounded-3xl text-sm min-h-16 p-6 gap-y-4 relative bg-bgOutputDefault'
                         style={{ boxShadow:'var(--shadow-all)'}}>
 
                             {/* <span className='absolute top-4 left-4 cursor-pointer w-6 h-6' onClick={() => navigate('/club/clubCoaches')}>
@@ -198,7 +198,7 @@ const ClubCoachDetails = () => {
                         coachCoursesDetails && coachCoursesDetails.data.map((course) => (
                             <div
                             key={course.id}
-                            className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-6 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
+                            className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
                             style={{
                                 boxShadow: 'var(--shadow-all)'
                             }}
@@ -229,9 +229,9 @@ const ClubCoachDetails = () => {
 
                                 </div>
 
-                                <div className='w-full flex justify-between items-center'>
+                                <div className='w-full flex justify-between items-start'>
 
-                                    <div className='flex flex-col text-start gap-y-1'>
+                                    <div className='flex flex-col text-start gap-y-2 text-sm'>
 
                                         {
                                             course.organization &&
@@ -241,14 +241,14 @@ const ClubCoachDetails = () => {
                                         }
 
                                         { course.clubName &&
-                                            <p><span className='text-textButtonMainDisabled'>باشگاه:</span> {course.clubName}</p>
+                                            <p><span className=''>باشگاه:</span> {course.clubName}</p>
                                         }
 
                                         {
                                         course.level &&
-                                            <p><span className='text-textButtonMainDisabled'>مقطع: </span> {course.level}</p>
+                                            <p><span className=''>مقطع: </span> {course.level}</p>
                                         }
-                                        <p><span className='text-textButtonMainDisabled'>تعداد پرواز:</span> {course.flightsCount}</p>
+                                        <p><span className=''>تعداد پرواز:</span> {course.flightsCount}</p>
 
                                         
 
@@ -256,9 +256,9 @@ const ClubCoachDetails = () => {
 
                                     <div className='flex flex-col text-start gap-y-1 text-sm'>
 
-                                            <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
+                                            <p><span className=''>تعداد هنرجویان فعال:</span> {course.activeStudentCounts}</p>
                                         
-                                            <p><span className='text-textButtonMainDisabled'>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
+                                            <p><span className=''>تعداد هنرجویان سابق:</span> {course.historyStudentCounts}</p>
 
                                     </div>
 
@@ -290,7 +290,7 @@ const ClubCoachDetails = () => {
 
                         {
                             coachDetails && coachDetails.data.status === 'Active'  &&
-                                <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30' >
+                                <div className='fixed bottom-[4.5rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30' >
                                     <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
                                         <p>پایان همکاری</p>
                                     </button>

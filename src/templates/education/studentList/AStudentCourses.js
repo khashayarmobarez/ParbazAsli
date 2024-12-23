@@ -38,7 +38,7 @@ const AStudentCourses = () => {
     }, [pageNumber]);
 
     const handleCourseDetails = (id) => () => {
-        navigate(`/student/courseDetails/${id}/practical`);
+        navigate(`/education/courseDetails/studentDetails/${id}/practical`);
     };
 
     const handleNextPageNumber = () => {
