@@ -355,7 +355,7 @@ const ApproveStudentFlight = () => {
                                 <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-full `}>رد پرواز</button>
 
                                 <div className='w-full flex items-center flex-row-reverse'>
-                                    <ArrowBackIosNewIcon sx={{position:'absolute'}} />
+                                    <ArrowBackIosNewIcon sx={{position:'absolute', marginLeft:'20px'}} />
                                     <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-full flex`}>تایید</button>
                                 </div>
 

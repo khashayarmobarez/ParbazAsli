@@ -271,7 +271,7 @@ const EquipmentsList = () => {
 
                                     {
                                         equipment.status === 'Pending' &&
-                                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1.4rem] pt-5 flex justify-between px-4 bg-bgCard'
+                                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1.4rem] pt-5 flex justify-between px-4 bg-bgOutputDefault'
                                             style={{boxShadow:'var(--shadow-all)'}}>
 
                                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>

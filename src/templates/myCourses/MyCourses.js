@@ -228,7 +228,7 @@ const MyCourses = () => {
 
                                                             {/* Trigger course status */}
                                                             {course.status === 'Pending' &&
-                                                                <div className='w-full min-h-14 rounded-b-3xl z-0 mt-[-1rem] pt-5 flex justify-between px-3 bg-bgCard shadow-lg' >
+                                                                <div className='w-full min-h-14 rounded-b-3xl z-0 mt-[-1rem] pt-5 flex justify-between px-3 bg-bgOutputDefault shadow-lg' >
 
                                                                     <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                                                         <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
