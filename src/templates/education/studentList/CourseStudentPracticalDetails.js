@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // mui
@@ -9,18 +9,29 @@ import { useCourseStudentFlights } from '../../../Utilities/Services/coursesQuer
 
 // components
 import PracticalFlightHistoryBox from '../../../modules/FlightHistory/PracticalFlightHistoryBox';
+import ArrowButton from '../../../components/icons/ArrowButton';
 
 const CourseStudentPracticalDetails = () => {
 
     const { studentId } = useParams();
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,1,10);
+    const [pageNumber, setPageNumber] = useState(1)
+    const pageSize = 10
 
-    useEffect(() => {
-        if(userFlights) {
-            console.log(userFlights)
+    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,pageNumber,pageSize);
+
+
+    const handleNextPage = () => {
+        if (pageNumber < userFlights?.totalPagesCount) {
+            setPageNumber(pageNumber + 1);
         }
-    }, [userFlights])
+    };
+
+    const handlePrevPage = () => {
+        if (pageNumber > 1) {
+            setPageNumber(pageNumber - 1);
+        }
+    };
 
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
@@ -37,7 +48,7 @@ const CourseStudentPracticalDetails = () => {
                 userFlights && userFlights.totalCount > 0 &&
                 <div className='flex flex-col gap-y-6'>
 
-                    <div className='w-full flex flex-col gap-y-6'>
+                    <div className='w-full flex flex-col gap-y-4'>
                         {userFlights.data.map((flight) => (
                             <PracticalFlightHistoryBox key={flight.id} flightBaseData={flight} isForEducationCourseStudent={true} />
                         ))}
@@ -45,6 +56,33 @@ const CourseStudentPracticalDetails = () => {
 
                 </div>
             }
+
+            {userFlights && userFlights.totalPagesCount > 1 && (
+                <div className='w-full flex justify-between px-10 items-center'>
+                    <button
+                    className={`w-6 h-6 justify-self-start `}
+                    disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
+                    onClick={handleNextPage}
+                    >
+                        <ArrowButton isRight={true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
+                    </button>
+
+                    <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
+                        صفحه ی {pageNumber}
+                    </p>
+
+                    <button
+                    className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                    disabled={pageNumber === 1}
+                    onClick={handlePrevPage}
+                    >
+
+                        <ArrowButton isDisable={pageNumber === 1}/>
+
+                    </button>
+                    
+                </div>
+            )}
         </div>
     );
 };
