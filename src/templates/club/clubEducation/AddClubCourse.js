@@ -725,14 +725,11 @@ const AddClubCourse = () => {
 
 
                                     {/* description input */}
-                                    <div className='w-full flex flex-col gap-y-2'>
-                                        <h1 className=' self-start'>توضیحات درباره دوره</h1>
-                                        <DescriptionInput
-                                            value={description}
-                                            onChange={handleDescription}
-                                            placeholder='توضیحات دوره را اینجا بنویسید ...'
-                                        />
-                                    </div>
+                                    <DescriptionInput
+                                        value={description}
+                                        onChange={handleDescription}
+                                        placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                    />
 
 
 

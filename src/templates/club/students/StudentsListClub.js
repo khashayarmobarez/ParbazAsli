@@ -33,29 +33,31 @@ const StudentsListClub = () => {
             <div className='w-full md:w-[60%] lg:w-[55%]'>
 
                 { (courseCountsLoading || AllStudentLoading) &&
-                    <CircularProgressLoader /> 
+                    <CircularProgressLoader />
                 }
 
                 {
-                    AllStudentError &&
-                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                AllStudentError &&
+                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                 }
 
                 {
                     courseCountsData && AllStudents &&
                     <div className='w-full flex flex-col justify-center items-center gap-y-8 lg:gap-y-12'>
+
                         <PageTitle 
                             title={`${id === '1' ? `هنرجویان فعال (${courseCountsData.data.activeStudentCounts})` : `هنرجویان سابق (${courseCountsData.data.disableStudentCounts})`}`} 
                             navigateTo={'/club/clubCourses'} 
                         />
 
                         {
-                            AllStudents && AllStudents.data.length < 1 && !AllStudentLoading && !AllStudentError &&
+                        AllStudents && AllStudents.data.length < 1 && !AllStudentLoading && !AllStudentError &&
                             <p className='h-60vh w-full text-center flex justify-center items-center mt-8 text-textWarning'> هنرجویی یافت نشد</p>
                         }
 
                         <div className='w-[90%] flex flex-col gap-y-4 items-center'>
-                            {AllStudents.data.length > 0 && AllStudents.data &&
+                            {
+                            AllStudents.data.length > 0 && AllStudents.data &&
                                 AllStudents.data.map((student) => (
                                     <ACourseStudentBox key={student.id} studentData={student} isForClub={true} isForHistory={id === '1' ? false : true} />
                                 ))
@@ -65,9 +67,9 @@ const StudentsListClub = () => {
                         { (AllStudents && AllStudents.totalPagesCount && AllStudents.totalPagesCount > 1) ? (
                                 <div className='w-full flex justify-between px-10 items-center'>
                                     <button
-                                        className={`w-6 h-6 justify-self-start`}
-                                        disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
-                                        onClick={handleNextPageNumber}
+                                    className={`w-6 h-6 justify-self-start`}
+                                    disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
+                                    onClick={handleNextPageNumber}
                                     >
                                         <ArrowButton isRight={true} isDisable={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}/>
                                     </button>
@@ -77,9 +79,9 @@ const StudentsListClub = () => {
                                     </p>
 
                                     <button
-                                        className={`transform w-6 h-6 justify-self-end`}
-                                        disabled={pageNumber === 1}
-                                        onClick={handleLastPageNumber}
+                                    className={`transform w-6 h-6 justify-self-end`}
+                                    disabled={pageNumber === 1}
+                                    onClick={handleLastPageNumber}
                                     >
                                         <ArrowButton isDisable={pageNumber === 1}/>
                                     </button>
