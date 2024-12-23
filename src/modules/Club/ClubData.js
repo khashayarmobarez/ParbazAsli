@@ -30,7 +30,7 @@ const ClubData = () => {
             {/* club data box  */}
            { 
             data &&
-                <div className={`${boxStyles.containerDarkmode} flex w-full items-center min-h-5 justify-around p-4 rounded-3xl md:py-5 md:px-2`}>
+                <div className={`${boxStyles.containerDarkmode} flex w-full items-start min-h-5 justify-around p-4 rounded-3xl md:py-5 md:px-2`}>
 
                     <div className='flex flex-col justify-center items-center ml-[6%] space-y-4 md:flex-row md:w-[38%] md:justify-between md:ml-0'>
 
@@ -45,7 +45,7 @@ const ClubData = () => {
 
                     </div>
 
-                    <div className='w-full h-full flex flex-col items-start justify-between py-2 pb-12 md:space-y-5 md:w-[50%] md:items-center'>
+                    <div className='w-full h-full flex flex-col items-start justify-between py-2 pb-12 gap-y-2 md:space-y-5 md:w-[50%] md:items-center'>
 
                         <div className=' flex justify-center items-center' >
                             <span className='w-5'>

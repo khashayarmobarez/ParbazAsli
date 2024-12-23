@@ -109,7 +109,7 @@ const AddFlightType = () => {
 
                                 {
                                     flightTypesData.data.map((flightType, index) => (
-                                        <div key={index} className={`${boxStyles.containerDarkmode} w-full rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-2 text-sm`}
+                                        <div key={index} className={`${boxStyles.containerDarkmode} w-full rounded-3xl min-h-16 z-0 md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 text-sm`}
                                         onClick={() => handleSelectSetFlightType(flightType)}>
                                             <div className='w-full flex justify-between'>
                                                 <div className='w-full flex justify-start items-enter gap-x-2'>

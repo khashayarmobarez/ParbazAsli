@@ -39,7 +39,7 @@ const SpeedoMeter = (props) => {
 
     <div className={`${boxStyles.containerDarkmode} rounded-3xl z-0 w-[98%] md:w-full flex justify-between items-center px-2 py-3 mr-1 mt-1`}>
 
-        <div className='flex flex-col justify-center items-center space-y-4'>
+        <div className='flex flex-col justify-center items-center gap-y-4'>
             <p className=' font-normal text-sm mr-2 truncate max-w-[150px]'>برند {parachuteData.brand}/ مدل {parachuteData.model}</p>
             <p className=' font-light text-xs mr-2'>آخرین بسته بندی: {parachuteData.lastPackingDateTime}</p>
             <p className=' font-normal text-xs mr-2 text-textInputDefault'>{parachuteData.remainingTimeToRepackInDays} روز تا نیاز به بسته بندی مجدد</p> 
@@ -79,7 +79,7 @@ const SpeedoMeter = (props) => {
 
     
                 {/* the circle behind the text */}
-            <div onClick={handleEditParachute(parachuteData.id)} className={` absolute w-[116px] h-[116px] rounded-full flex justify-center items-center`} 
+            <div onClick={handleEditParachute(parachuteData.id)} className={` absolute w-[111px] h-[111px] rounded-full flex justify-center items-center`} 
             style={{background:'var(--bg-button-secondary-default)',
             boxShadow: 'var(--shadow-button-dark),var(--shadow-button-white)',
             }}>

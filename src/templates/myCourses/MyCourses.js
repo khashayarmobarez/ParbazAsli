@@ -192,7 +192,7 @@ const MyCourses = () => {
                                                                 </Box>
 
                                                                 <div className='w-full flex justify-between text-start text-sm'>
-                                                                    <div className='flex flex-col justify-between self-start'>
+                                                                    <div className='flex flex-col justify-center gap-y-2 self-start'>
                                                                         { courseData.organization && courseData.type !== 'Regular' &&
                                                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
