@@ -57,7 +57,7 @@ const Profile = () => {
 
             {
             data && 
-            <div className='flex flex-col items-center justify-center gap-y-2 md:gap-y-4 w-[90%] md:w-[65%]'>
+            <div className='flex flex-col items-center justify-center gap-y-2 mt-3 md:gap-y-4 w-[90%] md:w-[65%]'>
 
                     {/* first data box  */}
                     <UserDataBox hasCoach={data.data.hasCoach} />

@@ -99,7 +99,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   };
 
   return (
-    <div className='flex flex-col relative w-full rounded-xl px-2'>
+    <div className='flex flex-col relative w-full rounded-xl'>
       <div className='relative w-full min-h-12 cursor-text'>
         <span className="absolute right-3 top-4 w-4 z-10">
           <KeyIcon customColor={iconColor}  />

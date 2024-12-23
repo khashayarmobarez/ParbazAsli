@@ -153,8 +153,8 @@
 
       return (
         <>
-          <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 px-2`} htmlFor="password">
-          <span className="absolute right-6 top-3 w-5 z-10 cursor-text"  >
+          <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 `} htmlFor="password">
+          <span className="absolute right-4 top-3 w-5 z-10 cursor-text"  >
             <KeyIcon customColor={iconColor} />
           </span>
             <input
@@ -165,7 +165,7 @@
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={`
-                peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+                peer w-full min-h-12 px-4 pt-1 pb-1 pr-8 rounded-2xl
                 border-2 bg-transparent
                 text-gray-900 placeholder-transparent
                 focus:outline-none
@@ -184,7 +184,7 @@
               onClick={handleLabelClick}
               htmlFor="username"
               className={`
-                absolute right-14 top-[13px]
+                absolute right-12 top-[13px]
                 transition-all duration-300 transform
                 peer-placeholder-shown:translate-y-0
                 peer-placeholder-shown:text-sm

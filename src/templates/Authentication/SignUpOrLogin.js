@@ -26,7 +26,7 @@ const SignUpOrLogin = () => {
 
     return (
         <div className='pt-0 flex flex-col items-center md:grid grid-cols-12 bg-bgPageMain h-full'>
-            <div className='w-full mt-11 flex flex-col items-center gap-y-7 justify-center md:col-span-4 md:px-[5%]'>
+            <div className='w-full mt-11 flex flex-col items-center gap-y-6 justify-center md:col-span-4 md:px-[5%]'>
 
                 {
                     !isDesktop &&

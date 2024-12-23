@@ -91,8 +91,8 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
 
   return (
     <>
-      <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 px-2`} htmlFor='confirm_pwd'>
-        <span className="absolute right-6 top-3 w-5 z-10"  >
+      <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12`} htmlFor='confirm_pwd'>
+        <span className="absolute right-4 top-3 w-5 z-10"  >
           <KeyIcon customColor={iconColor} />
         </span>
         <input
@@ -124,7 +124,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
           onClick={handleLabelClick}
           htmlFor="username"
           className={`
-            absolute right-14 top-[13px]
+            absolute right-12 top-[13px]
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm

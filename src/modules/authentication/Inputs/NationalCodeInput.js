@@ -26,7 +26,7 @@ const NationalCodeInput = ({ nationalCodeRef, onChange, value, focus, onFocus, o
   };
 
   return (
-    <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
+    <div className='flex flex-col relative w-[100%] rounded-xl'>
       <div className='flex w-full h-12'>
         <span>
           <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />

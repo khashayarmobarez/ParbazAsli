@@ -83,7 +83,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
   };
 
   return (
-    <div className='flex flex-col relative w-full rounded-xl px-2'>
+    <div className='flex flex-col relative w-full rounded-xl'>
       <div className='relative w-full min-h-12'>
         <span className="absolute right-3 top-3 w-5 z-10 cursor-text">
           <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />

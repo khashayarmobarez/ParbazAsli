@@ -83,7 +83,18 @@ const FilterVariables = () => {
    
     
     return (
-        <div className={`w-full flex`} >
+        <div className={`w-full flex 
+        ${!courseFilter &&
+        !wingFilter &&
+        !harnessFilter &&
+        !countryFilter &&
+        !provinceFilter &&
+        !siteFilter &&
+        !flightTypeFilter &&
+        !coachNameFilter &&
+        !flightStatusFilter &&
+        !fromDateFilter &&
+        !toDateFilter && '-mt-10 -z-10'}`} >
             <ul className=' w-full py-0 -mt-6 -mb-4 grid grid-cols-3 gap-2'>
 
                 {   

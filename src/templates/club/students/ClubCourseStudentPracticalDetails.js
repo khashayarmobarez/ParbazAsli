@@ -16,7 +16,6 @@ const ClubCourseStudentPracticalDetails = () => {
 
     const { data: userFlights, isLoading: userFlightsLoading } = useClubCourseStudentFlights(studentId,1,10);
 
-
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
             {userFlightsLoading &&
