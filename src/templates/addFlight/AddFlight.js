@@ -77,9 +77,9 @@ const AddFlight = () => {
 
             <PageTitle title={'ثبت پرواز'} navigateTo={-1} />
 
-            <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col gap-y-8 md:py-8`}>
+            <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col gap-y-8`}>
 
-                    <div className=' grid grid-cols-12 gap-2 w-full p-4 md:grid-cols-12 md:gap-y-4'>
+                    <div className=' grid grid-cols-12 gap-4 w-full p-4 md:grid-cols-12 md:gap-y-4'>
 
                         <div className='flex w-full flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
                             <p className=' text-xs pr-2'>پرواز</p>

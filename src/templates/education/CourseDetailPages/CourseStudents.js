@@ -263,7 +263,7 @@ const CourseStudents = () => {
                             {
                                 aCourseData &&
                                 aCourseData.data.status === 'Active' && student.status === 'CoachPending' &&
-                                <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgOutputDefault shadow-lg'>
+                                <div className='w-full min-h-16 rounded-b-2xl z-[70] mt-[-1rem] pt-5 flex justify-between px-4 bg-bgOutputDefault shadow-lg'>
 
                                     <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                         <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>

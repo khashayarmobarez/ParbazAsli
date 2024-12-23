@@ -23,14 +23,13 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 p-4 rounded-2xl text-sm`}
             onClick={handleClickStudent}>
 
-
                 <div className='w-full flex items-center justify-start gap-x-2'>
 
                     <span>
                         <PersonOutlineOutlinedIcon />
                     </span>
                     
-                    <p className=''>{studentData.fullName}</p>
+                    <p className=' truncate w-[74px]'>{studentData.fullName}</p>
                     
                 </div>
 
@@ -39,7 +38,7 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
                     <p className='text-[var(--text-accent)] w-full'>دوره فعال:{studentData.activeCourseCount}</p>
                 }
                  
-                <p className='w-full'>دوره غیر فعال:{studentData.disableCourseCount}</p>
+                <p className='w-full text-end'>دوره غیر فعال:{studentData.disableCourseCount}</p>
 
             </div>
     );

@@ -244,7 +244,7 @@ const CourseDetails = () => {
                         }
                         {
                             aCourseData.data.status === 'Pending' &&
-                                <div className='w-[90%] md:w-2/6 fixed bottom-16 flex justify-between z-50 gap-x-[6%]'>
+                                <div className='w-[90%] md:w-2/6 fixed bottom-[70px] flex justify-between z-[70] gap-x-[6%]'>
                                     <button className={`${ButtonStyles.addButton} w-full text-base`} 
                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
                                         <p>تایید</p>
