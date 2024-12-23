@@ -49,7 +49,7 @@ const EditEquipment = () => {
     
     // useEditEquipment for submitting the form
     const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, isForClub)
-    const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity} = EquipmentData?.data || {};
+    const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity, size} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     const { mutate: editEquipment, isLoading } = useEditEquipment()
 
@@ -216,26 +216,7 @@ const EditEquipment = () => {
                                 }
 
                                 {
-                                    flightCount >= 0 && flightCount !== null &&
-                                        <div className='flex flex-col items-start gap-y-2'>
-                                            <p className=' text-sm'>تعداد پرواز ها</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{flightCount}</p>
-                                            </div>
-                                        </div>
-                                }
-
-                                {
-                                flightHours >= 0 && flightHours !== null &&
-                                    <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>حدود ساعت پرواز</p>
-                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                        <p>{flightHours}</p>
-                                    </div>
-                                </div>
-                                }
-
-                                {wingClass &&
+                                    wingClass &&
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className=' text-sm'>کلاس</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
@@ -256,7 +237,7 @@ const EditEquipment = () => {
                                         </div>
                                     </div>
                                 }
-
+                                
                                 {
                                     year &&
                                     <div className='flex flex-col items-start gap-y-2'>
@@ -268,6 +249,26 @@ const EditEquipment = () => {
                                 }
 
                                 {
+                                    minimumWeightCapacity && maximumWeightCapacity &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>بازه وزن قابل تحمل</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{maximumWeightCapacity} - {minimumWeightCapacity}</p>
+                                        </div>
+                                    </div>
+                                }
+
+                                {
+                                    size &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>سایز</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{size}</p>
+                                        </div>
+                                    </div>
+                                }  
+
+                                {
                                     serialNumber &&
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className=' text-sm'>شماره سریال</p>
@@ -275,6 +276,28 @@ const EditEquipment = () => {
                                             <p>{serialNumber}</p>
                                         </div>
                                     </div>
+                                }
+                                
+
+
+                                {
+                                    flightCount >= 0 && flightCount !== null &&
+                                        <div className='flex flex-col items-start gap-y-2'>
+                                            <p className=' text-sm'>تعداد پرواز ها</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{flightCount}</p>
+                                            </div>
+                                        </div>
+                                }
+
+                                {
+                                flightHours >= 0 && flightHours !== null &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                    <p className=' text-sm'>حدود ساعت پرواز</p>
+                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                        <p>{flightHours}</p>
+                                    </div>
+                                </div>
                                 }
 
                                 {
@@ -293,16 +316,6 @@ const EditEquipment = () => {
                                         <p className=' text-sm'>تاریخ آخرین بسته بندی</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                             <p>{lastPackingDateTime}</p>
-                                        </div>
-                                    </div>
-                                }  
-
-                                {
-                                    minimumWeightCapacity && maximumWeightCapacity &&
-                                    <div className='flex flex-col items-start gap-y-2'>
-                                        <p className=' text-sm'>بازه وزن قابل تحمل</p>
-                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                            <p>{maximumWeightCapacity} - {minimumWeightCapacity}</p>
                                         </div>
                                     </div>
                                 }  

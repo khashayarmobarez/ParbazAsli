@@ -66,7 +66,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();    
+        // window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -275,7 +275,7 @@ const AddCertificate = () => {
 
                                     <p className='self-start text-base'>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
 
-                                    <div className={`${ButtonStyles.ThreeStickedButtonCont} w-full`}>
+                                    <div className={`${ButtonStyles.ThreeStickedButtonCont} w-10`}>
 
                                         {/* booleans identified as a string for more precision */}
                                         <button 

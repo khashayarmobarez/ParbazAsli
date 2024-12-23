@@ -47,10 +47,10 @@ const UserDataBox = ({hasCoach}) => {
             
             {
                 data && 
-                    <div className={`${boxStyles.containerDarkmode} flex items-center w-full justify-around py-4 rounded-3xl md:h-[200px] md:py-5 md:px-2 `}>
+                <div className={`${boxStyles.containerDarkmode} flex items-center w-full h-[210px] justify-between p-4 rounded-3xl md:h-[200px] md:py-5 md:px-2 `}>
 
                     {/* picture, name and code  */}
-                    <div className='flex flex-col justify-center items-center gap-y-2 md:flex-row md:w-full md:justify-around'>
+                    <div className='w-full flex flex-col justify-center items-center gap-y-2 md:flex-row md:justify-around'>
 
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
@@ -62,7 +62,7 @@ const UserDataBox = ({hasCoach}) => {
 
                         <div className=' gap-y-2 md:space-y-5 flex flex-col items-center' >
                             <p className=' font-light text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
-                            { data.data.levelName &&
+                            { data?.data.levelName &&
                                 <p className=' text-xs w-36' >{!data.data.isStarter && 'گواهینامه' } {data.data.levelName} </p>
                             }
                             <p className=' text-xs w-36'>کد کاربری: {data.data.userId}</p>
@@ -70,31 +70,32 @@ const UserDataBox = ({hasCoach}) => {
 
                     </div>
 
-                    <div className=' flex flex-col items-center self-end gap-y-6 pb-2 md:pb-0 md:flex-row md:self-center md:w-full md:justify-around md:items-center md:space-y-0'>
+                    {/* the bug is here below */}
+                    <div className='w-full h-full flex flex-col items-center justify-between md:pb-0 md:flex-row md:self-center md:w-full md:justify-around md:items-center md:space-y-0'>
 
-                        <div className=' gap-y-2 flex flex-col items-center md:space-y-5'>
+                        <div className=' h-full gap-y-2 flex flex-col items-start md:space-y-5'>
 
-                            <div className=' flex justify-center items-center w-[80%]' >
-                                <span className='w-6 h-6'>
+                            <div className=' flex justify-center items-center' >
+                                <span className='w-5 h-5'>
                                     <FlightQuantity />
                                 </span>
-                                <p className=' font-normal text-xs mr-2 w-44 text-start'>تعداد پرواز {data.data.flightCount}</p>
+                                <p className=' font-normal text-xs mr-2 text-start'>تعداد پرواز {data?.data.flightCount}</p>
                             </div> 
 
-                            <div className=' flex justify-between items-center w-[80%]' >
-                                <span className='w-6 h-5'>
+                            <div className=' flex justify-between items-center ' >
+                                <span className='w-5 h-5'>
                                     <ClockIcon/>
                                 </span>
-                                <p className=' font-normal text-xs mr-2 w-44 text-start'>ساعت پرواز {data.data.flightHours}</p>
+                                <p className=' font-normal text-xs mr-2 text-start'>ساعت پرواز {data?.data.flightHours}</p>
                             </div>
                             
                             {/* condition based on coach  */}
                             { hasCoach ?
-                                <div className=' flex justify-between items-center w-[80%]' >
+                                <div className=' flex justify-between items-center ' >
                                     <span className='w-6 h-5'>
                                         <ClockIcon/>
                                     </span>
-                                    <p className=' font-normal text-xs mr-2 w-44 text-start'>ساعت مربیگری {data.data.coachingHours}</p>
+                                    <p className=' font-normal text-xs mr-2 text-start'>ساعت مربیگری {data?.data.coachingHours}</p>
                                 </div>
                                 :
                                 <div/>
@@ -105,10 +106,10 @@ const UserDataBox = ({hasCoach}) => {
                         <Link to='/editProfile/changeProfile' className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-full text-base ml-[5%] `} >ویرایش پروفایل</Link>
 
                     </div>
-                    <ChangePicPopUp isUserPhotoAvailable={data.data.image} showPopup={showPopUp} setShowPopup={setShowPopup} />
 
                 </div>
             }
+            <ChangePicPopUp isUserPhotoAvailable={data?.data.image} showPopup={showPopUp} setShowPopup={setShowPopup} />
         </>
     );
 };
