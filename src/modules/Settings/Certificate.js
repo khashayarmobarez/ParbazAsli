@@ -17,12 +17,12 @@ const Certificate = ({certificateData}) => {
     }
 
     return (
-        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between pr-4 pl-3 py-5 ' 
+        <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' 
         style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)', color:'var(--text-default) ' }}>
             
             <div className=' w-full text-xs grid grid-cols-2 gap-x-4'>
 
-                <div className=' flex gap-x-1 '>
+                <div className=' flex gap-x-1 items-center'>
                     <span className='w-7'>
                         <CertificateIcon/>
                     </span>
@@ -36,7 +36,7 @@ const Certificate = ({certificateData}) => {
                         {certificateData.status === 'Expired' && <span className='text-textError'> منقضی شده</span>}
                         {certificateData.status === 'Rejected' && <span className='text-textError'> رد شده</span>}
                     </p>
-                    <p className='text-xs'>تاریخ انقضا {certificateData.expirationDate}</p>
+                    <p className='text-xs'>تاریخ انقضا: {certificateData.expirationDate}</p>
                 </div>
 
             </div>

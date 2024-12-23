@@ -152,7 +152,7 @@ const MyCourses = () => {
                                                         
                                                         <div key={index} className='w-full flex flex-col items-center'>
 
-                                                            <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto z-0 w-[98%] md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mr-1 mt-1`}>
+                                                            <div className={`${boxStyles.containerDarkmode} rounded-3xl h-auto w-full md:w-full flex flex-col justify-between items-center px-4 py-4 gap-y-4 mt-1 z-10`}>
 
 
                                                                 <div className='w-full flex justify-between'>
@@ -228,22 +228,31 @@ const MyCourses = () => {
 
                                                             {/* Trigger course status */}
                                                             {course.status === 'Pending' &&
-                                                                <div className='w-full min-h-14 rounded-b-2xl z-10 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard shadow-lg' >
+                                                                <div className='w-full min-h-14 rounded-b-3xl z-0 mt-[-1rem] pt-5 flex justify-between px-3 bg-bgCard shadow-lg' >
 
-                                                                    <div className='flex justify-center text-sm gap-x-2 items-center gap-y-10'>
-                                                                        <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
+                                                                    <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
+                                                                        <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
                                                                         <p >آیا این دوره مورد تایید شما است؟</p>
                                                                     </div>
 
-                                                                    <div className='flex gap-x-4 items-center px-6'>
+                                                                    <div className='flex gap-x-4 items-center px-4'>
 
                                                                         {triggerCourseStatusLoading && 
                                                                             <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
                                                                                 <CircularProgress sx={{width:'1rem'}} /> 
                                                                             </Box>
                                                                         }
-                                                                        <CheckBoxIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} sx={{ color:'var(--text-accent)'}} />
-                                                                        <DisabledByDefaultIcon onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} sx={{ color:'var(--text-error)'}} />
+
+                                                                        <p
+                                                                        className='text-textAccent text-sm font-semibold'
+                                                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)}>
+                                                                            تایید
+                                                                        </p>
+                                                                        <p
+                                                                        className='text-textError text-sm font-semibold'
+                                                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)}>
+                                                                            رد
+                                                                        </p>
 
                                                                     </div>
                                                                 </div>

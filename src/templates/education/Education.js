@@ -223,7 +223,7 @@ const Education = () => {
                                                                         <span className=''> غیر فعال</span>
                                                                     }
                                                                     {course.status === 'Rejected' && 
-                                                                        <span className='text-textError'> رد شده</span>
+                                                                        <span className='text-textError'>رد شده</span>
                                                                     }
                                                                 </p>
 
@@ -252,7 +252,8 @@ const Education = () => {
                                                                     <span className=''>تعداد پرواز: </span>{course.flightsCount}
                                                                 </p>
 
-                                                                { course.clubName &&
+                                                                {
+                                                                course.clubName &&
                                                                     <p>
                                                                         <span className=''>باشگاه: </span> {course.clubName}
                                                                     </p>
@@ -275,7 +276,7 @@ const Education = () => {
                                                         {
                                                             course.status !== 'Rejected' &&
                                                                 <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
-                                                                    جزئیات  
+                                                                    جزئیات 
                                                                 </button>
                                                         }
 
@@ -283,7 +284,7 @@ const Education = () => {
 
                                                     {/* Trigger course status */}
                                                     {course.status === 'Pending' &&
-                                                        <div className='w-full min-h-14 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4 bg-bgCard'>
+                                                        <div className='w-full min-h-14 rounded-b-2xl z-0 mt-[-1rem] pt-4 flex justify-between px-4 bg-bgCard'>
 
                                                             <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                                                 <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>

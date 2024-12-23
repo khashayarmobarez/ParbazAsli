@@ -42,20 +42,20 @@ const CourseStudentDetails = () => {
                 <PageTitle navigateTo={historyPageUrl} title={'جزئیات هنرجو '} />
 
                 {/* the data box */}
-                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start pb-8 px-4 py-2  relative z-[60]`}
-                    style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)'}}
+                <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start relative z-[60]`}
+                style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)'}}
                 >
                     { 
                     studentData && 
-                    <div className='w-full flex flex-col justify-between gap-y-6'>
+                    <div className='w-full flex flex-col justify-between gap-y-6 p-4'>
 
-                        <div className='flex w-full justify-between items-center -mr-4'>
+                        <div className='flex w-full justify-between items-center '>
                             {/* avatar and name */}
-                            <div className='w-full h-full flex flex-col justify-between items-center gap-y-6 pt-2'>
+                            <div className='w-full h-full flex flex-col justify-between items-start gap-y-4'>
                                 
                                 {
                                     isMobile &&
-                                    <h1 className='text-lg'>{studentData.data.name}</h1>
+                                    <h1 className='text-base'>{studentData.data.name}</h1>
                                 }
 
                                     
@@ -72,14 +72,14 @@ const CourseStudentDetails = () => {
                             {
                                 !isMobile && studentData.data &&
                                 <div className='w-full flex flex-col justify-center items-center gap-y-4'>
-                                    <h1 className='text-lg'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
+                                    <h1 className='text-sm'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
                                     <p className='text-xs text-lowOpacityWhite'>گواهینامه {studentData.data.levelName}</p>
                                 </div>
                             }
 
 
                             {/* user studentData.data */}
-                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pt-2 mr-4'>
+                            <div className='w-full flex flex-col justify-between items-center gap-y-8 pt-1 '>
 
                                 {
                                     isMobile && studentData.data &&
