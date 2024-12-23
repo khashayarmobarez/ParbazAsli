@@ -20,15 +20,15 @@ const Certificate = ({certificateData}) => {
         <div className=' w-full min-h-16 rounded-[2rem] flex flex-col justify-between p-4 ' 
         style={{background:'var(--bg-card)', boxShadow:'var(--shadow-all)', color:'var(--text-default) ' }}>
             
-            <div className=' w-full text-xs grid grid-cols-2 gap-x-4'>
+            <div className=' w-full text-xs grid grid-cols-10 gap-x-1'>
 
-                <div className=' flex gap-x-1 items-center'>
+                <div className=' flex gap-x-2 items-center col-span-6'>
                     <span className='w-7'>
                         <CertificateIcon/>
                     </span>
                     <p className='flex-wrap text-xs text-start' >{certificateData.organization} / {certificateData.level}</p>
                 </div>
-                <div className='flex flex-col items-start gap-y-2 text-start pr-4'>
+                <div className='flex flex-col items-end gap-y-2 text-start col-span-4'>
                     <p className='text-textButtonMainDisabled '>
                         وضعیت:
                         {certificateData.status === 'Active' && <span className='text-textAccent'> فعال</span>}

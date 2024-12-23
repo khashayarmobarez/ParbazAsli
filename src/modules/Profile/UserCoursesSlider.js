@@ -35,7 +35,7 @@ const UserCoursesSlider = ({coursesData}) => {
             `
               .swiper-button-next,
               .swiper-button-prev {
-                margin-top:5.65rem;
+                margin-top:6.75rem;
                 background-color: var(--bg-button-secondary-default);
                 box-shadow:var(--shadow-button-dark),var(--shadow-button-white);
                 padding: 5px;
@@ -80,7 +80,7 @@ const UserCoursesSlider = ({coursesData}) => {
           <div className='w-full h-full py-2 md:pt-0'>
             
               <swiper-container
-              style={{ height:'15rem',...(!isDesktop && { marginRight: '0' }), }}
+              style={{ height:'16.9rem',...(!isDesktop && { marginRight: '0' }), }}
               ref={swiperRef}
               init="false"
               >

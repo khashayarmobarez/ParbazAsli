@@ -18,14 +18,14 @@ const EditProfile = () => {
 
 
     return (
-        <div className='w-full flex justify-center items-center mt-14 pb-[12vh]'>
+        <div className='w-full flex justify-center items-center mt-16 pb-[12vh]'>
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%]' >
 
                 <PageTitle title={'ویرایش پروفایل'} navigateTo={'/profile'} />  
 
                 <LowOpacityBackForStickedButtons />
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9.2rem] z-50`}>
 
                     <Link to='/editProfile/changeProfile' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/editProfile/changeProfile' ? ButtonStyles.activeYellow : ''}`} >پروفایل</Link> 
 

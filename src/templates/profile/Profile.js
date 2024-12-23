@@ -39,7 +39,7 @@ const Profile = () => {
 
 
     return (
-        <div className='flex flex-col items-center pt-[75px] md:pt-28'>
+        <div className='flex flex-col items-center pt-[75px] md:pt-28 pb-8'>
 
 
             {

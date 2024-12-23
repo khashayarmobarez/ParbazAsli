@@ -237,7 +237,7 @@ const EquipmentsList = () => {
                                                     <p>شماره سریال: {equipment.serialNumber}</p>
                                             }
 
-                                            <button className={`${ButtonStyles.normalButton} ${equipment.status === 'Pending' && '-mt-2'} w-[30%] h-10`} 
+                                            <button className={`${ButtonStyles.normalButton} ${equipment.status === 'Pending' && '-mt-2'} w-[33%] h-10`} 
                                             style={{minWidth:'0', minHeight:'0'}}
                                             onClick={handleEditEquipment(equipment.id)} >
                                                 {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') && equipment.status !== 'Pending' ?
@@ -250,7 +250,7 @@ const EquipmentsList = () => {
                                             {
                                                 equipment.status !== 'Pending' &&
                                                 <button 
-                                                className={`w-[30%] h-10
+                                                className={`w-[33%] h-10
                                                     ${!equipment?.isTransitionRestricted && ButtonStyles.normalButton} 
                                                     ${equipment?.isTransitionRestricted && 'bg-bgButtonSecondaryDisabled text-textWarning h-[40px] rounded-3xl'}
                                                 `} 
