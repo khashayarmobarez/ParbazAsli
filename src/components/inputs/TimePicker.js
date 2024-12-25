@@ -21,7 +21,7 @@ export function TimePicker({ onChange }) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <button
         className="flex items-center justify-start w-[280px] px-4 py-2 text-left font-normal border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         onClick={() => setIsOpen(!isOpen)}

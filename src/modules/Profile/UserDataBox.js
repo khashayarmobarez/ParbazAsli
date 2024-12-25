@@ -15,7 +15,6 @@ import Box from '@mui/material/Box';
 // assets
 import ClockIcon from '../../components/icons/ClockIcon'
 import FlightQuantity from '../../components/icons/FlightQuantity'
-import UserIcon from '../../components/icons/UserIcon';
 
 // queries 
 import { useUserData } from '../../Utilities/Services/userQueries';
@@ -73,7 +72,7 @@ const UserDataBox = ({hasCoach}) => {
                     {/* the bug is here below */}
                     <div className='w-full h-full flex flex-col items-center justify-between md:pb-0 md:flex-row md:self-center md:w-full md:justify-around md:items-center md:space-y-0'>
 
-                        <div className=' h-full gap-y-2 flex flex-col items-start md:space-y-5'>
+                        <div className=' h-full gap-y-2 flex flex-col items-start md:justify-center md:space-y-5 '>
 
                             <div className=' flex justify-center items-center' >
                                 <span className='w-5 h-5'>
