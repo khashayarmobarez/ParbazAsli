@@ -215,10 +215,10 @@ const CourseStudents = () => {
                     {
                         studentsData.totalCount > 0 &&
                         <DropDownLine  
-                            onClickActivation={() => setDropDownActive(!DropDownActive)}
-                            title={'هنر جویان'} 
-                            dropDown={DropDownActive} 
-                            isActive={DropDownActive === true}  
+                        onClickActivation={() => setDropDownActive(!DropDownActive)}
+                        title={'هنر جویان'} 
+                        dropDown={DropDownActive} 
+                        isActive={DropDownActive === true}  
                         />
                     }
                     {DropDownActive && studentsData.data?.map((student) => (
@@ -291,7 +291,7 @@ const CourseStudents = () => {
                             }
                             {
                                 student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
-                                <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-10 md:left-[15%]'>
+                                <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-9 md:left-[25%]'>
                                     <div className='w-1/3 md:w-1/6 lg:w-1/12 h-full bg-bgInputDropdown text-textDefault rounded-2xl flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }

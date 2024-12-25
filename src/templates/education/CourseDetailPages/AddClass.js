@@ -276,9 +276,9 @@ const AddClass = () => {
                             <div className='w-full flex flex-col gap-y-2'>
                                 <p className='text-xs text-start self-start'>تایم پایان کلاس</p>
                                 <TimeInput
-                                value={endSelectedTime}
-                                onChange={handleEndTimeChange}
-                                placeholder="Select time"
+                                    value={endSelectedTime}
+                                    onChange={handleEndTimeChange}
+                                    placeholder="Select time"
                                 />
                                 {
                                     (StartSelectedTime > endSelectedTime) &&

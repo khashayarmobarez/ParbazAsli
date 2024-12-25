@@ -57,7 +57,6 @@ const AStudentClubCourses = () => {
 
                 <PageTitle 
                     title={StudentCourses ? `${StudentCourses.data[0].studentName}` : 'نام هنرجو' }
-                    navigateTo={`/club/clubCourses`} 
                 />
 
                 {/* {studentId} normal */}
