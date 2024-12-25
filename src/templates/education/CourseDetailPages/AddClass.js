@@ -24,6 +24,7 @@ import TimeInput from '../../../components/inputs/TimeInput';
 import SearchMultipleSelectStudent from '../../../components/inputs/SearchMultipleSelectStudent';
 import DescriptionInput from '../../../components/inputs/DescriptionInput';
 import SelectMultiplePopUp from '../../../components/reuseable/SelectMultiplePopUp';
+import { TimePicker } from '../../../components/inputs/TimePicker';
 
 const AddClass = () => {
 
@@ -275,10 +276,10 @@ const AddClass = () => {
 
                             <div className='w-full flex flex-col gap-y-2'>
                                 <p className='text-xs text-start self-start'>تایم پایان کلاس</p>
-                                <TimeInput
-                                    value={endSelectedTime}
-                                    onChange={handleEndTimeChange}
-                                    placeholder="Select time"
+                                <TimePicker
+                                    // value={endSelectedTime}
+                                    // onChange={handleEndTimeChange}
+                                    // placeholder="Select time"
                                 />
                                 {
                                     (StartSelectedTime > endSelectedTime) &&
