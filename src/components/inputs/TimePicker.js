@@ -8,7 +8,10 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
   const [hour, setHour] = useState("00")
   const [minute, setMinute] = useState("00")
   const [isOpen, setIsOpen] = useState(false)
-  const [userSelectedTime, setUserSelectedTime] = useState(false)
+  const [userSelectedTime, setUserSelectedTime] = useState(() => {
+    // Initialize from sessionStorage if available, otherwise false
+    return sessionStorage.getItem("userSelectedTime") === "true";
+  });
 
   const [isHourSelectorOpen, setIsHourSelectorOpen] = useState(true);
   const [isMinuteSelectorOpen, setIsMinuteSelectorOpen] = useState(true);
@@ -16,14 +19,18 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
   useEffect(() => {
     const now = new Date()
     if(!value) {
-      setHour(now.getHours().toString().padStart(2, "0"))
-      setMinute(now.getMinutes().toString().padStart(2, "0"))
-      onChange && onChange(`${hour}:${minute}`)
+      const currentHour = now.getHours().toString().padStart(2, "0");
+      const currentMinute = now.getMinutes().toString().padStart(2, "0");
+      setHour(currentHour)
+      setMinute(currentMinute)
+      onChange(`${currentHour}:${currentMinute}`)
     } else if(value) {
-      setHour(value.split(':')[0])
-      setMinute(value.split(':')[1])
+      const [newHour, newMinute] = value.split(":");
+      setHour(newHour);
+      setMinute(newMinute);
+      onChange(value);
     }
-  }, [])
+  }, [value, onChange])
 
   useEffect(() => {
     if(!isHourSelectorOpen && !isMinuteSelectorOpen) {
@@ -33,8 +40,16 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
 
 
   useEffect(() => {
-    !isHourSelectorOpen && !isMinuteSelectorOpen && setUserSelectedTime(true)
-  },[isHourSelectorOpen, isMinuteSelectorOpen, setUserSelectedTime])
+    // Update sessionStorage whenever the userSelectedTime changes
+    sessionStorage.setItem("userSelectedTime", userSelectedTime.toString());
+  }, [userSelectedTime]);
+
+  useEffect(() => {
+    // Change userSelectedTime when both selectors are closed
+    if (!isHourSelectorOpen && !isMinuteSelectorOpen) {
+      setUserSelectedTime(true);
+    }
+  }, [isHourSelectorOpen, isMinuteSelectorOpen]);
 
   const dayTimePeriods = 
   (hour >= 0 && hour < 4) ? "نیمه شب" :

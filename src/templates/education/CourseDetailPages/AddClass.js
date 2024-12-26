@@ -266,6 +266,7 @@ const AddClass = () => {
                                     value={endSelectedTime}
                                     onChange={handleEndTimeChange}
                                     placeholder="تایم پایان کلاس"
+                                    isSubmitted={isSubmitted}
                                 />
                                 {
                                     (StartSelectedTime > endSelectedTime) &&
