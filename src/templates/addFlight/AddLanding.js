@@ -39,6 +39,7 @@ import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
 import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
+import { TimePicker } from '../../components/inputs/TimePicker';
 
 const AddLanding = () => {
 
@@ -164,16 +165,6 @@ const AddLanding = () => {
         const formData = new FormData();
 
         if( wing && harness && parachute && sight && clouds && takeoffType && takeoffWindSpeed && takeoffwindDirection && landingWindSpeed && landingWindDirection && landingTime && takeoffTime) {
-    
-            // turn the startSelectedTime and end selected time into HH:mm format
-            const landingHour = landingTime.$d.getHours();
-            const landingMinute = landingTime.$d.getMinutes();
-            const formatedLandingTime = `${landingHour}:${landingMinute}`;
-
-            const takeoffHour = takeoffTime.$d.getHours();
-            const takeoffMinute = takeoffTime.$d.getMinutes();
-            const formatedTakeOffTime = `${takeoffHour}:${takeoffMinute}`;
-
             
             // Convert wind speeds from knots to km/h if necessary
             const convertToKmh = (speed) => Math.round(speed * 1.852);
@@ -186,11 +177,11 @@ const AddLanding = () => {
             formData.append('parachuteId', parachute.id);
             formData.append('siteId', sight.id);
             formData.append('cloudCoverTypeId', clouds.id);
-            formData.append('takeoffTime',formatedTakeOffTime);
+            formData.append('takeoffTime',takeoffTime);
             formData.append('takeoffTypeId', takeoffType.id);
             formData.append('takeoffWindSpeedInKmh', takeoffWindSpeedInKmh);
             formData.append('takeoffWindDirection', takeoffwindDirection.id);
-            formData.append('landingTime', formatedLandingTime);
+            formData.append('landingTime', landingTime);
             formData.append('landingWindSpeedInKmh', landingWindSpeedInKmh);
             formData.append('landingWindDirection', landingWindDirection.id);
             formData.append('landingTypeId', landingType.id);
@@ -387,25 +378,24 @@ const AddLanding = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
-                        <p className='text-xs text-start self-start'>زمان land (ورودی ساعت ۲۴ ساعته می باشد)</p>
-                        <TimeInput
-                            value={landingTime}
-                            onChange={handleLandingTimeChange}
-                            placeholder="Select time"
+                        <TimePicker
+                        value={landingTime}
+                        onChange={handleLandingTimeChange}
+                        placeholder="زمان land"
                         />
-                        {
-                            !landingTime && submitted &&
-                            <p className='text-xs text-start self-start text-textError'>زمان land الزامی می باشد</p>
-                        }
-                        {
-                            landingTime && landingTime < takeoffTime && 
-                            <p className='text-xs text-start self-start text-textError'>زمان land باید بعد از زمان take off ( {takeoffTime.$d.getHours()}:{takeoffTime.$d.getMinutes()} ) باشد</p>
-                        }
-                        {
-                            landingTime && landingTime.$d.getHours() > new Date().getHours() && (
-                                <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
-                            )
-                        }
+                            {
+                                !landingTime && submitted &&
+                                <p className='text-xs text-start self-start text-textError'>زمان land الزامی می باشد</p>
+                            }
+                            {
+                                landingTime && landingTime < takeoffTime && 
+                                <p className='text-xs text-start self-start text-textError'>زمان land باید بعد از زمان take off ({takeoffTime}) باشد</p>
+                            }
+                            {
+                                landingTime && landingTime > new Date().getHours() && (
+                                    <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
+                                )
+                            }
                     </div>
 
                     {

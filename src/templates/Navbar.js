@@ -21,7 +21,7 @@ import companyLogo from '../assets/Logo/DigilogbookMainLogo.svg';
 import Logout from '../components/icons/Logout';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { Avatar } from '@mui/material';
-import { EditOutlined, GroupsOutlined, HomeOutlined, PhoneOutlined, SettingsOutlined } from '@mui/icons-material';
+import { GroupsOutlined,  PhoneOutlined, SettingsOutlined } from '@mui/icons-material';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import BookIcon from '../components/icons/BookIcon';
 
@@ -66,7 +66,7 @@ const NewNavbar = () => {
             await postLogout(token)
             Cookies.remove('token');
             Cookies.set('userIsLoggedInCrossPlatforms', false, { expires: 7, domain: '.digilogbook.app' });   
-            navigate('/landing');
+            navigate('/');
         };
 
 

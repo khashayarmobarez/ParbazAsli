@@ -55,7 +55,7 @@ const NumberInput = ({ id,value, onChange, placeholder, icon, IsEmptyAfterSubmit
             border-2 border-gray-300 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none focus:ring-0 focus:border-blue-600
-            ${isFilled && inputStyles.inputFilledBorder}
+            ${value && inputStyles.inputFilledBorder}
             ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}
             ${inputStyles.inputText2}
           `}

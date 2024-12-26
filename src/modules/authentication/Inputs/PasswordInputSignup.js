@@ -165,7 +165,7 @@
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={`
-                peer w-full min-h-12 px-4 pt-1 pb-1 pr-8 rounded-2xl
+                peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
                 border-2 bg-transparent
                 text-gray-900 placeholder-transparent
                 focus:outline-none

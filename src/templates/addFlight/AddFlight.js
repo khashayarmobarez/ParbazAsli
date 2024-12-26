@@ -27,11 +27,11 @@ const AddFlight = () => {
         if(takeoffTime && landingTime) {
 
             // turn the startSelectedTime and end selected time into HH:mm format
-            const landingHour = landingTime.$d.getHours();
-            const landingMinute = landingTime.$d.getMinutes();
+            const landingHour = landingTime.split(':')[0];
+            const landingMinute = landingTime.split(':')[1];
 
-            const takeoffHour = takeoffTime.$d.getHours();
-            const takeoffMinute = takeoffTime.$d.getMinutes();
+            const takeoffHour = takeoffTime.split(':')[0];
+            const takeoffMinute = takeoffTime.split(':')[1];
 
             const landing = dayjs().hour(landingHour).minute(landingMinute);
             const takeoff = dayjs().hour(takeoffHour).minute(takeoffMinute);

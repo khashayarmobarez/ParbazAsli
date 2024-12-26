@@ -33,7 +33,7 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
   return (
     <div className={`flex flex-col w-full items-start ${className}`}>
       <div className="relative w-full min-h-12">
-        <span htmlFor="floatingInput"> 
+        <span htmlFor="floatingInput">
           { icon ?
             <span className={`absolute mt-3 mr-2 ${customIconSize ? customIconSize : 'w-6'}`}>  
               {icon}

@@ -37,8 +37,8 @@ const StudentsListClub = () => {
                 }
 
                 {
-                AllStudentError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                    AllStudentError &&
+                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
                 }
 
                 {

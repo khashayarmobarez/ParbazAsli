@@ -65,12 +65,6 @@ const AddClass = () => {
     
 
 
-
-    useEffect(() => {
-        console.log(guestStudentIds, studentIds)
-    }, [guestStudentIds, studentIds]);
-
-
     // a use effect to check the endSelectedTime is after StartSelectedTime when the endSelectedTime is changed
     useEffect(() => {
         if (StartSelectedTime && endSelectedTime) {
@@ -163,7 +157,7 @@ const AddClass = () => {
         setIsSubmitted(true)
         e.preventDefault();
 
-        if(!id || !ClassName || !StartSelectedTime || !endSelectedTime || syllabusIds.length === 0 || studentIds.length === 0){
+        if(!id || !ClassName || !StartSelectedTime || !endSelectedTime || syllabusIds.length === 0 ){
             return toast('لطفا تمامی فیلد ها را پر کنید', {
                         type: 'error',
                         position: 'top-right',
@@ -183,21 +177,14 @@ const AddClass = () => {
 
 
         // turn the startSelectedTime and end selected time into HH:mm format
-        const startHour = StartSelectedTime.$d.getHours();
-        const startMinute = StartSelectedTime.$d.getMinutes();
-        const startTime = `${startHour}:${startMinute}`;
-
-        const endHour = endSelectedTime.$d.getHours();
-        const endMinute = endSelectedTime.$d.getMinutes();
-        const endTime = `${endHour}:${endMinute}`;
         
 
         const classData = {
             "courseId": id,
             "Name": ClassName,
             "Description": description,
-            "startTime": startTime,
-            "endTime": endTime,
+            "startTime": StartSelectedTime,
+            "endTime": endSelectedTime,
             "classSyllabusIds": syllabusIds,
             // student ids with the guest student ids
             "studentUserIds": allStudentIds,
@@ -262,11 +249,11 @@ const AddClass = () => {
                             />
 
                             <div className='w-full flex flex-col gap-y-2'>
-                                <p className='text-xs text-start self-start'>تایم شروع کلاس</p>
-                                <TimeInput
+                                <TimePicker
                                 value={StartSelectedTime}
                                 onChange={handleStartTimeChange}
-                                placeholder="Select time"
+                                placeholder="تایم شروع کلاس"
+                                isSubmitted={isSubmitted}
                                 />
                                 {
                                     isSubmitted && !StartSelectedTime &&
@@ -275,11 +262,10 @@ const AddClass = () => {
                             </div>
 
                             <div className='w-full flex flex-col gap-y-2'>
-                                <p className='text-xs text-start self-start'>تایم پایان کلاس</p>
                                 <TimePicker
-                                    // value={endSelectedTime}
-                                    // onChange={handleEndTimeChange}
-                                    // placeholder="Select time"
+                                    value={endSelectedTime}
+                                    onChange={handleEndTimeChange}
+                                    placeholder="تایم پایان کلاس"
                                 />
                                 {
                                     (StartSelectedTime > endSelectedTime) &&

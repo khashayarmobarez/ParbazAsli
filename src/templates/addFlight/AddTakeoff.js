@@ -25,6 +25,7 @@ import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTak
 import { useTakeoffTypes } from '../../Utilities/Services/addFlightQueries';
 import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
+import { TimePicker } from '../../components/inputs/TimePicker';
 
 
 const AddTakeoff = () => {
@@ -82,11 +83,11 @@ const AddTakeoff = () => {
 
     const handleSetTakeoffWindspeedChange = (event) => {
         dispatch(updateTakeoffWindSpeed(event.target.value));
-      };
+    };
 
     const handleSelectSetTakeoffwindDirection = (selectedOption) => {
         dispatch(updateTakeOffWindDirection(selectedOption));
-      };
+    };
 
 
 
@@ -110,8 +111,6 @@ const AddTakeoff = () => {
         }
 
       };
-
-
 
     
     return (
@@ -164,11 +163,10 @@ const AddTakeoff = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
-                        <p className='text-xs text-start self-start'>زمان take off (ورودی ساعت ۲۴ ساعته می باشد)</p>
-                        <TimeInput
-                            value={takeoffTime}
-                            onChange={handleTakeOffTimeChange}
-                            placeholder="Select time"
+                        <TimePicker
+                        value={takeoffTime}
+                        onChange={handleTakeOffTimeChange}
+                        placeholder="زمان take off"
                         />
                         {
                             !takeoffTime && submitted &&
@@ -176,10 +174,10 @@ const AddTakeoff = () => {
                         }
                         {
                             landingTime < takeoffTime && landingTime &&
-                            <p className='text-xs text-start self-start text-textError'>زمان take off باید قبل از زمان land ( {landingTime?.$d?.getHours()}:{landingTime?.$d?.getMinutes()} ) باشد</p>
+                            <p className='text-xs text-start self-start text-textError'>زمان take off باید قبل از زمان land({landingTime}) باشد</p>
                         }
                         {
-                            takeoffTime && takeoffTime.$d.getHours() > new Date().getHours() && (
+                            takeoffTime && takeoffTime > new Date().getHours() && (
                                 <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
                             )
                         }
