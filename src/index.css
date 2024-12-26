@@ -44,9 +44,11 @@ code {
     monospace;
 }
 
-.custom-date-picker .zaman-dropdown {
-  z-index: 1050 !important;
+/* date picker component */
+.css-137m4ck {
+  z-index: 999 !important;
 }
+
 
 :root {
   /* overall */
