@@ -90,7 +90,7 @@
         const isValid = 
           inputValue.length >= passwordMinLength &&
           inputValue.length <= passwordMaxLength &&
-          (!passwordRequireNonAlphanumeric || /[~`!@#$%^&*()\-_+={}\[\]|/\\:;\"`<>,.?]/.test(inputValue)) &&
+          (!passwordRequireNonAlphanumeric || /[~`!@#$%^&*()\-_+={}[\]|/\\:;"`<>,.?]/.test(inputValue)) &&
           (!passwordRequireDigit || /\d/.test(inputValue)) &&
           (!passwordRequireUppercase || /[A-Z]/.test(inputValue)) &&
           (!passwordRequireLowercase || /[a-z]/.test(inputValue)) &&
@@ -242,7 +242,7 @@
             ) 
             }
             {  
-            passwordRequireNonAlphanumeric && !(/[^\w\s]/.test(value)) && (
+            passwordRequireNonAlphanumeric && !(/[~`!@#$%^&*()\-_+={}[\]|/\\:;"`<>,.?]/.test(value)) && (
               <p>
                 *رمز عبور باید حداقل شامل یک کارکتر ویژه باشد
                 <br />
