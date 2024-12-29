@@ -279,7 +279,7 @@ const AddClub = ({isForSetting}) => {
                 {/* aircraft model input */}
                 <TextInput 
                 id={'TI1'} 
-                placeholder='نام باشگاه' 
+                placeholder='نام باشگاه'
                 value={clubName} 
                 onChange={handleChangeClubName}  
                 isSubmitted={isSubmitted}
@@ -289,9 +289,9 @@ const AddClub = ({isForSetting}) => {
                 
                 <TextInput 
                 id={'TI2'} 
-                placeholder='شماره مجوز' 
-                value={licenseNumber} 
-                onChange={handleLicenseNumber}  
+                placeholder='شماره مجوز'
+                value={licenseNumber}
+                onChange={handleLicenseNumber}
                 isSubmitted={isSubmitted}
                 ErrorCondition={!licenseNumber}
                 ErrorText={'شماره مجوز الزامی می باشد'}
@@ -299,9 +299,9 @@ const AddClub = ({isForSetting}) => {
 
                 {/* the date picker component comes from equipment section */}
                 <DateInput 
-                    name={'تاریخ تاسیس'}  
-                    onChange={handleFoundationDateChange} 
-                    placeH={'تاریخ تاسیس'} 
+                    name={'تاریخ تاسیس'}
+                    onChange={handleFoundationDateChange}
+                    placeH={'تاریخ تاسیس'}
                     isSubmitted={isSubmitted}
                     ErrorCondition={!foundationDate}
                     ErrorText={'تاریخ تاسیس الزامی می باشد'}

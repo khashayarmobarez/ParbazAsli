@@ -535,7 +535,7 @@ const AddEquipment = () => {
                                         IsEmptyAfterSubmit={submitted && !packageDate} 
                                         isSubmitted={submitted}
                                         ErrorCondition={!packageDate}
-                                        ErrorText={'سال ساخت الزامی میباشد'}
+                                        ErrorText={'تاریخ اخرین بسته بندی الزامی می باشد'}
                                         ErrorCondition2={packageDate && new Date(packageDate) > new Date()}
                                         ErrorText2={'تاریخ بسته بندی باید قبل از امروز یا همین امروز باشد'}
                                     />
@@ -552,7 +552,10 @@ const AddEquipment = () => {
                                             ErrorCondition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
                                             ErrorText={'فرمت شناسه آخرین بسته‌بندی کننده درست نمی باشد'}
                                         />
-                                        {userByIdData &&
+
+
+                                        {
+                                        userByIdData &&
                                             <div className='flex gap-x-1 text-textAccent'>
                                             <PersonOutlineOutlinedIcon />
                                             <p>{userByIdData.data.fullName}</p>
@@ -565,10 +568,10 @@ const AddEquipment = () => {
                                 {/* total of functioning hours model input */}
                                 <NumberInput 
                                 id={'NI4'}
-                                icon={<ClockIcon/>} 
+                                icon={<ClockIcon customColor = {!flightHour && submitted && 'var(--text-error)'}/>} 
                                 className='col-span-1' 
                                 value={flightHour} 
-                                onChange={handleTextInputFlightHour} 
+                                onChange={handleTextInputFlightHour}
                                 placeholder='حدود ساعت کارکرد وسیله'  
                                 IsEmptyAfterSubmit={submitted && !flightHour}
                                 isSubmitted={submitted}
@@ -591,7 +594,7 @@ const AddEquipment = () => {
                             
                             <TextInput
                                 id={'TI4'}
-                                icon={<SerialNumberIcon/>}
+                                icon={<SerialNumberIcon  />}
                                 className='col-span-1'
                                 value={serialNumber}
                                 onChange={handleTextInputSerialNumber}

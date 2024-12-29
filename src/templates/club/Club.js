@@ -45,7 +45,7 @@ const Club = () => {
                 }
 
                 {
-                    clubStatus && clubStatus.data !== 'NotAdded' && <AddClub />
+                    clubStatus && clubStatus.data === 'NotAdded' && <AddClub />
                 }
 
                 {

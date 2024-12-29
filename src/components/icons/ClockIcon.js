@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ClockIcon = () => {
+const ClockIcon = ({customColor}) => {
 
-    const color = 'var(--text-default)';
+    const color = customColor || 'var(--text-default)';
 
     return (
         <svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

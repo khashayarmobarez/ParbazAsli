@@ -60,7 +60,7 @@ const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'r
       </div>
       {
         (selectedDate || isSubmitted) && (ErrorCondition || ErrorCondition2) &&
-        <div id='errors' className='w-full flex flex-col items-start -mt-4'>
+        <div id='errors' className='w-full flex flex-col items-start -mt-3'>
           {ErrorCondition && <span className='text-textError text-xs -mt-1'>{ErrorText}</span>}
           {ErrorCondition2 && <span className='text-textError text-xs -mt-1'>{ErrorText2}</span>}
         </div>
