@@ -61,7 +61,7 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
       
       <div className="relative w-full min-h-12" ref={dropdownRef}>
         <span className="absolute right-3 top-3 w-5 z-10">
-          {icon ? icon : <Cube />}
+          {icon ? icon : <Cube customColor={(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)' } />}
         </span>
         <button
           ref={buttonRef}
@@ -88,7 +88,8 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
           onClick={(e) => { e.preventDefault(); buttonRef.current.focus(); setIsOpen(true) }}
           htmlFor={id}
           className={`
-            absolute right-10 top-[14px] text-textInputDefault
+            absolute right-10 top-[14px] 
+            ${((IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-xs
@@ -100,7 +101,9 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
           {name || 'انتخاب کنید'}
         </label>
         <span onClick={handleToggle} className="absolute left-3 top-0 h-full flex items-center pr-2 cursor-pointer">
-          <ArrowBackIosNewIcon sx={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(-90deg)', transition: 'transform 0.3s ease' }} />
+          <ArrowBackIosNewIcon sx={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(-90deg)', transition: 'transform 0.3s ease', 
+          color:((IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'var(--text-error)' : 'var(--text-input-default)'
+          }} />
         </span>
         {isOpen && (
         <div className={`${isOpen ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-[110]`} 

@@ -222,7 +222,7 @@ const AddUsedEquipment = () => {
                         <>
                             <DropdownInput 
                             id={'ddi3'} 
-                            icon={<WingIcon/>} 
+                            icon={<WingIcon customColor = {!wing && submitted && 'var(--text-error)'}/>} 
                             name={'بال'} 
                             options={userWingsData.data} 
                             selectedOption={wing} 
@@ -236,7 +236,7 @@ const AddUsedEquipment = () => {
 
                             <DropdownInput 
                             id={'ddi4'} 
-                            icon={<HarnessIcon/>} 
+                            icon={<HarnessIcon customColor = {!harness && submitted && 'var(--text-error)'}/>} 
                             name={'هارنس'} 
                             options={userHarnessData.data} 
                             selectedOption={harness} 
@@ -251,7 +251,7 @@ const AddUsedEquipment = () => {
                                 flightType === 'Tandem' &&
                                 <DropdownInput 
                                 id={'ddi5'} 
-                                icon={<HarnessIcon/>} 
+                                icon={<HarnessIcon customColor = {!passengerHarness && submitted && 'var(--text-error)'}/>} 
                                 name={'هارنس مسافر'} 
                                 options={userHarnessData.data} 
                                 selectedOption={passengerHarness} 
@@ -265,11 +265,11 @@ const AddUsedEquipment = () => {
                             
                             <DropdownInput 
                             id={'ddi6'} 
-                            icon={<ParachuteIcon/>} 
+                            icon={<ParachuteIcon anotherColor = {!parachute && submitted && 'var(--text-error)'}/>} 
                             name={'چتر کمکی'} 
                             options={userParachuteData.data} 
-                            selectedOption={parachute} 
-                            handleSelectChange={handleSelectSetParachute} 
+                            selectedOption={parachute}
+                            handleSelectChange={handleSelectSetParachute}
                             IsEmptyAfterSubmit={submitted && !parachute} 
                             isSubmitted={submitted}
                             ErrorCondition={!parachute}

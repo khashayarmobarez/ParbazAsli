@@ -62,7 +62,8 @@ const NumberInput = ({ id,value, onChange, placeholder, icon, IsEmptyAfterSubmit
         <label
           htmlFor="floatingNumberInput"
           className={`
-            absolute right-9 top-[13px] text-textInputDefault z-0
+            absolute right-9 top-[13px] z-0
+            ${((IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm

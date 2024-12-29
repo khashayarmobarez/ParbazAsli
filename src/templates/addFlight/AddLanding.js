@@ -87,9 +87,6 @@ const AddLanding = () => {
         }
     }, [ wing, harness, parachute, country, city , sight , clouds , flightType , takeoffTime, navigate, appTheme])
 
-    useEffect(() => {
-        if(landingTypesData) {console.log(landingTypesData)}
-    },[landingTypesData])
 
 
     const handleLandingTimeChange = (newTime) => {
@@ -403,7 +400,7 @@ const AddLanding = () => {
                         <DropdownInput 
                             id={'ddi1'}
                             name={'شیوه'} 
-                            icon={<ColorTagsIcon/>} 
+                            icon={<ColorTagsIcon customColor = {!landingType && submitted && 'var(--text-error)'}/>} 
                             options={landingTypesData.data} 
                             selectedOption={landingType} 
                             handleSelectChange={handleSelectSetLandingType} 
@@ -417,7 +414,7 @@ const AddLanding = () => {
                     <DropdownInput 
                         id={'ddi2'}
                         name={'جهت باد'} 
-                        icon={<WindDirectionCock />} 
+                        icon={<WindDirectionCock customColor = {!landingWindDirection && submitted && 'var(--text-error)'} />} 
                         options={windDirectionOptions} 
                         selectedOption={landingWindDirection} 
                         handleSelectChange={handleSelectSetLandingWindDirection} 
@@ -442,7 +439,7 @@ const AddLanding = () => {
                     {flightType === 'Tandem' && 
                         <TextInput 
                             id={'TI1'}
-                            icon={<PhoneIcon/>}
+                            icon={<PhoneIcon customColor = {!passengerPhoneNumber && submitted && 'var(--text-error)'}/>}
                             value={passengerPhoneNumber} 
                             onChange={handlePassengerPhoneNum} 
                             placeholder='درج شماره تماس مسافر' 
@@ -459,11 +456,10 @@ const AddLanding = () => {
                     {
                         (flightType === 'Tandem' ||  flightType === 'Solo') &&
                         <div className='w-full flex flex-col gap-y-2'>
-                            <h1 className=' self-start'>توضیحات و مانورها</h1>
                             <DescriptionInput
                                 value={description}
                                 onChange={handleDescription}
-                                placeholder='توضیحات پرواز را اینجا بنویسید ...'
+                                placeholder='توضیحات و مانورها'
                             />
                         </div>
                     }

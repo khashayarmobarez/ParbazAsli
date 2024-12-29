@@ -190,7 +190,7 @@ const AddTakeoff = () => {
                         <DropdownInput 
                             id={'ddi2'} 
                             name={'شیوه'} 
-                            icon={<ColorTagsIcon/>} 
+                            icon={<ColorTagsIcon  customColor = {!takeoffType && submitted && 'var(--text-error)'}/>} 
                             options={takeOffTypesData.data} 
                             selectedOption={takeoffType} 
                             handleSelectChange={handleSelectSetTakeoffType} 
@@ -204,7 +204,7 @@ const AddTakeoff = () => {
                     <DropdownInput 
                         id={'ddi3'} 
                         name={'جهت باد'} 
-                        icon={<WindDirectionCock/>} 
+                        icon={<WindDirectionCock customColor = {!takeoffwindDirection && submitted && 'var(--text-error)'}/>} 
                         options={windDirectionOptions} 
                         selectedOption={takeoffwindDirection} 
                         handleSelectChange={handleSelectSetTakeoffwindDirection} 
@@ -218,7 +218,7 @@ const AddTakeoff = () => {
 
                     <NumberInput
                         id={'NI1'}
-                        icon={<WindIcon/>}
+                        icon={<WindIcon  customColor = {!takeoffWindSpeed && submitted && 'var(--text-error)'}/>}
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}

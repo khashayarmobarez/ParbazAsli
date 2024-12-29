@@ -107,7 +107,7 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
     ref={parentRef}
     >
       <button
-        className={`flex items-center justify-start w-full px-2 py-3 gap-x-2 text-left font-normal border  rounded-xl  focus:outline-none focus:ring-1 focus:ring-textDefault
+        className={`flex items-center justify-start w-full px-2 py-3 gap-x-2 text-left font-normal border  rounded-2xl  focus:outline-none focus:ring-1 focus:ring-textDefault
         ${(value && userSelectedTime) ? 'border-textAccent' : 'border-borderInputDefault' }`}
         onClick={e => handleOpen(e)}
       >

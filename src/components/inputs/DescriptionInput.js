@@ -39,6 +39,7 @@ const DescriptionInput = ({ value, onChange, placeholder, ErrorCondition, ErrorC
             text-gray-900 text-sm placeholder-transparent
             focus:outline-none focus:ring-0 focus:border-blue-600
             ${isFilled && inputStyles.inputFilledBorder}
+            ${(!value || ErrorCondition2 || ErrorCondition) && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
             ${inputStyles.inputDescription}
           `}
           placeholder=" "
@@ -46,7 +47,8 @@ const DescriptionInput = ({ value, onChange, placeholder, ErrorCondition, ErrorC
         <label
           htmlFor="floatingDescription"
           className={`
-            absolute right-3 top-2 text-textInputDefault
+            absolute right-3 top-2 
+            ${((!value || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm

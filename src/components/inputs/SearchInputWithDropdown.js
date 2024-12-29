@@ -3,7 +3,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
-const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon }) => {
+const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, isSubmitted, ErrorCondition, ErrorCondition2 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -66,17 +66,19 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
   return (
     <div className="relative w-full min-h-12" ref={dropdownRef}>
       <span className="absolute right-3 top-3 w-5 z-10">
-        {icon ? icon : <Cube />}
+        {icon ? icon : <Cube customColor={(!selectedOption || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)' } />}
       </span>
       <input
         ref={inputRef}
         type="text"
         className={`
           peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl appearance-none
-          border-2 border-gray-300 bg-transparent
+          border-2 bg-transparent
           text-gray-900 placeholder-transparent
           focus:outline-none focus:ring-0 focus:border-blue-600
           ${isFilled && inputStyles.inputFilledBorder}
+          ${!selectedOption && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
+          ${!selectedOption && 'text-textDisabled'}
           ${inputStyles.inputDropdown}
         `}
         placeholder=" "
@@ -89,13 +91,13 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
         onClick={(e) => { setIsOpen(true) }}
         htmlFor="searchInput"
         className={`
-          absolute right-10 top-[14px] text-textInputDefault
+          absolute right-10 top-[14px]
+           ${((!selectedOption || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
           transition-all duration-300 transform
           peer-placeholder-shown:translate-y-0
           peer-placeholder-shown:text-sm
           peer-focus:-translate-y-5 peer-focus:text-xs peer-focus:text-blue-600
-          ${(isFocused || isFilled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-sm'}
-          ${isFocused ? 'text-blue-600' : ''}
+          ${(isFocused || isFilled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-sm'} 
         `}
       >
         {name || 'جستجو کنید'}
@@ -104,7 +106,9 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
         onClick={handleIconClick} 
         className="absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
       >
-        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
+        <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)',
+        color:((!selectedOption || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'var(--text-error)' : 'var(--text-input-default)'
+         }} />
       </span>
       {isOpen && (
         <ul className="absolute z-30 w-full bg-bgInputDropdown mt-1 rounded-xl shadow-lg max-h-60 overflow-auto"
