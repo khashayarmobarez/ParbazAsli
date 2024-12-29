@@ -94,7 +94,7 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
             ${inputStyles.inputText2}
             ${ErrorConditionMet ? inputStyles.inputText2Error : inputStyles.inputText2}
           `}
-          placeholder=" "
+          placeholder=""
         />
         <label
           onClick={handleLabelClick}

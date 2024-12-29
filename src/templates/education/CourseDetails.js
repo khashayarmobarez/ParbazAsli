@@ -189,17 +189,20 @@ const CourseDetails = () => {
 
                             {/* show extra version */}
                             {
-                            showExtra &&       
+                            showExtra && 
                                 <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
                                     <p>توضیحات درباره دوره</p>
-                                    <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
+                                    <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{aCourseData.data.description}</p>
                                 </div>
                             }   
 
-                            <p onClick={() => setShowExtra(!showExtra)}
-                            className='w-full px-6 text-sm text-textAccent text-start self-start'>
-                                {showExtra ? 'بستن' : 'بیشتر ...'}
-                            </p>
+                            {
+                                aCourseData?.data.description.length > 0  && 
+                                <p onClick={() => setShowExtra(!showExtra)}
+                                className='w-full px-6 text-sm text-textAccent text-start self-start'>
+                                    {showExtra ? 'بستن' : 'بیشتر ...'}
+                                </p>
+                            }
 
                         </div>
 

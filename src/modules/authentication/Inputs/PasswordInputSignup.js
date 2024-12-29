@@ -90,7 +90,7 @@
         const isValid = 
           inputValue.length >= passwordMinLength &&
           inputValue.length <= passwordMaxLength &&
-          (!passwordRequireNonAlphanumeric || /[^\w\s]/.test(inputValue)) &&
+          (!passwordRequireNonAlphanumeric || /[~`!@#$%^&*()\-_+={}\[\]|/\\:;\"`<>,.?]/.test(inputValue)) &&
           (!passwordRequireDigit || /\d/.test(inputValue)) &&
           (!passwordRequireUppercase || /[A-Z]/.test(inputValue)) &&
           (!passwordRequireLowercase || /[a-z]/.test(inputValue)) &&
@@ -216,7 +216,8 @@
                   *پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
                 </p>
             }
-            {  passwordRequireDigit && !(/\d/.test(value)) &&
+            {  
+            passwordRequireDigit && !(/\d/.test(value)) &&
               (
                 <p>
                   *رمز عبور باید حداقل شامل یک عدد باشد
@@ -224,27 +225,41 @@
                 </p>
               ) 
             }
-            {  passwordRequireUppercase && !(/[A-Z]/.test(value)) && (
+            {  
+            passwordRequireUppercase && !(/[A-Z]/.test(value)) && (
               <p>
                 *رمز عبور باید حداقل شامل یک حرف بزرگ باشد
                 <br />
               </p>
-              ) }
-            {  passwordRequireLowercase && !(/[a-z]/.test(value)) && (
+              ) 
+            }
+            {  
+            passwordRequireLowercase && !(/[a-z]/.test(value)) && (
               <p>
                 *رمز عبور باید حداقل شامل یک حرف کوچک باشد
                 <br />
               </p>
-            ) }
-            {  passwordRequireNonAlphanumeric && !(/[^\w\s]/.test(value)) && (
+            ) 
+            }
+            {  
+            passwordRequireNonAlphanumeric && !(/[^\w\s]/.test(value)) && (
               <p>
                 *رمز عبور باید حداقل شامل یک کارکتر ویژه باشد
                 <br />
               </p>
-              )  }
+              )  
+            }
+            {
+              
+              !PWD_REGEX.test(value) && 
+              <p>
+                *فرمت پسوورد درست نمی باشد
+                <br />
+              </p>
+            }
           </div>
 
-          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-2 text-right text-xs mr-4 self-start text-textError`}>
+          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-3 text-right text-xs mr-4 self-start text-textError`}>
             *رمز عبور الزامی می باشد
           </p>
         </>
