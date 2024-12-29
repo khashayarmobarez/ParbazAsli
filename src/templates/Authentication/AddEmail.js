@@ -66,6 +66,7 @@ const AddEmail = () => {
     const [codeRemainingTime, setCodeRemainingTime] = useState(null)
     
     const [errMsg, setErrMsg] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false)
     
 
 
@@ -78,6 +79,7 @@ const AddEmail = () => {
     // pop up logic
     const handlePopUp = async(e) => {
 
+        setIsSubmitted(true)
         e.preventDefault();
 
         
@@ -310,6 +312,7 @@ const AddEmail = () => {
                         emailRef={userRef}
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
+                        isSubmitted={isSubmitted}
                         focus={emailFocus}
                         onFocus={() => setEmailFocus(true)}
                         onBlur={() => setEmailFocus(false)}

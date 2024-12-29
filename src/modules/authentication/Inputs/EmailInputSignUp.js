@@ -70,8 +70,8 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
   return (
     <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
-      <span className="absolute right-3 top-3 w-5 z-10">
-          <EmailOutlinedIcon sx={{ color: iconColor }} />
+        <span className="absolute right-3 top-3 w-5 z-10">
+          <EmailOutlinedIcon sx={{ color: (!value && isSubmitted) ? 'var(--text-error)' : iconColor }} />
         </span>
         <input
           type="email"
@@ -101,21 +101,21 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
           htmlFor="username"
           className={`
             absolute right-11 top-[13px]
+            ${(!value && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
             peer-focus:-translate-y-5 peer-focus:text-xs
-            text-[var(--text-input-default)]
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
           ایمیل
         </label>
       </div>
-      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
-         لطفا یک آدرس ایمیل معتبر وارد کنید.
+      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-1 text-textError`}>
+        لطفا یک آدرس ایمیل معتبر وارد کنید.
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-textError`}>
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-1 text-textError`}>
         *ایمیل الزامی می باشد
       </p>
     </div>
