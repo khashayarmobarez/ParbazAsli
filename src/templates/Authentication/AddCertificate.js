@@ -66,7 +66,7 @@ const AddCertificate = () => {
     
     if(isUserAuthenticated !== 'noCertificate') {
         // reload
-        window.location.reload();    
+        // window.location.reload();    
     }
     
     // clear the other states if organ changes
@@ -320,7 +320,7 @@ const AddCertificate = () => {
                                                 :
                                                 'صدور گواهینامه از'
                                             }
-                                            icon={<CertificateIcon/>}
+                                            icon={<CertificateIcon sx={{color:!organ && isSubmitted && 'var(--text-error)'}}/>}
                                             ErrorCondition={!organ}
                                             ErrorText={'ارگان مربوطه را انتخاب کنید'}
                                             isSubmitted={isSubmitted}
@@ -344,7 +344,7 @@ const AddCertificate = () => {
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
                                                     name={'مقطع گواهینامه'}
-                                                    icon={<CertificateIcon/>}
+                                                    icon={<CertificateIcon sx={{color:!level && isSubmitted && 'var(--text-error)'}} />}
                                                     isDeselectDeactivated={true}
                                                 />
                                                 
@@ -359,7 +359,7 @@ const AddCertificate = () => {
                                                             onChange={handleCertificateIdChange}
                                                             placeholder={'شماره گواهینامه'}
                                                             Type={'text'}
-                                                            icon={<CertificateIcon/>} // You can replace `null` with a specific icon if you have one
+                                                            icon={<CertificateIcon customColor={!certificateId && isSubmitted && 'var(--text-error)'} />} // You can replace `null` with a specific icon if you have one
                                                             isSubmitted={isSubmitted}
                                                             isRequired={true}
                                                             RequiredMessage='شماره گواهینامه الزامی می باشد'
@@ -371,7 +371,7 @@ const AddCertificate = () => {
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
-                                                            icon={<CertificateIcon/>} 
+                                                            icon={<CertificateIcon />} 
                                                             name={'تاریخ صدور'}  
                                                             onChange={handleCertificateStartDateChange} 
                                                             placeH={'تاریخ صدور'}  
@@ -384,7 +384,7 @@ const AddCertificate = () => {
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
-                                                        icon={<CertificateIcon/>}
+                                                        icon={<CertificateIcon />}
                                                         name={'تاریخ انقضا'}
                                                         onChange={handleCertificateEndDateChange}
                                                         placeH={'تاریخ انقضا'} 
