@@ -383,7 +383,7 @@ const AddEquipment = () => {
                                     selectedOption={selectedOptionBrand}
                                     handleSelectChange={handleSelectChangeBrand}
                                     name={'برند'}
-                                    icon={<ClothesTag/>}
+                                    icon={<ClothesTag customColor = {!selectedOptionBrand && submitted && 'var(--text-error)'} />}
                                     IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
                                     isSubmitted={submitted}
                                     ErrorCondition={(!selectedOptionBrand && selectedOptionBrand?.id !== 0)}
@@ -408,7 +408,7 @@ const AddEquipment = () => {
                                 <TextInput 
                                     id={'TI2'} 
                                     value={aircraft} 
-                                    icon={<ClothesTag/>} 
+                                    icon={<ClothesTag customColor = {!aircraft && submitted && 'var(--text-error)'}/>} 
                                     onChange={handleTextInputAircraft} 
                                     placeholder='نام مدل' 
                                     IsEmptyAfterSubmit={submitted && !aircraft} 
@@ -424,7 +424,7 @@ const AddEquipment = () => {
                                         <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                                         <div className='flex justify-between gap-x-2'>
                                             <NumberInput 
-                                                icon={<Cube/>} 
+                                                icon={<Cube customColor = {!minimumWeightCapacity && submitted && 'var(--text-error)'}/>} 
                                                 id={'NI1'} 
                                                 className='w-full' 
                                                 value={minimumWeightCapacity} 
@@ -438,7 +438,7 @@ const AddEquipment = () => {
                                                 ErrorText2={'حداقل وزن باید از حداکثر کمتر باشد'}
                                             />
                                             <NumberInput 
-                                                icon={<Cube/>} 
+                                                icon={<Cube customColor = {!maximumWeightCapacity && submitted && 'var(--text-error)'}/>} 
                                                 id={'NI2'} 
                                                 className='w-full' 
                                                 value={maximumWeightCapacity} 
@@ -460,7 +460,7 @@ const AddEquipment = () => {
                                     equipmentType === 'Harness' &&
                                     <TextInput 
                                         id={'TI3'} 
-                                        icon={<Cube/>} 
+                                        icon={<Cube customColor = {!size && submitted && 'var(--text-error)'}/>} 
                                         className='col-span-1' 
                                         value={size} 
                                         onChange={handleTextInputSize} 
@@ -479,7 +479,7 @@ const AddEquipment = () => {
                                         id={'ddi1'}
                                         className='col-span-1'
                                         name={'کلاس'}
-                                        icon={<WingIcon />}
+                                        icon={<WingIcon customColor = {!selectedOptionClass && submitted && 'var(--text-error)'} />}
                                         options={wingsClasses.data}
                                         selectedOption={selectedOptionClass}
                                         handleSelectChange={handleSelectChangeClass}
@@ -496,7 +496,7 @@ const AddEquipment = () => {
                                 <DropdownInput
                                 id={'ddi2'}
                                 className='col-span-1'
-                                icon={<ColorTagsIcon/>}
+                                icon={<ColorTagsIcon customColor = {!selectedOptionType && submitted && 'var(--text-error)'} />}
                                 name={'نوع بال'}
                                 options={flightTypeOptionsEquipment}
                                 selectedOption={selectedOptionType} 
@@ -511,7 +511,7 @@ const AddEquipment = () => {
                                 {/* Year input */}
                                 <NumberInput
                                 id={'NI3'}
-                                icon={<CalenderIcon/>}
+                                icon={<CalenderIcon customColor = {!year && submitted && 'var(--text-error)'}/>}
                                 className='col-span-1'
                                 value={year}
                                 onChange={handleTextInputYear}
@@ -549,7 +549,6 @@ const AddEquipment = () => {
                                             value={lastPackerId}
                                             onChange={handleTextInputLastPackerId}
                                             placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
-                                            isSubmitted={submitted}
                                             ErrorCondition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
                                             ErrorText={'فرمت شناسه آخرین بسته‌بندی کننده درست نمی باشد'}
                                         />
