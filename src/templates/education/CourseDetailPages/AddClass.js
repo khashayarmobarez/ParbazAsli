@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // assets
-import SingleTag from '../../../components/icons/ADressTag';
+import ADressTag from '../../../components/icons/ADressTag';
 import ListIcon from '../../../components/icons/ListIcon';
 import UsersIcon from '../../../components/icons/UsersIcon';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -242,7 +242,7 @@ const AddClass = () => {
                                 value={ClassName}
                                 onChange={handleClassName}
                                 placeholder='نام کلاس'
-                                icon={<SingleTag/>}
+                                icon={<ADressTag/>}
                                 isSubmitted={isSubmitted}
                                 ErrorCondition={!ClassName}
                                 ErrorText={'نام کلاس الزامی است'}

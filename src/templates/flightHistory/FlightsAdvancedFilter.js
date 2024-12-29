@@ -14,7 +14,7 @@ import HarnessIcon from '../../components/icons/HarnessIcon'
 import LocationIcon from '../../components/icons/LocationIcon'
 import EarthIcon from '../../components/icons/EarthIcon'
 import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
-import SingleTag from '../../components/icons/ADressTag'
+import ADressTag from '../../components/icons/ADressTag'
 import UserIcon from '../../components/icons/UserIcon'
 
 
@@ -200,7 +200,7 @@ const FlightsAdvancedFilter = () => {
                     
                             {
                                 userCoursesData && userCoursesData.data.length > 0 &&
-                                <DropdownInput  id={'ddi1'} icon={<SingleTag/>} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                                <DropdownInput  id={'ddi1'} icon={<ADressTag/>} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
                             }
                             
                             {

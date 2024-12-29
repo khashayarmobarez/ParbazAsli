@@ -6,7 +6,7 @@ import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
 
 const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
-  
+
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -60,7 +60,7 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
     <div className='w-full flex flex-col'>
       
       <div className="relative w-full min-h-12" ref={dropdownRef}>
-        <span className="absolute right-3 top-3 w-5 z-10">
+        <span className="absolute right-2 top-3 w-6 z-10">
           {icon ? icon : <Cube customColor={(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)' } />}
         </span>
         <button
@@ -73,7 +73,7 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
             text-gray-900 placeholder-transparent
             focus:outline-none focus:ring-0 focus:border-blue-600
             ${selectedOption ? inputStyles.inputFilledBorder : ''}
-            ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}
+            ${!selectedOption && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
             ${!selectedOption && 'text-textDisabled'}
             ${inputStyles.inputDropdown}
           `}

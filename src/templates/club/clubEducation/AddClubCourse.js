@@ -14,7 +14,7 @@ import Attention from '../../../components/icons/Attention';
 import ListIcon from '../../../components/icons/ListIcon';
 import ChartIcon from '../../../components/icons/ChartIcon';
 import ChartIcon2 from '../../../components/icons/ChartIcon2';
-import SingleTag from '../../../components/icons/ADressTag';
+import ADressTag from '../../../components/icons/ADressTag';
 import ColorTagsIcon from '../../../components/icons/ColorTagsIcon';
 import UserIcon from '../../../components/icons/UserIcon';
 import CertificateIcon from '../../../components/icons/CertificateIcon';
@@ -441,7 +441,14 @@ const AddClubCourse = () => {
 
                     {
                         coachNamesData && coachNamesData.data.length > 0 &&
-                            <DropdownInput id={'ddi2'} name={'نوع دوره'} options={courseTypeOptionData} selectedOption={selectedClassType} handleSelectChange={handleSelectClassType} icon={<ColorTagsIcon/>} />
+                            <DropdownInput 
+                            id={'ddi2'} 
+                            name={'نوع دوره'} 
+                            options={courseTypeOptionData} 
+                            selectedOption={selectedClassType} 
+                            handleSelectChange={handleSelectClassType} 
+                            icon={<ColorTagsIcon/>} 
+                            />
                     }
 
                     {selectedClassType && 
@@ -531,13 +538,15 @@ const AddClubCourse = () => {
                                             /> */}
 
                                             <SelectMultiplePopUp
-                                                Icon={<ListIcon/>}
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0) && isSubmitted && 'var(--text-error)'} />}
                                                 options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
                                                 selectedOptions={selectedSyllabiPractical}
                                                 handleSelectChange={handleSelectChangeSyllabiPractical}
+                                                isSubmitted={isSubmitted}
                                                 name="سرفصل های عملی"
                                                 handleRemove={handleRemoveSyllabiPractical}
                                                 isForSyllabi={true}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0)}
                                             />
                                             
                                             {
@@ -546,13 +555,15 @@ const AddClubCourse = () => {
                                             } 
 
                                             <SelectMultiplePopUp
-                                                Icon={<ListIcon/>}
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0) && isSubmitted && 'var(--text-error)'}/>}
                                                 options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                                 selectedOptions={selectedSyllabiTheory}
+                                                isSubmitted={isSubmitted}
                                                 handleSelectChange={handleSelectChangeSyllabiTheory}
                                                 name="سرفصل های تئوری"
                                                 handleRemove={handleRemoveSyllabiTheory}
                                                 isForSyllabi={true}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0)}
                                             />
                                             {
                                                 selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
@@ -564,7 +575,7 @@ const AddClubCourse = () => {
                                             value={courseName}
                                             onChange={handleCourseName}
                                             placeholder='نام دوره'
-                                            icon={<SingleTag/>}
+                                            icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
                                             isSubmitted={isSubmitted}
                                             ErrorCondition={!courseName}
                                             ErrorText={'نام دوره الزامی است'}
@@ -585,7 +596,7 @@ const AddClubCourse = () => {
                                             value={courseName}
                                             onChange={handleCourseName}
                                             placeholder='نام دوره'
-                                            icon={<SingleTag/>}
+                                            icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
                                             isSubmitted={isSubmitted}
                                             ErrorCondition={!courseName}
                                             ErrorText={'نام دوره الزامی است'}
@@ -593,7 +604,16 @@ const AddClubCourse = () => {
 
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-[70%] flex flex-col'>
-                                            <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                            <TextInput 
+                                            id={'TI3'} 
+                                            icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'} />} 
+                                            isSubmitted={isSubmitted}
+                                            value={customCourseTheory} 
+                                            onChange={handleInputTheory} 
+                                            placeholder='سرفصل های تئوری' 
+                                            className='w-full' 
+                                            ErrorCondition={customCourses.length < 1}
+                                            />
                                         </div>
                                         <span
                                             className={` w-[26%] h-[48px] flex justify-center items-center rounded-lg ${ButtonStyles.normalButton}`}
@@ -624,7 +644,16 @@ const AddClubCourse = () => {
 
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-[70%] flex flex-col'>
-                                            <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                            <TextInput 
+                                            id={'TI4'} 
+                                            icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>} 
+                                            value={customCoursePractical} 
+                                            onChange={handleInputPractical} 
+                                            placeholder='سرفصل های عملی' 
+                                            className='w-full' 
+                                            ErrorCondition={customCourses.length < 1}
+                                            isSubmitted={isSubmitted}
+                                            />
                                         </div>
                                         <span
                                             className={` w-[26%] h-[48px] flex justify-center items-center rounded-lg ${ButtonStyles.normalButton}`}
@@ -660,13 +689,13 @@ const AddClubCourse = () => {
                                 // add or later on add other types of courses
                                 (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
                                 <>
-                                    <NumberInput 
-                                        icon={<ChartIcon/>} 
-                                        id={1} 
-                                        name={'تعداد پرواز'} 
-                                        value={flightCount} 
-                                        onChange={handleFlightCount} 
-                                        placeholder='تعداد پرواز' 
+                                    <NumberInput
+                                        icon={<ChartIcon customColor = {!flightCount && isSubmitted && 'var(--text-error)'}/>}
+                                        id={1}
+                                        name={'تعداد پرواز'}
+                                        value={flightCount}
+                                        onChange={handleFlightCount}
+                                        placeholder='تعداد پرواز'
                                         isSubmitted={isSubmitted}
                                         ErrorCondition={!flightCount}
                                         ErrorText={'تعداد پرواز الزامی است'}

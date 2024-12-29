@@ -223,7 +223,7 @@ const AddCertificate = () => {
                                     
                                     <DropdownInput
                                         id={'ddi1'}
-                                        icon={<CertificateIcon/>}
+                                        icon={<CertificateIcon customColor = {!organ && isSubmitted && 'var(--text-error)'}/>}
                                         options={organsData.data}
                                         handleSelectChange={handleSelectOrganChange}
                                         selectedOption={organ}
@@ -243,12 +243,15 @@ const AddCertificate = () => {
 
                                                     <DropdownInput
                                                         id={'ddi2'}
-                                                        icon={<CertificateIcon/>}
+                                                        icon={<CertificateIcon customColor = {!level && isSubmitted && 'var(--text-error)'}/>}
                                                         options={levelsData.data}
                                                         handleSelectChange={handleSelectLevelChange}
                                                         selectedOption={level}
+                                                        isSubmitted={isSubmitted}
                                                         name={'مقطع گواهینامه'}
                                                         isDeselectDeactivated={true}
+                                                        ErrorCondition={!level}
+                                                        ErrorText={'مقطع گواهینامه را انتخاب کنید'}
                                                     />
                                                     
                                                     {/* removing other fill options for starters */}
@@ -262,7 +265,7 @@ const AddCertificate = () => {
                                                             onChange={handleCertificateIdChange}
                                                             placeholder={'شماره گواهینامه'}
                                                             Type={'text'}
-                                                            icon={<CertificateIcon/>}
+                                                            icon={<CertificateIcon customColor = {!certificateId && isSubmitted && 'var(--text-error)'}/>}
                                                             isSubmitted={isSubmitted}
                                                             isRequired={true}
                                                             RequiredMessage='شماره گواهینامه الزامی می باشد'

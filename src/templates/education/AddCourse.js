@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ListIcon from '../../components/icons/ListIcon';
 import ChartIcon from '../../components/icons/ChartIcon';
 import ChartIcon2 from '../../components/icons/ChartIcon2';
-import SingleTag from '../../components/icons/ADressTag';
+import ADressTag from '../../components/icons/ADressTag';
 import ColorTagsIcon from '../../components/icons/ColorTagsIcon';
 import CertificateIcon from '../../components/icons/CertificateIcon';
 
@@ -413,12 +413,12 @@ const AddCourse = () => {
 
                     <DropdownInput 
                     id={'ddi1'} 
-                    isDeselectDeactivated={true} 
+                    isDeselectDeactivated={true}
                     name={'نوع دوره'}
                     options={courseTypeOptionData}
                     selectedOption={selectedClassType}
                     handleSelectChange={handleSelectClassType}
-                    icon={<ColorTagsIcon/>}
+                    icon={<ColorTagsIcon  />}
                     />
 
                     {selectedClassType && 
@@ -446,7 +446,7 @@ const AddCourse = () => {
                                     handleSelectChange={handleSelectOrganChange}
                                     selectedOption={organ}
                                     name={'ارگان'}
-                                    icon={<CertificateIcon/>}
+                                    icon={<CertificateIcon />}
                                     />
                                     {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
                                     {
@@ -461,7 +461,7 @@ const AddCourse = () => {
                                                         options={levelsData.data}
                                                         handleSelectChange={handleSelectLevelChange}
                                                         selectedOption={level}
-                                                        icon={<ChartIcon2/>}
+                                                        icon={<ChartIcon2/> }
                                                         name={'مقطع'}
                                                     />
                                                 </>
@@ -502,13 +502,15 @@ const AddCourse = () => {
                                             /> */}
 
                                             <SelectMultiplePopUp
-                                                Icon={<ListIcon/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical')}
+                                                isSubmitted={isSubmitted}
                                                 selectedOptions={selectedSyllabiPractical}
                                                 handleSelectChange={handleSelectChangeSyllabiPractical}
                                                 name="سرفصل های عملی"
                                                 handleRemove={handleRemoveSyllabiPractical}
                                                 isForSyllabi={true}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0)}
                                             />
                                             {
                                                 selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
@@ -516,13 +518,15 @@ const AddCourse = () => {
                                             } 
 
                                             <SelectMultiplePopUp
-                                                Icon={<ListIcon/>}
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0) && isSubmitted && 'var(--text-error)'}/>}
                                                 options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                                 selectedOptions={selectedSyllabiTheory}
                                                 handleSelectChange={handleSelectChangeSyllabiTheory}
                                                 name="سرفصل های تئوری"
+                                                isSubmitted={isSubmitted}
                                                 handleRemove={handleRemoveSyllabiTheory}
                                                 isForSyllabi={true}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0)}
                                             />
                                             {
                                                 selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
@@ -534,7 +538,7 @@ const AddCourse = () => {
                                                 value={courseName}
                                                 onChange={handleCourseName}
                                                 placeholder='نام دوره'
-                                                icon={<SingleTag/>}
+                                                icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
                                                 isSubmitted={isSubmitted}
                                                 ErrorCondition={!courseName}
                                                 ErrorText={'نام دوره الزامی است'}
@@ -555,7 +559,7 @@ const AddCourse = () => {
                                         value={courseName}  
                                         onChange={handleCourseName}
                                         placeholder='نام دوره'
-                                        icon={<SingleTag/>}
+                                        icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
                                         isSubmitted={isSubmitted}
                                         ErrorCondition={!courseName}
                                         ErrorText={'نام دوره الزامی است'}
@@ -563,7 +567,16 @@ const AddCourse = () => {
 
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-[70%] flex flex-col'>
-                                            <TextInput id={'TI3'} icon={<ListIcon/>} value={customCourseTheory} onChange={handleInputTheory} placeholder='سرفصل های تئوری' className='w-full' />
+                                        <TextInput 
+                                            id={'TI3'}
+                                            icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
+                                            value={customCourseTheory} 
+                                            isSubmitted={isSubmitted}
+                                            onChange={handleInputTheory} 
+                                            placeholder='سرفصل های تئوری'
+                                            className='w-full'
+                                            ErrorCondition={customCourses.length < 1}
+                                        />
                                         </div>
                                         <span
                                             className={` w-[26%] h-[48px] flex justify-center items-center rounded-lg ${ButtonStyles.normalButton}`}
@@ -599,12 +612,21 @@ const AddCourse = () => {
 
                                     <div className='w-full flex justify-between relative items-center gap-y-2'>
                                         <div className='w-[70%]  flex flex-col'>
-                                            <TextInput id={'TI4'} icon={<ListIcon/>} value={customCoursePractical} onChange={handleInputPractical} placeholder='سرفصل های عملی' className='w-full' />
+                                            <TextInput 
+                                                id={'TI4'}
+                                                icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
+                                                value={customCoursePractical}
+                                                isSubmitted={isSubmitted}
+                                                onChange={handleInputPractical}
+                                                placeholder='سرفصل های عملی'
+                                                className='w-full'
+                                                ErrorCondition={customCourses.length < 1}
+                                            />
                                         </div>
                                         <span
-                                            className={` w-[26%]  h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
-                                            style={{ borderRadius: '16px', minWidth: '0px' }}
-                                            onClick={() => handleAddCustomCourse(2)}
+                                        className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
+                                        style={{ borderRadius: '16px', minWidth: '0px' }}
+                                        onClick={() => handleAddCustomCourse(2)}
                                         >
                                             افزودن
                                         </span>
@@ -621,7 +643,7 @@ const AddCourse = () => {
                                         .map((course,index) => (
                                             <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
                                             style={{background:  'var(--bg-output-default)',
-                                                boxShadow: 'var(--shadow-all)'}}>
+                                            boxShadow: 'var(--shadow-all)'}}>
                                                 <p className=' text-sm mx-1' >{index + 1}</p>
                                                 <p className='text-sm px-6 w-full text-start'>{course.description}</p>
                                                 <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
@@ -642,11 +664,11 @@ const AddCourse = () => {
                                 <>
                                     <NumberInput 
                                     id={'NI1'} 
-                                    icon={<ChartIcon/>} 
-                                    name={'تعداد پرواز'} 
-                                    value={flightCount} 
-                                    onChange={handleFlightCount} 
-                                    placeholder='تعداد پرواز' 
+                                    icon={<ChartIcon customColor = {!flightCount && isSubmitted && 'var(--text-error)'}/>}
+                                    name={'تعداد پرواز'}
+                                    value={flightCount}
+                                    onChange={handleFlightCount}
+                                    placeholder='تعداد پرواز'
                                     isSubmitted={isSubmitted}
                                     ErrorCondition={!flightCount}
                                     ErrorText={'تعداد پرواز الزامی است'}
@@ -657,7 +679,13 @@ const AddCourse = () => {
                                     {/* add students */}   
                                     <div className='w-full flex flex-col justify-between relative items-center'>
                                         <div className='w-full flex flex-col'>
-                                            <TextInput id={'TI5'} value={studentId} onChange={handleInputStudent} placeholder='کد کاربری هنرجو' className='w-full' />
+                                            <TextInput
+                                            id={'TI5'}
+                                            value={studentId}
+                                            onChange={handleInputStudent}
+                                            placeholder='کد کاربری هنرجو'
+                                            className='w-full'
+                                            />
                                         </div>
 
                                         { studentNameLoading && studentId.length > 5 &&
