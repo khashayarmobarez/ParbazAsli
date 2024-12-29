@@ -129,7 +129,7 @@ const ClubCoaches = () => {
                     <DropDownLine  
                         onClickActivation={() => handleDropDownClick('activeCoaches')}
                         title={'مربیان'} 
-                        dropDown={'activeCoaches'} 
+                        dropDown={'activeCoaches'}
                         isActive={DropDown === `activeCoaches`}  
                     />
 
@@ -191,7 +191,7 @@ const ClubCoaches = () => {
                                     <>
                                         <div className='w-full flex flex-col items-center gap-4 md:grid md:grid-cols-2'>
                                             {clubCoachesPreviousData.data.map((coach) => (
-                                            <ClubCoachBox key={coach.id} coachData={coach} />
+                                                <ClubCoachBox key={coach.id} coachData={coach} />
                                             ))}
                                         </div>
 

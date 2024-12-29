@@ -45,7 +45,7 @@ const Club = () => {
                 }
 
                 {
-                    clubStatus && clubStatus.data === 'NotAdded' && <AddClub />
+                    clubStatus && clubStatus.data !== 'NotAdded' && <AddClub />
                 }
 
                 {
@@ -77,8 +77,8 @@ const Club = () => {
                         </div>
                         
                         {
-                            userEquipmentsData &&
-                                <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
+                        userEquipmentsData &&
+                            <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
                         }
                         
                     </div>

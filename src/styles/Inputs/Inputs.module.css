@@ -73,6 +73,7 @@
 
 .inputEmptyAfterSubmitBorder {
   border: 1px solid var(--border-input-error);
+  color:'var(--text-error)'
 }
 
 /* fixed Input */

@@ -28,16 +28,19 @@ const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'r
             {icon ? 
               icon
               :
-              <CalenderIcon />
+              <CalenderIcon customColor={(!selectedDate || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)'} />
             }
           </span>
           <DatePicker
               onChange={(e) => handleChange(e.value)}
               show={true}
-              inputClass={`${inputStyles.inputText2} ${filled && inputStyles.inputFilledBorder} ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} ${inputStyles.customDateInput} `}
+              inputClass={`${inputStyles.inputText2} 
+              ${filled && inputStyles.inputFilledBorder} 
+              ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} 
+              ${inputStyles.customDateInput} `}
               position={position}
               round="thin"
-              accentColor="#0D59F2"
+              accentColor="#23bc7c"
               locale="fa"
               inputAttributes={{ placeholder: placeH }}
               direction="rtl"
@@ -47,7 +50,7 @@ const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'r
             <label
               htmlFor="floatingDropdown"
               className={`
-                absolute right-10 top-[14px] text-textInputDefault
+                absolute right-10 top-[14px]
                 -translate-y-[21px] translate-x-2 text-xs bg-bgPageMain px-2
               `}
             >

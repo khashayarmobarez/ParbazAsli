@@ -40,7 +40,8 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
               {icon}
             </span>
             :
-            <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+            <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0'
+            , color:(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)' }} />
           }
         </span>
         <input
@@ -55,7 +56,6 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
             peer w-full min-h-12 px-4 pt-1 pb-1 pr-8 rounded-2xl
             border-2 border-gray-300 bg-transparent
             text-gray-900 placeholder-transparent
-            focus:outline-none focus:ring-0 focus:border-blue-600
             ${value && !ErrorCondition && !ErrorCondition2 && inputStyles.inputFilledBorder}
             ${(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
             ${inputStyles.inputText2}
@@ -65,7 +65,8 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
           onClick={handleLabelClick}
           htmlFor="floatingInput"
           className={`
-            absolute right-9 top-[13px] text-textInputDefault
+            absolute right-9 top-[13px] 
+            ${((IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all ${disablePlaceholderFloating ? 'duration-0' : 'duration-300'} transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
