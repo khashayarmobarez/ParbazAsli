@@ -54,9 +54,8 @@ const NumberInput = ({ id,value, onChange, placeholder, icon, IsEmptyAfterSubmit
             peer w-full min-h-12 px-4 pt-1 pb-1 pr-8 rounded-2xl z-10
             border-2 border-gray-300 bg-transparent
             text-gray-900 placeholder-transparent
-            focus:outline-none focus:ring-0 focus:border-blue-600
             ${value && inputStyles.inputFilledBorder}
-            ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder}
+            ${isSubmitted && !value && inputStyles.inputEmptyAfterSubmitBorder}
             ${inputStyles.inputText2}
           `}
         />

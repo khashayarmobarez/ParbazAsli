@@ -417,7 +417,7 @@ const AddLanding = () => {
                     <DropdownInput 
                         id={'ddi2'}
                         name={'جهت باد'} 
-                        icon={<WindDirectionCock/>} 
+                        icon={<WindDirectionCock />} 
                         options={windDirectionOptions} 
                         selectedOption={landingWindDirection} 
                         handleSelectChange={handleSelectSetLandingWindDirection} 
@@ -429,7 +429,7 @@ const AddLanding = () => {
                     
                     <NumberInput
                         id={'NI1'}
-                        icon={<WindIcon/>}
+                        icon={<WindIcon customColor={(submitted && !landingWindSpeed) ? 'var(--text-error)' : ''} />}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
                         placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}

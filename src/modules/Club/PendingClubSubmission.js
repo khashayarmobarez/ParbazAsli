@@ -9,7 +9,6 @@ import PageTitle from '../../components/reuseable/PageTitle';
 const PendingClubSubmission = () => {
     return (
         <>
-            <PageTitle title='باشگاه' />
 
             <div className='w-[90%] h-[60vh] flex flex-col justify-center items-center'>
                 <span className='w-14 h-14 mx-auto'>

@@ -223,10 +223,6 @@ const AddClub = ({isForSetting}) => {
 
     return (
         <>
-            {
-                isForSetting !== true &&
-                <PageTitle title='باشگاه' />
-            }
 
             {
              mutateClubLoading &&
