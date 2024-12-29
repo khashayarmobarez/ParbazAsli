@@ -7,7 +7,7 @@ import inputStyles from '../../styles/Inputs/Inputs.module.css';
 // assets
 import CalenderIcon from '../icons/CalenderIcon'
 
-const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
+const DateInput = ({ defaultValue, value,  onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
 
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
@@ -35,9 +35,10 @@ const DateInput = ({ defaultValue, onChange, customShowDateFormat, position = 'r
               onChange={(e) => handleChange(e.value)}
               show={true}
               inputClass={`${inputStyles.inputText2} 
+              ${inputStyles.customDateInput}
               ${filled && inputStyles.inputFilledBorder} 
-              ${IsEmptyAfterSubmit && inputStyles.inputEmptyAfterSubmitBorder} 
-              ${inputStyles.customDateInput} `}
+              ${((ErrorCondition || ErrorCondition2) && isSubmitted) && inputStyles.inputEmptyAfterSubmitBorder} 
+              `}
               position={position}
               round="thin"
               accentColor="#23bc7c"

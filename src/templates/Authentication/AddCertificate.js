@@ -384,15 +384,15 @@ const AddCertificate = () => {
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
-                                                            icon={<CertificateIcon/>} 
-                                                            name={'تاریخ انقضا'}  
-                                                            onChange={handleCertificateEndDateChange}
-                                                            placeH={'تاریخ انقضا'} 
-                                                            ErrorCondition={!dateEndValue}
-                                                            ErrorText={'تاریخ انقضا الزامی می باشد'}
-                                                            ErrorCondition2={new Date(dateEndValue) <= new Date()}
-                                                            ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
-                                                            isSubmitted={isSubmitted}
+                                                        icon={<CertificateIcon/>}
+                                                        name={'تاریخ انقضا'}
+                                                        onChange={handleCertificateEndDateChange}
+                                                        placeH={'تاریخ انقضا'} 
+                                                        ErrorCondition={!dateEndValue}
+                                                        ErrorText={'تاریخ انقضا الزامی می باشد'}
+                                                        ErrorCondition2={new Date(dateEndValue) <= new Date()}
+                                                        ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                                                        isSubmitted={isSubmitted}
                                                         />
 
                                                         {/* upload picture */}
