@@ -134,7 +134,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
       <p id="uidnote" aria-live="polite" className={`${value && !USER_REGEX.test(value) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *با حروف فارسی بنویسید
       </p>
-      <p id="uidnote" aria-live="polite" className={`${(value?.length < 3 || value?.length > 50) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="uidnote" aria-live="polite" className={`${(value && (value?.length < 3 || value?.length > 24)) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *3 تا 50 کاراکتر<br />
       </p>
       <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
