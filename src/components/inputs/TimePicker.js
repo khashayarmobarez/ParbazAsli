@@ -119,7 +119,7 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
       </button>
       {isOpen && (
         <div className="absolute mt-2 w-full md:w-[30%] bg-bgOutputSelectedOption rounded-2xl shadow-lg z-[90]"
-        style={{boxShadow:'var(--shadow-all)'}}>
+        style={{boxShadow:'var(--shadow-button-dark)'}}>
           <div className="flex items-center justify-between p-4 gap-x-4">
             <div className="w-full flex flex-col items-center gap-y-1">
               <p>ساعت</p>
@@ -194,8 +194,8 @@ function HourSelect({ value, onChange, isHourSelectorOpen, setIsHourSelectorOpen
       </button>
       {isHourSelectorOpen && (
         <ul
-        className="absolute z-10 w-full max-h-40 overflow-y-auto border rounded-xl bg-white shadow-lg bg-bgOutputSelectedOption"
-        style={{ boxShadow: "var(--shadow-all)" }}
+        className="absolute z-10 w-full max-h-40 overflow-y-auto rounded-xl bg-white shadow-lg bg-bgOutputSelectedOption"
+        style={{ boxShadow: "var(--shadow-button-dark)" }}
         >
           {
           Array.from({ length: 24 }, (_, i) => {
@@ -251,8 +251,8 @@ function MinuteSelect({ value, onChange, isMinuteSelectorOpen, setIsMinuteSelect
       </button>
       {isMinuteSelectorOpen && (
         <ul
-          className="absolute z-10 w-full max-h-40 overflow-y-auto border rounded-xl bg-white shadow-lg bg-bgOutputSelectedOption"
-          style={{ boxShadow: "var(--shadow-all)" }}
+          className="absolute z-10 w-full max-h-40 overflow-y-auto rounded-xl bg-white shadow-lg bg-bgOutputSelectedOption"
+          style={{ boxShadow: "var(--shadow-button-dark)" }}
         >
           {Array.from({ length: 60 }, (_, i) => {
             const minuteString = i.toString().padStart(2, "0");

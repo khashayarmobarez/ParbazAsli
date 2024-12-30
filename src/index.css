@@ -50,6 +50,30 @@ code {
 }
 
 
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg-button-secondary-default); 
+  border-radius: 34px;
+  
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card); 
+  border-radius: 34px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
 :root {
   /* overall */
   --theme-mode: "light";
