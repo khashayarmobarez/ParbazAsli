@@ -259,7 +259,7 @@
             }
           </div>
 
-          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-3 text-right text-xs mr-4 self-start text-textError`}>
+          <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-3 text-right text-xs mr-4 self-start text-[${textErrorColor}]`}>
             *رمز عبور الزامی می باشد
           </p>
         </>

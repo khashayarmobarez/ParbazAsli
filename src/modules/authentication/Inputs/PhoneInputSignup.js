@@ -99,7 +99,7 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
           <LocalPhoneRoundedIcon sx={{ color: iconColor }} />
         </span>
         <input
-          type="text"
+          type="number"
           id="phoneSignup"
           ref={phoneRef}
           autoComplete="tel"

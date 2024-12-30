@@ -128,7 +128,7 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
           نام خانوادگی
         </label>
       </div>
-      <p id="uidnote" aria-live="polite" className={`${value && !validName && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="uidnote" aria-live="polite" className={`${value && !USER_REGEX.test(value) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
         *با حروف فارسی بنویسید
       </p>
       <p id="uidnote" aria-live="polite" className={`${(value?.length < 3 || value?.length > 24) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
