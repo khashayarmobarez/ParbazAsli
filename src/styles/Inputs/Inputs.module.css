@@ -161,7 +161,26 @@
   min-height: 48px;
   border-radius: 1rem;
   padding: 0 2.4rem;
-  font-size: 14px;
+}
+
+.customDateInput::placeholder {
+  color:var(--text-input-default);
+}
+
+.customDateInputError {
+  background: none;
+  color: var(--text-error);
+  border: 1px solid var(--border-input-error);
+  box-shadow: none;
+  width: 100%;
+  min-height: 48px;
+  border-radius: 1rem;
+  padding: 0 2.4rem;
+  font-size: 12px;
+}
+
+.customDateInputError::placeholder {
+  color:var(--text-error);
 }
 
 /* search input */

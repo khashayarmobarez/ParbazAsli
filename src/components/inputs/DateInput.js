@@ -34,10 +34,9 @@ const DateInput = ({ defaultValue, value,  onChange, customShowDateFormat, posit
           <DatePicker
               onChange={(e) => handleChange(e.value)}
               show={true}
-              inputClass={`${inputStyles.inputText2} 
-              ${inputStyles.customDateInput}
-              ${filled && inputStyles.inputFilledBorder} 
-              ${((ErrorCondition || ErrorCondition2) && isSubmitted) && inputStyles.inputEmptyAfterSubmitBorder} 
+              inputClass={`
+              ${filled && inputStyles.inputFilledBorder}
+              ${((ErrorCondition || ErrorCondition2) && isSubmitted) ? inputStyles.customDateInputError : inputStyles.customDateInput} 
               `}
               position={position}
               round="thin"

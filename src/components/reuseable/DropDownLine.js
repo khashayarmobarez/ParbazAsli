@@ -15,12 +15,12 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
                         <span className='w-6'>
                             {icon}
                         </span>
-                        <p className='text-sm font-light w-16 '> 
+                        <p className='text-base font-light w-16 '> 
                             {title}
                         </p>
                     </>
                     :
-                    <p className='text-sm font-light whitespace-nowrap' > 
+                    <p className='text-base font-light whitespace-nowrap' > 
                         {title}
                     </p>
                     }
