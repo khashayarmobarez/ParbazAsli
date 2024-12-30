@@ -389,6 +389,7 @@ const SignUp = () => {
                         />
 
                         <Checkbox
+                            className={'-mt-2'}
                             hasUnderLine={true}
                             label="با قوانین و مقررات موافقم"
                             isChecked={termsChecked}
