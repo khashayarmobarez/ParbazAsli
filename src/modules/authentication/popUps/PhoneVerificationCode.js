@@ -133,7 +133,7 @@ const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, cal
                     <p onClick={handleResendCode} className="text-textAccent mt-6 text-xs font-medium" aria-live="assertive">ارسال مجدد</p>
                 }
 
-                {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null}
+                {/* {code.length ? <div className='w-5 h-5'><ClearButton className='relative' /></div> : null} */}
                 <p className={codeRemainingTime ? "text-textAccent font-semibold mt-2" : "hidden"} aria-live="assertive">در صورت عدم دریافت کد {codeRemainingTime} ثانیه صبر کنید</p>
                 <p className={isLoading ? "text-textAccent mt-1" : "hidden"} aria-live="assertive">  ... صبر کنید اطلاعات در حال بارگذاری می باشد</p>
                 <p className={errMsg ? "text-sm text-textError" : "hidden"} aria-live="assertive"> {errMsg}</p>
