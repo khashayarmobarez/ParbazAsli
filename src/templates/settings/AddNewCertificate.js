@@ -119,7 +119,7 @@ const AddCertificate = () => {
 
         if(!organ || !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile) {
             toast('اطلاعات گواهینامه را کامل وارد کنید', {
-                type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
