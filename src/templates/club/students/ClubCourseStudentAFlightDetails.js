@@ -359,7 +359,7 @@ const ClubCourseStudentAFlightDetails = () => {
 
                                 <div className='w-full flex flex-col items-start gap-y-4'>
                                     <h1>توضیحات</h1>
-                                    <p className=' w-full border border-[#EBEEF3] text-sm px-3 py-5 rounded-3xl text-start'>{fullFlightData.data.description ||'توضیحی نوشته نشده!'}</p>
+                                    <p className={` w-full ${boxStyles.classDetailsData} text-sm px-3 py-5 rounded-3xl text-start`}>{fullFlightData.data.description ||'توضیحی نوشته نشده!'}</p>
                                 </div>
 
 

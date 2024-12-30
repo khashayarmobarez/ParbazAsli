@@ -122,7 +122,7 @@ const ClubCourseClassBox = (props) => {
 
                                 <div className=' w-full flex flex-col items-start justify-between gap-y-2' >
                                     <p>توضیحات کلاس</p>
-                                    <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{classDetails.data.description}</p>
+                                    <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{classDetails.data.description}</p>
                                 </div>
                 
                 
