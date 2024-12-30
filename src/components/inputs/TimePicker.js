@@ -52,11 +52,11 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
   }, [isHourSelectorOpen, isMinuteSelectorOpen]);
 
   const dayTimePeriods = 
-  (hour >= 0 && hour < 4) ? "نیمه شب" :
-  (hour >= 4 && hour < 12) ? "صبح" :
-  (hour >= 12 && hour < 16) ? "ظهر" :
-  (hour >= 16 && hour < 20) ? "بعد از ظهر" :
-  (hour >= 20 && hour < 24) ? "شب" : "نیمه شب"
+  (hour >= 0 && hour < 5) ? "بامداد" :
+  (hour >= 5 && hour < 11) ? "صبح" :
+  (hour >= 11 && hour < 15) ? "ظهر" :
+  (hour >= 15 && hour < 19) ? "بعد از ظهر" :
+  (hour >= 19 && hour < 24) && "شب" 
 
 
   const handleTimeChange = (newHour, newMinute) => {
