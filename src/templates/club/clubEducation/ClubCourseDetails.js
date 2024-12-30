@@ -234,18 +234,32 @@ const ClubCourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.2rem] w-[90%] md:w-2/6 text-base`} 
-                            onClick={() => setShowPopup(true)} >
-                                <p>غیر فعال سازی</p>
-                            </button>
+                            <div className='fixed bottom-[4.2rem] w-[90%] md:w-2/6 z-10'>
+                                <div className="relative z-10">
+                                    <button 
+                                        className={`${ButtonStyles.normalButton} w-full text-base`} 
+                                        onClick={() => setShowPopup(true)}
+                                    >
+                                        <p>غیر فعال سازی</p>
+                                    </button>
+                                </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
                         }
                         
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} z-10 fixed bottom-[4.2rem] w-[90%] md:w-2/6 text-base`} 
-                            onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
-                                <p>فعال سازی</p>
-                            </button>
+                            <div className='fixed bottom-[4.2rem] w-[90%] md:w-2/6 z-10'>
+                                <div className="relative z-10">
+                                    <button 
+                                        className={`${ButtonStyles.addButton} w-full text-base`} 
+                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)}
+                                    >
+                                        <p>فعال سازی</p>
+                                    </button>
+                                </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
                         }
                     </>
                 }

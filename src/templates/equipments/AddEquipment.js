@@ -557,8 +557,8 @@ const AddEquipment = () => {
                                         {
                                         userByIdData &&
                                             <div className='flex gap-x-1 text-textAccent'>
-                                            <PersonOutlineOutlinedIcon />
-                                            <p>{userByIdData.data.fullName}</p>
+                                                <PersonOutlineOutlinedIcon />
+                                                <p>{userByIdData.data.fullName}</p>
                                             </div>
                                         }
                                     </div>

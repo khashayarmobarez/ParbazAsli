@@ -232,31 +232,52 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.4rem] w-[90%] md:w-2/6 text-base z-50`} 
-                            onClick={() => setShowPopup(true)} >
-                                <p>غیر فعال سازی</p>
-                            </button>
+                            <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
+                                <div className="relative z-10">
+                                    <button 
+                                        className={`${ButtonStyles.normalButton} w-full text-base`} 
+                                        onClick={() => setShowPopup(true)}
+                                    >
+                                        <p>غیر فعال سازی</p>
+                                    </button>
+                                </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
                         }
                         
                         {
                             aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
-                            <button className={`${ButtonStyles.normalButton} fixed bottom-[4.4rem] w-[90%] md:w-2/6 text-base z-50`} 
-                                onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
-                                <p>فعال سازی</p>
-                            </button>
+                            <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
+                                <div className="relative z-10">
+                                    <button 
+                                        className={`${ButtonStyles.addButton} w-full text-base`} 
+                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)}
+                                    >
+                                        <p>فعال سازی</p>
+                                    </button>
+                                </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
                         }
                         {
                             aCourseData.data.status === 'Pending' &&
-                                <div className='w-[90%] md:w-2/6 fixed bottom-[70px] flex justify-between z-[70] gap-x-[6%]'>
-                                    <button className={`${ButtonStyles.addButton} w-full text-base`} 
-                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)} >
+                            <div className='fixed bottom-[70px] w-[90%] md:w-2/6 z-[70]'>
+                                <div className="relative z-10 flex justify-between gap-x-[6%]">
+                                    <button 
+                                        className={`${ButtonStyles.addButton} w-full text-base`} 
+                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)}
+                                    >
                                         <p>تایید</p>
                                     </button>
-                                    <button className={`${ButtonStyles.normalButton} w-full text-base`} 
-                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Rejected', id)} >
+                                    <button 
+                                        className={`${ButtonStyles.normalButton} w-full text-base`} 
+                                        onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Rejected', id)}
+                                    >
                                         <p>رد</p>
                                     </button>
                                 </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
                         }
                     </>
                 }

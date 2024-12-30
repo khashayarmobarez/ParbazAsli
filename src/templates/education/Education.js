@@ -350,11 +350,17 @@ const Education = () => {
 
                 </div>
 
-                <div className='fixed bottom-[4rem] w-[90%] bg-none rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30' >
-                    <button className={`${ButtonStyles.addButton} w-full`} onClick={() => navigate('/education/addClass') } >
-                        <AddIcon /> 
-                        <p>افزودن دوره جدید</p>
-                    </button>
+                <div className='fixed bottom-[4.5rem] w-[90%] bg-none rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30'>
+                    <div className="relative z-10">
+                        <button 
+                            className={`${ButtonStyles.addButton} w-full`} 
+                            onClick={() => navigate('/education/addClass')}
+                        >
+                            <AddIcon /> 
+                            <p>افزودن دوره جدید</p>
+                        </button>
+                    </div>
+                    <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
                 </div>
 
             </div>

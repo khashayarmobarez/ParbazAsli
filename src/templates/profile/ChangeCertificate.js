@@ -41,6 +41,20 @@ const ChangeCertificate = () => {
 
                         ))
                 }
+                {
+                        userCertificates && userCertificates.data.map((certificate, index) => (
+
+                            <Certificate key={index} certificateData={certificate} />
+
+                        ))
+                }
+                {
+                        userCertificates && userCertificates.data.map((certificate, index) => (
+
+                            <Certificate key={index} certificateData={certificate} />
+
+                        ))
+                }
 
                 {userCertificates && userCertificates.totalPagesCount > 1 &&
                     <div className={`w-full flex justify-between px-14 items-center mt-2 `}>
@@ -66,11 +80,17 @@ const ChangeCertificate = () => {
                     </div>
                 }
 
-                <div onClick={() => navigate('/Settings/AddNewCertificate')} className='fixed bottom-[4.5rem] w-[90%] bg-bgCard rounded-xl md:w-96 md:relative md:bottom-0 md:top-4  '>
-                    <button className={`${ButtonStyles.addButton} w-[100%]`} >
-                        <AddIcon />
-                        <p>افزودن گواهینامه</p>
-                    </button>
+                <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 z-30'>
+                    <div className="relative z-10">
+                        <button
+                        className={`${ButtonStyles.addButton} w-full`}
+                        onClick={() => navigate('/Settings/AddNewCertificate')}
+                        >
+                            <AddIcon />
+                            <p>افزودن گواهینامه</p>
+                        </button>
+                    </div>
+                    <div className="bg-bgPageMain opacity-90 h-10 w-full -mt-4 relative z-0" />
                 </div>
 
             </div>

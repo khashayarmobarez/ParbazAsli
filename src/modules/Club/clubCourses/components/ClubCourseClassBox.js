@@ -160,7 +160,7 @@ const ClubCourseClassBox = (props) => {
                                 {classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
                                     <div className='w-full flex flex-col items-start gap-y-2 mx-4'>
                                             <p className=' text-sm'>هنرجویان مهمان</p>
-                                            <div className='w-full flex flex-col gap-y-5'>   
+                                            <div className='w-full flex flex-col gap-y-5'>
                                             {
                                             classDetails.data.guestUsers.map((student,index) => ( 
                                                 <div key={index} className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >

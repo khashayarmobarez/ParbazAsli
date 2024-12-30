@@ -281,20 +281,33 @@ const ClubCoachDetails = () => {
                         {/* trigger coach status button */}
                         {
                             coachDetails && coachDetails.data.status === 'Disable' &&
-                                <div className='fixed bottom-[4rem] w-[90%]  rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30' >
-                                    <button className={`${ButtonStyles.addButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
-                                        <p>درخواست همکاری مجدد </p>
+                            <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30'>
+                                <div className="relative z-10">
+                                    <button 
+                                        className={`${ButtonStyles.addButton} w-full`} 
+                                        onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}
+                                    >
+                                        <p>درخواست همکاری مجدد</p>
                                     </button>
                                 </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
+                        
                         }
 
                         {
                             coachDetails && coachDetails.data.status === 'Active'  &&
-                                <div className='fixed bottom-[4.5rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30' >
-                                    <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>
+                            <div className='fixed bottom-[4.5rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30'>
+                                <div className="relative z-10">
+                                    <button 
+                                        className={`${ButtonStyles.normalButton} w-full`} 
+                                        onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}
+                                    >
                                         <p>پایان همکاری</p>
                                     </button>
                                 </div>
+                                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                            </div>
                         }
                         
                 </div>

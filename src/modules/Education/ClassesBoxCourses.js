@@ -156,7 +156,8 @@ const ClassesBoxCourses = (props) => {
                                     }
 
                 
-                                    {classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
+                                    {
+                                    classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
                                         <div className=' flex flex-col items-start gap-y-2 mx-4 w-[90%]'>
                                                 <p className=' text-sm'>هنرجویان مهمان</p>
                                                 <div className='w-full flex flex-col gap-y-5'>   

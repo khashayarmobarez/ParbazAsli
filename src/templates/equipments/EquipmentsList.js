@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 import { toast } from 'react-toastify';
 
 // styles
@@ -13,11 +14,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../Utilities/Services/equipmentQueries';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import DropDownLine from '../../components/reuseable/DropDownLine';
+import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
 
 const EquipmentsList = () => {
 
     const navigate = useNavigate()
     const location = useLocation(); 
+    const isDesktop = useMediaQuery('(min-width:768px)');
     const { pathname } = location;
     const appTheme = Cookies.get('themeApplied') || 'dark';
     
@@ -398,12 +401,19 @@ const EquipmentsList = () => {
 
             
 
-            <Link to={isForClub ? AddEquipmentRouteBasedOnThePageForClub : AddEquipmentRouteBasedOnThePage} className=' z-20 fixed bottom-[4rem] w-[90%] bg-bgMenu rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] '>
-                <button className={`${ButtonStyles.addButton} w-full`} >
-                    <AddIcon />
-                    <p>افزودن مورد جدید</p>
-                </button>
+            <Link to={isForClub ? AddEquipmentRouteBasedOnThePageForClub : AddEquipmentRouteBasedOnThePage} className='z-20 fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4'>
+                <div className="relative z-10">
+                    <button className={`${ButtonStyles.addButton} w-full`}>
+                        <AddIcon />
+                        <p>افزودن مورد جدید</p>
+                    </button>
+                </div>
+                {
+                    !isDesktop &&
+                    <div className='bg-bgPageMain opacity-85 h-8 w-full -mt-4 relative z-0' />
+                }
             </Link>
+
 
 
         </div>
