@@ -318,7 +318,7 @@ const AddEmail = () => {
                         onBlur={() => setEmailFocus(false)}
                     />
 
-                    <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center `} 
+                    <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center mt-1`} 
                     onClick={handlePopUp} 
                     disabled={Submitloading}
                     >

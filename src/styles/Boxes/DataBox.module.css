@@ -8,7 +8,7 @@
 
 .containerChangeOwnership {
     min-height: 3rem;
-    border-radius: 20px;
+    border-radius: 34px;
     background: var(--bg-card);
     box-shadow: var(--shadow-all);
 }

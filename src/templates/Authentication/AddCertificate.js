@@ -242,7 +242,7 @@ const AddCertificate = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[97%] text-xs'>
+                    <div className='flex items-center justify-between w-[97%] text-xs mb-2'>
 
                         <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
 
@@ -268,7 +268,7 @@ const AddCertificate = () => {
                     {
                         organsData &&
                         <>
-                            <form className='w-full flex flex-col md:w-[50%] gap-y-5'>
+                            <form className='w-full flex flex-col md:w-[50%] gap-y-6'>
 
 
                                 <div className='w-full flex flex-col items-center p-4 bg-bgOutputDefault rounded-2xl gap-y-4' >

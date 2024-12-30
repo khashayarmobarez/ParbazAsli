@@ -48,7 +48,7 @@ const UploadPicture = ({ isSubmitted, setUploadedFile, uploadedFile }) => {
 
   return (
     <div className="flex flex-col items-center gap-y-4">
-      <p className="text-sm mt-3">آپلود عکس گواهینامه</p>
+      <p className="text-sm mt-2">آپلود عکس گواهینامه</p>
       <div
         onClick={handleUploadClick}
         className="w-[320px] md:w-[370px] bg-bgUploadFile text-textUploadFile h-40 self-center flex justify-center items-center border-dashed border-2 border-textDefault rounded-3xl -mt-1 -mb-3 relative cursor-pointer"

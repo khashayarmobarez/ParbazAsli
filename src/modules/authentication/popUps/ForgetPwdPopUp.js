@@ -377,7 +377,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             {!loading && !error && (
                 <div className='w-full h-full flex justify-center items-center backdrop-blur-sm '>
                     <form
-                        className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[384px] pt-14 pb-2 flex flex-col gap-y-4 items-center relative bg-white p-5 rounded-lg shadow-lg`}
+                        className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[384px] pt-14 pb-2 flex flex-col gap-y-4 items-center relative bg-white p-5 rounded-[34px] shadow-lg`}
                         >
                         <CloseIcon
                             onClick={() => setShowPopup(false)}

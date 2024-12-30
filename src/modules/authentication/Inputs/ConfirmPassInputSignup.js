@@ -133,7 +133,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
             ${(inputFocus || filled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
           `}
         >
-          رمز عبور
+          تکرار رمز عبور
         </label>
 
         <span 

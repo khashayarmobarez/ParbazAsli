@@ -186,7 +186,7 @@ const Login = () => {
     return (
         <section className='w-full flex flex-col' role="main" aria-label="Login Section">
             
-            <form className='w-full flex flex-col gap-y-4 pt-0 pb-10 min-h-[71vh]'>
+            <form className='w-full flex flex-col gap-y-4 pt-0 pb-10 min-h-[71vh] '>
 
                 <PhoneOrEmailInput
                     phoneRef={userRef}

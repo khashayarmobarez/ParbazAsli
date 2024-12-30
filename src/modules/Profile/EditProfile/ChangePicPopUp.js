@@ -91,7 +91,7 @@ const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {
     return (
         <div className={` w-full h-full backdrop-blur-sm fixed inset-0 flex items-center justify-center z-[50] ${showPopup ? 'visible' : 'invisible'}`}>
             <form
-                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[324px] gap-y-4 flex flex-col z-[50] justify-around items-center relative bg-white p-4 rounded-lg shadow-lg`}
+                className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[324px] gap-y-4 flex flex-col z-[50] justify-around items-center relative bg-white p-4 rounded-[34px] shadow-lg`}
             >
                 <CloseIcon
                 onClick={() => setShowPopup(false)}

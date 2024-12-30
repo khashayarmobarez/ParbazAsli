@@ -26,14 +26,14 @@ const SignUpOrLogin = () => {
 
     return (
         <div className='pt-0 flex flex-col items-center md:grid grid-cols-12 bg-bgPageMain h-full'>
-            <div className='w-full mt-11 flex flex-col items-center gap-y-6 justify-center md:col-span-4 md:px-[5%]'>
+            <div className='w-full mt-10 flex flex-col items-center gap-y-6 justify-center  md:col-span-4 md:px-[5%]'>
 
                 {
                     !isDesktop &&
-                    <img src={logo} alt='logo' className='w-[55%] mb-4' onClick={handleLogoClick} />
+                    <img src={logo} alt='logo' className='w-[55%] my-8' onClick={handleLogoClick} />
                 }
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont}`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} lg:mt-[70px]`}>
                     <button 
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/login' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/login')}>

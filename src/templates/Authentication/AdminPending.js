@@ -67,7 +67,7 @@ const AdminPending = () => {
 
                         <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
 
-                        <p className='mr-3 md:mr-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
+                        <p className='-mr-2' style={{color:'var(--text-accent)'}}>گواهینامه</p>
 
                         <p className='' style={{color:'var(--text-accent)'}}>تاییدیه</p>
 
@@ -75,10 +75,10 @@ const AdminPending = () => {
 
                 </div>
 
-                <p className=' text-lg'>در انتظار تایید...</p>
-                <p className=' text-base -mt-4'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
+                <p className=' text-lg -mt-4'>در انتظار تایید...</p>
+                <p className=' text-base -mt-2'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
 
-                <button className={`${ButtonStyles.normalButton} w-32 self-center md:w-32`}
+                <button className={`${ButtonStyles.normalButton} w-32 self-center md:w-32 `}
                 onClick={() => window.location.reload()}>
                     تازه‌سازی
                 </button>
