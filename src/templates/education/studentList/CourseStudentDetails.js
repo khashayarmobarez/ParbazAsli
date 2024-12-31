@@ -37,7 +37,7 @@ const CourseStudentDetails = () => {
     return (
         <div className='flex flex-col py-14 items-center'>
             
-            <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
                 <PageTitle navigateTo={historyPageUrl} title={'جزئیات هنرجو '} />
 
@@ -47,7 +47,7 @@ const CourseStudentDetails = () => {
                 >
                     { 
                     studentData && 
-                    <div className='w-full flex flex-col justify-between gap-y-6 p-4'>
+                    <div className='w-full flex flex-col justify-between gap-y-4 p-4'>
 
                         <div className='flex w-full justify-between items-center '>
                             {/* avatar and name */}

@@ -21,7 +21,7 @@ const ClubCourseStudentTheoryDetails = () => {
 
 
     return (
-        <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
+        <div className='w-full flex flex-col gap-y-3 items-center pb-20'>
 
             {
                 classesDataLoading &&
@@ -37,7 +37,7 @@ const ClubCourseStudentTheoryDetails = () => {
             {classesData && classesData.data.classesCount > 0 &&
             <>
 
-                    <div className='flex w-full justify-between gap-x-2 mb-2'>
+                    <div className='flex w-full justify-between gap-x-2 mb-0'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <p className=' text-xs'>تعداد کلاس های برگزار شده</p>

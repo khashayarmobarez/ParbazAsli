@@ -24,7 +24,7 @@ const DropDownSyllabiData = (props) => {
     };
 
     return (
-    <div className='flex flex-col gap-y-3'>
+    <div className='flex flex-col gap-y-4'>
 
         <div onClick={toggleExpanded} className={`${dataStyles.Container2} w-[100%] h-12 items-center justify-between px-3 border-2 border-opacity-50`}
         style={{

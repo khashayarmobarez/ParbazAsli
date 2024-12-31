@@ -71,7 +71,7 @@ const CourseClasses = () => {
                         <p>افزودن کلاس جدید</p>
                     </button>
                 </div>
-                <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
+                <div className="bg-bgPageMain opacity-90 h-10 w-full -mt-4 relative z-0" />
             </div>
 
         </div>
