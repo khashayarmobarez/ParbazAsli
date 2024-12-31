@@ -14,7 +14,7 @@
 
     const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 
-    const PasswordInputSignup = ({ onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor }) => {
+    const PasswordInputSignup = ({ onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor, customPlaceHolderText }) => {
 
       const authSettings = useSelector(selectAuthSettings);
 
@@ -193,7 +193,7 @@
                 ${(inputFocus || filled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2 rounded ` : 'text-base'}
               `}
             >
-              رمز عبور
+              {customPlaceHolderText || 'رمز عبور'}
             </label>
 
             <span 

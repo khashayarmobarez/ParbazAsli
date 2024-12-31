@@ -131,6 +131,14 @@ const SignUp = () => {
     setTermsChecked(isChecked); // Update the checked state in the parent component
     };
 
+    const Toastify = (toastText,toastType) => toast(toastText, {
+        type: toastType, 
+        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+        autoClose: 5000,
+        theme: appTheme,
+        style: { width: "90%" }
+    });
+
     // pop up logic
     const handlePopUp = async(e) => {
 
@@ -138,13 +146,7 @@ const SignUp = () => {
         setIsSubmitted(true)
 
         if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !validLastName) { 
-            toast("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید", {
-                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                autoClose: 3000,
-                theme: appTheme,
-                style: { width: "350px" }
-            });
+            Toastify("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید",'error')
             return;
         }
 
@@ -182,33 +184,15 @@ const SignUp = () => {
             if (!err?.response) {
                 setSubmitLoading(false)
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-                toast('مشکلی رخ داده, دوباره تلاش کنید', {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify("مشکلی رخ داده, دوباره تلاش کنید",'error')
             } else if (err.response?.status === 409) {
                 setSubmitLoading(false)
                 setErrMsg('شماره تلفن قبلا استفاده شده');
-                toast('شماره تلفن قبلا استفاده شده', {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify("شماره تلفن قبلا استفاده شده",'error')
             } else {
                 setSubmitLoading(false)
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
-                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify(err.response.data.ErrorMessages[0].ErrorMessage,'error')
             }
         }
     
@@ -231,18 +215,14 @@ const SignUp = () => {
         return () => clearInterval(intervalId);
     }, [codeRemainingTime]);
 
+    
+
 
     
     // final submit logic
     const handleFinalSubmit = async (e) => {
-        if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !code) { 
-            toast('اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید', {
-                type: 'error', 
-                position: 'top-right', 
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
+        if (!code || code.length < 4) { 
+            Toastify('کد را درست وارد کنید', 'error')
             return;
         }
         try {
@@ -286,24 +266,12 @@ const SignUp = () => {
             if (!err?.response) {
                 setSubmitLoading(false)
                 setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-                toast('مشکلی رخ داده است, دوباره تلاش کنید', {
-                    type: 'error', 
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify("مشکلی رخ داده است, دوباره تلاش کنید",'error')
             } else {
                 setSubmitLoading(false)
                 console.log(err);
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage);
-                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify(err.response.data.ErrorMessages[0].ErrorMessage,'error')
             }
         }
     };

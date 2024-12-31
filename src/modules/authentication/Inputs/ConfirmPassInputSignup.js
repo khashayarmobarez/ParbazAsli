@@ -5,7 +5,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import KeyIcon from '../../../components/icons/KeyIcon';
 import inputStyles from '../../../styles/Inputs/Inputs.module.css';
 
-const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor }) => {
+const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor, customPlaceHolderText }) => {
 
   const [validMatch, setValidMatch] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -133,7 +133,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
             ${(inputFocus || filled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
           `}
         >
-          تکرار رمز عبور
+          {customPlaceHolderText || 'تکرار رمز عبور'}
         </label>
 
         <span 

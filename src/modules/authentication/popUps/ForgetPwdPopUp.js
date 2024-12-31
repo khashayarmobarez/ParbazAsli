@@ -146,6 +146,14 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             return englishNumbers[persianNumbers.indexOf(char)];
         });
     };
+
+    const Toastify = (toastText,toastType) => toast(toastText, {
+        type: toastType, 
+        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+        autoClose: 5000,
+        theme: appTheme,
+        style: { width: "90%" }
+    });
         
     const phoneOrEmailInputHandler = (e) => {
         const convertedValue = persianToEnglishNumber(e.target.value);
@@ -226,13 +234,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         setSubmitted(true)
 
         if (!validInput) { 
-            toast('فرمت ایمیل یا شماره تلفن صحیح نمیباشد', {
-                type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            }); 
+            Toastify('فرمت ایمیل یا شماره تلفن صحیح نمیباشد', 'error')
             return;
         }
             
@@ -251,13 +253,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 setShowCodeInput(false);
                 console.error('Failed to send phone number code:', error);
                 setErrMsg(error.response?.data.ErrorMessages[0].ErrorMessage)
-                toast(error.response?.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                }); 
+                Toastify(error.response?.data.ErrorMessages[0].ErrorMessage,'error') 
             },
         });
     }
@@ -269,14 +265,8 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     // mutateCheckCode
     const checkCodeHandler = async(e) => {
         e.preventDefault(e);
-        if (!code) {
-            toast('کد را وارد کنید', {
-                type: 'error', 
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
+        if (!code || code.length < codeLength) {
+            Toastify('کد را وارد کنید', 'error')
             return;
         }
 
@@ -291,24 +281,12 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 setShowPassChangeInput(true);
                 console.log('Code checked successfully:', data);
                 setErrMsg('')
-                toast('کد تایید با موفقیت تایید شد', {
-                    type: 'success', 
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify('کد تایید با موفقیت تایید شد', 'success')
             },
             onError: (error) => {
                 console.error('Failed to check code:', error);
                 setErrMsg(error.response?.data.ErrorMessages[0].ErrorMessage)
-                toast(error.response?.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify(error.response?.data.ErrorMessages[0].ErrorMessage, 'error')
             },
         });
     }
@@ -334,25 +312,13 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
         mutatePassChange(requestBody, {
             onSuccess: (data) => {
-                toast('رمز شما با موفقیت تغییر یافت, دوباره لاگین کنید', {
-                    type: 'success',
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify('رمز شما با موفقیت تغییر یافت, دوباره لاگین کنید', 'success')
                 setShowPopup(false);
             },
             onError: (error) => {
                 console.error('Failed to change password:', error);
                 setErrMsg(error.response?.data.ErrorMessages[0].ErrorMessage)
-                toast(error.response?.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error',
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                Toastify(error.response?.data.ErrorMessages[0].ErrorMessage, 'error')
             },
         });
     };
@@ -376,8 +342,8 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
             {!loading && !error && (
                 <div className='w-full h-full flex justify-center items-center backdrop-blur-sm '>
                     <form
-                        className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[384px] pt-14 pb-2 flex flex-col gap-y-4 items-center relative bg-white p-5 rounded-[34px] shadow-lg`}
-                        >
+                    className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[384px] pt-14 pb-2 flex flex-col gap-y-4 items-center relative bg-white p-5 rounded-[34px] shadow-lg`}
+                    >
                         <CloseIcon
                             onClick={() => setShowPopup(false)}
                             sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
@@ -394,13 +360,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     onChange={phoneOrEmailInputHandler}
                                     placeholder={'شماره موبایل یا ایمیل'}
                                     Type={'text'}
-                                    icon={<UserIcon
-                                        customColor={
-                                            ((!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0) ||
-                                            input.length < 1) &&
-                                            submitted && 'var(--text-error)'
-                                        }
-                                    />} // You can replace `null` with a specific icon if you have one
+                                    icon={<UserIcon />} // You can replace `null` with a specific icon if you have one
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
                                     ErrorCondition={input.length < 1}
                                     ErrorText={'وارد کردن شماره تلفن الزامی است'}
@@ -463,6 +423,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                             <>
                                 <PasswordInputSignup 
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
+                                    customPlaceHolderText={'رمز عبور جدید'}
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
                                     focus={pwdFocus}
@@ -472,6 +433,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                                 <ConfirmPassInputSignup
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
+                                    customPlaceHolderText={'تکرار رمز عبور جدید'}
                                     password={pwd}
                                     onChange={(e) => setMatchPwd(e.target.value)}
                                     value={matchPwd}
@@ -492,7 +454,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
 
                         {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کنید اطلاعات در حال بارگذاری می باشد</p> */}
-                        <p className={errMsg ? "text-textError text-sm" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                        {/* <p className={errMsg ? "text-textError text-sm" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                     </form>
                 </div>
             )}

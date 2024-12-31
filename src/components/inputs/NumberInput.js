@@ -77,8 +77,8 @@ const NumberInput = ({ id,value, onChange, placeholder, icon, IsEmptyAfterSubmit
         </label>
       </div>
       <div id='errors' className='w-full flex flex-col items-start'>
-        {(showErrors || isSubmitted) && ErrorCondition && <span className='text-textError text-xs mt-1'>{ErrorText}</span>}
-        {(showErrors || isSubmitted) && ErrorCondition2 && <span className='text-textError text-xs mt-1'>{ErrorText2}</span>}
+        {(showErrors || isSubmitted) && ErrorCondition && <span className='text-textError text-xs mt-1 text-start'>{ErrorText}</span>}
+        {(showErrors || isSubmitted) && ErrorCondition2 && <span className='text-textError text-xs mt-1 text-start'>{ErrorText2}</span>}
       </div>
     </div>
   );

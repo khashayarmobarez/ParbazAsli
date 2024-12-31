@@ -434,7 +434,7 @@ const AddEquipment = () => {
                                                 isSubmitted={submitted}
                                                 ErrorCondition={!minimumWeightCapacity}
                                                 ErrorText={'حداقل وزن الزامی میباشد'}
-                                                ErrorCondition2={minimumWeightCapacity >= maximumWeightCapacity && minimumWeightCapacity}
+                                                ErrorCondition2={minimumWeightCapacity >= maximumWeightCapacity && maximumWeightCapacity && minimumWeightCapacity}
                                                 ErrorText2={'حداقل وزن باید از حداکثر کمتر باشد'}
                                             />
                                             <NumberInput 
@@ -448,7 +448,7 @@ const AddEquipment = () => {
                                                 isSubmitted={submitted}
                                                 ErrorCondition={!maximumWeightCapacity}
                                                 ErrorText={'حداکثر وزن الزامی میباشد'}
-                                                ErrorCondition2={maximumWeightCapacity <= minimumWeightCapacity && maximumWeightCapacity}
+                                                ErrorCondition2={maximumWeightCapacity <= minimumWeightCapacity && minimumWeightCapacity && minimumWeightCapacity}
                                                 ErrorText2={'حداکثر وزن باید از حداقل بیشتر باشد'}
                                             />
                                         </div>
