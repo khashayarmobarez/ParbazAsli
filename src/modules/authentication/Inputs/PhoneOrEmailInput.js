@@ -13,6 +13,7 @@ import { EMAIL_REGEX, PHONE_REGEX } from '../../../Utilities/Providers/regexProv
 import UserIcon from '../../../components/icons/UserIcon';
 
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+  
   const [inputFocus, setInputFocus] = useState(false);
   const [validInput, setValidInput] = useState(false);
   const [filled, setFilled] = useState(false);

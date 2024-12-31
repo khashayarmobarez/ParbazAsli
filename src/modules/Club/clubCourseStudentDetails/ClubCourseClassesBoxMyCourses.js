@@ -51,10 +51,12 @@ const ClubCourseClassesBoxMyCourses = (props) => {
                         {/* classesInput */}
                         <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm 
                         ${isExpanded && 'text-textAccent'}`}>
-                            <span>
-                                <AutoStoriesOutlinedIcon />
-                            </span>
-                            <p>{classData.name}</p>
+                            <div className='flex items-center gap-x-2'>
+                                <span>
+                                    <AutoStoriesOutlinedIcon />
+                                </span>
+                                <p>{classData.name}</p>
+                            </div>
                             <p>{classData.classDuration}</p>
                             <ddiv/>
                         </div>

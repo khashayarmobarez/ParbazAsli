@@ -258,7 +258,6 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                     theme: appTheme,
                     style: { width: "90%" }
                 }); 
-                setSubmitted(false)
             },
         });
     }
@@ -395,7 +394,13 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     onChange={phoneOrEmailInputHandler}
                                     placeholder={'شماره موبایل یا ایمیل'}
                                     Type={'text'}
-                                    icon={<UserIcon/>} // You can replace `null` with a specific icon if you have one
+                                    icon={<UserIcon
+                                        customColor={
+                                            ((!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0) ||
+                                            input.length < 1) &&
+                                            submitted && 'var(--text-error)'
+                                        }
+                                    />} // You can replace `null` with a specific icon if you have one
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
                                     ErrorCondition={input.length < 1}
                                     ErrorText={'وارد کردن شماره تلفن الزامی است'}
