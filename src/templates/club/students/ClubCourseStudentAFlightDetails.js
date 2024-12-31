@@ -39,13 +39,13 @@ const ClubCourseStudentAFlightDetails = () => {
                 { fullFlightData &&
                         <div className='w-full flex flex-col items-center justify-center gap-y-2' >
 
-                            <div className={` w-full rounded-xl flex flex-col py-4 gap-y-8`}>
+                            <div className={` w-full rounded-xl flex flex-col py-4 gap-y-6`}>
 
                                 <div className=' grid grid-cols-6 gap-x-4 gap-y-4 w-full text-sm'>
 
                                     {
                                     fullFlightData.data.status &&
-                                        <div className='flex flex-col col-span-6 items-start gap-y-3'>
+                                        <div className='flex flex-col col-span-6 items-start gap-y-2'>
                                             <p className=' text-xs pr-2'>وضعیت پرواز</p>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                 <p className=' text-xs pr-2 text-textDisabled'>وضعیت:&nbsp;</p>

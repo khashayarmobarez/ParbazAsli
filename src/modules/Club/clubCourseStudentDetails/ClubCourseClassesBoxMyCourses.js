@@ -58,13 +58,13 @@ const ClubCourseClassesBoxMyCourses = (props) => {
                                 <p>{classData.name}</p>
                             </div>
                             <p>{classData.classDuration}</p>
-                            <ddiv/>
+                            <div/>
                         </div>
 
                         {isExpanded && classDetails &&
-                            <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col items-center pt-10 pb-8`}>
+                            <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col items-center py-4`}>
 
-                            <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
+                            <div className=' grid grid-cols-2 gap-x-4 gap-y-4 w-full  px-4'>
             
                                 <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>نام</p>
@@ -105,19 +105,19 @@ const ClubCourseClassesBoxMyCourses = (props) => {
 
                             {
                                 !extra &&
-                                <p onClick={() => setExtra(true)} className='text-[var(--text-accent)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-[var(--text-accent)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-4'>بیشتر ...</p>
                             }
 
                             {
                                 extra &&
                                 <>
-                                    <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
+                                    <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-5' >
                                         <p>توضیحات کلاس</p>
                                         <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{classDetails.data.description}</p>
                                     </div>
                     
                                     {classDetails.data.syllabi &&
-                                        <div className='w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
+                                        <div className='w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-4'>
                                                 <p className=' text-sm'>مباحث مطرح شده</p>
                                                 { 
                                                     classDetails.data.syllabi.map((syllabus, index) => (

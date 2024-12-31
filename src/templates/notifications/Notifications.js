@@ -41,7 +41,7 @@ const Notifications = () => {
     return (
         <div className='w-full flex flex-col items-center'>
 
-            <div className='flex flex-col py-14 justify-center items-center w-full gap-y-8 md:w-[60%] lg:w-[55%]'>
+            <div className='flex flex-col py-14 justify-center items-center w-full gap-y-4 md:w-[60%] lg:w-[55%]'>
 
                 <PageTitle title={'اعلانات'} paddingRight={'40%'} />
 
@@ -55,7 +55,7 @@ const Notifications = () => {
                     </div>
                 }
 
-                <div className='w-[90%] flex flex-col space-y-6 lg:mt-6'>
+                <div className='w-[90%] flex flex-col gap-y-4 lg:mt-6'>
 
                     {   notificationsData &&
                         notificationsData.data?.map((notif, index) => (

@@ -25,9 +25,9 @@ const FlightHistoryPage = () => {
     const { data: fullFlightData } = useAUserFlight(id);
     
     return (
-        <div className='w-full flex flex-col items-center py-14'>
+        <div className='w-full flex flex-col items-center pt-14 '>
 
-            <div className='w-full md:w-[75%] flex flex-col justify-center items-center gap-y-0 lg:gap-y-12 lg:w-[55%]'>
+            <div className='w-full md:w-[75%] flex flex-col justify-center items-center gap-y-0 mb-[-10px] lg:gap-y-12 lg:w-[55%] '>
 
                 <PageTitle title={'جزئیات پرواز'} />
 
@@ -399,7 +399,7 @@ const FlightHistoryPage = () => {
                                 }
 
 
-                                <div className='w-full flex flex-col items-start gap-y-4'>
+                                <div className='w-full flex flex-col items-start gap-y-4 -mt-2'>
                                     <h1>توضیحات</h1>
                                     <p className={`${boxStyles.classDetailsData} w-full  text-sm p-4 rounded-3xl text-start`}>{fullFlightData.data.description ||'توضیحی نوشته نشده!'}</p>
                                 </div>

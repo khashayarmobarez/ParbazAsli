@@ -30,7 +30,7 @@ const CourseStudentAFlightDetails = () => {
     }
     
     return (
-        <div className='w-full flex flex-col items-center py-14'>
+        <div className='w-full flex flex-col items-center pt-14'>
 
             <div className='w-full md:w-[75%] flex flex-col justify-center items-center gap-y-0'>
 
@@ -41,7 +41,7 @@ const CourseStudentAFlightDetails = () => {
                     { fullFlightData &&
                             <div className='w-full flex flex-col items-center justify-center gap-y-2' >
 
-                                <div className={` w-full rounded-xl flex flex-col py-4 gap-y-8`}>
+                                <div className={` w-full rounded-xl flex flex-col py-4 gap-y-4`}>
 
                                     <div className=' grid grid-cols-6 gap-x-4 gap-y-4 w-full text-sm'>
 
@@ -72,7 +72,7 @@ const CourseStudentAFlightDetails = () => {
 
                                         {
                                         fullFlightData.data.coachName &&
-                                            <div className='flex flex-col items-start col-span-3 gap-y-3'>
+                                            <div className='flex flex-col items-start col-span-3 gap-y-2'>
                                                 <p className=' text-xs pr-2'>نام مربی</p>
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                     <p>{fullFlightData.data.coachName}</p>
@@ -82,7 +82,7 @@ const CourseStudentAFlightDetails = () => {
 
                                         { 
                                             fullFlightData.data.courseName &&
-                                            <div className='flex flex-col items-start col-span-3 gap-y-3'>
+                                            <div className='flex flex-col items-start col-span-3 gap-y-2'>
                                                 <p className=' text-xs pr-2'>نام دوره</p>
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                     <p>{fullFlightData.data.courseName}</p>
@@ -92,7 +92,7 @@ const CourseStudentAFlightDetails = () => {
 
                                         {
                                             fullFlightData.data.index &&
-                                                <div className='flex flex-col items-start col-span-1 gap-y-3'>
+                                                <div className='flex flex-col items-start col-span-1 gap-y-2'>
                                                     <p className=' text-xs pr-2'> پرواز</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-3 w-full h-12 rounded-xl`}  id='data' >
                                                         <p>{fullFlightData.data.index}</p>
@@ -102,7 +102,7 @@ const CourseStudentAFlightDetails = () => {
 
                                         {
                                             fullFlightData.data.dateTime &&
-                                                <div className='flex flex-col items-start col-span-3 gap-y-3'>
+                                                <div className='flex flex-col items-start col-span-3 gap-y-2'>
                                                     <p className=' text-xs pr-2'>تاریخ پرواز</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                         <p>{fullFlightData.data.dateTime}</p>
@@ -112,7 +112,7 @@ const CourseStudentAFlightDetails = () => {
                                         
                                         {
                                             fullFlightData.data.flightDurationInMinutes &&
-                                                <div className='flex flex-col items-start col-span-2 gap-y-3'>
+                                                <div className='flex flex-col items-start col-span-2 gap-y-2'>
                                                     <p className=' text-xs pr-2'>زمان پرواز</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                         <p>{fullFlightData.data.flightDurationInMinutes}min</p>
@@ -122,7 +122,7 @@ const CourseStudentAFlightDetails = () => {
 
                                         {
                                             fullFlightData.data.clubName &&
-                                                <div className='flex flex-col items-start col-span-2 gap-y-3'>
+                                                <div className='flex flex-col items-start col-span-2 gap-y-2'>
                                                     <p className=' text-xs pr-2'>نام باشگاه</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                         <p>{fullFlightData.data.clubName}</p>
@@ -145,7 +145,7 @@ const CourseStudentAFlightDetails = () => {
                                             <>
                                                 {
                                                     fullFlightData.data.wing &&
-                                                        <div className='flex flex-col items-start gap-y-3 col-span-6 mt-[-10px]'>
+                                                        <div className='flex flex-col items-start gap-y-2 col-span-6 mt-[-10px]'>
                                                             <p className=' text-xs pr-2'>بال</p>
                                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                                 <p>{fullFlightData.data.wing}</p>
@@ -155,7 +155,7 @@ const CourseStudentAFlightDetails = () => {
             
                                                 {
                                                     fullFlightData.data.harness &&
-                                                        <div className='flex flex-col items-start gap-y-3 col-span-6'>
+                                                        <div className='flex flex-col items-start gap-y-2 col-span-6'>
                                                             <p className=' text-xs pr-2'>هارنس</p>
                                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                                 <p>{fullFlightData.data.harness}</p>
@@ -165,7 +165,7 @@ const CourseStudentAFlightDetails = () => {
             
                                                 {
                                                     fullFlightData.data.parachute &&
-                                                        <div className='flex flex-col items-start gap-y-3 col-span-6'>
+                                                        <div className='flex flex-col items-start gap-y-2 col-span-6'>
                                                             <p className=' text-xs pr-2'>چتر</p>
                                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                                 <p>{fullFlightData.data.parachute}</p>
@@ -190,7 +190,7 @@ const CourseStudentAFlightDetails = () => {
                                             <>
                                                 {
                                                 fullFlightData.data.country &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>کشور</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.country}</p>
@@ -199,7 +199,7 @@ const CourseStudentAFlightDetails = () => {
                                                 }
                                                 {
                                                 fullFlightData.data.province &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>استان</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.province}</p>
@@ -208,7 +208,7 @@ const CourseStudentAFlightDetails = () => {
                                                 }
                                                 {
                                                 fullFlightData.data.site &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>سایت</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.site}</p>
@@ -217,7 +217,7 @@ const CourseStudentAFlightDetails = () => {
                                                 }
                                                 {
                                                 fullFlightData.data.cloudCoverType &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>نوع پوشش ابری</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.cloudCoverType}</p>
@@ -242,7 +242,7 @@ const CourseStudentAFlightDetails = () => {
                                             <>
                                                 {
                                                     fullFlightData.data.takeOffType &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>شیوه Takeoff</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.takeOffType}</p>
@@ -252,7 +252,7 @@ const CourseStudentAFlightDetails = () => {
                                                 
                                                 {
                                                     fullFlightData.data.takeOffTime &&
-                                                        <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                             <p className=' text-xs pr-2'>ساعت Takeoff</p>
                                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                                 <p>{fullFlightData.data.takeOffTime}</p>
@@ -262,7 +262,7 @@ const CourseStudentAFlightDetails = () => {
 
                                                 {
                                                     fullFlightData.data.takeOffWindSpeedInKmh &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>سرعت باد Takeoff</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.takeOffWindSpeedInKmh}</p>
@@ -273,7 +273,7 @@ const CourseStudentAFlightDetails = () => {
 
                                                 {
                                                     fullFlightData.data.takeOffWindDirection &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>جهت باد Takeoff</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.takeOffWindDirection}</p>
@@ -298,7 +298,7 @@ const CourseStudentAFlightDetails = () => {
                                             <>
                                                 {
                                                     fullFlightData.data.landingWindSpeedInKmh &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>سرعت باد Landing</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.landingWindSpeedInKmh}</p>
@@ -308,7 +308,7 @@ const CourseStudentAFlightDetails = () => {
 
                                                 {
                                                     fullFlightData.data.landingWindDirection &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>جهت باد Landing</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.landingWindDirection}</p>
@@ -318,7 +318,7 @@ const CourseStudentAFlightDetails = () => {
 
                                                 {
                                                     fullFlightData.data.landingTime &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>زمان Landing</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.landingTime}</p>
@@ -328,7 +328,7 @@ const CourseStudentAFlightDetails = () => {
 
                                                 {
                                                     fullFlightData.data.landingType &&
-                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                    <div className='flex flex-col items-start gap-y-2 col-span-3'>
                                                         <p className=' text-xs pr-2'>شیوه Landing</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{fullFlightData.data.landingType}</p>
@@ -358,7 +358,7 @@ const CourseStudentAFlightDetails = () => {
                                     }
 
 
-                                    <div className='w-full flex flex-col items-start gap-y-4'>
+                                    <div className='w-full flex flex-col items-start gap-y-2'>
                                         <h1>توضیحات</h1>
                                         <p className={`w-full ${boxStyles.classDetailsData} text-sm px-3 py-5 rounded-3xl text-start`}>{fullFlightData.data.description ||'توضیحی نوشته نشده!'}</p>
                                     </div>
@@ -368,7 +368,7 @@ const CourseStudentAFlightDetails = () => {
 
                                 {fullFlightData.data.igcFile &&
                                     <div className='w-full'>
-                                        <button onClick={() => window.open(fullFlightData.data.igcFile.path, '_blank')} className={`${ButtonStyles.normalButton} text-sm`}>مشاهده IGC</button>
+                                        <button onClick={() => window.open(fullFlightData.data.igcFile.path, '_blank')} className={`${ButtonStyles.normalButton} text-sm -mb-2`}>مشاهده IGC</button>
                                     </div>
                                 }
 
