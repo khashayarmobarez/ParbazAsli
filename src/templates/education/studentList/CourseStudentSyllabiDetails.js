@@ -28,12 +28,12 @@ const CourseStudentSyllabiDetails = () => {
                 </Box>
             }
             {
-                syllabiData && syllabiData.data.theorySyllabi.length > 0 &&
-                <DropDownSyllabiData title={"سرفصل‌های تئوری"} data={syllabiData.data.theorySyllabi} percent={syllabiData.data.theorySyllabiPercent}  />
+                syllabiData && syllabiData.data?.theorySyllabi?.length > 0 &&
+                <DropDownSyllabiData title={"سرفصل‌های تئوری"} data={syllabiData.data?.theorySyllabi} percent={syllabiData.data?.theorySyllabiPercent}  />
             }
             {
-                syllabiData && syllabiData.data.practicalSyllabi.length > 0 &&
-                <DropDownSyllabiData title={"سرفصل‌های عملی"} data={syllabiData.data.practicalSyllabi} percent={syllabiData.data.practicalSyllabiPercent} />
+                syllabiData && syllabiData.data?.practicalSyllabi?.length > 0 &&
+                <DropDownSyllabiData title={"سرفصل‌های عملی"} data={syllabiData.data?.practicalSyllabi} percent={syllabiData.data?.practicalSyllabiPercent} />
             }
         </div>
     );

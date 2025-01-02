@@ -19,18 +19,18 @@ const CourseSyllabi = () => {
     return (
         <div className=' w-full flex flex-col gap-y-4 pb-14'>
             {
-                syllabiDataTheory && syllabiDataPractical && syllabiDataTheory.data.length < 1 && syllabiDataPractical.data.length < 1 &&
+                syllabiDataTheory && syllabiDataPractical && syllabiDataTheory?.data.length < 1 && syllabiDataPractical?.data.length < 1 &&
                 <p className='w-full text-center'>سیلابسی برای این دوره ثبت نشده</p>
             }
             {
-                syllabiDataTheory && syllabiDataTheory.data.length > 0 &&
+                syllabiDataTheory && syllabiDataTheory?.data.length > 0 &&
                 <DropDownDataBox 
                 title={"سیلابس تئوری"} 
                 data={syllabiDataTheory.data}  
                 />
             }
             {
-                 syllabiDataPractical && syllabiDataPractical.data.length > 0 &&
+                 syllabiDataPractical && syllabiDataPractical?.data.length > 0 &&
                 <DropDownDataBox 
                 title={"سیلابس عملی"}
                 data={syllabiDataPractical.data}

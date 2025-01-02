@@ -407,7 +407,7 @@ const AddCourse = () => {
                             theme: appTheme,
                             style: { width: "90%" }
                         });
-                        navigate('/education');
+                        navigate(isForClub ? '/club/clubCourses' : '/education');
                     },
                     onError: (error) => {
                         let errorMessage = 'خطایی رخ داده است';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../../../components/reuseable/PageTitle';
 import { useAllStudents, useCourseCounts } from '../../../Utilities/Services/coursesQueries';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import ArrowButton from '../../../components/icons/ArrowButton';
 import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 import ACourseStudentBox from '../../../components/reuseable/ACourseStudentBox';
@@ -10,15 +10,18 @@ const StudentsList = () => {
 
     // id 1 is for active students and id 2 is for history student
     const {id} = useParams()
+    const location = useLocation()
+    
+    const isForClub = location.pathname.includes('/club')
 
     const [pageNumber, setPageNumber] = useState(1);
     let pageSize = 10
 
 
     // queries
-    const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts();
+    const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts(isForClub);
     // id 1 is for active students and id 2 is for history student
-    const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError } = useAllStudents(id && id, pageNumber, pageSize);
+    const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError } = useAllStudents(id && id, pageNumber, pageSize, isForClub);
 
 
     const handleNextPageNumber = () => {
@@ -48,9 +51,10 @@ const StudentsList = () => {
                 {
                 courseCountsData && AllStudents &&
                     <div className='w-full flex flex-col justify-center items-center gap-y-8'>
-                        <PageTitle 
+
+                        <PageTitle
                             title={`${id === '1' ? `هنرجویان فعال (${courseCountsData.data.activeStudentCounts})` : `هنرجویان سابق (${courseCountsData.data.disableStudentCounts})`}`} 
-                            navigateTo={'/education'} 
+                            navigateTo={isForClub ? '/club/clubCourses' : '/education'}y
                         />
 
                         {
@@ -61,7 +65,7 @@ const StudentsList = () => {
                         <div className='w-[90%] flex flex-col gap-y-4 items-center'>
                             {AllStudents?.data.length > 0 &&
                                 AllStudents.data.map((student) => (
-                                    <ACourseStudentBox key={student.id} studentData={student} isForHistory={id === '1' ? false : true} />
+                                    <ACourseStudentBox isForClub={isForClub} key={student.id} studentData={student} isForHistory={id === '1' ? false : true} />
                                 ))
                             }
                         </div>

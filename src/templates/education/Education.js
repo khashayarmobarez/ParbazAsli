@@ -240,6 +240,13 @@ const Education = () => {
                                                         
                                                         </div>
 
+                                                        {
+                                                        isForClub &&
+                                                            <p className=''>نام مربی:    
+                                                                <span className='text-sm'> {course.coachFullName}</span>
+                                                            </p>
+                                                        }
+
                                                         <div className='w-full flex justify-between items-center'>
 
                                                             <div className='flex flex-col text-start gap-y-3'>

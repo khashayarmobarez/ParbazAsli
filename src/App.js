@@ -96,7 +96,6 @@ import CourseStudentSyllabiDetails from './templates/education/studentList/Cours
 import CourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import SyllabiDetails from './templates/syllabiList/SyllabiDetails';
 import StudentsList from './templates/education/studentList/StudentsList';
-import StudentsListClub from './templates/club/students/StudentsListClub';
 import AStudentCourses from './templates/education/studentList/AStudentCourses';
 import AStudentClubCourses from './templates/club/students/AStudentClubCourses';
 import AddEquipment from './templates/equipments/AddEquipment';
@@ -365,7 +364,7 @@ function App() {
               </Route>
               <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<ClubCourseStudentAFlightDetails />} />
               {/* id 1 is for active students and id 2 is for history student */}
-              <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsListClub />} />
+              <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsList />} />
               <Route path='/club/clubCourses/studentsListClub/aStudentClubCourses/:studentId' element={<AStudentClubCourses />} />
 
 

@@ -1059,11 +1059,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 // use all students query
 // /Course/GetAllStudents?type=active
-    const getAllStudents = async (type, pageNumber, pageSize) => {
+    const getAllStudents = async (type, pageNumber, pageSize, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetAllStudents?type=${type}${pageNumber && `&pageNumber=${pageNumber}`}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllStudents?type=${type}${pageNumber && `&pageNumber=${pageNumber}`}&pageSize=${pageSize}&isForClub=${isForClub || false}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -1081,8 +1081,8 @@ const getSyllabiForLevels = async (levelId) => {
 
     };
 
-    const useAllStudents = (type, pageNumber, pageSize) => {
-        return useQuery(['allStudents', type, pageNumber, pageSize], () => getAllStudents(type, pageNumber, pageSize));
+    const useAllStudents = (type, pageNumber, pageSize, isForClub) => {
+        return useQuery(['allStudents', type, pageNumber, pageSize, isForClub], () => getAllStudents(type, pageNumber, pageSize, isForClub));
     }   
 
 
