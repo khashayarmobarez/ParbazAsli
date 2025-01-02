@@ -342,45 +342,6 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
-
-// get club courses data
-    const getClubCourses = async (type, organizationId, pageNumber) => {
-        const token = Cookies.get('token');
-
-        try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourses`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                params: {
-                    type,
-                    organizationId,
-                    pageNumber
-                }
-            });
-            return response.data;
-        } catch (error) {
-            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
-        }
-    };
-
-
-    const useClubCourses = (type, organizationId, pageNumber) => {
-        return useQuery(['clubCourses', type, organizationId, pageNumber], () => getClubCourses(type, organizationId, pageNumber));
-    };
-
-
-
-
-    
-
-
-
 // handle trigger coach status
     // /Club/TriggerCoachStatus
     const PostTriggerCoachStatus = async (course) => {
@@ -1014,4 +975,4 @@ const useAddStudentToClubCourse = () => {
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useClubCourses, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi, useClubCourseCounts, useAllClubStudents, useAClubStudentCourses };
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi, useClubCourseCounts, useAllClubStudents, useAClubStudentCourses };
