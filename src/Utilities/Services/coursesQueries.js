@@ -127,12 +127,12 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 // get Course dividers in education
-    const getCourseDividers = async () => {
+    const getCourseDividers = async (isForClub) => {
 
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Course/GetCourseDividers`, {
+        const response = await axios.get(`${API_BASE_URL}/Course/GetCourseDividers?isForClub=${isForClub || false}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -150,14 +150,14 @@ const getSyllabiForLevels = async (levelId) => {
 
     };
 
-    const useCourseDividers = () => {
-        return useQuery(['courseDividers'], getCourseDividers);
+    const useCourseDividers = (isForClub) => {
+        return useQuery(['courseDividers', isForClub], () => getCourseDividers(isForClub));
     }
 
 
 
 // get courses data
-    const getCourses = async (type, organizationId, pageNumber) => {
+    const getCourses = async (type, organizationId, pageNumber, isForClub) => {
         const token = Cookies.get('token');
 
         try {
@@ -169,7 +169,8 @@ const getSyllabiForLevels = async (levelId) => {
                 params: {
                     type,
                     organizationId,
-                    pageNumber
+                    pageNumber,
+                    isForClub
                 }
             });
             return response.data;
@@ -183,20 +184,20 @@ const getSyllabiForLevels = async (levelId) => {
     };
 
 
-    const useCourses = (type, organizationId, pageNumber) => {
-        return useQuery(['courses', type, organizationId, pageNumber], () => getCourses(type, organizationId, pageNumber));
+    const useCourses = (type, organizationId, pageNumber, isForClub) => {
+        return useQuery(['courses', type, organizationId, pageNumber, isForClub], () => getCourses(type, organizationId, pageNumber, isForClub));
     };
 
 
 
 // post trigger course status
-    const postTriggerCourseStatus = async ({ courseId, status }) => {
+    const postTriggerCourseStatus = async (params) => {
         const token = Cookies.get('token');
 
         try {
             const response = await axios.post(
                 `${API_BASE_URL}/Course/TriggerCourseStatus`,
-                { courseId, status },
+                params,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -729,11 +730,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get course counts
 // /Course/GetCourseCounts 
-    const getCourseCounts = async () => {
+    const getCourseCounts = async (isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCounts`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCounts?isForClub=${isForClub || false}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -749,8 +750,8 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const useCourseCounts = () => {
-        return useQuery(['courseCounts'], getCourseCounts);
+    const useCourseCounts = (isForClub) => {
+        return useQuery(['courseCounts', isForClub], () => getCourseCounts(isForClub));
     }
 
 

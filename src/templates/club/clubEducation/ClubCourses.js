@@ -148,125 +148,125 @@ const ClubCourses = () => {
                                 />
 
                                 {DropDown === `dropDown${index}` && 
-                                    <div className='w-full flex flex-col gap-y-4'>
+                                <div className='w-full flex flex-col gap-y-4'>
 
-                                        {courseDataLoading && 
-                                            <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                                <CircularProgress />
-                                            </Box>
-                                        }
+                                    {courseDataLoading && 
+                                        <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                                            <CircularProgress />
+                                        </Box>
+                                    }
 
+                                    {
+                                        courseDataError &&
+                                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                                    }
+
+                                    <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                         {
-                                            courseDataError &&
-                                            <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
-                                        }
+                                            courseData && courseData.data?.map((course) => (
+                                                <div key={course.id} className='w-full flex flex-col items-center'>
 
-                                        <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
-                                            {
-                                                courseData && courseData.data?.map((course) => (
-                                                    <div key={course.id} className='w-full flex flex-col items-center'>
+                                                    <div
+                                                    className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
+                                                    style={{
+                                                        boxShadow: 'var(--shadow-all)'
+                                                    }}
+                                                    >
+                                                        <div className='w-full flex justify-between items-center'>
+                                                        
+                                                            <h1 className='text-base'>{course.name}</h1>
 
-                                                        <div
-                                                        className="w-full justify-between items-center px-4 py-4 rounded-[1.6rem] flex flex-col gap-y-4 md:col-span-1 z-10 text-xs bg-bgOutputDefault"
-                                                        style={{
-                                                            boxShadow: 'var(--shadow-all)'
-                                                        }}
-                                                        >
-                                                            <div className='w-full flex justify-between items-center'>
-                                                            
-                                                                <h1 className='text-base'>{course.name}</h1>
+                                                            <div className='flex gap-x-1'>
 
-                                                                <div className='flex gap-x-1'>
+                                                                <p className='text-textButtonMainDisabled'>وضعیت:
+                                                                    {course.status === 'Active' &&
+                                                                        <span className='text-textAccent'> فعال</span>
+                                                                    }
+                                                                    {course.status === 'Pending' &&
+                                                                        <span className='text-textWarning'> در انتظار تایید</span>
+                                                                    }
+                                                                    {course.status === 'Disable' &&
+                                                                        <span className='text-textButtonProfileDisable'> غیر فعال</span>
+                                                                    }
+                                                                    {course.status === 'Rejected' &&
+                                                                        <span className='text-textError'> رد شده</span>
+                                                                    }
+                                                                </p>
 
-                                                                    <p className='text-textButtonMainDisabled'>وضعیت:
-                                                                        {course.status === 'Active' && 
-                                                                            <span className='text-textAccent'> فعال</span>
-                                                                        }
-                                                                        {course.status === 'Pending' &&
-                                                                            <span className='text-textWarning'> در انتظار تایید</span>
-                                                                        }
-                                                                        {course.status === 'Disable' && 
-                                                                            <span className='text-textButtonProfileDisable'> غیر فعال</span>
-                                                                        }
-                                                                        {course.status === 'Rejected' && 
-                                                                            <span className='text-textError'> رد شده</span>
-                                                                        }
-                                                                    </p>
-
-                                                                </div>
-                                                            
                                                             </div>
+                                                        
+                                                        </div>
 
-                                                            <p className={` -mt-1 flex gap-x-1 items-center`}>
-                                                                <p className=''>نام مربی: </p>
-                                                                <span className='text-sm'>{course.coachFullName}</span>
-                                                            </p>
+                                                        <p className={` -mt-1 flex gap-x-1 items-center`}>
+                                                            <p className=''>نام مربی: </p>
+                                                            <span className='text-sm'>{course.coachFullName}</span>
+                                                        </p>
 
-                                                            <div className='w-full flex justify-between items-center'>
+                                                        <div className='w-full flex justify-between items-center'>
 
-                                                                <div className={`${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}
-                                                                flex flex-col text-start gap-y-3`}>
-                                                                    
-                                                                    {
-                                                                        course.type === 'Regular' &&
-                                                                        <p className='text-sm'>
-                                                                            {course.organization}
-                                                                        </p>
-                                                                    }
-                                                                    {
-                                                                        course.type === 'Retraining' &&
-                                                                        <p className='text-sm'>
-                                                                            <span className=' '>مقطع:</span> {course.level}
-                                                                        </p>
-                                                                    } 
-
-                                                                    <p>
-                                                                        <span className=''>تعداد پرواز: </span> {course.flightsCount}
+                                                            <div className={`${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}
+                                                            flex flex-col text-start gap-y-3`}>
+                                                                
+                                                                {
+                                                                    course.type === 'Regular' &&
+                                                                    <p className='text-sm'>
+                                                                        {course.organization}
                                                                     </p>
-
-                                                                    { course.clubName &&
-                                                                        <p>
-                                                                            <span className=''>باشگاه: </span> {course.clubName}
-                                                                        </p>
-                                                                    }
-
-                                                                </div>
-
-                                                                <div className={`flex flex-col text-start gap-y-2
-                                                                ${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}`}>
-                                                                    <p>
-                                                                        <span className=''>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                }
+                                                                {
+                                                                    course.type === 'Retraining' &&
+                                                                    <p className='text-sm'>
+                                                                        <span className=' '>مقطع:</span> {course.level}
                                                                     </p>
-                                                                    <p>
-                                                                        <span className=''>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
-                                                                    </p>
-                                                                </div>
+                                                                }
 
+                                                                <p>
+                                                                    <span className=''>تعداد پرواز: </span> {course.flightsCount}
+                                                                </p>
+
+                                                                { course.clubName &&
+                                                                    <p>
+                                                                        <span className=''>باشگاه: </span> {course.clubName}
+                                                                    </p>
+                                                                }
 
                                                             </div>
 
-                                                            {
-                                                                course.status !== 'Rejected' &&
-                                                                    <button onClick={handleClubCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
-                                                                        جزئیات
-                                                                    </button>
-                                                            }
+                                                            <div className={`flex flex-col text-start gap-y-2
+                                                            ${course.status === 'Disable' ? 'textButtonProfileDisable' : 'text-textDefault'}`}>
+                                                                <p>
+                                                                    <span className=''>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                </p>
+                                                                <p>
+                                                                    <span className=''>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                </p>
+                                                            </div>
+
 
                                                         </div>
 
+                                                        {
+                                                            course.status !== 'Rejected' &&
+                                                                <button onClick={handleClubCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
+                                                                    جزئیات
+                                                                </button>
+                                                        }
+
                                                     </div>
-                                                ))
-                                            }
-                                        </div>
 
-                                        {courseData && courseData.totalPagesCount > 1 &&
-                                            <div className='w-full flex justify-between mt-2'>
-                                                <p onClick={handleNextPageNumber} className='' style={{color:'var(--text-accent)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
-                                                <p onClick={handleLastPageNumber} className='' style={{color:'var(--text-accent)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
-                                            </div>
+                                                </div>
+                                            ))
                                         }
-
                                     </div>
+
+                                    {courseData && courseData.totalPagesCount > 1 &&
+                                        <div className='w-full flex justify-between mt-2'>
+                                            <p onClick={handleNextPageNumber} className='' style={{color:'var(--text-accent)'}} >{courseData.totalPagesCount > 1 && pageNumber !== courseData.totalPagesCount && 'بقیه ی دوره ها ...'}</p>
+                                            <p onClick={handleLastPageNumber} className='' style={{color:'var(--text-accent)'}} >{pageNumber > 1 && 'دوره های قبلی'}</p>
+                                        </div>
+                                    }
+
+                                </div>
                                 }
 
                             </div>

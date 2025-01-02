@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
@@ -34,12 +34,17 @@ import DescriptionInput from '../../components/inputs/DescriptionInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import SelectMultiplePopUp from '../../components/reuseable/SelectMultiplePopUp';
 import StandardPopup from '../../components/reuseable/StandardPopup';
+import { useGetActiveClubCoaches } from '../../Utilities/Services/clubQueries';
+import Attention from '../../components/icons/Attention';
+import UserIcon from '../../components/icons/UserIcon';
 
 const AddCourse = () => {
 
     const navigate = useNavigate()
-
     const appTheme = Cookies.get('themeApplied') || 'dark';
+    const location = useLocation()
+
+    const isForClub = location.pathname.includes('/club')
     
     // states
     const [selectedClassType, setSelectedClassType] = useState('');
@@ -49,6 +54,9 @@ const AddCourse = () => {
     const [organ, setOrgan] = useState('')
     const [level, setLevel] = useState('')
 
+    // only club
+    const [Coach, setCoach] = useState('')
+
     // states for retraining
     const [courseName, setCourseName] = useState('')
     const [selectedSyllabiFlight, setSelectedSyllabiFlight] = useState([]);
@@ -57,7 +65,7 @@ const AddCourse = () => {
     const [syllabusIdsFlight, setSyllabusIdsFlight] = useState([]);
     const [syllabusIdsGround, setSyllabusIdsGround] = useState([]);
     const [syllabusIdsTheory, setSyllabusIdsTheory] = useState([]);
-    const mergeRetrainingSyllabiIds = [...new Set([...syllabusIdsFlight, ...syllabusIdsTheory])];
+    const mergeRetrainingSyllabiIds = [...new Set([...syllabusIdsFlight, ...syllabusIdsTheory, ...syllabusIdsGround])];
 
     const uniqueSyllabiIds = mergeRetrainingSyllabiIds.filter((value, index, self) => {
         return self.indexOf(value) === index;
@@ -89,9 +97,11 @@ const AddCourse = () => {
     const { data: levelsData, isLoading: levelsLoading, error: levelsError } = useOrganLevelsForCourse(organ && organ.id);
     const { data: syllabiData, isLoading: syllabiLoading, error: syllabiError } = useSyllabiForLevels(level && level.id);
     const {data: studentData, isLoading:studentNameLoading , error: studentError} = useUserLevelById(studentId && studentId , selectedClassType.id === 3 ? 1 : level && level.id , selectedClassType && selectedClassType.id , setErrorMessage);
+    const { data: coachNamesData, isLoading: coachNamesLoading} = useGetActiveClubCoaches();
     const { mutate: addRegularCourse, isLoading: addRegularCourseLoading } = useAddRegularCourse();
     const { mutate: addRetrainingCourse, isLoading: addRetrainingCourseLoading } = useAddRetrainingCourse();
     const { mutate: addCustomCourse, isLoading: addCustomCourseLoading } = useAddCustomCourse();
+
 
 
     // when the studentId goes under 6 characters reset the errorMessage
@@ -150,6 +160,10 @@ const AddCourse = () => {
     },[level])
 
 
+    // handle select coach change only for club
+    const handleSelectCoachChange = (selectedOption) => {
+        setCoach(selectedOption);
+    };
 
     // handle select input states
     const handleSelectClassType = (selectedOption ) => {
@@ -195,7 +209,7 @@ const AddCourse = () => {
     const handleRemoveStudent = (studentToRemove) => {
         setStudentsList(prev => prev.filter(student => student !== studentToRemove.id));
         setStudentsData(prev => prev.filter(student => student.id !== studentToRemove.id));
-    };    
+    };
     
     const handleSelectChangeSyllabiFlight = (newSelectedOptions) => {
         setSelectedSyllabiFlight(newSelectedOptions);
@@ -244,13 +258,13 @@ const AddCourse = () => {
 
         const newTheoryCourse = {
             type,
-            description: type === 1 ? customCourseTheory : type === 2 ? customCourseFlight : customCourseGround,
+            description:  customCourseTheory ,
             order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
         };
 
         const newPracticalCourse = {
             type,
-            description: type === 1 ? customCourseTheory : type === 2 ? customCourseFlight : customCourseGround,
+            description: type === 2 ? customCourseFlight : customCourseGround,
             order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
             completionTimes: 1
         };
@@ -309,7 +323,7 @@ const AddCourse = () => {
                     style: { width: "90%" }
                 });
                 return;
-        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || selectedSyllabiFlight.length < 1 || selectedSyllabiTheory.length < 1 ) ) {
+        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !(selectedSyllabiFlight.length > 0 || selectedSyllabiTheory.length > 0  || selectedSyllabiGround.length > 0) ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -341,21 +355,47 @@ const AddCourse = () => {
     
         if ( selectedClassType && flightCount && level) {
     
-            const regularformData = {
+            const regularformData = isForClub ?
+            {
                 levelId: level.id,
                 flightsCount: flightCount,
                 description: description,
                 userIds: studentsList,
-            };
+                coachId:Coach.id,
+                isForClub
+            }
+            :
+            {
+                levelId: level.id,
+                flightsCount: flightCount,
+                description: description,
+                userIds: studentsList,
+                isForClub
+            }
+
     
-            const retrainingformData = {
+            const retrainingformData = isForClub ?
+            {
                 levelId: level.id,
                 flightsCount: flightCount,
                 description: description,
                 userIds: studentsList,
                 name: courseName,
                 SyllabusIds: uniqueSyllabiIds,
-            };
+                coachId:Coach.id,
+                isForClub
+            }
+            :
+            {
+                levelId: level.id,
+                flightsCount: flightCount,
+                description: description,
+                userIds: studentsList,
+                name: courseName,
+                SyllabusIds: uniqueSyllabiIds,
+                isForClub
+            }
+
     
             if (selectedClassType.id === 1) {
                 addRegularCourse(regularformData, {
@@ -394,6 +434,9 @@ const AddCourse = () => {
                             theme: appTheme,
                             style: { width: "90%" }
                         });
+                        isForClub ? 
+                        navigate('/club/clubCourses')
+                        :
                         navigate('/education');
                     },
                     onError: (error) => {
@@ -415,16 +458,29 @@ const AddCourse = () => {
 
         } else if (selectedClassType.id === 3 && flightCount) {
 
-            const customCourseData = {
+            const customCourseData = isForClub ? 
+            {
                 levelId: 1,
                 syllabi: customCourses,
                 flightsCount: flightCount,
                 description: description,
                 name: courseName,
                 userIds: studentsList,
-            };
+                coachId:Coach.id,
+                isForClub
+            }
+            :
+            {
+                levelId: 1,
+                syllabi: customCourses,
+                flightsCount: flightCount,
+                description: description,
+                name: courseName,
+                userIds: studentsList,
+                isForClub
+            }
 
-            console.log(customCourseData)
+
 
             addCustomCourse(customCourseData, {
                 onSuccess: () => {
@@ -435,7 +491,10 @@ const AddCourse = () => {
                         theme: appTheme,
                         style: { width: "90%" }
                     });
-                    navigate('/education');
+                    isForClub ? 
+                        navigate('/club/clubCourses')
+                        :
+                        navigate('/education');
                 },
                 onError: (error) => {
                     const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
@@ -461,149 +520,196 @@ const AddCourse = () => {
             
                 <PageTitle title={'افزودن دوره'} /> 
 
-                <form className='w-[90%] flex flex-col items-center gap-y-6 lg:mt-8'>
-
-                    <DropdownInput 
-                    id={'ddi1'} 
-                    isDeselectDeactivated={true}
-                    name={'نوع دوره'}
-                    options={courseTypeOptionData}
-                    selectedOption={selectedClassType}
-                    handleSelectChange={handleSelectClassType}
-                    icon={<ColorTagsIcon  />}
-                    />
-
-                    {selectedClassType && 
+                {
+                    (isForClub && coachNamesData && coachNamesData.data.length < 1) ?
+                        <div className='w-full h-[60vh] flex flex-col justify-center items-center gap-y-4'>
+                            <span className='w-16 h-16'>
+                                <Attention />
+                            </span>
+                            <p className='text-textWarning'>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                        </div>
+                        :
                         <>
-                            {
-                                organsLoading && 
-                                <CircularProgressLoader />
-                            }
+                        <form className='w-[90%] flex flex-col items-center gap-y-6 lg:mt-8'>
 
-                            {
-                                organsError && 
-                                <div className='w-full min-h-[71vh]'>
-                                    <p> 
-                                        خطا در دریافت اطلاعات سازمان ها...
-                                    </p>
-                                </div>
-                            }
+                        {
+                            coachNamesData && isForClub &&
+                            <DropdownInput
+                                id={'ddi1'}
+                                options={coachNamesData.data}
+                                handleSelectChange={handleSelectCoachChange}
+                                selectedOption={Coach}
+                                name={'انتخاب مربی'}
+                                icon={<UserIcon/>}
+                            />
+                        }
 
-                            {/* only دوره های مطابق سیلابس */}
-                            { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
+                            <DropdownInput 
+                            id={'ddi1'} 
+                            isDeselectDeactivated={true}
+                            name={'نوع دوره'}
+                            options={courseTypeOptionData}
+                            selectedOption={selectedClassType}
+                            handleSelectChange={handleSelectClassType}
+                            icon={<ColorTagsIcon  />}
+                            />
+
+                            {selectedClassType && 
                                 <>
-                                    <DropdownInput
-                                    id={'ddi2'}
-                                    options={organsData.data}
-                                    handleSelectChange={handleSelectOrganChange}
-                                    selectedOption={organ}
-                                    name={'ارگان'}
-                                    icon={<CertificateIcon />}
-                                    />
-                                    {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
                                     {
-                                        levelsData && organ && !levelsError &&
+                                        organsLoading && 
+                                        <CircularProgressLoader />
+                                    }
+
+                                    {
+                                        organsError && 
+                                        <div className='w-full min-h-[71vh]'>
+                                            <p> 
+                                                خطا در دریافت اطلاعات سازمان ها...
+                                            </p>
+                                        </div>
+                                    }
+
+                                    {/* only دوره های مطابق سیلابس */}
+                                    { organsData && (selectedClassType.id === 1 || selectedClassType.id === 2) && 
                                         <>
-                                            {levelsLoading && <p>Loading levels...</p>}
-                                            {levelsError && <p>Error fetching levels</p>}
-                                            {!levelsError && !levelsLoading &&
+                                            <DropdownInput
+                                            id={'ddi2'}
+                                            options={organsData.data}
+                                            handleSelectChange={handleSelectOrganChange}
+                                            selectedOption={organ}
+                                            name={'ارگان'}
+                                            icon={<CertificateIcon />}
+                                            />
+                                            {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
+                                            {
+                                                levelsData && organ && !levelsError &&
                                                 <>
-                                                    <DropdownInput
-                                                        id={'ddi3'}
-                                                        options={levelsData.data}
-                                                        handleSelectChange={handleSelectLevelChange}
-                                                        selectedOption={level}
-                                                        icon={<ChartIcon2/> }
-                                                        name={'مقطع'}
-                                                    />
+                                                    {levelsLoading && <p>Loading levels...</p>}
+                                                    {levelsError && <p>Error fetching levels</p>}
+                                                    {!levelsError && !levelsLoading &&
+                                                        <>
+                                                            <DropdownInput
+                                                                id={'ddi3'}
+                                                                options={levelsData.data}
+                                                                handleSelectChange={handleSelectLevelChange}
+                                                                selectedOption={level}
+                                                                icon={<ChartIcon2/> }
+                                                                name={'مقطع'}
+                                                            />
+                                                        </>
+                                                    }
                                                 </>
                                             }
+
+                                            {/* دوره های بازاموزی */}
+                                            {
+                                                syllabiData && selectedClassType.id === 2 && 
+                                                <>
+                                                    {/* <MultipleSelect
+                                                        name={'سیلابس ها'}
+                                                        options={syllabiData.data}
+                                                        selectedOptions={selectedSyllabi}
+                                                        handleSelectChange={handleSelectChangeSyllabi}
+                                                        handleRemove={handleRemoveSyllabi}
+                                                    /> */}
+
+                                                    {/* <SearchMultipleSelect
+                                                        Icon={<ListIcon/>}
+                                                        options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
+                                                        selectedOptions={selectedSyllabiFlight}
+                                                        handleSelectChange={handleSelectChangeSyllabiFlight}
+                                                        name="سرفصل های عملی"
+                                                        handleRemove={handleRemoveSyllabiFlight}
+                                                        isForSyllabi={true}
+                                                    />
+
+                                                    <SearchMultipleSelect
+                                                        Icon={<ListIcon/>}
+                                                        options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
+                                                        selectedOptions={selectedSyllabiTheory}
+                                                        handleSelectChange={handleSelectChangeSyllabiTheory}
+                                                        name="سرفصل های تئوری"
+                                                        handleRemove={handleRemoveSyllabiTheory}
+                                                        isForSyllabi={true}
+                                                    /> */}
+
+                                                    {
+                                                        syllabiData.data.filter(syllabus => syllabus.type === 'GroundHandling').length > 0 && 
+                                                        <SelectMultiplePopUp
+                                                            Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                            options={syllabiData.data.filter(syllabus => syllabus.type === 'GroundHandling')}
+                                                            isSubmitted={isSubmitted}
+                                                            selectedOptions={selectedSyllabiGround}
+                                                            handleSelectChange={handleSelectChangeSyllabiGround}
+                                                            name="سرفصل های تمرین زمینی"
+                                                            handleRemove={handleRemoveSyllabiGround}
+                                                            isForSyllabi={true}
+                                                            ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
+                                                        />
+                                                    }
+                                                    
+                                                    {
+                                                        selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && selectedSyllabiGround.length < 1 && isSubmitted &&
+                                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                                    } 
+
+                                                    <SelectMultiplePopUp
+                                                        Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                        options={syllabiData.data.filter(syllabus => syllabus.type === 'Flight')}
+                                                        isSubmitted={isSubmitted}
+                                                        selectedOptions={selectedSyllabiFlight}
+                                                        handleSelectChange={handleSelectChangeSyllabiFlight}
+                                                        name="سرفصل های پرواز"
+                                                        handleRemove={handleRemoveSyllabiFlight}
+                                                        isForSyllabi={true}
+                                                        ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
+                                                    />
+                                                    {
+                                                        selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && selectedSyllabiGround.length < 1 && isSubmitted &&
+                                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                                    } 
+
+                                                    <SelectMultiplePopUp
+                                                        Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                        options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
+                                                        selectedOptions={selectedSyllabiTheory}
+                                                        handleSelectChange={handleSelectChangeSyllabiTheory}
+                                                        name="سرفصل های تئوری"
+                                                        isSubmitted={isSubmitted}
+                                                        handleRemove={handleRemoveSyllabiTheory}
+                                                        isForSyllabi={true}
+                                                        ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
+                                                    />
+                                                    {
+                                                        selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && selectedSyllabiGround.length < 1 && isSubmitted &&
+                                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                                    }
+
+                                                    <TextInput
+                                                        id={'TI1'}
+                                                        value={courseName}
+                                                        onChange={handleCourseName}
+                                                        placeholder='نام دوره'
+                                                        icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
+                                                        isSubmitted={isSubmitted}
+                                                        ErrorCondition={!courseName}
+                                                        ErrorText={'نام دوره الزامی است'}
+                                                    />
+                                                </>
+
+                                            }
+
                                         </>
                                     }
 
-                                    {/* دوره های بازاموزی */}
-                                    {
-                                        syllabiData && selectedClassType.id === 2 && 
+
+                                    {selectedClassType.id === 3 && (
                                         <>
-                                            {/* <MultipleSelect
-                                                name={'سیلابس ها'}
-                                                options={syllabiData.data}
-                                                selectedOptions={selectedSyllabi}
-                                                handleSelectChange={handleSelectChangeSyllabi}
-                                                handleRemove={handleRemoveSyllabi}
-                                            /> */}
-
-                                            {/* <SearchMultipleSelect
-                                                Icon={<ListIcon/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
-                                                selectedOptions={selectedSyllabiFlight}
-                                                handleSelectChange={handleSelectChangeSyllabiFlight}
-                                                name="سرفصل های عملی"
-                                                handleRemove={handleRemoveSyllabiFlight}
-                                                isForSyllabi={true}
-                                            />
-
-                                            <SearchMultipleSelect
-                                                Icon={<ListIcon/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
-                                                selectedOptions={selectedSyllabiTheory}
-                                                handleSelectChange={handleSelectChangeSyllabiTheory}
-                                                name="سرفصل های تئوری"
-                                                handleRemove={handleRemoveSyllabiTheory}
-                                                isForSyllabi={true}
-                                            /> */}
-
-                                            <SelectMultiplePopUp
-                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'GroundHandling')}
-                                                isSubmitted={isSubmitted}
-                                                selectedOptions={selectedSyllabiGround}
-                                                handleSelectChange={handleSelectChangeSyllabiGround}
-                                                name="سرفصل های تمرین زمینی"
-                                                handleRemove={handleRemoveSyllabiGround}
-                                                isForSyllabi={true}
-                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
-                                            />
-                                            {
-                                                selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
-                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
-                                            } 
-
-                                            <SelectMultiplePopUp
-                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Flight')}
-                                                isSubmitted={isSubmitted}
-                                                selectedOptions={selectedSyllabiFlight}
-                                                handleSelectChange={handleSelectChangeSyllabiFlight}
-                                                name="سرفصل های پرواز"
-                                                handleRemove={handleRemoveSyllabiFlight}
-                                                isForSyllabi={true}
-                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
-                                            />
-                                            {
-                                                selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
-                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
-                                            } 
-
-                                            <SelectMultiplePopUp
-                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
-                                                selectedOptions={selectedSyllabiTheory}
-                                                handleSelectChange={handleSelectChangeSyllabiTheory}
-                                                name="سرفصل های تئوری"
-                                                isSubmitted={isSubmitted}
-                                                handleRemove={handleRemoveSyllabiTheory}
-                                                isForSyllabi={true}
-                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
-                                            />
-                                            {
-                                                selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
-                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
-                                            }
 
                                             <TextInput
-                                                id={'TI1'}
-                                                value={courseName}
+                                                id={'TI2'}
+                                                value={courseName}  
                                                 onChange={handleCourseName}
                                                 placeholder='نام دوره'
                                                 icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
@@ -611,299 +717,280 @@ const AddCourse = () => {
                                                 ErrorCondition={!courseName}
                                                 ErrorText={'نام دوره الزامی است'}
                                             />
-                                        </>
-
-                                    }
-
-                                </>
-                            }
 
 
-                            {selectedClassType.id === 3 && (
-                                <>
-
-                                    <TextInput
-                                        id={'TI2'}
-                                        value={courseName}  
-                                        onChange={handleCourseName}
-                                        placeholder='نام دوره'
-                                        icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
-                                        isSubmitted={isSubmitted}
-                                        ErrorCondition={!courseName}
-                                        ErrorText={'نام دوره الزامی است'}
-                                    />
-
-
-                                    {/* theory syllabi */}
-                                    <div className='w-full flex justify-between relative items-center'>
-                                        <div className='w-[70%] flex flex-col'>
-                                        <TextInput 
-                                            id={'TI3'}
-                                            icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
-                                            value={customCourseTheory} 
-                                            isSubmitted={isSubmitted}
-                                            onChange={handleInputTheory} 
-                                            placeholder='سرفصل های تئوری'
-                                            className='w-full'
-                                            ErrorCondition={customCourses.length < 1}
-                                        />
-                                        </div>
-                                        <span
-                                            className={` w-[26%] h-[48px] flex justify-center items-center rounded-lg ${ButtonStyles.normalButton}`}
-                                            style={{ borderRadius: '16px', minWidth: '0px' }}
-                                            onClick={() => handleAddCustomCourse(1)}
-                                        >
-                                            افزودن
-                                        </span>
-                                    </div>
-
-                                    {
-                                        customCourses.length < 1 && isSubmitted &&
-                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
-                                    }
-
-                                    <ul className='w-full py-0 mt-[-1rem] gap-2'>
-                                        {customCourses
-                                        .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
-                                        .map((course,index) => (
-                                            <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                            style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                                <p className=' text-sm mx-1' >{index + 1}</p>
-                                                <p className='text-sm px-6 w-full text-start'>{course.description} </p>
-                                                <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                boxShadow: 'var(--shadow-all)',
-                                                borderRadius:'0.5rem',
-                                                color:'var(--text-error)'}}
-                                                onClick={() => handleRemoveCustomCourse(course.order)} />
-                                            </li>
-                                        ))}
-                                    </ul>
-
-
-                                    {/* flight syllabi */}
-                                    <div className='w-full flex justify-between relative items-center gap-y-2'>
-                                        <div className='w-[70%]  flex flex-col'>
-                                            <TextInput 
-                                                id={'TI4'}
-                                                icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
-                                                value={customCourseFlight}
-                                                isSubmitted={isSubmitted}
-                                                onChange={handleInputPractical}
-                                                placeholder='سرفصل های پرواز'
-                                                className='w-full'
-                                                ErrorCondition={customCourses.length < 1}
-                                            />
-                                        </div>
-                                        <span
-                                        className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
-                                        style={{ borderRadius: '16px', minWidth: '0px' }}
-                                        onClick={() => handleAddCustomCourse(2)}
-                                        >
-                                            افزودن
-                                        </span>
-                                    </div>
-
-                                    {
-                                        customCourses.length < 1 && isSubmitted &&
-                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
-                                    }
-
-                                    <ul className=' w-full py-0 mt-[-1rem] gap-2'>
-                                        {customCourses
-                                        .filter(course => course.type === 2) // Filter for practical courses (type 2)
-                                        .map((course,index) => (
-                                            <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                            style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                                <p className=' text-sm mx-1' >{index + 1}</p>
-                                                <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                                <div className='h-full flex gap-x-4 items-center'>
-                                                    <AddIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                    boxShadow: 'var(--shadow-all)',
-                                                    borderRadius:'0.5rem',
-                                                    color:'var(--text-accent)'}}
-                                                    onClick={() => handleIncreaseCustomCourseCompletionTimes(course.order)}/>
-                                                    <p>{course.completionTimes}</p>
-                                                    <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                    boxShadow: 'var(--shadow-all)',
-                                                    borderRadius:'0.5rem',
-                                                    color:'var(--text-error)'}}
-                                                    onClick={() => handleDecreaseCustomCourseCompletionTimes(course.order)} />
+                                            {/* theory syllabi */}
+                                            <div className='w-full flex justify-between relative items-center'>
+                                                <div className='w-[70%] flex flex-col'>
+                                                <TextInput 
+                                                    id={'TI3'}
+                                                    icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
+                                                    value={customCourseTheory} 
+                                                    isSubmitted={isSubmitted}
+                                                    onChange={handleInputTheory} 
+                                                    placeholder='سرفصل های تئوری'
+                                                    className='w-full'
+                                                    ErrorCondition={customCourses.length < 1}
+                                                />
                                                 </div>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                                <span
+                                                    className={` w-[26%] h-[48px] flex justify-center items-center rounded-lg ${ButtonStyles.normalButton}`}
+                                                    style={{ borderRadius: '16px', minWidth: '0px' }}
+                                                    onClick={() => handleAddCustomCourse(1)}
+                                                >
+                                                    افزودن
+                                                </span>
+                                            </div>
 
-                                    {/* ground handling */}
-                                    <div className='w-full flex justify-between relative items-center gap-y-2'>
-                                        <div className='w-[70%]  flex flex-col'>
-                                            <TextInput 
-                                                id={'TI5'}
-                                                icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
-                                                value={customCourseGround}
-                                                isSubmitted={isSubmitted}
-                                                onChange={handleInputGroundHandling}
-                                                placeholder='سرفصل های تمرین زمینی'
-                                                className='w-full'
-                                                ErrorCondition={customCourses.length < 1}
-                                            />
-                                        </div>
-                                        <span
-                                        className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
-                                        style={{ borderRadius: '16px', minWidth: '0px' }}
-                                        onClick={() => handleAddCustomCourse(3)}
-                                        >
-                                            افزودن
-                                        </span>
-                                    </div>
+                                            {
+                                                customCourses.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                            }
 
-                                    {
-                                        customCourses.length < 1 && isSubmitted &&
-                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
-                                    }
-
-                                    <ul className=' w-full py-0 mt-[-1rem] gap-2'>
-                                        {customCourses
-                                        .filter(course => course.type === 3) // Filter for practical courses (type 2)
-                                        .map((course,index) => (
-                                            <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                            style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                                <p className=' text-sm mx-1' >{index + 1}</p>
-                                                <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                                <div className='h-full flex gap-x-2 items-center'>
-                                                    <AddIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                    boxShadow: 'var(--shadow-all)',
-                                                    borderRadius:'0.5rem',
-                                                    color:'var(--text-accent)'}}
-                                                    onClick={() => handleIncreaseCustomCourseCompletionTimes(course.order)}/>
-                                                    <p>{course.completionTimes}</p>
-                                                    <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                    boxShadow: 'var(--shadow-all)',
-                                                    borderRadius:'0.5rem',
-                                                    color:'var(--text-error)'}}
-                                                    onClick={() => handleDecreaseCustomCourseCompletionTimes(course.order)} />
-                                                </div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </>
-                            )}
-                            
-
-                            {
-                                // add or later on add other types of courses
-                                (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
-                                <>
-                                    <NumberInput 
-                                    id={'NI1'} 
-                                    icon={<ChartIcon customColor = {!flightCount && isSubmitted && 'var(--text-error)'}/>}
-                                    name={'تعداد پرواز'}
-                                    value={flightCount}
-                                    onChange={handleFlightCount}
-                                    placeholder='تعداد پرواز'
-                                    isSubmitted={isSubmitted}
-                                    ErrorCondition={!flightCount}
-                                    ErrorText={'تعداد پرواز الزامی است'}
-                                    ErrorCondition2={flightCount && flightCount < 0}
-                                    ErrorText2={'تعداد پرواز باید بزرگتر از 0 باشد'}
-                                    />
-
-                                    {/* add students */}   
-                                    <div className='w-full flex flex-col justify-between relative items-center'>
-                                        <div className='w-full flex flex-col'>
-                                            <TextInput
-                                            id={'TI6'}
-                                            value={studentId}
-                                            onChange={handleInputStudent}
-                                            placeholder='کد کاربری هنرجو'
-                                            className='w-full'
-                                            />
-                                        </div>
-
-                                        { studentNameLoading && studentId.length > 5 &&
-                                        <p className=' self-start mt-1'>در حال بررسی هنرجو ... </p>
-                                        }
-                                        { studentError && studentId.length > 5 &&
-                                            <p className='text-[var(--text-error)] self-start text-right mt-1'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
-                                        }
-                                        {/* <span 
-                                        className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
-                                        onClick={studentData ? handleAddStudent : null}
-                                        >
-                                            <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
-                                        </span> */}
-                                        {studentData?.data && (
-                                            <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
-                                            
-                                                <div className='flex flex-col w-full items-center justify-center '>
-                                                    <li
-                                                        key={studentData.data.id}
-                                                        className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
-                                                        onClick={() => handleAddStudent()}
-                                                    >
-                                                        {studentData.data.fullName}
+                                            <ul className='w-full py-0 mt-[-1rem] gap-2'>
+                                                {customCourses
+                                                .filter(course => course.type === 1) // Filter for theoretical courses (type 2)
+                                                .map((course,index) => (
+                                                    <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                                    style={{background:  'var(--bg-output-default)',
+                                                    boxShadow: 'var(--shadow-all)'}}>
+                                                        <p className=' text-sm mx-1' >{index + 1}</p>
+                                                        <p className='text-sm px-6 w-full text-start'>{course.description} </p>
+                                                        <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                        boxShadow: 'var(--shadow-all)',
+                                                        borderRadius:'0.5rem',
+                                                        color:'var(--text-error)'}}
+                                                        onClick={() => handleRemoveCustomCourse(course.order)} />
                                                     </li>
-                                                </div>
-
+                                                ))}
                                             </ul>
-                                        )}
-                                    </div>
 
-                                    <ul className=' w-full py-0 mt-[-1rem] gap-2'>
-                                        {studentsData && studentsData?.map((student,index) => (
-                                            <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
-                                            style={{background:  'var(--bg-output-default)',
-                                            boxShadow: 'var(--shadow-all)'}}>
-                                                <div className='flex items-center justify-start gap-x-2'>
-                                                    <p className=' text-sm px-1' >{index + 1}</p>
-                                                    <p className=' text-sm  w-full text-start' >{student.name}</p>
+
+                                            {/* flight syllabi */}
+                                            <div className='w-full flex justify-between relative items-center gap-y-2'>
+                                                <div className='w-[70%]  flex flex-col'>
+                                                    <TextInput 
+                                                        id={'TI4'}
+                                                        icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
+                                                        value={customCourseFlight}
+                                                        isSubmitted={isSubmitted}
+                                                        onChange={handleInputPractical}
+                                                        placeholder='سرفصل های پرواز'
+                                                        className='w-full'
+                                                        ErrorCondition={customCourses.length < 1}
+                                                    />
                                                 </div>
-                                                <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                boxShadow: 'var(--shadow-all)',
-                                                borderRadius:'0.5rem',
-                                                color:'var(--text-error)'}}
-                                                onClick={() => handleRemoveStudent(student)} />
-                                            </li>
-                                        ))}
-                                    </ul>
+                                                <span
+                                                className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
+                                                style={{ borderRadius: '16px', minWidth: '0px' }}
+                                                onClick={() => handleAddCustomCourse(2)}
+                                                >
+                                                    افزودن
+                                                </span>
+                                            </div>
+
+                                            {
+                                                customCourses.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                            }
+
+                                            <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                                {customCourses
+                                                .filter(course => course.type === 2) // Filter for practical courses (type 2)
+                                                .map((course,index) => (
+                                                    <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                                    style={{background:  'var(--bg-output-default)',
+                                                    boxShadow: 'var(--shadow-all)'}}>
+                                                        <p className=' text-sm mx-1' >{index + 1}</p>
+                                                        <p className='text-sm px-6 w-full text-start'>{course.description}</p>
+                                                        <div className='h-full flex gap-x-4 items-center'>
+                                                            <AddIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                            boxShadow: 'var(--shadow-all)',
+                                                            borderRadius:'0.5rem',
+                                                            color:'var(--text-accent)'}}
+                                                            onClick={() => handleIncreaseCustomCourseCompletionTimes(course.order)}/>
+                                                            <p>{course.completionTimes}</p>
+                                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                            boxShadow: 'var(--shadow-all)',
+                                                            borderRadius:'0.5rem',
+                                                            color:'var(--text-error)'}}
+                                                            onClick={() => handleDecreaseCustomCourseCompletionTimes(course.order)} />
+                                                        </div>
+                                                    </li>
+                                                ))}
+                                            </ul>
+
+                                            {/* ground handling */}
+                                            <div className='w-full flex justify-between relative items-center gap-y-2'>
+                                                <div className='w-[70%]  flex flex-col'>
+                                                    <TextInput 
+                                                        id={'TI5'}
+                                                        icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
+                                                        value={customCourseGround}
+                                                        isSubmitted={isSubmitted}
+                                                        onChange={handleInputGroundHandling}
+                                                        placeholder='سرفصل های تمرین زمینی'
+                                                        className='w-full'
+                                                        ErrorCondition={customCourses.length < 1}
+                                                    />
+                                                </div>
+                                                <span
+                                                className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
+                                                style={{ borderRadius: '16px', minWidth: '0px' }}
+                                                onClick={() => handleAddCustomCourse(3)}
+                                                >
+                                                    افزودن
+                                                </span>
+                                            </div>
+
+                                            {
+                                                customCourses.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                            }
+
+                                            <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                                {customCourses
+                                                .filter(course => course.type === 3) // Filter for practical courses (type 2)
+                                                .map((course,index) => (
+                                                    <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                                    style={{background:  'var(--bg-output-default)',
+                                                    boxShadow: 'var(--shadow-all)'}}>
+                                                        <p className=' text-sm mx-1' >{index + 1}</p>
+                                                        <p className='text-sm px-6 w-full text-start'>{course.description}</p>
+                                                        <div className='h-full flex gap-x-2 items-center'>
+                                                            <AddIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                            boxShadow: 'var(--shadow-all)',
+                                                            borderRadius:'0.5rem',
+                                                            color:'var(--text-accent)'}}
+                                                            onClick={() => handleIncreaseCustomCourseCompletionTimes(course.order)}/>
+                                                            <p>{course.completionTimes}</p>
+                                                            <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                            boxShadow: 'var(--shadow-all)',
+                                                            borderRadius:'0.5rem',
+                                                            color:'var(--text-error)'}}
+                                                            onClick={() => handleDecreaseCustomCourseCompletionTimes(course.order)} />
+                                                        </div>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </>
+                                    )}
+                                    
+
+                                    {
+                                        // add or later on add other types of courses
+                                        (( !levelsLoading && !levelsError && level) || selectedClassType.id === 3) &&
+                                        <>
+                                            <NumberInput 
+                                            id={'NI1'} 
+                                            icon={<ChartIcon customColor = {!flightCount && isSubmitted && 'var(--text-error)'}/>}
+                                            name={'تعداد پرواز'}
+                                            value={flightCount}
+                                            onChange={handleFlightCount}
+                                            placeholder='تعداد پرواز'
+                                            isSubmitted={isSubmitted}
+                                            ErrorCondition={!flightCount}
+                                            ErrorText={'تعداد پرواز الزامی است'}
+                                            ErrorCondition2={flightCount && flightCount < 0}
+                                            ErrorText2={'تعداد پرواز باید بزرگتر از 0 باشد'}
+                                            />
+
+                                            {/* add students */}   
+                                            <div className='w-full flex flex-col justify-between relative items-center'>
+                                                <div className='w-full flex flex-col'>
+                                                    <TextInput
+                                                    id={'TI6'}
+                                                    value={studentId}
+                                                    onChange={handleInputStudent}
+                                                    placeholder='کد کاربری هنرجو'
+                                                    className='w-full'
+                                                    />
+                                                </div>
+
+                                                { studentNameLoading && studentId.length > 5 &&
+                                                <p className=' self-start mt-1'>در حال بررسی هنرجو ... </p>
+                                                }
+                                                { studentError && studentId.length > 5 &&
+                                                    <p className='text-[var(--text-error)] self-start text-right mt-1'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
+                                                }
+                                                {/* <span 
+                                                className={`${!studentData && 'blur-[2px]'} w-[34px] h-[34px] flex justify-center items-center rounded-lg ${GradientStyles.container}`}
+                                                onClick={studentData ? handleAddStudent : null}
+                                                >
+                                                    <AddIcon sx={{ width: '2.2rem', height: '2.2rem', color:'var(--text-accent)' }} />
+                                                </span> */}
+                                                {studentData?.data && (
+                                                    <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
+                                                    
+                                                        <div className='flex flex-col w-full items-center justify-center '>
+                                                            <li
+                                                                key={studentData.data.id}
+                                                                className="px-4 py-2 w-full hover:bg-bgOutputDefault cursor-pointer"
+                                                                onClick={() => handleAddStudent()}
+                                                            >
+                                                                {studentData.data.fullName}
+                                                            </li>
+                                                        </div>
+
+                                                    </ul>
+                                                )}
+                                            </div>
+
+                                            <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                                {studentsData && studentsData?.map((student,index) => (
+                                                    <li key={student.id} className=' w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                                    style={{background:  'var(--bg-output-default)',
+                                                    boxShadow: 'var(--shadow-all)'}}>
+                                                        <div className='flex items-center justify-start gap-x-2'>
+                                                            <p className=' text-sm px-1' >{index + 1}</p>
+                                                            <p className=' text-sm  w-full text-start' >{student.name}</p>
+                                                        </div>
+                                                        <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                        boxShadow: 'var(--shadow-all)',
+                                                        borderRadius:'0.5rem',
+                                                        color:'var(--text-error)'}}
+                                                        onClick={() => handleRemoveStudent(student)} />
+                                                    </li>
+                                                ))}
+                                            </ul>
 
 
-                                    {/* description input */}
-                                    <DescriptionInput
-                                        value={description}
-                                        onChange={handleDescription}
-                                        placeholder='توضیحات دوره را اینجا بنویسید ...'
-                                    />
+                                            {/* description input */}
+                                            <DescriptionInput
+                                                value={description}
+                                                onChange={handleDescription}
+                                                placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                            />
 
 
-                                    <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 mt-4`}>ثبت </button>
-                                </>
+                                            <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 mt-4`}>ثبت </button>
+                                        </>
+                                        
+                                    }
                                 
+                                
+                                    
+                                </>
                             }
-                        
-                        
-                            
-                        </>
-                    }
 
-                </form>
+                        </form>
 
-                {/* submit pop up */}
-                <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
-                    <StandardPopup 
-                    explanationtext={'در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید '}
-                    showPopup={showPopup} 
-                    setShowPopup={setShowPopup} 
-                    handleSubmit={handleSubmit}
-                    loading={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}
-                    submitText='بله' 
-                    declineText='خیر'
-                    />
-                </div>
+                        {/* submit pop up */}
+                        <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
+                            <StandardPopup 
+                            explanationtext={'در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید '}
+                            showPopup={showPopup} 
+                            setShowPopup={setShowPopup} 
+                            handleSubmit={handleSubmit}
+                            loading={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}
+                            submitText='بله' 
+                            declineText='خیر'
+                            />
+                        </div>
+                    </>
+                }
+
             </div>
-
         </div> 
     );
 };

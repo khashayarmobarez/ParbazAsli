@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
@@ -31,6 +31,9 @@ const Education = () => {
 
     const navigate = useNavigate()
     const appTheme = Cookies.get('themeApplied') || 'dark';
+    const location = useLocation()
+
+    const isForClub = location.pathname.includes('/club')
 
     // courseData
     const [courseType, setCourseType] = useState('')
@@ -40,9 +43,9 @@ const Education = () => {
     const [DropDown, setDropDown] = useState('')
 
     // queries
-    const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts();
-    const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers();
-    const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber);
+    const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts(isForClub);
+    const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useCourseDividers(isForClub);
+    const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber, isForClub);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
     // to set the first state for dropdown 
@@ -63,9 +66,14 @@ const Education = () => {
     }
 
     const handleCourseDetails = (id) => () => {
-        navigate(`/education/courseDetails/${id}/students`);
+        !isForClub && navigate(`/education/courseDetails/${id}/students`);
+        isForClub && navigate(`/club/courseDetails/${id}/students`);
     };
 
+    const handleStudentListNavigation = (id) => {
+        !isForClub && navigate(`/education/studentsList/${id}`)
+        isForClub && navigate(`/club/clubCourses/studentsListClub/${id}`)
+    }
 
     const handleNextPageNumber = () => {
         setPageNumber(prev => prev + 1)
@@ -82,7 +90,8 @@ const Education = () => {
 
         const triggerStatusForm = {
             courseId: id,
-            status: status
+            status: status,
+            isForClub: isForClub
         }
 
         triggerCourseStatus(triggerStatusForm,
@@ -160,14 +169,14 @@ const Education = () => {
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
-                                onClick={() => navigate('/education/studentsList/1')}>
+                                onClick={() => handleStudentListNavigation(1)}>
                                     <p>هنرجویان فعال ({courseCountsData.data.activeStudentCounts})</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
-                                onClick={() => navigate('/education/studentsList/2')}>
+                                onClick={() => handleStudentListNavigation(2)}>
                                     <p>هنرجویان سابق ({courseCountsData.data.disableStudentCounts})</p>
                                 </div>
                             </div>
@@ -283,7 +292,7 @@ const Education = () => {
                                                     </div>
 
                                                     {/* Trigger course status */}
-                                                    {course.status === 'Pending' &&
+                                                    {course.status === 'Pending' && !isForClub &&
                                                         <div className='w-full min-h-14 rounded-b-3xl z-0 mt-[-1rem] pt-4 flex justify-between px-4 bg-bgOutputDefault'>
 
                                                             <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
@@ -354,7 +363,7 @@ const Education = () => {
                     <div className="relative z-10">
                         <button 
                             className={`${ButtonStyles.addButton} w-full`} 
-                            onClick={() => navigate('/education/addClass')}
+                            onClick={() => isForClub ? navigate('/club/addCourseToClub') : navigate('/education/addClass')}
                         >
                             <AddIcon /> 
                             <p>افزودن دوره جدید</p>
