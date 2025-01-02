@@ -50,7 +50,7 @@ const SyllabiDetails = () => {
 
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
-            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:w-[55%]'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:w-[55%] '>
                 <PageTitle title={syllabiData?.data?.levelName || 'سیلابس ها'} navigateTo={'/syllabi'} />
                 
                 <div className={`w-[90%] flex flex-col items-center gap-y-4 py-6 ${styles.container}`}>
@@ -62,8 +62,24 @@ const SyllabiDetails = () => {
                                     syllabiData.data.htmlContent
                                         .replace(
                                             '{0}',
-                                            `<div class='w-full min-h-6 rounded-2xl bg-bgOutputDefault p-3 mt-4'>
-                                                ${syllabiData.data?.practicalSyllabi.map(syllabi =>
+                                            `
+                                            <div class='w-full min-h-6 rounded-2xl bg-bgCard pb-4  mt-4'>
+                                                <div class='w-full flex bg-bgOutputDefault h-11 text-textAccent items-center justify-center text-base font-bold'>
+                                                    <p class='h-full flex items-center'>تمرین زمینی</p>
+                                                </div>
+                                                ${syllabiData.data?.groundHandlingSyllabi.map(syllabi =>
+                                                    `
+                                                    <div class='w-full flex justify-start items-start gap-x-2 my-4 px-4' key=${syllabi.id}>
+                                                        <p class='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite font-bold rounded-lg'>
+                                                            ${EnglishToPersianNumber(syllabi.order)}
+                                                        </p>
+                                                        <p class='text-start text-sm'>${syllabi.description}</p>
+                                                    </div>
+                                                    `
+                                                ).join('')}
+                                            </div>
+                                            <div class='w-full min-h-6 rounded-2xl bg-bgCard p-3 mt-4'>
+                                                ${syllabiData.data?.flightSyllabi.map(syllabi =>
                                                     `<div class='w-full flex justify-start items-start gap-x-2 my-4' key=${syllabi.id}>
                                                         <p class='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite font-bold rounded-lg'>
                                                             ${EnglishToPersianNumber(syllabi.order)}
@@ -71,11 +87,12 @@ const SyllabiDetails = () => {
                                                         <p class='text-start text-sm'>${syllabi.description}</p>
                                                     </div>`
                                                 ).join('')}
-                                            </div>`
+                                            </div>
+                                            `
                                         )
                                         .replace(
                                             '{1}',
-                                            `<div class='w-full min-h-6 rounded-2xl bg-bgOutputDefault p-3 mt-4'>
+                                            `<div class='w-full min-h-6 rounded-2xl bg-bgCard p-3 mt-4'>
                                                 ${syllabiData.data?.theorySyllabi.map(syllabi =>
                                                     `<div class='w-full flex justify-start items-start gap-x-2 my-4' key=${syllabi.id}>
                                                         <p class='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefaultOpposite font-medium rounded-lg'>
@@ -93,7 +110,7 @@ const SyllabiDetails = () => {
                         syllabiDataList && syllabiDataList.data?.map((syllabi) => (
                             <div className='w-full flex items-center justify-start gap-x-2 ' key={syllabi.id}>
                                 {syllabi.type === 'Theory' && <p className='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite rounded-lg'>تئوری</p>}
-                                {syllabi.type === 'Practical' && <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefault rounded-lg'>عملی</p>}
+                                {syllabi.type === 'Flight' && <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefault rounded-lg'>پرواز</p>}
                                 <p className='text-start text-sm'>{syllabi.description}</p>
                             </div>
                         ))

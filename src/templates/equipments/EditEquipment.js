@@ -49,7 +49,7 @@ const EditEquipment = () => {
     
     // useEditEquipment for submitting the form
     const { data: EquipmentData, isLoading: EquipmentDataLoading, error } = useAnEquipment(id, isForClub)
-    const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity, size} = EquipmentData?.data || {};
+    const { brand, model, flightHours, equipmentType, flightCount, wingClass, wingType , year , serialNumber, packerFullName, lastPackingDateTime, ownershipType, minimumWeightCapacity, maximumWeightCapacity, size, estimatedFlightDuration, flightDuration, groundHandlingDuration} = EquipmentData?.data || {};
     const { data: userByIdData } = useUserById(lastPackerId)
     const { mutate: editEquipment, isLoading } = useEditEquipment()
 
@@ -237,6 +237,18 @@ const EditEquipment = () => {
                                         </div>
                                     </div>
                                 }
+
+                                {
+                                    estimatedFlightDuration >= 0 && 
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>حدود ساعت پرواز</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>
+                                                {estimatedFlightDuration}
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
                                 
                                 {
                                     year &&
@@ -249,7 +261,7 @@ const EditEquipment = () => {
                                 }
 
                                 {
-                                    minimumWeightCapacity && maximumWeightCapacity &&
+                                    minimumWeightCapacity >= 0 && maximumWeightCapacity >= 0 &&
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className=' text-sm'>بازه وزن قابل تحمل</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
@@ -290,6 +302,17 @@ const EditEquipment = () => {
                                         </div>
                                 }
 
+
+                                {
+                                    flightDuration >= 0 &&
+                                        <div className='flex flex-col items-start gap-y-2'>
+                                            <p className=' text-sm'>ساعت کل کارکرد پرواز</p>
+                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p>{flightDuration}</p>
+                                            </div>
+                                        </div>
+                                }
+
                                 {
                                 flightHours >= 0 && flightHours !== null &&
                                     <div className='flex flex-col items-start gap-y-2'>
@@ -316,6 +339,16 @@ const EditEquipment = () => {
                                         <p className=' text-sm'>تاریخ آخرین بسته بندی</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                             <p>{lastPackingDateTime}</p>
+                                        </div>
+                                    </div>
+                                }  
+
+                                {
+                                    groundHandlingDuration >= 0 &&
+                                    <div className='flex flex-col items-start gap-y-2'>
+                                        <p className=' text-sm'>ساعت تمرین زمینی</p>
+                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                            <p>{groundHandlingDuration}</p>
                                         </div>
                                     </div>
                                 }  

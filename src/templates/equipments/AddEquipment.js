@@ -309,7 +309,7 @@ const AddEquipment = () => {
             formData.append('file', selectedFile);
             formData.append('serialNumber', serialNumber);
             formData.append('Model', aircraft);
-            formData.append('flightHours', flightHour);
+            formData.append('usageHours', flightHour);
             formData.append('year', year);
             equipmentType !== "Harness" && formData.append('minimumWeightCapacity', minimumWeightCapacity);
             equipmentType !== "Harness" && formData.append('maximumWeightCapacity', maximumWeightCapacity);

@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
-import GradientStyles from '../../styles/gradients/Gradient.module.css'
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // assets 
 import AddIcon from '@mui/icons-material/Add';
@@ -19,7 +17,6 @@ import CertificateIcon from '../../components/icons/CertificateIcon';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
-import CloseIcon from '@mui/icons-material/Close';
 
 // drop down options
 import { courseTypeOptionData } from '../../Utilities/Providers/dropdownInputOptions'
@@ -54,11 +51,13 @@ const AddCourse = () => {
 
     // states for retraining
     const [courseName, setCourseName] = useState('')
-    const [selectedSyllabiPractical, setSelectedSyllabiPractical] = useState([]);
+    const [selectedSyllabiFlight, setSelectedSyllabiFlight] = useState([]);
+    const [selectedSyllabiGround, setSelectedSyllabiGround] = useState([]);
     const [selectedSyllabiTheory, setSelectedSyllabiTheory] = useState([]);
-    const [syllabusIdsPractical, setSyllabusIdsPractical] = useState([]);
+    const [syllabusIdsFlight, setSyllabusIdsFlight] = useState([]);
+    const [syllabusIdsGround, setSyllabusIdsGround] = useState([]);
     const [syllabusIdsTheory, setSyllabusIdsTheory] = useState([]);
-    const mergeRetrainingSyllabiIds = [...new Set([...syllabusIdsPractical, ...syllabusIdsTheory])];
+    const mergeRetrainingSyllabiIds = [...new Set([...syllabusIdsFlight, ...syllabusIdsTheory])];
 
     const uniqueSyllabiIds = mergeRetrainingSyllabiIds.filter((value, index, self) => {
         return self.indexOf(value) === index;
@@ -67,7 +66,8 @@ const AddCourse = () => {
 
     // states for retraining
     const [customCourseTheory, setCustomCourseTheory] = useState('');
-    const [customCoursePractical, setCustomCoursePractical] = useState('');
+    const [customCourseFlight, setCustomCourseFlight] = useState('');
+    const [customCourseGround, setCustomCourseGround] = useState('');
     const [customCourses, setCustomCourses] = useState([]);
 
 
@@ -106,9 +106,10 @@ const AddCourse = () => {
         setOrgan('')
         setLevel('')
         setFlightCount('')
-        setSelectedSyllabiPractical([])
+        setSelectedSyllabiFlight([])
+        setSelectedSyllabiGround([])
         setSelectedSyllabiTheory([])
-        setSyllabusIdsPractical([])
+        setSyllabusIdsFlight([])
         setSyllabusIdsTheory([])
         setCourseName('')
         setDescription('')
@@ -121,9 +122,10 @@ const AddCourse = () => {
     useEffect(() => {
         setLevel('')
         setFlightCount('')
-        setSelectedSyllabiPractical([])
+        setSelectedSyllabiFlight([])
+        setSelectedSyllabiGround([])
         setSelectedSyllabiTheory([])
-        setSyllabusIdsPractical([])
+        setSyllabusIdsFlight([])
         setSyllabusIdsTheory([])
         setCourseName('')
         setDescription('')
@@ -135,9 +137,10 @@ const AddCourse = () => {
 
     useEffect(() => {
         setFlightCount('')
-        setSelectedSyllabiPractical([])
+        setSelectedSyllabiFlight([])
+        setSelectedSyllabiGround([])
         setSelectedSyllabiTheory([])
-        setSyllabusIdsPractical([])
+        setSyllabusIdsFlight([])
         setSyllabusIdsTheory([])
         setCourseName('')
         setDescription('')
@@ -194,14 +197,24 @@ const AddCourse = () => {
         setStudentsData(prev => prev.filter(student => student.id !== studentToRemove.id));
     };    
     
-    const handleSelectChangeSyllabiPractical = (newSelectedOptions) => {
-        setSelectedSyllabiPractical(newSelectedOptions);
-        setSyllabusIdsPractical(prev => [...prev, ...newSelectedOptions.map(option => option.id)]);
+    const handleSelectChangeSyllabiFlight = (newSelectedOptions) => {
+        setSelectedSyllabiFlight(newSelectedOptions);
+        setSyllabusIdsFlight(prev => [...prev, ...newSelectedOptions.map(option => option.id)]);
     };
     
-    const handleRemoveSyllabiPractical = (dataToRemove) => {
-        setSelectedSyllabiPractical(selectedSyllabiPractical.filter(data => data.id !== dataToRemove.id));
-        setSyllabusIdsPractical(prev => prev.filter(id => id !== dataToRemove.id));
+    const handleRemoveSyllabiFlight = (dataToRemove) => {
+        setSelectedSyllabiFlight(selectedSyllabiFlight.filter(data => data.id !== dataToRemove.id));
+        setSyllabusIdsFlight(prev => prev.filter(id => id !== dataToRemove.id));
+    };
+
+    const handleSelectChangeSyllabiGround = (newSelectedOptions) => {
+        setSelectedSyllabiGround(newSelectedOptions);
+        setSyllabusIdsGround(prev => [...prev, ...newSelectedOptions.map(option => option.id)]);
+    };
+    
+    const handleRemoveSyllabiGround = (dataToRemove) => {
+        setSelectedSyllabiGround(selectedSyllabiGround.filter(data => data.id !== dataToRemove.id));
+        setSyllabusIdsGround(prev => prev.filter(id => id !== dataToRemove.id));
     };
     
     const handleSelectChangeSyllabiTheory = (newSelectedOptions) => {
@@ -219,25 +232,64 @@ const AddCourse = () => {
     };
     
     const handleInputPractical = (event) => {
-        setCustomCoursePractical(event.target.value);
+        setCustomCourseFlight(event.target.value);
+    };
+    
+    const handleInputGroundHandling = (event) => {
+        setCustomCourseGround(event.target.value);
     };
     
     const handleAddCustomCourse = (type) => {
         const lastAddedCourse = customCourses[customCourses.length - 1];
-        const newCourse = {
+
+        const newTheoryCourse = {
             type,
-            description: type === 1 ? customCourseTheory : customCoursePractical,
+            description: type === 1 ? customCourseTheory : type === 2 ? customCourseFlight : customCourseGround,
             order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
         };
-        newCourse.description && setCustomCourses([...customCourses, newCourse]);
+
+        const newPracticalCourse = {
+            type,
+            description: type === 1 ? customCourseTheory : type === 2 ? customCourseFlight : customCourseGround,
+            order: lastAddedCourse ? lastAddedCourse.order + 1 : 1,
+            completionTimes: 1
+        };
+
+        newTheoryCourse.description && type === 1 && setCustomCourses([...customCourses, newTheoryCourse]);
+        newPracticalCourse.description && (type === 2 || type === 3) && setCustomCourses([...customCourses, newPracticalCourse]);
+
         if (type === 1) {
             setCustomCourseTheory('');
+        } else if (type === 2) {
+            setCustomCourseFlight('');
         } else {
-            setCustomCoursePractical('');
+            setCustomCourseGround('')
         }
+        
     };
 
-    
+    const handleDecreaseCustomCourseCompletionTimes = (id) => {
+        setCustomCourses(prevCourses =>
+            prevCourses.map(course =>
+                course.order === id
+                    ? {
+                          ...course,
+                          completionTimes: course.completionTimes > 1
+                              ? course.completionTimes - 1
+                              : 1, // Ensure it doesn't go below 1
+                      }
+                    : course
+            )
+        );
+    };
+
+    const handleIncreaseCustomCourseCompletionTimes = (id) => {
+        setCustomCourses(prevCourses =>
+            prevCourses.map(course =>
+                course.order === id ? { ...course, completionTimes: course.completionTimes + 1 } : course
+            )
+        );
+    }
     
     const handleRemoveCustomCourse = (order) => {
         setCustomCourses(customCourses.filter(course => course.order !== order));
@@ -257,7 +309,7 @@ const AddCourse = () => {
                     style: { width: "90%" }
                 });
                 return;
-        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || selectedSyllabiPractical.length < 1 || selectedSyllabiTheory.length < 1 ) ) {
+        } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || selectedSyllabiFlight.length < 1 || selectedSyllabiTheory.length < 1 ) ) {
             toast('اطلاعات را کامل وارد کنید', {
                 type: 'error',
                 position: 'top-right',
@@ -484,10 +536,10 @@ const AddCourse = () => {
                                             {/* <SearchMultipleSelect
                                                 Icon={<ListIcon/>}
                                                 options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical') }
-                                                selectedOptions={selectedSyllabiPractical}
-                                                handleSelectChange={handleSelectChangeSyllabiPractical}
+                                                selectedOptions={selectedSyllabiFlight}
+                                                handleSelectChange={handleSelectChangeSyllabiFlight}
                                                 name="سرفصل های عملی"
-                                                handleRemove={handleRemoveSyllabiPractical}
+                                                handleRemove={handleRemoveSyllabiFlight}
                                                 isForSyllabi={true}
                                             />
 
@@ -502,23 +554,39 @@ const AddCourse = () => {
                                             /> */}
 
                                             <SelectMultiplePopUp
-                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0) && isSubmitted && 'var(--text-error)'}/>}
-                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Practical')}
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'GroundHandling')}
                                                 isSubmitted={isSubmitted}
-                                                selectedOptions={selectedSyllabiPractical}
-                                                handleSelectChange={handleSelectChangeSyllabiPractical}
-                                                name="سرفصل های عملی"
-                                                handleRemove={handleRemoveSyllabiPractical}
+                                                selectedOptions={selectedSyllabiGround}
+                                                handleSelectChange={handleSelectChangeSyllabiGround}
+                                                name="سرفصل های تمرین زمینی"
+                                                handleRemove={handleRemoveSyllabiGround}
                                                 isForSyllabi={true}
-                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0)}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
                                             />
                                             {
-                                                selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
                                                 <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
                                             } 
 
                                             <SelectMultiplePopUp
-                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
+                                                options={syllabiData.data.filter(syllabus => syllabus.type === 'Flight')}
+                                                isSubmitted={isSubmitted}
+                                                selectedOptions={selectedSyllabiFlight}
+                                                handleSelectChange={handleSelectChangeSyllabiFlight}
+                                                name="سرفصل های پرواز"
+                                                handleRemove={handleRemoveSyllabiFlight}
+                                                isForSyllabi={true}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
+                                            />
+                                            {
+                                                selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                            } 
+
+                                            <SelectMultiplePopUp
+                                                Icon={<ListIcon customColor = {!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0) && isSubmitted && 'var(--text-error)'}/>}
                                                 options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                                 selectedOptions={selectedSyllabiTheory}
                                                 handleSelectChange={handleSelectChangeSyllabiTheory}
@@ -526,10 +594,10 @@ const AddCourse = () => {
                                                 isSubmitted={isSubmitted}
                                                 handleRemove={handleRemoveSyllabiTheory}
                                                 isForSyllabi={true}
-                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiPractical.length > 0)}
+                                                ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
                                             />
                                             {
-                                                selectedSyllabiPractical.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
+                                                selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && isSubmitted &&
                                                 <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
                                             }
 
@@ -565,6 +633,8 @@ const AddCourse = () => {
                                         ErrorText={'نام دوره الزامی است'}
                                     />
 
+
+                                    {/* theory syllabi */}
                                     <div className='w-full flex justify-between relative items-center'>
                                         <div className='w-[70%] flex flex-col'>
                                         <TextInput 
@@ -589,7 +659,7 @@ const AddCourse = () => {
 
                                     {
                                         customCourses.length < 1 && isSubmitted &&
-                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی وارد کنید</p>
+                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
                                     }
 
                                     <ul className='w-full py-0 mt-[-1rem] gap-2'>
@@ -610,15 +680,17 @@ const AddCourse = () => {
                                         ))}
                                     </ul>
 
+
+                                    {/* flight syllabi */}
                                     <div className='w-full flex justify-between relative items-center gap-y-2'>
                                         <div className='w-[70%]  flex flex-col'>
                                             <TextInput 
                                                 id={'TI4'}
                                                 icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
-                                                value={customCoursePractical}
+                                                value={customCourseFlight}
                                                 isSubmitted={isSubmitted}
                                                 onChange={handleInputPractical}
-                                                placeholder='سرفصل های عملی'
+                                                placeholder='سرفصل های پرواز'
                                                 className='w-full'
                                                 ErrorCondition={customCourses.length < 1}
                                             />
@@ -634,7 +706,7 @@ const AddCourse = () => {
 
                                     {
                                         customCourses.length < 1 && isSubmitted &&
-                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی وارد کنید</p>
+                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
                                     }
 
                                     <ul className=' w-full py-0 mt-[-1rem] gap-2'>
@@ -646,11 +718,73 @@ const AddCourse = () => {
                                             boxShadow: 'var(--shadow-all)'}}>
                                                 <p className=' text-sm mx-1' >{index + 1}</p>
                                                 <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                                <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
-                                                boxShadow: 'var(--shadow-all)',
-                                                borderRadius:'0.5rem',
-                                                color:'var(--text-error)'}}
-                                                onClick={() => handleRemoveCustomCourse(course.order)} />
+                                                <div className='h-full flex gap-x-4 items-center'>
+                                                    <AddIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                    boxShadow: 'var(--shadow-all)',
+                                                    borderRadius:'0.5rem',
+                                                    color:'var(--text-accent)'}}
+                                                    onClick={() => handleIncreaseCustomCourseCompletionTimes(course.order)}/>
+                                                    <p>{course.completionTimes}</p>
+                                                    <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                    boxShadow: 'var(--shadow-all)',
+                                                    borderRadius:'0.5rem',
+                                                    color:'var(--text-error)'}}
+                                                    onClick={() => handleDecreaseCustomCourseCompletionTimes(course.order)} />
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {/* ground handling */}
+                                    <div className='w-full flex justify-between relative items-center gap-y-2'>
+                                        <div className='w-[70%]  flex flex-col'>
+                                            <TextInput 
+                                                id={'TI5'}
+                                                icon={<ListIcon customColor = {customCourses.length < 1 && isSubmitted && 'var(--text-error)'}/>}
+                                                value={customCourseGround}
+                                                isSubmitted={isSubmitted}
+                                                onChange={handleInputGroundHandling}
+                                                placeholder='سرفصل های تمرین زمینی'
+                                                className='w-full'
+                                                ErrorCondition={customCourses.length < 1}
+                                            />
+                                        </div>
+                                        <span
+                                        className={` w-[26%] h-[48px] flex justify-center items-center ${ButtonStyles.normalButton}`}
+                                        style={{ borderRadius: '16px', minWidth: '0px' }}
+                                        onClick={() => handleAddCustomCourse(3)}
+                                        >
+                                            افزودن
+                                        </span>
+                                    </div>
+
+                                    {
+                                        customCourses.length < 1 && isSubmitted &&
+                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                    }
+
+                                    <ul className=' w-full py-0 mt-[-1rem] gap-2'>
+                                        {customCourses
+                                        .filter(course => course.type === 3) // Filter for practical courses (type 2)
+                                        .map((course,index) => (
+                                            <li key={course.order} className='w-full px-4 py-3 rounded-2xl flex justify-between items-center mt-4'
+                                            style={{background:  'var(--bg-output-default)',
+                                            boxShadow: 'var(--shadow-all)'}}>
+                                                <p className=' text-sm mx-1' >{index + 1}</p>
+                                                <p className='text-sm px-6 w-full text-start'>{course.description}</p>
+                                                <div className='h-full flex gap-x-2 items-center'>
+                                                    <AddIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                    boxShadow: 'var(--shadow-all)',
+                                                    borderRadius:'0.5rem',
+                                                    color:'var(--text-accent)'}}
+                                                    onClick={() => handleIncreaseCustomCourseCompletionTimes(course.order)}/>
+                                                    <p>{course.completionTimes}</p>
+                                                    <RemoveIcon sx={{background:  'var(--bg-input-dropdown)',
+                                                    boxShadow: 'var(--shadow-all)',
+                                                    borderRadius:'0.5rem',
+                                                    color:'var(--text-error)'}}
+                                                    onClick={() => handleDecreaseCustomCourseCompletionTimes(course.order)} />
+                                                </div>
                                             </li>
                                         ))}
                                     </ul>
@@ -680,7 +814,7 @@ const AddCourse = () => {
                                     <div className='w-full flex flex-col justify-between relative items-center'>
                                         <div className='w-full flex flex-col'>
                                             <TextInput
-                                            id={'TI5'}
+                                            id={'TI6'}
                                             value={studentId}
                                             onChange={handleInputStudent}
                                             placeholder='کد کاربری هنرجو'
