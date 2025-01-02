@@ -455,7 +455,30 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
+// get a club course
+    const getClubCourse = async (courseId) => {
+        const token = Cookies.get('token');
 
+        try {
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCourse?courseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useGetClubCourse = (courseId) => {
+        return useQuery(['getClubCourse', courseId], () => getClubCourse(courseId));
+    };
 
 
 
@@ -566,7 +589,8 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
-// add student to club course
+// get club course 
+// /Club/GetClubCourse?courseId=38
 const addStudentToClubCourse = async (student) => {
     const token = Cookies.get('token');
 
@@ -990,4 +1014,4 @@ const useAddStudentToClubCourse = () => {
 
 
 
-export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useClubCourses, useTriggerCoachStatus, useGetActiveClubCoaches, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi, useClubCourseCounts, useAllClubStudents, useAClubStudentCourses };
+export { useClubStatus, useAddClub, useGetClub , useUploadClubPicture, useDeleteClubProfilePicture, useAddCoachToClub, useGetClubCoaches , useGetClubCoachesHistory, useGetCoachDetails , useGetCoachCourses , useClubCourses, useTriggerCoachStatus, useGetActiveClubCoaches, useGetClubCourse, useTriggerClubCourseStatus, useGetClubCourseStudents, useGetClubCourseStudentsHistory, useAddStudentToClubCourse, useGetClubCourseClasses, useGetClubCourseSyllabi, useAClubClass, useGetClubCourseStudent, useClubCourseStudentFlights, useGetClubStudentFlight, useClubStudentClasses, useClubCourseStudentClass, useGetClubCourseStudentSyllabi, useClubCourseCounts, useAllClubStudents, useAClubStudentCourses };
