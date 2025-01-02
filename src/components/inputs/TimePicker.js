@@ -122,21 +122,21 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
         style={{boxShadow:'var(--shadow-button-dark)'}}>
           <div className="flex items-center justify-between p-4 gap-x-4">
             <div className="w-full flex flex-col items-center gap-y-1">
-              <p>ساعت</p>
-              <HourSelect 
-                value={hour}
-                onChange={(value) => handleTimeChange(value, minute)}
-                isHourSelectorOpen={isHourSelectorOpen}
-                setIsHourSelectorOpen={setIsHourSelectorOpen}
-              />
-            </div>
-            <div className="w-full flex flex-col items-center gap-y-1">
               <p>دقیقه</p>
               <MinuteSelect 
                 value={minute}
                 onChange={(value) => handleTimeChange(hour, value)}
                 isMinuteSelectorOpen={isMinuteSelectorOpen}
                 setIsMinuteSelectorOpen={setIsMinuteSelectorOpen}
+              />
+            </div>
+            <div className="w-full flex flex-col items-center gap-y-1">
+              <p>ساعت</p>
+              <HourSelect 
+                value={hour}
+                onChange={(value) => handleTimeChange(value, minute)}
+                isHourSelectorOpen={isHourSelectorOpen}
+                setIsHourSelectorOpen={setIsHourSelectorOpen}
               />
             </div>
           </div>
