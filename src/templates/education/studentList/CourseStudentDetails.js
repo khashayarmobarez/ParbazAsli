@@ -14,7 +14,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import ClockIcon from '../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../components/icons/FlightQuantity';
 import UserIcon from '../../../components/icons/UserIcon';
-import { useACourseStudent, useCourseStudentFlights, useStudentPendingFlightCounts } from '../../../Utilities/Services/coursesQueries';
+import { useACourseStudent, useStudentPracticalActivities, useStudentPendingFlightCounts } from '../../../Utilities/Services/coursesQueries';
 import PageTitle from '../../../components/reuseable/PageTitle';
 import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
@@ -22,16 +22,19 @@ const CourseStudentDetails = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
+
+    const isForClub = location.pathname.includes('/club')
     
     const { studentId } = useParams();
     
     const historyPageUrl = Cookies.get('lastPathForStudentDetails') || null;
+    const ClubhistoryPageUrl = Cookies.get('lastPathForClubStudentDetails') || null;
 
     const isMobile = useMediaQuery('(max-width:720px)');
 
-    const { data: studentData } = useACourseStudent(studentId);
+    const { data: studentData } = useACourseStudent(studentId, isForClub);
     const { data: studentPendingFlightCounts } = useStudentPendingFlightCounts(studentId);
-    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,1,10);
+    const { data: userFlights, isLoading: userFlightsLoading } = useStudentPracticalActivities(studentId && studentId,1,10);
 
 
     return (
@@ -39,7 +42,7 @@ const CourseStudentDetails = () => {
             
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                <PageTitle navigateTo={historyPageUrl} title={'جزئیات هنرجو '} />
+                <PageTitle navigateTo={isForClub ? ClubhistoryPageUrl : historyPageUrl} title={'جزئیات هنرجو '} />
 
                 {/* the data box */}
                 <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start relative z-[60]`}
@@ -173,7 +176,12 @@ const CourseStudentDetails = () => {
                 <LowOpacityBackForStickedButtons />
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-20`}>
-                    <Link to={`/education/courseDetails/studentDetails/${studentId}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/practical` ? ButtonStyles.activeYellow : ''}`} >
+                    
+                    <Link 
+                    to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/practical` : `/education/courseDetails/studentDetails/${studentId}/practical`} 
+                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl 
+                    ${location.pathname.includes('/practical') ? ButtonStyles.activeYellow : ''}`} 
+                    >
                         عملی
                         {
                             studentPendingFlightCounts && studentPendingFlightCounts.data > 0 &&
@@ -182,8 +190,22 @@ const CourseStudentDetails = () => {
                                 </span>
                         }
                     </Link>
-                    <Link to={`/education/courseDetails/studentDetails/${studentId}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
-                    <Link to={`/education/courseDetails/studentDetails/${studentId}/syllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/education/courseDetails/studentDetails/${studentId}/syllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت هنرجو</Link>
+
+                    <Link 
+                    to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/theory` : `/education/courseDetails/studentDetails/${studentId}/theory`} 
+                    className={`${ButtonStyles.ThreeStickedButtonButton}  
+                    ${location.pathname.includes('/theory') ? ButtonStyles.activeYellow : ''}`} 
+                    >
+                        تئوری
+                    </Link> 
+
+                    <Link 
+                    to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/syllabi` : `/education/courseDetails/studentDetails/${studentId}/syllabi`} 
+                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  
+                    ${location.pathname.includes('/syllabi') ? ButtonStyles.activeYellow : ''}`} 
+                    >
+                        وضعیت هنرجو
+                    </Link>
                 </div>
 
                 <div className='w-[90%]'>

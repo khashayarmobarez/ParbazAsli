@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
-import { useCourseStudentFlights } from '../../../Utilities/Services/coursesQueries';
+import { useStudentPracticalActivities } from '../../../Utilities/Services/coursesQueries';
 
 // components
 import PracticalFlightHistoryBox from '../../../modules/FlightHistory/PracticalFlightHistoryBox';
@@ -13,12 +13,14 @@ import ArrowButton from '../../../components/icons/ArrowButton';
 
 const CourseStudentPracticalDetails = () => {
 
+    const location = useLocation();
     const { studentId } = useParams();
+    const isForClub = location.pathname.includes('/club')
 
     const [pageNumber, setPageNumber] = useState(1)
     const pageSize = 10
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useCourseStudentFlights(studentId && studentId,pageNumber,pageSize);
+    const { data: userFlights, isLoading: userFlightsLoading } = useStudentPracticalActivities(studentId && studentId,pageNumber,pageSize, isForClub);
 
 
     const handleNextPage = () => {

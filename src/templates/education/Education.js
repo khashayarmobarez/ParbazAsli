@@ -91,7 +91,7 @@ const Education = () => {
         const triggerStatusForm = {
             courseId: id,
             status: status,
-            isForClub: isForClub
+            isForClub
         }
 
         triggerCourseStatus(triggerStatusForm,
@@ -150,7 +150,8 @@ const Education = () => {
                     </div>
                 }
 
-                {courseCountsData && courseDividerData?.data.length > 0  &&
+                {
+                courseCountsData && courseDividerData?.data.length > 0  &&
                     <div className='grid grid-cols-2 w-full justify-between gap-y-4 gap-x-[6%]'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>

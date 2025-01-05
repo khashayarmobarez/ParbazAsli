@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 // queries
 import { useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
@@ -11,9 +11,13 @@ import DropDownDataBox from '../../../components/reuseable/DropDownDataBox';
 const CourseSyllabi = () => {
     
     const { id } = useParams();
+    const location = useLocation();
+
+    const isForClub = location.pathname.includes('/club')
+
     
-    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1);
-    const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(id,2);
+    const {  data: syllabiDataTheory, isLoading: syllabiDataTheoryLoading, error: syllabiDataTheoryError } = useACourseSyllabi(id,1, isForClub);
+    const {  data: syllabiDataPractical, isLoading: syllabiDataPracticalLoading, error: syllabiDataPracticalError } = useACourseSyllabi(id,2, isForClub);
 
     
     return (

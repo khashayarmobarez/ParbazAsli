@@ -56,7 +56,7 @@ const CourseClasses = () => {
                 <div className='w-full flex flex-col items-center gap-y-4'>
                 {
                     classesData.data.classes.map((classData) => {
-                    return <ClassesBoxCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    return <w title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
                 </div>

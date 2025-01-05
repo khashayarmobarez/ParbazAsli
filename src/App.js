@@ -79,7 +79,6 @@ import ClubCoachDetails from './templates/club/clubCoaches/ClubCoachDetails';
 import TandemSurvey from './templates/TandemSurvey';
 import SyllabiList from './templates/syllabiList/SyllabiList';
 import FlightHistoryPage from './templates/flightHistory/FlightHistoryPage';
-import ClubCourseSyllabi from './templates/club/clubEducation/ClubCourseSyllabi';
 import MyGuestClassDetails from './templates/myCourses/MyGuestClassDetails';
 import ClubCourseStudentDetails from './templates/club/students/ClubStudentDetails';
 import ClubCourseStudentPracticalDetails from './templates/club/students/ClubCourseStudentPracticalDetails';
@@ -349,10 +348,10 @@ function App() {
                 <Route index element={<CourseStudents />} />
                 <Route path="students" element={<CourseStudents />} />
                 <Route path="classes" element={<CourseClasses />} />
-                <Route path="syllabi" element={<ClubCourseSyllabi />} />
+                <Route path="syllabi" element={<CourseSyllabi />} />
               </Route> 
               {/* student details */}
-              <Route path='/club/courseDetails/studentDetails/:studentId' element={<ClubCourseStudentDetails />} >
+              <Route path='/club/courseDetails/studentDetails/:studentId' element={<CourseStudentDetails />} >
                 <Route index element={<ClubCourseStudentPracticalDetails />} />
                 <Route path="practical" element={<ClubCourseStudentPracticalDetails />} />
                 <Route path="theory" element={<ClubCourseStudentTheoryDetails />} />

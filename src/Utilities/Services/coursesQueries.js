@@ -370,11 +370,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 // get a course syllabi   /Course/GetCourseSyllabi?courseId=30&type=2
-    const getACourseSyllabi = async (courseId, type) => {
+    const getACourseSyllabi = async (courseId, type, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -390,8 +390,8 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const useACourseSyllabi = (courseId, type) => {
-        return useQuery(['aCourseSyllabi', courseId, type], () => getACourseSyllabi(courseId, type));
+    const useACourseSyllabi = (courseId, type, isForClub) => {
+        return useQuery(['aCourseSyllabi', courseId, type, isForClub], () => getACourseSyllabi(courseId, type, isForClub));
     };
 
 
@@ -763,11 +763,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get a course student
 // /Course/GetCourseStudent?userCourseId=35
-    const getACourseStudent = async (userCourseId) => {
+    const getACourseStudent = async (userCourseId, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -783,8 +783,8 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
     
-    const useACourseStudent = (userCourseId) => {
-        return useQuery(['aCourseStudent', userCourseId], () => getACourseStudent(userCourseId));
+    const useACourseStudent = (userCourseId, isForClub) => {
+        return useQuery(['aCourseStudent', userCourseId, isForClub], () => getACourseStudent(userCourseId, isForClub));
     };
 
 
@@ -797,11 +797,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get course student flights
 // /Course/GetStudentFlights?userCourseId=35&pageNumber=1&pageSize=2
-    const getCourseStudentFlights = async (userCourseId, pageNumber, pageSize) => {
+    const GetStudentPracticalActivities = async (userCourseId, pageNumber, pageSize, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentFlights?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivities?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -817,8 +817,8 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const useCourseStudentFlights = (userCourseId, pageNumber, pageSize) => {
-        return useQuery(['courseStudentFlights', userCourseId, pageNumber, pageSize], () => getCourseStudentFlights(userCourseId, pageNumber, pageSize));
+    const useStudentPracticalActivities = (userCourseId, pageNumber, pageSize, isForClub) => {
+        return useQuery(['studentPracticalActivities', userCourseId, pageNumber, pageSize, isForClub], () => GetStudentPracticalActivities(userCourseId, pageNumber, pageSize, isForClub));
     }
 
 
@@ -1127,4 +1127,4 @@ const getSyllabiForLevels = async (levelId) => {
 
     
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useCourseStudentFlights, useCourseStudentFlight, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingFlightCounts, useAllActiveStudents, useSyllabusLandingContent, useAllStudents, useAStudentCourses };
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useStudentPracticalActivities, useCourseStudentFlight, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingFlightCounts, useAllActiveStudents, useSyllabusLandingContent, useAllStudents, useAStudentCourses };
