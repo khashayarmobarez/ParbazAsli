@@ -273,11 +273,11 @@ const getSyllabiForLevels = async (levelId) => {
 
     
 // get a course students data
-    const getACourseStudents = async (courseId, pageNumber) => {
+    const getACourseStudents = async (courseId, pageNumber, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -294,8 +294,8 @@ const getSyllabiForLevels = async (levelId) => {
     };
 
 
-    const useACourseStudents = (courseId,pageNumber) => {
-        return useQuery(['aCourseStudents', courseId], () => getACourseStudents(courseId, pageNumber));
+    const useACourseStudents = (courseId,pageNumber, isForClub) => {
+        return useQuery(['aCourseStudents', courseId, isForClub], () => getACourseStudents(courseId, pageNumber, isForClub));
     };
 
 
@@ -305,11 +305,11 @@ const getSyllabiForLevels = async (levelId) => {
 
     
 // get a course old students data
-    const getACourseHistoryStudents = async (courseId, pageNumber) => {
+    const getACourseHistoryStudents = async (courseId, pageNumber, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -326,8 +326,8 @@ const getSyllabiForLevels = async (levelId) => {
     };
 
 
-    const useACourseHistoryStudents = (courseId,pageNumber) => {
-        return useQuery(['aCourseHistoryStudents', courseId], () => getACourseHistoryStudents(courseId, pageNumber));
+    const useACourseHistoryStudents = (courseId,pageNumber, isForClub) => {
+        return useQuery(['aCourseHistoryStudents', courseId, isForClub], () => getACourseHistoryStudents(courseId, pageNumber, isForClub));
     };
 
 

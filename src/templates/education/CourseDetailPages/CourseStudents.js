@@ -30,6 +30,7 @@ const CourseStudents = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const isForClub = location.pathname.includes('/club')
     const { id } = useParams();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -46,13 +47,13 @@ const CourseStudents = () => {
     // add student
     const [studentId, setStudentId] = useState('');
 
-
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id,pageNumber);
-    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id,historyPageNumber);
+
+    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id, pageNumber, isForClub);
+    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id, historyPageNumber, isForClub);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id, isForClub);
     const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
 
     // post student to course
@@ -86,7 +87,10 @@ const CourseStudents = () => {
 
     // handle click student
     const handleClickStudent = (id) => {
-        navigate(`/education/courseDetails/studentDetails/${id}/practical`)
+        isForClub ?
+            navigate(`/club/courseDetails/studentDetails/${id}/practical`)
+            :
+            navigate(`/education/courseDetails/studentDetails/${id}/practical`)
     }
 
     // for handling the back button of club course details
@@ -152,7 +156,8 @@ const CourseStudents = () => {
 
         const customCourseData = {
             courseId: id,
-            userId: studentId
+            userId: studentId,
+            isForClub
         }
 
         addStudentToCourse( customCourseData , {
@@ -216,7 +221,7 @@ const CourseStudents = () => {
                         studentsData.totalCount > 0 &&
                         <DropDownLine  
                         onClickActivation={() => setDropDownActive(!DropDownActive)}
-                        title={'هنر جویان'} 
+                        title={'هنر‌جویان'} 
                         dropDown={DropDownActive} 
                         isActive={DropDownActive === true}  
                         />
@@ -246,23 +251,23 @@ const CourseStudents = () => {
                                     sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                                 </Box> */}
                                 <div onClick={() => handleClickStudent(student.id)} />
-                                {student.status !== 'CoachPending' &&
-                                <button 
-                                onClick={() => setShowActiveStudentOptions(
-                                    showActiveStudentOptions === student.id ?
-                                    ''
-                                    :
-                                    student.id
-                                )}
-                                className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-12 flex items-center justify-center rounded-l-2xl`}>
-                                    <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
-                                </button>
+                                {
+                                aCourseData?.data.accesses.canCancelOrFinishStudent &&
+                                    <button 
+                                    onClick={() => setShowActiveStudentOptions(
+                                        showActiveStudentOptions === student.id ?
+                                        ''
+                                        :
+                                        student.id
+                                    )}
+                                    className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-12 flex items-center justify-center rounded-l-2xl`}>
+                                        <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
+                                    </button>
                                 }
 
                             </div>
                             {
-                                aCourseData &&
-                                aCourseData.data.status === 'Active' && student.status === 'CoachPending' &&
+                                aCourseData?.data.accesses.canAcceptOrRejectStudent && student.status === 'CoachPending' &&
                                 <div className='w-full min-h-16 rounded-b-2xl z-[70] mt-[-1rem] pt-5 flex justify-between px-4 bg-bgOutputDefault shadow-lg'>
 
                                     <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
@@ -274,7 +279,7 @@ const CourseStudents = () => {
 
                                         {triggerStudentStatusLoading && 
                                             <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                                <CircularProgress sx={{width:'1rem'}} /> 
+                                                <CircularProgress sx={{width:'1rem'}} />
                                             </Box>
                                         }
                                         
@@ -290,7 +295,7 @@ const CourseStudents = () => {
                                 </div>                                
                             }
                             {
-                                student.status !== 'CoachPending' && showActiveStudentOptions === student.id &&
+                                aCourseData?.data.accesses.canCancelOrFinishStudent && showActiveStudentOptions === student.id &&
                                 <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-9 md:left-[25%]'>
                                     <div className='w-1/3 md:w-1/6 lg:w-1/12 h-full bg-bgOutputDefault text-textDefault rounded-2xl flex flex-col items-center justify-end'>
                                         <p
@@ -344,7 +349,7 @@ const CourseStudents = () => {
                             <p className='text-textError self-start text-right'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
                         }
                         {
-                        aCourseData && aCourseData.data.clubName === null && aCourseData.data.status === 'Active' &&
+                        aCourseData?.data.accesses.canAddStudent &&
                             <div className='w-full flex justify-between relative items-center gap-x-4'>
                                 <div className='w-[70%] md:w-full flex flex-col'>
                                     <TextInput 
@@ -406,7 +411,7 @@ const CourseStudents = () => {
                                                     sx={{'& .MuiCircularProgress-circle': {stroke: 'var(--softer-white)'}, }}/>
                                                 </Box> */}
                                                 {
-                                                    student.status !== 'Completed' && aCourseData.data.status === 'Active' &&
+                                                    student.status !== 'Completed' && aCourseData?.data.accesses.canReturnStudent &&
                                                     <button 
                                                     onClick={
                                                         () => setShowHistoryStudentOptions(showHistoryStudentOptions === student.id ?
@@ -422,7 +427,7 @@ const CourseStudents = () => {
                                                 }
                                             </div>
                                             {
-                                                student.status !== 'Completed' && showHistoryStudentOptions === student.id &&
+                                                student.status !== 'Completed' && showHistoryStudentOptions === student.id && aCourseData?.data.accesses.canReturnStudent &&
                                                 <div className=' absolute w-full flex justify-end left-[5%] h-[40px] mt-14 md:left-[15%]'>
                                                     <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled rounded-2xl flex flex-col items-center justify-center'>
                                                         <p className=' text-center active:bg-textAccent'
