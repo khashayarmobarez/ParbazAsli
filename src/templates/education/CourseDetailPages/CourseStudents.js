@@ -86,11 +86,14 @@ const CourseStudents = () => {
     };
 
     // handle click student
-    const handleClickStudent = (id) => {
-        isForClub ?
-            navigate(`/club/courseDetails/studentDetails/${id}/practical`)
-            :
-            navigate(`/education/courseDetails/studentDetails/${id}/practical`)
+    const handleClickStudent = (id, status) => {
+
+        if(status !== 'CoachPending' && status !== 'CoachRejected') {
+            isForClub ?
+                navigate(`/club/courseDetails/studentDetails/${id}/practical`)
+                :
+                navigate(`/education/courseDetails/studentDetails/${id}/practical`)
+        }
     }
 
     // for handling the back button of club course details
@@ -231,7 +234,7 @@ const CourseStudents = () => {
                             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-xs`}
                             >
                                 <div className='flex items-center justify-start gap-x-2'>
-                                    <span onClick={() => handleClickStudent(student.id)}>
+                                    <span onClick={() => handleClickStudent(student.id, student.status)}>
                                         <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}} />
                                     </span>
                                     <p className={`${student.status === 'Active' ? 'text-textWarning' : ''}`}

@@ -399,11 +399,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 // get course classes Course/GetCourseClasses?courseId=30
-    const getACourseClasses = async (courseId) => {
+    const getACourseClasses = async (courseId, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClasses?courseId=${courseId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClasses?courseId=${courseId}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -419,8 +419,8 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const useACourseClasses = (courseId) => {
-        return useQuery(['aCourseClasses', courseId], () => getACourseClasses(courseId));
+    const useACourseClasses = (courseId,isForClub) => {
+        return useQuery(['aCourseClasses', courseId,isForClub], () => getACourseClasses(courseId, isForClub));
     };
 
 
@@ -494,11 +494,11 @@ const getSyllabiForLevels = async (levelId) => {
     
 
 // get a class data /Course/GetCourseClass?classId=1
-    const getAClass = async (classId) => {
+    const getAClass = async (classId, isForClub) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClass?classId=${classId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClass?classId=${classId}&isForClub=${isForClub}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -514,8 +514,8 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const useAClass = (classId) => {
-        return useQuery(['aClass', classId], () => getAClass(classId));
+    const useAClass = (classId, isForClub) => {
+        return useQuery(['aClass', classId, isForClub], () => getAClass(classId, isForClub));
     };
 
 

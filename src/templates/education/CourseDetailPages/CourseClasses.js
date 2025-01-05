@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
@@ -9,7 +9,7 @@ import dataBox from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useACourseClasses } from '../../../Utilities/Services/coursesQueries';
+import { useACourse, useACourseClasses } from '../../../Utilities/Services/coursesQueries';
 
 // components
 import ClassesBoxCourses from '../../../modules/Education/ClassesBoxCourses';
@@ -18,8 +18,12 @@ const CourseClasses = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const {  data: classesData } = useACourseClasses(id);
+    const isForClub = location.pathname.includes('/club')
+
+    const {  data: classesData } = useACourseClasses(id, isForClub);
+    const { data: aCourseData } = useACourse(id, isForClub);
     
 
     return (
@@ -60,19 +64,21 @@ const CourseClasses = () => {
             }
 
             
-
-            <div className='fixed bottom-[7.85rem] w-[90%] md:w-2/6 z-10'>
-                <div className="relative z-10">
-                    <button 
-                        onClick={() => navigate(`/education/${id}/AddClass`)} 
-                        className={`${ButtonStyles.addButton} w-full`}
-                    >
-                        <AddIcon />
-                        <p>افزودن کلاس جدید</p>
-                    </button>
-                </div>
-                <div className="bg-bgPageMain opacity-90 h-10 w-full -mt-4 relative z-0" />
-            </div>
+            {
+                aCourseData?.data.accesses.canAddClass &&
+                    <div className='fixed bottom-[7.85rem] w-[90%] md:w-2/6 z-10'>
+                        <div className="relative z-10">
+                            <button 
+                                onClick={() => navigate(`/education/${id}/AddClass`)} 
+                                className={`${ButtonStyles.addButton} w-full`}
+                            >
+                                <AddIcon />
+                                <p>افزودن کلاس جدید</p>
+                            </button>
+                        </div>
+                        <div className="bg-bgPageMain opacity-90 h-10 w-full -mt-4 relative z-0" />
+                    </div>
+            }
 
         </div>
     );
