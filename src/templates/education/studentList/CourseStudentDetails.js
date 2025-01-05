@@ -14,7 +14,7 @@ import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 import ClockIcon from '../../../components/icons/ClockIcon';
 import FlightQuantity from '../../../components/icons/FlightQuantity';
 import UserIcon from '../../../components/icons/UserIcon';
-import { useACourseStudent, useStudentPendingFlightCounts } from '../../../Utilities/Services/coursesQueries';
+import { useACourseStudent, useStudentPendingPracticalActivityCount } from '../../../Utilities/Services/coursesQueries';
 import PageTitle from '../../../components/reuseable/PageTitle';
 import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
@@ -33,7 +33,7 @@ const CourseStudentDetails = () => {
     const isMobile = useMediaQuery('(max-width:720px)');
 
     const { data: studentData } = useACourseStudent(studentId);
-    const { data: studentPendingFlightCounts } = useStudentPendingFlightCounts(studentId);
+    const { data: studentPendingFlightCounts } = useStudentPendingPracticalActivityCount(studentId);
 
 
     return (

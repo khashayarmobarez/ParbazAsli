@@ -34,7 +34,7 @@ const ClassesBoxCourses = (props) => {
 
     const [formatedDuration, setFormatedDuration] = useState('')
 
-    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useAClass(classData.id);
+    const {  data: classDetails } = useAClass(classData.id);
 
     useEffect(() => {
         if (classDetails) {

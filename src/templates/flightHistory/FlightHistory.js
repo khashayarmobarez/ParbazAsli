@@ -17,7 +17,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // queries
-import { useUserFlights } from '../../Utilities/Services/flightHistoriesQueries';
+import { usePracticalActivities } from '../../Utilities/Services/flightHistoriesQueries';
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
@@ -47,7 +47,7 @@ const FlightHistory = () => {
 
     const [pageNumber, setPageNumber] = useState(1);
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useUserFlights(
+    const { data: userFlights, isLoading: userFlightsLoading } = usePracticalActivities(
         pageNumber,
         10,
         courseFilter?.id || '',

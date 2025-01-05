@@ -141,7 +141,6 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
             const formBody = {
                 equipmentId: id,
                 status: 'Accepted',
-                isForClub: popUpData.type === 'AcceptClubEquipment'
             }
             
             mutateTriggerEquipmentStatus(formBody, {
@@ -177,7 +176,6 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
             const formBody = {
                 equipmentId: id,
                 status: 'Rejected',
-                isForClub: popUpData.type === 'AcceptClubEquipment'
             }
 
             mutateTriggerEquipmentStatus(formBody, {

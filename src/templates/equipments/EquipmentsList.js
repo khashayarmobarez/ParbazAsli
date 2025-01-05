@@ -85,7 +85,6 @@ const EquipmentsList = () => {
                 const formBody = {
                     equipmentId: id,
                     status: 'Accepted',
-                    isForClub: isForClub
                 }
                 
                 mutateTriggerEquipmentStatus(formBody, {
@@ -119,7 +118,6 @@ const EquipmentsList = () => {
                 const formBody = {
                     equipmentId: id,
                     status: 'Rejected',
-                    isForClub: isForClub
                 }
     
                 mutateTriggerEquipmentStatus(formBody, {

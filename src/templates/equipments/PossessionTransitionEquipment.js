@@ -153,7 +153,6 @@ const PossessionTransitionEquipment = () => {
             if(activeLink === 'temporary') {
                 formData.append("expirationDateTime", formattedDate);
             }
-            formData.append('isForClub', isForClub);
     
             mutateTransitionData(formData, {
                 onSuccess: () => {

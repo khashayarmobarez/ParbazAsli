@@ -953,13 +953,13 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 
-    // /api/Course/GetStudentPendingFlightCounts?userCourseId=45
-    const getStudentPendingFlightCounts = async (userCourseId) => {
+    // /api/Course/GetStudentPendingPracticalActivityCount?userCourseId=45
+    const GetStudentPendingPracticalActivityCount = async (userCourseId) => {
                     
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPendingFlightCounts?${userCourseId && `userCourseId=${userCourseId}&`} `, {
+        const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPendingPracticalActivityCount?userCourseId=${userCourseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -977,8 +977,8 @@ const getSyllabiForLevels = async (levelId) => {
 
     };
 
-    const useStudentPendingFlightCounts = (userCourseId) => {
-        return useQuery(['getStudentPendingFlightCounts', userCourseId], () =>  getStudentPendingFlightCounts(userCourseId));
+    const useStudentPendingPracticalActivityCount = (userCourseId) => {
+        return useQuery(['GetStudentPendingPracticalActivityCount', userCourseId], () =>  GetStudentPendingPracticalActivityCount(userCourseId));
     }
 
 
@@ -1127,4 +1127,4 @@ const getSyllabiForLevels = async (levelId) => {
 
     
 
-export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useStudentPracticalActivities, useStudentPracticalActivity, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingFlightCounts, useAllActiveStudents, useSyllabusLandingContent, useAllStudents, useAStudentCourses };
+export { useAddRegularCourse, useSyllabiForLevels, useAddRetrainingCourse, useAddCustomCourse, useCourseDividers, useCourses, useTriggerCourseStatus ,useACourse, useACourseStudents, useACourseHistoryStudents , useAddStudentToCourse, useACourseSyllabi, useACourseClasses, useAllActiveCourseStudents, useAddCourseClass , useAClass, useUserCourseFlight , useDeclineUserFlight , useAcceptUserFlight, useTriggerClubStatus , useTriggerStudentStatus, useCourseCounts, useACourseStudent, useStudentPracticalActivities, useStudentPracticalActivity, useCourseStudentClasses, useCourseStudentClass, useGetStudentSyllabi, useStudentPendingPracticalActivityCount, useAllActiveStudents, useSyllabusLandingContent, useAllStudents, useAStudentCourses };

@@ -61,7 +61,7 @@ const Notifications = () => {
                         notificationsData.data?.map((notif, index) => (
                         <div className='w-full flex justify-center' key={index}>
 
-                            {   notif.type === 'StudentFlightForm' &&
+                            {   notif.type === 'StudentPracticalActivityForm' &&
                                 <NotifVersionStudentFlightForm key={index} notif={notif} handleActivatePopUp={() => setPopUpData(notif)} />
                             }
                             {   notif.type === 'AcceptStudentInCourse' &&

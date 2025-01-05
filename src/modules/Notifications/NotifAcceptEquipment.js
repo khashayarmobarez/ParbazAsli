@@ -22,7 +22,6 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
             const formBody = {
                 equipmentId: id,
                 status: 'Accepted',
-                isForClub: isForClub
             }
             
             mutateTriggerEquipmentStatus(formBody, {
@@ -58,7 +57,6 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
             const formBody = {
                 equipmentId: id,
                 status: 'Rejected',
-                isForClub: isForClub
             }
 
             mutateTriggerEquipmentStatus(formBody, {
