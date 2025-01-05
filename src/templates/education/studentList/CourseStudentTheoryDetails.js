@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
@@ -16,10 +16,14 @@ import CourseClassesBoxMyCourses from '../../../modules/Education/courseStudentD
 const CourseStudentTheoryDetails = () => {
 
     const { studentId } = useParams();
+    const location = useLocation()
+    
+    const isForClub = location.pathname.includes('/club')
 
-    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useCourseStudentClasses(studentId);
+    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useCourseStudentClasses(studentId, isForClub);
 
 
+    
     return (
         <div className='w-full flex flex-col gap-y-4 items-center pb-20'>
 

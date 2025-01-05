@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
@@ -14,8 +14,11 @@ import DropDownSyllabiData from '../../../modules/MyCourses/DropDownSyllabiData'
 const CourseStudentSyllabiDetails = () => {
 
     const { studentId } = useParams();
+    const location = useLocation()
 
-    const {  data: syllabiData, isLoading: syllabiDataLoading, error: syllabiDataError } = useGetStudentSyllabi(studentId);
+    const isForClub = location.pathname.includes('/club')
+
+    const {  data: syllabiData, isLoading: syllabiDataLoading, error: syllabiDataError } = useGetStudentSyllabi(studentId, isForClub);
 
 
     return (
@@ -29,11 +32,19 @@ const CourseStudentSyllabiDetails = () => {
             }
             {
                 syllabiData && syllabiData.data?.theorySyllabi?.length > 0 &&
-                <DropDownSyllabiData title={"سرفصل‌های تئوری"} data={syllabiData.data?.theorySyllabi} percent={syllabiData.data?.theorySyllabiPercent}  />
+                <DropDownSyllabiData 
+                title={"سرفصل‌های تئوری"} 
+                data={syllabiData.data?.theorySyllabi} 
+                percent={syllabiData.data?.theorySyllabiPercent}
+                />
             }
             {
                 syllabiData && syllabiData.data?.practicalSyllabi?.length > 0 &&
-                <DropDownSyllabiData title={"سرفصل‌های عملی"} data={syllabiData.data?.practicalSyllabi} percent={syllabiData.data?.practicalSyllabiPercent} />
+                <DropDownSyllabiData 
+                title={"سرفصل‌های عملی"} 
+                data={syllabiData.data?.practicalSyllabi} 
+                percent={syllabiData.data?.practicalSyllabiPercent} 
+                />
             }
         </div>
     );

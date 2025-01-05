@@ -160,7 +160,6 @@ const CourseStudents = () => {
         const customCourseData = {
             courseId: id,
             userId: studentId,
-            isForClub
         }
 
         addStudentToCourse( customCourseData , {

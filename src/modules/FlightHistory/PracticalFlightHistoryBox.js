@@ -82,7 +82,7 @@ const PracticalFlightHistoryBox = (props) => {
                                 <p>{flightBaseData.index}</p>
                             </button>
                             <p>
-                                {flightBaseData.takeOffDateAndFlightDuration && flightBaseData.takeOffDateAndFlightDuration}
+                                {flightBaseData.startDateAndDuration && flightBaseData.startDateAndDuration}
                             </p>
                             <p>
                                 {flightBaseData.city && flightBaseData.city.slice(0, 10)}

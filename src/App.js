@@ -80,11 +80,6 @@ import TandemSurvey from './templates/TandemSurvey';
 import SyllabiList from './templates/syllabiList/SyllabiList';
 import FlightHistoryPage from './templates/flightHistory/FlightHistoryPage';
 import MyGuestClassDetails from './templates/myCourses/MyGuestClassDetails';
-import ClubCourseStudentDetails from './templates/club/students/ClubStudentDetails';
-import ClubCourseStudentPracticalDetails from './templates/club/students/ClubCourseStudentPracticalDetails';
-import ClubCourseStudentTheoryDetails from './templates/club/students/ClubCourseStudentTheoryDetails';
-import ClubCourseStudentSyllabiDetails from './templates/club/students/ClubCourseStudentSyllabiDetails';
-import ClubCourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import CourseStudentDetails from './templates/education/studentList/CourseStudentDetails';
 import CourseStudentPracticalDetails from './templates/education/studentList/CourseStudentPracticalDetails';
 import CourseStudentTheoryDetails from './templates/education/studentList/CourseStudentTheoryDetails';
@@ -325,7 +320,7 @@ function App() {
 
 
               {/* club */}
-              <Route path='/club' element={<Club  />} />
+              <Route path='/club' element={<Club />} />
               {/* club equipments */}
               <Route path="/club/clubEquipment" element={ < ClubEquipment />} >
                   <Route index element={<EquipmentsList />} />
@@ -342,8 +337,8 @@ function App() {
               <Route path="/club/clubCoaches" element={ < ClubCoaches  />} />
               <Route path="/club/coachDetails/:id" element={ < ClubCoachDetails />} />
               {/* club education */}
-              <Route path="/club/clubCourses" element={ < Education  />} />
-              <Route path="/club/addCourseToClub" element={ < AddCourse  />} />
+              <Route path="/club/clubCourses" element={ <Education  />} />
+              <Route path="/club/addCourseToClub" element={ <AddCourse  />} />
               <Route path='/club/courseDetails/:id' element={<CourseDetails />} >
                 <Route index element={<CourseStudents />} />
                 <Route path="students" element={<CourseStudents />} />
@@ -352,12 +347,12 @@ function App() {
               </Route> 
               {/* student details */}
               <Route path='/club/courseDetails/studentDetails/:studentId' element={<CourseStudentDetails />} >
-                <Route index element={<ClubCourseStudentPracticalDetails />} />
-                <Route path="practical" element={<ClubCourseStudentPracticalDetails />} />
-                <Route path="theory" element={<ClubCourseStudentTheoryDetails />} />
-                <Route path="syllabi" element={<ClubCourseStudentSyllabiDetails />} />
+                <Route index element={<CourseStudentPracticalDetails />} />
+                <Route path="practical" element={<CourseStudentPracticalDetails />} />
+                <Route path="theory" element={<CourseStudentTheoryDetails />} />
+                <Route path="syllabi" element={<CourseStudentSyllabiDetails />} />
               </Route>
-              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<ClubCourseStudentAFlightDetails />} />
+              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<CourseStudentAFlightDetails />} />
               {/* id 1 is for active students and id 2 is for history student */}
               <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsList />} />
               <Route path='/club/clubCourses/studentsListClub/aStudentClubCourses/:studentId' element={<AStudentCourses />} />

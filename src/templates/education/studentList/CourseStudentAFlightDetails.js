@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 // styles
 import boxStyles from '../../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useCourseStudentFlight } from '../../../Utilities/Services/coursesQueries';
+import { useStudentPracticalActivity } from '../../../Utilities/Services/coursesQueries';
 
 // components
 import PageTitle from '../../../components/reuseable/PageTitle';
@@ -15,6 +15,9 @@ import DropDownLine from '../../../components/reuseable/DropDownLine';
 const CourseStudentAFlightDetails = () => {
     
     const { flightId } = useParams()
+    const location = useLocation()
+
+    const isForClub = location.pathname.includes('/club')
 
     const [DropDown, setDropDown] = useState('')
     const [DropDownEquipment, setDropDownEquipment] = useState(true)
@@ -22,7 +25,7 @@ const CourseStudentAFlightDetails = () => {
     const [DropDownTakeoff, setDropDownTakeoff] = useState(true)
     const [DropDownLanding, setDropDownLanding] = useState(true)
     
-    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useCourseStudentFlight(flightId);
+    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useStudentPracticalActivity(flightId, isForClub);
 
     // dropDown onClick
     const handleDropDownClick = (dropDown) => {
