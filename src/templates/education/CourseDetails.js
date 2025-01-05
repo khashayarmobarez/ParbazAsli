@@ -23,14 +23,18 @@ const CourseDetails = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
+    const isForClub = location.pathname.includes('/club')
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { id } = useParams();
 
+    const clubHistoryPageUrl = Cookies.get('lastPathForClubCourseDetails') || null;
+    isForClub && Cookies.set('lastPathForClubStudentDetails', location.pathname);
+
     const [showPopup, setShowPopup] = useState(false);
     const [showExtra, setShowExtra ] = useState(false);
 
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id, isForClub);
 
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
@@ -40,7 +44,8 @@ const CourseDetails = () => {
 
         const triggerStatusForm = {
             courseId: id,
-            status: status
+            status: status,
+            isForClub
         }
 
         triggerCourseStatus(triggerStatusForm, {
@@ -85,7 +90,7 @@ const CourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={'/education'} /> 
+                <PageTitle title={'جزئیات دوره'} navigateTo={isForClub ? clubHistoryPageUrl : '/education'} /> 
 
                 {
                     courseDataLoading &&
@@ -287,7 +292,7 @@ const CourseDetails = () => {
 
             <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
                 <StandardPopup
-                showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading} 
+                showPopup={showPopup} setShowPopup={setShowPopup} loading={triggerCourseStatusLoading}
                 handleSubmit={(event) => {
                     !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id);
                     setShowPopup(false);

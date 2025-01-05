@@ -26,8 +26,8 @@ const ClubCourseDetails = () => {
 
     const { id } = useParams();
 
-    const historyPageUrl = Cookies.get('lastPathForClubCourseDetails') || null;
     Cookies.set('lastPathForClubStudentDetails', location.pathname);
+    const clubHistoryPageUrl = Cookies.get('lastPathForClubCourseDetails') || null;
 
     const [showPopup, setShowPopup] = useState(false);
     const [showExtra, setShowExtra ] = useState(false);
@@ -88,7 +88,7 @@ const ClubCourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={historyPageUrl} /> 
+                <PageTitle title={'جزئیات دوره'} navigateTo={clubHistoryPageUrl} /> 
 
                 {
                     courseDataLoading &&

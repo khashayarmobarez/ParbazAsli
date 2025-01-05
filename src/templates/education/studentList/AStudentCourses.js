@@ -25,12 +25,17 @@ const AStudentCourses = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    Cookies.set('lastPathForStudentDetails', location.pathname);
+    const isForClub = location.pathname.includes('/club')
+
+    isForClub ?
+        Cookies.set('lastPathForClubStudentDetails', location.pathname)
+        : 
+        Cookies.set('lastPathForStudentDetails', location.pathname);
 
     const [pageNumber, setPageNumber] = useState(1);
     let pageSize = 4;
 
-    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError, refetch: reftchCourses } = useAStudentCourses(studentId && studentId, pageNumber, pageSize);
+    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError, refetch: reftchCourses } = useAStudentCourses(studentId && studentId, pageNumber, pageSize, isForClub);
 
     // refetch courses when pageNumber changed
     useEffect(() => {
@@ -38,7 +43,10 @@ const AStudentCourses = () => {
     }, [pageNumber]);
 
     const handleCourseDetails = (id) => () => {
-        navigate(`/education/courseDetails/studentDetails/${id}/practical`);
+        isForClub ?
+            navigate(`/club/courseDetails/studentDetails/${id}/practical`)
+            :
+            navigate(`/education/courseDetails/studentDetails/${id}/practical`);
     };
 
     const handleNextPageNumber = () => {
