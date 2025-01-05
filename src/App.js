@@ -79,7 +79,6 @@ import ClubCoachDetails from './templates/club/clubCoaches/ClubCoachDetails';
 import TandemSurvey from './templates/TandemSurvey';
 import SyllabiList from './templates/syllabiList/SyllabiList';
 import FlightHistoryPage from './templates/flightHistory/FlightHistoryPage';
-import ClubCourseDetails from './templates/club/clubEducation/ClubCourseDetails';
 import ClubCourseStudents from './templates/club/clubEducation/ClubCourseStudents';
 import ClubCourseClasses from './templates/club/clubEducation/ClubCourseClasses';
 import ClubCourseSyllabi from './templates/club/clubEducation/ClubCourseSyllabi';
@@ -348,7 +347,7 @@ function App() {
               {/* club education */}
               <Route path="/club/clubCourses" element={ < Education  />} />
               <Route path="/club/addCourseToClub" element={ < AddCourse  />} />
-              <Route path='/club/courseDetails/:id' element={<ClubCourseDetails />} >
+              <Route path='/club/courseDetails/:id' element={<CourseDetails />} >
                 <Route index element={<ClubCourseStudents />} />
                 <Route path="students" element={<ClubCourseStudents />} />
                 <Route path="classes" element={<ClubCourseClasses />} />

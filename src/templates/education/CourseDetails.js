@@ -78,7 +78,10 @@ const CourseDetails = () => {
                         style: { width: "90%" }
                     });
                     refetchCourseData()
-                    navigate('/education')
+                    isForClub ?
+                        navigate('/club/courseDetails')
+                        :
+                        navigate('/education')
                 }
             },
         });
@@ -215,18 +218,28 @@ const CourseDetails = () => {
 
                         <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-10`}>
                             <Link 
-                                to={`/education/courseDetails/${id}/students`} 
-                                className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/education/courseDetails/${id}/students` ? ButtonStyles.activeYellow : ''} `} >
+                                to={isForClub ? `/club/courseDetails/${id}/students` : `/education/courseDetails/${id}/students`} 
+                                className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl 
+                                ${(
+                                    location.pathname === `/education/courseDetails/${id}/students` || location.pathname === `/club/courseDetails/${id}/students`)
+                                    ? ButtonStyles.activeYellow : ''} `} 
+                                >
                                 هنرجویان
                             </Link> 
                             <Link 
-                                to={`/education/courseDetails/${id}/classes`} 
-                                className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/education/courseDetails/${id}/classes` ? ButtonStyles.activeYellow : ''}`} >
+                                to={isForClub ? `/club/courseDetails/${id}/classes` : `/education/courseDetails/${id}/classes`} 
+                                className={`${ButtonStyles.ThreeStickedButtonButton}  
+                                ${(location.pathname === `/education/courseDetails/${id}/classes` || location.pathname === `/club/courseDetails/${id}/classes`)
+                                    ? ButtonStyles.activeYellow : ''}`} 
+                                >
                                 کلاس تئوری
                             </Link> 
                             <Link 
-                                to={`/education/courseDetails/${id}/syllabi`}  
-                                className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${location.pathname === `/education/courseDetails/${id}/syllabi` ? ButtonStyles.activeYellow : ''} `} >
+                                to={isForClub ? `/club/courseDetails/${id}/syllabi` : `/education/courseDetails/${id}/syllabi`}  
+                                className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl 
+                                ${(location.pathname === `/education/courseDetails/${id}/syllabi` || location.pathname === `/club/courseDetails/${id}/syllabi`)
+                                    ? ButtonStyles.activeYellow : ''} `} 
+                                >
                                 سرفصل‌ها
                             </Link>
                         </div>
@@ -236,7 +249,7 @@ const CourseDetails = () => {
                         </div>
                         
                         {
-                            aCourseData.data.status === 'Active' && !aCourseData.data.clubName &&
+                            aCourseData.data.accesses.buttonStatus === 'Disable' && !aCourseData.data.clubName &&
                             <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
                                 <div className="relative z-10">
                                     <button 
@@ -251,7 +264,7 @@ const CourseDetails = () => {
                         }
                         
                         {
-                            aCourseData.data.status === 'Disable' && !aCourseData.data.clubName &&
+                            aCourseData.data.accesses.buttonStatus === 'Enable' && !aCourseData.data.clubName &&
                             <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
                                 <div className="relative z-10">
                                     <button 
@@ -265,7 +278,7 @@ const CourseDetails = () => {
                             </div>
                         }
                         {
-                            aCourseData.data.status === 'Pending' &&
+                            aCourseData.data.accesses.buttonStatus === 'Confirmation' &&
                             <div className='fixed bottom-[70px] w-[90%] md:w-2/6 z-[70]'>
                                 <div className="relative z-10 flex justify-between gap-x-[6%]">
                                     <button 
