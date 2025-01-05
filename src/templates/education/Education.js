@@ -90,8 +90,7 @@ const Education = () => {
 
         const triggerStatusForm = {
             courseId: id,
-            status: status,
-            isForClub
+            status: status
         }
 
         triggerCourseStatus(triggerStatusForm,

@@ -18,12 +18,9 @@ const CourseClasses = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
 
-    const isForClub = location.pathname.includes('/club')
-
-    const {  data: classesData } = useACourseClasses(id, isForClub);
-    const { data: aCourseData } = useACourse(id, isForClub);
+    const {  data: classesData } = useACourseClasses(id);
+    const { data: aCourseData } = useACourse(id);
     
 
     return (
@@ -56,7 +53,7 @@ const CourseClasses = () => {
                 <div className='w-full flex flex-col items-center gap-y-4'>
                 {
                     classesData.data.classes.map((classData) => {
-                    return <w title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    return <ClassesBoxCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
                     })
                 }
                 </div>

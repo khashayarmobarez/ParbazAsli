@@ -14,11 +14,9 @@ import DropDownSyllabiData from '../../../modules/MyCourses/DropDownSyllabiData'
 const CourseStudentSyllabiDetails = () => {
 
     const { studentId } = useParams();
-    const location = useLocation()
 
-    const isForClub = location.pathname.includes('/club')
 
-    const {  data: syllabiData, isLoading: syllabiDataLoading, error: syllabiDataError } = useGetStudentSyllabi(studentId, isForClub);
+    const {  data: syllabiData, isLoading: syllabiDataLoading, error: syllabiDataError } = useGetStudentSyllabi(studentId);
 
 
     return (

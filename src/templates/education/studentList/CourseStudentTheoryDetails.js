@@ -16,11 +16,9 @@ import CourseClassesBoxMyCourses from '../../../modules/Education/courseStudentD
 const CourseStudentTheoryDetails = () => {
 
     const { studentId } = useParams();
-    const location = useLocation()
     
-    const isForClub = location.pathname.includes('/club')
 
-    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useCourseStudentClasses(studentId, isForClub);
+    const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useCourseStudentClasses(studentId);
 
 
     

@@ -20,7 +20,7 @@ const CourseStudentPracticalDetails = () => {
     const [pageNumber, setPageNumber] = useState(1)
     const pageSize = 10
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useStudentPracticalActivities(studentId && studentId,pageNumber,pageSize, isForClub);
+    const { data: userFlights, isLoading: userFlightsLoading } = useStudentPracticalActivities(studentId && studentId,pageNumber,pageSize);
 
 
     const handleNextPage = () => {

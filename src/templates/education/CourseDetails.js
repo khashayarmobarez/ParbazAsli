@@ -34,7 +34,7 @@ const CourseDetails = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [showExtra, setShowExtra ] = useState(false);
 
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id, isForClub);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourseData } = useACourse(id);
 
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
@@ -44,8 +44,7 @@ const CourseDetails = () => {
 
         const triggerStatusForm = {
             courseId: id,
-            status: status,
-            isForClub
+            status: status
         }
 
         triggerCourseStatus(triggerStatusForm, {

@@ -23,9 +23,6 @@ import { useLocation } from 'react-router-dom';
 const ClassesBoxCourses = (props) => {
 
     const convertToHoursAndMinutes = useConvertMinutesToHours();
-    const location = useLocation();
-    
-    const isForClub = location.pathname.includes('/club')
 
 
     // imported directly here from redux to prevent props drilling
@@ -37,7 +34,7 @@ const ClassesBoxCourses = (props) => {
 
     const [formatedDuration, setFormatedDuration] = useState('')
 
-    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useAClass(classData.id, isForClub);
+    const {  data: classDetails, isLoading: classDetailsLoading, error: classDetailsError } = useAClass(classData.id);
 
     useEffect(() => {
         if (classDetails) {

@@ -50,10 +50,10 @@ const CourseStudents = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
 
-    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id, pageNumber, isForClub);
-    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id, historyPageNumber, isForClub);
+    const { data: studentsData, isLoading: studentsDataLoading, error: studentsDataError, refetch: refetchStudentdata } = useACourseStudents(id, pageNumber);
+    const { data: studentsHistoryData, isLoading: studentsHistoryDataLoading, error: studentsHistoryDataError, refetch:refetchStudentHistorydata } = useACourseHistoryStudents(id, historyPageNumber);
     const {  data: studentData, isLoading:studentNameLoading , error: studentError } = useUserById(studentId);
-    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id, isForClub);
+    const { data: aCourseData, isLoading: courseDataLoading, error: courseDataError } = useACourse(id);
     const { mutate: triggerStudentStatus, isLoading: triggerStudentStatusLoading } = useTriggerStudentStatus();
 
     // post student to course

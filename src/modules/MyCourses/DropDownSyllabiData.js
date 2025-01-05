@@ -17,7 +17,6 @@ const DropDownSyllabiData = (props) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
 
-    console.log(data)
 
     const toggleExpanded = () => {
         setIsExpanded(!isExpanded);
