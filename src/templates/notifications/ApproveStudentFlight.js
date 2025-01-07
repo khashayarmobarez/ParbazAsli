@@ -16,7 +16,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
 import { toast } from 'react-toastify';
-import { useAUserFlight } from '../../Utilities/Services/flightHistoriesQueries';
+import { useAUserPracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 
 const ApproveStudentFlight = () => {
@@ -34,7 +34,7 @@ const ApproveStudentFlight = () => {
     const navigate = useNavigate()
 
     const {  data: UserCourseFlightData, isLoading: UserCourseFlightLoading, error: UserCourseFlightError } = useUserCourseFlight(id);
-    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserFlight(id);
+    const { data: fullFlightData, isLoading: fullFlightDataLoading } = useAUserPracticalActivity(id);
     const { mutate: mutateDecline , isLoading: declineLoading, error: declineError} = useDeclineUserFlight();
 
     useEffect(() => {

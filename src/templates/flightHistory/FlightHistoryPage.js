@@ -6,7 +6,7 @@ import boxStyles from '../../styles/Boxes/DataBox.module.css'
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
 
 // queries
-import { useAUserFlight } from '../../Utilities/Services/flightHistoriesQueries';
+import { useAUserPracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
@@ -22,7 +22,7 @@ const FlightHistoryPage = () => {
     const [DropDownLanding, setDropDownLanding] = useState(true)
     const [DropDownPassenger, setDropDownPassenger] = useState(true)
     
-    const { data: fullFlightData } = useAUserFlight(id);
+    const { data: fullFlightData } = useAUserPracticalActivity(id);
     
     return (
         <div className='w-full flex flex-col items-center pt-14 '>

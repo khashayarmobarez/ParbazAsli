@@ -184,12 +184,12 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get user available flight types
 // /Flight/GetFlightTypes 
-    const getFlightTypes = async () => {
+    const GetPracticalActivityTypes = async () => {
             
         const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Flight/GetFlightTypes`, {
+        const response = await axios.get(`${API_BASE_URL}/PracticalActivity/GetPracticalActivityTypes`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -207,8 +207,8 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
     };
 
-    const useFlightTypes = () => {
-        return useQuery(['getFlightTypes'], getFlightTypes);
+    const usePracticalActivityTypes = () => {
+        return useQuery(['getPracticalActivityTypes'], GetPracticalActivityTypes);
     }
 
 
@@ -223,7 +223,7 @@ import { API_BASE_URL } from "../Providers/apiUrl";
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Flight/AddCourseFlight`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/practicalActivity/AddCourseFlight`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -254,7 +254,7 @@ import { API_BASE_URL } from "../Providers/apiUrl";
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Flight/AddSoloFlight`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/practicalActivity/AddSoloFlight`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -285,7 +285,7 @@ import { API_BASE_URL } from "../Providers/apiUrl";
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Flight/AddTandemFlight`, formData, {
+            const response = await axios.post(`${API_BASE_URL}/practicalActivity/AddTandemFlight`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -347,4 +347,4 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
-export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , useFlightTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes};
+export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , usePracticalActivityTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes};
