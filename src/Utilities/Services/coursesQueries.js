@@ -527,7 +527,7 @@ const getSyllabiForLevels = async (levelId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentFlight?flightId=${flightId}`, {
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivity?practicalActivityId=${flightId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
