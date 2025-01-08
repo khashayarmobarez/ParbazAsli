@@ -82,7 +82,7 @@ const FlightHistoryPage = () => {
                                                 }
                                                 {flightData.data.status === 'Rejected' &&
                                                     <>
-                                                        <p className='text-textError'> رد شده </p>
+                                                        <p className='text-textError'>رد شده</p>
                                                     </>
                                                 }
                                             </div>
@@ -110,7 +110,7 @@ const FlightHistoryPage = () => {
                                     }
 
                                     {
-                                        flightData.data?.index >= 0 &&
+                                        flightData.data?.index >= 0 && isForFlight &&
                                             <div className='flex flex-col items-start col-span-1 gap-y-3'>
                                                 <p className=' text-xs pr-2'> پرواز</p>
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-3 w-full h-12 rounded-xl`}  id='data' >
@@ -122,7 +122,12 @@ const FlightHistoryPage = () => {
                                     {
                                         flightData.data.dateTime &&
                                             <div className='flex flex-col items-start col-span-3 gap-y-3'>
-                                                <p className=' text-xs pr-2'>تاریخ پرواز</p>
+                                                {
+                                                    isForFlight ?
+                                                    <p className=' text-xs pr-2'>تاریخ پرواز</p>
+                                                    :
+                                                    <p className=' text-xs pr-2'>تاریخ</p>
+                                                }
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                     <p>{flightData.data.dateTime}</p>
                                                 </div>
@@ -131,7 +136,7 @@ const FlightHistoryPage = () => {
                                     
                                     {
                                         flightData.data.durationInMinutes &&
-                                            <div className='flex flex-col items-start col-span-2 gap-y-3'>
+                                            <div className={`flex flex-col items-start ${isForFlight ? 'col-span-2' : 'col-span-3'} gap-y-3`}>
                                                 <p className=' text-xs pr-2'>زمان پرواز</p>
                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                     <p>{flightData.data.durationInMinutes}min</p>
@@ -155,7 +160,7 @@ const FlightHistoryPage = () => {
                                             onClickActivation={() => setDropDownEquipment(!DropDownEquipment)}
                                             title={isForFlight ? 'مشخصات وسیله پروازی' : "مشخصات وسیله تمرین زمینی"} 
                                             dropDown={DropDownEquipment} 
-                                            isActive={DropDownEquipment}  
+                                            isActive={DropDownEquipment}
                                         />
                                     </div>
 
@@ -199,9 +204,9 @@ const FlightHistoryPage = () => {
                                     <div className='w-full flex col-span-6'>
                                         <DropDownLine 
                                             onClickActivation={() => setDropDownSituation(!DropDownSituation)}
-                                            title={'موقعیت و شرایط پرواز'} 
+                                            title={isForFlight ? 'موقعیت و شرایط پرواز' : 'موقعیت‌ و شرایط تمرین زمینی'} 
                                             dropDown={DropDownSituation} 
-                                            isActive={DropDownSituation}  
+                                            isActive={DropDownSituation} 
                                         />
                                     </div>
 
@@ -236,13 +241,50 @@ const FlightHistoryPage = () => {
                                                 </div>
                                             }
                                             {
-                                            flightData.data.cloudCoverType &&
+                                                flightData.data.cloudCoverType &&
                                                 <div className='flex flex-col items-start gap-y-3 col-span-3'>
                                                     <p className=' text-xs pr-2'>نوع پوشش ابری</p>
                                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                         <p>{flightData.data.cloudCoverType}</p>
                                                     </div>
                                                 </div>
+                                            }
+                                            {/* ground handling datas */}
+                                            {
+                                                flightData.data.startTime && flightData.data.groundHandling &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className=' text-xs pr-2'>زمان شروع</p>
+                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                            <p>{flightData.data.startTime}</p>
+                                                        </div>
+                                                    </div>
+                                            }
+                                            {
+                                                flightData.data.finishTime && flightData.data.groundHandling &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className=' text-xs pr-2'>زمان پایان</p>
+                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                            <p>{flightData.data.finishTime}</p>
+                                                        </div>
+                                                    </div>
+                                            }
+                                            {
+                                                flightData.data.groundHandling?.windSpeedInKmh &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className=' text-xs pr-2'>سرعت باد به km/h</p>
+                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                            <p>{flightData.data.groundHandling.windSpeedInKmh}</p>
+                                                        </div>
+                                                    </div>
+                                            }
+                                            {
+                                                flightData.data.groundHandling?.windDirection &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className=' text-xs pr-2'>جهت باد</p>
+                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                            <p>{flightData.data.groundHandling.windDirection}</p>
+                                                        </div>
+                                                    </div>
                                             }
                                         </>
                                     }
@@ -264,11 +306,11 @@ const FlightHistoryPage = () => {
                                                 DropDownTakeoff && 
                                                 <>
                                                     {
-                                                        flightData.data.flight.takeOffTime &&
+                                                        flightData.data.startTime &&
                                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
                                                                 <p className=' text-xs pr-2'>ساعت Takeoff</p>
                                                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                                    <p>{flightData.data.flight.takeOffTime}</p>
+                                                                    <p>{flightData.data.startTime}</p>
                                                                 </div>
                                                             </div>
                                                     }
@@ -327,11 +369,11 @@ const FlightHistoryPage = () => {
                                             <>
                                             
                                                 {
-                                                    flightData.data.flight.landingTime &&
+                                                    flightData.data.finishTime &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-3'>
                                                         <p className=' text-xs pr-2'>ساعت Landing</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                            <p>{flightData.data.flight.landingTime}</p>
+                                                            <p>{flightData.data.finishTime}</p>
                                                         </div>
                                                     </div>
                                                 }

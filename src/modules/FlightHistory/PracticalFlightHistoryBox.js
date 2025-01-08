@@ -17,6 +17,7 @@ import { useDeclineUserFlight } from '../../Utilities/Services/coursesQueries';
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import GroundHandlingIcon from '../../components/icons/GroundHandlingIcon';
 
 
 const PracticalFlightHistoryBox = (props) => {
@@ -29,7 +30,8 @@ const PracticalFlightHistoryBox = (props) => {
 
     const { mutate: mutateDecline , isLoading: declineLoading} = useDeclineUserFlight();
 
-    // for changing the color of the texts when user clicked and expand it  
+    
+    const isForGroundHandling = flightBaseData.type === 'GroundHandling'
 
 
     const handleClick = (id) => {
@@ -79,17 +81,29 @@ const PracticalFlightHistoryBox = (props) => {
                     <div className='w-full flex flex-col items-center'>
                         <div onClick={() => handleClick(flightBaseData.id)} className={`${gradients.container} flex w-full justify-between items-center h-12 pl-4 rounded-2xl text-xs z-10`} >
                             <button className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-full flex items-center justify-center rounded-r-2xl`}>
-                                <p>{flightBaseData.index}</p>
+                                {
+                                    isForGroundHandling ?
+                                    <div className='w-full h-full p-3.5'>
+                                        <GroundHandlingIcon customColor={'var(--text-accent)'} />
+                                    </div>
+                                    :
+                                    <p>{flightBaseData.index}</p>
+                                }
                             </button>
                             <p>
                                 {flightBaseData.startDateAndDuration && flightBaseData.startDateAndDuration}
                             </p>
                             <p>
-                                {flightBaseData.city && flightBaseData.city.slice(0, 10)}
+                                {flightBaseData.province && flightBaseData.province.slice(0, 10)}
                             </p>
-                            <p>
-                                {flightBaseData.site && flightBaseData.site.slice(0, 14)}
-                            </p>
+                            {
+                                isForGroundHandling ?
+                                    <p className='text-textAccent'>تمرین زمینی</p>
+                                    :
+                                    <p>
+                                        {flightBaseData.site && flightBaseData.site.slice(0, 14)}
+                                    </p>
+                            }
                             {
                             flightBaseData.status === 'Pending' &&
                                 <TimerOutlinedIcon sx={{width:'20px',height:'20px', color:'var(--text-warning)'}} />

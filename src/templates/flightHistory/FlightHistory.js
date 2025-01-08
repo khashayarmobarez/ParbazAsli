@@ -144,9 +144,9 @@ const FlightHistory = () => {
                                 </p>
 
                                 <button
-                                    className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
-                                    disabled={pageNumber === 1}
-                                    onClick={handlePrevPage}
+                                className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
+                                disabled={pageNumber === 1}
+                                onClick={handlePrevPage}
                                 >
 
                                     <ArrowButton isDisable={pageNumber === 1}/>

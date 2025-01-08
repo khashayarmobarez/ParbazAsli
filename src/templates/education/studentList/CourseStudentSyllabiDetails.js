@@ -20,7 +20,7 @@ const CourseStudentSyllabiDetails = () => {
 
 
     return (
-        <div className=' w-full flex flex-col gap-y-7 pb-14'>
+        <div className=' w-full flex flex-col gap-y-4 pb-14'>
 
             {
                 syllabiDataLoading &&
@@ -42,6 +42,14 @@ const CourseStudentSyllabiDetails = () => {
                 title={"سرفصل‌های پرواز"} 
                 data={syllabiData.data?.flightSyllabi} 
                 percent={syllabiData.data?.flightSyllabiPercent} 
+                />
+            }
+            {
+                syllabiData && syllabiData.data?.groundHandlingSyllabi?.length > 0 &&
+                <DropDownSyllabiData 
+                title={"سرفصل‌های پرواز"} 
+                data={syllabiData.data?.groundHandlingSyllabi} 
+                percent={syllabiData.data?.groundHandlingSyllabiPercent} 
                 />
             }
         </div>
