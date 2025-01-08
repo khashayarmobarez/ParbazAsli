@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DatePicker } from 'zaman';
 
 // styles
-import inputStyles from '../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../styles/Inputs.module.css';
 
 // assets
 import CalenderIcon from '../icons/CalenderIcon'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 const CODE_REGEX = /^\d+$/;
 

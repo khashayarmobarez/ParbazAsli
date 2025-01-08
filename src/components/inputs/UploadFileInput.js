@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import inputStyles from '../../styles/Inputs/Inputs.module.css'
+import inputStyles from '../../styles/Inputs.module.css'
 
 const UploadFileInput = ({ selectedFile, onFileChange, name }) => {
 

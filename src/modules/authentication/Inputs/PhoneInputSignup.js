@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 // regexes
 import { PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';

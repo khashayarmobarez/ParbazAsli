@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // css styles 
-import inputStyles from '../../styles/Inputs/Inputs.module.css'
+import inputStyles from '../../styles/Inputs.module.css'
 
 const LongTextInput = ({ value, onChange, placeholder, Type, icon }) => {
 

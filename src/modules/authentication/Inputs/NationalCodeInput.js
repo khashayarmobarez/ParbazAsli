@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 function isValidIranianNationalCode(input) {
   if (!/^\d{10}$/.test(input)) return false;

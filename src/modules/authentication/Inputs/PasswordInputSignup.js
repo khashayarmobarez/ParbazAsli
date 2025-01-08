@@ -10,7 +10,7 @@
 
     // assets 
     import KeyIcon from '../../../components/icons/KeyIcon';
-    import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+    import inputStyles from '../../../styles/Inputs.module.css';
 
     const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 // regexes
 import { EMAIL_REGEX } from '../../../Utilities/Providers/regexProvider';

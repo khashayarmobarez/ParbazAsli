@@ -6,7 +6,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 // assets 
 import KeyIcon from '../../../components/icons/KeyIcon';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder, isSubmitted, customLabelBgColor, isForOldPass }) => {
   const [inputFocus, setInputFocus] = useState(false);

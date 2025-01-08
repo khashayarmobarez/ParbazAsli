@@ -3,7 +3,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../components/icons/ThreeDCube';
 
 // css styles 
-import inputStyles from '../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../styles/Inputs.module.css';
 
 const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, icon, isDeselectDeactivated, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
 

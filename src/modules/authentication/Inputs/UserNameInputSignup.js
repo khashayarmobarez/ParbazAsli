@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
 

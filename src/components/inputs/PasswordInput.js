@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // styles
-import inputStyles from '../../styles/Inputs/Inputs.module.css'
+import inputStyles from '../../styles/Inputs.module.css'
 
 // assets
 import KeyIcon from '../../components/icons/KeyIcon'

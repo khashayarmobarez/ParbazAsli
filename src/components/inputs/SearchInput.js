@@ -2,7 +2,7 @@ import React from 'react';
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
-import inputStyles from '../../styles/Inputs/Inputs.module.css'
+import inputStyles from '../../styles/Inputs.module.css'
 
 const SearchInput = () => {
     return (

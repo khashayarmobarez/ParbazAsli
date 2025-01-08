@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../components/icons/ThreeDCube';
-import inputStyles from '../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../styles/Inputs.module.css';
 
 const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, isSubmitted, ErrorCondition, ErrorCondition2 }) => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // Assuming you want to keep some custom styles
-import inputStyles from '../../styles/Inputs/Inputs.module.css'
+import inputStyles from '../../styles/Inputs.module.css'
 
 const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
   

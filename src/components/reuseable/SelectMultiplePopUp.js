@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Cube from '../../components/icons/ThreeDCube';
-import inputStyles from '../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../styles/Inputs.module.css';
 import ButtonStyles from '../../styles/ButtonsBox.module.css';
 import TextInput from '../inputs/textInput';
 import SearchIcon from '../../components/icons/SearchIcon';

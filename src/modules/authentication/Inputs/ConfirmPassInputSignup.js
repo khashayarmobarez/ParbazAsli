@@ -3,7 +3,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import KeyIcon from '../../../components/icons/KeyIcon';
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor, customPlaceHolderText }) => {
 

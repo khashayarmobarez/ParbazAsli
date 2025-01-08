@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // css styles 
-import inputStyles from '../../styles/Inputs/Inputs.module.css'
+import inputStyles from '../../styles/Inputs.module.css'
 
 const DescriptionInput = ({ value, onChange, placeholder, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, isSubmitted, className }) => {
 

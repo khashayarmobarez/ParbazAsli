@@ -6,7 +6,7 @@ import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // styles
-import inputStyles from '../../../styles/Inputs/Inputs.module.css';
+import inputStyles from '../../../styles/Inputs.module.css';
 
 // regexes
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';
