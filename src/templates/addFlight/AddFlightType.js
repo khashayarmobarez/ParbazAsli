@@ -43,7 +43,7 @@ const AddFlightType = () => {
             dispatch(resetFlightDataExceptType());
         }
 
-        if(!flightType.hasNecessaryEquipment) {
+        if(!flightType.hasNecessaryFlightEquipment) {
             setShowErrorPopUp(true)
             setErrorMessage(flightType?.equipmentValidationError)
             return;
