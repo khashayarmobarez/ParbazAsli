@@ -136,11 +136,11 @@ const Syllabuses = () => {
     return (
         <div className="py-14 flex flex-col justify-center items-center gap-y-6">
 
-            <div className='flex flex-col items-center w-full lg:w-[55%]'>
+            <div className='flex flex-col items-center w-full lg:w-[50%]'>
 
                 <PageTitle title={'سیلابس‌ها'} />
 
-                <form className="w-[90%] flex flex-col gap-y-4" onSubmit={handleSubmit}>
+                <form className="w-[90%] flex flex-col gap-y-4 pt-4 md:pt-8" onSubmit={handleSubmit}>
 
                     <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
 

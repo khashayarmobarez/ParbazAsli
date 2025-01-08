@@ -289,8 +289,10 @@ const AddCourse = () => {
                     ? {
                           ...course,
                           completionTimes: course.completionTimes > 1
-                              ? course.completionTimes - 1
-                              : 1, // Ensure it doesn't go below 1
+                              ? 
+                              course.completionTimes - 1
+                              : 
+                              setCustomCourses(customCourses.filter(course => course.order !== id))
                       }
                     : course
             )
@@ -314,7 +316,7 @@ const AddCourse = () => {
         setIsSubmitted(true)
         event.preventDefault();
 
-        if(selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
+        if (selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
                 toast('اطلاعات را کامل وارد کنید', {
                     type: 'error',
                     position: 'top-right',
@@ -334,6 +336,15 @@ const AddCourse = () => {
             return;
         } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || customCourses.length < 1) ) {
             toast('اطلاعات را کامل وارد کنید', {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: appTheme,
+                style: { width: "90%" }
+            });
+            return;
+        } else if(isForClub && !Coach) {
+            toast('مربی را انتخاب کنید', {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -857,7 +868,7 @@ const AddCourse = () => {
                                                     boxShadow: 'var(--shadow-all)'}}>
                                                         <p className=' text-sm mx-1' >{index + 1}</p>
                                                         <p className='text-sm px-6 w-full text-start'>{course.description}</p>
-                                                        <div className='h-full flex gap-x-2 items-center'>
+                                                        <div className='h-full flex gap-x-4 items-center'>
                                                             <AddIcon sx={{background:  'var(--bg-input-dropdown)',
                                                             boxShadow: 'var(--shadow-all)',
                                                             borderRadius:'0.5rem',
