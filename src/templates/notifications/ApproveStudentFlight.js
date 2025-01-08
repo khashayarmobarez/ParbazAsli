@@ -112,7 +112,7 @@ const ApproveStudentFlight = () => {
                                 }
 
                                 {
-                                    fullPracticalActivityData.data.index &&
+                                    fullPracticalActivityData.data.index >= 0 &&
                                         <div className='flex flex-col items-start col-span-1 gap-y-3'>
                                             <p className=' text-xs pr-2'> پرواز</p>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-3 w-full h-12 rounded-xl`}  id='data' >
@@ -132,11 +132,11 @@ const ApproveStudentFlight = () => {
                                 }
                                 
                                 {
-                                    fullPracticalActivityData.data.flightDurationInMinutes &&
+                                    fullPracticalActivityData.data.durationInMinutes &&
                                         <div className='flex flex-col items-start col-span-2 gap-y-3'>
                                             <p className=' text-xs pr-2'>زمان پرواز</p>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{fullPracticalActivityData.data.flightDurationInMinutes}min</p>
+                                                <p>{fullPracticalActivityData.data.durationInMinutes}min</p>
                                             </div>
                                         </div>
                                 }

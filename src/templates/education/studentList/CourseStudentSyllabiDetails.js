@@ -47,7 +47,7 @@ const CourseStudentSyllabiDetails = () => {
             {
                 syllabiData && syllabiData.data?.groundHandlingSyllabi?.length > 0 &&
                 <DropDownSyllabiData 
-                title={"سرفصل‌های پرواز"} 
+                title={"سرفصل‌های تمرین زمینی"} 
                 data={syllabiData.data?.groundHandlingSyllabi} 
                 percent={syllabiData.data?.groundHandlingSyllabiPercent} 
                 />

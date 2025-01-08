@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
 import PageTitle from '../../components/reuseable/PageTitle';
-import { useAcceptUserFlight, useACourseSyllabi } from '../../Utilities/Services/coursesQueries';
+import { useAcceptUserPracticalActivity, useACourseSyllabi } from '../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
 import TextInput from '../../components/inputs/textInput';
@@ -12,6 +12,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 // assets
 import SearchIcon from '../../components/icons/SearchIcon';
+import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
 
 const Syllabuses = () => {
 
@@ -19,13 +20,25 @@ const Syllabuses = () => {
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const { courseId, flightId } = useParams();
-    const { data: syllabiDataPractical } = useACourseSyllabi(courseId, 2);
-    const [searchSyllabus, setSearchSyllabus] = useState('');
-    const { mutate: mutateAccept, isLoading: isSubmitting} = useAcceptUserFlight();
 
+    
     const [counters, setCounters] = useState([]);
     const [description, setDescription] = useState('');
     const [countersSum, setCountersSum] = useState(0);
+    const [syllabiType, setSyllabiType] = useState(2)
+
+    const { data: syllabiDataPractical } = useACourseSyllabi(courseId, syllabiType);
+    const { data: fullPracticalActivityData } = usePracticalActivity(flightId);
+    const [searchSyllabus, setSearchSyllabus] = useState('');
+    const { mutate: mutateAccept, isLoading: isSubmitting} = useAcceptUserPracticalActivity();
+
+    useEffect(() => {
+        if(fullPracticalActivityData.data.groundHandling) {
+            // 3 for ground handling
+            setSyllabiType(3)
+        }
+    },[fullPracticalActivityData] )
+
 
     useEffect(() => {
         let sum = 0;
@@ -87,7 +100,7 @@ const Syllabuses = () => {
     
             // Construct the submit data
             const submitData = {
-                flightId: flightId,
+                practicalActivityId: flightId,
                 syllabi: updatedSyllabi,
                 description: description
             };
