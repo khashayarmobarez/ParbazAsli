@@ -4,8 +4,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
+import boxStyles from '../../../styles/DataBox.module.css';
+import ButtonStyles from '../../../styles/ButtonsBox.module.css';
 
 const PhoneVerificationCode = ({ handleFinalSubmit ,showPopup, setShowPopup, callback, reset, isLoading, codeRemainingTime, code, setCode, errMsg, codeLength, handleResendCode, isForEmail }) => {
 

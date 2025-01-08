@@ -11,7 +11,7 @@ import { getAuthSettings, selectAuthSettings } from '../../Utilities/ReduxToolKi
 import { postIsUserAuthenticated } from '../../Utilities/Services/AuthenticationApi';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // compponents
 import EmailInputSignup from '../../modules/authentication/Inputs/EmailInputSignUp';

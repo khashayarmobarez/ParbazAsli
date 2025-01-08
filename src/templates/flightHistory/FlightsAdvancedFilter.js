@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetAllFilters, selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 
 // styles
-import buttonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import buttonStyles from '../../styles/ButtonsBox.module.css';
 
 // assets
 import WingIcon from '../../components/icons/WingIcon'

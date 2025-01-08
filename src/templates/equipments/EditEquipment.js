@@ -11,8 +11,8 @@ import { useUserById } from '../../Utilities/Services/queries';
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
 import CloseIcon from '@mui/icons-material/Close';

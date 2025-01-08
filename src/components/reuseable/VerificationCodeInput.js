@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css';
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import boxStyles from '../../styles/DataBox.module.css';
+import ButtonStyles from '../../styles/ButtonsBox.module.css';
 
 const VerificationCodeInput = ({ showPopup, setShowPopup, callback, reset, isLoading }) => {
 

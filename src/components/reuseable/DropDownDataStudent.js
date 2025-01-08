@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // styles
-import dataStyles from '../../styles/Boxes/DataBox.module.css'
+import dataStyles from '../../styles/DataBox.module.css'
 
 // mui
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';

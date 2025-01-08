@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import ButtonStyles from '../../styles/ButtonsBox.module.css';
 import PageTitle from '../../components/reuseable/PageTitle';
 import { useAcceptUserPracticalActivity, useACourseSyllabi } from '../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFlightFilter, resetAllFilters } from '../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import ButtonStyles from '../../styles/ButtonsBox.module.css';
 
 // assets 
 import ArrowButton from '../../components/icons/ArrowButton';

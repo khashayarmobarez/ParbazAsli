@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 // styles and assets
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';

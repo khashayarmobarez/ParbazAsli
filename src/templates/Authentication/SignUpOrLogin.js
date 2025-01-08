@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // components
 import SignUp from '../../modules/authentication/SignUp';

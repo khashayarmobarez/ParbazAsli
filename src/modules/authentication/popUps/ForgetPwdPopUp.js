@@ -16,8 +16,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import UserIcon from '../../../components/icons/UserIcon';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css';
+import boxStyles from '../../../styles/DataBox.module.css';
+import ButtonStyles from '../../../styles/ButtonsBox.module.css';
 
 // components 
 import PasswordInputSignup from '../Inputs/PasswordInputSignup';

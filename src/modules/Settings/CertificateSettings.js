@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui 
 import AddIcon from '@mui/icons-material/Add';

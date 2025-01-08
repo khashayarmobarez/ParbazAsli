@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthSettings, getAuthSettings } from '../../Utilities/ReduxToolKit/features/AuthenticationData/AuthenticationSlice';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
 import { Box, CircularProgress } from '@mui/material';

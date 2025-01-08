@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // hooks
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';

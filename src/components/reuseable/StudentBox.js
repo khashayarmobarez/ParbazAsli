@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import gradients from '../../styles/gradients/Gradient.module.css'
+import gradients from '../../styles/Gradient.module.css'
 
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 

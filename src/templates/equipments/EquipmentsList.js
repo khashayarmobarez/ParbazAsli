@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mui/material';
 import { toast } from 'react-toastify';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import ButtonStyles from '../../styles/ButtonsBox.module.css';
 
 // assets
 import AddIcon from '@mui/icons-material/Add';

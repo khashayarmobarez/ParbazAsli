@@ -8,8 +8,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/DataBox.module.css';
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 
 const ChangePicPopUp = ({setShowPopup, showPopup, isUserPhotoAvailable}) => {

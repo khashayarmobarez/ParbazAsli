@@ -6,7 +6,7 @@ import jalaali from 'jalaali-js';
 import PageTitle from '../../components/reuseable/PageTitle';
 
 // style
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 import { Outlet } from 'react-router-dom';
 
 // redux

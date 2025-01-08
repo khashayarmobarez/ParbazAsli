@@ -7,7 +7,7 @@ import {  useNavigate } from 'react-router-dom';
 import CertificateIcon from '../../components/icons/CertificateIcon'
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';

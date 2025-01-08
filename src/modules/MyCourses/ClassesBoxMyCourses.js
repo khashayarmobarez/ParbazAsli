@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import useConvertMinutesToHours from '../../Utilities/Hooks/useConvertToHoursAndMinutes';
 
 // styles
-import gradients from '../../styles/gradients/Gradient.module.css'
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import gradients from '../../styles/Gradient.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 // mui
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';

@@ -13,8 +13,8 @@ import Attention from '../../components/icons/Attention'
 import ArrowButton from '../../components/icons/ArrowButton';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 // queries
 import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../../Utilities/Services/StudentCoursesQueries';

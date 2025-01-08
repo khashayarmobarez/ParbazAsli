@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import buttonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
+import buttonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
 import { Avatar } from '@mui/material';

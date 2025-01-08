@@ -12,8 +12,8 @@ import { useChangePassword } from '../../../Utilities/Services/userQueries';
 import CloseIcon from '@mui/icons-material/Close';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css';
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/DataBox.module.css';
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 import PasswordInputSignup from '../../authentication/Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from '../../authentication/Inputs/ConfirmPassInputSignup';
 import PasswordInputLogin from '../../authentication/Inputs/PasswordInputLogin';

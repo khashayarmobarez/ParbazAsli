@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { selectSettings } from '../../Utilities/ReduxToolKit/features/SettingsData/settingsSlice';
 
 // styles
-import GradientStyles from '../../styles/gradients/Gradient.module.css'
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import GradientStyles from '../../styles/Gradient.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
 import AddIcon from '@mui/icons-material/Add';

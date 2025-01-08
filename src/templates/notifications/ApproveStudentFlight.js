@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // queries
 import { useDeclineUserFlight, useUserCourseFlight } from '../../Utilities/Services/coursesQueries';

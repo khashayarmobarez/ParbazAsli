@@ -9,8 +9,8 @@ import { useAStudentCourses } from '../../../Utilities/Services/coursesQueries';
 import PageTitle from '../../../components/reuseable/PageTitle';
 
 // styles
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/DataBox.module.css'
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // assets
 import ArrowButton from '../../../components/icons/ArrowButton';

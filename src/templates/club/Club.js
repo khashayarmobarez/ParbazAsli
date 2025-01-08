@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // styles
-import GradientStyles from '../../styles/gradients/Gradient.module.css'
+import GradientStyles from '../../styles/Gradient.module.css'
 
 // assets
 import ParachuteIcon from '../../components/icons/ParachuteIcon'

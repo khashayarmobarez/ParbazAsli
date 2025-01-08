@@ -5,7 +5,7 @@ import PageTitle from '../../../components/reuseable/PageTitle';
 import SearchInput from '../../../components/inputs/SearchInput';
 
 // styles
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 import FlightDetailsBox from '../../../components/reuseable/FlightDetailsBox';
 
 

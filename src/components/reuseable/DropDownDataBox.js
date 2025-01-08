@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // styles
-import dataStyles from '../../styles/Boxes/DataBox.module.css'
+import dataStyles from '../../styles/DataBox.module.css'
 
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';

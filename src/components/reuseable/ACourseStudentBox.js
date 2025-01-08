@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
-import gradients from '../../styles/gradients/Gradient.module.css'
+import gradients from '../../styles/Gradient.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -17,7 +17,6 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
         isForClub && navigate(`/club/clubCourses/studentsListClub/aStudentClubCourses/${studentData.id}`)
     }
     
-
 
     return (
             <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 p-4 rounded-2xl text-sm`}

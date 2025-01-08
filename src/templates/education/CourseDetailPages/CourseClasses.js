@@ -5,8 +5,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 
 // styles
-import dataBox from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import dataBox from '../../../styles/DataBox.module.css'
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // queries
 import { useACourse, useACourseClasses } from '../../../Utilities/Services/coursesQueries';

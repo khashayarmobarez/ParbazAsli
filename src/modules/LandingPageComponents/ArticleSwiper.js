@@ -14,7 +14,7 @@ import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined';
 
 // styles
 import styles from './ArticleSwiper.module.css';
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // Queries
 import { useBlogs } from '../../Utilities/Services/queries';

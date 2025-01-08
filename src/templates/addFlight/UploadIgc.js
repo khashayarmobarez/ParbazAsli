@@ -13,7 +13,7 @@ import IGC from '../../assets/icons/IGC-Download.svg'
 import ArrowButton from '../../components/icons/ArrowButton'
 
 // style
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 const UploadIgc = () => {
 

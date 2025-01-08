@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 // assets
 import UserIcon from '../../components/icons/UserIcon'

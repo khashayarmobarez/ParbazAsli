@@ -4,8 +4,8 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 const SubmitForm = ({ showPopup, setShowPopup, handlePost, text, isLoading }) => {
 

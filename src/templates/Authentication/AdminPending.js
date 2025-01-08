@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 // button
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // components
 import UserDataBox from '../../modules/Profile/UserDataBox';

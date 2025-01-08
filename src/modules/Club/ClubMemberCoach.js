@@ -1,9 +1,9 @@
 import React from 'react';
 
 // styles
-import dataBox from '../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
-import gradientStyles from '../../styles/gradients/Gradient.module.css'
+import dataBox from '../../styles/DataBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
+import gradientStyles from '../../styles/Gradient.module.css'
 
 // mui
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';

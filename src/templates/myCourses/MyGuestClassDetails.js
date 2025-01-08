@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useAGuestUserClass } from '../../Utilities/Services/StudentCoursesQueries';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 // comps
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';

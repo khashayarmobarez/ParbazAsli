@@ -9,8 +9,8 @@ import { useTriggerClubStatus, useTriggerCourseStatus, useTriggerStudentStatus }
 import CloseIcon from '@mui/icons-material/Close';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css';
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import boxStyles from '../../styles/DataBox.module.css';
+import ButtonStyles from '../../styles/ButtonsBox.module.css';
 import { toast } from 'react-toastify';
 import { useTriggerEquipmentStatus } from '../../Utilities/Services/equipmentQueries';
 

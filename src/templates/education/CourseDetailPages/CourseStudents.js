@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import gradients from '../../../styles/gradients/Gradient.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import gradients from '../../../styles/Gradient.module.css'
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';

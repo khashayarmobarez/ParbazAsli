@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 // assets
 import UserIcon from '../../components/icons/UserIcon'

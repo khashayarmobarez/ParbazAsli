@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs/Inputs.module.css';
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css';
+import ButtonStyles from '../../styles/ButtonsBox.module.css';
 import TextInput from '../inputs/textInput';
 import SearchIcon from '../../components/icons/SearchIcon';
 import Checkbox from '../../modules/authentication/Inputs/CheckBox';  // Update the import path as needed

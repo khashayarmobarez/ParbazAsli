@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
 // styles
-import gradients from '../../../styles/gradients/Gradient.module.css'
+import gradients from '../../../styles/Gradient.module.css'
 
 
 // assets

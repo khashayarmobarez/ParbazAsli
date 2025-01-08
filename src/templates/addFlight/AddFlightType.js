@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // styles
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 // queries
 import { usePracticalActivityTypes } from '../../Utilities/Services/addFlightQueries';

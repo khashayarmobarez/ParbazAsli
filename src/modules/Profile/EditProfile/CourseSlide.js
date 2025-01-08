@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // style
-import boxStyles from '../../../styles/Boxes/DataBox.module.css'
-import ButtonStyles from '../../../styles/Buttons/ButtonsBox.module.css'
+import boxStyles from '../../../styles/DataBox.module.css'
+import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // mui
 import Box from '@mui/material/Box';

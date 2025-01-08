@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 // styles
 import styles from '../styles/others/Navbar.module.css'
-import buttonStyles from '../styles/Buttons/ButtonsBox.module.css'
+import buttonStyles from '../styles/ButtonsBox.module.css'
 
 // queries 
 import { useUserData } from '../Utilities/Services/userQueries';

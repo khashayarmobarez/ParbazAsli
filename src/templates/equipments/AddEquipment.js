@@ -17,7 +17,7 @@ import { useAddEquipment } from '../../Utilities/Services/equipmentQueries';
 import { useUserById } from '../../Utilities/Services/queries';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assets
 import ClothesTag from '../../components/icons/ClothesTag';

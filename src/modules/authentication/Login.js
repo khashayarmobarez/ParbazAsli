@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { postIsUserAuthenticated } from '../../Utilities/Services/AuthenticationApi';
 
 // styles
-import ButtonStyles from '../../styles/Buttons/ButtonsBox.module.css'
+import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
 import CircularProgress from '@mui/material/CircularProgress';

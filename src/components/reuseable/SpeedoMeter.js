@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import SpeedoMeterProvider from '../../Utilities/Providers/SpeedoMeterProvider';
 
-import boxStyles from '../../styles/Boxes/DataBox.module.css'
+import boxStyles from '../../styles/DataBox.module.css'
 
 import { useNavigate } from 'react-router-dom';
 
