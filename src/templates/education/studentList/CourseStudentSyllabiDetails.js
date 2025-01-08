@@ -37,11 +37,11 @@ const CourseStudentSyllabiDetails = () => {
                 />
             }
             {
-                syllabiData && syllabiData.data?.practicalSyllabi?.length > 0 &&
+                syllabiData && syllabiData.data?.flightSyllabi?.length > 0 &&
                 <DropDownSyllabiData 
-                title={"سرفصل‌های عملی"} 
-                data={syllabiData.data?.practicalSyllabi} 
-                percent={syllabiData.data?.practicalSyllabiPercent} 
+                title={"سرفصل‌های پرواز"} 
+                data={syllabiData.data?.flightSyllabi} 
+                percent={syllabiData.data?.flightSyllabiPercent} 
                 />
             }
         </div>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import boxStyles from '../../styles/Boxes/DataBox.module.css'
 
 // queries
-import { useFlightTypes } from '../../Utilities/Services/addFlightQueries';
+import { usePracticalActivityTypes } from '../../Utilities/Services/addFlightQueries';
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
@@ -33,7 +33,7 @@ const AddFlightType = () => {
     const [showErrorPopUp, setShowErrorPopUp] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
 
-    const { data: flightTypesData } = useFlightTypes()
+    const { data: flightTypesData } = usePracticalActivityTypes()
     
 
     const handleSelectSetFlightType = (flightType) => {
