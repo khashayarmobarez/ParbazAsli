@@ -39,11 +39,11 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 // get a flight
-    const getAUserFlight = async (flightId) => {
+    const GetPracticalActivity = async (practicalActivityId) => {
         const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Flight/GetFlight?flightId=${flightId}`, {
+            const response = await axios.get(`${API_BASE_URL}/practicalActivity/GetPracticalActivity?practicalActivityId=${practicalActivityId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -59,11 +59,11 @@ import { API_BASE_URL } from "../Providers/apiUrl";
         }
     };
 
-    const useAUserFlight = (flightId) => {
-        return useQuery(['aFlight', flightId], () => getAUserFlight(flightId));
+    const usePracticalActivity = (practicalActivityId) => {
+        return useQuery(['usePracticalActivity', practicalActivityId], () => GetPracticalActivity(practicalActivityId));
     };
 
 
 
 
-export { usePracticalActivities, useAUserFlight };
+export { usePracticalActivities, usePracticalActivity };
