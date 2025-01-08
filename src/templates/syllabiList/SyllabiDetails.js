@@ -64,7 +64,7 @@ const SyllabiDetails = () => {
                                             '{0}',
                                             `
                                             <div class='w-full min-h-6 rounded-2xl bg-bgCard pb-4  mt-4'>
-                                                <div class='w-full flex bg-bgOutputSelectedOption h-11 text-textAccent items-center justify-center text-base font-bold rounded-2xl'>
+                                                <div class='w-full flex bg-bgOutputSelectedOption h-11 text-textAccent items-center justify-center text-base font-bold rounded-t-2xl'>
                                                     <p class='h-full flex items-center'>تمرین زمینی</p>
                                                 </div>
                                                 ${syllabiData.data?.groundHandlingSyllabi.map(syllabi =>
@@ -78,13 +78,16 @@ const SyllabiDetails = () => {
                                                     `
                                                 ).join('')}
                                             </div>
-                                            <div class='w-full min-h-6 rounded-2xl bg-bgCard p-3 mt-4'>
+                                            <div class='w-full min-h-6 rounded-2xl bg-bgCard pb-2 mt-4'>
+                                                <div class='w-full flex bg-bgOutputSelectedOption h-11 text-textAccent items-center justify-center text-base font-bold rounded-t-2xl'>
+                                                    <p class='h-full flex items-center'>پرواز</p>
+                                                </div>
                                                 ${syllabiData.data?.flightSyllabi.map(syllabi =>
-                                                    `<div class='w-full flex justify-start items-start gap-x-2 my-4' key=${syllabi.id}>
+                                                    `<div class='w-full flex justify-start items-start gap-x-2 m-4' key=${syllabi.id}>
                                                         <p class='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite font-bold rounded-lg'>
                                                             ${EnglishToPersianNumber(syllabi.order)}
                                                         </p>
-                                                        <p class='text-start text-sm'>${syllabi.description}</p>
+                                                        <p class='text-start text-sm w-[80%]'>${syllabi.description}</p>
                                                     </div>`
                                                 ).join('')}
                                             </div>
@@ -92,13 +95,13 @@ const SyllabiDetails = () => {
                                         )
                                         .replace(
                                             '{1}',
-                                            `<div class='w-full min-h-6 rounded-2xl bg-bgCard p-3 mt-4'>
+                                            `<div class='w-full min-h-6 rounded-2xl bg-bgCard p-4 mt-4'>
                                                 ${syllabiData.data?.theorySyllabi.map(syllabi =>
-                                                    `<div class='w-full flex justify-start items-start gap-x-2 my-4' key=${syllabi.id}>
+                                                    `<div class='w-full flex justify-start items-start gap-x-2 my-4 ' key=${syllabi.id}>
                                                         <p class='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefaultOpposite font-medium rounded-lg'>
                                                             ${EnglishToPersianNumber(syllabi.order)}
                                                         </p>
-                                                        <p class='text-start text-sm'>${syllabi.description}</p>
+                                                        <p class='text-start text-sm w-[80%]'>${syllabi.description}</p>
                                                     </div>`
                                                 ).join('')}
                                             </div>`

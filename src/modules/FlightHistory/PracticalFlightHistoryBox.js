@@ -119,7 +119,7 @@ const PracticalFlightHistoryBox = (props) => {
                         </div>
                         {/* Trigger flight status */}
                         {flightBaseData.status === 'Pending' && location.pathname.includes('/education/courseDetails/studentDetails') &&
-                            <div className='w-full min-h-16 rounded-b-2xl z-0 mt-[-1rem] pt-5 flex justify-between px-4' 
+                            <div className='w-full min-h-14 rounded-b-2xl z-0 mt-[-1rem] pt-4 flex justify-between px-4' 
                             style={{background: 'var(--bg-output-selected-option)',
                                 boxShadow: 'var(--shadow-all)'}}>
 
@@ -130,7 +130,8 @@ const PracticalFlightHistoryBox = (props) => {
 
                                 <div className='flex gap-x-6 items-center px-2'>
 
-                                    {declineLoading && 
+                                    {
+                                    declineLoading && 
                                         <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
                                             <CircularProgress sx={{width:'1rem'}} /> 
                                         </Box>

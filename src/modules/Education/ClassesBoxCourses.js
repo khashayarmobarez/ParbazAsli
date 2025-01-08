@@ -71,9 +71,9 @@ const ClassesBoxCourses = (props) => {
                         </div>
 
                         {isExpanded && classDetails &&
-                            <form className={` ${boxStyles.classDetails} w-full rounded-xl flex flex-col pt-10 pb-8 items-center`}>
+                            <form className={` ${boxStyles.classDetails} w-full rounded-2xl flex flex-col p-4 items-center`}>
 
-                            <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
+                            <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full'>
             
                                 <div className='flex flex-col items-start gap-y-2'>
                                     <p className=' text-sm'>نام</p>
@@ -115,21 +115,21 @@ const ClassesBoxCourses = (props) => {
 
                             {
                                 !extraData &&
-                                <div className='w-full flex justify-center px-4 mt-12'>
+                                <div className='w-full flex justify-center mt-12'>
                                     <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >اطلاعات بیشتر...</button>
                                 </div>
                             }
             
                             { extraData &&
-                                <div id='no grid list' className='w-full items-center flex flex-col gap-y-5 mt-6'>
+                                <div id='no grid list' className='w-full items-center flex flex-col gap-y-6 '>
 
-                                    <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
+                                    <div className=' w-full flex flex-col items-start justify-between gap-y-2 mt-6' >
                                         <p>توضیحات کلاس</p>
                                         <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{classDetails.data.description}</p>
                                     </div>
                     
                     
-                                    <div className=' w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
+                                    <div className=' w-full flex flex-col items-start gap-y-2 '>
                                             <p className=' text-sm'>مباحث مطرح شده</p>
                                             {   classDetails &&
                                                 classDetails.data.syllabi.map((syllabus) => (
@@ -143,7 +143,7 @@ const ClassesBoxCourses = (props) => {
                 
                                     {
                                         classDetails.data.userCourses.length > 0 &&
-                                            <div className=' flex flex-col items-start gap-y-2 mx-4 w-[90%]'>
+                                            <div className=' flex flex-col items-start gap-y-2 mx-4 w-full'>
                                                     <p className=' text-sm'>هنرجویان</p>
                                                     <div className='w-full flex flex-col gap-y-5'>
                                                     {
@@ -160,7 +160,7 @@ const ClassesBoxCourses = (props) => {
                 
                                     {
                                     classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
-                                        <div className=' flex flex-col items-start gap-y-2 mx-4 w-[90%]'>
+                                        <div className=' flex flex-col items-start gap-y-2 mx-4 w-full'>
                                                 <p className=' text-sm'>هنرجویان مهمان</p>
                                                 <div className='w-full flex flex-col gap-y-5'>   
                                                 {
@@ -177,7 +177,7 @@ const ClassesBoxCourses = (props) => {
 
                             {
                                 userRole === 'coach' && extraData &&
-                                <div className='w-full flex justify-center px-4 mt-12'>
+                                <div className='w-full flex justify-center mt-12'>
                                     <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >بستن اطلاعات بیشتر</button>
                                 </div>
                             }
