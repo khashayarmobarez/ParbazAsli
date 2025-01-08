@@ -84,7 +84,6 @@ import CourseStudentDetails from './templates/education/studentList/CourseStuden
 import CourseStudentPracticalDetails from './templates/education/studentList/CourseStudentPracticalDetails';
 import CourseStudentTheoryDetails from './templates/education/studentList/CourseStudentTheoryDetails';
 import CourseStudentSyllabiDetails from './templates/education/studentList/CourseStudentSyllabiDetails';
-import CourseStudentAFlightDetails from './templates/education/studentList/CourseStudentAFlightDetails';
 import SyllabiDetails from './templates/syllabiList/SyllabiDetails';
 import StudentsList from './templates/education/studentList/StudentsList';
 import AStudentCourses from './templates/education/studentList/AStudentCourses';
@@ -282,7 +281,7 @@ function App() {
                 <Route path="theory" element={<CourseStudentTheoryDetails />} />
                 <Route path="syllabi" element={<CourseStudentSyllabiDetails />} />
               </Route>
-              <Route path='/education/courseDetails/studentDetails/aStudentFlight/:flightId' element={<CourseStudentAFlightDetails />} />
+              <Route path='/education/courseDetails/studentDetails/aStudentFlight/:id' element={<FlightHistoryPage />} />
               {/* id 1 is for active students and id 2 is for history student */}
               <Route path='/education/studentsList/:id' element={<StudentsList />} />
               <Route path='/education/studentsList/aStudentCourses/:studentId' element={<AStudentCourses />} />
@@ -352,7 +351,7 @@ function App() {
                 <Route path="theory" element={<CourseStudentTheoryDetails />} />
                 <Route path="syllabi" element={<CourseStudentSyllabiDetails />} />
               </Route>
-              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:flightId' element={<CourseStudentAFlightDetails />} />
+              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:id' element={<FlightHistoryPage />} />
               {/* id 1 is for active students and id 2 is for history student */}
               <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsList />} />
               <Route path='/club/clubCourses/studentsListClub/aStudentClubCourses/:studentId' element={<AStudentCourses />} />
