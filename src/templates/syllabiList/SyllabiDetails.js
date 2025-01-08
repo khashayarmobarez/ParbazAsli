@@ -64,7 +64,7 @@ const SyllabiDetails = () => {
                                             '{0}',
                                             `
                                             <div class='w-full min-h-6 rounded-2xl bg-bgCard pb-4  mt-4'>
-                                                <div class='w-full flex bg-bgOutputDefault h-11 text-textAccent items-center justify-center text-base font-bold rounded-2xl'>
+                                                <div class='w-full flex bg-bgOutputSelectedOption h-11 text-textAccent items-center justify-center text-base font-bold rounded-2xl'>
                                                     <p class='h-full flex items-center'>تمرین زمینی</p>
                                                 </div>
                                                 ${syllabiData.data?.groundHandlingSyllabi.map(syllabi =>
