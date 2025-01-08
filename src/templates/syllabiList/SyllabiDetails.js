@@ -11,6 +11,7 @@ import { useSyllabiForLevels, useSyllabusLandingContent } from '../../Utilities/
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import SyllabiItemsContainer from '../../modules/SyllabiList/SyllabiItemsContainer';
 
 
 
@@ -109,16 +110,12 @@ const SyllabiDetails = () => {
                                 )
                             }}
                         />
-                    ) : (
-                        syllabiDataList && syllabiDataList.data?.map((syllabi) => (
-                            <div className='w-full flex items-center justify-start gap-x-2 ' key={syllabi.id}>
-                                {syllabi.type === 'Theory' && <p className='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite rounded-lg'>تئوری</p>}
-                                {syllabi.type === 'Flight' && <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefault rounded-lg'>پرواز</p>}
-                                {syllabi.type === 'GroundHandling' && <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefault rounded-lg'>تمرین زمینی</p>}
-                                <p className='text-start text-sm'>{syllabi.description}</p>
-                            </div>
-                        ))
-                    )}
+                    )
+                     : 
+                    (
+                        <SyllabiItemsContainer syllabiDataList={syllabiDataList} />
+                    )
+                    }
                 </div>
             </div>
         </div>
