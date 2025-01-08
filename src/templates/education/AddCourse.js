@@ -556,13 +556,13 @@ const AddCourse = () => {
                         }
 
                             <DropdownInput 
-                            id={'ddi1'} 
-                            isDeselectDeactivated={true}
-                            name={'نوع دوره'}
-                            options={courseTypeOptionData}
-                            selectedOption={selectedClassType}
-                            handleSelectChange={handleSelectClassType}
-                            icon={<ColorTagsIcon  />}
+                                id={'ddi1'} 
+                                isDeselectDeactivated={true}
+                                name={'نوع دوره'}
+                                options={courseTypeOptionData}
+                                selectedOption={selectedClassType}
+                                handleSelectChange={handleSelectClassType}
+                                icon={<ColorTagsIcon  />}
                             />
 
                             {selectedClassType && 

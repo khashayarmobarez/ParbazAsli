@@ -114,6 +114,7 @@ const SyllabiDetails = () => {
                             <div className='w-full flex items-center justify-start gap-x-2 ' key={syllabi.id}>
                                 {syllabi.type === 'Theory' && <p className='px-4 text-xs py-1 bg-textAccent text-textDefaultOpposite rounded-lg'>تئوری</p>}
                                 {syllabi.type === 'Flight' && <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefault rounded-lg'>پرواز</p>}
+                                {syllabi.type === 'GroundHandling' && <p className='px-4 text-xs py-1 bg-textButtonMainDisabled text-textDefault rounded-lg'>تمرین زمینی</p>}
                                 <p className='text-start text-sm'>{syllabi.description}</p>
                             </div>
                         ))

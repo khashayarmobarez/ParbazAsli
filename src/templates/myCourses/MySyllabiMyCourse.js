@@ -28,11 +28,27 @@ const MySyllabiMyCourse = () => {
             }
             {
                 syllabiData && syllabiData.data.theorySyllabi.length > 0 &&
-                <DropDownSyllabiData title={"سرفصل‌های تئوری"} data={syllabiData.data.theorySyllabi} percent={syllabiData.data.theorySyllabiPercent}  />
+                <DropDownSyllabiData 
+                title={"سرفصل‌های تئوری"} 
+                data={syllabiData.data.theorySyllabi} 
+                percent={syllabiData.data.theorySyllabiPercent}  
+                />
             }
             {
                 syllabiData && syllabiData.data.flightSyllabi.length > 0 &&
-                <DropDownSyllabiData title={"سرفصل‌های پرواز"} data={syllabiData.data.flightSyllabi} percent={syllabiData.data.flightSyllabiPercent} />
+                <DropDownSyllabiData 
+                title={"سرفصل‌های پرواز"} 
+                data={syllabiData.data.flightSyllabi} 
+                percent={syllabiData.data.flightSyllabiPercent} 
+                />
+            }
+            {
+                syllabiData && syllabiData.data.groundHandlingSyllabi.length > 0 &&
+                <DropDownSyllabiData 
+                title={"سرفصل‌های تمرین زمینی"} 
+                data={syllabiData.data.groundHandlingSyllabi} 
+                percent={syllabiData.data.groundHandlingSyllabiPercent} 
+                />
             }
         </div>
     );

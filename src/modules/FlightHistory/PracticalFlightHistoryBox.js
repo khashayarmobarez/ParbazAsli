@@ -121,11 +121,11 @@ const PracticalFlightHistoryBox = (props) => {
                         {flightBaseData.status === 'Pending' && location.pathname.includes('/education/courseDetails/studentDetails') &&
                             <div className='w-full min-h-14 rounded-b-2xl z-0 mt-[-1rem] pt-4 flex justify-between px-4' 
                             style={{background: 'var(--bg-output-selected-option)',
-                                boxShadow: 'var(--shadow-all)'}}>
+                            boxShadow: 'var(--shadow-all)'}}>
 
                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                     <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
-                                    <p>آیا این پرواز مورد تایید شما است؟</p>
+                                    <p>آیا این فعالیت مورد تایید شما است؟</p>
                                 </div>
 
                                 <div className='flex gap-x-6 items-center px-2'>
