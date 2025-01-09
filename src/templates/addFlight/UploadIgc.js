@@ -102,7 +102,7 @@ const UploadIgc = () => {
                 </div>
 
                 <span>
-                    <img alt='icon' className='w-20' src={IGC} />
+                    <img alt='icon' className='w-20 mt-[18px]' src={IGC} />
                 </span>
 
                 <p className='text-center -mt-1 font-semibold text-textWarning'>(اختیاری)</p>
