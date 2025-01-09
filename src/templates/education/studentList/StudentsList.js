@@ -34,9 +34,9 @@ const StudentsList = () => {
 
 
     return (
-        <div className='flex flex-col mt-14 items-center pb-14'>
+        <div className='flex flex-col mt-10 items-center pb-14 md:mt-16'>
 
-            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
+            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[55%]'>
 
                 { 
                 (courseCountsLoading || AllStudentLoading) &&
