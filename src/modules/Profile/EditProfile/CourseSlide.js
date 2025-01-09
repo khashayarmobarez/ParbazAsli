@@ -23,7 +23,7 @@ const CourseSlide = ({courseData}) => {
     },[courseData])
 
     return (
-        <div className={`${boxStyles.containerDarkmode} rounded-3xl h-[228px] z-0 w-[98%] md:w-full flex flex-col justify-start items-center p-4 gap-y-4 mr-1 mt-1`}>
+        <div className={`${boxStyles.containerDarkmode} rounded-[34px] h-[228px] z-0 w-[98%] md:w-full flex flex-col justify-start items-center p-4 gap-y-4 mr-1 mt-1`}>
 
             <div className='w-full flex justify-between'>
                 <p className=' text-base'>{courseData.name}</p>
