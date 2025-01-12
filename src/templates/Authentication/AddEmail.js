@@ -27,6 +27,9 @@ import { API_BASE_URL } from '../../Utilities/Providers/apiUrl';
 
 const AddEmail = () => {
 
+    const isUserAuthenticated = Cookies.get('isUserAuthenticated')
+    const appTheme = Cookies.get('themeApplied') || 'dark';
+
     const authSettings = useSelector(selectAuthSettings);
     const {
         loading,
@@ -43,8 +46,12 @@ const AddEmail = () => {
         console.log(authSettings.settings)
     }, [dispatch]);
 
-    const isUserAuthenticated = Cookies.get('isUserAuthenticated')
-    const appTheme = Cookies.get('themeApplied') || 'dark';
+    if(isUserAuthenticated !== 'noCertificate') {
+        // reload
+        window.location.reload();    
+    }
+
+    
     
     const token = Cookies.get('token')
 

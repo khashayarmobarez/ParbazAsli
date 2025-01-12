@@ -12,12 +12,12 @@ import PageTitle from '../../components/reuseable/PageTitle';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAddFlight, updateCourseName, updateWingType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { selectAddFlight, updateCourseName, updateWingType, updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType, updateActivityType, updateHasNecessaryFlightEquipment, updateHasNecessaryGroundHandlingEquipments, updateFlightEquipmentValidationError, updateGroundHandlingEquipmentValidationError, updateInvalidFlightEquipmentType, updateInvalidGroundHandlingEquipmentType, updateGroundHandlingCount } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // comps
 import StandardPopup from '../../components/reuseable/StandardPopup';
 import Attention from '../../components/icons/Attention';
+import ActivityTypeLogPopUp from '../../modules/addFlight/ActivityTypeLogPopUp';
 
 
 const AddFlightType = () => {
@@ -32,6 +32,17 @@ const AddFlightType = () => {
 
     const [showErrorPopUp, setShowErrorPopUp] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
+    const [showSelectActivityTypePopUp, setShowSelectActivityTypePopUp] = useState(false)
+
+    // redux
+    const { 
+        hasNecessaryGroundHandlingEquipments, 
+        hasNecessaryFlightEquipments,
+        flightEquipmentValidationError,
+        groundHandlingEquipmentValidationError,
+        invalidFlightEquipmentType,
+        invalidGroundHandlingEquipmentType,
+    } = useSelector(selectAddFlight)
 
     const { data: flightTypesData } = usePracticalActivityTypes()
     
@@ -43,16 +54,24 @@ const AddFlightType = () => {
             dispatch(resetFlightDataExceptType());
         }
 
-        if(!flightType.hasNecessaryFlightEquipment) {
-            setShowErrorPopUp(true)
-            setErrorMessage(flightType?.equipmentValidationError)
-            return;
-        }
+        // check if the user lack the equipments
+        dispatch(updateHasNecessaryFlightEquipment(flightType.hasNecessaryFlightEquipment));
+        dispatch(updateHasNecessaryGroundHandlingEquipments(flightType.hasNecessaryGroundHandlingEquipment));
+
+        // save the error message for equipments
+        dispatch(updateFlightEquipmentValidationError(flightType.flightEquipmentValidationError));
+        dispatch(updateGroundHandlingEquipmentValidationError(flightType.groundHandlingEquipmentValidationError));
+        
+        // the equipment that needs to be added type
+        dispatch(updateInvalidFlightEquipmentType(flightType.invalidFlightEquipmentType));
+        dispatch(updateInvalidGroundHandlingEquipmentType(flightType.invalidGroundHandlingEquipmentType));
+
 
         // dispatchin base data to redux
         dispatch(updateFlightType(flightType.type));
         dispatch(updateWingType(flightType.wingType));
-        dispatch(updateFlightCount(flightType.flightsCount));
+        dispatch(updateFlightCount(flightType.flightCount));
+        dispatch(updateGroundHandlingCount(flightType.groundHandlingCount));
 
         if(flightType.type === 'Course') {
             // dispatching course data
@@ -67,9 +86,34 @@ const AddFlightType = () => {
             dispatch(updateCourseId(''));
         }
 
-        navigate('/addFlight/UploadIgc')
+        setShowSelectActivityTypePopUp(true)
     };
 
+    const handleSetActivityType = (type) => {
+
+        dispatch(updateActivityType(type))
+
+
+        // lack of equipment error handling
+        if(type === 'flight' && !hasNecessaryFlightEquipments) {
+            setErrorMessage(flightEquipmentValidationError)
+        } else if(type === 'groundHandling' && !hasNecessaryGroundHandlingEquipments) {
+            setErrorMessage(groundHandlingEquipmentValidationError)
+        }
+        
+        // navigating to log activity based on the user choice
+        if(type === 'flight' && hasNecessaryFlightEquipments) {
+            navigate('/addFlight/UploadIgc')
+            return
+        } else if(type === 'groundHandling' && hasNecessaryGroundHandlingEquipments) {
+            navigate('/addFlight/AddGroundHandlingSituation')
+            return
+        } else {
+            setShowErrorPopUp(true)
+            setShowSelectActivityTypePopUp(false)
+        }
+
+    }
 
 
     const handleNavigateToEquipment = () => {
@@ -140,6 +184,12 @@ const AddFlightType = () => {
                 </div>
 
             </div>
+
+            <ActivityTypeLogPopUp
+                showPopup={showSelectActivityTypePopUp}
+                setShowPopup={setShowSelectActivityTypePopUp}
+                handleClick={handleSetActivityType}
+            />
 
             <StandardPopup 
                 showPopup={showErrorPopUp} 

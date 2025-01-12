@@ -3,7 +3,7 @@ import React from 'react';
 // mui
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivation}) => {
+const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivation, hasNoArrow}) => {
     return (
         <div className='flex justify-between w-full' onClick={onClickActivation}>
             
@@ -30,9 +30,12 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
                     <div className={`w-full h-[1px] ${isActive ? 'bg-bgDropdownActive' : 'bg-bgDropdownDefault'}`} ></div>
                 </div>
 
-                <span onClick={onClick} className={`transition-transform duration-300 transform ${isActive ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
-                    <ArrowBackIosIcon sx={{ color: isActive ? 'var(--text-accent)' : 'var(--bg-dropdown-default)' }} />
-                </span>
+                {
+                    !hasNoArrow &&
+                    <span onClick={onClick} className={`transition-transform duration-300 transform ${isActive ? 'rotate-90 mt-2' : 'rotate-[-90deg] mt-[-10px]'}`}>
+                        <ArrowBackIosIcon sx={{ color: isActive ? 'var(--text-accent)' : 'var(--bg-dropdown-default)' }} />
+                    </span>
+                }
 
             </div>
 

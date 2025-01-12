@@ -17,10 +17,11 @@ const AddFlight = () => {
 
     const dispatch = useDispatch()
 
-    const { flightCount, flightDuration, clubName, coachName , takeoffTime, landingTime, flightType, courseName } = useSelector(selectAddFlight)
+    const { flightCount, flightDuration, clubName, coachName , takeoffTime, landingTime, flightType, courseName, activityType, groundHandlingCount } = useSelector(selectAddFlight)
 
     const today = new Date();
     const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
+
 
     // calculate the flight duration
     useEffect(() => {
@@ -69,22 +70,32 @@ const AddFlight = () => {
     }
 
     const shamsiFlightData = formattedDate ? gregorianToShamsi(formattedDate) : '';
+    
 
 
     return (
         <div className='flex flex-col items-center pt-12 pb-4'>
             <div className=' w-full md:w-[75%] flex flex-col items-center gap-y-8 md:gap-y-10 lg:w-[55%]'>
 
-            <PageTitle title={'ثبت پرواز'} navigateTo={-1} />
+            <PageTitle 
+            title={
+            activityType === 'flight' 
+                ? 'ثبت پرواز' 
+                : activityType === 'groundHandling' 
+                ? 'ثبت تمرین زمینی' 
+                : 'ثبت فعالیت'
+            }
+            navigateTo={-1}
+            />
 
             <form className={` ${boxStyles.classDetails} w-[90%] rounded-xl flex flex-col gap-y-8`}>
 
                     <div className=' grid grid-cols-12 gap-4 w-full p-4 md:grid-cols-12 md:gap-y-4'>
 
                         <div className='flex w-full flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
-                            <p className=' text-xs pr-2'>پرواز</p>
+                            <p className=' text-xs pr-2'>{activityType === 'flight' ? 'پرواز' : 'تمرین زمینی'}</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                <p>{flightCount && flightCount}</p>
+                                <p>{activityType === 'flight' ? flightCount : groundHandlingCount}</p>
                             </div>
                         </div>
                         

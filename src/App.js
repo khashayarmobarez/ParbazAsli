@@ -91,6 +91,7 @@ import AddEquipment from './templates/equipments/AddEquipment';
 import EquipmentsList from './templates/equipments/EquipmentsList';
 import Navbar from './templates/Navbar';
 import RenewCertificate from './templates/settings/RenewCertificate';
+import AddGroundHandlingSituation from './templates/addFlight/AddGroundHandlingSituation';
 
 
 const queryClient = new QueryClient();
@@ -309,6 +310,8 @@ function App() {
                   <Route path="AddSituation" element={ <AddSituation />}  />
                   <Route path="AddTakeoff" element={ <AddTakeoff />} />
                   <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
+                  {/* ground handling */}
+                  <Route path="AddGroundHandlingSituation" element={ <AddGroundHandlingSituation />} />
               </Route>
 
 
@@ -351,9 +354,9 @@ function App() {
                 <Route path="theory" element={<CourseStudentTheoryDetails />} />
                 <Route path="syllabi" element={<CourseStudentSyllabiDetails />} />
               </Route>
-              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:id' element={<FlightHistoryPage />} />
+              <Route path='/club/courseDetails/studentDetails/aStudentFlight/:id' element={<FlightHistoryPage />} /> 
               {/* id 1 is for active students and id 2 is for history student */}
-              <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsList />} />
+              <Route path='/club/clubCourses/studentsListClub/:id' element={<StudentsList />} /> 
               <Route path='/club/clubCourses/studentsListClub/aStudentClubCourses/:studentId' element={<AStudentCourses />} />
 
 

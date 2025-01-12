@@ -30,7 +30,7 @@ const FlightHistoryPage = () => {
     const { data: studentFlightData } = useStudentPracticalActivity(id);
     
     const isForStudent = location.pathname.includes('/aStudentFlight')
-    const isForFlight = flightData?.data?.flight
+    const isForFlight = flightData?.data?.flight   // it could be for ground training
     
 
     useEffect(() => {

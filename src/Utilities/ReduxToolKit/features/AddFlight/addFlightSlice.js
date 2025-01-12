@@ -27,6 +27,17 @@ export const processAndUpdateIgcFile = createAsyncThunk(
 
 
 const initialState = {
+    activityType:'',
+
+    // the missing equipment info
+    hasNecessaryFlightEquipments:'',
+    hasNecessaryGroundHandlingEquipments:'',
+    flightEquipmentValidationError:'',
+    groundHandlingEquipmentValidationError:'',
+    invalidFlightEquipmentType: '',
+    invalidGroundHandlingEquipmentType: '',
+
+
     igcFile:null,
     wing:'',
     harness: '',
@@ -63,6 +74,7 @@ const initialState = {
     clubName:'',
     coachName:'',
     courseName:'',
+    groundHandlingCount:'',
   };
 
 
@@ -70,8 +82,35 @@ const initialState = {
     name: 'addFlight',
     initialState,
     reducers: {
+      updateActivityType: (state, action) => {
+        state.activityType = action.payload;
+      },
+
+      // the lack of equipment section
+      updateHasNecessaryFlightEquipment: (state, action) => {
+        state.hasNecessaryFlightEquipments = action.payload;
+      },
+      updateHasNecessaryGroundHandlingEquipments: (state, action) => {
+        state.hasNecessaryGroundHandlingEquipments = action.payload;
+      },
+      updateFlightEquipmentValidationError: (state, action) => {
+        state.flightEquipmentValidationError = action.payload;
+      },
+      updateGroundHandlingEquipmentValidationError: (state, action) => {
+        state.groundHandlingEquipmentValidationError = action.payload;
+      },
+      updateInvalidFlightEquipmentType: (state, action) => {
+        state.invalidFlightEquipmentType = action.payload;
+      },
+      updateInvalidGroundHandlingEquipmentType: (state, action) => {
+        state.invalidGroundHandlingEquipmentType = action.payload;
+      },
+
       updateIgcFile: (state, action) => {
         state.igcFile = action.payload;
+      },
+      updateGroundHandlingCount: (state, action) => {
+        state.groundHandlingCount = action.payload;
       },
       updateWing: (state, action) => {
         state.wing = action.payload;
@@ -187,7 +226,7 @@ const initialState = {
 
 
 export const {
-  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName, updateWingType, updateLandingType
+  updateIgcFile, updateWing,updateHarness,updateParachute,updateCity, updateCountry,updateClouds,updateFlightType ,updateCourseId ,updateTakeoffTime,updateTakeOfftype,updateTakeoffWindSpeed,updateTakeOffWindDirection ,updateLandingTime, updateTakeOffWindUnit ,updateLandingWindSpeed,updateLandingWindDirection, updateSight, updatePassengerPhoneNumber , updateSyllabi , updatePassengerHarness, updateFlightCount, updateFlightDuration, updateCourseLevel, updateClubName, updateCoachName, updateDescription , resetFlightDataExceptType, updateCourseName, updateWingType, updateLandingType, updateActivityType, updateHasNecessaryGroundHandlingEquipments ,updateHasNecessaryFlightEquipment, updateGroundHandlingEquipmentValidationError, updateFlightEquipmentValidationError, updateInvalidGroundHandlingEquipmentType, updateInvalidFlightEquipmentType, updateGroundHandlingCount
   } = addFlightSlice.actions;
 
 export default addFlightSlice.reducer;
