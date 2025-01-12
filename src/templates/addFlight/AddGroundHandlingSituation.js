@@ -41,6 +41,7 @@ import DescriptionInput from '../../components/inputs/DescriptionInput';
 import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
 import { TimePicker } from '../../components/inputs/TimePicker';
 import DropDownLine from '../../components/reuseable/DropDownLine';
+import SelectLocationNeshanMap from '../../modules/addFlight/SelectLocationNeshanMap';
 
 const AddGroundHandlingSituation = () => {
 
@@ -339,6 +340,9 @@ const AddGroundHandlingSituation = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
+
+                        <SelectLocationNeshanMap />
+
                         <TimePicker
                         value={landingTime}
                         onChange={handleLandingTimeChange}
