@@ -311,6 +311,7 @@ function App() {
                   <Route path="AddTakeoff" element={ <AddTakeoff />} />
                   <Route path="AddLanding" element={ <AddLanding userRole={ userRole } />} />
                   {/* ground handling */}
+                  <Route path="AddGroundHandlingEquipment" element={ <AddUsedEquipment />} />
                   <Route path="AddGroundHandlingSituation" element={ <AddGroundHandlingSituation />} />
               </Route>
 

@@ -106,7 +106,7 @@ const AddFlightType = () => {
             navigate('/addFlight/UploadIgc')
             return
         } else if(type === 'groundHandling' && hasNecessaryGroundHandlingEquipments) {
-            navigate('/addFlight/AddGroundHandlingSituation')
+            navigate('/addFlight/AddGroundHandlingEquipment')
             return
         } else {
             setShowErrorPopUp(true)

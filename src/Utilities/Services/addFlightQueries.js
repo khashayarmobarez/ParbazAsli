@@ -307,6 +307,97 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
+
+// add course ground handling
+    const AddCourseGroundHandling = async (formData) => {
+        
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${API_BASE_URL}/practicalActivity/AddCourseGroundHandling`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddCourseGroundHandling = () => {
+        return useMutation(AddCourseGroundHandling);
+    };
+
+
+
+
+
+// add Solo ground handling
+    const addSoloGroundHandling = async (formData) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${API_BASE_URL}/practicalActivity/AddSoloGroundHandling`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddSoloGroundHandling = () => {
+        return useMutation(addSoloGroundHandling);
+    };
+
+
+
+
+
+// add Tandem flight
+    const AddTandemGroundHandling = async (formData) => {
+
+        const token = Cookies.get('token');
+
+        try {
+            const response = await axios.post(`${API_BASE_URL}/practicalActivity/AddTandemGroundHandling`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+                window.location.reload();
+            } else {
+                throw error;
+            }
+        }
+    };
+
+    const useAddTandemGroundHandling = () => {
+        return useMutation(AddTandemGroundHandling);
+    };
+
+
+
+
+
 // get all landing types
 // /LandingType/GetAllLandingTypes
     const getLandingTypes = async () => {
@@ -347,4 +438,4 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 
-export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , usePracticalActivityTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes};
+export { useCloudTypes, useCountries, useProvincesByCountryId, useSitesByProvinceId, useTakeoffTypes , usePracticalActivityTypes , useAddCourseFlight, useAddSoloFlight, useAddTandemFlight, useLandingTypes, useAddTandemGroundHandling, useAddCourseGroundHandling, useAddSoloGroundHandling};

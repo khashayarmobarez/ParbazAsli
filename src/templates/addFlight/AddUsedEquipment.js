@@ -22,6 +22,7 @@ import { updateWing, updateHarness, updateParachute } from '../../Utilities/Redu
 
 // components
 import DropdownInput from '../../components/inputs/DropDownInput';
+import DropDownLine from '../../components/reuseable/DropDownLine';
 
 
 const AddUsedEquipment = () => {
@@ -34,9 +35,9 @@ const AddUsedEquipment = () => {
 
     // redux
     const {wing, harness, parachute, passengerHarness,
-    flightType, wingType} = useSelector(selectAddFlight)
-
-    console.log(wingType)
+    flightType, wingType, activityType} = useSelector(selectAddFlight)
+    
+    const isForFlight = activityType === 'flight'
     
     // user equipments data
     const { data: userParachuteData, isLoading:userParachuteLoading, error:userParachuteError } = useUserEquipmentsForDropDown(1)
@@ -116,8 +117,11 @@ const AddUsedEquipment = () => {
 
         setSubmitted(true);
 
-        if(wing.id && harness.id && parachute.id && (flightType === 'Tandem' ? passengerHarness.id : true)) {
-            navigate('/addFlight/AddSituation')
+        if(wing.id && harness.id && (!isForFlight || (parachute.id && (flightType === 'Tandem' ? passengerHarness.id : true)))) {
+            isForFlight ?
+                navigate('/addFlight/AddSituation')
+                :
+                navigate('/addFlight/AddGroundHandlingSituation')
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
@@ -138,48 +142,58 @@ const AddUsedEquipment = () => {
         <>
             <div className='flex flex-col justify-center items-center w-[90%] gap-y-7'>
 
-                {/* line and circle of adding flight level */}
-                <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
+                {
+                    isForFlight ?
+                        <>
+                            {/* line and circle of adding flight level */}
+                            <div className='w-full flex flex-col gap-y-3 justify-center items-center'>
 
-                    <div className='flex items-center justify-center w-[100%]'>
-                        
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
+                                <div className='flex items-center justify-center w-[100%]'>
+                                    
+                                    <div className='rounded-full w-3 h-3' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
+                                    <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--text-accent)'}}></div>
 
-                        <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
-                            <div className='rounded-full w-3 h-3 mr-[0.3px]' style={{background:'var(--text-accent)'}}></div>
-                        </div>
+                                    <div className='border-2 rounded-full w-5 h-5  border-textAccent flex items-center justify-center'>
+                                        <div className='rounded-full w-3 h-3 mr-[0.3px]' style={{background:'var(--text-accent)'}}></div>
+                                    </div>
 
-                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+                                    <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+                                    <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+                                    <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+                                    <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
+                                    <div className='rounded-full w-[20%] h-[2px]' style={{background:'var(--icon-disable)'}}></div>
 
-                        <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
+                                    <div className='rounded-full w-3 h-3' style={{background:'var(--icon-disable)'}}></div>
 
-                    </div>
+                                </div>
 
-                    <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
+                                <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+                                    <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                                    <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>شرایط پرواز</p>
+                                    <p className='' style={{color:'var(--icon-disable)'}}>شرایط پرواز</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+                                    <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+                                    <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
 
-                    </div>
-                    
-                </div>
+                                </div>
+                                
+                            </div>
+                        </>
+                        :
+                        <DropDownLine
+                            hasNoArrow={true}
+                            title='مشخصات وسیله تمرین زمینی'
+                        />
+                }
 
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-4'>
@@ -266,13 +280,13 @@ const AddUsedEquipment = () => {
                             <DropdownInput 
                             id={'ddi6'} 
                             icon={<ParachuteIcon anotherColor = {!parachute && submitted && 'var(--text-error)'}/>} 
-                            name={'چتر کمکی'} 
+                            name={isForFlight ? 'چتر کمکی' : 'چتر کمکی (اختیاری)'} 
                             options={userParachuteData.data} 
                             selectedOption={parachute}
                             handleSelectChange={handleSelectSetParachute}
-                            IsEmptyAfterSubmit={submitted && !parachute} 
+                            IsEmptyAfterSubmit={submitted && !parachute && isForFlight} 
                             isSubmitted={submitted}
-                            ErrorCondition={!parachute}
+                            ErrorCondition={!parachute && isForFlight}
                             ErrorText={'انتخاب چتر کمکی الزامی است'}
                             />
                         </>
