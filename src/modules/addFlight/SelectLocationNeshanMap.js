@@ -5,7 +5,9 @@ import '@neshan-maps-platform/mapbox-gl/dist/NeshanMapboxGl.css';
 
 const SelectLocationNeshanMap = () => {
 
-    
+    const mapKey = process.env.NESHAN_MAP_API_KEY
+
+    console.log(`API Key: ${mapKey}`);
     
     return (
         <div className='w-full h-72'>
