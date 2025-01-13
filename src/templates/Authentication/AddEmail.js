@@ -46,7 +46,7 @@ const AddEmail = () => {
         console.log(authSettings.settings)
     }, [dispatch]);
 
-    if(isUserAuthenticated !== 'noCertificate') {
+    if(isUserAuthenticated !== 'noEmail') {
         // reload
         window.location.reload();    
     }
