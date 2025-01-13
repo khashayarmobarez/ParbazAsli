@@ -23,12 +23,12 @@ const ActivityTypeLogPopUp = ({ showPopup, setShowPopup, handleClick }) => {
                     onClick={() => handleClick('flight')}>
                         پرواز
                     </button>
-                    <button
+                    {/* <button
                     type="submit"
                     className={` text-start pr-8 w-full border border-1 border-textDefault text-textDefault rounded-2xl py-3 active:border-textAccent active:text-textAccent`}
                     onClick={() => handleClick('groundHandling')}>
                         تمرین زمینی
-                    </button>
+                    </button> */}
                 </div>
 
             </div>
