@@ -245,16 +245,16 @@ const FlightsAdvancedFilter = () => {
                                 (<SearchInputWithDropdown icon={<LocationIcon/>} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
                             }
 
-                            {/* <RadioButton buttonText={'بین همه فعالیت‌ها جست و جو کن'} />
+                            <RadioButton buttonText={'بین همه فعالیت‌ها جست و جو کن'} />
 
-                            <RadioButton buttonText={'فقط بین پروازها جست و جو کن'} /> */}
+                            <RadioButton buttonText={'فقط بین پروازها جست و جو کن'} />
 
                             {
                                 flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
                                 (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
-                            {/* <RadioButton buttonText={'فقط بین تمرین‌های زمینی جست و جو کن'} /> */}
+                            <RadioButton buttonText={'فقط بین تمرین‌های زمینی جست و جو کن'} />
 
                         </div>
 
