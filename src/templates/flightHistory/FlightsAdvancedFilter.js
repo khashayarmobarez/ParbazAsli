@@ -37,6 +37,7 @@ import DropdownInput from '../../components/inputs/DropDownInput';
 import DateLastRepackInput from '../../components/inputs/DateInput';
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 import SearchInputWithDropdown from '../../components/inputs/SearchInputWithDropdown';
+import RadioButton from '../../components/inputs/RadioButton';
 
 
 const FlightsAdvancedFilter = () => {
@@ -212,20 +213,6 @@ const FlightsAdvancedFilter = () => {
                                 </>
                             }
 
-                            {
-                                countriesData && 
-                                <DropdownInput id={'ddi2'} icon={<EarthIcon/>} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
-                            }
-
-                            {
-                                provincesData && !provincesLoading && (countryFilter && countryFilter.id) &&
-                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
-                            }
-
-                            {
-                                flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
-                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
-                            }
 
                             <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             
@@ -248,7 +235,29 @@ const FlightsAdvancedFilter = () => {
                                 </>
                             }
 
+                            {
+                                countriesData && 
+                                <DropdownInput id={'ddi2'} icon={<EarthIcon/>} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                            }
+
+                            {
+                                provincesData && !provincesLoading && (countryFilter && countryFilter.id) &&
+                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
+                            }
+
+                            <RadioButton buttonText={'بین همه فعالیت‌ها جست و جو کن'} />
+
+                            <RadioButton buttonText={'فقط بین پروازها جست و جو کن'} />
+
+                            {
+                                flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
+                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
+                            }
+
+                            <RadioButton buttonText={'فقط بین تمرین‌های زمینی جست و جو کن'} />
+
                         </div>
+
 
                         <div className='w-[90%] md:w-[65%] flex justify-between gap-x-[6%] mt-2'>
                             <button onClick={() => {dispatch(resetAllFilters()); resetDateFunc()}} className={` ${buttonStyles.normalButton} w-full h-12`}>حذف فیلترها</button>
