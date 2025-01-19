@@ -10,11 +10,13 @@ const initialState = {
     // site
     siteFilter:'',
     flightTypeFilter:'',
+    groundHandlingTypeFilter:'',
     coachNameFilter:'',
     flightStatusFilter:'',
     fromDateFilter:'',
     toDateFilter:'',
-  };
+    activityType:''
+};
 
 
 const flightFilterSlice = createSlice({
@@ -45,6 +47,9 @@ const flightFilterSlice = createSlice({
         updateFlightTypeFilter: (state, action) => {
             state.flightTypeFilter = action.payload;
         },
+        updateGroundHandlingTypeFilter: (state, action) => {
+            state.groundHandlingTypeFilter = action.payload;
+        },
         updateCoachNameFilter: (state, action) => {
             state.coachNameFilter = action.payload;
         },
@@ -56,6 +61,9 @@ const flightFilterSlice = createSlice({
         },
         updateToDateFilter: (state, action) => {
             state.toDateFilter = action.payload;
+        },
+        updateActivityType: (state, action) => {
+            state.activityType = action.payload;
         },
         resetAllFilters: (state) => {
             state.courseFilter = '';
@@ -69,6 +77,8 @@ const flightFilterSlice = createSlice({
             state.flightStatusFilter = '';
             state.fromDateFilter = '';
             state.toDateFilter = '';
+            state.activityType = '';
+            state.groundHandlingTypeFilter = '';
         },
     },
 });
@@ -86,7 +96,9 @@ export const {
     updateFlightStatusFilter,
     updateFromDateFilter,
     updateToDateFilter,
-    resetAllFilters
+    updateActivityType,
+    updateGroundHandlingTypeFilter,
+    resetAllFilters,
 } = flightFilterSlice.actions;
 
 export default flightFilterSlice.reducer;

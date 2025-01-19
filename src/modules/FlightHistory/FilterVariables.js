@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import jalaali from 'jalaali-js';
 
 // redux
-import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+import { selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter, updateActivityType, updateGroundHandlingTypeFilter } from '../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 // mui
@@ -24,7 +24,9 @@ const FilterVariables = () => {
         coachNameFilter,
         flightStatusFilter,
         fromDateFilter,
-        toDateFilter
+        toDateFilter,
+        groundHandlingTypeFilter,
+        activityType
     } = useSelector(selectFlightFilter)
 
     function gregorianToShamsi(dateString) {
@@ -61,6 +63,9 @@ const FilterVariables = () => {
             case 'flightTypeFilter':
                 dispatch(updateFlightTypeFilter(''));
                 break;
+            case 'groundHandlingTypeFilter':
+                dispatch(updateGroundHandlingTypeFilter(''));
+                break;
             case 'coachNameFilter':
                 dispatch(updateCoachNameFilter(''));
                 break;
@@ -72,6 +77,9 @@ const FilterVariables = () => {
                 break;
             case 'toDateFilter':
                 dispatch(updateToDateFilter(''));
+                break;
+            case 'activityType':
+                dispatch(updateActivityType(''));
                 break;
             default:
                 break;
@@ -94,7 +102,8 @@ const FilterVariables = () => {
         !coachNameFilter &&
         !flightStatusFilter &&
         !fromDateFilter &&
-        !toDateFilter && '-mt-10 -z-10'}`} >
+        !toDateFilter &&
+        !activityType && '-mt-10 -z-10'}`} >
             <ul className=' w-full py-0 -mt-6 -mb-4 grid grid-cols-3 gap-2'>
 
                 {   
@@ -103,6 +112,15 @@ const FilterVariables = () => {
                         <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{courseFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('courseFilter')} />
+                        </li>
+                }
+
+                {
+                    activityType &&
+                    activityType.name &&
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
+                            <p className=' text-xs mx-1' >{activityType.name}</p>
+                            <ClearIcon onClick={() => handleRemoveFilter('activityType')} />
                         </li>
                 }
 
@@ -160,6 +178,15 @@ const FilterVariables = () => {
                         <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
                             <p className=' text-xs mx-1' >{flightTypeFilter.name}</p>
                             <ClearIcon onClick={() => handleRemoveFilter('flightTypeFilter')} />
+                        </li>
+                }
+
+                {
+                    groundHandlingTypeFilter &&
+                    groundHandlingTypeFilter.name &&
+                        <li className=' col-span-1 p-1 bg-bgButtonProfileDefault rounded-xl flex justify-between w-auto items-center'>
+                            <p className=' text-xs mx-1' >{groundHandlingTypeFilter.name}</p>
+                            <ClearIcon onClick={() => handleRemoveFilter('groundHandlingTypeFilter')} />
                         </li>
                 }
 

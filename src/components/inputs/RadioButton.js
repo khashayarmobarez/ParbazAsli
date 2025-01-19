@@ -1,8 +1,9 @@
 import React from 'react';
 
-const RadioButton = ({ isChecked, buttonText }) => {
+const RadioButton = ({ isChecked, buttonText, onClick }) => {
     return (
-        <div className='w-full flex gap-x-4 items-center justify-start'>
+        <div className='w-full flex gap-x-4 items-center justify-start'
+        onClick={onClick}>
             <div className={`w-6 h-6 flex items-center justify-center border-2 ${isChecked ? 'border-textAccent' : 'border-textDefault'} hover:border-textAccent rounded-full `}>
                 {
                     isChecked &&

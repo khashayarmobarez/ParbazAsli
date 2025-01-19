@@ -42,7 +42,9 @@ const FlightHistory = () => {
         coachNameFilter = {},
         flightStatusFilter = {},
         fromDateFilter,
-        toDateFilter    
+        toDateFilter,
+        groundHandlingTypeFilter,
+        activityType
     } = filterData || {};
 
     const [pageNumber, setPageNumber] = useState(1);
@@ -60,7 +62,9 @@ const FlightHistory = () => {
         coachNameFilter?.id || '',
         flightStatusFilter?.id || '',
         countryFilter?.id || '',
-        provinceFilter?.id || ''
+        provinceFilter?.id || '',
+        groundHandlingTypeFilter?.id || '',
+        activityType?.id || '',
     );
 
     const handleNextPage = () => {

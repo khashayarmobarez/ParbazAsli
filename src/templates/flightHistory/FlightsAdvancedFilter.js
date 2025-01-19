@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { resetAllFilters, selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter } from '../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
+import { resetAllFilters, selectFlightFilter, updateCoachNameFilter, updateCountryFilter, updateCourseFilter, updateFlightStatusFilter, updateFlightTypeFilter, updateFromDateFilter, updateHarnessFilter, updateProvinceFilter, updateSiteFilter, updateToDateFilter, updateWingFilter, updateActivityType, updateGroundHandlingTypeFilter } from '../../Utilities/ReduxToolKit/features/flightHistoryAdvancedFilter/flightFilterSlice';
 
 // styles
 import buttonStyles from '../../styles/ButtonsBox.module.css';
@@ -60,7 +60,9 @@ const FlightsAdvancedFilter = () => {
         coachNameFilter,
         flightStatusFilter,
         fromDateFilter,
-        toDateFilter
+        toDateFilter,
+        groundHandlingTypeFilter,
+        activityType
     } = useSelector(selectFlightFilter)
     
 
@@ -95,6 +97,10 @@ const FlightsAdvancedFilter = () => {
         dispatch(updateFlightTypeFilter(selectedOption));
     };
 
+    const handleSelectGroundHandlingTypeFilter = (selectedOption) => {
+        dispatch(updateGroundHandlingTypeFilter(selectedOption));
+    };
+
     const handleSelectCoachNameFilter = (selectedOption) => {
         dispatch(updateCoachNameFilter(selectedOption));
     }
@@ -116,6 +122,12 @@ const FlightsAdvancedFilter = () => {
     const handleSelectSetSiteFilter = (selectedOption) => {
         dispatch(updateSiteFilter(selectedOption));
     };
+
+    const handleClickCheckBoxes = (type) => {
+        type === 'none' && dispatch(updateActivityType(''));
+        type === 'flights' && dispatch(updateActivityType({id:1, name:'پرواز'}));
+        type === 'groundHandlings' && dispatch(updateActivityType({id:2, name: 'تمرین زمینی'}));
+    }
 
 
     const handleFlightFromDateFilterChange = (value) => {
@@ -212,9 +224,6 @@ const FlightsAdvancedFilter = () => {
                                     <DropdownInput id={'ddi1.4'} icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
                                 </>
                             }
-
-
-                            <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             
                             {
                                 userCoachesData && userCoachesData.data.length > 0 &&
@@ -242,19 +251,48 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 provincesData && !provincesLoading && (countryFilter && countryFilter.id) &&
-                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'استان'} options={provincesData.data} selectedOption={provinceFilter} handleSelectChange={handleSelectSetCityFilter} />)
-                            }
+                                (<SearchInputWithDropdown
+                                    icon={<LocationIcon/>}
+                                    name={'استان'}
+                                    options={provincesData.data}
+                                    selectedOption={provinceFilter}
+                                    handleSelectChange={handleSelectSetCityFilter}
+                                    />)
+                                }
 
-                            <RadioButton buttonText={'بین همه فعالیت‌ها جست و جو کن'} />
+                            <RadioButton 
+                                buttonText={'بین همه فعالیت‌ها جست و جو کن'} 
+                                onClick={() => handleClickCheckBoxes('none')}
+                                isChecked={activityType === ''}
+                            />
 
-                            <RadioButton buttonText={'فقط بین پروازها جست و جو کن'} />
+                            <RadioButton 
+                            buttonText={'فقط بین پروازها جست و جو کن'}
+                            onClick={() => handleClickCheckBoxes('flights')}
+                            isChecked={activityType.id === 1}
+                            />
 
                             {
-                                flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id &&
+                                flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id && activityType?.id === 1 &&
                                 (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
-                            <RadioButton buttonText={'فقط بین تمرین‌های زمینی جست و جو کن'} />
+                            {
+                                activityType?.id === 1 &&
+                                    <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                            }
+
+                            
+                            <RadioButton
+                            buttonText={'فقط بین تمرین‌های زمینی جست و جو کن'} 
+                            onClick={() => handleClickCheckBoxes('groundHandlings')}
+                            isChecked={activityType.id === 2}
+                            />
+                            
+                            {
+                                activityType?.id === 2 &&
+                                    <DropdownInput id={'ddi4'} icon={<ColorTagsIcon/>} name={'نوع تمرین زمینی'} options={flightTypeOptions} selectedOption={groundHandlingTypeFilter} handleSelectChange={handleSelectGroundHandlingTypeFilter} />
+                            }
 
                         </div>
 
