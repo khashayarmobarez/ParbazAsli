@@ -41,20 +41,6 @@ const ChangeCertificate = () => {
 
                         ))
                 }
-                {
-                        userCertificates && userCertificates.data.map((certificate, index) => (
-
-                            <Certificate key={index} certificateData={certificate} />
-
-                        ))
-                }
-                {
-                        userCertificates && userCertificates.data.map((certificate, index) => (
-
-                            <Certificate key={index} certificateData={certificate} />
-
-                        ))
-                }
 
                 {userCertificates && userCertificates.totalPagesCount > 1 &&
                     <div className={`w-full flex justify-between px-14 items-center mt-2 `}>
