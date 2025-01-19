@@ -106,7 +106,6 @@ const FlightHistory = () => {
                                     <Eraser/>
                                 </span>
                             </button>
-
                         </div>
  
                         <FilterVariables />
