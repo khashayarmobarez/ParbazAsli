@@ -12,6 +12,7 @@ import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQu
 import PageTitle from '../../components/reuseable/PageTitle';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 import { useStudentPracticalActivity } from '../../Utilities/Services/coursesQueries';
+import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 
 const FlightHistoryPage = () => {
     
@@ -19,6 +20,7 @@ const FlightHistoryPage = () => {
     const location = useLocation()
     
     const [flightData, setFlightData] = useState('')
+    const [selectedLocation, setSelectedLocation] = useState(); 
 
     const [DropDownEquipment, setDropDownEquipment] = useState(true)
     const [DropDownSituation, setDropDownSituation] = useState(true)
@@ -240,6 +242,16 @@ const FlightHistoryPage = () => {
                                                     </div>
                                                 </div>
                                             }
+
+                                            {
+                                                flightData.data?.groundHandling &&
+                                                <div className='col-span-6'>
+                                                    <SelectLocationGoogle
+                                                    selectedLocation={{lat:flightData.data.groundHandling.locationLatitude, lng:flightData.data.groundHandling.locationLongitude }}
+                                                    setSelectedLocation={setSelectedLocation}
+                                                    />
+                                                </div>
+                                            }
                                             {
                                                 flightData.data.cloudCoverType &&
                                                 <div className='flex flex-col items-start gap-y-3 col-span-3'>
@@ -249,6 +261,7 @@ const FlightHistoryPage = () => {
                                                     </div>
                                                 </div>
                                             }
+
                                             {/* ground handling datas */}
                                             {
                                                 flightData.data.startTime && flightData.data.groundHandling &&

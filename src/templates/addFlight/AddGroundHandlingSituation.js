@@ -21,12 +21,12 @@ import { toast } from 'react-toastify';
 import { windDirectionOptions } from '../../Utilities/Providers/dropdownInputOptions';
 
 // react-query
-import { useAddCourseFlight, useAddCourseGroundHandling, useAddSoloFlight, useAddSoloGroundHandling, useAddTandemFlight, useAddTandemGroundHandling, useLandingTypes } from '../../Utilities/Services/addFlightQueries';
+import { useAddCourseFlight, useAddCourseGroundHandling, useAddSoloFlight, useAddSoloGroundHandling, useAddTandemFlight, useAddTandemGroundHandling, useCloudTypes } from '../../Utilities/Services/addFlightQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
-import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription, updateLandingType } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
+import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, updatePassengerPhoneNumber, updateDescription, updateTakeoffTime, updateClouds } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // mui
 import { CircularProgress } from '@mui/material';
@@ -35,13 +35,12 @@ import { CircularProgress } from '@mui/material';
 import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
 import SubmitForm from '../../components/reuseable/SubmitForm';
-import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
 import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
 import { TimePicker } from '../../components/inputs/TimePicker';
 import DropDownLine from '../../components/reuseable/DropDownLine';
-import SelectLocationNeshanMap from '../../modules/addFlight/SelectLocationNeshanMap';
+import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 
 const AddGroundHandlingSituation = () => {
 
@@ -52,17 +51,19 @@ const AddGroundHandlingSituation = () => {
     // states, submit pop up control
     const [showPopup, setShowPopup] = useState(false); 
 
+    const [selectedLocation, setSelectedLocation] = useState({lat: 35.745040, lng: 51.375060}); 
+
     const [submitted, setSubmitted] = useState(false);
 
-    const { data: landingTypesData } = useLandingTypes();
 
+    const { data: cloudTypesData, } = useCloudTypes()
     const { mutate: mutateCourseFlight , isLoading: courseLoading} = useAddCourseGroundHandling();
     const { mutate: mutateSoloFlight , isLoading: SoloLoading} = useAddSoloGroundHandling();
     const { mutate: mutateTandemFlight , isLoading: TandemLoading} = useAddTandemGroundHandling();
 
     // redux
     const { landingTime, landingWindSpeed, landingWindDirection , passengerPhoneNumber
-    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description, landingType
+    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description
     } = useSelector(selectAddFlight)
 
 
@@ -90,22 +91,26 @@ const AddGroundHandlingSituation = () => {
     }, [ wing, harness, parachute, country, city , sight , clouds , flightType , takeoffTime, navigate, appTheme])
 
 
-
     const handleLandingTimeChange = (newTime) => {
         dispatch(updateLandingTime(newTime));
-       };
+    };
+
+    const handleTakeOffTimeChange = (newTime) => {
+        dispatch(updateTakeoffTime(newTime));
+    };
 
     const handleSetLandingWindspeedChange = (event) => {
         dispatch(updateLandingWindSpeed(event.target.value));
       };
 
-    const handleSelectSetLandingType = (selectedOption) => {
-        dispatch(updateLandingType(selectedOption));
-      };
 
     const handleSelectSetLandingWindDirection = (selectedOption) => {
         dispatch(updateLandingWindDirection(selectedOption));
       };
+
+    const handleSelectSetClouds = (selectedOption) => {
+        dispatch(updateClouds(selectedOption));
+    };
 
     const handlePassengerPhoneNum = (event) => {
         dispatch(updatePassengerPhoneNumber(event.target.value));
@@ -163,32 +168,28 @@ const AddGroundHandlingSituation = () => {
         
         const formData = new FormData();
 
-        if( wing && harness && parachute && sight && clouds && takeoffType && takeoffWindSpeed && takeoffwindDirection && landingWindSpeed && landingWindDirection && landingTime && takeoffTime) {
+        if(wing && harness && clouds  && landingWindSpeed && landingWindDirection && landingTime && takeoffTime && selectedLocation) {
             
             // Convert wind speeds from knots to km/h if necessary
             const convertToKmh = (speed) => Math.round(speed * 1.852);
-            const takeoffWindSpeedInKmh = takeOffWindUnit.name === 'knots' ? convertToKmh(takeoffWindSpeed) : takeoffWindSpeed;
             const landingWindSpeedInKmh = takeOffWindUnit.name === 'knots' ? convertToKmh(landingWindSpeed) : landingWindSpeed;
 
 
             formData.append('wingId', wing.id);
             formData.append('harnessId', harness.id);
-            formData.append('parachuteId', parachute.id);
-            formData.append('siteId', sight.id);
+            parachute.id && formData.append('parachuteId', parachute.id);
+            formData.append('latitude', selectedLocation.lat);
+            formData.append('longitude', selectedLocation.lng);
             formData.append('cloudCoverTypeId', clouds.id);
-            formData.append('takeoffTime',takeoffTime);
-            formData.append('takeoffTypeId', takeoffType.id);
-            formData.append('takeoffWindSpeedInKmh', takeoffWindSpeedInKmh);
-            formData.append('takeoffWindDirection', takeoffwindDirection.id);
-            formData.append('landingTime', landingTime);
-            formData.append('landingWindSpeedInKmh', landingWindSpeedInKmh);
-            formData.append('landingWindDirection', landingWindDirection.id);
-            formData.append('landingTypeId', landingType.id);
+            formData.append('startTime',takeoffTime);
+            formData.append('finishTime', landingTime);
+            formData.append('windSpeedInKmh', landingWindSpeedInKmh);
+            formData.append('windDirection', landingWindDirection.id);
             if(flightType === 'Solo') {
                 formData.append('description', description);
             }
             if(flightType === 'Course') {
-                formData.append('userCourseId', courseId);
+                formData.append('userCourseId', courseId);  
             }
             if(flightType === 'Tandem') {
                 formData.append('passengerPhoneNumber', passengerPhoneNumber);
@@ -339,14 +340,53 @@ const AddGroundHandlingSituation = () => {
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
+                    <SelectLocationGoogle
+                    selectedLocation={selectedLocation}
+                    setSelectedLocation={setSelectedLocation}
+                    />
+
+                    {
+                    cloudTypesData &&
+                        <DropdownInput 
+                        id={'ddi3'} 
+                        name={'نوع پوشش ابری'} 
+                        options={cloudTypesData.data} 
+                        selectedOption={clouds} 
+                        handleSelectChange={handleSelectSetClouds} 
+                        IsEmptyAfterSubmit={submitted && !clouds}
+                        isSubmitted={submitted}
+                        ErrorCondition={!clouds}
+                        ErrorText={'انتخاب نوع ابر الزامی است'}
+                        />
+                    }
+
                     <div className='w-full flex flex-col gap-y-1'>
+                        <TimePicker
+                        value={takeoffTime}
+                        onChange={handleTakeOffTimeChange}
+                        placeholder="زمان شروع"
+                        />
+                        {
+                            !takeoffTime && submitted &&
+                            <p className='text-xs text-start self-start text-textError'>زمان شروع الزامی می باشد</p>
+                        }
+                        {
+                            landingTime < takeoffTime && landingTime &&
+                            <p className='text-xs text-start self-start text-textError'>زمان شروع باید قبل از زمان پابان({landingTime}) باشد</p>
+                        }
+                        {
+                            takeoffTime && takeoffTime > new Date().getHours() && (
+                                <p className='text-xs text-start self-start text-textError'>زمان پایان باید قبل از الان باشد</p>
+                            )
+                        }
+                    </div>
 
-                        <SelectLocationNeshanMap />
 
+                    <div className='w-full flex flex-col gap-y-1'>
                         <TimePicker
                         value={landingTime}
                         onChange={handleLandingTimeChange}
-                        placeholder="زمان land"
+                        placeholder="زمان پایان"
                         />
                             {
                                 !landingTime && submitted &&
@@ -363,21 +403,6 @@ const AddGroundHandlingSituation = () => {
                             }
                     </div>
 
-                    {
-                        landingTypesData &&   
-                        <DropdownInput 
-                            id={'ddi1'}
-                            name={'شیوه'} 
-                            icon={<ColorTagsIcon customColor = {!landingType && submitted && 'var(--text-error)'}/>} 
-                            options={landingTypesData.data} 
-                            selectedOption={landingType} 
-                            handleSelectChange={handleSelectSetLandingType} 
-                            IsEmptyAfterSubmit={submitted && !landingType}
-                            isSubmitted={submitted}
-                            ErrorCondition={!landingType}
-                            ErrorText={'شیوه الزامی می باشد'}
-                        />
-                    }
 
                     <DropdownInput 
                         id={'ddi2'}
@@ -403,22 +428,6 @@ const AddGroundHandlingSituation = () => {
                         ErrorCondition={!landingWindSpeed}
                         ErrorText={'سرعت باد الزامی می باشد'}
                     />
-
-                    {flightType === 'Tandem' && 
-                        <TextInput 
-                            id={'TI1'}
-                            icon={<PhoneIcon customColor = {!passengerPhoneNumber && submitted && 'var(--text-error)'}/>}
-                            value={passengerPhoneNumber} 
-                            onChange={handlePassengerPhoneNum} 
-                            placeholder='درج شماره تماس مسافر' 
-                            IsEmptyAfterSubmit={submitted && !passengerPhoneNumber}
-                            isSubmitted={submitted}
-                            ErrorCondition={!passengerPhoneNumber}
-                            ErrorText={'شماره تماس مسافر الزامی می باشد'}
-                            ErrorCondition2={!PHONE_REGEX.test(passengerPhoneNumber)}
-                            ErrorText2={'فرمت شماره تماس اشتباه میباشد'}
-                        />
-                    }
 
                     {/* description input */}
                     {
