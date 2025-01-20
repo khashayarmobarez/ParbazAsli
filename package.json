@@ -39,6 +39,7 @@
     "redux": "^5.0.1",
     "swiper": "^11.1.8",
     "tailwindcss": "^3.4.7",
+    "typescript": "^5.7.3",
     "web-vitals": "^2.1.4",
     "zaman": "^2.1.1"
   },
