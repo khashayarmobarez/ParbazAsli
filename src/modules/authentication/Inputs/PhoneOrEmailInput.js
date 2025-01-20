@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 // mui
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
@@ -13,7 +16,11 @@ import inputStyles from '../../../styles/Inputs.module.css';
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';
 import UserIcon from '../../../components/icons/UserIcon';
 
+
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+
+  // language
+  const { t } = useTranslation();
 
   const dir = Cookies.get('dir') || 'ltr';
   
@@ -161,16 +168,16 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
             ${(inputFocus || filled || value) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
-          ایمیل یا شماره موبایل
+          {t("RegistrationPages.Login.usernameInput")}
         </label>
       </div>
       <p id="inputnote" aria-live="polite" className={`
       ${(!validInput && value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : `text-right`} text-xs mr-4 
       text-[${textErrorColor}]`}>
-        *نام کاربری معتبر نمی باشد
+        {t("RegistrationPages.Login.usernameError1")}
       </p>
       <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : `text-right`} text-xs mr-4 text-[${textErrorColor}]`}>
-        *نام کاربری الزامی می باشد
+        {t("RegistrationPages.Login.usernameError2")}
       </p>
     </div>
   );

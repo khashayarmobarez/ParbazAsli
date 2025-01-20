@@ -4,6 +4,9 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 // api
 import { postIsUserAuthenticated } from '../../Utilities/Services/AuthenticationApi';
 
@@ -26,6 +29,9 @@ const EMAIL_OR_PHONE_REGEX = /^(09\d{9}|[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z
 
 
 const Login = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -208,13 +214,13 @@ const Login = () => {
                 />
 
                 <Checkbox
-                    label="مرا به خاطر بسپار"
+                    label={t("RegistrationPages.Login.rememberMe")}
                     isChecked={termsChecked}
                     onToggle={handleTermsToggle}
                 />
 
                 <p className='text-sm text-start text-textAccent cursor-pointer' onClick={handleForgetPassword}>
-                    رمز عبور خود را فراموش کرده‌ام
+                    {t("RegistrationPages.Login.forgotPass")}
                 </p>
 
                 <button type="submit" className={`${ButtonStyles.addButton} w-32 mt-1 self-center `}
@@ -224,7 +230,7 @@ const Login = () => {
                         <CircularProgress sx={{ color: 'var(--dark-blue-bg)' }} size={25} />
                         :
                         <>
-                            ورود
+                            {t("RegistrationPages.LoginName")}
                         </>
                     }
                 </button>

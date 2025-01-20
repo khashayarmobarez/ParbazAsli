@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 // styles
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
@@ -16,7 +19,10 @@ import { useMediaQuery } from '@mui/material';
 
 const SignUpOrLogin = () => {
 
+    // language and direction
     const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
+
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
     const navigate = useNavigate();
@@ -42,7 +48,7 @@ const SignUpOrLogin = () => {
                     ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
                     ${location.pathname === '/login' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/login')}>
-                        ورود
+                        {t("RegistrationPages.LoginName")}
                     </button>
                     <button
                     className={`
@@ -50,7 +56,7 @@ const SignUpOrLogin = () => {
                     ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
                     ${location.pathname === '/signUp' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/signUp')}>
-                        ثبت نام
+                        {t("RegistrationPages.signupName")}
                     </button>
                 </div>
 

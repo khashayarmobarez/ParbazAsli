@@ -1,12 +1,15 @@
 {
     "RegistrationPages": {
-        "LoginName": "login",
-        "signupName": "signUp",
+        "LoginName": "ورود",
+        "signupName": "ثبت نام",
         "Login": {
-            "usernameInput": "Email or Phone Number",
-            "passwordInput": "Password",
-            "rememberMe": "rememberMe",
-            "forgotPass": "Forgot my password"
+            "usernameInput": "ایمیل یا شماره موبایل",
+            "usernameError1":"*نام کاربری معتبر نمی باشد",
+            "usernameError2":"*نام کاربری الزامی می باشد",
+            "passwordInput": "رمز عبور",
+            "passwordInputError": "* رمز عبور الزامی است",
+            "rememberMe": "مرا به خاطر بسپار",
+            "forgotPass": "رمز عبور خود را فراموش کرده‌ام"
         }
     },
     "welcome": "خوش آمدید!",

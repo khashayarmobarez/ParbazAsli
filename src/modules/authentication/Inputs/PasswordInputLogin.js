@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
+// language
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
+
 // mui
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -11,6 +15,8 @@ import inputStyles from '../../../styles/Inputs.module.css';
 
 const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder, isSubmitted, customLabelBgColor, isForOldPass }) => {
 
+  // language
+  const { t } = useTranslation();
   const dir = Cookies.get('dir') || 'ltr';
   
   const [inputFocus, setInputFocus] = useState(false);
@@ -144,9 +150,9 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
             ${(inputFocus || filled || value) ? `-translate-y-5 translate-x-2 text-xs ${customLabelBgColor ? `bg-${customLabelBgColor}` : 'bg-bgPageMain'} px-2 rounded` : 'text-base'}
           `}
         >
-          {customPlaceHolder || "رمز عبور"}
+          {customPlaceHolder || t("RegistrationPages.Login.passwordInput")}
         </label>
-        <span 
+        <span
           onClick={togglePasswordVisibility} 
           className={`
             ${dir === 'ltr' ? 'right-3' : `left-3`}
@@ -164,7 +170,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
         {isForOldPass ?
         '*رمز عبور قدیمی الزامی است'
         :
-        '*رمز عبور الزامی است'
+        t("RegistrationPages.Login.passwordInputError")
         }
       </p>
     </div>

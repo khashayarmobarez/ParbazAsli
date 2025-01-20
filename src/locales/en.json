@@ -1,10 +1,22 @@
 {
-    "welcome": "Welcome!",
+    "RegistrationPages": {
+        "LoginName": "Login",
+        "signupName": "Sign up",
+        "Login": {
+            "usernameInput": "Email or phone number",
+            "usernameError1":"Username is not valid *",
+            "usernameError2":"Username is required *",
+            "passwordInput": "Password",
+            "passwordInputError": "password is required *",
+            "rememberMe": "Remember me",
+            "forgotPass": "Forgot my password"
+        }
+    },
+    "welcome": "خوش آمدید!",
     "user": {
-      "profile": {
-        "title": "Your Profile",
-        "greeting": "Hello, {{name}}!"
-      }
+        "profile": {
+        "title": "پروفایل شما",
+        "greeting": "سلام، {{name}}!"
+        }
     }
-  }
-  
+}

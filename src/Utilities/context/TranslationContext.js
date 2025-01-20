@@ -8,6 +8,7 @@ const TranslationContext = createContext();
 
 export const TranslationProvider = ({ children }) => {
 
+  // replace with en if you want the default to be in english
   const [language, setLanguage] = useState("en");
 
   // Utility function to get translations
@@ -17,9 +18,9 @@ export const TranslationProvider = ({ children }) => {
 
     // Replace placeholders with dynamic values
     if (typeof value === "string") {
-      Object.keys(params).forEach((paramKey) => {
+        Object.keys(params).forEach((paramKey) => {
         value = value.replace(`{{${paramKey}}}`, params[paramKey]);
-      });
+        });
     }
 
     return value || key;
