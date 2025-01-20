@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import inputStyles from '../../../styles/Inputs.module.css';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
 
 const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+
+  // language
+  const { t } = useTranslation();
 
   const [validName, setValidName] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -128,7 +134,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
-          نام
+          {t("RegistrationPages.Signup.usernameInput")}
         </label>
       </div>
       <p id="uidnote" aria-live="polite" className={`${value && !USER_REGEX.test(value) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>

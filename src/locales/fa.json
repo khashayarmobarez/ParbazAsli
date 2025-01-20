@@ -10,6 +10,13 @@
             "passwordInputError": "* رمز عبور الزامی است",
             "rememberMe": "مرا به خاطر بسپار",
             "forgotPass": "رمز عبور خود را فراموش کرده‌ام"
+        },
+        "Signup": {
+            "usernameInput": "نام*",
+            "userLastnameInput": "نام خانوادگی*",
+            "userPhoneNumber": "شماره تلفن*",
+            "password": "رمز عبور",
+            "repeatPassword": "تکرار رمز عبور"
         }
     },
     "welcome": "خوش آمدید!",

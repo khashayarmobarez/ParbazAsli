@@ -10,6 +10,13 @@
             "passwordInputError": "password is required *",
             "rememberMe": "Remember me",
             "forgotPass": "Forgot my password"
+        },
+        "Signup": {
+            "usernameInput": "Name*",
+            "userLastnameInput": "Last Name*",
+            "userPhoneNumber": "Phone Number*",
+            "password":"Password",
+            "repeatPassword": "Repeat password"
         }
     },
     "welcome": "خوش آمدید!",
