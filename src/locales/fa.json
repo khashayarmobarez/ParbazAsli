@@ -1,0 +1,20 @@
+{
+    "RegistrationPages": {
+        "LoginName": "login",
+        "signupName": "signUp",
+        "Login": {
+            "usernameInput": "Email or Phone Number",
+            "passwordInput": "Password",
+            "rememberMe": "rememberMe",
+            "forgotPass": "Forgot my password"
+        }
+    },
+    "welcome": "خوش آمدید!",
+    "user": {
+        "profile": {
+        "title": "پروفایل شما",
+        "greeting": "سلام، {{name}}!"
+        }
+    }
+}
+  

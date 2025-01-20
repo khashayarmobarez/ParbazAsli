@@ -1,0 +1,10 @@
+{
+    "welcome": "Welcome!",
+    "user": {
+      "profile": {
+        "title": "Your Profile",
+        "greeting": "Hello, {{name}}!"
+      }
+    }
+  }
+  

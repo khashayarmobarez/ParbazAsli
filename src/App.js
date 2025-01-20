@@ -27,6 +27,9 @@ import { selectUser } from './Utilities/ReduxToolKit/features/userData/userSlice
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// context
+import { useTranslation } from './Utilities/context/TranslationContext';
+
 
 // not validated user component
   import AddEmail from './templates/Authentication/AddEmail';
@@ -99,14 +102,16 @@ const queryClient = new QueryClient();
 
 function App() {
 
+  // hotjar
   const siteId = 5139806;
   const hotjarVersion = 6;
 
   Hotjar.init(siteId, hotjarVersion);
 
+  // setting the language and direction
   const [direction, setDirection] = useState('ltr'); // Default is 'ltr'
-  const [language, setLanguage] = useState('en'); // Default is 'en'
 
+  
   const token = Cookies.get('token') || null;
   const userInput = Cookies.get('userInput') || null;                                                                                                                                                                  
 
@@ -117,7 +122,10 @@ function App() {
     Hotjar.identify(userInput, {
       userInput: userInput,   
     });
-  }                                                                                                                                                                                                       Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.app' });                                                
+  }                                                                                                                                                                           Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.app' });                                                
+
+  const { t, language, setLanguage } = useTranslation();
+  
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -136,9 +144,9 @@ function App() {
 
   // setting language and direction
   useEffect(() => {
-    document.documentElement.setAttribute('dir', direction);
+    document.documentElement.setAttribute('dir',language === "fa" ? 'rtl' : 'ltr');
     document.documentElement.setAttribute('lang', language);
-    Cookies.set('dir', direction)
+    Cookies.set('dir', language === "fa" ? 'rtl' : 'ltr')
   }, [direction, language]);
 
   // Check if user is authenticated
@@ -183,7 +191,7 @@ function App() {
   // };
 
   // const toggleLanguage = () => {
-  //   setLanguage((prev) => (prev === 'en' ? 'fa' : 'en'));
+  //   setLanguage(language === "en" ? "fa" : "en");
   // };
 
 
