@@ -102,14 +102,15 @@ function App() {
   const siteId = 5139806;
   const hotjarVersion = 6;
 
-  
   Hotjar.init(siteId, hotjarVersion);
 
+  const [direction, setDirection] = useState('ltr'); // Default is 'ltr'
+  const [language, setLanguage] = useState('en'); // Default is 'en'
+
   const token = Cookies.get('token') || null;
-  const userInput = Cookies.get('userInput') || null;                                                                                                                                                                                                     
+  const userInput = Cookies.get('userInput') || null;                                                                                                                                                                  
 
   useTheme();
-
 
   // hotjar
   if(token) {
@@ -132,6 +133,13 @@ function App() {
   const [isPageReloaded, setIsPageReloaded] = useState(false);
 
   useAppModeEffect(true)
+
+  // setting language and direction
+  useEffect(() => {
+    document.documentElement.setAttribute('dir', direction);
+    document.documentElement.setAttribute('lang', language);
+    Cookies.set('dir', direction)
+  }, [direction, language]);
 
   // Check if user is authenticated
   useEffect(() => {
@@ -168,6 +176,15 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+
+  // const toggleDirection = () => {
+  //   setDirection((prev) => (prev === 'ltr' ? 'rtl' : 'ltr'));
+  // };
+
+  // const toggleLanguage = () => {
+  //   setLanguage((prev) => (prev === 'en' ? 'fa' : 'en'));
+  // };
 
 
 

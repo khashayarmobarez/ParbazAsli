@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
@@ -15,10 +16,12 @@ import { useMediaQuery } from '@mui/material';
 
 const SignUpOrLogin = () => {
 
+    const dir = Cookies.get('dir') || 'ltr';
     const isDesktop = useMediaQuery('(min-width: 768px)');
 
     const navigate = useNavigate();
     const location = useLocation();
+
 
     const handleLogoClick = () => {
         window.location.href = 'https://digilogbook.app/';
@@ -34,13 +37,18 @@ const SignUpOrLogin = () => {
                 }
 
                 <div className={`${ButtonStyles.ThreeStickedButtonCont} lg:mt-[70px]`}>
-                    <button 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/login' ? ButtonStyles.activeYellow : ''}`} 
+                    <button
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
+                    ${location.pathname === '/login' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/login')}>
                         ورود
                     </button>
-                    <button  
-                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === '/signUp' ? ButtonStyles.activeYellow : ''}`} 
+                    <button
+                    className={`
+                    ${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
+                    ${location.pathname === '/signUp' ? ButtonStyles.activeYellow : ''}`} 
                     onClick={() => navigate('/signUp')}>
                         ثبت نام
                     </button>

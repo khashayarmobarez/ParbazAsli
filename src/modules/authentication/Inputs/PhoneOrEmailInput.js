@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 // mui
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
@@ -13,6 +14,8 @@ import { EMAIL_REGEX, PHONE_REGEX } from '../../../Utilities/Providers/regexProv
 import UserIcon from '../../../components/icons/UserIcon';
 
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+
+  const dir = Cookies.get('dir') || 'ltr';
   
   const [inputFocus, setInputFocus] = useState(false);
   const [validInput, setValidInput] = useState(false);
@@ -119,7 +122,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
   return (
     <div className='flex flex-col relative w-full rounded-xl'>
       <div className='relative w-full min-h-12'>
-        <span className="absolute right-3 top-3 flex items-center justify-center w-5 z-10 cursor-text">
+        <span className={`absolute ${dir === 'ltr' ? 'left-3' : `right-3`} top-3 flex items-center justify-center w-5 z-10 cursor-text`}>
           {getIcon()}
         </span>
         <input
@@ -134,7 +137,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           onFocus={handleFocus}
           onBlur={handleBlur}
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            peer w-full min-h-12 px-4 pt-1 pb-1 ${dir === 'ltr' ? 'pl-10' : `pr-10`} rounded-2xl
             border-2 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none
@@ -148,7 +151,7 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           onClick={handleLabelClick}
           htmlFor="phoneOrEmail"
           className={`
-            absolute right-9 top-[13px]
+            absolute ${dir === 'ltr' ? 'left-9' : `right-9`} top-[13px]
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
@@ -161,10 +164,12 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
           ایمیل یا شماره موبایل
         </label>
       </div>
-      <p id="inputnote" aria-live="polite" className={`${(!validInput && value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`
+      ${(!validInput && value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : `text-right`} text-xs mr-4 
+      text-[${textErrorColor}]`}>
         *نام کاربری معتبر نمی باشد
       </p>
-      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : `text-right`} text-xs mr-4 text-[${textErrorColor}]`}>
         *نام کاربری الزامی می باشد
       </p>
     </div>

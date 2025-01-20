@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // mui
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -9,6 +10,9 @@ import KeyIcon from '../../../components/icons/KeyIcon';
 import inputStyles from '../../../styles/Inputs.module.css';
 
 const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPlaceHolder, isSubmitted, customLabelBgColor, isForOldPass }) => {
+
+  const dir = Cookies.get('dir') || 'ltr';
+  
   const [inputFocus, setInputFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);  
   const [filled, setFilled] = useState(false);
@@ -101,7 +105,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
   return (
     <div className='flex flex-col relative w-full rounded-xl'>
       <div className='relative w-full min-h-12 cursor-text'>
-        <span className="absolute right-3 top-4 w-4 z-10">
+        <span className={`absolute ${dir === 'ltr' ? ' left-3' : ` right-3`} top-4 w-4 z-10`}>
           <KeyIcon customColor={iconColor}  />
         </span>
         <input
@@ -110,7 +114,8 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           value={value}
           onChange={handleInputChange}
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            ${dir === 'ltr' ? 'pl-10' : `pr-10`}
+            peer w-full min-h-12 px-4 pt-1 pb-1  rounded-2xl
             border-2 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none
@@ -128,7 +133,8 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           onClick={handleLabelClick}
           htmlFor="password"
           className={`
-            absolute right-9 top-[13px]
+            ${dir === 'ltr' ? 'left-9' : `right-9`}
+            absolute  top-[13px]
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
@@ -142,7 +148,9 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
         </label>
         <span 
           onClick={togglePasswordVisibility} 
-          className="absolute left-3 top-3 cursor-pointer"
+          className={`
+            ${dir === 'ltr' ? 'right-3' : `left-3`}
+          absolute top-3 cursor-pointer`}
           style={{ color: eyeIconColor }}
         >
           {showPassword ? (
@@ -152,7 +160,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
           )}
         </span>
       </div>
-      <p id="inputnote" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : `text-right`} text-xs mr-4 text-[${textErrorColor}]`}>
         {isForOldPass ?
         '*رمز عبور قدیمی الزامی است'
         :
