@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import inputStyles from '../../../styles/Inputs.module.css';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 // regexes
 import { PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';
 
 const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+
+  // language
+  const { t } = useTranslation();
+
   const [validPhone, setValidPhone] = useState(false);
   const [filled, setFilled] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
@@ -135,14 +140,14 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
-          شماره تلفن
+          {t("RegistrationPages.Signup.userPhoneNumber")}
         </label>
       </div>
       <p id="phonenote" className={`${filled && value && !validPhone ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
-        *شماره تلفن باید با 09 شروع شود و 11 رقم باشد
+        {t("RegistrationPages.Signup.userPhoneNumberError1")}
       </p>
       <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
-        *شماره تلفن الزامی می باشد
+        {t("RegistrationPages.Signup.userPhoneNumberError2")}
       </p>
     </div>
   );

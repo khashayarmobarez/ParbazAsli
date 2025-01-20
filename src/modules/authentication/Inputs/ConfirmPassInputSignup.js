@@ -4,8 +4,12 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import KeyIcon from '../../../components/icons/KeyIcon';
 import inputStyles from '../../../styles/Inputs.module.css';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor, customPlaceHolderText }) => {
+
+  // language
+  const { t } = useTranslation();
 
   const [validMatch, setValidMatch] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -133,7 +137,7 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
             ${(inputFocus || filled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2` : 'text-base'}
           `}
         >
-          {customPlaceHolderText || 'تکرار رمز عبور'}
+          {customPlaceHolderText || t("RegistrationPages.Signup.repeatPassword")}
         </label>
 
         <span 
@@ -150,10 +154,10 @@ const ConfirmPassInputSignup = ({ password, onChange, value, focus, onFocus, onB
       </div>
 
       <p id="confirmnote" className={`${(showErrors && !validMatch && value) ? "instructions" : "hidden"} -mt-3 text-right text-xs mr-4 self-start text-[${textErrorColor}] gap-y-2`}>
-        *باید با اولین قسمت ورودی رمز عبور مطابقت داشته باشد.
+        {t("RegistrationPages.Signup.repeatPasswordError1")}
       </p>
       <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-3 text-right text-xs mr-4 self-start text-[${textErrorColor}]`}>
-        *تکرار رمز عبور الزامی می باشد
+        {t("RegistrationPages.Signup.repeatPasswordError2")}
       </p>
     </>
   );

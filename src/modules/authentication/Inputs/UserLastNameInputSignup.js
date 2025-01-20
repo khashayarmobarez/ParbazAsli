@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import inputStyles from '../../../styles/Inputs.module.css';
+import { USER_REGEX } from '../../../Utilities/Providers/regexProvider';
 
-const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 
 const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
+
+  // language
+  const { t } = useTranslation();
 
   const [validName, setValidName] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -125,17 +131,17 @@ const UserLastNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onB
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
-          نام خانوادگی
+          {t("RegistrationPages.Signup.userLastnameInput")}
         </label>
       </div>
       <p id="uidnote" aria-live="polite" className={`${value && !USER_REGEX.test(value) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
-        *با حروف فارسی بنویسید
+        {t("RegistrationPages.Signup.usernameInputError1")}
       </p>
       <p id="uidnote" aria-live="polite" className={`${(value && (value?.length < 3 || value?.length > 24)) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
-        *3 تا 50 کاراکتر<br />
+        {t("RegistrationPages.Signup.usernameInputError2")}<br />
       </p>
       <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
-        *نام خانوادگی الزامی می باشد
+        {t("RegistrationPages.Signup.userLastnameInputError3")}
       </p>
     </div>
   );

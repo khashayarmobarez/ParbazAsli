@@ -124,7 +124,7 @@ function App() {
     });
   }                                                                                                                                                                           Cookies.set('app_front-end_Developer', 'khashayar_mobarez_haghighi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_back-end_Developer', 'hesam_javadi', { expires: 7, domain: '.digilogbook.app' });Cookies.set('app_ui/ux_designer', 'sheida_rahmani', { expires: 7, domain: '.digilogbook.app' });                                                
 
-  const { t, language, setLanguage } = useTranslation();
+  const {  language, setLanguage } = useTranslation();
   
 
   // is user authenticated could be, authenticated, false, noEmail, noCertificate, noAdminApprovment

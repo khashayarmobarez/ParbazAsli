@@ -13,17 +13,25 @@
         },
         "Signup": {
             "usernameInput": "Name*",
+            "usernameInputError1": "Write in Persian characters",
+            "usernameInputError2": "3 to 50 characters",
+            "usernameInputError3": "Name is required",
             "userLastnameInput": "Last Name*",
+            "userLastnameInputError3": "Last name is required",
             "userPhoneNumber": "Phone Number*",
-            "password":"Password",
-            "repeatPassword": "Repeat password"
-        }
-    },
-    "welcome": "خوش آمدید!",
-    "user": {
-        "profile": {
-        "title": "پروفایل شما",
-        "greeting": "سلام، {{name}}!"
+            "userPhoneNumberError1": "Phone number must start with 09 and be 11 digits",
+            "userPhoneNumberError2": "Phone number is required*",
+            "password": "Password*",
+            "passwordError1": "*Password must be at least {{passwordMinLength}} and at most {{passwordMaxLength}} characters long.",
+            "passwordError2": "*Password must include at least one number",
+            "passwordError3": "*Password must include at least one uppercase letter",
+            "passwordError4": "*Password must include at least one lowercase letter",
+            "passwordError5": "*Password must include at least one special character",
+            "passwordError6": "*Password format is incorrect",
+            "passwordError7": "*Password is required",
+            "repeatPassword": "Repeat Password*",
+            "repeatPasswordError1": "*Must match the first password input.",
+            "repeatPasswordError2": "*Repeat password is required"
         }
     }
 }

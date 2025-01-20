@@ -11,10 +11,14 @@
     // assets 
     import KeyIcon from '../../../components/icons/KeyIcon';
     import inputStyles from '../../../styles/Inputs.module.css';
+    import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
     const PWD_REGEX = /^[A-Za-z0-9~`!@#$%^&*()\-_\+={}\[\]|\/\\:;"`<>,.\?]+$/;
 
     const PasswordInputSignup = ({ onChange, value, focus, onFocus, onBlur, isSubmitted, customActivePlaceHolderBgColor, customPlaceHolderText }) => {
+
+      // language
+      const { t } = useTranslation();
 
       const authSettings = useSelector(selectAuthSettings);
 
@@ -193,13 +197,13 @@
                 ${(inputFocus || filled) ? `-translate-y-5 translate-x-2 text-xs ${customActivePlaceHolderBgColor || 'bg-bgPageMain'} px-2 rounded ` : 'text-base'}
               `}
             >
-              {customPlaceHolderText || 'رمز عبور'}
+              {customPlaceHolderText || t("RegistrationPages.Signup.password")}
             </label>
 
             <span 
-            onClick={togglePasswordVisibility} 
-            className="absolute left-3 top-3 cursor-pointer"
-            style={{ color: iconColor }}
+              onClick={togglePasswordVisibility} 
+              className="absolute left-3 top-3 cursor-pointer"
+              style={{ color: iconColor }}
             >
                 {showPassword ? (
                   <RemoveRedEyeOutlinedIcon />
@@ -212,15 +216,15 @@
           <div id="pwdnote" className={`${filled && !validPwd ? "instructions" : "hidden"} -mt-2 text-right text-xs mr-6 text-[${textErrorColor}] gap-y-2 flex flex-col items-start w-full `}>
             {
               (value.length < passwordMinLength || value.length > passwordMaxLength ) &&
-                <p>
-                  *پسوورد باید حداقل {passwordMinLength} و حداکثر {passwordMaxLength} کارکتر داشته باشد.<br />
+                <p className='max-w-[80%]'>
+                  {t("RegistrationPages.Signup.passwordError1", { passwordMinLength: passwordMinLength, passwordMaxLength: passwordMaxLength })}
                 </p>
             }
             {  
             passwordRequireDigit && !(/\d/.test(value)) &&
-              (
-                <p>
-                  *رمز عبور باید حداقل شامل یک عدد باشد
+            (
+              <p>
+                  {t("RegistrationPages.Signup.passwordError2")}
                   <br />
                 </p>
               ) 
@@ -228,7 +232,7 @@
             {  
             passwordRequireUppercase && !(/[A-Z]/.test(value)) && (
               <p>
-                *رمز عبور باید حداقل شامل یک حرف بزرگ باشد
+                {t("RegistrationPages.Signup.passwordError3")}
                 <br />
               </p>
               ) 
@@ -236,7 +240,7 @@
             {  
             passwordRequireLowercase && !(/[a-z]/.test(value)) && (
               <p>
-                *رمز عبور باید حداقل شامل یک حرف کوچک باشد
+                {t("RegistrationPages.Signup.passwordError4")}
                 <br />
               </p>
             ) 
@@ -244,7 +248,7 @@
             {  
             passwordRequireNonAlphanumeric && !(/[~`!@#$%^&*()\-_+={}[\]|/\\:;"`<>,.?]/.test(value)) && (
               <p>
-                *رمز عبور باید حداقل شامل یک کارکتر ویژه باشد
+                {t("RegistrationPages.Signup.passwordError5")}
                 <br />
               </p>
               )  
@@ -253,14 +257,14 @@
               
               !PWD_REGEX.test(value) && 
               <p>
-                *فرمت پسوورد درست نمی باشد
+                {t("RegistrationPages.Signup.passwordError6")}
                 <br />
               </p>
             }
           </div>
 
           <p id="inputnote" aria-live="polite" className={`${(!value && showErrors ) ? "instructions" : "hidden"} -mt-3 text-right text-xs mr-4 self-start text-[${textErrorColor}]`}>
-            *رمز عبور الزامی می باشد
+            {t("RegistrationPages.Signup.passwordError7")}
           </p>
         </>
       );

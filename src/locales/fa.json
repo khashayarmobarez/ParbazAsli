@@ -13,17 +13,25 @@
         },
         "Signup": {
             "usernameInput": "نام*",
+            "usernameInputError1": "با حروف فارسی بنویسید",
+            "usernameInputError2": "3 تا 50 کاراکتر",
+            "usernameInputError3": "نام الزامی می باشد",
             "userLastnameInput": "نام خانوادگی*",
+            "userLastnameInputError3": "نام خانوادگی الزامی می باشد",
             "userPhoneNumber": "شماره تلفن*",
-            "password": "رمز عبور",
-            "repeatPassword": "تکرار رمز عبور"
-        }
-    },
-    "welcome": "خوش آمدید!",
-    "user": {
-        "profile": {
-        "title": "پروفایل شما",
-        "greeting": "سلام، {{name}}!"
+            "userPhoneNumberError1": "شماره تلفن باید با 09 شروع شود و 11 رقم باشد",
+            "userPhoneNumberError2": "شماره تلفن الزامی می باشد*",
+            "password": "رمز عبور*",
+            "passwordError1": "*پسوورد باید حداقل {{passwordMinLength}} و حداکثر {{passwordMaxLength}} کارکتر داشته باشد.",
+            "passwordError2": "*رمز عبور باید حداقل شامل یک عدد باشد",
+            "passwordError3": "*رمز عبور باید حداقل شامل یک حرف بزرگ باشد",
+            "passwordError4": "*رمز عبور باید حداقل شامل یک حرف کوچک باشد",
+            "passwordError5": "*رمز عبور باید حداقل شامل یک کارکتر ویژه باشد",
+            "passwordError6": "*فرمت پسوورد درست نمی باشد",
+            "passwordError7": "*رمز عبور الزامی می باشد",
+            "repeatPassword": "تکرار رمز عبور*",
+            "repeatPasswordError1": "*باید با اولین قسمت ورودی رمز عبور مطابقت داشته باشد.",
+            "repeatPasswordError2": "*تکرار رمز عبور الزامی می باشد"
         }
     }
 }
