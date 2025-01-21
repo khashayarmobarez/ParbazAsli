@@ -423,14 +423,14 @@ const AddEquipment = () => {
                                     <div className='col-span-1 flex flex-col gap-y-2'>
                                         <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
                                         <div className='flex justify-between gap-x-2'>
-                                            <NumberInput 
-                                                icon={<Cube customColor = {!minimumWeightCapacity && submitted && 'var(--text-error)'}/>} 
-                                                id={'NI1'} 
-                                                className='w-full' 
-                                                value={minimumWeightCapacity} 
-                                                onChange={handleMinimumWeightCapacity} 
-                                                placeholder='حداقل وزن' 
-                                                IsEmptyAfterSubmit={submitted && !minimumWeightCapacity} 
+                                            <NumberInput
+                                                icon={<Cube customColor = {!minimumWeightCapacity && submitted && 'var(--text-error)'}/>}
+                                                id={'NI1'}
+                                                className='w-full'
+                                                value={minimumWeightCapacity}
+                                                onChange={handleMinimumWeightCapacity}
+                                                placeholder='حداقل وزن'
+                                                IsEmptyAfterSubmit={submitted && !minimumWeightCapacity}
                                                 isSubmitted={submitted}
                                                 ErrorCondition={!minimumWeightCapacity}
                                                 ErrorText={'حداقل وزن الزامی میباشد'}

@@ -7,8 +7,6 @@ import boxStyles from '../../styles/DataBox.module.css'
 import UserIcon from '../../components/icons/UserIcon'
 import UsersIcon from '../../components/icons/UsersIcon'
 
-// queries 
-import { useGetClub } from '../../Utilities/Services/clubQueries';
 
 // mui
 import { Avatar } from '@mui/material';
@@ -18,9 +16,7 @@ import ChangeClubPicPopUp from './components/ChangeClubPicPopUp';
 import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
 
 
-const ClubData = () => {
-
-    const { data } = useGetClub();
+const ClubData = ({data}) => {
 
     const [showPopUp,setShowPopup] = useState(false)
 

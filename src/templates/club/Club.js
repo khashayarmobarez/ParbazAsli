@@ -10,7 +10,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // use club status
-import { useClubStatus } from '../../Utilities/Services/clubQueries';
+import { useClubStatus, useGetClub } from '../../Utilities/Services/clubQueries';
 import { useUserEquipments } from '../../Utilities/Services/equipmentQueries';
 
 
@@ -30,6 +30,8 @@ const Club = () => {
     const {data:clubStatus , isLoading: clubStatusLoading} = useClubStatus();
 
     const { data: userEquipmentsData, } = useUserEquipments(1, true)
+
+    const { data: clubData } = useGetClub();
 
 
     return (
@@ -55,7 +57,7 @@ const Club = () => {
                 {clubStatus && clubStatus.data === 'Accepted' && 
                     <div className=' flex flex-col items-center w-[90%] gap-y-5 mt-5 lg:mt-16'>
 
-                        <ClubData />
+                        <ClubData data={clubData} />
 
                         <div className='w-full flex justify-around'>
                             <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
@@ -79,6 +81,7 @@ const Club = () => {
                         {
                         userEquipmentsData &&
                             <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
+                            // <ParachutesSwiperSlider isForClub={true} parachutesData={clubData.data.parachutes} />
                         }
                         
                     </div>

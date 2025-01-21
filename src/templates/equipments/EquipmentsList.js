@@ -226,7 +226,7 @@ const EquipmentsList = () => {
                                             </p>
                                             {
                                                 equipment.status !== 'Pending' &&
-                                                <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                                                <p>{equipment.flightCount} پرواز  / {equipment.flightDuration} ساعت</p>
                                             }
                                         </div>
 
@@ -331,7 +331,7 @@ const EquipmentsList = () => {
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
                                     <p className='text-start'> برند {equipment.brand} / مدل {equipment.model}{equipmentType === "Wing" && ` / کلاس ${equipment.wingClass}`}</p>
-                                    <p>{equipment.flightCount} پرواز  / {equipment.flightHours} ساعت</p>
+                                    <p>{equipment.flightCount} پرواز  / {equipment.flightDuration} ساعت</p>
                                 </div>
 
                                 <div className=' w-full text-xs flex justify-between items-start gap-y-1'>
