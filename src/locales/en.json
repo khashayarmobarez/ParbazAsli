@@ -73,5 +73,25 @@
                 }
             }
         }
+    },
+    "navbar": {
+        "menuItems": {
+        "home": "Home",
+        "blog": "Blog",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "settings": "Settings",
+        "profile": "Profile",
+        "userCode": "User Code",
+        "logout": "Logout"
+        },
+        "ariaLabels": {
+        "home": "Home",
+        "blog": "Blog",
+        "aboutUs": "About Us",
+        "contactUs": "Contact Us",
+        "settings": "Settings",
+        "profile": "Profile"
+        }
     }
 }

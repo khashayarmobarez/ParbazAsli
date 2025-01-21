@@ -25,9 +25,16 @@ import { GroupsOutlined,  PhoneOutlined, SettingsOutlined } from '@mui/icons-mat
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import BookIcon from '../components/icons/BookIcon';
 
+// context
+import { useTranslation } from '../Utilities/context/TranslationContext';
+
 
 
 const NewNavbar = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const navigate = useNavigate()
     const location = useLocation();
@@ -127,10 +134,10 @@ const NewNavbar = () => {
                             <Link
                             className={`${currentUrl === '/profile' && 'underline underline-offset-8 text-textAccent'}`} 
                             to='/'
-                            title="صفحه اصلی" 
-                            aria-label="صفحه اصلی"
+                            title={t("navbar.menuItems.home")} 
+                            aria-label={t("navbar.menuItems.home")}
                             >
-                            صفحه اصلی
+                            {t("navbar.menuItems.home")}
                             </Link>
                         </li>
 
@@ -140,10 +147,10 @@ const NewNavbar = () => {
                         > 
                             <a 
                             href='https://digilogbook.app/blogs/1'
-                            title="بلاگ" 
-                            aria-label="بلاگ"
+                            title={t("navbar.menuItems.blog")}
+                            aria-label={t("navbar.menuItems.blog")}
                             >
-                            بلاگ
+                            {t("navbar.menuItems.blog")}
                             </a>
                         </li>
 
@@ -153,10 +160,10 @@ const NewNavbar = () => {
                         > 
                             <a 
                             href='https://digilogbook.app/aboutUs'
-                            title="بلاگ" 
-                            aria-label="بلاگ"
+                            title={t("navbar.menuItems.aboutUs")}
+                            aria-label={t("navbar.menuItems.aboutUs")}
                             >
-                            درباره ما
+                            {t("navbar.menuItems.aboutUs")}
                             </a>
                         </li>
 
@@ -166,10 +173,10 @@ const NewNavbar = () => {
                         > 
                             <a 
                             href='https://digilogbook.app/contactUs'
-                            title="تماس با ما" 
-                            aria-label="تماس با ما"
+                            title={t("navbar.menuItems.contactUs")}
+                            aria-label={t("navbar.menuItems.contactUs")}
                             >
-                            تماس با ما
+                            {t("navbar.menuItems.contactUs")}
                             </a>
                         </li>
 
@@ -180,10 +187,10 @@ const NewNavbar = () => {
                             <Link  
                             className={`${currentUrl === '/settings' && 'underline underline-offset-8 text-textAccent'}`} 
                             to='/settings'
-                            title="تنظیمات"
-                            aria-label="تنظیمات"
+                            title={t("navbar.menuItems.settings")}
+                            aria-label={t("navbar.menuItems.settings")}
                             >
-                            تنظیمات
+                            {t("navbar.menuItems.settings")}
                             </Link>
                         </li>
                         
@@ -219,8 +226,8 @@ const NewNavbar = () => {
             {/* navigation menu in mobile */}
             <div 
             className={`
-                lg:hidden fixed bg-bgMenu top-0 right-0 w-3/4 md:w-2/5 h-[100dvh] bg-white z-50 transform transition-all duration-300 rounded-l-3xl flex flex-col items-center justify-start pt-20 text-sm
-                ${isOpen ? 'translate-x-0 ' : 'translate-x-full'}`
+                ${dir === 'ltr' ? `${isOpen ? 'translate-x-0 ' : '-translate-x-full'} left-0 rounded-r-3xl` : `${isOpen ? 'translate-x-0 ' : 'translate-x-full'} right-0 rounded-l-3xl`}
+                lg:hidden fixed bg-bgMenu top-0  w-3/4 md:w-2/5 h-[100dvh] bg-white z-50 transform transition-all duration-300  flex flex-col items-center justify-start pt-20 text-sm`
             }
             style={{boxShadow:isOpen && ' var(--shadow-button-dark),var(--shadow-button-white)'}}
             >
@@ -233,7 +240,7 @@ const NewNavbar = () => {
 
                 <div id='name' className='flex flex-col items-center py-6 gap-y-3'>
                     <p className='text-lg'>{data?.data.firstName} {data?.data.lastName}</p>
-                    <p>کد کاربری: {data?.data.userId}</p>
+                    <p>{t("navbar.menuItems.userCode")}: {data?.data.userId}</p>
                 </div>
 
                 <ul
@@ -248,10 +255,10 @@ const NewNavbar = () => {
                         <Link 
                         to='/'
                         className={`${currentUrl === '/profile' && 'underline underline-offset-8 text-textAccent'}`} 
-                        title="پروفایل" 
-                        aria-label="پروفایل"
+                        title={t("navbar.menuItems.profile")}
+                        aria-label={t("navbar.menuItems.profile")}
                         >
-                        پروفایل
+                            {t("navbar.menuItems.profile")}
                         </Link>
                     </li>
 
@@ -264,10 +271,10 @@ const NewNavbar = () => {
                         </div>
                         <a 
                         href='https://digilogbook.app/blogs/1'
-                        title="بلاگ" 
-                        aria-label="بلاگ"
+                        title={t("navbar.menuItems.blog")} 
+                        aria-label={t("navbar.menuItems.blog")}
                         >
-                        بلاگ
+                        {t("navbar.menuItems.blog")}
                         </a>
                     </li>
 
@@ -278,10 +285,10 @@ const NewNavbar = () => {
                         <GroupsOutlined fontSize="small"   />
                         <a 
                         href='https://digilogbook.app/aboutUs'
-                        title="بلاگ" 
-                        aria-label="بلاگ"
+                        title={t("navbar.menuItems.aboutUs")} 
+                        aria-label={t("navbar.menuItems.aboutUs")}
                         >
-                        درباره ما
+                        {t("navbar.menuItems.aboutUs")}
                         </a>
                     </li>
 
@@ -292,10 +299,10 @@ const NewNavbar = () => {
                         <PhoneOutlined fontSize="small"   />
                         <a 
                         href='https://digilogbook.app/contactUs'
-                        title="تماس با ما" 
-                        aria-label="تماس با ما"
+                        title={t("navbar.menuItems.contactUs")} 
+                        aria-label={t("navbar.menuItems.contactUs")}
                         >
-                        تماس با ما
+                        {t("navbar.menuItems.contactUs")}
                         </a>
                     </li>
 
@@ -307,23 +314,23 @@ const NewNavbar = () => {
                         <Link  
                         to='/settings'
                         className={`${currentUrl === '/settings' && 'underline underline-offset-8 text-textAccent'}`} 
-                        title="تنظیمات"
-                        aria-label="تنظیمات"
+                        title={t("navbar.menuItems.settings")}
+                        aria-label={t("navbar.menuItems.settings")}
                         >
-                        تنظیمات
+                        {t("navbar.menuItems.settings")}
                         </Link>
                     </li>
                 </ul>
 
                 <Link 
                 to='/' 
-                    onClick={() => {clickInput(); handleLogout() }} 
+                    onClick={() => {clickInput(); handleLogout() }}
                     className={`
-                        ${buttonStyles.normalButton} 
+                        ${buttonStyles.normalButton}
                         w-[130px] h-[48px] flex items-center justify-center rounded-xl text-base mt-10 lg:hidden
-                    `} 
+                    `}
                 >
-                خروج
+                    {t("navbar.menuItems.logout")}
                 </Link>
 
             </div>

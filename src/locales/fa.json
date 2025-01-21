@@ -73,6 +73,26 @@
                 }
             }
         }
+    },
+    "navbar": {
+        "menuItems": {
+        "home": "صفحه اصلی",
+        "blog": "بلاگ",
+        "aboutUs": "درباره ما",
+        "contactUs": "تماس با ما",
+        "settings": "تنظیمات",
+        "profile": "پروفایل",
+        "userCode": "کد کاربری",
+        "logout": "خروج"
+        },
+        "ariaLabels": {
+        "home": "صفحه اصلی",
+        "blog": "بلاگ",
+        "aboutUs": "درباره ما",
+        "contactUs": "تماس با ما",
+        "settings": "تنظیمات",
+        "profile": "پروفایل"
+        }
     }
 }
   
