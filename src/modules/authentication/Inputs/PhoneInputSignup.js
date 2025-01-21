@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import inputStyles from '../../../styles/Inputs.module.css';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import Cookies from 'js-cookie';
 
 // regexes
 import { PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';
@@ -10,6 +11,7 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
 
   // language
   const { t } = useTranslation();
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [validPhone, setValidPhone] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -100,7 +102,7 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
   return (
     <div className='flex flex-col relative w-full rounded-xl '>
       <div className='relative w-full min-h-12 cursor-text'>
-        <span className="absolute right-3 top-3 w-5 z-10 cursor-text">
+        <span className={`absolute  ${dir === 'ltr' ? 'left-3' : 'right-3'} top-3 w-5 z-10 cursor-text`}>
           <LocalPhoneRoundedIcon sx={{ color: iconColor }} />
         </span>
         <input
@@ -116,7 +118,8 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
           aria-invalid={validPhone ? "false" : "true"}
           aria-describedby="phonenote"
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            peer w-full min-h-12 px-4 pt-1 pb-1 rounded-2xl
+            ${dir === 'ltr' ? 'pl-10' : 'pr-10'}
             border-2 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none
@@ -130,7 +133,8 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
           onClick={handleLabelClick}
           htmlFor="phoneSignup"
           className={`
-            absolute right-11 top-[13px]
+            absolute top-[13px]
+            ${dir === 'ltr' ? 'left-11' : 'right-11'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
@@ -143,10 +147,10 @@ const PhoneInputSignup = ({ phoneRef, onChange, value, focus, onFocus, onBlur, i
           {t("RegistrationPages.Signup.userPhoneNumber")}
         </label>
       </div>
-      <p id="phonenote" className={`${filled && value && !validPhone ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="phonenote" className={`${filled && value && !validPhone ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : 'text-right'} text-xs mr-4 text-[${textErrorColor}]`}>
         {t("RegistrationPages.Signup.userPhoneNumberError1")}
       </p>
-      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : 'text-right'} text-xs mr-4 text-[${textErrorColor}]`}>
         {t("RegistrationPages.Signup.userPhoneNumberError2")}
       </p>
     </div>

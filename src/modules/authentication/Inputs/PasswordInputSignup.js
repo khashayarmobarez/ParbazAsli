@@ -1,4 +1,5 @@
     import React, { useState, useEffect } from 'react';
+    import Cookies from 'js-cookie';
 
     // redux
     import { useSelector } from 'react-redux';
@@ -19,6 +20,7 @@
 
       // language
       const { t } = useTranslation();
+      const dir = Cookies.get('dir') || 'ltr';
 
       const authSettings = useSelector(selectAuthSettings);
 
@@ -158,7 +160,7 @@
       return (
         <>
           <div className={`${inputStyles['password-input']} flex relative w-[100%] h-12 `} htmlFor="password">
-          <span className="absolute right-4 top-3 w-5 z-10 cursor-text"  >
+          <span className={`absolute  ${dir === 'ltr' ? 'left-3' : 'right-3'} top-3 w-5 z-10 cursor-text`}  >
             <KeyIcon customColor={iconColor} />
           </span>
             <input
@@ -169,7 +171,8 @@
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={`
-                peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+                peer w-full min-h-12 px-4 pt-1 pb-1 rounded-2xl
+                ${dir === 'ltr' ? 'pl-10' : 'pr-10'}
                 border-2 bg-transparent
                 text-gray-900 placeholder-transparent
                 focus:outline-none
@@ -188,7 +191,8 @@
               onClick={handleLabelClick}
               htmlFor="username"
               className={`
-                absolute right-12 top-[13px]
+                absolute top-[13px]
+                ${dir === 'ltr' ? 'left-12' : 'right-12'}
                 transition-all duration-300 transform
                 peer-placeholder-shown:translate-y-0
                 peer-placeholder-shown:text-sm
@@ -202,7 +206,7 @@
 
             <span 
               onClick={togglePasswordVisibility} 
-              className="absolute left-3 top-3 cursor-pointer"
+              className={`absolute ${dir === 'ltr' ? 'right-3' : 'left-3'} top-3 cursor-pointer`}
               style={{ color: iconColor }}
             >
                 {showPassword ? (

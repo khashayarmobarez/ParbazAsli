@@ -88,7 +88,7 @@ const Login = () => {
 
         // Add your validation logic here
         if (!userInput || !pwd || !validUserInput) {
-            toast('اطلاعات درست نیست', {
+            toast(t("RegistrationPages.notifications.invalidInfo"), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 5000,
@@ -117,7 +117,7 @@ const Login = () => {
             // Successful login
             if (response.data.isSuccess) {
 
-                toast('لاگین با موفقیت انجام شد', {
+                toast(t("RegistrationPages.notifications.loginSuccess"), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
@@ -152,8 +152,8 @@ const Login = () => {
             }
         } catch (error) {
             if (!error?.response) {
-                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-                toast('مشکلی رخ داده است, دوباره تلاش کنید', {
+                setErrMsg(t("RegistrationPages.notifications.tryAgain"));
+                toast(t("RegistrationPages.notifications.tryAgain"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -163,8 +163,8 @@ const Login = () => {
                 setSubmitLoading(false)
             }
             else if(error.response.data.ErrorMessages[0].ErrorKey === 'resetPasswordRequired') {
-                setErrMsg(' رمز خود را از طریق فراموشی رمز عبور تغییر دهید');
-                toast('رمز خود را از طریق فراموشی رمز عبور تغییر دهید', {
+                setErrMsg(t("RegistrationPages.notifications.resetPasswordRequired"));
+                toast(t("RegistrationPages.notifications.resetPasswordRequired"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,

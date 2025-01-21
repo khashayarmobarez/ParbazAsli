@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import inputStyles from '../../../styles/Inputs.module.css';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import { USER_REGEX } from '../../../Utilities/Providers/regexProvider';
 
-const USER_REGEX = /^[\u0600-\u06FF\s]+$/;
 
 const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur, isSubmitted }) => {
 
   // language
   const { t } = useTranslation();
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [validName, setValidName] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -94,7 +97,7 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
   return (
     <div className='flex flex-col relative w-full rounded-xl'>
       <div className='relative w-full min-h-12'>
-        <span className="absolute right-3 top-3 w-5 z-10 cursor-text">
+        <span className={`absolute  ${dir === 'ltr' ? 'left-3' : 'right-3'} top-3 w-5 z-10 cursor-text`}>
           <PersonOutlineOutlinedIcon sx={{ color: iconColor }} />
         </span>
         <input
@@ -110,8 +113,9 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
           aria-invalid={validName ? "false" : "true"}
           aria-describedby="uidnote"
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
-            border-2 bg-transparent
+            peer w-full min-h-12 px-4 pt-1 pb-1 
+            ${dir === 'ltr' ? 'pl-10' : 'pr-10'}
+            rounded-2xl border-2 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none
             ${borderColorClass}
@@ -124,7 +128,8 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
           onClick={handleLabelClick}
           htmlFor="username"
           className={`
-            absolute right-11 top-[13px]
+            absolute top-[13px]
+            ${dir === 'ltr' ? 'left-11' : 'right-11'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
             peer-placeholder-shown:text-sm
@@ -137,13 +142,13 @@ const UserNameInputSignup = ({ userRef, onChange, value, focus, onFocus, onBlur,
           {t("RegistrationPages.Signup.usernameInput")}
         </label>
       </div>
-      <p id="uidnote" aria-live="polite" className={`${value && !USER_REGEX.test(value) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="uidnote" aria-live="polite" className={`${value && !USER_REGEX.test(value) && showErrors ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : 'text-right'}  text-xs mr-4 text-[${textErrorColor}]`}>
         {t("RegistrationPages.Signup.usernameInputError1")}
       </p>
-      <p id="uidnote" aria-live="polite" className={`${(value && (value?.length < 3 || value?.length > 24)) && showErrors ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="uidnote" aria-live="polite" className={`${(value && (value?.length < 3 || value?.length > 24)) && showErrors ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : 'text-right'} text-xs mr-4 text-[${textErrorColor}]`}>
         {t("RegistrationPages.Signup.usernameInputError2")}
       </p>
-      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-4 text-[${textErrorColor}]`}>
+      <p id="inputnote" aria-live="polite" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : 'text-right'} text-xs mr-4 text-[${textErrorColor}]`}>
         {t("RegistrationPages.Signup.usernameInputError3")}
       </p>
     </div>

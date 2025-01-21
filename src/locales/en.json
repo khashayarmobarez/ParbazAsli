@@ -31,7 +31,22 @@
             "passwordError7": "*Password is required",
             "repeatPassword": "Repeat Password*",
             "repeatPasswordError1": "*Must match the first password input.",
-            "repeatPasswordError2": "*Repeat password is required"
+            "repeatPasswordError2": "*Repeat password is required",
+            "loadingMessage": "Loading, please wait...",
+            "errorMessage": "Something went wrong, please try again later.",
+            "termsCheckbox": "I agree to the terms and conditions.",
+            "submitButton": "Sign Up",
+            "resendCodeMessage": "Wait {{codeRemainingTime}} seconds to request the code again."
+        },
+        "notifications": {
+            "invalidInfo": "The information is not correct.",
+            "loginSuccess": "Login was successful.",
+            "tryAgain": "Something went wrong, please try again.",
+            "resetPasswordRequired": "Change your password via 'Forgot Password'.",
+            "completeFormAndAgree": "Complete the form and agree to the terms, then submit.",
+            "phoneAlreadyUsed": "This phone number has already been used.",
+            "enterValidCode": "Enter the correct code.",
+            "registrationFailed": "Registration failed."
         }
     }
 }

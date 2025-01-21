@@ -31,7 +31,22 @@
             "passwordError7": "*رمز عبور الزامی می باشد",
             "repeatPassword": "تکرار رمز عبور*",
             "repeatPasswordError1": "*باید با اولین قسمت ورودی رمز عبور مطابقت داشته باشد.",
-            "repeatPasswordError2": "*تکرار رمز عبور الزامی می باشد"
+            "repeatPasswordError2": "*تکرار رمز عبور الزامی می باشد",
+            "loadingMessage": "لطفا صبر کنید، در حال بارگذاری...",
+            "errorMessage": "مشکلی پیش آمده، لطفاً دوباره تلاش کنید.",
+            "termsCheckbox": "با قوانین و مقررات موافقم.",
+            "submitButton": "ثبت نام",
+            "resendCodeMessage": "برای دریافت دوباره کد {{codeRemainingTime}} ثانیه صبر کنید."
+        },
+        "notifications": {
+            "invalidInfo": "اطلاعات درست نیست",
+            "loginSuccess": "لاگین با موفقیت انجام شد",
+            "tryAgain": "مشکلی رخ داده است، دوباره تلاش کنید",
+            "resetPasswordRequired": "رمز خود را از طریق فراموشی رمز عبور تغییر دهید",
+            "completeFormAndAgree": "اول فرم را کامل نموده و با قوانین موافقت کنید، سپس تایید را بزنید",
+            "phoneAlreadyUsed": "شماره تلفن قبلا استفاده شده",
+            "enterValidCode": "کد را درست وارد کنید",
+            "registrationFailed": "ثبت نام ناموفق"
         }
     }
 }

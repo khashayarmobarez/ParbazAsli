@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +31,9 @@ import { USER_REGEX, PWD_REGEX, PHONE_REGEX  } from '../../Utilities/Providers/r
 import { API_BASE_URL } from '../../Utilities/Providers/apiUrl';
 
 const SignUp = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -146,7 +150,7 @@ const SignUp = () => {
         setIsSubmitted(true)
 
         if (!validName || !validPwd || !validMatch || !validPhone || !termsChecked || !validLastName) { 
-            Toastify("اول فرم را کامل نموده و با قوانین موافقت کنید, سپس تایید را بزنید",'error')
+            Toastify(t("RegistrationPages.notifications.completeFormAndAgree"),'error')
             return;
         }
 
@@ -183,12 +187,12 @@ const SignUp = () => {
             // Handle errors
             if (!err?.response) {
                 setSubmitLoading(false)
-                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-                Toastify("مشکلی رخ داده, دوباره تلاش کنید",'error')
+                setErrMsg(t("RegistrationPages.notifications.tryAgain"));
+                Toastify(t("RegistrationPages.notifications.tryAgain"),'error')
             } else if (err.response?.status === 409) {
                 setSubmitLoading(false)
-                setErrMsg('شماره تلفن قبلا استفاده شده');
-                Toastify("شماره تلفن قبلا استفاده شده",'error')
+                setErrMsg(t("RegistrationPages.notifications.phoneAlreadyUsed"));
+                Toastify(t("RegistrationPages.notifications.phoneAlreadyUsed"),'error')
             } else {
                 setSubmitLoading(false)
                 setErrMsg(err.response.data.ErrorMessages[0].ErrorMessage)
@@ -222,7 +226,7 @@ const SignUp = () => {
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if (!code || code.length < 4) { 
-            Toastify('کد را درست وارد کنید', 'error')
+            Toastify(t("RegistrationPages.notifications.enterValidCode"), 'error')
             return;
         }
         try {
@@ -260,13 +264,13 @@ const SignUp = () => {
             } else {
                 console.error('Registration failed');
                 setSubmitLoading(false)
-                setErrMsg('ثبت نام ناموفق');
+                setErrMsg(t("RegistrationPages.notifications.registrationFailed"));
             }
         } catch (err) {
             if (!err?.response) {
                 setSubmitLoading(false)
-                setErrMsg('مشکلی رخ داده, دوباره تلاش کنید');
-                Toastify("مشکلی رخ داده است, دوباره تلاش کنید",'error')
+                setErrMsg(t("RegistrationPages.notifications.registrationFailed"));
+                Toastify(t("RegistrationPages.notifications.registrationFailed"),'error')
             } else {
                 setSubmitLoading(false)
                 console.log(err);
@@ -290,7 +294,7 @@ const SignUp = () => {
             {
             error && 
                 <div className='w-full min-h-[71vh]'>
-                    <p className='text-textError'>مشکلی پیش آماده بعدا دوباره تلاش کنید</p>
+                    <p className='text-textError'>{t('RegistrationPages.Signup.errorMessage')}</p>
                 </div>
             }
             
@@ -359,7 +363,7 @@ const SignUp = () => {
                         <Checkbox
                             className={'-mt-2 text-xs'}
                             hasUnderLine={true}
-                            label="با قوانین و مقررات موافقم"
+                            label={t('RegistrationPages.Signup.termsCheckbox')}
                             isChecked={termsChecked}
                             onToggle={handleTermsToggle}
                         />
@@ -373,18 +377,16 @@ const SignUp = () => {
                                 <CircularProgress sx={{ color: 'var(textAccent)' }} size={25} />
                                 :
                                 <>
-                                    ثبت نام
+                                    {t('RegistrationPages.Signup.submitButton')}
                                 </>
                             }
                             </button>
-                            {/* {(!validName || !validPwd || !validMatch || !validPhone || !validEmail) &&
-                            <p className='mt-[-2.8rem] w-24 h-12 rounded-3xl backdrop-blur text-center text-sm pt-3 font-semibold' style={{color:'black'}} > فرم را کامل کنید</p>
-                            } */}
                         </div>
 
 
-                        {/* <p ref={errRef} className={errMsg ? `` : "hidden"} aria-live="assertive">{errMsg}</p> */}
-                        <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive"> برای دریافت دوباره ی کد {codeRemainingTime} صبر کنید</p>
+                        <p className={codeRemainingTime ? "text-light-yellow" : "hidden"} aria-live="assertive">
+                            {t('RegistrationPages.Signup.resendCodeMessage', { codeRemainingTime })}
+                        </p>
 
                     </form>
 

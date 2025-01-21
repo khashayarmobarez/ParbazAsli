@@ -9,12 +9,14 @@ import { API_BASE_URL } from "../Providers/apiUrl";
     const getCloudTypes = async () => {
 
         const token = Cookies.get('token');
+        const culture = Cookies.get('culture') || 'en';
 
         try {
         const response = await axios.get(`${API_BASE_URL}/CloudCoverType/GetAllCloudCoverTypes`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
+                'culture': culture,
             },
         });
         return response.data;
@@ -82,12 +84,14 @@ import { API_BASE_URL } from "../Providers/apiUrl";
     const getProvincesByCountryId = async (countryId) => {
             
         const token = Cookies.get('token');
+        const culture = Cookies.get('culture') || 'en';
 
         try {
         const response = await axios.get(`${API_BASE_URL}/Province/GetProvinces?${countryId && `countryId=${countryId}`}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
+                'culture': culture,
             },
         });
         return response.data;
