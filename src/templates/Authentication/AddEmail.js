@@ -54,7 +54,7 @@ const AddEmail = () => {
 
     if(isUserAuthenticated !== 'noEmail') {
         // reload
-        // window.location.reload();    
+        window.location.reload();    
     }
 
     

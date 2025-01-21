@@ -226,7 +226,7 @@ function App() {
           }
 
           {/* add email, certificate and admin approval routes */}
-          {token && isUserAuthenticated !== 'noEmail' && (
+          {token && isUserAuthenticated === 'noEmail' && (
             <>
               <Route path='/addEmail' element={<AddEmail />} />
               <Route path='*' element={<Navigate to="/addEmail" replace />} />
