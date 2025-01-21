@@ -64,13 +64,42 @@
                 "confirmButton": "Confirm"
             },
             "notifications":{
-                "notifications": {
-                    "invalidInput": "The email or phone number format is incorrect.",
-                    "enterCode": "Please enter the code.",
-                    "codeSentSuccess": "Verification code successfully sent.",
-                    "passwordChangeSuccess": "Your password has been successfully changed. Please log in again.",
-                    "completeForm": "Complete the form before submission."
-                }
+                "invalidInput": "The email or phone number format is incorrect.",
+                "enterCode": "Please enter the code.",
+                "codeSentSuccess": "Verification code successfully sent.",
+                "passwordChangeSuccess": "Your password has been successfully changed. Please log in again.",
+                "completeForm": "Complete the form before submission."
+            }
+        },
+        "userDataBox": {
+            "flightCount": "Flight count",
+            "flightHours": "Flight hours",
+            "coachingHours": "Coaching hours",
+            "editProfile": "Edit Profile",
+            "userId": "User ID",
+            "certificate": "Certificate"
+        },
+        "addEmail": {
+            "error": "Error fetching authentication settings: {error}",
+            "emailVerificationRequired": "The following verifications are required to access the user panel.",
+            "emailVerification": "Email Verification",
+            "certificate": "Certificate",
+            "confirmation": "Confirmation",
+            "submitButton": "Submit",
+            "emailError": "Please enter a valid email address.",
+            "emailInput": {
+                "label": "Email",
+                "emailRequired": "*Email is required",
+                "invalidEmail": "Please enter a valid email address."
+            },
+            "notification": {
+                "incompleteForm": "Please complete the form and then confirm.",
+                "codeSentSuccess": "Code sent successfully.",
+                "genericError": "An issue occurred, please try again.",
+                "phoneUsed": "The phone number has already been used.",
+                "serverError": "Server error: ",
+                "enterValidCode": "Please enter a valid code.",
+                "emailRegistrationFailed": "Email registration failed."
             }
         }
     },
@@ -93,5 +122,10 @@
         "settings": "Settings",
         "profile": "Profile"
         }
+    },
+    "footer": {
+        "profile": "Profile",
+        "log": "Log",
+        "logbook": "Logbook"
     }
 }

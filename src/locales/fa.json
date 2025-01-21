@@ -72,6 +72,37 @@
                     "completeForm": "ابتدا فرم را کامل کنید سپس تایید کنید."
                 }
             }
+        },
+        "userDataBox": {
+            "flightCount": "تعداد پرواز",
+            "flightHours": "ساعت پرواز",
+            "coachingHours": "ساعت مربیگری",
+            "editProfile": "ویرایش پروفایل",
+            "userId": "کد کاربری",
+            "certificate": "گواهینامه"
+        },
+        "addEmail": {
+            "error": "خطا در بارگیری تنظیمات احراز هویت:",
+            "emailVerificationRequired": "برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.",
+            "emailVerification": "احراز ایمیل",
+            "certificate": "گواهینامه",
+            "confirmation": "تاییدیه",
+            "submitButton": "ثبت",
+            "emailError": "لطفاً یک ایمیل معتبر وارد کنید.",
+            "emailInput": {
+                "label": "ایمیل",
+                "emailRequired": "*ایمیل الزامی می باشد",
+                "invalidEmail": "لطفا یک آدرس ایمیل معتبر وارد کنید."
+            },
+            "notification": {
+                "incompleteForm": "فرم را کامل نموده و سپس تایید را بزنید.",
+                "codeSentSuccess": "کد با موفقیت ارسال شد.",
+                "genericError": "مشکلی رخ داده, دوباره تلاش کنید.",
+                "phoneUsed": "شماره تلفن قبلا استفاده شده.",
+                "serverError": "خطای سرور: ",
+                "enterValidCode": "لطفا کد را درست وارد کنید.",
+                "emailRegistrationFailed": "ثبت ایمیل ناموفق"
+            }
         }
     },
     "navbar": {
@@ -93,6 +124,11 @@
         "settings": "تنظیمات",
         "profile": "پروفایل"
         }
+    },
+    "footer": {
+        "profile": "پروفایل",
+        "log": "ورود",
+        "logbook": "دفتر ثبت"
     }
 }
   

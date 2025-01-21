@@ -12,6 +12,9 @@ import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
 
+// context
+import { useTranslation } from '../Utilities/context/TranslationContext';
+
 
 const styles = {
     container: {
@@ -57,6 +60,9 @@ const styles = {
 
 const Footer = ({ userRole }) => {
 
+  // language
+  const { t } = useTranslation();
+
   const token = Cookies.get('token') || null;
 
   const navigate = useNavigate();
@@ -88,10 +94,36 @@ const Footer = ({ userRole }) => {
           setValue(newValue);
           }}
           >
-            <BottomNavigationAction onClick={() => navigate('/profile')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>پروفایل</Typography>} icon={<PersonOutlineOutlinedIcon sx={{width:'24px', height:'24px'}} />} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl.includes('/profile') ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
-            <BottomNavigationAction onClick={() => navigate('/addFlight/AddFlightType')} label={<Typography variant="body1" sx={{ fontSize: '14px', marginTop:'2px' }}>لاگ</Typography>} icon={<AddIcon sx={{ borderRadius:'8px', width:'30px', height: '30px', marginBottom:'2px', border: 'solid 1.5px'}} />} sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl.includes('/addFlight') ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
-            <BottomNavigationAction onClick={() => navigate('/flightHistory')} label={<Typography variant="body1" sx={{ fontSize: '12px', marginTop:'2px' }}>لاگ بوک</Typography>} icon={<FolderOutlinedIcon sx={{width:'24px', height:'24px'}}/>} sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl.includes('/flightHistory') ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
+
+            <BottomNavigationAction 
+            onClick={() => navigate('/profile')} 
+            label={<Typography variant="body1" 
+            sx={{ fontSize: '12px', marginTop:'2px' }}>
+              {t("footer.profile")}
+            </Typography>} 
+            icon={<PersonOutlineOutlinedIcon sx={{width:'24px', height:'24px'}} />} 
+            sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl.includes('/profile') ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} 
+            />
+            
+            <BottomNavigationAction 
+            onClick={() => navigate('/addFlight/AddFlightType')} 
+            label={<Typography variant="body1" 
+            sx={{ fontSize: '14px', marginTop:'2px' }}>
+              {t("footer.log")}
+            </Typography>} 
+            icon={<AddIcon sx={{ borderRadius:'8px', width:'30px', height: '30px', marginBottom:'2px', border: 'solid 1.5px'}} />} 
+            sx={{ width:'120%' ,'&.Mui-selected': { color: currentUrl.includes('/addFlight') ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
+            
+            <BottomNavigationAction 
+            onClick={() => navigate('/flightHistory')} 
+            label={<Typography variant="body1" 
+            sx={{ fontSize: '12px', marginTop:'2px' }}>
+              {t("footer.logbook")}
+            </Typography>} 
+            icon={<FolderOutlinedIcon sx={{width:'24px', height:'24px'}}/>} 
+            sx={{width:'100%' ,'&.Mui-selected': { color: currentUrl.includes('/flightHistory') ? 'var(--text-accent)' : 'inherit' }, color:'var(--neutral-light)'}} />
           </BottomNavigation>
+
         </Box>
       </ThemeProvider>
     );

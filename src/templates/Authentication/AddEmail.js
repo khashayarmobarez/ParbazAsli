@@ -24,8 +24,14 @@ import { toast } from 'react-toastify';
 import { EMAIL_REGEX } from '../../Utilities/Providers/regexProvider';
 import { API_BASE_URL } from '../../Utilities/Providers/apiUrl';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const AddEmail = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -48,7 +54,7 @@ const AddEmail = () => {
 
     if(isUserAuthenticated !== 'noEmail') {
         // reload
-        window.location.reload();    
+        // window.location.reload();    
     }
 
     
@@ -91,7 +97,7 @@ const AddEmail = () => {
 
         
         if (!validEmail) { 
-            toast("فرم را کامل نموده و سپس تایید را بزنید", {
+            toast(t("RegistrationPages.addEmail.notification.incompleteForm"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -121,7 +127,7 @@ const AddEmail = () => {
                 // Handle the response data
                 setCodeRemainingTime(response.data.data.remainTimeSpanInSeconds)
                 setShowPopupSubmit(true)
-                toast('کد با موفقیت ارسال شد', {
+                toast(t("RegistrationPages.addEmail.notification.codeSentSuccess"), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -134,7 +140,7 @@ const AddEmail = () => {
             setSubmitLoading(false)
             // Handle errors
             if (!err?.response) {
-                toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                toast(t("RegistrationPages.addEmail.notification.genericError"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -142,7 +148,7 @@ const AddEmail = () => {
                     style: { width: "90%" }
                 });
             } else if (err.response?.status === 409) {
-                toast('شماره تلفن قبلا استفاده شده', {
+                toast(t("RegistrationPages.addEmail.notification.phoneUsed"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -185,7 +191,7 @@ const AddEmail = () => {
     // final submit logic
     const handleFinalSubmit = async (e) => {
         if ( !validEmail || !code) { 
-            toast("لطفا کد را درست وارد کنید", {
+            toast(t("RegistrationPages.addEmail.notification.enterValidCode"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -225,7 +231,7 @@ const AddEmail = () => {
                     window.location.reload();
             } else {
                 console.error('Registration failed');
-                toast('ثبت ایمیل ناموفق', {
+                toast(t("RegistrationPages.addEmail.notification.emailRegistrationFailed"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -236,7 +242,7 @@ const AddEmail = () => {
         } catch (err) {
             setSubmitLoading(false)
             if (!err?.response) {
-                toast('مشکلی رخ داده, دوباره تلاش کنید', {
+                toast(t("RegistrationPages.addEmail.notification.genericError"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -270,7 +276,7 @@ const AddEmail = () => {
 
             {error && 
                 <div className='w-full min-h-[71vh]'>
-                    <p>Error fetching authentication settings: {error}</p>
+                    <p>{(t("RegistrationPages.addEmail.error"))}: {error}</p>
                 </div>
             }
 
@@ -279,7 +285,7 @@ const AddEmail = () => {
             {
                 !loading && !error &&
                 <>
-                    <p className='text-textWarning text-start'>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
+                    <p className='text-textWarning text-start'>{(t("RegistrationPages.addEmail.emailVerificationRequired"))}</p>
 
 
                     {/* line and circle of adding flight level */}
@@ -304,11 +310,11 @@ const AddEmail = () => {
 
                         <div className='flex items-center justify-between w-[95%] text-xs'>
 
-                            <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
+                            <p className='' style={{color:'var(--text-accent)'}}>{(t("RegistrationPages.addEmail.emailVerification"))}</p>
 
-                            <p className='' style={{color:'var(--icon-disable)'}}>گواهینامه</p>
+                            <p className='' style={{color:'var(--icon-disable)'}}>{(t("RegistrationPages.addEmail.certificate"))}</p>
 
-                            <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
+                            <p className='' style={{color:'var(--icon-disable)'}}>{(t("RegistrationPages.addEmail.confirmation"))}</p>
 
                         </div>
 
@@ -329,7 +335,7 @@ const AddEmail = () => {
                     onClick={handlePopUp} 
                     disabled={Submitloading}
                     >
-                            ثبت
+                            {(t("RegistrationPages.addEmail.submitButton"))}
                     </button>
 
                     {

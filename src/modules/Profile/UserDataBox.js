@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // react router dom
 import { Link } from 'react-router-dom';
@@ -11,6 +12,9 @@ import buttonStyles from '../../styles/ButtonsBox.module.css'
 import { Avatar } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 // assets
 import ClockIcon from '../../components/icons/ClockIcon'
@@ -26,6 +30,10 @@ import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularB
 
 
 const UserDataBox = ({hasCoach}) => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const { data, isLoading, error } = useUserData();
 
@@ -62,9 +70,9 @@ const UserDataBox = ({hasCoach}) => {
                         <div className=' gap-y-2 md:space-y-5 flex flex-col items-center' >
                             <p className=' font-light text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data?.data.levelName &&
-                                <p className=' text-xs w-36' >{!data.data.isStarter && 'گواهینامه' } {data.data.levelName} </p>
+                                <p className=' text-xs w-36' >{!data.data.isStarter && t("RegistrationPages.userDataBox.certificate") } {data.data.levelName} </p>
                             }
-                            <p className=' text-xs w-36'>کد کاربری: {data.data.userId}</p>
+                            <p className=' text-xs w-36'>{t("RegistrationPages.userDataBox.userId")} {data.data.userId}</p>
                         </div>
 
                     </div>
@@ -78,14 +86,14 @@ const UserDataBox = ({hasCoach}) => {
                                 <span className='w-5 h-5'>
                                     <FlightQuantity />
                                 </span>
-                                <p className=' font-normal text-xs mr-2 text-start'>تعداد پرواز {data?.data.flightCount}</p>
+                                <p className={` font-normal text-xs ${dir === 'ltr' ? 'ml-2' : 'mr-2'} text-start`}>{t("RegistrationPages.userDataBox.flightCount")} {data?.data.flightCount}</p>
                             </div> 
 
                             <div className=' flex justify-between items-center ' >
                                 <span className='w-5 h-5'>
                                     <ClockIcon/>
                                 </span>
-                                <p className=' font-normal text-xs mr-2 text-start'>ساعت پرواز {data?.data.flightHours}</p>
+                                <p className={` font-normal text-xs ${dir === 'ltr' ? 'ml-2' : 'mr-2'} mr-2 text-start`}>{t("RegistrationPages.userDataBox.flightHours")} {data?.data.flightHours}</p>
                             </div>
                             
                             {/* condition based on coach  */}
@@ -94,7 +102,7 @@ const UserDataBox = ({hasCoach}) => {
                                     <span className='w-6 h-5'>
                                         <ClockIcon/>
                                     </span>
-                                    <p className=' font-normal text-xs mr-2 text-start'>ساعت مربیگری {data?.data.coachingHours}</p>
+                                    <p className={` font-normal text-xs ${dir === 'ltr' ? 'ml-2' : 'mr-2'} text-start`}>{t("RegistrationPages.userDataBox.coachingHours")} {data?.data.coachingHours}</p>
                                 </div>
                                 :
                                 <div/>
@@ -102,7 +110,7 @@ const UserDataBox = ({hasCoach}) => {
 
                         </div>
 
-                        <Link to='/editProfile/changeProfile' className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-full text-base ml-[5%] `} >ویرایش پروفایل</Link>
+                        <Link to='/editProfile/changeProfile' className={`${buttonStyles.normalButton} w-[130px] h-[48px] flex items-center justify-center rounded-full text-base ml-[5%] `} >{t("RegistrationPages.userDataBox.editProfile")}</Link>
 
                     </div>
 

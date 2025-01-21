@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import Cookies from 'js-cookie';
+
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import inputStyles from '../../../styles/Inputs.module.css';
 
 // regexes
 import { EMAIL_REGEX } from '../../../Utilities/Providers/regexProvider';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, autoComplete, isSubmitted }) => {
+
+  // language
+  const { t } = useTranslation();
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [validEmail, setValidEmail] = useState(false);
   const [filled, setFilled] = useState(false);
@@ -70,7 +76,7 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
   return (
     <div className='flex flex-col relative w-[100%] rounded-xl px-2'>
       <div className='relative w-full min-h-12'>
-        <span className="absolute right-3 top-3 w-5 z-10">
+        <span className={`absolute ${dir === 'ltr' ? 'left-3' : 'right-3'} top-3 w-5 z-10 cursor-text`}>
           <EmailOutlinedIcon sx={{ color: (!value && isSubmitted) ? 'var(--text-error)' : iconColor }} />
         </span>
         <input
@@ -86,7 +92,8 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
           aria-invalid={validEmail ? "false" : "true"}
           aria-describedby="emailnote"
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl
+            peer w-full min-h-12 px-4 pt-1 pb-1 rounded-2xl
+            ${dir === 'ltr' ? 'pl-10' : 'pr-10'}
             border-2 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none
@@ -100,7 +107,8 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
           onClick={handleLabelClick}
           htmlFor="username"
           className={`
-            absolute right-11 top-[13px]
+            absolute top-[13px]
+            ${dir === 'ltr' ? 'left-11' : 'right-11'}
             ${(!value && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
@@ -109,14 +117,14 @@ const EmailInputSignup = ({ emailRef, onChange, value, focus, onFocus, onBlur, a
             ${(inputFocus || filled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2 rounded' : 'text-base'}
           `}
         >
-          ایمیل
+          {t("RegistrationPages.addEmail.emailInput.label")}
         </label>
       </div>
-      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} mt-2 text-right text-xs mr-1 text-textError`}>
-        لطفا یک آدرس ایمیل معتبر وارد کنید.
+      <p id="emailnote" className={`${value && !validEmail && filled ? "instructions" : "hidden"} ${dir === 'ltr' ? 'text-left' : 'text-right'} mt-2 text-xs mr-1 text-textError`}>
+      {t("RegistrationPages.addEmail.emailInput.invalidEmail")}
       </p>
-      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} mt-2 text-right text-xs mr-1 text-textError`}>
-        *ایمیل الزامی می باشد
+      <p id="inputnote" aria-live="polite" className={`${((!value && isSubmitted ) || leftEmpty) ? "instructions" : "hidden"} ${dir === 'ltr' ? 'text-left' : 'text-right'} mt-2 text-xs mr-1 text-textError`}>
+      {t("RegistrationPages.addEmail.emailInput.emailRequired")}
       </p>
     </div>
   );
