@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Cookies from 'js-cookie';
 
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs.module.css'
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
   
+  // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
+
   const [isFocused, setIsFocused] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
@@ -34,7 +40,10 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
         <span htmlFor="floatingInput">
           { 
           icon ?
-            <span className={`absolute mt-3 mr-2 ${customIconSize ? customIconSize : 'w-6'}`}>  
+            <span className={`absolute mt-3 mr-2 
+              ${dir === 'ltr' ? 'ml-2' : `mr-2`}
+              ${customIconSize ? customIconSize : 'w-6'}`}
+            >  
               {icon}
             </span>
             :
@@ -51,9 +60,10 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
           onBlur={handleBlur}
           value={value || ''}
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 pr-8 rounded-2xl
+            peer w-full min-h-12 px-4 pt-1 pb-1 rounded-2xl
             border-2 border-gray-300 bg-transparent
             text-gray-900 placeholder-transparent
+            ${dir === 'ltr' ? 'pl-8' : `pr-8`}
             ${value && !ErrorCondition && !ErrorCondition2 && inputStyles.inputFilledBorder}
             ${(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && showErrors && inputStyles.inputEmptyAfterSubmitBorder}
             ${inputStyles.inputText2}
@@ -64,7 +74,8 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
           onClick={handleLabelClick}
           htmlFor="floatingInput"
           className={`
-            absolute right-9 top-[13px] 
+            ${dir === 'ltr' ? 'left-9' : `right-9`}
+            absolute top-[13px] 
             text-textInputDefault
             transition-all ${disablePlaceholderFloating ? 'duration-0' : 'duration-300'} transform
             peer-placeholder-shown:translate-y-0

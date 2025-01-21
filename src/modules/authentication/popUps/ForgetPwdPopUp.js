@@ -28,10 +28,17 @@ import TextInput from '../../../components/inputs/textInput';
 // regexes
 import { EMAIL_REGEX, PHONE_REGEX, PWD_REGEX } from '../../../Utilities/Providers/regexProvider';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 
 
 
 const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
+
+    // language
+      const { t } = useTranslation();
+      const dir = Cookies.get('dir') || 'ltr';
 
     const dispatch = useDispatch();
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -234,7 +241,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         setSubmitted(true)
 
         if (!validInput) { 
-            Toastify('فرمت ایمیل یا شماره تلفن صحیح نمیباشد', 'error')
+            Toastify(t("RegistrationPages.popups.notifications.invalidInput"), 'error')
             return;
         }
             
@@ -266,7 +273,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
     const checkCodeHandler = async(e) => {
         e.preventDefault(e);
         if (!code || code.length < codeLength) {
-            Toastify('کد را وارد کنید', 'error')
+            Toastify(t("RegistrationPages.popups.notifications.enterCode"), 'error')
             return;
         }
 
@@ -281,7 +288,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                 setShowPassChangeInput(true);
                 console.log('Code checked successfully:', data);
                 setErrMsg('')
-                Toastify('کد تایید با موفقیت تایید شد', 'success')
+                Toastify(t("RegistrationPages.popups.notifications.codeSentSuccess"), 'success')
             },
             onError: (error) => {
                 console.error('Failed to check code:', error);
@@ -299,7 +306,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
         e.preventDefault();
         
         if (!validPwd || !validMatch || !code) { 
-            setErrMsg("اول فرم را کامل نموده و سپس تایید را بزنید");
+            setErrMsg(t("RegistrationPages.popups.notifications.completeForm"));
             return;
         }
 
@@ -312,7 +319,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
         mutatePassChange(requestBody, {
             onSuccess: (data) => {
-                Toastify('رمز شما با موفقیت تغییر یافت, دوباره لاگین کنید', 'success')
+                Toastify(t("RegistrationPages.popups.notifications.passwordChangeSuccess"), 'success')
                 setShowPopup(false);
             },
             onError: (error) => {
@@ -329,13 +336,13 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
             {loading && 
                 <div className='w-full min-h-[71vh]'>
-                    <p>Loading authentication settings...</p>
+                    <p>{t("RegistrationPages.popups.changePass.loadingMessage")}</p>
                 </div>
             }
 
             {error && 
                 <div className='w-full min-h-[71vh]'>
-                    <p>Error fetching authentication settings: {error}</p>
+                    <p>{t("RegistrationPages.popups.changePass.errorMessage")} {error}</p>
                 </div>
             }
             
@@ -352,34 +359,34 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                         {
                             !showCodeInput && !showPassChangeInput &&
                             <div className='w-full flex flex-col items-center gap-y-6'>
-                                <p className='text-textAccent text-xl'>شماره‌ تلفن یا ایمیل خود را وارد کنید</p>
+                                <p className='text-textAccent text-xl'>{t("RegistrationPages.popups.changePass.phoneOrEmailPrompt")}</p>
 
                                 <TextInput
                                     id={'TI1'}
                                     value={input}
                                     onChange={phoneOrEmailInputHandler}
-                                    placeholder={'شماره موبایل یا ایمیل'}
+                                    placeholder={t("RegistrationPages.popups.changePass.phoneOrEmailTitle")}
                                     Type={'text'}
                                     icon={<UserIcon />} // You can replace `null` with a specific icon if you have one
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
                                     ErrorCondition={input.length < 1}
-                                    ErrorText={'وارد کردن شماره تلفن الزامی است'}
+                                    ErrorText={t("RegistrationPages.popups.changePass.phoneError")}
                                     ErrorCondition2={!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0}
-                                    ErrorText2={'فرمت شماره تلفن یا ایمیل درست نمی باشد'}
+                                    ErrorText2={t("RegistrationPages.popups.changePass.phoneEmailFormatError")}
                                     isSubmitted={submitted} 
                                 />
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
                                     disabled={VerificationLoading}
                                     onClick={sendCodeHandler}>
-                                        تایید
+                                        {t("RegistrationPages.popups.changePass.confirmButton")}
                                 </button>
                             </div>
                         }
 
                         {   showCodeInput && !showPassChangeInput &&
                             <>
-                                <h3 className="text-textAccent text-xl">کد تایید ارسال شده را وارد کنید</h3>
+                                <h3 className="text-textAccent text-xl">{t("RegistrationPages.popups.changePass.codePrompt")}</h3>
                                 <div dir="ltr" className="w-full flex justify-center gap-5 relative mt-2">
                                     {inputRefs.map((ref, index) => (
                                         <input
@@ -403,17 +410,19 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     isEmail &&
                                     <p className=' text-xs font-medium text-textAccent -mb-4'>در صورتی که کد تایید برای شما ارسال نشده‌ است، پوشه هرزنامه (Spam) خود را بررسی نمایید.</p>
                                 }
-                                <p className={`${codeRemainingTime ? "text-textAccent my-4" : "hidden"} text-xs font-medium`} aria-live="assertive">اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {codeRemainingTime} ثانیه صبر کنید</p>
+                                <p className={`${codeRemainingTime ? "text-textAccent my-4" : "hidden"} text-xs font-medium`} aria-live="assertive">{t("RegistrationPages.popups.changePass.resendCodeMessage", { codeRemainingTime })}</p>
 
                                 {
                                     codeRemainingTime < 1 &&
-                                        <p onClick={sendCodeHandler} className="text-textAccent my-2 cursor-pointer text-xs font-medium" aria-live="assertive">ارسال مجدد</p>
+                                        <p onClick={sendCodeHandler} className="text-textAccent my-2 cursor-pointer text-xs font-medium" aria-live="assertive">
+                                            {t("RegistrationPages.popups.changePass.resendCodeAction")}
+                                        </p>
                                 }
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${CheckCodeLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
                                 disabled={CheckCodeLoading}
                                 onClick={checkCodeHandler}>
-                                    تایید
+                                    {t("RegistrationPages.popups.changePass.confirmButton")}
                                 </button>
                             </>
                         }
@@ -423,7 +432,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                             <>
                                 <PasswordInputSignup 
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
-                                    customPlaceHolderText={'رمز عبور جدید'}
+                                    customPlaceHolderText={t("RegistrationPages.popups.changePass.passwordInputPrompt")}
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
                                     focus={pwdFocus}
@@ -433,7 +442,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
                                 <ConfirmPassInputSignup
                                     customActivePlaceHolderBgColor={'bg-bgCard'}
-                                    customPlaceHolderText={'تکرار رمز عبور جدید'}
+                                    customPlaceHolderText={t("RegistrationPages.popups.changePass.confirmPasswordPrompt")}
                                     password={pwd}
                                     onChange={(e) => setMatchPwd(e.target.value)}
                                     value={matchPwd}
@@ -444,17 +453,12 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                 <button  className={`${ButtonStyles.addButton} w-32 ${passChangeLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 
                                 disabled={passChangeLoading}
                                 onClick={handlePassChangeFinalSubmit}>
-                                    تایید
+                                    {t("RegistrationPages.popups.changePass.confirmButton")}
                                 </button>
                             </>
                         }
                                     
 
-
-
-
-                        {/* <p className={waitNotif ? "errmsg" : "offscreen"} aria-live="assertive"> صبر کنید اطلاعات در حال بارگذاری می باشد</p> */}
-                        {/* <p className={errMsg ? "text-textError text-sm" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                     </form>
                 </div>
             )}

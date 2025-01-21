@@ -47,6 +47,31 @@
             "phoneAlreadyUsed": "This phone number has already been used.",
             "enterValidCode": "Enter the correct code.",
             "registrationFailed": "Registration failed."
+        },
+        "popups": {
+            "changePass": {
+                "loadingMessage": "Loading authentication settings...",
+                "errorMessage": "Error fetching authentication settings.",
+                "phoneOrEmailPrompt": "Enter your phone number or email",
+                "phoneOrEmailTitle": "phone number or email",
+                "phoneError": "Phone number is required.",
+                "phoneEmailFormatError": "The phone number or email format is incorrect.",
+                "codePrompt": "Enter the verification code sent to you.",
+                "resendCodeMessage": "If you didn't receive the code, please wait {{codeRemainingTime}} seconds before requesting again.",
+                "resendCodeAction": "Resend Code",
+                "passwordInputPrompt": "New Password",
+                "confirmPasswordPrompt": "Confirm New Password",
+                "confirmButton": "Confirm"
+            },
+            "notifications":{
+                "notifications": {
+                    "invalidInput": "The email or phone number format is incorrect.",
+                    "enterCode": "Please enter the code.",
+                    "codeSentSuccess": "Verification code successfully sent.",
+                    "passwordChangeSuccess": "Your password has been successfully changed. Please log in again.",
+                    "completeForm": "Complete the form before submission."
+                }
+            }
         }
     }
 }

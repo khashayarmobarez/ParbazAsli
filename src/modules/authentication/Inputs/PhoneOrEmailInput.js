@@ -21,7 +21,6 @@ const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitte
 
   // language
   const { t } = useTranslation();
-
   const dir = Cookies.get('dir') || 'ltr';
   
   const [inputFocus, setInputFocus] = useState(false);

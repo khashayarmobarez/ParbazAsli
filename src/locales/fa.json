@@ -47,6 +47,31 @@
             "phoneAlreadyUsed": "شماره تلفن قبلا استفاده شده",
             "enterValidCode": "کد را درست وارد کنید",
             "registrationFailed": "ثبت نام ناموفق"
+        },
+        "popups": {
+            "notifications":{
+                "changePass": {
+                    "loadingMessage": "در حال بارگذاری تنظیمات احراز هویت...",
+                    "errorMessage": "خطا در دریافت تنظیمات احراز هویت.",
+                    "phoneOrEmailPrompt": "شماره تلفن یا ایمیل خود را وارد کنید.",
+                    "phoneOrEmailTitle": "شماره موبایل یا ایمیل",
+                    "phoneError": "وارد کردن شماره تلفن الزامی است.",
+                    "phoneEmailFormatError": "فرمت شماره تلفن یا ایمیل درست نمی باشد.",
+                    "codePrompt": "کد تایید ارسال شده را وارد کنید.",
+                    "resendCodeMessage": "اگر کد را دریافت نکردید برای دریافت دوباره ی کد لطفا {{codeRemainingTime}} ثانیه صبر کنید.",
+                    "resendCodeAction": "ارسال مجدد کد",
+                    "passwordInputPrompt": "رمز عبور جدید",
+                    "confirmPasswordPrompt": "تکرار رمز عبور جدید",
+                    "confirmButton": "تایید"
+                },
+                "notifications": {
+                    "invalidInput": "فرمت ایمیل یا شماره تلفن صحیح نمیباشد.",
+                    "enterCode": "لطفاً کد را وارد کنید.",
+                    "codeSentSuccess": "کد تایید با موفقیت ارسال شد.",
+                    "passwordChangeSuccess": "رمز شما با موفقیت تغییر یافت. لطفاً دوباره وارد شوید.",
+                    "completeForm": "ابتدا فرم را کامل کنید سپس تایید کنید."
+                }
+            }
         }
     }
 }
