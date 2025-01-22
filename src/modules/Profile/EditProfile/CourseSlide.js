@@ -9,7 +9,13 @@ import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const CourseSlide = ({courseData}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
 
@@ -24,7 +30,7 @@ const CourseSlide = ({courseData}) => {
 
     return (
         <div className={`${boxStyles.containerDarkmode} rounded-[34px] h-[228px] z-0 w-[98%] md:w-full flex flex-col justify-start items-center p-4 gap-y-4 mr-1 mt-1`}>
-
+ 
             <div className='w-full flex justify-between'>
                 <p className=' text-base'>{courseData.name}</p>
                 <p>{courseData.percent} %</p>
@@ -41,29 +47,29 @@ const CourseSlide = ({courseData}) => {
                 
                 <div className='flex flex-col justify-between self-start gap-y-2'>
                     { courseData.organization &&
-                        <p>ارگان: {courseData.organization}</p>
+                        <p>{t("profile.userDashboard.courseCard.organization", { organization: courseData.organization })}</p>
                     }
                     { courseData.organization &&
-                        <p>مقطع: {courseData.level}</p>
+                        <p>{t("profile.userDashboard.courseCard.level", { level: courseData.level })}</p>
                     }
                     { courseData.clubName &&
-                        <p>باشگاه: {courseData.clubName}</p>
+                        <p>{t("profile.userDashboard.courseCard.clubName", { clubName: courseData.clubName })}</p>
                     }
                     { courseData.coach &&
-                        <p>مربی: {courseData.coach}</p>
+                        <p>{t("profile.userDashboard.courseCard.coach", { coach: courseData.coach })}</p>
                     }
                     { courseData.coach &&
-                        <p>نوع دوره:  
-                            {courseData.type === 'Retraining' && ' بازآموزی '}
-                            {courseData.type === 'Regular' && ' آموزشی'}
-                            {courseData.type === 'Custom' && ' شخصی سازی شده'}
+                        <p>{t("profile.userDashboard.courseCard.courseType")}&nbsp;
+                            {courseData.type === 'Retraining' && t("profile.userDashboard.courseCard.courseTypes.retraining")}
+                            {courseData.type === 'Regular' && t("profile.userDashboard.courseCard.courseTypes.regular")}
+                            {courseData.type === 'Custom' && t("profile.userDashboard.courseCard.courseTypes.custom")}
                         </p>
                     }
                 </div>
                 <button
                 onClick={() => navigate(`/MyCourses/courseDetails/${courseData.id}/practical`) }
                 className={`${ButtonStyles.normalButton} self-end`} >
-                    جزئیات  
+                    {t("profile.userDashboard.courseCard.detailsButton")}
                 </button>
 
             </div>

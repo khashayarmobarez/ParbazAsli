@@ -186,5 +186,40 @@
         "profile": "Profile",
         "log": "Log",
         "logbook": "Logbook"
+    },
+    "profile": {
+        "userDashboard": {
+            "loading": "Loading...",
+            "errorOccurred": "An error occurred, please try again later",
+            "addParachutePrompt": "Add your parachute and flying equipment",
+            "buttons": {
+                "equipment": "Equipment",
+                "courses": "Courses",
+                "syllabi": "Syllabi",
+                "education": "Education",
+                "club": "Club"
+            },
+            "parachuteCard": {
+                "brandModel": "Brand {{brand}}/ Model {{model}}",
+                "lastPackingDate": "Last Packing Date: {{lastPackingDate}}",
+                "remainingDaysToRepack": "{{days}} days left until repacking is needed",
+                "earlyRenewal": "Early Renewal"
+            },
+            "courseCard": {
+                "title": "Course",
+                "progress": "{{percent}} %",
+                "organization": "Organization: {{organization}}",
+                "level": "Level: {{level}}",
+                "clubName": "Club: {{clubName}}",
+                "coach": "Coach: {{coach}}",
+                "courseType": "Course Type:",
+                "courseTypes": {
+                    "retraining": "Retraining",
+                    "regular": "Regular",
+                    "custom": "Customized"
+                },
+                "detailsButton": "Details"
+            }
+        }
     }
 }

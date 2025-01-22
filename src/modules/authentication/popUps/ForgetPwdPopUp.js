@@ -373,7 +373,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
                                     ErrorText={t("RegistrationPages.popups.changePass.phoneError")}
                                     ErrorCondition2={!(PHONE_REGEX.test(input) || EMAIL_REGEX.test(input)) && input.length > 0}
                                     ErrorText2={t("RegistrationPages.popups.changePass.phoneEmailFormatError")}
-                                    isSubmitted={submitted} 
+                                    isSubmitted={submitted}
                                 />
 
                                 <button  className={`${ButtonStyles.addButton} w-32 ${VerificationLoading ? 'cursor-not-allowed opacity-45' : 'cursor-pointer'}`} 

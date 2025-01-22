@@ -28,10 +28,15 @@ import UserCoursesSlider from '../../modules/Profile/UserCoursesSlider';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import UserCertificateStatus from '../../modules/Profile/UserCertificateStatus';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 
 const Profile = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
 
@@ -50,7 +55,7 @@ const Profile = () => {
             {
                 error &&
                 <div className='flex flex-col justify-center items-center mt-8'>
-                    <p>مشکلی پیش امده بعدا دوباره تلاش کنید</p>
+                    <p>{t("profile.userDashboard.errorOccurred")}</p>
                     <h3>{error.message}</h3>
                 </div>
             }
@@ -75,7 +80,9 @@ const Profile = () => {
                         <ParachutesSwiperSlider isForClub={false} parachutesData={data.data.parachutes} />
                         :
                         <div className={`${boxStyles.containerDarkmode} rounded-3xl h-28 z-0 w-full flex flex-col justify-center items-center p-4 mb-2 gap-y-4`}>
-                            <p className='  text-sm'>چتر و وسایل پروازی خود را اضافه کنید</p>
+                            <p className='  text-sm'>
+                                {t("profile.userDashboard.addParachutePrompt")}
+                            </p>
                             <button onClick={() => navigate('/equipment/addParachute')} className={`${ButtonStyles.addButton} w-16 h-8`}
                             style={{minHeight:'0', borderRadius:'12px'}} >
                                 <AddIcon />
@@ -92,29 +99,29 @@ const Profile = () => {
 
                         <Link to='/equipment/flightEquipment' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>تجهیزات</p>
+                            <p>{t("profile.userDashboard.buttons.equipment")}</p>
                         </Link>
                         
                         <Link to='/MyCourses' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>دوره‌ها</p>
+                            <p>{t("profile.userDashboard.buttons.courses")}</p>
                         </Link>
                         
                         <Link to='/syllabi' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>سرفصل‌ها</p>
+                            <p>{t("profile.userDashboard.buttons.syllabi")}</p>
                         </Link>
                         
                         {/* education is condition based on, data.data.hasCoach  */}
                         <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>آموزش</p>
+                            <p>{t("profile.userDashboard.buttons.education")}</p>
                         </Link>
                         
                         {/* club is condition based on, data.data.hasCoach  */}
                         <Link to={data.data.hasCoach ? '/club' : '/'} className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
-                            <p>باشگاه</p>
+                            <p>{t("profile.userDashboard.buttons.club")}</p>
                         </Link>
                         
 

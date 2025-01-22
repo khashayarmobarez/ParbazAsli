@@ -108,7 +108,7 @@ const NewNavbar = () => {
                     {/* hamburger menu for mobile */}
                     <label 
                         className={`${styles.burger} mt-[0px] lg:hidden`} 
-                        htmlFor="burger" 
+                        htmlFor="burger"
                     >
                         <input type="checkbox" id="burger" onClick={toggleNavbar}/>
                             <span></span>

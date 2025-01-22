@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Cookies from 'js-cookie';
 
 // mui
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -12,6 +13,7 @@ register();
 const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
 
     const isDesktop = useMediaQuery('(min-width:768px)');
+    const dir = Cookies.get('dir') || 'ltr';
 
     const swiperRef = useRef(null);
 
@@ -29,7 +31,7 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
           delay: 3500, // 3 seconds
           disableOnInteraction: true,
         },
-        injectStyles: [
+        injectStyles: dir === 'ltr' ? [
             `
               .swiper-button-next,
               .swiper-button-prev {
@@ -44,10 +46,10 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
                 z-index: 50;
               }
               .swiper-button-next {
-                margin-left: 30%;
+                margin-right: 30%;
               }
               .swiper-button-prev {
-                margin-right: 30%;
+                margin-left: 30%;
               }
 
               .swiper-pagination-bullet{
@@ -67,7 +69,48 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
                   : ''
               }
           `,
-          ],
+          ]
+          :
+          [
+              `
+                .swiper-button-next,
+                .swiper-button-prev {
+                  margin-top:4.65rem;
+                  background-color: var(--bg-button-secondary-default);
+                  box-shadow:var(--shadow-button-dark),var(--shadow-button-white);
+                  padding: 5px;
+                  width:14px;
+                  height:14px;
+                  border-radius: 100%;
+                  color: var(--text-default);
+                  z-index: 50;
+                }
+                .swiper-button-next {
+                  margin-left: 30%;
+                }
+                .swiper-button-prev {
+                  margin-right: 30%;
+                }
+  
+                .swiper-pagination-bullet{
+                  width: 6px;
+                  height: 6px;
+                  background-color: var(--text-default);
+                }
+  
+                .swiper-pagination {
+                  bottom: 14px !important; 
+                }
+                ${
+                  isDesktop
+                    ? `.swiper-slide {
+                      width: 45% !important; // Set slide width to 45% on desktop
+                    }`
+                    : ''
+                }
+            `,
+            ]
+
         };
 
     Object.assign(swiperContainer, params);
@@ -80,21 +123,21 @@ const ParachutesSwiperSlider = ({parachutesData, isForClub}) => {
 
             
               <swiper-container
-                style={{ height:'12.85rem',...(!isDesktop && { marginRight: '0' }), }}
-                ref={swiperRef}
-                init="false"
-                >
+              style={{ height:'12.85rem',...(!isDesktop && { marginRight: '0' }), }}
+              ref={swiperRef}
+              init="false"
+              >
 
-                  {/* map later */}
-                  {
-                    parachutesData.map( parachute => 
+                {/* map later */}
+                {
+                  parachutesData.map( parachute => 
 
-                      <swiper-slide key={parachute.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
-                          <SpeedoMeter parachuteData={parachute} isForClub={isForClub} className='z-10' />
-                      </swiper-slide>
+                    <swiper-slide key={parachute.id} style={{...(isDesktop && { paddingLeft: '0.5rem' }),}} >
+                        <SpeedoMeter parachuteData={parachute} isForClub={isForClub} className='z-10' />
+                    </swiper-slide>
 
-                    )
-                  }
+                  )
+                }
 
               </swiper-container>
             
