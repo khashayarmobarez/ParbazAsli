@@ -77,16 +77,17 @@ const DropdownInput = ({ id, options, selectedOption, handleSelectChange, name, 
           id={id}
           type="button" // Explicitly set button type to "button"
           className={`
-            peer w-full min-h-12 px-4 pt-1 pb-1 rounded-2xl text-right
+            ${dir === 'ltr' ? 'text-left' : 'text-right pr-10'}
+            peer w-full min-h-12 pt-1 pb-1 rounded-2xl
             border-2 border-gray-300 bg-transparent
             text-gray-900 placeholder-transparent
             focus:outline-none focus:ring-0 focus:border-blue-600
-            ${dir === 'ltr'? 'pl-10' : 'pr-10'}
             ${selectedOption ? inputStyles.inputFilledBorder : ''}
             ${!selectedOption && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
             ${!selectedOption && 'text-textDisabled'}
             ${inputStyles.inputDropdown}
           `}
+          style={{paddingLeft: dir === 'ltr' && '2.5rem' }}
           onClick={handleToggle}
           onKeyDown={handleKeyDown}
           aria-haspopup="listbox"

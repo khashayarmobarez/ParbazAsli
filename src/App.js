@@ -147,6 +147,7 @@ function App() {
     document.documentElement.setAttribute('dir',language === "fa" ? 'rtl' : 'ltr');
     document.documentElement.setAttribute('lang', language);
     Cookies.set('dir', language === "fa" ? 'rtl' : 'ltr')
+    Cookies.set('culture', language)
   }, [direction, language]);
 
   // Check if user is authenticated

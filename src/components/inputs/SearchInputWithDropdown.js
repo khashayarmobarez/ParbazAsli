@@ -1,9 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs.module.css';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, isSubmitted, ErrorCondition, ErrorCondition2 }) => {
+
+  // language
+  const dir = Cookies.get('dir') || 'ltr';
+  const { t } = useTranslation();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -65,14 +74,16 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
 
   return (
     <div className="relative w-full min-h-12" ref={dropdownRef}>
-      <span className="absolute right-3 top-3 w-5 z-10">
+      <span className={`absolute top-3 w-5 z-10
+      ${dir === 'ltr'? 'left-2' : 'right-2'}`}>
         {icon ? icon : <Cube customColor={(!selectedOption || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)' } />}
       </span>
       <input
         ref={inputRef}
         type="text"
         className={`
-          peer w-full min-h-12 px-4 pt-1 pb-1 pr-10 rounded-2xl appearance-none
+          ${dir === 'ltr'? '' : 'pr-10'}
+          peer w-full min-h-12 pt-1 pb-1 rounded-2xl appearance-none
           border-2 bg-transparent
           text-gray-900 placeholder-transparent
           focus:outline-none focus:ring-0 focus:border-blue-600
@@ -81,6 +92,7 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
           ${!selectedOption && 'text-textDisabled'}
           ${inputStyles.inputDropdown}
         `}
+        style={{paddingLeft: dir === 'ltr' && '2.5rem' }}
         placeholder=" "
         value={searchTerm}
         onChange={handleInputChange}
@@ -91,7 +103,8 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
         onClick={(e) => { setIsOpen(true) }}
         htmlFor="searchInput"
         className={`
-          absolute right-10 top-[14px]
+          ${dir === 'ltr'? 'left-10' : 'right-10'}
+          absolute top-[14px]
            ${((!selectedOption || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
           transition-all duration-300 transform
           peer-placeholder-shown:translate-y-0
@@ -100,11 +113,12 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
           ${(isFocused || isFilled) ? '-translate-y-5 translate-x-2 text-xs bg-bgPageMain px-2' : 'text-sm'} 
         `}
       >
-        {name || 'جستجو کنید'}
+        {name || 'search'}
       </label>
       <span 
         onClick={handleIconClick} 
-        className="absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
+        className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10
+        ${dir === 'ltr'? 'right-3' : 'left-3'}`}
       >
         <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)',
         color:((!selectedOption || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'var(--text-error)' : 'var(--text-input-default)'
@@ -112,12 +126,12 @@ const SearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, 
       </span>
       {isOpen && (
         <ul className="absolute z-30 w-full bg-bgInputDropdown mt-1 rounded-xl shadow-lg max-h-60 overflow-auto"
-        style={{ WebkitUserDrag: 'element ' }}>
+        style={{ WebkitUserDrag: 'element' }}>
           {filteredOptions.map((option) => (
             <div key={option.id} className='flex flex-col w-full items-center justify-center text-sm'>
               <li
-                className="px-4 w-full py-2 hover:bg-bgInputDropdown cursor-pointer"
-                onClick={() => handleOptionClick(option)}
+              className="px-4 w-full py-2 hover:bg-bgInputDropdown cursor-pointer"
+              onClick={() => handleOptionClick(option)}
               >
                 {option.name}
               </li>

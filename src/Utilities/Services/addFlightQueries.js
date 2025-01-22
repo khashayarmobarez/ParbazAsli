@@ -6,178 +6,162 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 
 // Get All Cloud Cover Types
-    const getCloudTypes = async () => {
+const getCloudTypes = async () => {
 
-        const token = Cookies.get('token');
-        const culture = Cookies.get('culture') || 'en';
+    const token = Cookies.get('token');
+    const culture = Cookies.get('culture') || 'en';
 
-        try {
-        const response = await axios.get(`${API_BASE_URL}/CloudCoverType/GetAllCloudCoverTypes`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'culture': culture,
-            },
-        });
-        return response.data;
+    try {
+    const response = await axios.get(`${API_BASE_URL}/CloudCoverType/GetAllCloudCoverTypes`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            culture,
+        },
+    });
+    return response.data;
 
-        } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
         }
-
-    };
-
-    const useCloudTypes = () => {
-        return useQuery(['getCloudTypes'], getCloudTypes);
     }
 
+};
 
-
-
-
-
+const useCloudTypes = () => {
+    return useQuery(['getCloudTypes'], getCloudTypes);
+}
 
 // get countries list
 // api/Country/GetAllCountries 
-    const getCountries = async () => {
-            
-        const token = Cookies.get('token');
+const getCountries = async () => {
+        
+    const token = Cookies.get('token');
+    const culture = Cookies.get('culture') || 'en';
 
-        try {
-        const response = await axios.get(`${API_BASE_URL}/Country/GetAllCountries`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return response.data;
+    try {
+    const response = await axios.get(`${API_BASE_URL}/Country/GetAllCountries`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            culture,
+        },
+    });
+    return response.data;
 
-        } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
         }
-
-    };
-
-
-    const useCountries = () => {
-        return useQuery(['getCountries'], getCountries, {
-            cacheTime: 0,
-            staleTime: Infinity,
-        });
     }
 
+};
 
-
-
-
+const useCountries = () => {
+    return useQuery(['getCountries'], getCountries, {
+        cacheTime: 0,
+        staleTime: Infinity,
+    });
+}
 
 // Get Provinces By CountryId
 // /Province/GetProvincesByCountryId?countryId=1
-    const getProvincesByCountryId = async (countryId) => {
-            
-        const token = Cookies.get('token');
-        const culture = Cookies.get('culture') || 'en';
+const getProvincesByCountryId = async (countryId) => {
+        
+    const token = Cookies.get('token');
+    const culture = Cookies.get('culture') || 'en';
 
-        try {
-        const response = await axios.get(`${API_BASE_URL}/Province/GetProvinces?${countryId && `countryId=${countryId}`}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'culture': culture,
-            },
-        });
-        return response.data;
+    try {
+    const response = await axios.get(`${API_BASE_URL}/Province/GetProvinces?${countryId && `countryId=${countryId}`}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'culture': culture,
+        },
+    });
+    return response.data;
 
-        } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
         }
-
-    };
-
-    const useProvincesByCountryId = (countryId) => {
-        return useQuery(['getProvincesByCountryId', countryId], () => getProvincesByCountryId(countryId), {
-            cacheTime: 0,
-            staleTime: Infinity,
-        });
     }
 
+};
 
-
-
-
+const useProvincesByCountryId = (countryId) => {
+    return useQuery(['getProvincesByCountryId', countryId], () => getProvincesByCountryId(countryId), {
+        cacheTime: 0,
+        staleTime: Infinity,
+    });
+}
 
 // get flight sites by ProvinceId
-    const getSitesByProvinceId = async (provinceId, countryId) => {
-            
-        const token = Cookies.get('token');
+const getSitesByProvinceId = async (provinceId, countryId) => {
+        
+    const token = Cookies.get('token');
+    const culture = Cookies.get('culture') || 'en';
 
-        try {
-        const response = await axios.get(`${API_BASE_URL}/Site/GetSites?${provinceId && `provinceId=${provinceId}&`}${countryId && `countryId=${countryId}&`} `, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return response.data;
+    try {
+    const response = await axios.get(`${API_BASE_URL}/Site/GetSites?${provinceId && `provinceId=${provinceId}&`}${countryId && `countryId=${countryId}&`} `, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            culture,
+        },
+    });
+    return response.data;
 
-        } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
         }
-
-    };
-
-    const useSitesByProvinceId = (provinceId, countryId) => {
-        return useQuery(['getSitesByProvinceId', provinceId, countryId], () =>  getSitesByProvinceId(provinceId, countryId));
     }
 
+};
 
-
-
-
+const useSitesByProvinceId = (provinceId, countryId) => {
+    return useQuery(['getSitesByProvinceId', provinceId, countryId], () =>  getSitesByProvinceId(provinceId, countryId));
+}
 
 //  get all take off types
-    const getTakeoffTypes = async () => {
-            
-        const token = Cookies.get('token');
+const getTakeoffTypes = async () => {
+        
+    const token = Cookies.get('token');
+    const culture = Cookies.get('culture') || 'en';
 
-        try {
-        const response = await axios.get(`${API_BASE_URL}/TakeoffType/GetAllTakeoffTypes`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return response.data;
+    try {
+    const response = await axios.get(`${API_BASE_URL}/TakeoffType/GetAllTakeoffTypes`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            culture,
+        },
+    });
+    return response.data;
 
-        } catch (error) {
-            if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
-            } else {
-                throw error;
-            }
+    } catch (error) {
+        if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
+            window.location.reload();
+        } else {
+            throw error;
         }
-
-    };
-
-    const useTakeoffTypes = () => {
-        return useQuery(['getTakeoffTypes'], getTakeoffTypes);
     }
+
+};
+
+const useTakeoffTypes = () => {
+    return useQuery(['getTakeoffTypes'], getTakeoffTypes);
+}
 
 
 
