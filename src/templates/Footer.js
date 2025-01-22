@@ -46,7 +46,6 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-around',
-        borderRadius: '2rem 0 0 2rem',
       }
     }
   };
@@ -62,6 +61,7 @@ const Footer = ({ userRole }) => {
 
   // language
   const { t } = useTranslation();
+  const dir = Cookies.get('dir') || 'ltr';
 
   const token = Cookies.get('token') || null;
 
@@ -87,7 +87,10 @@ const Footer = ({ userRole }) => {
           sx={styles.container}
         >
           <BottomNavigation
-          sx={styles.buttonsContainer}
+          sx={{
+            ...styles.buttonsContainer,
+            borderRadius: dir === 'ltr' ? '0 2rem 2rem 0' : '2rem 0 0 2rem', // Conditional borderRadius
+          }}
           showLabels
           value={value}
           onChange={(event, newValue) => {
