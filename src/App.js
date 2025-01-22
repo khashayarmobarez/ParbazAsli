@@ -235,7 +235,7 @@ function App() {
 
 
           {
-            token && isUserAuthenticated === 'noCertificate' && 
+            token && isUserAuthenticated === 'noCertificate' &&
             (
               <>
                 <Route path='/addCertificate' element={<AddCertificate />} />

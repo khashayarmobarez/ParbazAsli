@@ -7,7 +7,14 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 // components
 import UserDataBox from '../../modules/Profile/UserDataBox';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
+
 const AdminPending = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const isUserAuthenticated = Cookies.get('isUserAuthenticated')
 
@@ -30,7 +37,7 @@ const AdminPending = () => {
             const isUserAuthenticated = Cookies.get('isUserAuthenticated');
             if(isUserAuthenticated !== 'noAdminApprovment') {
                 // reload
-                // window.location.reload();
+                window.location.reload();
             }
         }, 3000); // 3000 milliseconds = 3 seconds
 
@@ -63,24 +70,25 @@ const AdminPending = () => {
 
                     </div>
 
-                    <div className='flex items-center justify-between w-[98%] text-xs'>
+                    <div className='flex items-center justify-between w-[95%] text-xs'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t("RegistrationPages.adminPending.emailVerification")}</p>
 
-                        <p className='-mr-2' style={{color:'var(--text-accent)'}}>گواهینامه</p>
+                        <p className='mr-2' style={{color:'var(--text-accent)'}}>{t("RegistrationPages.adminPending.certificate")}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t("RegistrationPages.adminPending.approval")}</p>
 
                     </div>
 
                 </div>
 
-                <p className=' text-lg -mt-4'>در انتظار تایید...</p>
-                <p className=' text-base -mt-2'>کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد<br/>از صبوری شما سپاسگزاریم</p>
+                <p className='text-lg -mt-4'>{t("RegistrationPages.adminPending.waitingForApproval")}</p>
+                <p className='text-base -mt-2'>{t("RegistrationPages.adminPending.certificateSubmitted")}<br/>{t("RegistrationPages.adminPending.thankYouForPatience")}</p>
+
 
                 <button className={`${ButtonStyles.normalButton} w-32 self-center md:w-32 `}
                 onClick={() => window.location.reload()}>
-                    تازه‌سازی
+                    {t("RegistrationPages.adminPending.refresh")}
                 </button>
 
 

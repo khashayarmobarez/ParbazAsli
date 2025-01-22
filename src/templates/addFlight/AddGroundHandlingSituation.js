@@ -21,7 +21,7 @@ import { toast } from 'react-toastify';
 import { windDirectionOptions } from '../../Utilities/Providers/dropdownInputOptions';
 
 // react-query
-import { useAddCourseFlight, useAddCourseGroundHandling, useAddSoloFlight, useAddSoloGroundHandling, useAddTandemFlight, useAddTandemGroundHandling, useCloudTypes } from '../../Utilities/Services/addFlightQueries';
+import { useAddCourseGroundHandling, useAddSoloGroundHandling, useAddTandemGroundHandling, useCloudTypes } from '../../Utilities/Services/addFlightQueries';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,11 +33,9 @@ import { CircularProgress } from '@mui/material';
 
 // components
 import DropdownInput from '../../components/inputs/DropDownInput';
-import TextInput from '../../components/inputs/textInput';
 import SubmitForm from '../../components/reuseable/SubmitForm';
 import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
-import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
 import { TimePicker } from '../../components/inputs/TimePicker';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
@@ -63,7 +61,7 @@ const AddGroundHandlingSituation = () => {
 
     // redux
     const { landingTime, landingWindSpeed, landingWindDirection , passengerPhoneNumber
-    ,takeOffWindUnit , wing, harness, parachute, takeoffType , takeoffWindSpeed, takeoffwindDirection , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description
+    ,takeOffWindUnit , wing, harness, parachute , passengerHarness , country, city, sight, clouds, takeoffTime, flightType, courseId, description
     } = useSelector(selectAddFlight)
 
 

@@ -1,4 +1,22 @@
 {
+    "inputs": {
+        "DropdownInput":{
+            "choose":"یکی را انتخاب کنید"
+        },
+        "dateInput": {
+            "date":"تاریخ"
+        },
+        "uploadCertificate": {
+            "notifications": {
+                "invalidFileFormat": "فرمت فایل نامعتبر است.",
+                "fileSizeExceeded": "حجم فایل بیش از حد مجاز است."
+            },
+            "uploadPicture": "آپلود عکس گواهینامه",
+            "imageFormatInstruction": "فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد",
+            "imageSizeInstruction": "حجم عکس نباید بیشتر از 10 مگابایت باشد",
+            "imageRequiredError": "عکس گواهینامه الزامی می باشد"
+        }
+    },
     "RegistrationPages": {
         "LoginName": "ورود",
         "signupName": "ثبت نام",
@@ -103,6 +121,47 @@
                 "enterValidCode": "لطفا کد را درست وارد کنید.",
                 "emailRegistrationFailed": "ثبت ایمیل ناموفق"
             }
+        },
+        "addCertificate": {
+            "verificationNeededForAccess": "برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.",
+            "emailVerification": "احراز ایمیل",
+            "certificate": "گواهینامه",
+            "approval": "تاییدیه",
+            "errorOccurred": "مشکلی رخ داده است",
+            "haveYouTakenCertificate": "آیا تابحال گواهینامه پروازی گرفته‌اید؟",
+            "yes": "بله",
+            "no": "خیر",
+            "renewIfExpired": "*اگر گواهینامه شما منقضی شده‌است، برای تکمیل ثبت نام لطفا ابتدا نسبت به تمدید آن اقدام فرمایید",
+            "organFrom": "گواهینامه صادر شده از",
+            "organTo": "صدور گواهینامه از",
+            "selectOrgan": "ارگان مربوطه را انتخاب کنید",
+            "certificateLevel": "مقطع گواهینامه",
+            "certificateNumber":"شماره گواهینامه",
+            "certificateNumberRequired": "شماره گواهینامه الزامی می باشد",
+            "certificateNumberTooLong": "شماره گواهینامه باید کمتر از 100 کارکتر باشد",
+            "issueDate": "تاریخ صدور",
+            "issueDateRequired": "تاریخ صدور الزامی می باشد",
+            "issueDateInvalid": "تاریخ صدور نباید بعد از امروز باشد",
+            "expirationDate": "تاریخ انقضا",
+            "expirationDateRequired": "تاریخ انقضا الزامی می باشد",
+            "expirationDateInvalid": "تاریخ انقضا نباید قبل از امروز باشد",
+            "submit": "ثبت",
+            "uploadPicture": "آپلود تصویر",
+            "notifications": {
+                "formIncomplete": "فرم را کامل کنید",
+                "invalidDates": "تاریخ انقضا نباید قبل از امروز باشد و تاریخ صدور نباید بعد از امروز باشد",
+                "certificateAddedSuccess": "گواهینامه با موفقیت اضافه شد",
+                "certificateAddedError": "خطا در اضافه کردن گواهینامه"
+            }
+        },
+        "adminPending": {
+            "emailVerification": "احراز ایمیل",
+            "certificate": "گواهینامه",
+            "approval": "تاییدیه",
+            "waitingForApproval": "در انتظار تایید...",
+            "certificateSubmitted": "کاربر گرامی گواهینامه شما ثبت شد و در انتظار تایید میباشد و طی 24 ساعت آینده وضعیت آن مشخص خواهد شد",
+            "thankYouForPatience": "از صبوری شما سپاسگزاریم",
+            "refresh": "تازه‌سازی"
         }
     },
     "navbar": {

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
-import { postIsUserAuthenticated } from '../../Utilities/Services/AuthenticationApi';
 import {  useNavigate } from 'react-router-dom';
 
 // assets 
@@ -10,7 +9,6 @@ import CertificateIcon from '../../components/icons/CertificateIcon'
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // mui
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Box, CircularProgress } from '@mui/material';
 
 // queries
@@ -27,9 +25,14 @@ import DateInput from '../../components/inputs/DateInput';
 import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 import UploadPicture from '../../components/inputs/UploadPicture';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 const AddCertificate = () => {
+
+    // language
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -138,16 +141,16 @@ const AddCertificate = () => {
         if(
             !organ || ((isStarter === 'false') && ( !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile))
         ) {
-            toast("فرم را کامل کنید", {
+            toast(t("RegistrationPages.addCertificate.notifications.formIncomplete"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "90%" }
-            }); 
+            });
             return
         } else if (new Date(dateEndValue) <= new Date() || new Date(dateStartValue) >= new Date()) {
-            toast("تاریخ انقضا نباید قبل از امروز باشد و تاریخ صدور نباید بعد از امروز باشد", {
+            toast(t("RegistrationPages.addCertificate.notifications.invalidDates"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 3000,
@@ -186,7 +189,7 @@ const AddCertificate = () => {
         mutateCertificate(formData, {
                 onSuccess: async (data) => {
                 console.log(data);
-                toast('گواهینامه با موفقیت اضافه شد', {
+                toast(t("RegistrationPages.addCertificate.notifications.certificateAddedSuccess"), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -199,7 +202,7 @@ const AddCertificate = () => {
                 }, 1000);
                 },
                 onError: (error) => {
-                    console.error('Error adding certificate:', error);
+                    console.error(t("RegistrationPages.addCertificate.notifications.certificateAddedError"), error);
                 },
             }
         );
@@ -219,7 +222,7 @@ const AddCertificate = () => {
                 <UserDataBox />
                 
                 <div className='w-full flex flex-col gap-y-2'>
-                    <p className='text-textWarning text-start'>برای دسترسی به پنل کاربری احراز موارد زیر الزامی است.</p>
+                    <p className='text-textWarning text-start'>{t("RegistrationPages.addCertificate.verificationNeededForAccess")}</p>
                 </div>
 
 
@@ -244,11 +247,11 @@ const AddCertificate = () => {
 
                     <div className='flex items-center justify-between w-[97%] text-xs mb-2'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>احراز ایمیل</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t("RegistrationPages.addCertificate.emailVerification")}</p>
 
-                        <p className='ml-2 md:ml-0' style={{color:'var(--text-accent)'}}>گواهینامه</p>
+                        <p className='ml-2 md:ml-0' style={{color:'var(--text-accent)'}}>{t("RegistrationPages.addCertificate.certificate")}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>تاییدیه</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t("RegistrationPages.addCertificate.approval")}</p>
 
                     </div>
 
@@ -262,7 +265,7 @@ const AddCertificate = () => {
                     {
                         organsError && 
                         <div className='w-full min-h-[71vh]'>
-                            <p>مشکلی رخ داده است</p>
+                            <p>{t("RegistrationPages.addCertificate.errorOccurred")}</p>
                         </div>
                     }
                     {
@@ -273,25 +276,33 @@ const AddCertificate = () => {
 
                                 <div className='w-full flex flex-col items-center p-4 bg-bgOutputDefault rounded-2xl gap-y-4' >
 
-                                    <p className='self-start text-base'>آیا تابحال گواهینامه پروازی گرفته‌اید؟</p>
+                                    <p className='self-start text-base'>{t("RegistrationPages.addCertificate.haveYouTakenCertificate")}</p>
 
                                     <div className={`${ButtonStyles.ThreeStickedButtonCont} w-full`}>
 
                                         {/* booleans identified as a string for more precision */}
                                         <button 
-                                            className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${ isStarter === 'false' ? ButtonStyles.activeYellow : ''} `} 
+                                            className={`
+                                                ${ButtonStyles.ThreeStickedButtonButton} 
+                                                ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
+                                                ${ isStarter === 'false' ? ButtonStyles.activeYellow : ''} 
+                                            `} 
                                             style={{boxShadow:'var(--shadow-button-dark), var(--shadow-button-white)'}}
                                             onClick={(event) => handleUserIsStarter('false', event)}
                                         >
-                                            بله
+                                            {t("RegistrationPages.addCertificate.yes")}
                                         </button> 
 
                                         <button 
-                                            className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${ isStarter === 'true' ? ButtonStyles.activeYellow : ''} `}
+                                            className={`
+                                                ${ButtonStyles.ThreeStickedButtonButton} 
+                                                ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
+                                                ${ isStarter === 'true' ? ButtonStyles.activeYellow : ''} 
+                                            `}
                                             style={{boxShadow:'var(--shadow-button-dark), var(--shadow-button-white)'}}
                                             onClick={(event) => handleUserIsStarter('true', event)}
                                         >
-                                            خیر
+                                            {t("RegistrationPages.addCertificate.no")}
                                         </button>
 
                                     </div>
@@ -301,7 +312,7 @@ const AddCertificate = () => {
                                         <p 
                                             className='self-start text-xs text-start text-textWarning'
                                         >
-                                            *اگر گواهینامه شما منقضی شده‌است، برای تکمیل ثبت نام لطفا ابتدا نسبت به تمدید آن اقدام فرمایید
+                                            {t("RegistrationPages.addCertificate.renewIfExpired")}
                                         </p>
                                     }
                                     
@@ -316,13 +327,13 @@ const AddCertificate = () => {
                                             selectedOption={organ}
                                             name={
                                                 isStarter === 'false' ?
-                                                'گواهینامه صادر شده از'
+                                                t("RegistrationPages.addCertificate.organFrom")
                                                 :
-                                                'صدور گواهینامه از'
+                                                t("RegistrationPages.addCertificate.organTo")
                                             }
                                             icon={<CertificateIcon sx={{color:!organ && isSubmitted && 'var(--text-error)'}}/>}
                                             ErrorCondition={!organ}
-                                            ErrorText={'ارگان مربوطه را انتخاب کنید'}
+                                            ErrorText={t("RegistrationPages.addCertificate.selectOrgan")}
                                             isSubmitted={isSubmitted}
                                         />
                                 }
@@ -334,7 +345,7 @@ const AddCertificate = () => {
                                         <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'6rem' }}>
                                             <CircularProgress /> 
                                         </Box>}
-                                        {levelsError && <p>مشکلی پیش آمده</p>}
+                                        {levelsError && t("RegistrationPages.addCertificate.errorOccurred")}
                                         {!levelsError && !levelsLoading &&
                                             <>
 
@@ -343,7 +354,7 @@ const AddCertificate = () => {
                                                     options={levelsData.data}
                                                     handleSelectChange={handleSelectLevelChange}
                                                     selectedOption={level}
-                                                    name={'مقطع گواهینامه'}
+                                                    name={t("RegistrationPages.addCertificate.certificateLevel")}
                                                     icon={<CertificateIcon sx={{color:!level && isSubmitted && 'var(--text-error)'}} />}
                                                     isDeselectDeactivated={true}
                                                 />
@@ -357,41 +368,41 @@ const AddCertificate = () => {
                                                             id={'TI1'}
                                                             value={certificateId}
                                                             onChange={handleCertificateIdChange}
-                                                            placeholder={'شماره گواهینامه'}
+                                                            placeholder={t("RegistrationPages.addCertificate.certificateNumber")}
                                                             Type={'text'}
                                                             icon={<CertificateIcon customColor={!certificateId && isSubmitted && 'var(--text-error)'} />} // You can replace `null` with a specific icon if you have one
                                                             isSubmitted={isSubmitted}
                                                             isRequired={true}
-                                                            RequiredMessage='شماره گواهینامه الزامی می باشد'
+                                                            RequiredMessage={t("RegistrationPages.addCertificate.certificateNumberRequired")}
                                                             ErrorCondition={!certificateId}
-                                                            ErrorText={'شماره گواهینامه الزامی می باشد'}
+                                                            ErrorText={t("RegistrationPages.addCertificate.certificateNumberRequired")}
                                                             ErrorCondition2={certificateId.length > 99}
-                                                            ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
+                                                            ErrorText2={t("RegistrationPages.addCertificate.certificateNumberTooLong")}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
                                                             icon={<CertificateIcon />} 
-                                                            name={'تاریخ صدور'}  
+                                                            name={t("RegistrationPages.addCertificate.issueDate")}  
                                                             onChange={handleCertificateStartDateChange} 
-                                                            placeH={'تاریخ صدور'}  
+                                                            placeH={t("RegistrationPages.addCertificate.issueDate")}  
                                                             ErrorCondition={!dateStartValue}
-                                                            ErrorText={'تاریخ صدور الزامی می باشد'}
+                                                            ErrorText={t("RegistrationPages.addCertificate.issueDateRequired")}
                                                             ErrorCondition2={new Date(dateStartValue) >= new Date()}
-                                                            ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
+                                                            ErrorText2={t("RegistrationPages.addCertificate.issueDateInvalid")}
                                                             isSubmitted={isSubmitted}
                                                         />
 
                                                         {/* the date picker component comes from equipment section, try moving it into this component */}
                                                         <DateInput 
                                                         icon={<CertificateIcon />}
-                                                        name={'تاریخ انقضا'}
+                                                        name={t("RegistrationPages.addCertificate.expirationDate")}
                                                         onChange={handleCertificateEndDateChange}
-                                                        placeH={'تاریخ انقضا'} 
+                                                        placeH={t("RegistrationPages.addCertificate.expirationDate")} 
                                                         ErrorCondition={!dateEndValue}
-                                                        ErrorText={'تاریخ انقضا الزامی می باشد'}
+                                                        ErrorText={t("RegistrationPages.addCertificate.expirationDateRequired")}
                                                         ErrorCondition2={new Date(dateEndValue) <= new Date()}
-                                                        ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                                                        ErrorText2={t("RegistrationPages.addCertificate.expirationDateInvalid")}
                                                         isSubmitted={isSubmitted}
                                                         />
 
@@ -418,7 +429,7 @@ const AddCertificate = () => {
                                         <button type="submit" className={`${ButtonStyles.addButton} ${isSubmitting && 'opacity-45'} w-32 self-center mt-0`}
                                         onClick={handleSubmit}
                                         disabled={isSubmitting} >
-                                            ثبت
+                                            {t("RegistrationPages.addCertificate.submit")}
                                         </button>
 
                                         {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response.data.ErrorMessages[0].ErrorMessage}</p>}

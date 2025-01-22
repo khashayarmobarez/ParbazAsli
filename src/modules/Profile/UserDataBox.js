@@ -70,7 +70,7 @@ const UserDataBox = ({hasCoach}) => {
                         <div className=' gap-y-2 md:space-y-5 flex flex-col items-center' >
                             <p className=' font-light text-base w-36'>{data.data.firstName} {data.data.lastName}</p>
                             { data?.data.levelName &&
-                                <p className=' text-xs w-36' >{!data.data.isStarter && t("RegistrationPages.userDataBox.certificate") } {data.data.levelName} </p>
+                                <p className=' text-xs w-36' >{!data.data.isStarter && t("RegistrationPages.userDataBox.certificate")} {data.data.levelName} </p>
                             }
                             <p className=' text-xs w-36'>{t("RegistrationPages.userDataBox.userId")} {data.data.userId}</p>
                         </div>

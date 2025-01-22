@@ -1,4 +1,22 @@
 {
+    "inputs": {
+        "DropdownInput":{
+            "choose":"choose one"
+        },
+        "dateInput": {
+            "date":"date"
+        },
+        "uploadCertificate": {
+            "notifications": {
+                "invalidFileFormat": "Invalid file format.",
+                "fileSizeExceeded": "File size exceeds the allowed limit."
+            },
+            "uploadPicture": "Upload certificate picture",
+            "imageFormatInstruction": "The image format must be jpeg, jpg, gif, bmp, or png.",
+            "imageSizeInstruction": "The image size must not exceed 10 MB.",
+            "imageRequiredError": "The certificate picture is required."
+        }
+    },
     "RegistrationPages": {
         "LoginName": "Login",
         "signupName": "Sign up",
@@ -101,6 +119,47 @@
                 "enterValidCode": "Please enter a valid code.",
                 "emailRegistrationFailed": "Email registration failed."
             }
+        },
+        "addCertificate": {
+            "verificationNeededForAccess": "Verification of the following items is required to access the user panel.",
+            "emailVerification": "Email Verification",
+            "certificate": "Certificate",
+            "approval": "Approval",
+            "errorOccurred": "An error has occurred.",
+            "haveYouTakenCertificate": "Have you ever obtained a flight certificate?",
+            "yes": "Yes",
+            "no": "No",
+            "renewIfExpired": "*If your certificate has expired, please renew it before completing the registration.",
+            "organFrom": "Certificate issued by",
+            "organTo": "Issuance of the certificate from",
+            "selectOrgan": "Select the relevant organization",
+            "certificateLevel": "Certificate Level",
+            "certificateNumber":"Certificate number",
+            "certificateNumberRequired": "The certificate number is required.",
+            "certificateNumberTooLong": "The certificate number must be less than 100 characters.",
+            "issueDate":"Issue date",
+            "issueDateRequired": "The issue date is required.",
+            "issueDateInvalid": "The issue date cannot be after today.",
+            "expirationDate": "Expiration date",
+            "expirationDateRequired": "The expiration date is required.",
+            "expirationDateInvalid": "The expiration date cannot be before today.",
+            "submit": "Submit",
+            "uploadPicture": "Upload Picture",
+            "notifications": {
+                "formIncomplete": "Please complete the form",
+                "invalidDates": "Expiration date must not be before today, and the issue date must not be after today",
+                "certificateAddedSuccess": "Certificate added successfully",
+                "certificateAddedError": "Error adding certificate"
+            }
+        },
+        "adminPending": {
+            "emailVerification": "Email Verification",
+            "certificate": "Certificate",
+            "approval": "Approval",
+            "waitingForApproval": "Waiting for approval...",
+            "certificateSubmitted": "Dear user, your certificate has been submitted and is awaiting approval. Its status will be determined within the next 24 hours.",
+            "thankYouForPatience": "Thank you for your patience.",
+            "refresh": "Refresh"
         }
     },
     "navbar": {

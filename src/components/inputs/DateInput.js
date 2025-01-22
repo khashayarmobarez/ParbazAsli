@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DatePicker } from 'zaman';
+import Cookies from 'js-cookie';
 
 // styles
 import inputStyles from '../../styles/Inputs.module.css';
@@ -7,7 +8,14 @@ import inputStyles from '../../styles/Inputs.module.css';
 // assets
 import CalenderIcon from '../icons/CalenderIcon'
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const DateInput = ({ defaultValue, value,  onChange, customShowDateFormat, position = 'right',placeH, icon, IsEmptyAfterSubmit, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) => {
+
+  // language
+  const dir = Cookies.get('dir') || 'ltr';
+  const { t } = useTranslation();
 
   const [selectedDate, setSelectedDate] = useState('');
   const [filled, setFilled] = useState(false);
@@ -24,7 +32,8 @@ const DateInput = ({ defaultValue, value,  onChange, customShowDateFormat, posit
   return (
     <>
       <div className='w-full flex relative'>
-          <span className="absolute mt-3 mr-2 w-5">
+          <span className={`absolute mt-3 w-5
+            ${dir === 'ltr'? 'ml-2' : 'mr-2'}`}>
             {icon ? 
               icon
               :
