@@ -13,7 +13,7 @@ const SelectLocationGoogle = ({selectedLocation, setSelectedLocation}) => {
     
     return (
         <div className='w-full h-72'>
-            <LoadScript googleMapsApiKey=''> 
+            <LoadScript googleMapsApiKey={mapKey}> 
                 <GoogleMap 
                     mapContainerStyle={{ height: '280px', width: '100%', borderRadius: '24px' }} 
                     center={selectedLocation} // Initial center (e.g., tehran)
@@ -22,7 +22,7 @@ const SelectLocationGoogle = ({selectedLocation, setSelectedLocation}) => {
                 >
                     {selectedLocation && (
                     <Marker 
-                        position={selectedLocation} 
+                    position={selectedLocation} 
                     />
                     )}
                 </GoogleMap>
