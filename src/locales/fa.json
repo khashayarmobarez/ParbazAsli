@@ -251,15 +251,18 @@
             "rejected": "رد شده",
             "coachName": "نام مربی",
             "clubName": "نام باشگاه",
+            "flightCount":"پرواز",
             "date": "تاریخ",
             "flightDate": "تاریخ پرواز",
             "flightTime": "زمان پرواز",
             "duration": "مدت زمان",
             "equipment": "مشخصات وسیله پروازی",
+            "groundTrainingEquipment": "مشخصات وسیله تمرین زمینی",
             "wing": "بال",
             "harness": "هارنس",
             "parachute": "چتر",
             "flightSituation": "موقعیت و شرایط پرواز",
+            "groundTrainingSituation": "موقعیت و شرایط تمرین زمینی",
             "country": "کشور",
             "province": "استان",
             "site": "سایت",
@@ -284,6 +287,7 @@
             "passengerPhoneNumber": "تلفن مسافر",
             "syllabi": "سر فصل های پرواز",
             "description": "توضیحات",
+            "viewIGC": "مشاهده IGC",
             "noDescription": "توضیحی داده نشده!"
         }
     }

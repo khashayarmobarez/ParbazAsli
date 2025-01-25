@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +34,7 @@ const FlightHistory = () => {
 
     // language
     const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -145,7 +148,7 @@ const FlightHistory = () => {
                                     disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
                                     onClick={handleNextPage}
                                 >
-                                    <ArrowButton isRight={true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
+                                    <ArrowButton isRight={dir === 'ltr' ? false : true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -158,7 +161,7 @@ const FlightHistory = () => {
                                 onClick={handlePrevPage}
                                 >
 
-                                    <ArrowButton isDisable={pageNumber === 1}/>
+                                    <ArrowButton isRight={dir === 'ltr' ? true : false} isDisable={pageNumber === 1}/>
 
                                 </button>
                                 
