@@ -333,6 +333,27 @@
             "nonCourseIndicator": "Non-Course Type",
             "addEquipment": "Add Equipment",
             "equipment": "Equipment"
+        },
+        "addIgc":{
+            "pageTitle": "Flight Registration",
+            "igcFile": "IGC File",
+            "igcFileRequired": "IGC file is required",
+            "igcFileError": "Invalid IGC file format",
+            "igcFileMaxSize": "IGC file size must not exceed 10 MB",
+            "igcFileUpload": "Upload IGC File",
+            "igcFileUploadInstruction": "The IGC file must be in txt format",
+            "igcFileUploadSizeInstruction": "The IGC file size must not exceed 10 MB",
+            "igcFileUploadRequired": "IGC file is required",
+            "igcFileUploadError": "Error uploading IGC file",
+            "igcFileUploadSuccess": "IGC file uploaded successfully",
+            "igcFileUploadFailed": "IGC file upload failed",
+            "igcFileUploadFailedMessage": "Error uploading IGC file",
+            "igcFileUploadFailedMessage2": "Invalid IGC file format",
+            "igcFileUploadFailedMessage3": "IGC file size exceeds the allowed limit",
+            "igcFileUploadFailedMessage4": "IGC file is required",
+            "igcFileUploadFailedMessage5": "Error uploading IGC file",
+            "igcFileUploadFailedMessage6": "Error uploading IGC file",
+            "igcFileUploadFailedMessage7": "Error uploading IGC file"
         }
     }
 }

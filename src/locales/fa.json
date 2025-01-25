@@ -333,6 +333,27 @@
             "nonCourseIndicator": "نوع غیر دوره",
             "addEquipment":"ثبت تجهیزات",
             "equipment":"تجهیزات"
+        },
+        "addIgc":{
+            "pageTitle": "ثبت پرواز",
+            "igcFile": "فایل IGC",
+            "igcFileRequired": "فایل IGC الزامی می باشد",
+            "igcFileError": "فرمت فایل IGC نامعتبر است",
+            "igcFileMaxSize": "حجم فایل IGC نباید بیشتر از 10 مگابایت باشد",
+            "igcFileUpload": "آپلود فایل IGC",
+            "igcFileUploadInstruction": "فایل IGC باید با فرمت txt باشد",
+            "igcFileUploadSizeInstruction": "حجم فایل IGC نباید بیشتر از 10 مگابایت باشد",
+            "igcFileUploadRequired": "فایل IGC الزامی می باشد",
+            "igcFileUploadError": "خطا در آپلود فایل IGC",
+            "igcFileUploadSuccess": "فایل IGC با موفقیت آپلود شد",
+            "igcFileUploadFailed": "آپلود فایل IGC ناموفق بود",
+            "igcFileUploadFailedMessage": "خطا در آپلود فایل IGC",
+            "igcFileUploadFailedMessage2": "فرمت فایل IGC نامعتبر است",
+            "igcFileUploadFailedMessage3": "حجم فایل IGC بیشتر از حد مجاز است",
+            "igcFileUploadFailedMessage4": "فایل IGC الزامی می باشد",
+            "igcFileUploadFailedMessage5": "خطا در آپلود فایل IGC",
+            "igcFileUploadFailedMessage6": "خطا در آپلود فایل IGC",
+            "igcFileUploadFailedMessage7": "خطا در آپلود فایل IGC"
         }
     }
 }
