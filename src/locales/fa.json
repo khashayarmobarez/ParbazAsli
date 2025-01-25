@@ -320,6 +320,20 @@
             "applyFilters": "اعمال فیلتر"
             }
         }
+    },
+    "addFlight":{
+        "addFlightType": {
+            "pageTitle": "ثبت پرواز",
+            "waitingForCoachTitle": "در انتظار مربی...",
+            "waitingForCoachMessage": "مربی ، شما را در دوره ایی عضو نکرده است برای ثبت لاگ باید توسط مربی در دوره عضو شوید.<br/>برای ثبت لاگ از مربی خود بخواهید شما را در دوره ایی عضو نماید",
+            "selectFlightType": "نوع یا دوره پروازی خود را انتخاب کنید",
+            "clubName": "باشگاه: ",
+            "coachName": "مربی: ",
+            "courseIndicator": "نوع دوره",
+            "nonCourseIndicator": "نوع غیر دوره",
+            "addEquipment":"ثبت تجهیزات",
+            "equipment":"تجهیزات"
+        }
     }
 }
   

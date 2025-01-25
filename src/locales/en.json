@@ -320,5 +320,19 @@
             "applyFilters": "Apply Filters"
             }
         }
+    },
+    "addFlight": {
+        "addFlightType": {
+            "pageTitle": "Flight Registration",
+            "waitingForCoachTitle": "Waiting for the Coach...",
+            "waitingForCoachMessage": "The coach has not enrolled you in any course. To log your flight, you must be enrolled by the coach.<br/>Ask your coach to enroll you in a course to log your flight.",
+            "selectFlightType": "Select Your Flight Type or Course",
+            "clubName": "Club: ",
+            "coachName": "Coach: ",
+            "courseIndicator": "Course Type",
+            "nonCourseIndicator": "Non-Course Type",
+            "addEquipment": "Add Equipment",
+            "equipment": "Equipment"
+        }
     }
 }

@@ -19,8 +19,14 @@ import StandardPopup from '../../components/reuseable/StandardPopup';
 import Attention from '../../components/icons/Attention';
 import ActivityTypeLogPopUp from '../../modules/addFlight/ActivityTypeLogPopUp';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const AddFlightType = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -126,7 +132,7 @@ const AddFlightType = () => {
         <div className='flex flex-col items-center pt-14 pb-24'>
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'ثبت پرواز'} navigateTo={'/profile'} />
+                <PageTitle title={t('addFlight.addFlightType.pageTitle')} navigateTo={'/profile'} />
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
@@ -137,8 +143,8 @@ const AddFlightType = () => {
                             <span className='w-14 h-14 mb-2'>
                                 <Attention />
                             </span>
-                            <p className='mb-6'>در انتظار مربی...</p>
-                            <p>مربی ، شما را در دوره ایی عضو نکرده است برای ثبت لاگ باید توسط مربی در دوره عضو شوید.<br/>برای ثبت لاگ از مربی خود بخواهید شما را در دوره ایی عضو نماید</p>
+                            <p className='mb-6'>{t('addFlight.addFlightType.waitingForCoachTitle')}</p>
+                            <p>{t('addFlight.addFlightType.waitingForCoachMessage')}</p>
                         </div>
                     }
 
@@ -146,7 +152,7 @@ const AddFlightType = () => {
                         flightTypesData &&
                         flightTypesData?.data.length > 0 &&
                         <>
-                            <h1 className='text-sm'>نوع یا دوره پروازی خود را انتخاب کنید</h1>
+                            <h1 className='text-sm'>{t('addFlight.addFlightType.selectFlightType')}</h1>
 
                             <div className='w-full flex flex-col items-center gap-y-6 md:grid md:grid-cols-2 md:gap-6'>
 
@@ -165,12 +171,12 @@ const AddFlightType = () => {
                                                     <p>{flightType.name}</p> 
                                                 </div>
                                                 {flightType.type === 'Course' && flightType.club &&
-                                                <p>باشگاه: {flightType.club}</p>
+                                                <p>{t('addFlight.addFlightType.clubName')} {flightType.club}</p>
                                                 }   
                                             </div>
                                             {flightType.type === 'Course' &&
                                                 <div className='flex justify-start w-full'>
-                                                    <p className='text-xs text-nowrap'>مربی: {flightType.coach}</p>
+                                                    <p className='text-xs text-nowrap'>{t('addFlight.addFlightType.coachName')} {flightType.coach}</p>
                                                 </div>
                                             }
                                         </div>
