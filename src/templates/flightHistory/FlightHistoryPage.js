@@ -13,8 +13,12 @@ import PageTitle from '../../components/reuseable/PageTitle';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 import { useStudentPracticalActivity } from '../../Utilities/Services/coursesQueries';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 const FlightHistoryPage = () => {
+
+    // language
+    const { t } = useTranslation();
     
     const { id } = useParams()
     const location = useLocation()
@@ -54,7 +58,7 @@ const FlightHistoryPage = () => {
 
                 {
                 flightData &&
-                    <PageTitle title={isForFlight ? 'جزئیات پرواز' : 'جزئیات تمرین زمینی'} />
+                    <PageTitle title={isForFlight ? t("flightHistory.flightDetails.flight") : t("flightHistory.flightDetails.groundTraining")} />
                 }
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
@@ -70,21 +74,21 @@ const FlightHistoryPage = () => {
                                     flightData.data.status &&
                                         <div className='flex flex-col col-span-6 items-start gap-y-3'>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p className=' text-xs pr-2 text-textDisabled'>وضعیت:&nbsp;</p>
+                                                <p className=' text-xs pr-2 text-textDisabled'>{t("flightHistory.flightDetails.status")}&nbsp;</p>
                                                 {
                                                     flightData.data.status === 'Accepted' && 
                                                     <>
-                                                        <p className='text-textAccent'> تایید شده </p>
+                                                        <p className='text-textAccent'> {t("flightHistory.flightDetails.accepted")} </p>
                                                     </>
                                                 }
                                                 {flightData.data.status === 'Pending' &&
                                                     <>
-                                                        <p className='text-textWarning'> در انتظار تایید </p>
+                                                        <p className='text-textWarning'>{t("flightHistory.flightDetails.pending")}</p>
                                                     </>
                                                 }
                                                 {flightData.data.status === 'Rejected' &&
                                                     <>
-                                                        <p className='text-textError'>رد شده</p>
+                                                        <p className='text-textError'>{t("flightHistory.flightDetails.rejected")}</p>
                                                     </>
                                                 }
                                             </div>
@@ -94,7 +98,7 @@ const FlightHistoryPage = () => {
                                     {
                                     flightData.data.coachName &&
                                         <div className='flex flex-col items-start col-span-3 gap-y-3'>
-                                            <p className=' text-xs pr-2'>نام مربی</p>
+                                            <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.coachName")}</p>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                 <p>{flightData.data.coachName}</p>
                                             </div>
@@ -104,7 +108,7 @@ const FlightHistoryPage = () => {
                                     { 
                                         flightData.data.courseName &&
                                         <div className='flex flex-col items-start col-span-3 gap-y-3'>
-                                            <p className=' text-xs pr-2'>نام دوره</p>
+                                            <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.courseName")}</p>
                                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                 <p>{flightData.data.courseName}</p>
                                             </div>
@@ -301,6 +305,7 @@ const FlightHistoryPage = () => {
                                             }
                                         </>
                                     }
+
 
                                     {
                                     flightData?.data.flight &&
