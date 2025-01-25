@@ -250,6 +250,7 @@
             "pending": "Pending Approval",
             "rejected": "Rejected",
             "coachName": "Coach Name",
+            "courseName": "Course Name",
             "clubName": "Club Name",
             "flightCount": "Flights",
             "date": "Date",

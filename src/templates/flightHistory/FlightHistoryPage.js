@@ -176,7 +176,7 @@ const FlightHistoryPage = () => {
                                             {
                                                 flightData.data.wing &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-6 mt-[-10px]'>
-                                                        <p className=' text-xs pr-2'>t("flightHistory.flightDetails.wing")</p>
+                                                        <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.wing")}</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{flightData.data.wing}</p>
                                                         </div>
@@ -186,7 +186,7 @@ const FlightHistoryPage = () => {
                                             {
                                                 flightData.data.harness &&  
                                                     <div className='flex flex-col items-start gap-y-3 col-span-6'>
-                                                        <p className=' text-xs pr-2'>t("flightHistory.flightDetails.harness")</p>
+                                                        <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.harness")}</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{flightData.data.harness}</p>
                                                         </div>
@@ -196,7 +196,7 @@ const FlightHistoryPage = () => {
                                             {
                                                 flightData.data.parachute &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-6'>
-                                                        <p className=' text-xs pr-2'>t("flightHistory.flightDetails.parachute")</p>
+                                                        <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.parachute")}</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                                             <p>{flightData.data.parachute}</p>
                                                         </div>

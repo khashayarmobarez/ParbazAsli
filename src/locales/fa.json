@@ -250,6 +250,7 @@
             "pending": "در انتظار تایید",
             "rejected": "رد شده",
             "coachName": "نام مربی",
+            "courseName": "نام دوره",
             "clubName": "نام باشگاه",
             "flightCount":"پرواز",
             "date": "تاریخ",
