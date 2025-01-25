@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 // mui 
-import { Box, BottomNavigation, BottomNavigationAction , Typography } from '@mui/material';
+import { Box, BottomNavigation, BottomNavigationAction , Typography, useMediaQuery } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -63,6 +63,8 @@ const Footer = ({ userRole }) => {
   const { t } = useTranslation();
   const dir = Cookies.get('dir') || 'ltr';
 
+  const isDesktop = useMediaQuery('(min-width:768px)');
+
   const token = Cookies.get('token') || null;
 
   const navigate = useNavigate();
@@ -89,7 +91,7 @@ const Footer = ({ userRole }) => {
           <BottomNavigation
           sx={{
             ...styles.buttonsContainer,
-            borderRadius: dir === 'ltr' ? '0 2rem 2rem 0' : '2rem 0 0 2rem', // Conditional borderRadius
+            borderRadius: dir === 'ltr' && isDesktop ? '0 2rem 2rem 0' : isDesktop ? '2rem 0 0 2rem' : '', // Conditional borderRadius
           }}
           showLabels
           value={value}

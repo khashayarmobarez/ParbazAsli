@@ -221,6 +221,27 @@
                 "detailsButton": "جزئیات"
             }
         }
+    },
+    "flightHistory": {
+        "logbook": "لاگ بوک",
+        "searchFilterButton": "فیلتر جست‌وجو",
+        "resetButton": "بازنشانی",
+        "noFlightsFound": "هیچ پروازی یافت نشد",
+        "pageText": "صفحه ی {{pageNumber}}",
+        "notifications": {
+            "declineSuccess": "پرواز رد صلاحیت شد",
+            "declineError": "خطایی رخ داده است"
+        },
+        "messages": {
+            "confirmActivity": "آیا این فعالیت مورد تایید شما است؟"
+        },
+        "buttons": {
+            "approve": "تایید",
+            "decline": "رد"
+        },
+        "labels": {
+            "groundHandling": "تمرین زمینی"
+        }
     }
 }
   

@@ -18,9 +18,14 @@ import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import NotInterestedIcon from '@mui/icons-material/NotInterested';
 import GroundHandlingIcon from '../../components/icons/GroundHandlingIcon';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 const PracticalFlightHistoryBox = (props) => {
+
+    // language
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -47,7 +52,7 @@ const PracticalFlightHistoryBox = (props) => {
         mutateDecline(id, {
             onSuccess: (data) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
-                toast('پرواز رد صلاحیت شد', {
+                toast(t("flightHistory.notifications.declineSuccess"), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -56,7 +61,7 @@ const PracticalFlightHistoryBox = (props) => {
                 });
             },
             onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage = t("flightHistory.notifications.declineError");
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -79,8 +84,10 @@ const PracticalFlightHistoryBox = (props) => {
                 {
                     flightBaseData &&
                     <div className='w-full flex flex-col items-center'>
-                        <div onClick={() => handleClick(flightBaseData.id)} className={`${gradients.container} flex w-full justify-between items-center h-12 pl-4 rounded-2xl text-xs z-10`} >
-                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-full flex items-center justify-center rounded-r-2xl`}>
+                        <div onClick={() => handleClick(flightBaseData.id)} className={`${gradients.container} flex w-full justify-between items-center h-12 rounded-2xl text-xs z-10
+                        ${dir === 'ltr' ? 'pr-4' : 'pl-4'}`} >
+                            <button className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-full flex items-center justify-center 
+                            ${dir === 'ltr' ? 'rounded-l-2xl' : 'rounded-r-2xl'}`}>
                                 {
                                     isForGroundHandling ?
                                     <div className='w-full h-full p-3.5'>
@@ -98,7 +105,7 @@ const PracticalFlightHistoryBox = (props) => {
                             </p>
                             {
                                 isForGroundHandling ?
-                                    <p className='text-textAccent'>تمرین زمینی</p>
+                                    <p className='text-textAccent'>{t("flightHistory.labels.groundHandling")}</p>
                                     :
                                     <p>
                                         {flightBaseData.site && flightBaseData.site.slice(0, 14)}
@@ -125,7 +132,7 @@ const PracticalFlightHistoryBox = (props) => {
 
                                 <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                     <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
-                                    <p>آیا این فعالیت مورد تایید شما است؟</p>
+                                    <p>{t("flightHistory.messages.confirmActivity")}</p>
                                 </div>
 
                                 <div className='flex gap-x-6 items-center px-2'>
@@ -138,11 +145,11 @@ const PracticalFlightHistoryBox = (props) => {
                                     }
                                     
                                     <p onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${flightBaseData.id}`)} disabled={declineLoading} className='text-[var(--text-accent)] text-sm font-medium'  >
-                                        تایید
+                                        {t("flightHistory.buttons.approve")}
                                     </p>
 
                                     <p onClick={(event) => handleDecline(event, flightBaseData.id)} disabled={declineLoading} className='text-[var(--text-error)] text-sm font-medium' >
-                                        رد
+                                        {t("flightHistory.buttons.decline")}
                                     </p>
 
                                 </div>

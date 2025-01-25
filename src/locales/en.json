@@ -221,5 +221,26 @@
                 "detailsButton": "Details"
             }
         }
+    },
+    "flightHistory": {
+        "logbook":"Logbook",
+        "searchFilterButton": "Search Filter",
+        "resetButton": "Reset",
+        "noFlightsFound": "No flights found",
+        "pageText": "Page {{pageNumber}}",
+        "notifications": {
+            "declineSuccess": "The flight was disqualified",
+            "declineError": "An error occurred"
+        },
+        "messages": {
+            "confirmActivity": "Is this activity approved by you?"
+        },
+        "buttons": {
+            "approve": "Approve",
+            "decline": "Decline"
+        },
+        "labels": {
+            "groundHandling": "Ground Handling"
+        }
     }
 }

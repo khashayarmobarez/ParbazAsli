@@ -24,8 +24,14 @@ import PageTitle from '../../components/reuseable/PageTitle';
 import PracticalFlightHistoryBox from '../../modules/FlightHistory/PracticalFlightHistoryBox';
 import FilterVariables from '../../modules/FlightHistory/FilterVariables';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const FlightHistory = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -86,7 +92,7 @@ const FlightHistory = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center'>
             <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-0 lg:gap-y-12 lg:w-[55%]'>
-                <PageTitle title={'سوابق پرواز'} navigateTo={'/profile'} />
+                <PageTitle title={t("flightHistory.logbook")} navigateTo={'/profile'} />
                 <div className='w-[90%] mt-6 flex flex-col'>
                     <div className='w-full flex flex-col justify-center items-center px-1 gap-y-8'>
 
@@ -95,7 +101,7 @@ const FlightHistory = () => {
                                 className={`w-full ${ButtonStyles.normalButton}`}
                                 onClick={() => navigate('/flightHistory/advancedFilter')}
                             >
-                                فیلتر جست‌وجو
+                                {t("flightHistory.searchFilterButton")}
                             </button>
                             <button className={`w-16 rounded-2xl flex justify-center items-center bg-bgButtonSecondaryDefault`}
                             style={{
@@ -120,7 +126,7 @@ const FlightHistory = () => {
 
                         {userFlights && userFlights.data.length === 0 && (
                             <p className='text-base text-center font-medium mt-6 text-textWarning'>
-                                هیچ پروازی یافت نشد
+                                {t("flightHistory.noFlightsFound")}
                             </p>
                         )}
 
@@ -143,7 +149,7 @@ const FlightHistory = () => {
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                    صفحه ی {pageNumber}
+                                    {t("flightHistory.pageText", { pageNumber })}
                                 </p>
 
                                 <button
