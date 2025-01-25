@@ -290,6 +290,35 @@
             "description": "Description",
             "viewIGC": "View IGC",
             "noDescription": "No description provided!"
+        },
+        "flightsFilter": {
+            "title": "Search Filter",
+            "loading": "Loading...",
+            "dropdowns": {
+            "course": "Course",
+            "wing": "Wing",
+            "harness": "Harness",
+            "coach": "Coach Name",
+            "flightStatus": "Flight Status",
+            "country": "Country",
+            "province": "Province",
+            "site": "Site",
+            "flightType": "Flight Type",
+            "groundHandlingType": "Ground Handling Type"
+            },
+            "radioButtons": {
+            "allActivities": "Search among all activities",
+            "flightsOnly": "Search only among flights",
+            "groundHandlingOnly": "Search only among ground handling sessions"
+            },
+            "datePicker": {
+            "fromDate": "From Date",
+            "toDate": "To Date"
+            },
+            "buttons": {
+            "resetFilters": "Reset Filters",
+            "applyFilters": "Apply Filters"
+            }
         }
     }
 }

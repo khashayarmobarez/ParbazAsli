@@ -39,8 +39,14 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 import SearchInputWithDropdown from '../../components/inputs/SearchInputWithDropdown';
 import RadioButton from '../../components/inputs/RadioButton';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const FlightsAdvancedFilter = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -197,7 +203,7 @@ const FlightsAdvancedFilter = () => {
 
             <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-6 lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'فیلتر جست‌وجو'} navigateTo={-1} />
+                <PageTitle title={t("flightHistory.flightsFilter.title")} navigateTo={-1} />
 
                 {   (userWingsLoading || userHarnessLoading || userCoachesLoading || userCoursesLoading || countriesLoading) &&
                     <Box sx={{ display: 'flex', width:'full' , justifyContent:'center', marginTop:'10rem' }}>
@@ -213,47 +219,47 @@ const FlightsAdvancedFilter = () => {
                     
                             {
                                 userCoursesData && userCoursesData.data.length > 0 &&
-                                <DropdownInput  id={'ddi1'} icon={<ADressTag/>} name={'دوره'} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
+                                <DropdownInput  id={'ddi1'} icon={<ADressTag/>} name={t("flightHistory.flightsFilter.dropdowns.course")} options={userCoursesData.data} selectedOption={courseFilter} handleSelectChange={handleSelectCourseFilter} />
                             }
                             
                             {
                                 userWingsData && userHarnessData && userWingsData.data.length > 0 && userHarnessData.data.length > 0 &&
                                 <>
-                                    <DropdownInput id={'ddi1.2'} icon={<WingIcon/>} name={'بال'} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
+                                    <DropdownInput id={'ddi1.2'} icon={<WingIcon/>} name={t("flightHistory.flightsFilter.dropdowns.wing")} options={userWingsData.data} selectedOption={wingFilter} handleSelectChange={handleSelectSetWingFilter} />
 
-                                    <DropdownInput id={'ddi1.4'} icon={<HarnessIcon/>} name={'هارنس'} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
+                                    <DropdownInput id={'ddi1.4'} icon={<HarnessIcon/>} name={t("flightHistory.flightsFilter.dropdowns.harness")} options={userHarnessData.data} selectedOption={harnessFilter} handleSelectChange={handleSelectSetHarnessFilter} />
                                 </>
                             }
                             
                             {
                                 userCoachesData && userCoachesData.data.length > 0 &&
-                                <DropdownInput id={'ddi4'} icon={<UserIcon/>} name={'نام مربی'} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
+                                <DropdownInput id={'ddi4'} icon={<UserIcon/>} name={t("flightHistory.flightsFilter.dropdowns.coach")} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
                             }
 
-                            <DropdownInput id={'ddi5'} icon={<ColorTagsIcon/>} name={' وضعیت پرواز'} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+                            <DropdownInput id={'ddi5'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.flightStatus")} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
 
 
                             {
                                 !resetDate &&
                                 <>
                                     {/* the date picker component comes from equipment section */}
-                                    <DateLastRepackInput name={'از تاریخ'}  onChange={handleFlightFromDateFilterChange} placeH={'از تاریخ'} />
+                                    <DateLastRepackInput name={t("flightHistory.flightsFilter.datePicker.fromDate")}  onChange={handleFlightFromDateFilterChange} placeH={t("flightHistory.flightsFilter.datePicker.fromDate")} />
 
                                     {/* the date picker component comes from equipment section */}
-                                    <DateLastRepackInput name={'تا تاریخ'}  onChange={handleFlightToDateFilterChange} placeH={'تا تاریخ'} />
+                                    <DateLastRepackInput name={t("flightHistory.flightsFilter.datePicker.toDate")}  onChange={handleFlightToDateFilterChange} placeH={t("flightHistory.flightsFilter.datePicker.toDate")} />
                                 </>
                             }
 
                             {
                                 countriesData && 
-                                <DropdownInput id={'ddi2'} icon={<EarthIcon/>} name={'کشور'} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
+                                <DropdownInput id={'ddi2'} icon={<EarthIcon/>} name={t("flightHistory.flightsFilter.dropdowns.country")} options={countriesData.data} selectedOption={countryFilter} handleSelectChange={handleSelectSetCountryFilter} />
                             }
 
                             {
                                 provincesData && !provincesLoading && (countryFilter && countryFilter.id) &&
                                 (<SearchInputWithDropdown
                                     icon={<LocationIcon/>}
-                                    name={'استان'}
+                                    name={t("flightHistory.flightsFilter.dropdowns.province")}
                                     options={provincesData.data}
                                     selectedOption={provinceFilter}
                                     handleSelectChange={handleSelectSetCityFilter}
@@ -261,45 +267,45 @@ const FlightsAdvancedFilter = () => {
                                 }
 
                             <RadioButton 
-                                buttonText={'بین همه فعالیت‌ها جست و جو کن'} 
+                                buttonText={t("flightHistory.flightsFilter.radioButtons.allActivities")} 
                                 onClick={() => handleClickCheckBoxes('none')}
                                 isChecked={activityType === ''}
                             />
 
                             <RadioButton 
-                            buttonText={'فقط بین پروازها جست و جو کن'}
+                            buttonText={t("flightHistory.flightsFilter.radioButtons.flightsOnly")}
                             onClick={() => handleClickCheckBoxes('flights')}
                             isChecked={activityType.id === 1}
                             />
 
                             {
                                 flightSitesData && !flightSitesLoading && provinceFilter && provinceFilter.id && activityType?.id === 1 &&
-                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={'سایت'} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
+                                (<SearchInputWithDropdown icon={<LocationIcon/>} name={t("flightHistory.flightsFilter.dropdowns.site")} options={flightSitesData.data} selectedOption={siteFilter} handleSelectChange={handleSelectSetSiteFilter} />)
                             }
 
                             {
                                 activityType?.id === 1 &&
-                                    <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                                    <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.flightType")} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             }
 
                             
                             <RadioButton
-                            buttonText={'فقط بین تمرین‌های زمینی جست و جو کن'} 
+                            buttonText={t("flightHistory.flightsFilter.radioButtons.groundHandlingOnly")} 
                             onClick={() => handleClickCheckBoxes('groundHandlings')}
                             isChecked={activityType.id === 2}
                             />
                             
                             {
                                 activityType?.id === 2 &&
-                                    <DropdownInput id={'ddi4'} icon={<ColorTagsIcon/>} name={'نوع تمرین زمینی'} options={flightTypeOptions} selectedOption={groundHandlingTypeFilter} handleSelectChange={handleSelectGroundHandlingTypeFilter} />
+                                    <DropdownInput id={'ddi4'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.groundHandlingType")} options={flightTypeOptions} selectedOption={groundHandlingTypeFilter} handleSelectChange={handleSelectGroundHandlingTypeFilter} />
                             }
 
                         </div>
 
 
                         <div className='w-[90%] md:w-[65%] flex justify-between gap-x-[6%] mt-2'>
-                            <button onClick={() => {dispatch(resetAllFilters()); resetDateFunc()}} className={` ${buttonStyles.normalButton} w-full h-12`}>حذف فیلترها</button>
-                            <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-full h-12`}>اعمال فیلتر</button>
+                            <button onClick={() => {dispatch(resetAllFilters()); resetDateFunc()}} className={` ${buttonStyles.normalButton} w-full h-12`}>{t("flightHistory.flightsFilter.buttons.resetFilters")}</button>
+                            <button onClick={() => navigate('/flightHistory')} className={` ${buttonStyles.addButton} w-full h-12`}>{t("flightHistory.flightsFilter.buttons.applyFilters")}</button>
                         </div>
                     </>
                     

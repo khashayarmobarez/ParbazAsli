@@ -290,6 +290,35 @@
             "description": "توضیحات",
             "viewIGC": "مشاهده IGC",
             "noDescription": "توضیحی داده نشده!"
+        },
+        "flightsFilter": {
+            "title": "فیلتر جست‌وجو",
+            "loading": "در حال بارگذاری...",
+            "dropdowns": {
+            "course": "دوره",
+            "wing": "بال",
+            "harness": "هارنس",
+            "coach": "نام مربی",
+            "flightStatus": "وضعیت پرواز",
+            "country": "کشور",
+            "province": "استان",
+            "site": "سایت",
+            "flightType": "نوع پرواز",
+            "groundHandlingType": "نوع تمرین زمینی"
+            },
+            "radioButtons": {
+            "allActivities": "بین همه فعالیت‌ها جست و جو کن",
+            "flightsOnly": "فقط بین پروازها جست و جو کن",
+            "groundHandlingOnly": "فقط بین تمرین‌های زمینی جست و جو کن"
+            },
+            "datePicker": {
+            "fromDate": "از تاریخ",
+            "toDate": "تا تاریخ"
+            },
+            "buttons": {
+            "resetFilters": "حذف فیلترها",
+            "applyFilters": "اعمال فیلتر"
+            }
         }
     }
 }
