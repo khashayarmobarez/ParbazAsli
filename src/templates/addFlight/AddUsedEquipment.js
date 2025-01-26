@@ -24,8 +24,15 @@ import { updateWing, updateHarness, updateParachute } from '../../Utilities/Redu
 import DropdownInput from '../../components/inputs/DropDownInput';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const AddUsedEquipment = () => {
+
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -59,7 +66,7 @@ const AddUsedEquipment = () => {
     useEffect(() => {
         if(!flightType) {
             navigate('/addFlight/AddFlightType')
-            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+            toast(t('addFlight.addUsedEquipment.notifs.completePreviousPages'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -77,7 +84,7 @@ const AddUsedEquipment = () => {
 
     const handleSelectSetHarness = (selectedOption) => {
         if(selectedOption === passengerHarness) {
-            toast('هارنس شما نمی تواند با هارنس مسافر یکی باشد', {
+            toast(t('addFlight.addUsedEquipment.notifs.wingCannotMatchPassengerHarness'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -91,7 +98,7 @@ const AddUsedEquipment = () => {
 
     const handleSelectSetPassengerHarness = (selectedOption) => {
         if(selectedOption === harness) {
-            toast('هارنس مسافر نمی تواند با هارنس شما یکی باشد', {
+            toast(t('addFlight.addUsedEquipment.notifs.passengerHarnessCannotMatchWing'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -123,7 +130,7 @@ const AddUsedEquipment = () => {
                 :
                 navigate('/addFlight/AddGroundHandlingSituation')
         } else {
-            toast('لطفا اطلاعات را کامل وارد کنید', {
+            toast(t('addFlight.addUsedEquipment.notifs.completeInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -174,15 +181,15 @@ const AddUsedEquipment = () => {
 
                                 <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
-                                    <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+                                    <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.IGC')}</p>
 
-                                    <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                                    <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightDevice')}</p>
 
-                                    <p className='' style={{color:'var(--icon-disable)'}}>شرایط پرواز</p>
+                                    <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.flightConditions')}</p>
 
-                                    <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+                                    <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.takeoff')}</p>
 
-                                    <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+                                    <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.landing')}</p>
 
                                 </div>
                                 
@@ -191,7 +198,7 @@ const AddUsedEquipment = () => {
                         :
                         <DropDownLine
                             hasNoArrow={true}
-                            title='مشخصات وسیله تمرین زمینی'
+                            title={t('addFlight.addUsedEquipment.groundTrainingEquipment')}
                         />
                 }
 
@@ -207,27 +214,27 @@ const AddUsedEquipment = () => {
 
                     {
                         userParachuteError && userWingsError && userHarnessError &&
-                        <p style={{color:'var(--text-error)'}}>مشکلی پیش امده دوباره تلاش کنید</p>
+                        <p style={{color:'var(--text-error)'}}>{t('addFlight.addUsedEquipment.generalError')}</p>
                     }
 
                     {
                         userWingsData && userWingsData.data === null && !userWingsLoading &&
                         <p>
-                            شما وسیله پروازی ثبت نکرده اید 
+                            {t('addFlight.addUsedEquipment.noWingsRegistered')}
                         </p>
                     }
 
                     {
                         userParachuteData && userParachuteData.data === null && !userParachuteLoading &&
                         <p>
-                            شما چتر پروازی ثبت نکرده اید 
+                            {t('addFlight.addUsedEquipment.noParachuteRegistered')}
                         </p>
                     }
 
                     {
                         userHarnessData && userHarnessData.data === null && !userHarnessLoading &&
                         <p>
-                            شما هارنسی ثبت نکرده اید 
+                            {t('addFlight.addUsedEquipment.noHarnessRegistered')}
                         </p>
                     }
 
@@ -237,28 +244,28 @@ const AddUsedEquipment = () => {
                             <DropdownInput 
                             id={'ddi3'} 
                             icon={<WingIcon customColor = {!wing && submitted && 'var(--text-error)'}/>} 
-                            name={'بال'} 
+                            name={t('addFlight.addUsedEquipment.wing')} 
                             options={userWingsData.data} 
                             selectedOption={wing} 
                             handleSelectChange={handleSelectSetWing} 
                             IsEmptyAfterSubmit={submitted && !wing} 
                             isSubmitted={submitted}
                             ErrorCondition={!wing}
-                            ErrorText={'انتخاب بال الزامی است'}
+                            ErrorText={t('addFlight.addUsedEquipment.wingSelectionRequired')}
                             />
                                 
 
                             <DropdownInput 
                             id={'ddi4'} 
                             icon={<HarnessIcon customColor = {!harness && submitted && 'var(--text-error)'}/>} 
-                            name={'هارنس'} 
+                            name={t('addFlight.addUsedEquipment.harness')} 
                             options={userHarnessData.data} 
                             selectedOption={harness} 
                             handleSelectChange={handleSelectSetHarness} 
                             IsEmptyAfterSubmit={submitted && !harness} 
                             isSubmitted={submitted}
                             ErrorCondition={!harness}
-                            ErrorText={'انتخاب هارنس الزامی است'}
+                            ErrorText={t('addFlight.addUsedEquipment.harnessRequired')}
                             />
 
                             {
@@ -266,28 +273,28 @@ const AddUsedEquipment = () => {
                                 <DropdownInput 
                                 id={'ddi5'} 
                                 icon={<HarnessIcon customColor = {!passengerHarness && submitted && 'var(--text-error)'}/>} 
-                                name={'هارنس مسافر'} 
+                                name={t('addFlight.addUsedEquipment.passengerHarness')} 
                                 options={userHarnessData.data} 
                                 selectedOption={passengerHarness} 
                                 handleSelectChange={handleSelectSetPassengerHarness} 
                                 IsEmptyAfterSubmit={submitted && !passengerHarness} 
                                 isSubmitted={submitted}
                                 ErrorCondition={!passengerHarness}
-                                ErrorText={'انتخاب هارنس مسافر الزامی است'}
+                                ErrorText={t('addFlight.addUsedEquipment.passengerHarnessRequired')}
                                 />
                             }
                             
                             <DropdownInput 
                             id={'ddi6'} 
                             icon={<ParachuteIcon anotherColor = {!parachute && submitted && 'var(--text-error)'}/>} 
-                            name={isForFlight ? 'چتر کمکی' : 'چتر کمکی (اختیاری)'} 
+                            name={isForFlight ? t('addFlight.addUsedEquipment.parachute') : t('addFlight.addUsedEquipment.optionalParachute')} 
                             options={userParachuteData.data} 
                             selectedOption={parachute}
                             handleSelectChange={handleSelectSetParachute}
                             IsEmptyAfterSubmit={submitted && !parachute && isForFlight} 
                             isSubmitted={submitted}
                             ErrorCondition={!parachute && isForFlight}
-                            ErrorText={'انتخاب چتر کمکی الزامی است'}
+                            ErrorText={t('addFlight.addUsedEquipment.parachuteRequired')}
                             />
                         </>
                     }
@@ -296,16 +303,18 @@ const AddUsedEquipment = () => {
                 <div className='flex justify-between items-center w-full'>
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <span className='w-8 h-8 flex justify-center items-center ml-2'>
-                            <ArrowButton isRight={true} />
+                        <span className={`w-8 h-8 flex justify-center items-center ml-2
+                        ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
+                            <ArrowButton isRight={dir !== 'ltr' && true} />
                         </span>
-                        <p className=' '>قبلی</p>
+                        <p className=' '>{t('addFlight.addUsedEquipment.previousButton')}</p>
                     </div>
 
                     <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <p className=''>بعدی</p>
-                        <span className='w-8 h-8 flex justify-center items-center mr-2'>
-                            <ArrowButton  />
+                        <p className=''>{t('addFlight.addUsedEquipment.nextButton')}</p>
+                        <span className={`w-8 h-8 flex justify-center items-center
+                            ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
+                            <ArrowButton isRight={dir === 'ltr' && true}  />
                         </span>
                     </div>
                 

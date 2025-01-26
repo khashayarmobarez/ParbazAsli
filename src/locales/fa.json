@@ -358,6 +358,30 @@
             "instruction": "در صورت داشتن فایل IGC بارگزاری کنید تا مشخصات پرواز شما ثبت شود در غیر این صورت دکمه بعدی را بزنید و مشخصات پرواز خود را وارد کنید",
             "uploadButton": "آپلود IGC",
             "nextButton": "بعدی"
+        },
+        "addUsedEquipment": {
+            "groundTrainingEquipment": "مشخصات وسیله تمرین زمینی",
+            "generalError": "مشکلی پیش امده دوباره تلاش کنید",
+            "noWingsRegistered": "شما وسیله پروازی ثبت نکرده اید",
+            "noParachuteRegistered": "شما چتر پروازی ثبت نکرده اید",
+            "noHarnessRegistered": "شما هارنسی ثبت نکرده اید",
+            "wing":"بال",
+            "harness":"هارنس",
+            "passengerHarness":"هارنس مسافر",
+            "parachute":"چتر",
+            "wingRequired": "انتخاب بال الزامی است",
+            "harnessRequired": "انتخاب هارنس الزامی است",
+            "passengerHarnessRequired": "انتخاب هارنس مسافر الزامی است",
+            "parachuteRequired": "انتخاب چتر کمکی الزامی است",
+            "optionalParachute": "چتر کمکی (اختیاری)",
+            "previousButton": "قبلی",
+            "nextButton": "بعدی",
+            "notifs": {
+                "completePreviousPages": "لطفا اطلاعات صفحات قبل را اول کامل کنید",
+                "wingCannotMatchPassengerHarness": "هارنس شما نمی تواند با هارنس مسافر یکی باشد",
+                "passengerHarnessCannotMatchWing": "هارنس مسافر نمی تواند با هارنس شما یکی باشد",
+                "completeInfo": "لطفا اطلاعات را کامل وارد کنید"
+            }
         }
     }
 }

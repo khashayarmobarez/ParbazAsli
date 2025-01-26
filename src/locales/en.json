@@ -358,6 +358,30 @@
             "instruction": "If you have an IGC file, upload it to log your flight details. Otherwise, click the next button to enter your flight details manually.",
             "uploadButton": "Upload IGC",
             "nextButton": "Next"
+        },
+        "addUsedEquipment": {
+            "groundTrainingEquipment": "Ground Training Equipment",
+            "generalError": "An error occurred, please try again",
+            "noWingsRegistered": "You have not registered any wings",
+            "noParachuteRegistered": "You have not registered any parachutes",
+            "noHarnessRegistered": "You have not registered any harnesses",
+            "wing": "Wing",
+            "harness": "Harness",
+            "passengerHarness": "Passenger Harness",
+            "parachute": "Parachute",
+            "wingRequired": "Selecting a wing is required",
+            "harnessRequired": "Selecting a harness is required",
+            "passengerHarnessRequired": "Selecting a passenger harness is required",
+            "parachuteRequired": "Selecting a parachute is required",
+            "optionalParachute": "Parachute (Optional)",
+            "previousButton": "Previous",
+            "nextButton": "Next",
+            "notifs": {
+                "completePreviousPages": "Please complete the information on the previous pages first.",
+                "wingCannotMatchPassengerHarness": "Your harness cannot match the passenger's harness.",
+                "passengerHarnessCannotMatchWing": "The passenger's harness cannot match your harness.",
+                "completeInfo": "Please complete the information."
+            }
         }
     }
 }

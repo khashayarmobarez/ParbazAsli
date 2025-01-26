@@ -37,7 +37,7 @@ const UploadIgc = () => {
     useEffect(() => {
         if(!flightType) {
             navigate('/addFlight/AddFlightType')
-            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+            toast(t('addFlight.addUsedEquipment.notifs.completePreviousPages'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
