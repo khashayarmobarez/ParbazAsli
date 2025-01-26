@@ -23,7 +23,14 @@ import { updateCity, updateSight,updateClouds,updateCountry } from '../../Utilit
 import DropdownInput from '../../components/inputs/DropDownInput';
 import SearchInputWithDropdown from '../../components/inputs/SearchInputWithDropdown';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const AddSituation = () => {
+
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const navigate= useNavigate('')
     const dispatch = useDispatch()
@@ -170,16 +177,16 @@ const AddSituation = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
                     {
                         countriesData &&
-                        <DropdownInput 
-                            id={'ddi1'} 
-                            name={'کشور'} 
-                            options={countriesData.data} 
-                            selectedOption={country} 
-                            handleSelectChange={handleSelectSetCountry} 
-                            IsEmptyAfterSubmit={submitted && !country} 
+                        <DropdownInput
+                            id={'ddi1'}
+                            name={t('addFlight.addSituation.country')}
+                            options={countriesData.data}
+                            selectedOption={country}
+                            handleSelectChange={handleSelectSetCountry}
+                            IsEmptyAfterSubmit={submitted && !country}
                             isSubmitted={submitted}
                             ErrorCondition={!country}
-                            ErrorText={'انتخاب کشور الزامی است'}
+                            ErrorText={t('addFlight.addSituation.errorCountry')}
                         />
                     }
 
@@ -189,63 +196,61 @@ const AddSituation = () => {
                             options={provincesData.data}
                             selectedOption={city}
                             handleSelectChange={handleSelectSetCity}
-                            name="استان"
+                            name={t('addFlight.addSituation.province')}
                             IsEmptyAfterSubmit={submitted && !city}
                             isSubmitted={submitted}
                             ErrorCondition={!city}
-                            ErrorText={'انتخاب استان الزامی است'}
+                            ErrorText={t('addFlight.addSituation.errorProvince')}
                         />
                     }
 
                     {
                         flightSitesData && city && city.id &&
-                        <DropdownInput 
-                        id={'ddi2'} 
-                        name={'سایت'} 
-                        options={flightSitesData.data} 
-                        selectedOption={sight} 
-                        handleSelectChange={handleSelectSetSight}
-                        IsEmptyAfterSubmit={submitted && !sight} 
-                        isSubmitted={submitted}
-                        ErrorCondition={!sight}
-                        ErrorText={'انتخاب سایت الزامی است'}
+                        <DropdownInput
+                            id={'ddi2'}
+                            name={t('addFlight.addSituation.site')}
+                            options={flightSitesData.data}
+                            selectedOption={sight}
+                            handleSelectChange={handleSelectSetSight}
+                            IsEmptyAfterSubmit={submitted && !sight}
+                            isSubmitted={submitted}
+                            ErrorCondition={!sight}
+                            ErrorText={t('addFlight.addSituation.errorSite')}
                         />
                     }
 
                     {
                         flightSitesData && cloudTypesData &&
-                        <DropdownInput 
-                        id={'ddi3'} 
-                        name={'نوع پوشش ابری'} 
-                        options={cloudTypesData.data} 
-                        selectedOption={clouds} 
-                        handleSelectChange={handleSelectSetClouds} 
-                        IsEmptyAfterSubmit={submitted && !clouds}
-                        isSubmitted={submitted}
-                        ErrorCondition={!clouds}
-                        ErrorText={'انتخاب نوع ابر الزامی است'}
+                        <DropdownInput
+                            id={'ddi3'}
+                            name={t('addFlight.addSituation.cloudType')}
+                            options={cloudTypesData.data}
+                            selectedOption={clouds}
+                            handleSelectChange={handleSelectSetClouds}
+                            IsEmptyAfterSubmit={submitted && !clouds}
+                            isSubmitted={submitted}
+                            ErrorCondition={!clouds}
+                            ErrorText={t('addFlight.addSituation.errorCloudType')}
                         />
                     }
-                    
-                    {/* <DropdownInput id={'ddi4'} name={'نوع پرواز'} options={flightTypeOptions} selectedOption={flightType} handleSelectChange={handleSelectSetFlightType} /> */}
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
-
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <span className='w-8 h-8 flex justify-center items-center ml-2'>
-                            <ArrowButton isRight={true} />
+                        <span className={`w-8 h-8 flex justify-center items-center ml-2
+                        ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
+                            <ArrowButton isRight={dir !== 'ltr' && true} />
                         </span>
-                        <p className=' '>قبلی</p>
+                        <p className=''>{t('addFlight.addSituation.previous')}</p>
                     </div>
 
                     <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <p className=''>بعدی</p>
-                        <span className='w-8 h-8 flex justify-center items-center mr-2'>
-                            <ArrowButton  />
+                        <p className=''>{t('addFlight.addSituation.next')}</p>
+                        <span className={`w-8 h-8 flex justify-center items-center mr-2
+                        ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
+                            <ArrowButton isRight={dir === 'ltr' && true} />
                         </span>
                     </div>
-                
                 </div>
 
             </div>

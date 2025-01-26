@@ -382,6 +382,18 @@
                 "passengerHarnessCannotMatchWing": "The passenger's harness cannot match your harness.",
                 "completeInfo": "Please complete the information."
             }
+        },
+        "addSituation": {
+            "country": "Country",
+            "province": "Province",
+            "site": "Site",
+            "cloudType": "Cloud Type",
+            "errorCountry": "Selecting a country is required",
+            "errorProvince": "Selecting a province is required",
+            "errorSite": "Selecting a site is required",
+            "errorCloudType": "Selecting a cloud type is required",
+            "previous": "Previous",
+            "next": "Next"
         }
     }
 }

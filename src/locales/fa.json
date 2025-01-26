@@ -382,6 +382,18 @@
                 "passengerHarnessCannotMatchWing": "هارنس مسافر نمی تواند با هارنس شما یکی باشد",
                 "completeInfo": "لطفا اطلاعات را کامل وارد کنید"
             }
+        },
+        "addSituation": {
+            "country": "کشور",
+            "province": "استان",
+            "site": "سایت",
+            "cloudType": "نوع پوشش ابری",
+            "errorCountry": "انتخاب کشور الزامی است",
+            "errorProvince": "انتخاب استان الزامی است",
+            "errorSite": "انتخاب سایت الزامی است",
+            "errorCloudType": "انتخاب نوع ابر الزامی است",
+            "previous": "قبلی",
+            "next": "بعدی"
         }
     }
 }

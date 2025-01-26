@@ -313,7 +313,7 @@ const AddUsedEquipment = () => {
                     <div onClick={handleNextPageButton} className='flex items-center justify-between'>
                         <p className=''>{t('addFlight.addUsedEquipment.nextButton')}</p>
                         <span className={`w-8 h-8 flex justify-center items-center
-                            ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
+                        ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
                             <ArrowButton isRight={dir === 'ltr' && true}  />
                         </span>
                     </div>
