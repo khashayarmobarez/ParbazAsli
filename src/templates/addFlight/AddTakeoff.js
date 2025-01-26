@@ -235,19 +235,19 @@ const AddTakeoff = () => {
 
                 <div className='flex justify-between items-center w-full'>
 
-                <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                    <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
-                        <ArrowButton isRight={dir !== 'ltr' && true} />
-                    </span>
-                    <p className=''>{t('addFlight.addTakeOff.previous')}</p>
-                </div>
+                    <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
+                        <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
+                            <ArrowButton isRight={dir !== 'ltr' && true} />
+                        </span>
+                        <p className=''>{t('addFlight.addTakeOff.previous')}</p>
+                    </div>
 
-                <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                    <p className=''>{t('addFlight.addTakeOff.next')}</p>
-                    <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
-                        <ArrowButton isRight={dir === 'ltr' && true} />
-                    </span>
-                </div>
+                    <div onClick={handleNextPageButton} className='flex items-center justify-between'>
+                        <p className=''>{t('addFlight.addTakeOff.next')}</p>
+                        <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
+                            <ArrowButton isRight={dir === 'ltr' && true} />
+                        </span>
+                    </div>
                 
                 </div>
 

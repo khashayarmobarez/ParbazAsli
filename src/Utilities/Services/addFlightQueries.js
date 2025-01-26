@@ -16,7 +16,7 @@ const getCloudTypes = async () => {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            culture,
+            'Accept-Language': culture,
         },
     });
     return response.data;
@@ -47,7 +47,7 @@ const getCountries = async () => {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            culture,
+            'Accept-Language': culture,
         },
     });
     return response.data;
@@ -81,7 +81,7 @@ const getProvincesByCountryId = async (countryId) => {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            'culture': culture,
+            'Accept-Language': culture,
         },
     });
     return response.data;
@@ -114,7 +114,7 @@ const getSitesByProvinceId = async (provinceId, countryId) => {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            culture,
+            'Accept-Language': culture,
         },
     });
     return response.data;
@@ -144,7 +144,7 @@ const getTakeoffTypes = async () => {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
-            culture,
+            'Accept-Language': culture,
         },
     });
     return response.data;

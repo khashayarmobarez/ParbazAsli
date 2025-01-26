@@ -400,7 +400,7 @@
             "completeInfo": "Please complete the information",
             "takeOffTimePlaceholder": "Take off time",
             "takeOffTimeRequired": "Take off time is required",
-            "takeOffTimeBeforeLanding": "Take off time must be before landing time ({landingTime})",
+            "takeOffTimeBeforeLanding": "Take off time must be before landing time ({{landingTime}})",
             "takeOffTimeBeforeNow": "Landing time must be before now",
             "takeOffType": "Type",
             "takeOffTypeRequired": "Take off type is required",
@@ -410,6 +410,10 @@
             "windSpeedRequired": "Wind speed is required",
             "previous": "Previous",
             "next": "Next"
+        },
+        "addLanding": {
+            "incompleteInfo": "Please complete the information on the previous pages first",
+            "completeInfo": "Please complete the information"
         }
     }
 }

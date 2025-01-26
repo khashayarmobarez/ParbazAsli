@@ -84,7 +84,7 @@ const AddLanding = () => {
     useEffect(() => {
         if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id || !flightType || !takeoffTime) {
             navigate('/addFlight/AddFlightType')
-            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+            toast(t('addFlight.addLanding.incompleteInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -137,7 +137,7 @@ const AddLanding = () => {
                 // Here you can handle form submission, such as sending data to a backend server
 
             } else {
-                toast('لطفا اطلاعات را کامل وارد کنید', {
+                toast(t('addFlight.addLanding.completeInfo'), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -150,7 +150,7 @@ const AddLanding = () => {
                 event.preventDefault();
                 setShowPopup(true);
             } else {
-                toast('لطفا اطلاعات را کامل وارد کنید', {
+                toast(t('addFlight.addLanding.completeInfo'), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,

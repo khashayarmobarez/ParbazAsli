@@ -400,7 +400,7 @@
             "completeInfo": "لطفا اطلاعات را کامل وارد کنید",
             "takeOffTimePlaceholder": "زمان take off",
             "takeOffTimeRequired": "زمان take off الزامی می باشد",
-            "takeOffTimeBeforeLanding": "زمان take off باید قبل از زمان land({landingTime}) باشد",
+            "takeOffTimeBeforeLanding": "زمان take off باید قبل از زمان land({{landingTime}}) باشد",
             "takeOffTimeBeforeNow": "زمان land باید قبل از الان باشد",
             "takeOffType": "شیوه",
             "takeOffTypeRequired": "شیوه take off الزامی می باشد",
@@ -410,6 +410,10 @@
             "windSpeedRequired": "سرعت باد الزامی می باشد",
             "previous": "قبلی",
             "next": "بعدی"
+        },
+        "addLanding": {
+            "incompleteInfo": "لطفا اطلاعات صفحات قبل را اول کامل کنید",
+            "completeInfo": "لطفا اطلاعات را کامل وارد کنید"
         }
     }
 }
