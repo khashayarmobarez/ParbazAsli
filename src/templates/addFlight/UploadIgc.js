@@ -8,6 +8,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { processAndUpdateIgcFile, selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateIgcFile } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 // assets
 import IGC from '../../assets/icons/IGC-Download.svg'
 import ArrowButton from '../../components/icons/ArrowButton'
@@ -17,9 +20,12 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 const UploadIgc = () => {
 
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
+
     // redux
-    const {igcFile,
-    flightType} = useSelector(selectAddFlight)
+    const {igcFile, flightType} = useSelector(selectAddFlight)
     const dispatch = useDispatch()
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -87,15 +93,15 @@ const UploadIgc = () => {
 
                     <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.IGC')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.flightDevice')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.flightConditions')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.takeoff')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.landing')}</p>
 
                     </div>
 
@@ -105,15 +111,15 @@ const UploadIgc = () => {
                     <img alt='icon' className='w-20 mt-[18px]' src={IGC} />
                 </span>
 
-                <p className='text-center -mt-1 font-semibold text-textWarning'>(اختیاری)</p>
+                <p className='text-center -mt-1 font-semibold text-textWarning'>{t('addFlight.addIgc.optional')}</p>
 
-                <p className=' text-center w-full'>در صورت داشتن فایل IGC بارگزاری کنید تا مشخصات پرواز شما ثبت شود در غیر این صورت دکمه بعدی را بزنید و مشخصات پرواز خود را وارد کنید</p>
+                <p className=' text-center w-full'>{t('addFlight.addIgc.instruction')}</p>
 
                 </div>
 
                 <div className=' w-[90%] flex items-center justify-between' >
 
-                    <button className={ButtonStyles.normalButton} onClick={handleButtonClick}>آپلود IGC</button>
+                    <button className={ButtonStyles.normalButton} onClick={handleButtonClick}>{t('addFlight.addIgc.uploadButton')}</button>
 
                     <input
                         ref={fileInputRef}
@@ -124,9 +130,10 @@ const UploadIgc = () => {
                     />
 
                     <div onClick={() => navigate('/addFlight/AddUsedEquipment')} className='flex items-center justify-between'>
-                        <p className=''>بعدی</p>
-                        <span className='w-8 h-8 flex justify-center items-center mr-3'>
-                            <ArrowButton />
+                        <p className=''>{t('addFlight.addIgc.nextButton')}</p>
+                        <span className={`w-8 h-8 flex justify-center items-center 
+                        ${dir === 'ltr' ? 'ml-3' : 'mr-3'}`}>
+                            <ArrowButton isRight={dir === 'ltr' && true} />
                         </span>
                     </div>
 

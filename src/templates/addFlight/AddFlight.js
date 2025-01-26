@@ -13,7 +13,13 @@ import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAddFlight, updateFlightDuration } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const AddFlight = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const dispatch = useDispatch()
 
@@ -80,10 +86,10 @@ const AddFlight = () => {
             <PageTitle 
             title={
             activityType === 'flight' 
-                ? 'ثبت پرواز' 
+                ? t('addFlight.addFlight')
                 : activityType === 'groundHandling' 
-                ? 'ثبت تمرین زمینی' 
-                : 'ثبت فعالیت'
+                ? t('addFlight.addGroundHandling')
+                : t('addFlight.default')
             }
             navigateTo={-1}
             />
@@ -93,7 +99,7 @@ const AddFlight = () => {
                     <div className=' grid grid-cols-12 gap-4 w-full p-4 md:grid-cols-12 md:gap-y-4'>
 
                         <div className='flex w-full flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
-                            <p className=' text-xs pr-2'>{activityType === 'flight' ? 'پرواز' : 'تمرین زمینی'}</p>
+                            <p className=' text-xs pr-2'>{activityType === 'flight' ? t('addFlight.addFlightType.flight') : t('addFlight.addFlightType.groundHandling')}</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p>{activityType === 'flight' ? flightCount : groundHandlingCount}</p>
                             </div>
@@ -101,14 +107,14 @@ const AddFlight = () => {
                         
 
                         <div className='flex flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
-                            <p className=' text-xs pr-2'>تاریخ پرواز</p>
+                            <p className=' text-xs pr-2'>{t('addFlight.flightDate')}</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-2 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p className=' text-end'>{ shamsiFlightData}</p>
                             </div>
                         </div>
 
                         <div className='flex flex-col items-start gap-y-2 col-span-4 md:col-span-4'>
-                            <p className=' text-xs pr-2'>زمان پرواز</p>
+                            <p className=' text-xs pr-2'>{t('addFlight.flightTime')}</p>
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p>{ flightDuration ? flightDuration : '0' } min</p>
                             </div>
@@ -117,7 +123,7 @@ const AddFlight = () => {
                         {
                             coachName && flightType === 'Course' &&
                             <div className='flex flex-col items-start gap-y-2 col-span-12 md:col-span-12'>
-                                <p className=' text-xs pr-2'>نام مربی</p>
+                                <p className=' text-xs pr-2'>{t('addFlight.coachName')}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                     <p>{coachName}</p>
                                 </div>
@@ -127,7 +133,7 @@ const AddFlight = () => {
                         {
                             courseName && 
                             <div className='flex flex-col items-start gap-y-2 col-span-6 md:col-span-6'>
-                                <p className=' text-xs pr-2'>نام دوره</p>
+                                <p className=' text-xs pr-2'>{t('addFlight.courseName')}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                     <p>{courseName}</p> 
                                 </div>
@@ -137,7 +143,7 @@ const AddFlight = () => {
                         {
                             clubName &&
                             <div className='flex flex-col items-start gap-y-2 col-span-6 md:col-span-6'>
-                                <p className=' text-xs pr-2'>نام باشگاه</p>
+                                <p className=' text-xs pr-2'>{t('addFlight.clubName')}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data' >
                                     <p>{clubName}</p>
                                 </div>
@@ -147,10 +153,10 @@ const AddFlight = () => {
                         {
                             flightType && flightType !== 'Course' &&
                             <div className='flex flex-col items-start gap-y-2 col-span-12 md:col-span-14'>
-                                <p className=' text-xs pr-2'>نوع پرواز</p>
+                                <p className=' text-xs pr-2'>{t('addFlight.flightType')}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                    <p>{flightType === 'Tandem' && 'تندم'}</p>
-                                    <p>{flightType === 'Solo' && 'سینگل'}</p>
+                                    <p>{flightType === 'Tandem' && t('addFlight.tandem')}</p>
+                                    <p>{flightType === 'Solo' && t('addFlight.solo')}</p>
                                 </div>
                             </div>
                         }

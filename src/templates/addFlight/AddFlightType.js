@@ -163,18 +163,21 @@ const AddFlightType = () => {
                                         onClick={() => handleSelectSetFlightType(flightType)}>
                                             <div className='w-full flex justify-between'>
                                                 <div className='w-full flex justify-start items-enter gap-x-2'>
-                                                    {flightType.type === 'Course' ?
+                                                    {
+                                                    flightType.type === 'Course' ?
                                                         <div className=' w-4 h-4 rounded-full' style={{background:'var(--text-accent)'}} />
                                                         : 
                                                         <div className=' w-4 h-4 rounded-full' style={{background:'var(--text-disabled)'}} />
                                                     }
                                                     <p>{flightType.name}</p> 
                                                 </div>
-                                                {flightType.type === 'Course' && flightType.club &&
-                                                <p>{t('addFlight.addFlightType.clubName')} {flightType.club}</p>
-                                                }   
+                                                {
+                                                flightType.type === 'Course' && flightType.club &&
+                                                    <p>{t('addFlight.addFlightType.clubName')} {flightType.club}</p>
+                                                }
                                             </div>
-                                            {flightType.type === 'Course' &&
+                                            {
+                                            flightType.type === 'Course' &&
                                                 <div className='flex justify-start w-full'>
                                                     <p className='text-xs text-nowrap'>{t('addFlight.addFlightType.coachName')} {flightType.coach}</p>
                                                 </div>
@@ -200,10 +203,10 @@ const AddFlightType = () => {
             <StandardPopup 
                 showPopup={showErrorPopUp} 
                 setShowPopup={setShowErrorPopUp} 
-                topicText={'ثبت تجهیزات'}
+                topicText={t('addFlight.addFlightType.addEquipment')}
                 isFormWithOneButton={true}
                 explanationtext={errorMessage}
-                submitText={'تجهیزات'}
+                submitText={t('addFlight.addFlightType.equipment')}
                 handleSubmit={handleNavigateToEquipment}
             />
 

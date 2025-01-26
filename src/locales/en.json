@@ -322,6 +322,22 @@
         }
     },
     "addFlight": {
+        "addFlight": "Flight Registration",
+        "addGroundHandling": "Ground Handling Registration",
+        "default": "Activity Registration",
+        "flightDate": "Flight Date",
+        "flightTime": "Flight Time",
+        "coachName": "Coach Name",
+        "courseName": "Course Name",
+        "clubName": "Club Name",
+        "flightType": "Flight Type",
+        "tandem": "Tandem",
+        "solo": "Solo",
+        "IGC": "IGC",
+        "flightDevice": "Equipment",
+        "flightConditions": "Conditions",
+        "takeoff": "Takeoff",
+        "landing": "Landing",
         "addFlightType": {
             "pageTitle": "Flight Registration",
             "waitingForCoachTitle": "Waiting for the Coach...",
@@ -332,28 +348,16 @@
             "courseIndicator": "Course Type",
             "nonCourseIndicator": "Non-Course Type",
             "addEquipment": "Add Equipment",
-            "equipment": "Equipment"
+            "equipment": "Equipment",
+            "chooseTheLogType": "Choose the log type",
+            "flight": "Flight",
+            "groundHandling": "Ground Handling"
         },
         "addIgc":{
-            "pageTitle": "Flight Registration",
-            "igcFile": "IGC File",
-            "igcFileRequired": "IGC file is required",
-            "igcFileError": "Invalid IGC file format",
-            "igcFileMaxSize": "IGC file size must not exceed 10 MB",
-            "igcFileUpload": "Upload IGC File",
-            "igcFileUploadInstruction": "The IGC file must be in txt format",
-            "igcFileUploadSizeInstruction": "The IGC file size must not exceed 10 MB",
-            "igcFileUploadRequired": "IGC file is required",
-            "igcFileUploadError": "Error uploading IGC file",
-            "igcFileUploadSuccess": "IGC file uploaded successfully",
-            "igcFileUploadFailed": "IGC file upload failed",
-            "igcFileUploadFailedMessage": "Error uploading IGC file",
-            "igcFileUploadFailedMessage2": "Invalid IGC file format",
-            "igcFileUploadFailedMessage3": "IGC file size exceeds the allowed limit",
-            "igcFileUploadFailedMessage4": "IGC file is required",
-            "igcFileUploadFailedMessage5": "Error uploading IGC file",
-            "igcFileUploadFailedMessage6": "Error uploading IGC file",
-            "igcFileUploadFailedMessage7": "Error uploading IGC file"
+            "optional": "(Optional)",
+            "instruction": "If you have an IGC file, upload it to log your flight details. Otherwise, click the next button to enter your flight details manually.",
+            "uploadButton": "Upload IGC",
+            "nextButton": "Next"
         }
     }
 }

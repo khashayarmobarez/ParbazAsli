@@ -322,6 +322,22 @@
         }
     },
     "addFlight":{
+        "addFlight": "ثبت پرواز",
+        "addGroundHandling": "ثبت تمرین زمینی",
+        "default": "ثبت فعالیت",
+        "flightDate": "تاریخ پرواز",
+        "flightTime": "زمان پرواز",
+        "coachName": "نام مربی",
+        "courseName": "نام دوره",
+        "clubName": "نام باشگاه",
+        "flightType": "نوع پرواز",
+        "tandem": "تندم",
+        "solo": "سینگل",
+        "IGC": "IGC",
+        "flightDevice": "وسیله پروازی",
+        "flightConditions": "شرایط پرواز",
+        "takeoff": "Takeoff",
+        "landing": "Landing",
         "addFlightType": {
             "pageTitle": "ثبت پرواز",
             "waitingForCoachTitle": "در انتظار مربی...",
@@ -332,28 +348,16 @@
             "courseIndicator": "نوع دوره",
             "nonCourseIndicator": "نوع غیر دوره",
             "addEquipment":"ثبت تجهیزات",
-            "equipment":"تجهیزات"
+            "equipment":"تجهیزات",
+            "chooseTheLogType":"انتخاب نوع لاگ",
+            "flight":"پرواز",
+            "groundHandling":"تمرین زمینی"
         },
         "addIgc":{
-            "pageTitle": "ثبت پرواز",
-            "igcFile": "فایل IGC",
-            "igcFileRequired": "فایل IGC الزامی می باشد",
-            "igcFileError": "فرمت فایل IGC نامعتبر است",
-            "igcFileMaxSize": "حجم فایل IGC نباید بیشتر از 10 مگابایت باشد",
-            "igcFileUpload": "آپلود فایل IGC",
-            "igcFileUploadInstruction": "فایل IGC باید با فرمت txt باشد",
-            "igcFileUploadSizeInstruction": "حجم فایل IGC نباید بیشتر از 10 مگابایت باشد",
-            "igcFileUploadRequired": "فایل IGC الزامی می باشد",
-            "igcFileUploadError": "خطا در آپلود فایل IGC",
-            "igcFileUploadSuccess": "فایل IGC با موفقیت آپلود شد",
-            "igcFileUploadFailed": "آپلود فایل IGC ناموفق بود",
-            "igcFileUploadFailedMessage": "خطا در آپلود فایل IGC",
-            "igcFileUploadFailedMessage2": "فرمت فایل IGC نامعتبر است",
-            "igcFileUploadFailedMessage3": "حجم فایل IGC بیشتر از حد مجاز است",
-            "igcFileUploadFailedMessage4": "فایل IGC الزامی می باشد",
-            "igcFileUploadFailedMessage5": "خطا در آپلود فایل IGC",
-            "igcFileUploadFailedMessage6": "خطا در آپلود فایل IGC",
-            "igcFileUploadFailedMessage7": "خطا در آپلود فایل IGC"
+            "optional": "(اختیاری)",
+            "instruction": "در صورت داشتن فایل IGC بارگزاری کنید تا مشخصات پرواز شما ثبت شود در غیر این صورت دکمه بعدی را بزنید و مشخصات پرواز خود را وارد کنید",
+            "uploadButton": "آپلود IGC",
+            "nextButton": "بعدی"
         }
     }
 }
