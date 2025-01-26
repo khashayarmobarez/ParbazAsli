@@ -413,7 +413,10 @@
         },
         "addLanding": {
             "incompleteInfo": "Please complete the information on the previous pages first",
-            "completeInfo": "Please complete the information"
+            "completeInfo": "Please complete the information",
+            "flightRegistered": "Your flight has been registered!",
+            "flightRegisteredCourse": "Your flight information has been registered! Please wait for the coach's confirmation.",
+            "errorOccurred": "An error occurred"
         }
     }
 }

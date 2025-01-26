@@ -413,7 +413,10 @@
         },
         "addLanding": {
             "incompleteInfo": "لطفا اطلاعات صفحات قبل را اول کامل کنید",
-            "completeInfo": "لطفا اطلاعات را کامل وارد کنید"
+            "completeInfo": "لطفا اطلاعات را کامل وارد کنید",
+            "flightRegistered": "!پرواز شما ثبت شد",
+            "flightRegisteredCourse": "!اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید",
+            "errorOccurred": "خطایی رخ داده است"
         }
     }
 }

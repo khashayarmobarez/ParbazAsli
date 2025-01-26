@@ -202,7 +202,7 @@ const AddLanding = () => {
             }
 
         } else {
-            toast('لطفا اطلاعات را کامل وارد کنید', {
+            toast(t('addFlight.addLanding.completeInfo'), {
                 type: 'error', // Specify the type of toast 
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -220,7 +220,7 @@ const AddLanding = () => {
                 mutateSoloFlight(formData,
                     {
                         onSuccess: () => {
-                            toast('!پرواز شما ثبت شد', {
+                            toast(t('addFlight.addLanding.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
@@ -231,7 +231,7 @@ const AddLanding = () => {
                             navigate('/flightHistory')
                         },
                         onError: (error) => {
-                            let errorMessage = 'خطایی رخ داده است';
+                            let errorMessage = t('addFlight.addLanding.errorOccurred');
                             if (error.response && error.response.data && error.response.data.ErrorMessages) {
                                 errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                             }
@@ -254,7 +254,7 @@ const AddLanding = () => {
                 mutateCourseFlight(formData,
                     {
                         onSuccess: () => {
-                            toast('!اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید', {
+                            toast(t('addFlight.addLanding.flightRegisteredCourse'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
@@ -265,7 +265,7 @@ const AddLanding = () => {
                             navigate('/flightHistory')
                         },
                         onError: (error) => {
-                            let errorMessage = 'خطایی رخ داده است';
+                            let errorMessage = t('addFlight.addLanding.errorOccurred');
                             if (error.response && error.response.data && error.response.data.ErrorMessages) {
                                 errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                             }
@@ -288,7 +288,7 @@ const AddLanding = () => {
                 mutateTandemFlight(formData,
                     {
                         onSuccess: () => {
-                            toast('!پرواز شما ثبت شد', {
+                            toast(t('addFlight.addLanding.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
@@ -299,7 +299,7 @@ const AddLanding = () => {
                             navigate('/flightHistory')
                         },
                         onError: (error) => {
-                            let errorMessage = 'خطایی رخ داده است';
+                            let errorMessage = t('addFlight.addLanding.errorOccurred');
                             if (error.response && error.response.data && error.response.data.ErrorMessages) {
                                 errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                             }
