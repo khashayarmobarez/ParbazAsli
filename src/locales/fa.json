@@ -394,6 +394,22 @@
             "errorCloudType": "انتخاب نوع ابر الزامی است",
             "previous": "قبلی",
             "next": "بعدی"
+        },
+        "addTakeOff": {
+            "incompleteInfo": "لطفا اطلاعات صفحات قبل را اول کامل کنید",
+            "completeInfo": "لطفا اطلاعات را کامل وارد کنید",
+            "takeOffTimePlaceholder": "زمان take off",
+            "takeOffTimeRequired": "زمان take off الزامی می باشد",
+            "takeOffTimeBeforeLanding": "زمان take off باید قبل از زمان land({landingTime}) باشد",
+            "takeOffTimeBeforeNow": "زمان land باید قبل از الان باشد",
+            "takeOffType": "شیوه",
+            "takeOffTypeRequired": "شیوه take off الزامی می باشد",
+            "windDirection": "جهت باد",
+            "windDirectionRequired": "جهت باد الزامی می باشد",
+            "windSpeedPlaceholder": "سرعت باد به",
+            "windSpeedRequired": "سرعت باد الزامی می باشد",
+            "previous": "قبلی",
+            "next": "بعدی"
         }
     }
 }

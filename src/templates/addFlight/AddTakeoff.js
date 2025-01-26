@@ -65,7 +65,7 @@ const AddTakeoff = () => {
     useEffect(() => {
         if(!wing.id || !harness.id || !parachute.id || !country.id || !city.id || !sight.id || !clouds.id || !flightType) {
             navigate('/addFlight/AddFlightType')
-            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+            toast(t('addFlight.addTakeOff.incompleteInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -108,7 +108,7 @@ const AddTakeoff = () => {
         if(takeoffTime && takeoffType && takeoffWindSpeed && takeoffwindDirection && takeOffWindUnit) {
             navigate('/addFlight/AddLanding')
         } else {
-            toast('لطفا اطلاعات را کامل وارد کنید', {
+            toast(t('addFlight.addTakeOff.completeInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -170,90 +170,84 @@ const AddTakeoff = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
-
                         <TimePicker
                             value={takeoffTime}
                             onChange={handleTakeOffTimeChange}
-                            placeholder="زمان take off"
+                            placeholder={t('addFlight.addTakeOff.takeOffTimePlaceholder')}
                         />
-
                         {
                             !takeoffTime && submitted &&
-                            <p className='text-xs text-start self-start text-textError'>زمان take off الزامی می باشد</p>
+                            <p className='text-xs text-start self-start text-textError'>{t('addFlight.addTakeOff.takeOffTimeRequired')}</p>
                         }
                         {
                             landingTime < takeoffTime && landingTime &&
-                            <p className='text-xs text-start self-start text-textError'>زمان take off باید قبل از زمان land({landingTime}) باشد</p>
+                            <p className='text-xs text-start self-start text-textError'>{t('addFlight.addTakeOff.takeOffTimeBeforeLanding', { landingTime })}</p>
                         }
                         {
                             takeoffTime && takeoffTime > new Date().getHours() && (
-                                <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
+                                <p className='text-xs text-start self-start text-textError'>{t('addFlight.addTakeOff.takeOffTimeBeforeNow')}</p>
                             )
                         }
                     </div>
 
                     {
                         takeOffTypesData &&
-                        <DropdownInput 
-                            id={'ddi2'} 
-                            name={'شیوه'} 
-                            icon={<ColorTagsIcon  customColor = {!takeoffType && submitted && 'var(--text-error)'}/>} 
-                            options={takeOffTypesData.data} 
-                            selectedOption={takeoffType} 
-                            handleSelectChange={handleSelectSetTakeoffType} 
-                            IsEmptyAfterSubmit={submitted && !takeoffType} 
+                        <DropdownInput
+                            id={'ddi2'}
+                            name={t('addFlight.addTakeOff.takeOffType')}
+                            icon={<ColorTagsIcon customColor={!takeoffType && submitted && 'var(--text-error)'}/>}
+                            options={takeOffTypesData.data}
+                            selectedOption={takeoffType}
+                            handleSelectChange={handleSelectSetTakeoffType}
+                            IsEmptyAfterSubmit={submitted && !takeoffType}
                             isSubmitted={submitted}
                             ErrorCondition={!takeoffType}
-                            ErrorText={'شیوه take off الزامی می باشد'}
+                            ErrorText={t('addFlight.addTakeOff.takeOffTypeRequired')}
                         />
-                    } 
+                    }
 
-                    <DropdownInput 
-                        id={'ddi3'} 
-                        name={'جهت باد'} 
-                        icon={<WindDirectionCock customColor = {!takeoffwindDirection && submitted && 'var(--text-error)'}/>} 
-                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions} 
-                        selectedOption={takeoffwindDirection} 
-                        handleSelectChange={handleSelectSetTakeoffwindDirection} 
-                        IsEmptyAfterSubmit={submitted && !takeoffwindDirection} 
+                    <DropdownInput
+                        id={'ddi3'}
+                        name={t('addFlight.addTakeOff.windDirection')}
+                        icon={<WindDirectionCock customColor={!takeoffwindDirection && submitted && 'var(--text-error)'}/>}
+                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions}
+                        selectedOption={takeoffwindDirection}
+                        handleSelectChange={handleSelectSetTakeoffwindDirection}
+                        IsEmptyAfterSubmit={submitted && !takeoffwindDirection}
                         isSubmitted={submitted}
                         ErrorCondition={!takeoffwindDirection}
-                        ErrorText={'جهت باد الزامی می باشد'}
+                        ErrorText={t('addFlight.addTakeOff.windDirectionRequired')}
                     />
-                    
-                    {/* <DropdownInput id={'ddi4'} name={'واحد سرعت باد'} options={windSpeedUnits} selectedOption={takeOffWindUnit} handleSelectChange={handleSelectSetWindUnit} /> */}
 
                     <NumberInput
                         id={'NI1'}
-                        icon={<WindIcon  customColor = {!takeoffWindSpeed && submitted && 'var(--text-error)'}/>}
+                        icon={<WindIcon customColor={!takeoffWindSpeed && submitted && 'var(--text-error)'}/>}
                         value={takeoffWindSpeed}
                         onChange={handleSetTakeoffWindspeedChange}
-                        placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                        placeholder={`${t('addFlight.addTakeOff.windSpeedPlaceholder')} ${takeOffWindUnit && takeOffWindUnit.name}`}
                         IsEmptyAfterSubmit={submitted && !takeoffWindSpeed}
                         isSubmitted={submitted}
                         ErrorCondition={!takeoffWindSpeed}
-                        ErrorText={'سرعت باد الزامی می باشد'}
+                        ErrorText={t('addFlight.addTakeOff.windSpeedRequired')}
                     />
 
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
 
-                    <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <span className={`w-8 h-8 flex justify-center items-center 
-                        ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
-                            <ArrowButton isRight={dir !== 'ltr' && true} />
-                        </span>
-                        <p className=' '>قبلی</p>
-                    </div>
+                <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
+                    <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
+                        <ArrowButton isRight={dir !== 'ltr' && true} />
+                    </span>
+                    <p className=''>{t('addFlight.addTakeOff.previous')}</p>
+                </div>
 
-                    <div onClick={handleNextPageButton} className='flex items-center justify-between'>
-                        <p className=''>بعدی</p>
-                        <span className={`w-8 h-8 flex justify-center items-center
-                        ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
-                            <ArrowButton isRight={dir === 'ltr' && true} />
-                        </span>
-                    </div>
+                <div onClick={handleNextPageButton} className='flex items-center justify-between'>
+                    <p className=''>{t('addFlight.addTakeOff.next')}</p>
+                    <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
+                        <ArrowButton isRight={dir === 'ltr' && true} />
+                    </span>
+                </div>
                 
                 </div>
 

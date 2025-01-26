@@ -394,6 +394,22 @@
             "errorCloudType": "Selecting a cloud type is required",
             "previous": "Previous",
             "next": "Next"
+        },
+        "addTakeOff": {
+            "incompleteInfo": "Please complete the information on the previous pages first",
+            "completeInfo": "Please complete the information",
+            "takeOffTimePlaceholder": "Take off time",
+            "takeOffTimeRequired": "Take off time is required",
+            "takeOffTimeBeforeLanding": "Take off time must be before landing time ({landingTime})",
+            "takeOffTimeBeforeNow": "Landing time must be before now",
+            "takeOffType": "Type",
+            "takeOffTypeRequired": "Take off type is required",
+            "windDirection": "Wind Direction",
+            "windDirectionRequired": "Wind direction is required",
+            "windSpeedPlaceholder": "Wind speed in",
+            "windSpeedRequired": "Wind speed is required",
+            "previous": "Previous",
+            "next": "Next"
         }
     }
 }
