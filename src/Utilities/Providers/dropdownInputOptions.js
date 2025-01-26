@@ -1,8 +1,15 @@
-const brandsOptionsData = [
-    { name: 'option1', id: 'Option 1' },
-    { name: 'option2', id: 'Option 2' },
-    { name: 'option3', id: 'Option 3' },
-  ];
+
+
+  const windDirectionOptionsEnglish = [
+    { name: 'North', id: 1 },
+    { name: 'North east', id: 2 },
+    { name: 'East', id: 3 },
+    { name: 'South east', id: 4 },
+    { name: 'South', id: 5 },
+    { name: 'South west', id: 6 },
+    { name: 'West', id: 7 },
+    { name: 'North west', id: 8 },
+  ]
 
   const windDirectionOptions = [
     { name: 'شمال', id: 1 },
@@ -20,10 +27,22 @@ const brandsOptionsData = [
     { name: 'km/h', id: 2 },
   ]
 
+  const courseTypeOptionDataEnglish = [
+    { name: 'Syllabus-based courses', id: 1 },
+    { name: 'Retraining', id: 2 },
+    { name: 'Customized', id: 3 },
+  ];
+
   const courseTypeOptionData = [
     { name: 'دوره های مطابق سیلابس', id: 1 },
     { name: 'باز آموزی', id: 2 },
     { name: 'شخصی سازی شده', id: 3 },
+  ];
+
+  const flightStatusOptionsEnglish = [
+    { name: 'Pending approval', id: 1 },
+    { name: 'Approved', id: 2 },
+    { name: 'Rejected', id: 3 },
   ];
 
   const flightStatusOptions = [
@@ -31,25 +50,22 @@ const brandsOptionsData = [
     { name: 'تایید شده', id: 2 },
     { name: 'رد شده', id: 3 },
   ];
-  
-  const sizeOptionData = [
-    { name: 'option1', id: 'Option 1' },
-    { name: 'option2', id: 'Option 2' },
-    { name: 'option3', id: 'Option 3' },
-  ];
 
-  const flightHourOptionData = [
-    { name: '1', id: ' 1' },
-    { name: '2', id: ' 2' },
-    { name: '3', id: ' 3' },
-    { name: '4', id: ' 4' },
-    { name: '5', id: ' 5' },
+  const flightTypeOptionsEnglish = [
+    { name: 'Course', id: "Course" },
+    { name: 'Tandem', id: 'Tandem' },
+    { name: 'Solo', id: 'Solo' },
   ];
 
   const flightTypeOptions = [
-    { name: 'آموزشی', id: "Course" },
+    { name: 'آموزشی', id: 'Course' },
     { name: 'تندم', id: 'Tandem' },
     { name: 'سینگل', id: 'Solo' },
+  ];
+
+  const flightTypeOptionsEquipmentEnglish = [
+    { name: 'Tandem', id: 'Tandem' },
+    { name: 'Single', id: 'Single' },
   ];
 
   const flightTypeOptionsEquipment = [
@@ -58,4 +74,4 @@ const brandsOptionsData = [
   ];
 
 
-  export {brandsOptionsData, windDirectionOptions , courseTypeOptionData, windSpeedUnits, flightStatusOptions , sizeOptionData, flightHourOptionData, flightTypeOptions, flightTypeOptionsEquipment}
+  export { windDirectionOptions , courseTypeOptionData, windSpeedUnits, flightStatusOptions , flightTypeOptions, flightTypeOptionsEquipment, windDirectionOptionsEnglish, flightTypeOptionsEnglish, flightTypeOptionsEquipmentEnglish, courseTypeOptionDataEnglish, flightStatusOptionsEnglish }

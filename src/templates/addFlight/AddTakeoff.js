@@ -16,7 +16,7 @@ import WindIcon from '../../components/icons/WindIcon'
 import WindDirectionCock from '../../components/icons/WindDirectionCock'
 
 // provider
-import { windDirectionOptions, windSpeedUnits } from '../../Utilities/Providers/dropdownInputOptions';
+import { windDirectionOptions, windDirectionOptionsEnglish, windSpeedUnits } from '../../Utilities/Providers/dropdownInputOptions';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,8 +27,15 @@ import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import { TimePicker } from '../../components/inputs/TimePicker';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const AddTakeoff = () => {
+
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -79,7 +86,7 @@ const AddTakeoff = () => {
 
     // const handleSelectSetWindUnit = (selectedOption) => {
     //     dispatch(updateTakeOffWindUnit(selectedOption));
-    //   };
+    // };
 
     const handleSetTakeoffWindspeedChange = (event) => {
         dispatch(updateTakeoffWindSpeed(event.target.value));
@@ -146,15 +153,15 @@ const AddTakeoff = () => {
 
                     <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.IGC')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightDevice')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightConditions')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.takeoff')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.landing')}</p>
 
                     </div>
                     
@@ -163,11 +170,13 @@ const AddTakeoff = () => {
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
 
                     <div className='w-full flex flex-col gap-y-1'>
+
                         <TimePicker
-                        value={takeoffTime}
-                        onChange={handleTakeOffTimeChange}
-                        placeholder="زمان take off"
+                            value={takeoffTime}
+                            onChange={handleTakeOffTimeChange}
+                            placeholder="زمان take off"
                         />
+
                         {
                             !takeoffTime && submitted &&
                             <p className='text-xs text-start self-start text-textError'>زمان take off الزامی می باشد</p>
@@ -182,8 +191,6 @@ const AddTakeoff = () => {
                             )
                         }
                     </div>
-
-                    {/* <DropdownInput id={'ddi1'} name={'زمان'} options={flightHourOptionData} selectedOption={takeoffTime} handleSelectChange={handleSelectSetTakeoffTime} /> */}
 
                     {
                         takeOffTypesData &&
@@ -205,7 +212,7 @@ const AddTakeoff = () => {
                         id={'ddi3'} 
                         name={'جهت باد'} 
                         icon={<WindDirectionCock customColor = {!takeoffwindDirection && submitted && 'var(--text-error)'}/>} 
-                        options={windDirectionOptions} 
+                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions} 
                         selectedOption={takeoffwindDirection} 
                         handleSelectChange={handleSelectSetTakeoffwindDirection} 
                         IsEmptyAfterSubmit={submitted && !takeoffwindDirection} 
@@ -233,16 +240,18 @@ const AddTakeoff = () => {
                 <div className='flex justify-between items-center w-full'>
 
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <span className='w-8 h-8 flex justify-center items-center ml-2'>
-                            <ArrowButton isRight={true} />
+                        <span className={`w-8 h-8 flex justify-center items-center 
+                        ${dir === 'ltr' ? 'mr-2' : 'ml-2' }`}>
+                            <ArrowButton isRight={dir !== 'ltr' && true} />
                         </span>
                         <p className=' '>قبلی</p>
                     </div>
 
                     <div onClick={handleNextPageButton} className='flex items-center justify-between'>
                         <p className=''>بعدی</p>
-                        <span className='w-8 h-8 flex justify-center items-center mr-2'>
-                            <ArrowButton  />
+                        <span className={`w-8 h-8 flex justify-center items-center
+                        ${dir === 'ltr' ? 'ml-2' : 'mr-2' }`}>
+                            <ArrowButton isRight={dir === 'ltr' && true} />
                         </span>
                     </div>
                 

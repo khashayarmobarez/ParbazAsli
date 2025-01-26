@@ -159,15 +159,15 @@ const AddSituation = () => {
 
                     <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.IGC')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightDevice')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightConditions')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.takeoff')}</p>
 
-                        <p className='' style={{color:'var(--icon-disable)'}}>Landing</p>
+                        <p className='' style={{color:'var(--icon-disable)'}}>{t('addFlight.landing')}</p>
 
                     </div>
                     

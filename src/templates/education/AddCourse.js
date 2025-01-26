@@ -19,7 +19,7 @@ import CertificateIcon from '../../components/icons/CertificateIcon';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // drop down options
-import { courseTypeOptionData } from '../../Utilities/Providers/dropdownInputOptions'
+import { courseTypeOptionData, courseTypeOptionDataEnglish } from '../../Utilities/Providers/dropdownInputOptions'
 
 // queires
 import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../Utilities/Services/queries';
@@ -39,6 +39,9 @@ import Attention from '../../components/icons/Attention';
 import UserIcon from '../../components/icons/UserIcon';
 
 const AddCourse = () => {
+
+    // language
+    const dir = Cookies.get('dir') || 'ltr';
 
     const navigate = useNavigate()
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -559,7 +562,7 @@ const AddCourse = () => {
                                 id={'ddi1'} 
                                 isDeselectDeactivated={true}
                                 name={'نوع دوره'}
-                                options={courseTypeOptionData}
+                                options={dir === 'ltr' ? courseTypeOptionDataEnglish : courseTypeOptionData}
                                 selectedOption={selectedClassType}
                                 handleSelectChange={handleSelectClassType}
                                 icon={<ColorTagsIcon  />}

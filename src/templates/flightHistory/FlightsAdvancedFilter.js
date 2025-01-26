@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +30,7 @@ import { useAllUserCoursesForDropdown } from '../../Utilities/Services/StudentCo
 import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../../Utilities/Services/addFlightQueries';
 
 // providers
-import { flightTypeOptions, flightStatusOptions } from '../../Utilities/Providers/dropdownInputOptions';
+import { flightTypeOptions, flightStatusOptions, flightTypeOptionsEnglish, flightStatusOptionsEnglish } from '../../Utilities/Providers/dropdownInputOptions';
 
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
@@ -47,6 +48,7 @@ const FlightsAdvancedFilter = () => {
 
     // language
     const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -236,7 +238,14 @@ const FlightsAdvancedFilter = () => {
                                 <DropdownInput id={'ddi4'} icon={<UserIcon/>} name={t("flightHistory.flightsFilter.dropdowns.coach")} options={userCoachesData.data} selectedOption={coachNameFilter} handleSelectChange={handleSelectCoachNameFilter} />
                             }
 
-                            <DropdownInput id={'ddi5'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.flightStatus")} options={flightStatusOptions} selectedOption={flightStatusFilter} handleSelectChange={handleSelectFlightStatusFilter} />
+                            <DropdownInput
+                                id={'ddi5'}
+                                icon={<ColorTagsIcon/>}
+                                name={t("flightHistory.flightsFilter.dropdowns.flightStatus")}
+                                options={dir === 'ltr' ? flightStatusOptionsEnglish : flightStatusOptions}
+                                selectedOption={flightStatusFilter}
+                                handleSelectChange={handleSelectFlightStatusFilter}
+                            />
 
 
                             {
@@ -285,7 +294,7 @@ const FlightsAdvancedFilter = () => {
 
                             {
                                 activityType?.id === 1 &&
-                                    <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.flightType")} options={flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
+                                    <DropdownInput id={'ddi3'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.flightType")} options={dir === 'ltr' ? flightTypeOptionsEnglish : flightTypeOptions} selectedOption={flightTypeFilter} handleSelectChange={handleSelectFlightTypeFilter} />
                             }
 
                             
@@ -297,7 +306,7 @@ const FlightsAdvancedFilter = () => {
                             
                             {
                                 activityType?.id === 2 &&
-                                    <DropdownInput id={'ddi4'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.groundHandlingType")} options={flightTypeOptions} selectedOption={groundHandlingTypeFilter} handleSelectChange={handleSelectGroundHandlingTypeFilter} />
+                                    <DropdownInput id={'ddi4'} icon={<ColorTagsIcon/>} name={t("flightHistory.flightsFilter.dropdowns.groundHandlingType")} options={dir === 'ltr' ? flightTypeOptionsEnglish : flightTypeOptions} selectedOption={groundHandlingTypeFilter} handleSelectChange={handleSelectGroundHandlingTypeFilter} />
                             }
 
                         </div>

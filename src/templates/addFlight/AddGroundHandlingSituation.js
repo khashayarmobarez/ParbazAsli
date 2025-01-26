@@ -18,7 +18,7 @@ import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
 import { toast } from 'react-toastify';
 
 // provider
-import { windDirectionOptions } from '../../Utilities/Providers/dropdownInputOptions';
+import { windDirectionOptions, windDirectionOptionsEnglish } from '../../Utilities/Providers/dropdownInputOptions';
 
 // react-query
 import { useAddCourseGroundHandling, useAddSoloGroundHandling, useAddTandemGroundHandling, useCloudTypes } from '../../Utilities/Services/addFlightQueries';
@@ -40,7 +40,14 @@ import { TimePicker } from '../../components/inputs/TimePicker';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const AddGroundHandlingSituation = () => {
+
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const dispatch = useDispatch()
     const navigate= useNavigate('')
@@ -406,7 +413,7 @@ const AddGroundHandlingSituation = () => {
                         id={'ddi2'}
                         name={'جهت باد'} 
                         icon={<WindDirectionCock customColor = {!landingWindDirection && submitted && 'var(--text-error)'} />} 
-                        options={windDirectionOptions} 
+                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions} 
                         selectedOption={landingWindDirection} 
                         handleSelectChange={handleSelectSetLandingWindDirection} 
                         IsEmptyAfterSubmit={submitted && !landingWindDirection}

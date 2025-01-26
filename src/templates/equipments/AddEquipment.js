@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 
 // providers
-import {flightTypeOptionsEquipment} from '../../Utilities/Providers/dropdownInputOptions'
+import {flightTypeOptionsEquipment, flightTypeOptionsEquipmentEnglish} from '../../Utilities/Providers/dropdownInputOptions'
 import { EQUIPMENT_SERIAL_NUMBER_PATTERN, USER_ID_PATTERN, USER_REGEX } from '../../Utilities/Providers/regexProvider';
 
 // hooks
@@ -44,6 +44,9 @@ import StandardPopup from '../../components/reuseable/StandardPopup';
 
 
 const AddEquipment = () => {
+
+    // language
+    const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation(); 
     const { pathname } = location;
@@ -498,7 +501,7 @@ const AddEquipment = () => {
                                 className='col-span-1'
                                 icon={<ColorTagsIcon customColor = {!selectedOptionType && submitted && 'var(--text-error)'} />}
                                 name={'نوع بال'}
-                                options={flightTypeOptionsEquipment}
+                                options={dir === "ltr" ? flightTypeOptionsEquipmentEnglish : flightTypeOptionsEquipment}
                                 selectedOption={selectedOptionType} 
                                 handleSelectChange={handleSelectChangeType}
                                 IsEmptyAfterSubmit={submitted && !selectedOptionType}

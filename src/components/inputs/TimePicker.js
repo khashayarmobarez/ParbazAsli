@@ -1,7 +1,14 @@
 import { useState, useEffect, useRef } from "react"
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import Cookies from 'js-cookie';
+import { useTranslation } from "../../Utilities/context/TranslationContext";
 
 export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, ErrorCondition2, ErrorText, ErrorText2 }) {
+
+  // language and direction
+  const culture = Cookies.get('culture');
+  const dir = Cookies.get('dir') || 'ltr';
+  const { t } = useTranslation();
 
   const parentRef = useRef(null);
 
@@ -52,11 +59,16 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
   }, [isHourSelectorOpen, isMinuteSelectorOpen]);
 
   const dayTimePeriods = 
-  (hour >= 0 && hour < 5) ? "بامداد" :
-  (hour >= 5 && hour < 11) ? "صبح" :
-  (hour >= 11 && hour < 15) ? "ظهر" :
-  (hour >= 15 && hour < 19) ? "بعد از ظهر" :
-  (hour >= 19 && hour < 24) && "شب" 
+  culture === 'fa' ?
+    (hour >= 0 && hour < 5) ? "بامداد" :
+    (hour >= 5 && hour < 11) ? "صبح" :
+    (hour >= 11 && hour < 15) ? "ظهر" :
+    (hour >= 15 && hour < 19) ? "بعد از ظهر" :
+    (hour >= 19 && hour < 24) && "شب"
+  :
+    (hour >= 0 && hour < 12) ? "AM" 
+    :
+    "PM"
 
 
   const handleTimeChange = (newHour, newMinute) => {
@@ -107,7 +119,8 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
     ref={parentRef}
     >
       <button
-        className={`flex items-center justify-start w-full px-2 py-3 gap-x-2 text-left font-normal border  rounded-2xl  focus:outline-none focus:ring-1 focus:ring-textDefault
+        className={`flex items-center justify-start w-full px-2 py-3 gap-x-2  font-normal border  rounded-2xl  focus:outline-none focus:ring-1 focus:ring-textDefault
+        ${dir === 'ltr' ? 'text-right' : 'text-left'}
         ${(value && userSelectedTime) ? 'border-textAccent' : 'border-borderInputDefault' }`}
         onClick={e => handleOpen(e)}
       >
@@ -146,7 +159,8 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
         onClick={handleLabelClick}
         htmlFor="floatingInput"
         className={`
-          absolute right-5 -top-2 px-2 text-textInputDefault
+          ${dir === 'ltr' ? 'left-5' : 'right-5'}
+          absolute -top-2 px-2 text-textInputDefault
           transition-all duration-300 transform text-xs
           peer-placeholder-shown:translate-y-0
           peer-placeholder-shown:text-sm
