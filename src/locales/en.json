@@ -15,6 +15,11 @@
             "imageFormatInstruction": "The image format must be jpeg, jpg, gif, bmp, or png.",
             "imageSizeInstruction": "The image size must not exceed 10 MB.",
             "imageRequiredError": "The certificate picture is required."
+        },
+        "timeInput": {
+            "hour":"Hour",
+            "minutes": "Minute",
+            "time": "Time"
         }
     },
     "RegistrationPages": {

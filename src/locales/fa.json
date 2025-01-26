@@ -15,6 +15,11 @@
             "imageFormatInstruction": "فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد",
             "imageSizeInstruction": "حجم عکس نباید بیشتر از 10 مگابایت باشد",
             "imageRequiredError": "عکس گواهینامه الزامی می باشد"
+        },
+        "timeInput": {
+            "hour": "ساعت",
+            "minutes": "دقیقه",
+            "time": "زمان"
         }
     },
     "RegistrationPages": {

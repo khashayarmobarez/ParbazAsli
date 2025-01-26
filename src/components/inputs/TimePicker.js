@@ -133,9 +133,9 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
       {isOpen && (
         <div className="absolute mt-2 w-full md:w-[30%] bg-bgOutputSelectedOption rounded-2xl shadow-lg z-[90]"
         style={{boxShadow:'var(--shadow-button-dark)'}}>
-          <div className="flex items-center justify-between p-4 gap-x-4">
+          <div className={`flex ${dir === 'ltr' && 'flex-row-reverse'} items-center justify-between p-4 gap-x-4`}>
             <div className="w-full flex flex-col items-center gap-y-1">
-              <p>دقیقه</p>
+              <p>{t("inputs.timeInput.minutes")}</p>
               <MinuteSelect 
                 value={minute}
                 onChange={(value) => handleTimeChange(hour, value)}
@@ -144,7 +144,7 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
               />
             </div>
             <div className="w-full flex flex-col items-center gap-y-1">
-              <p>ساعت</p>
+              <p>{t("inputs.timeInput.hour")}</p>
               <HourSelect 
                 value={hour}
                 onChange={(value) => handleTimeChange(value, minute)}
@@ -167,7 +167,7 @@ export function TimePicker({ onChange, id, placeholder, value , ErrorCondition, 
           peer-focus:-translate-y-5 peer-focus:text-xs bg-bgPageMain
         `}
       >
-        {placeholder || 'زمان'}
+        {placeholder || t("inputs.timeInput.time")}
       </label>
     </div>
   )
