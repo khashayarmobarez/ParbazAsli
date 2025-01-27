@@ -14,7 +14,13 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import SearchIcon from '../../components/icons/SearchIcon';
 import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const Syllabuses = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -106,33 +112,33 @@ const Syllabuses = () => {
             };
             if(updatedSyllabi.length > 0) {
             // Submit the data
-                mutateAccept(submitData, {
-                    onSuccess: () => {
-                        toast('پرواز با موفقیت تایید شد', {
-                            type: 'success',
-                            position: 'top-right',
-                            autoClose: 5000,
-                            theme: appTheme,
-                            style: { width: '90%' }
-                        });
-                        navigate(-2);
-                    },
-                    onError: (error) => {
-                        let errorMessage = 'خطایی رخ داده است';
-                        if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                            errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
-                        }
-                        toast(errorMessage, {
-                            type: 'error',
-                            position: 'top-right',
-                            autoClose: 3000,
-                            theme: appTheme,
-                            style: { width: '350px' },
-                        });
+            mutateAccept(submitData, {
+                onSuccess: () => {
+                    toast(t('notifications.approveStudentFlight.syllabi.flightApproved'), {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: appTheme,
+                        style: { width: '90%' }
+                    });
+                    navigate(-2);
+                },
+                onError: (error) => {
+                    let errorMessage = t('notifications.approveStudentFlight.syllabi.errorOccurred');
+                    if (error.response && error.response.data && error.response.data.ErrorMessages) {
+                        errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     }
-                });
+                    toast(errorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 3000,
+                        theme: appTheme,
+                        style: { width: '350px' },
+                    });
+                }
+            });
             } else {
-                toast('لطفا حداقل یک سیلابس را تکمیل کنید', {
+                toast(t('notifications.approveStudentFlight.syllabi.completeSyllabus'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 3000,
@@ -151,81 +157,81 @@ const Syllabuses = () => {
 
             <div className='flex flex-col items-center w-full lg:w-[50%]'>
 
-                <PageTitle title={'سیلابس‌ها'} />
+                <PageTitle title={t('notifications.approveStudentFlight.syllabi.title')} />
 
                 <form className="w-[90%] flex flex-col gap-y-4 pt-4 md:pt-8" onSubmit={handleSubmit}>
-
-                    <p className='flex text-center items-center self-center text-xs'>سرفصل‌های تدریس شده <span className='font-semibold'> &nbsp;در این جلسه&nbsp;</span> را انتخاب کنید </p>
+                    <p className='flex text-center items-center self-center text-xs'>
+                        {t('notifications.approveStudentFlight.syllabi.selectSyllabi')}
+                    </p>
 
                     <TextInput
                         id={'TI1'}
                         value={searchSyllabus}
                         onChange={(e) => setSearchSyllabus(e.target.value)}
-                        placeholder='جستجو در سیلابس‌ها' 
-                        icon={<SearchIcon/>}
+                        placeholder={t('notifications.approveStudentFlight.syllabi.searchPlaceholder')}
+                        icon={<SearchIcon />}
                     />
 
                     {filteredSyllabi &&
-                    filteredSyllabi.map((syllabus, index) => (
-                        <div
-                            key={syllabus.id}
-                            className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full bg-bgOutputDefault"
-                            style={{ boxShadow:'var(--shadow-all)' }}
-                        > 
-                            <div className="flex w-full justify-between items-center gap-x-3">
-                                <div className='flex items-center justify-start gap-x-2'>
-                                    <p>{index + 1}.</p>
-                                    <p className='w-full text-start'>{syllabus.description}</p>
-                                </div>
-                                <div className="flex items-center justify-between gap-x-2">
-                                    <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault`}
-                                    style={{ boxShadow:'var(--shadow-all)' }}
-                                    onClick={() => handleIncrement(index)}>
-                                        <AddIcon
-                                        sx={{color:'var(--text-accent)'}}
-                                        />
-                                    </span>
-                                    <p className='p-1'>
-                                        {counters[index]}
-                                    </p>
-                                    <span className={`text-white rounded-lg w-6 h-6 cursor-pointer ${counters[index] === 0 ? 'bg-bgButtonProfileDisabled' : 'bg-bgButtonProfileDefault'}`}
-                                    onClick={() => handleDecrement(index)}
-                                    style={{ boxShadow: counters[index] !== 0 && 'var(--shadow-all)' }}>
-                                        <RemoveIcon
-                                        sx={{color:counters[index] === 0 ? 'var(--text-disabled)' : 'var(--text-error)'}}
-                                        />
-                                    </span>
+                        filteredSyllabi.map((syllabus, index) => (
+                            <div
+                                key={syllabus.id}
+                                className="flex h-12 items-center justify-between px-4 rounded-2xl text-xs w-full bg-bgOutputDefault"
+                                style={{ boxShadow: 'var(--shadow-all)' }}
+                            >
+                                <div className="flex w-full justify-between items-center gap-x-3">
+                                    <div className='flex items-center justify-start gap-x-2'>
+                                        <p>{index + 1}.</p>
+                                        <p className='w-full text-start'>{syllabus.description}</p>
+                                    </div>
+                                    <div className="flex items-center justify-between gap-x-2">
+                                        <span className={`text-white rounded-lg w-6 h-6 cursor-pointer bg-bgButtonProfileDefault`}
+                                            style={{ boxShadow: 'var(--shadow-all)' }}
+                                            onClick={() => handleIncrement(index)}>
+                                            <AddIcon
+                                                sx={{ color: 'var(--text-accent)' }}
+                                            />
+                                        </span>
+                                        <p className='p-1'>
+                                            {counters[index]}
+                                        </p>
+                                        <span className={`text-white rounded-lg w-6 h-6 cursor-pointer ${counters[index] === 0 ? 'bg-bgButtonProfileDisabled' : 'bg-bgButtonProfileDefault'}`}
+                                            onClick={() => handleDecrement(index)}
+                                            style={{ boxShadow: counters[index] !== 0 && 'var(--shadow-all)' }}>
+                                            <RemoveIcon
+                                                sx={{ color: counters[index] === 0 ? 'var(--text-disabled)' : 'var(--text-error)' }}
+                                            />
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
 
                     <div className="w-full flex flex-col gap-y-2">
-                        <h1 className="self-center">توضیحات</h1>
+                        <h1 className="self-center">{t('notifications.approveStudentFlight.syllabi.description')}</h1>
                         <DescriptionInput
                             value={description}
                             onChange={handleDescription}
-                            placeholder="توضیحات پرواز را اینجا بنویسید"
+                            placeholder={t('notifications.approveStudentFlight.syllabi.descriptionPlaceholder')}
                         />
                     </div>
 
-                    <div className="w-full flex justify-between  gap-x-[6%]">
+                    <div className="w-full flex justify-between gap-x-[6%]">
                         <button
-                        disabled={isSubmitting}
-                        onClick={handleReset}
-                        className={`${ButtonStyles.normalButton} w-full`}
+                            disabled={isSubmitting}
+                            onClick={handleReset}
+                            className={`${ButtonStyles.normalButton} w-full`}
                         >
-                            تنظیم مجدد
+                            {t('notifications.approveStudentFlight.syllabi.reset')}
                         </button>
                         <button
-                        disabled={isSubmitting}
-                        type="submit"
-                        className={`${ButtonStyles.addButton} w-full`}
+                            disabled={isSubmitting}
+                            type="submit"
+                            className={`${ButtonStyles.addButton} w-full`}
                         >
-                            ثبت نهایی {countersSum > 0 && `(${countersSum})`}
+                            {countersSum > 0 ? t('notifications.approveStudentFlight.syllabi.submitWithCount', { countersSum }) : t('notifications.approveStudentFlight.syllabi.submit')}
                         </button>
                     </div>
-                    
                 </form>
                 
             </div>

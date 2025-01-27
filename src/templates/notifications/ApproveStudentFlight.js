@@ -20,7 +20,15 @@ import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQu
 import DropDownLine from '../../components/reuseable/DropDownLine';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
+
 const ApproveStudentFlight = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const { id } = useParams()
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -59,7 +67,7 @@ const ApproveStudentFlight = () => {
         mutateDecline(id, {
             onSuccess: (data) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
-                toast('پرواز رد صلاحیت شد', {
+                toast(t('notifications.approveStudentFlight.success'), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -69,7 +77,7 @@ const ApproveStudentFlight = () => {
                 navigate(`/notifications`)
             },
             onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage = t('notifications.approveStudentFlight.errorOccurred');
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -88,7 +96,7 @@ const ApproveStudentFlight = () => {
 
         <div className='pt-14 flex flex-col justify-center items-center gap-y-2'>
 
-            <PageTitle title={isForFlight ? 'تایید پرواز' : 'تایید تمرین زمینی'} />
+            <PageTitle title={isForFlight ? t('notifications.approveStudentFlight.confirmFlight') : t('notifications.approveStudentFlight.confirmGroundTraining')} />
 
             {
                 UserCourseFlightData && fullPracticalActivityData &&
@@ -97,166 +105,155 @@ const ApproveStudentFlight = () => {
                             <div className=' grid grid-cols-6 gap-x-4 gap-y-4 w-full text-sm'>
 
                                 {
-                                fullPracticalActivityData.data.studentName &&
+                                    fullPracticalActivityData.data.studentName &&
                                     <div className='flex flex-col items-start col-span-3 gap-y-3'>
-                                        <p className=' text-xs pr-2'>نام هنرجو</p>
-                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.studentName')}</p>
+                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                             <p>{fullPracticalActivityData.data.studentName}</p>
                                         </div>
                                     </div>
                                 }
-
-                                { 
+                                {
                                     fullPracticalActivityData.data.courseName &&
                                     <div className='flex flex-col items-start col-span-3 gap-y-3'>
-                                        <p className=' text-xs pr-2'>نام دوره</p>
-                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.courseName')}</p>
+                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                             <p>{fullPracticalActivityData.data.courseName}</p>
                                         </div>
                                     </div>
                                 }
-
                                 {
                                     fullPracticalActivityData.data.index >= 0 && isForFlight &&
-                                        <div className='flex flex-col items-start col-span-1 gap-y-3'>
-                                            <p className=' text-xs pr-2'> پرواز</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-3 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{fullPracticalActivityData.data.index}</p>
-                                            </div>
+                                    <div className='flex flex-col items-start col-span-1 gap-y-3'>
+                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.flightNumber')}</p>
+                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-3 w-full h-12 rounded-xl`} id='data'>
+                                            <p>{fullPracticalActivityData.data.index}</p>
                                         </div>
+                                    </div>
                                 }
-
                                 {
                                     fullPracticalActivityData.data.dateTime &&
-                                        <div className='flex flex-col items-start col-span-3 gap-y-3'>
-                                            <p className=' text-xs pr-2'>تاریخ</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{fullPracticalActivityData.data.dateTime}</p>
-                                            </div>
+                                    <div className='flex flex-col items-start col-span-3 gap-y-3'>
+                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.date')}</p>
+                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                            <p>{fullPracticalActivityData.data.dateTime}</p>
                                         </div>
+                                    </div>
                                 }
-                                
                                 {
                                     fullPracticalActivityData.data.durationInMinutes &&
-                                        <div className={`flex flex-col items-start ${isForFlight ? 'col-span-2' : 'col-span-3'} gap-y-3`}>
-                                            <p className=' text-xs pr-2'>زمان</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{fullPracticalActivityData.data.durationInMinutes}min</p>
-                                            </div>
+                                    <div className={`flex flex-col items-start ${isForFlight ? 'col-span-2' : 'col-span-3'} gap-y-3`}>
+                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.duration')}</p>
+                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                            <p>{fullPracticalActivityData.data.durationInMinutes}min</p>
                                         </div>
+                                    </div>
                                 }
-
                                 {
                                     fullPracticalActivityData.data.clubName &&
-                                        <div className='flex flex-col items-start col-span-6 gap-y-3'>
-                                            <p className=' text-xs pr-2'>نام باشگاه</p>
-                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                <p>{fullPracticalActivityData.data.clubName}</p>
-                                            </div>
+                                    <div className='flex flex-col items-start col-span-6 gap-y-3'>
+                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.clubName')}</p>
+                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                            <p>{fullPracticalActivityData.data.clubName}</p>
                                         </div>
+                                    </div>
                                 }
 
                                 {/* equipment */}
                                 <div className='w-full flex col-span-6'>
-                                    <DropDownLine 
+                                    <DropDownLine
                                         onClickActivation={() => setDropDownEquipment(!DropDownEquipment)}
-                                        title={'مشخصات وسیله پروازی'} 
-                                        dropDown={DropDownEquipment} 
-                                        isActive={DropDownEquipment}  
+                                        title={t('notifications.approveStudentFlight.equipmentDetails')}
+                                        dropDown={DropDownEquipment}
+                                        isActive={DropDownEquipment}
                                     />
                                 </div>
-
                                 {
                                     DropDownEquipment &&
                                     <>
-
                                         {
                                             fullPracticalActivityData.data.wing &&
-                                                <div className='flex flex-col items-start gap-y-3 col-span-6 mt-[-10px]'>
-                                                    <p className=' text-xs pr-2'>بال</p>
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullPracticalActivityData.data.wing}</p>
-                                                    </div>
+                                            <div className='flex flex-col items-start gap-y-3 col-span-6 mt-[-10px]'>
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.wing')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                    <p>{fullPracticalActivityData.data.wing}</p>
                                                 </div>
+                                            </div>
                                         }
-    
                                         {
                                             fullPracticalActivityData.data.harness &&
-                                                <div className='flex flex-col items-start gap-y-3 col-span-6'>
-                                                    <p className=' text-xs pr-2'>هارنس</p>
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullPracticalActivityData.data.harness}</p>
-                                                    </div>
+                                            <div className='flex flex-col items-start gap-y-3 col-span-6'>
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.harness')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                    <p>{fullPracticalActivityData.data.harness}</p>
                                                 </div>
+                                            </div>
                                         }
-    
                                         {
                                             fullPracticalActivityData.data.parachute &&
-                                                <div className='flex flex-col items-start gap-y-3 col-span-6'>
-                                                    <p className=' text-xs pr-2'>چتر</p>
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullPracticalActivityData.data.parachute}</p>
-                                                    </div>
+                                            <div className='flex flex-col items-start gap-y-3 col-span-6'>
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.parachute')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                    <p>{fullPracticalActivityData.data.parachute}</p>
                                                 </div>
+                                            </div>
                                         }
                                     </>
                                 }
 
                                 {/* situation */}
                                 <div className='w-full flex col-span-6'>
-                                    <DropDownLine 
+                                    <DropDownLine
                                         onClickActivation={() => setDropDownSituation(!DropDownSituation)}
-                                        title={'موقعیت و شرایط پرواز'} 
-                                        dropDown={DropDownSituation} 
-                                        isActive={DropDownSituation}  
+                                        title={t('notifications.approveStudentFlight.situation')}
+                                        dropDown={DropDownSituation}
+                                        isActive={DropDownSituation}
                                     />
                                 </div>
-
                                 {
-                                    DropDownSituation && 
+                                    DropDownSituation &&
                                     <>
                                         {
                                             fullPracticalActivityData.data?.groundHandling &&
                                             <div className='col-span-6'>
                                                 <SelectLocationGoogle
-                                                    selectedLocation={{lat:fullPracticalActivityData.data.groundHandling.locationLatitude, lng:fullPracticalActivityData.data.groundHandling.locationLongitude }}
+                                                    selectedLocation={{ lat: fullPracticalActivityData.data.groundHandling.locationLatitude, lng: fullPracticalActivityData.data.groundHandling.locationLongitude }}
                                                     setSelectedLocation={setSelectedLocation}
                                                 />
                                             </div>
                                         }
-
                                         {
-                                        fullPracticalActivityData.data.flight?.country &&
+                                            fullPracticalActivityData.data.flight?.country &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>کشور</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.country')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.flight.country}</p>
                                                 </div>
                                             </div>
                                         }
                                         {
-                                        fullPracticalActivityData.data.flight?.province &&
+                                            fullPracticalActivityData.data.flight?.province &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>استان</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.province')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.flight.province}</p>
                                                 </div>
                                             </div>
                                         }
                                         {
-                                        fullPracticalActivityData.data.flight?.site &&
+                                            fullPracticalActivityData.data.flight?.site &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>سایت</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.site')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.flight.site}</p>
                                                 </div>
                                             </div>
                                         }
                                         {
-                                        fullPracticalActivityData.data.cloudCoverType &&
+                                            fullPracticalActivityData.data.cloudCoverType &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>نوع پوشش ابری</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.cloudType')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.cloudCoverType}</p>
                                                 </div>
                                             </div>
@@ -264,40 +261,39 @@ const ApproveStudentFlight = () => {
                                         {
                                             fullPracticalActivityData.data.startTime && !isForFlight &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>زمان شروع</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.startTime')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.startTime}</p>
                                                 </div>
                                             </div>
                                         }
                                         {
-                                        fullPracticalActivityData.data.finishTime && !isForFlight &&
+                                            fullPracticalActivityData.data.finishTime && !isForFlight &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>زمان پایان</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.finishTime')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.finishTime}</p>
                                                 </div>
                                             </div>
                                         }
                                         {
-                                        fullPracticalActivityData.data?.groundHandling?.windDirection &&
+                                            fullPracticalActivityData.data?.groundHandling?.windDirection &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>جهت باد</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.windDirection')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.groundHandling.windDirection}</p>
                                                 </div>
                                             </div>
                                         }
                                         {
-                                        fullPracticalActivityData.data?.groundHandling?.windSpeedInKmh &&
+                                            fullPracticalActivityData.data?.groundHandling?.windSpeedInKmh &&
                                             <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                <p className=' text-xs pr-2'>سرعت باد به km/h</p>
-                                                <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.windSpeedKmh')}</p>
+                                                <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                     <p>{fullPracticalActivityData.data.groundHandling.windSpeedInKmh}</p>
                                                 </div>
                                             </div>
                                         }
-                                        
                                     </>
                                 }
 
@@ -306,53 +302,48 @@ const ApproveStudentFlight = () => {
                                     isForFlight &&
                                     <>
                                         <div className='w-full flex col-span-6'>
-                                            <DropDownLine 
+                                            <DropDownLine
                                                 onClickActivation={() => setDropDownTakeoff(!DropDownTakeoff)}
-                                                title={'Takeoff'} 
-                                                dropDown={DropDownTakeoff} 
-                                                isActive={DropDownTakeoff}  
+                                                title={t('notifications.approveStudentFlight.takeoff')}
+                                                dropDown={DropDownTakeoff}
+                                                isActive={DropDownTakeoff}
                                             />
                                         </div>
-
                                         {
-                                            DropDownTakeoff && 
+                                            DropDownTakeoff &&
                                             <>
                                                 {
                                                     fullPracticalActivityData.data.flight?.takeOffType &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                        <p className=' text-xs pr-2'>شیوه Takeoff</p>
-                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.takeoffType')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                             <p>{fullPracticalActivityData.data.flight.takeOffType}</p>
                                                         </div>
                                                     </div>
                                                 }
-                                                
                                                 {
                                                     fullPracticalActivityData.data.startTime &&
-                                                        <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                            <p className=' text-xs pr-2'>ساعت Takeoff</p>
-                                                            <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                                <p>{fullPracticalActivityData.data.startTime}</p>
-                                                            </div>
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.takeoffTime')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                            <p>{fullPracticalActivityData.data.startTime}</p>
                                                         </div>
+                                                    </div>
                                                 }
-
                                                 {
                                                     fullPracticalActivityData.data.flight?.takeOffWindSpeedInKmh &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                        <p className=' text-xs pr-2'>سرعت باد Takeoff</p>
-                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.takeoffWindSpeed')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                             <p>{fullPracticalActivityData.data.flight?.takeOffWindSpeedInKmh}</p>
                                                         </div>
                                                     </div>
                                                 }
-
-
                                                 {
                                                     fullPracticalActivityData.data.flight?.takeOffWindDirection &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                        <p className=' text-xs pr-2'>جهت باد Takeoff</p>
-                                                        <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.takeoffWindDirection')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
                                                             <p>{fullPracticalActivityData.data.flight?.takeOffWindDirection}</p>
                                                         </div>
                                                     </div>
@@ -365,61 +356,57 @@ const ApproveStudentFlight = () => {
                                 {
                                     isForFlight &&
                                     <>
-                                    {/* landing */}
-                                    <div className='w-full flex col-span-6'>
-                                        <DropDownLine 
-                                            onClickActivation={() => setDropDownLanding(!DropDownLanding)}
-                                            title={'Landing'} 
-                                            dropDown={DropDownLanding} 
-                                            isActive={DropDownLanding}  
-                                        />
-                                    </div>
-
-                                    {
-                                        DropDownLanding &&
-                                        <>
-                                            {
-                                                fullPracticalActivityData.data.flight?.landingWindSpeedInKmh &&
-                                                <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                    <p className=' text-xs pr-2'>سرعت باد Landing</p>
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullPracticalActivityData.data.flight.landingWindSpeedInKmh}</p>
+                                        {/* landing */}
+                                        <div className='w-full flex col-span-6'>
+                                            <DropDownLine
+                                                onClickActivation={() => setDropDownLanding(!DropDownLanding)}
+                                                title={t('notifications.approveStudentFlight.landing')}
+                                                dropDown={DropDownLanding}
+                                                isActive={DropDownLanding}
+                                            />
+                                        </div>
+                                        {
+                                            DropDownLanding &&
+                                            <>
+                                                {
+                                                    fullPracticalActivityData.data.flight?.landingWindSpeedInKmh &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.landingWindSpeed')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                            <p>{fullPracticalActivityData.data.flight.landingWindSpeedInKmh}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            }
-
-                                            {
-                                                fullPracticalActivityData.data.flight?.landingWindDirection &&
-                                                <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                    <p className=' text-xs pr-2'>جهت باد Landing</p>
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullPracticalActivityData.data.flight.landingWindDirection}</p>
+                                                }
+                                                {
+                                                    fullPracticalActivityData.data.flight?.landingWindDirection &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.landingWindDirection')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                            <p>{fullPracticalActivityData.data.flight.landingWindDirection}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            }
-
-                                            {
-                                                fullPracticalActivityData.data.finishTime &&
-                                                <div className='flex flex-col items-start gap-y-3 col-span-3'>
-                                                    <p className=' text-xs pr-2'>زمان Landing</p>
-                                                    <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                        <p>{fullPracticalActivityData.data.finishTime}</p>
+                                                }
+                                                {
+                                                    fullPracticalActivityData.data.finishTime &&
+                                                    <div className='flex flex-col items-start gap-y-3 col-span-3'>
+                                                        <p className='text-xs pr-2'>{t('notifications.approveStudentFlight.landingTime')}</p>
+                                                        <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
+                                                            <p>{fullPracticalActivityData.data.finishTime}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            }
-                                        </>
-                                    }
+                                                }
+                                            </>
+                                        }
                                     </>
                                 }
                             </div>
                             
                             <div className='w-full flex justify-between gap-x-[6%]'>
 
-                                <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-full `}>رد پرواز</button>
-
-                                <div className='w-full flex items-center flex-row-reverse'>
-                                    <ArrowBackIosNewIcon sx={{position:'absolute', marginLeft:'20px'}} />
-                                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-full flex`}>تایید</button>
+                                <button type="submit" onClick={handleDecline} className={`${ButtonStyles.normalButton} w-full`}>{t('notifications.approveStudentFlight.declineFlight')}</button>
+                                
+                                <div className='w-full flex items-center flex-row-reverse relative'>
+                                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-full flex`}>{t('notifications.approveStudentFlight.confirm')}</button>
                                 </div>
 
                             </div>
