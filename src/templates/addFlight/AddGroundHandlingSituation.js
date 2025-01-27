@@ -448,7 +448,7 @@ const AddGroundHandlingSituation = () => {
 
                 <div className='w-full justify-center items-center'>
                     <SubmitForm text={t('addGroundHandling.confirmationWarning')}
-                        showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
+                    showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
                 </div>
             </div>                                                                                                                                                                                                                                                                                       <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>
