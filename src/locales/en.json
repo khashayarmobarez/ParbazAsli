@@ -421,7 +421,24 @@
             "completeInfo": "Please complete the information",
             "flightRegistered": "Your flight has been registered!",
             "flightRegisteredCourse": "Your flight information has been registered! Please wait for the coach's confirmation.",
-            "errorOccurred": "An error occurred"
+            "errorOccurred": "An error occurred",
+            "landingTimePlaceholder": "Landing time",
+            "landingTimeRequired": "Landing time is required",
+            "landingTimeAfterTakeOff": "Landing time must be after take off time ({takeoffTime})",
+            "landingTimeBeforeNow": "Landing time must be before now",
+            "landingType": "Type",
+            "landingTypeRequired": "Landing type is required",
+            "windDirection": "Wind Direction",
+            "windDirectionRequired": "Wind direction is required",
+            "windSpeedPlaceholder": "Wind speed in",
+            "windSpeedRequired": "Wind speed is required",
+            "passengerPhoneNumberPlaceholder": "Enter passenger contact number",
+            "passengerPhoneNumberRequired": "Passenger contact number is required",
+            "passengerPhoneNumberInvalid": "Invalid contact number format",
+            "descriptionPlaceholder": "Description and maneuvers",
+            "previous": "Previous",
+            "submit": "Submit",
+            "confirmationWarning": "Once confirmed, it cannot be edited. Please be careful."
         }
     }
 }

@@ -421,7 +421,24 @@
             "completeInfo": "لطفا اطلاعات را کامل وارد کنید",
             "flightRegistered": "!پرواز شما ثبت شد",
             "flightRegisteredCourse": "!اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید",
-            "errorOccurred": "خطایی رخ داده است"
+            "errorOccurred": "خطایی رخ داده است",
+            "landingTimePlaceholder": "زمان land",
+            "landingTimeRequired": "زمان land الزامی می باشد",
+            "landingTimeAfterTakeOff": "زمان land باید بعد از زمان take off ({takeoffTime}) باشد",
+            "landingTimeBeforeNow": "زمان land باید قبل از الان باشد",
+            "landingType": "شیوه",
+            "landingTypeRequired": "شیوه الزامی می باشد",
+            "windDirection": "جهت باد",
+            "windDirectionRequired": "جهت باد الزامی می باشد",
+            "windSpeedPlaceholder": "سرعت باد به",
+            "windSpeedRequired": "سرعت باد الزامی می باشد",
+            "passengerPhoneNumberPlaceholder": "درج شماره تماس مسافر",
+            "passengerPhoneNumberRequired": "شماره تماس مسافر الزامی می باشد",
+            "passengerPhoneNumberInvalid": "فرمت شماره تماس اشتباه میباشد",
+            "descriptionPlaceholder": "توضیحات و مانورها",
+            "previous": "قبلی",
+            "submit": "ثبت",
+            "confirmationWarning": "در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید"
         }
     }
 }

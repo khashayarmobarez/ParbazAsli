@@ -364,15 +364,15 @@ const AddLanding = () => {
 
                     <div className='flex items-center justify-between w-full text-xs md:w-[90%]'>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>IGC</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.IGC')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>وسیله پروازی</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightDevice')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>شرایط پرواز</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.flightConditions')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>Takeoff</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.takeoff')}</p>
 
-                        <p className='' style={{color:'var(--text-accent)'}}>Landing</p>
+                        <p className='' style={{color:'var(--text-accent)'}}>{t('addFlight.landing')}</p>
 
                     </div>
                     
@@ -380,116 +380,110 @@ const AddLanding = () => {
 
 
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-
                     <div className='w-full flex flex-col gap-y-1'>
                         <TimePicker
-                        value={landingTime}
-                        onChange={handleLandingTimeChange}
-                        placeholder="زمان land"
+                            value={landingTime}
+                            onChange={handleLandingTimeChange}
+                            placeholder={t('addFlight.addLanding.landingTimePlaceholder')}
                         />
-                            {
-                                !landingTime && submitted &&
-                                <p className='text-xs text-start self-start text-textError'>زمان land الزامی می باشد</p>
-                            }
-                            {
-                                landingTime && landingTime < takeoffTime && 
-                                <p className='text-xs text-start self-start text-textError'>زمان land باید بعد از زمان take off ({takeoffTime}) باشد</p>
-                            }
-                            {
-                                landingTime && landingTime > new Date().getHours() && (
-                                    <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
-                                )
-                            }
+                        {
+                            !landingTime && submitted &&
+                            <p className='text-xs text-start self-start text-textError'>{t('addFlight.addLanding.landingTimeRequired')}</p>
+                        }
+                        {
+                            landingTime && landingTime < takeoffTime &&
+                            <p className='text-xs text-start self-start text-textError'>{t('addFlight.addLanding.landingTimeAfterTakeOff', { takeoffTime })}</p>
+                        }
+                        {
+                            landingTime && landingTime > new Date().getHours() && (
+                                <p className='text-xs text-start self-start text-textError'>{t('addFlight.addLanding.landingTimeBeforeNow')}</p>
+                            )
+                        }
                     </div>
 
                     {
-                        landingTypesData &&   
-                        <DropdownInput 
+                        landingTypesData &&
+                        <DropdownInput
                             id={'ddi1'}
-                            name={'شیوه'} 
-                            icon={<ColorTagsIcon customColor = {!landingType && submitted && 'var(--text-error)'}/>} 
-                            options={landingTypesData.data} 
-                            selectedOption={landingType} 
-                            handleSelectChange={handleSelectSetLandingType} 
+                            name={t('addFlight.addLanding.landingType')}
+                            icon={<ColorTagsIcon customColor={!landingType && submitted && 'var(--text-error)'}/>}
+                            options={landingTypesData.data}
+                            selectedOption={landingType}
+                            handleSelectChange={handleSelectSetLandingType}
                             IsEmptyAfterSubmit={submitted && !landingType}
                             isSubmitted={submitted}
                             ErrorCondition={!landingType}
-                            ErrorText={'شیوه الزامی می باشد'}
+                            ErrorText={t('addFlight.addLanding.landingTypeRequired')}
                         />
                     }
 
-                    <DropdownInput 
+                    <DropdownInput
                         id={'ddi2'}
-                        name={'جهت باد'} 
-                        icon={<WindDirectionCock customColor = {!landingWindDirection && submitted && 'var(--text-error)'} />} 
-                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions} 
-                        selectedOption={landingWindDirection} 
-                        handleSelectChange={handleSelectSetLandingWindDirection} 
+                        name={t('addFlight.addLanding.windDirection')}
+                        icon={<WindDirectionCock customColor={!landingWindDirection && submitted && 'var(--text-error)'} />}
+                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions}
+                        selectedOption={landingWindDirection}
+                        handleSelectChange={handleSelectSetLandingWindDirection}
                         IsEmptyAfterSubmit={submitted && !landingWindDirection}
                         isSubmitted={submitted}
                         ErrorCondition={!landingWindDirection}
-                        ErrorText={'جهت باد الزامی می باشد'}
+                        ErrorText={t('addFlight.addLanding.windDirectionRequired')}
                     />
-                    
+
                     <NumberInput
                         id={'NI1'}
                         icon={<WindIcon customColor={(submitted && !landingWindSpeed) ? 'var(--text-error)' : ''} />}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
-                        placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                        placeholder={`${t('addFlight.addLanding.windSpeedPlaceholder')} ${takeOffWindUnit && takeOffWindUnit.name}`}
                         IsEmptyAfterSubmit={submitted && !landingWindSpeed}
                         isSubmitted={submitted}
                         ErrorCondition={!landingWindSpeed}
-                        ErrorText={'سرعت باد الزامی می باشد'}
+                        ErrorText={t('addFlight.addLanding.windSpeedRequired')}
                     />
 
-                    {flightType === 'Tandem' && 
-                        <TextInput 
+                    {flightType === 'Tandem' &&
+                        <TextInput
                             id={'TI1'}
-                            icon={<PhoneIcon customColor = {!passengerPhoneNumber && submitted && 'var(--text-error)'}/>}
-                            value={passengerPhoneNumber} 
-                            onChange={handlePassengerPhoneNum} 
-                            placeholder='درج شماره تماس مسافر' 
+                            icon={<PhoneIcon customColor={!passengerPhoneNumber && submitted && 'var(--text-error)'}/>}
+                            value={passengerPhoneNumber}
+                            onChange={handlePassengerPhoneNum}
+                            placeholder={t('addFlight.addLanding.passengerPhoneNumberPlaceholder')}
                             IsEmptyAfterSubmit={submitted && !passengerPhoneNumber}
                             isSubmitted={submitted}
                             ErrorCondition={!passengerPhoneNumber}
-                            ErrorText={'شماره تماس مسافر الزامی می باشد'}
+                            ErrorText={t('addFlight.addLanding.passengerPhoneNumberRequired')}
                             ErrorCondition2={!PHONE_REGEX.test(passengerPhoneNumber)}
-                            ErrorText2={'فرمت شماره تماس اشتباه میباشد'}
+                            ErrorText2={t('addFlight.addLanding.passengerPhoneNumberInvalid')}
                         />
                     }
 
-                    {/* description input */}
-                    {
-                        (flightType === 'Tandem' ||  flightType === 'Solo') &&
+                    {(flightType === 'Tandem' || flightType === 'Solo') &&
                         <div className='w-full flex flex-col gap-y-2'>
                             <DescriptionInput
                                 value={description}
                                 onChange={handleDescription}
-                                placeholder='توضیحات و مانورها'
+                                placeholder={t('addFlight.addLanding.descriptionPlaceholder')}
                             />
                         </div>
                     }
-
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
-
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
                         <span className='w-8 h-8 flex justify-center items-center ml-2 '>
                             <ArrowButton isRight={true} />
                         </span>
-                        <p className=''>قبلی</p>
+                        <p className=''>{t('addFlight.addLanding.previous')}</p>
                     </div>
 
-                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 `}>ثبت</button>
-                
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 `}>{t('addFlight.addLanding.submit')}</button>
                 </div>
 
                 <div className='w-full justify-center items-center'>
-                    <SubmitForm text={"در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید "}
+                    <SubmitForm text={t('addFlight.addLanding.confirmationWarning')}
                     showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
-                </div>  
+                </div>
                 
             </div>                                                                                                                                                                                                                                                                                           <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>
