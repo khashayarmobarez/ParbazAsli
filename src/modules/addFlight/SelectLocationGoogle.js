@@ -21,9 +21,9 @@ const SelectLocationGoogle = ({selectedLocation, setSelectedLocation}) => {
                     onClick={handleMapClick} // Handle map clicks
                 >
                     {selectedLocation && (
-                    <Marker 
-                    position={selectedLocation} 
-                    />
+                        <Marker 
+                        position={selectedLocation} 
+                        />
                     )}
                 </GoogleMap>
             </LoadScript>
