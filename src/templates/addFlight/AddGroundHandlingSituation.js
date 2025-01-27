@@ -83,7 +83,7 @@ const AddGroundHandlingSituation = () => {
     useEffect(() => {
         if(!wing.id || !harness.id) {
             navigate('/addFlight/AddFlightType')
-            toast('لطفا اطلاعات صفحات قبل را اول کامل کنید', {
+            toast(t('addGroundHandling.incompleteInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -139,7 +139,7 @@ const AddGroundHandlingSituation = () => {
                 // Here you can handle form submission, such as sending data to a backend server
 
             } else {
-                toast('لطفا اطلاعات را کامل وارد کنید', {
+                toast(t('addGroundHandling.completeInfo'), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -152,7 +152,7 @@ const AddGroundHandlingSituation = () => {
                 event.preventDefault();
                 setShowPopup(true);
             } else {
-                toast('لطفا اطلاعات را کامل وارد کنید', {
+                toast(t('addGroundHandling.completeInfo'), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -218,7 +218,7 @@ const AddGroundHandlingSituation = () => {
                 mutateSoloFlight(formData,
                     {
                         onSuccess: () => {
-                            toast('!پرواز شما ثبت شد', {
+                            toast(t('addGroundHandling.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
@@ -229,7 +229,7 @@ const AddGroundHandlingSituation = () => {
                             navigate('/flightHistory')
                         },
                         onError: (error) => {
-                            let errorMessage = 'خطایی رخ داده است';
+                            let errorMessage = t('addGroundHandling.errorOccurred');
                             if (error.response && error.response.data && error.response.data.ErrorMessages) {
                                 errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                             }
@@ -252,7 +252,7 @@ const AddGroundHandlingSituation = () => {
                 mutateCourseFlight(formData,
                     {
                         onSuccess: () => {
-                            toast('!اطلاعات پرواز شما ثبت شد در انتظار تایید مربی باشید', {
+                            toast(t('addGroundHandling.flightRegisteredCourse'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
@@ -263,7 +263,7 @@ const AddGroundHandlingSituation = () => {
                             navigate('/flightHistory')
                         },
                         onError: (error) => {
-                            let errorMessage = 'خطایی رخ داده است';
+                            let errorMessage = t('addGroundHandling.errorOccurred');
                             if (error.response && error.response.data && error.response.data.ErrorMessages) {
                                 errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                             }
@@ -286,7 +286,7 @@ const AddGroundHandlingSituation = () => {
                 mutateTandemFlight(formData,
                     {
                         onSuccess: () => {
-                            toast('!پرواز شما ثبت شد', {
+                            toast(t('addGroundHandling.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
@@ -297,7 +297,7 @@ const AddGroundHandlingSituation = () => {
                             navigate('/flightHistory')
                         },
                         onError: (error) => {
-                            let errorMessage = 'خطایی رخ داده است';
+                            let errorMessage = t('addGroundHandling.errorOccurred');
                             if (error.response && error.response.data && error.response.data.ErrorMessages) {
                                 errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                             }
@@ -323,147 +323,134 @@ const AddGroundHandlingSituation = () => {
     return (
         <>
             {
-            (SoloLoading || TandemLoading || courseLoading) &&
+                (SoloLoading || TandemLoading || courseLoading) &&
                 <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
-                    <CircularProgress sx={{ color:'var(--text-accent) '}} /> 
-                    <p>در حال ثبت اطلاعات</p>
+                    <CircularProgress sx={{ color: 'var(--text-accent)' }} />
+                    <p>{t('addGroundHandling.loadingMessage')}</p>
                 </div>
             }
 
             <div className='flex flex-col justify-center items-center w-[90%] gap-y-7'>
-
-
-                
                 <DropDownLine
                     hasNoArrow={true}
-                    title='موقعیت و شرایط تمرین زمینی'
+                    title={t('addGroundHandling.groundConditionTitle')}
                 />
 
-
                 <form className='w-full flex flex-col items-center justify-center gap-y-6'>
-
                     <SelectLocationGoogle
-                    selectedLocation={selectedLocation}
-                    setSelectedLocation={setSelectedLocation}
+                        selectedLocation={selectedLocation}
+                        setSelectedLocation={setSelectedLocation}
                     />
 
                     {
-                    cloudTypesData &&
-                        <DropdownInput 
-                        id={'ddi3'} 
-                        name={'نوع پوشش ابری'} 
-                        options={cloudTypesData.data} 
-                        selectedOption={clouds} 
-                        handleSelectChange={handleSelectSetClouds} 
-                        IsEmptyAfterSubmit={submitted && !clouds}
-                        isSubmitted={submitted}
-                        ErrorCondition={!clouds}
-                        ErrorText={'انتخاب نوع ابر الزامی است'}
+                        cloudTypesData &&
+                        <DropdownInput
+                            id={'ddi3'}
+                            name={t('addGroundHandling.cloudType')}
+                            options={cloudTypesData.data}
+                            selectedOption={clouds}
+                            handleSelectChange={handleSelectSetClouds}
+                            IsEmptyAfterSubmit={submitted && !clouds}
+                            isSubmitted={submitted}
+                            ErrorCondition={!clouds}
+                            ErrorText={t('addGroundHandling.cloudTypeRequired')}
                         />
                     }
 
                     <div className='w-full flex flex-col gap-y-1'>
                         <TimePicker
-                        value={takeoffTime}
-                        onChange={handleTakeOffTimeChange}
-                        placeholder="زمان شروع"
+                            value={takeoffTime}
+                            onChange={handleTakeOffTimeChange}
+                            placeholder={t('addGroundHandling.startTimePlaceholder')}
                         />
                         {
                             !takeoffTime && submitted &&
-                            <p className='text-xs text-start self-start text-textError'>زمان شروع الزامی می باشد</p>
+                            <p className='text-xs text-start self-start text-textError'>{t('addGroundHandling.startTimeRequired')}</p>
                         }
                         {
                             landingTime < takeoffTime && landingTime &&
-                            <p className='text-xs text-start self-start text-textError'>زمان شروع باید قبل از زمان پابان({landingTime}) باشد</p>
+                            <p className='text-xs text-start self-start text-textError'>{t('addGroundHandling.startTimeBeforeLanding', { landingTime })}</p>
                         }
                         {
                             takeoffTime && takeoffTime > new Date().getHours() && (
-                                <p className='text-xs text-start self-start text-textError'>زمان پایان باید قبل از الان باشد</p>
+                                <p className='text-xs text-start self-start text-textError'>{t('addGroundHandling.startTimeBeforeNow')}</p>
                             )
                         }
                     </div>
 
-
                     <div className='w-full flex flex-col gap-y-1'>
                         <TimePicker
-                        value={landingTime}
-                        onChange={handleLandingTimeChange}
-                        placeholder="زمان پایان"
+                            value={landingTime}
+                            onChange={handleLandingTimeChange}
+                            placeholder={t('addGroundHandling.endTimePlaceholder')}
                         />
-                            {
-                                !landingTime && submitted &&
-                                <p className='text-xs text-start self-start text-textError'>زمان land الزامی می باشد</p>
-                            }
-                            {
-                                landingTime && landingTime < takeoffTime && 
-                                <p className='text-xs text-start self-start text-textError'>زمان land باید بعد از زمان take off ({takeoffTime}) باشد</p>
-                            }
-                            {
-                                landingTime && landingTime > new Date().getHours() && (
-                                    <p className='text-xs text-start self-start text-textError'>زمان land باید قبل از الان باشد</p>
-                                )
-                            }
+                        {
+                            !landingTime && submitted &&
+                            <p className='text-xs text-start self-start text-textError'>{t('addGroundHandling.endTimeRequired')}</p>
+                        }
+                        {
+                            landingTime && landingTime < takeoffTime &&
+                            <p className='text-xs text-start self-start text-textError'>{t('addGroundHandling.endTimeAfterTakeOff', { takeoffTime })}</p>
+                        }
+                        {
+                            landingTime && landingTime > new Date().getHours() && (
+                                <p className='text-xs text-start self-start text-textError'>{t('addGroundHandling.endTimeBeforeNow')}</p>
+                            )
+                        }
                     </div>
 
-
-                    <DropdownInput 
+                    <DropdownInput
                         id={'ddi2'}
-                        name={'جهت باد'} 
-                        icon={<WindDirectionCock customColor = {!landingWindDirection && submitted && 'var(--text-error)'} />} 
-                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions} 
-                        selectedOption={landingWindDirection} 
-                        handleSelectChange={handleSelectSetLandingWindDirection} 
+                        name={t('addGroundHandling.windDirection')}
+                        icon={<WindDirectionCock customColor={!landingWindDirection && submitted && 'var(--text-error)'} />}
+                        options={dir === 'ltr' ? windDirectionOptionsEnglish : windDirectionOptions}
+                        selectedOption={landingWindDirection}
+                        handleSelectChange={handleSelectSetLandingWindDirection}
                         IsEmptyAfterSubmit={submitted && !landingWindDirection}
                         isSubmitted={submitted}
                         ErrorCondition={!landingWindDirection}
-                        ErrorText={'جهت باد الزامی می باشد'}
+                        ErrorText={t('addGroundHandling.windDirectionRequired')}
                     />
-                    
+
                     <NumberInput
                         id={'NI1'}
                         icon={<WindIcon customColor={(submitted && !landingWindSpeed) ? 'var(--text-error)' : ''} />}
                         value={landingWindSpeed}
                         onChange={handleSetLandingWindspeedChange}
-                        placeholder={`سرعت باد به ${takeOffWindUnit && takeOffWindUnit.name}`}
+                        placeholder={`${t('addGroundHandling.windSpeedPlaceholder')} ${takeOffWindUnit && takeOffWindUnit.name}`}
                         IsEmptyAfterSubmit={submitted && !landingWindSpeed}
                         isSubmitted={submitted}
                         ErrorCondition={!landingWindSpeed}
-                        ErrorText={'سرعت باد الزامی می باشد'}
+                        ErrorText={t('addGroundHandling.windSpeedRequired')}
                     />
 
-                    {/* description input */}
-                    {
-                        (flightType === 'Tandem' ||  flightType === 'Solo') &&
+                    {(flightType === 'Tandem' || flightType === 'Solo') &&
                         <div className='w-full flex flex-col gap-y-2'>
                             <DescriptionInput
                                 value={description}
                                 onChange={handleDescription}
-                                placeholder='توضیحات و مانورها'
+                                placeholder={t('addGroundHandling.descriptionPlaceholder')}
                             />
                         </div>
                     }
-
                 </form>
 
                 <div className='flex justify-between items-center w-full'>
-
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <span className='w-8 h-8 flex justify-center items-center ml-2 '>
-                            <ArrowButton isRight={true} />
+                        <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'mr-2' : 'ml-2'}`}>
+                            <ArrowButton isRight={dir !== 'ltr' && true} />
                         </span>
-                        <p className=''>قبلی</p>
+                        <p className=''>{t('addGroundHandling.previous')}</p>
                     </div>
 
-                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 `}>ثبت</button>
-                
+                    <button type="submit" onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 `}>{t('addGroundHandling.submit')}</button>
                 </div>
 
                 <div className='w-full justify-center items-center'>
-                    <SubmitForm text={"در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید "}
-                    showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
-                </div>  
-                
-            </div>                                                                                                                                                                                                                                                                                           <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
+                    <SubmitForm text={t('addGroundHandling.confirmationWarning')}
+                        showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
+                </div>
+            </div>                                                                                                                                                                                                                                                                                       <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>
     );
 };

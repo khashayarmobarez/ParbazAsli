@@ -449,5 +449,32 @@
             "submit": "Submit",
             "confirmationWarning": "Once confirmed, it cannot be edited. Please be careful."
         }
+    },
+    "addGroundHandling": {
+        "incompleteInfo": "Please complete the information on the previous pages first",
+        "completeInfo": "Please complete the information",
+        "activityRegistered": "Your activity has been registered!",
+        "activityRegisteredCourse": "Your activity information has been registered! Please wait for the coach's confirmation.",
+        "errorOccurred": "An error occurred",
+        "loadingMessage": "Registering information",
+        "groundConditionTitle": "Ground Training Conditions",
+        "cloudType": "Cloud Type",
+        "cloudTypeRequired": "Selecting a cloud type is required",
+        "startTimePlaceholder": "Start Time",
+        "startTimeRequired": "Start time is required",
+        "startTimeBeforeLanding": "Start time must be before landing time ({{landingTime}})",
+        "startTimeBeforeNow": "End time must be before now",
+        "endTimePlaceholder": "End Time",
+        "endTimeRequired": "Landing time is required",
+        "endTimeAfterTakeOff": "Landing time must be after take off time ({{takeoffTime}})",
+        "endTimeBeforeNow": "Landing time must be before now",
+        "windDirection": "Wind Direction",
+        "windDirectionRequired": "Wind direction is required",
+        "windSpeedPlaceholder": "Wind speed in",
+        "windSpeedRequired": "Wind speed is required",
+        "descriptionPlaceholder": "Description and maneuvers",
+        "previous": "Previous",
+        "submit": "Submit",
+        "confirmationWarning": "Once confirmed, it cannot be edited. Please be careful."
     }
 }
