@@ -17,7 +17,7 @@ html[dir="rtl"] body {
 }
 
 html[dir="ltr"] body {
-  font-family: -apple-system, BlinkMacSystemFont,"iransans-english", "Segoe UI", "Roboto", "Oxygen", 
+  font-family: -apple-system, BlinkMacSystemFont,"SF-pro", "Segoe UI", "Roboto", "Oxygen", 
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; /* Fonts for LTR */
 }
 
@@ -259,16 +259,9 @@ code {
 
 
 @font-face {
-  font-family: "iransans-english";
-  src: url("./assets/Fonts/IRANSansX-Regular.ttf") format("truetype");
+  font-family: "SF-pro";
+  src: url("./assets/Fonts/SF-Pro.ttf") format("truetype");
   font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "iransans-english";
-  src: url("./assets/Fonts/IRANSansX-Bold.ttf") format("truetype");
-  font-weight: 500;
   font-style: normal;
 }
 
