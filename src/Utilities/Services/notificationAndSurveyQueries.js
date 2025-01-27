@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 
@@ -10,14 +10,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get notifications
     const getNotifications = async (pageNumber, pageSize) => {
 
-        const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Notification/GetNotifications?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Notification/GetNotifications?pageNumber=${pageNumber}&pageSize=${pageSize}`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -46,7 +42,6 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get notification counts
     const getUnreadNotificationCounts = async () => {
 
-        const token = Cookies.get('token');
         // const userType = Cookies.get('userType');
 
         // if (!token || userType === 'Organization') {
@@ -54,11 +49,8 @@ import { API_BASE_URL } from "../Providers/apiUrl";
         // }
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Notification/GetUnreadNotificationsCount`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Notification/GetUnreadNotificationsCount`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -85,10 +77,8 @@ import { API_BASE_URL } from "../Providers/apiUrl";
     const getIsSurveyAvailable = async (surveyId) => {
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Survey/IsSurveyAvailable?id=${surveyId}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Survey/IsSurveyAvailable?id=${surveyId}`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -116,14 +106,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // submit tandem passenger survey
     const uploadSurvey = async (formData) => {
-        const token = Cookies.get('token');
         
         try {
-            const response = await axios.post(`${API_BASE_URL}/Survey/SubmitSurvey`, formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Survey/SubmitSurvey`, formData, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {

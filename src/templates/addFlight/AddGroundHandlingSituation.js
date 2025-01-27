@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import ArrowButton from '../../components/icons/ArrowButton'
 import WindIcon from '../../components/icons/WindIcon'
 import WindDirectionCock from '../../components/icons/WindDirectionCock'
-import PhoneIcon from '../../components/icons/PhoneIcon'
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
 
 // react-toastify
 import { toast } from 'react-toastify';
@@ -106,12 +104,11 @@ const AddGroundHandlingSituation = () => {
 
     const handleSetLandingWindspeedChange = (event) => {
         dispatch(updateLandingWindSpeed(event.target.value));
-      };
-
+    };
 
     const handleSelectSetLandingWindDirection = (selectedOption) => {
         dispatch(updateLandingWindDirection(selectedOption));
-      };
+    };
 
     const handleSelectSetClouds = (selectedOption) => {
         dispatch(updateClouds(selectedOption));

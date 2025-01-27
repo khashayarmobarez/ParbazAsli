@@ -22,6 +22,15 @@
             "time": "Time"
         }
     },
+    "reusables": {
+        "submitPopup": {
+        "confirmationTitle": "Confirmation",
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm",
+        "sending": "Sending...",
+        "closeIcon": "Close"
+        }
+    },
     "RegistrationPages": {
         "LoginName": "Login",
         "signupName": "Sign up",
@@ -424,7 +433,7 @@
             "errorOccurred": "An error occurred",
             "landingTimePlaceholder": "Landing time",
             "landingTimeRequired": "Landing time is required",
-            "landingTimeAfterTakeOff": "Landing time must be after take off time ({takeoffTime})",
+            "landingTimeAfterTakeOff": "Landing time must be after take off time ({{takeoffTime}})",
             "landingTimeBeforeNow": "Landing time must be before now",
             "landingType": "Type",
             "landingTypeRequired": "Landing type is required",

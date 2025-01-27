@@ -471,8 +471,8 @@ const AddLanding = () => {
 
                 <div className='flex justify-between items-center w-full'>
                     <div onClick={() => navigate(-1)} className='flex items-center justify-between'>
-                        <span className='w-8 h-8 flex justify-center items-center ml-2 '>
-                            <ArrowButton isRight={true} />
+                        <span className={`w-8 h-8 flex justify-center items-center ${dir === 'ltr' ? 'mr-2' : 'ml-2'}`}>
+                            <ArrowButton isRight={dir !== 'ltr' && true} />
                         </span>
                         <p className=''>{t('addFlight.addLanding.previous')}</p>
                     </div>

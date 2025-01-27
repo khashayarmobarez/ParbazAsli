@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 // axios instance
@@ -53,12 +53,8 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get all organizations
   const getOrganizationsData = async () => {
     try {
-      const token = Cookies.get('token');
-      const response = await axios.get(`${API_BASE_URL}/Organization/GetAllOrganizations`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
+      const response = await axios.get(`${API_BASE_URL}/Organization/GetAllOrganizations`, { 
+        headers: getCommonHeaders() 
     });
       // console.log(response.data);
       return response.data;
@@ -78,13 +74,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // Get Levels for adding course(without starter role) By Organization Id
   const getOrganizationLevelsForCourse = async (organId) => {
     try {
-      const token = Cookies.get('token');
-      const response = await axios.get(`${API_BASE_URL}/Level/GetNoneStarterLevels?organizationId=${organId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+      const response = await axios.get(`${API_BASE_URL}/Level/GetNoneStarterLevels?organizationId=${organId}`, { 
+        headers: getCommonHeaders() 
+      });
       // console.log(response.data);  
       return response.data;
     } catch (error) {
@@ -103,12 +95,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // post certificate
   const addCertificate = async (formData) => {
-    const token = Cookies.get('token');
+    
     const response = await axios.post(`${API_BASE_URL}/Certificate/AddCertificate`, formData, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
-      },
+      headers: getCommonHeaders('multipart/form-data') 
     });
 
     if (response.status !== 200) {
@@ -130,13 +119,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
   const getUserById = async (userId) => {
     if(userId.length > 5) {
       try {
-        const token = Cookies.get('token');
-        const response = await axios.get(`${API_BASE_URL}/User/GetAnotherUser?userId=${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+        const response = await axios.get(`${API_BASE_URL}/User/GetAnotherUser?userId=${userId}`, { 
+          headers: getCommonHeaders() 
+        });
         // console.log(response.data);  
         return response.data;
       } catch (error) {
@@ -161,13 +146,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get another user for adding level
 const getUserLevelById = async (userId,levelId, classTypeId, setErrorMessage) => {
     try {
-      const token = Cookies.get('token');
-      const response = await axios.get(`${API_BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+      const response = await axios.get(`${API_BASE_URL}/User/GetAnotherUserForAddingCourse?userId=${userId}&levelId=${levelId}&courseType=${classTypeId}`, { 
+        headers: getCommonHeaders() 
+      });
       // console.log(response.data);  
       return response.data;
     } catch (error) {
@@ -193,13 +174,9 @@ const useUserLevelById = (userId,levelId,classTypeId, setErrorMessage) => {
 // /api/Level/GetLevelsByOrganizationId 
   const getLevelsByOrganizationId = async (organId) => {
     try {
-      const token = Cookies.get('token');
-      const response = await axios.get(`${API_BASE_URL}/Level/GetLevels?organizationId=${organId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+      const response = await axios.get(`${API_BASE_URL}/Level/GetLevels?organizationId=${organId}`, { 
+        headers: getCommonHeaders() 
+      });
       // console.log(response.data);  
       return response.data;
     } catch (error) {

@@ -52,7 +52,7 @@ const styles = {
 
   const theme = createTheme({
     typography: {
-      fontFamily: 'iransans',
+      fontFamily: 'iransans, iransans-english'
     },
   });
 

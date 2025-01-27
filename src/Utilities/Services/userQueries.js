@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 
@@ -10,19 +10,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get userData query
     const fetchUserData = async () => {
 
-        const token = Cookies.get('token');
-        // const userType = Cookies.get('userType');
-
-        // if (!token || userType === 'Organization') {
-        //     throw new Error('No token found or user is not a pilot');
-        // }
-
         try {
-        const response = await axios.get(`${API_BASE_URL}/User/GetUser`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/User/GetUser`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
     } catch (error) {
@@ -38,12 +28,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // add profile picture
     const uploadProfilePicture = async (formData) => {
-        const token = Cookies.get('token');
+        
         const response = await axios.post(`${API_BASE_URL}/User/EditProfilePicture`, formData, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-            },
+            headers: getCommonHeaders('multipart/form-data') 
         });
 
         if (response.status !== 200) {
@@ -71,11 +58,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // remove profile picture
     const deleteProfilePicture = async () => {
-        const token = Cookies.get('token');
-        const response = await axios.post(`${API_BASE_URL}/User/DeleteProfilePicture`, {}, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
+        
+        const response = await axios.post(`${API_BASE_URL}/User/DeleteProfilePicture`, {}, { 
+            headers: getCommonHeaders() 
         });
 
         if (response.status !== 200) {
@@ -101,14 +86,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get Profile page data
     const getUserProfile = async () => {
 
-        const token = Cookies.get('token');
-
         try {
-        const response = await axios.get(`${API_BASE_URL}/User/GetUserProfile`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/User/GetUserProfile`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
     } catch (error) {
@@ -133,14 +113,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 //  get all user coaches
     const getAllUsersCoaches = async () => {
 
-        const token = Cookies.get('token');
-
         try {
-            const response = await axios.get(`${API_BASE_URL}/User/GetAllUsersCoaches`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/User/GetAllUsersCoaches`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -166,14 +141,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get all user certificates
     const getAllUserCertificates = async (pageNumber, pageSize) => {
 
-        const token = Cookies.get('token');
-
         try {
-            const response = await axios.get(`${API_BASE_URL}/Certificate/GetAllCertificates?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Certificate/GetAllCertificates?pageNumber=${pageNumber}&pageSize=${pageSize}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -196,13 +166,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // request change phone number to get verification code query
     const postSendCodeToChangePhoneNumber = async (newPhoneOrEmail) => {
-        const token = Cookies.get('token');
+        
         try {
-            const response = await axios.post(`${API_BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneOrEmail, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/user/SendVerificationCodeForChanging`, newPhoneOrEmail, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -225,13 +192,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // handle final submit for changing phone number
     const postChangePhoneNumber = async (newPhoneNumber) => {
-        const token = Cookies.get('token');
+        
         try {
-            const response = await axios.post(`${API_BASE_URL}/user/ChangePhoneNumber`, newPhoneNumber, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/user/ChangePhoneNumber`, newPhoneNumber, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -254,13 +218,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // handle final submit for changing phone number
     const postChangeEmail = async (newEmail) => {
-        const token = Cookies.get('token');
+        
         try {
-            const response = await axios.post(`${API_BASE_URL}/user/ChangeEmail`, newEmail, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/user/ChangeEmail`, newEmail, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -287,13 +248,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // handle final submit for change password
 // /User/ChangePassword
     const postChangePassword = async (newPassword) => {
-        const token = Cookies.get('token');
+        
         try {
-            const response = await axios.post(`${API_BASE_URL}/User/ChangePassword`, newPassword, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/User/ChangePassword`, newPassword, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -313,14 +271,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get a certificate
 const getACertificate = async (id) => {
 
-    const token = Cookies.get('token');
-
     try {
-        const response = await axios.get(`${API_BASE_URL}/Certificate/GetCertificate?certificateId=${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Certificate/GetCertificate?certificateId=${id}`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
     } catch (error) {

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 
@@ -10,14 +10,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get student Course dividers in my courses
     const getUserCourseDividers = async () => {
 
-        const token = Cookies.get('token');
-
         try {
-        const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseDividers`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseDividers`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -41,14 +36,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get courses data
     const getUserCourses = async (type, organizationId, pageNumber) => {
-        const token = Cookies.get('token');
 
         try {
             const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourses`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+                headers: getCommonHeaders(),
                 params: {
                     type,
                     organizationId,
@@ -78,14 +69,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get one of the student course details
     const getAUserCourse = async (courseId) => {
-        const token = Cookies.get('token');
         
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourse?userCourseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -109,14 +96,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // getting a student course syllabi
     const getAUserCourseSyllabi = async (courseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseSyllabi?userCourseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -139,14 +122,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get user course Classes
     const getUserCourseClasses = async (courseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseClasses?userCourseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseClasses?userCourseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -170,14 +149,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get user a course Class 
     const getUserACourseClass = async (classId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseClass?classId=${classId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetUserCourseClass?classId=${classId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -203,14 +178,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // Get All User Courses For Dropdown
 // /UserCourse/GetAllUserCoursesForDropdown 
     const getAllUserCoursesForDropdown = async () => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetAllUserCoursesForDropdown`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetAllUserCoursesForDropdown`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -235,15 +206,11 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get guest user classes
 // /UserCourse/GetGuestUserClasses
-    const getGuestUserClasses = async (courseId) => {
-        const token = Cookies.get('token');
+    const getGuestUserClasses = async () => {
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetGuestUserClasses`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetGuestUserClasses`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -270,14 +237,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get a guest user class 
 // i/UserCourse/GetGuestUserClass?guestUserClassId=1
     const getAGuestUserClass = async (classId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetGuestUserClass?guestUserClassId=${classId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/UserCourse/GetGuestUserClass?guestUserClassId=${classId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {

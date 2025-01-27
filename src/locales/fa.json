@@ -22,6 +22,15 @@
             "time": "زمان"
         }
     },
+    "reusables": {
+        "submitPopup": {
+        "confirmationTitle": "تاییدیه",
+        "cancelButton": "لغو",
+        "confirmButton": "تایید",
+        "sending": "در حال ارسال...",
+        "closeIcon": "بستن"
+        }
+    },
     "RegistrationPages": {
         "LoginName": "ورود",
         "signupName": "ثبت نام",
@@ -424,7 +433,7 @@
             "errorOccurred": "خطایی رخ داده است",
             "landingTimePlaceholder": "زمان land",
             "landingTimeRequired": "زمان land الزامی می باشد",
-            "landingTimeAfterTakeOff": "زمان land باید بعد از زمان take off ({takeoffTime}) باشد",
+            "landingTimeAfterTakeOff": "زمان land باید بعد از زمان take off ({{takeoffTime}}) باشد",
             "landingTimeBeforeNow": "زمان land باید قبل از الان باشد",
             "landingType": "شیوه",
             "landingTypeRequired": "شیوه الزامی می باشد",

@@ -10,17 +10,17 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
             <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
 
                 <div className={`flex gap-x-2 justify-center  ${isActive ? 'text-textAccent' : 'text-bgDropdownDefault'}`}>
-                    {icon ? 
+                    {icon ?
                     <>
                         <span className='w-6'>
                             {icon}
                         </span>
-                        <p className='text-base font-light w-16 '> 
+                        <p className='text-sm font-light w-16 '> 
                             {title}
                         </p>
                     </>
                     :
-                    <p className='text-base font-light whitespace-nowrap' > 
+                    <p className='text-sm font-light whitespace-nowrap' > 
                         {title}
                     </p>
                     }

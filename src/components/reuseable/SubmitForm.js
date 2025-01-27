@@ -7,9 +7,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import boxStyles from '../../styles/DataBox.module.css'
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const SubmitForm = ({ showPopup, setShowPopup, handlePost, text, isLoading }) => {
 
-    
+    // language
+    const { t } = useTranslation();
 
     return (
         <div className={`${showPopup ? 'fixed' : 'hidden'} top-0 right-0 w-full h-full backdrop-blur-lg flex justify-center items-center z-[150]`}>
@@ -17,7 +21,7 @@ const SubmitForm = ({ showPopup, setShowPopup, handlePost, text, isLoading }) =>
 
                 <CloseIcon onClick={() => setShowPopup(false)} sx={{cursor: 'pointer', margin:'-0.8rem 0 0 16rem',  }} />
 
-                <h3 className=' text-textWarning text-xl '>تاییدیه</h3>
+                <h3 className=' text-textWarning text-xl '>{t('reusables.submitPopup.confirmationTitle')}</h3>
 
                 <p className='text-base w-[90%]' >{text}</p>
 
@@ -28,14 +32,14 @@ const SubmitForm = ({ showPopup, setShowPopup, handlePost, text, isLoading }) =>
                     disabled={isLoading} 
                     className={`${ButtonStyles.normalButton} w-24`} 
                     onClick={() => setShowPopup(false)}>
-                        لغو
+                        {t('reusables.submitPopup.cancelButton')}
                     </button>
                     <button 
                     type="submit" 
                     disabled={isLoading} 
                     className={`${ButtonStyles.addButton} w-24`} 
                     onClick={handlePost}>
-                        {isLoading ? 'در حال ارسال...' : 'تایید'}
+                        {isLoading ? t('reusables.submitPopup.sending') : t('reusables.submitPopup.confirmButton')}
                     </button>
 
                     
