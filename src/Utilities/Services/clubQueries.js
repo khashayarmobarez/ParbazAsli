@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 
@@ -9,14 +10,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // Get All Cloud Cover Types
     const getClubStatus = async () => {
 
-        const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Club/GetClubStatus`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Club/GetClubStatus`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -44,14 +41,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // Add Club
     const postClub = async (formData) => {
 
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Club/AddClub`, formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Club/AddClub`, formData, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -73,15 +66,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get club data
     const getClub = async () => {
-            
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetClub`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClub`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -106,14 +94,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // add Club picture
     const uploadClubPicture = async (formData) => {
 
-        const token = Cookies.get('token');
-
         try {
-            const response = await axios.post(`${API_BASE_URL}/Club/EditClubProfilePicture`, formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Club/EditClubProfilePicture`, formData, { 
+                headers: getCommonHeaders('multipart/form-data') 
             });
             return response.data;
         } catch (error) {
@@ -143,12 +126,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // remove club profile picture
     const deleteClubProfilePicture = async () => {
-        const token = Cookies.get('token');
+
         try {
-            const response = await axios.post(`${API_BASE_URL}/Club/DeleteClubProfilePicture`, {}, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+            const response = await axios.post(`${API_BASE_URL}/Club/DeleteClubProfilePicture`, {}, { 
+                headers: getCommonHeaders() 
             });
 
             return response.data;
@@ -183,14 +164,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // example /Club/AddCoachToClub?coachUserId=890soq
     const addCoachToClub = async (coachUserId) => {
 
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Club/AddCoachToClub?coachUserId=${coachUserId}`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Club/AddCoachToClub?coachUserId=${coachUserId}`, {}, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -216,15 +193,12 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // getClubCoaches 
 // /Club/GetClubCoaches?pageNumber=1&pageSize=5 
     const getClubCoaches = async ({ queryKey }) => {
+
         const [_key, pageNumber, pageSize] = queryKey;
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCoaches?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCoaches?pageNumber=${pageNumber}&pageSize=${pageSize}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -249,15 +223,12 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get previous club coaches
 // /Club/GetClubCoachesHistory?pageNumber=1&pageSize=5
     const getClubCoachesHistory = async ({ queryKey }) => {
+
         const [_key, pageNumber, pageSize] = queryKey;
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCoachesHistory?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Club/GetClubCoachesHistory?pageNumber=${pageNumber}&pageSize=${pageSize}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -283,14 +254,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get coach details
     const getCoachDetails = async (coachId) => {
 
-        const token = Cookies.get('token');
-
         try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetCoachDetails?coachId=${coachId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Club/GetCoachDetails?coachId=${coachId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -315,14 +281,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get coach courses
     const getCoachCourses = async (coachId) => {
 
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetCoachCourses?coachId=${coachId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Club/GetCoachCourses?coachId=${coachId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -346,14 +308,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
     // /Club/TriggerCoachStatus
     const PostTriggerCoachStatus = async (course) => {
 
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Club/TriggerCoachStatus`, course, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Club/TriggerCoachStatus`, course, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -385,15 +343,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // Get Active Club Coaches
 // /Club/GetActiveClubCoaches
     const getActiveClubCoaches = async () => {
-            
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Club/GetActiveClubCoaches`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Club/GetActiveClubCoaches`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {

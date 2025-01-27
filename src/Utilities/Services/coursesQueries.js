@@ -3,19 +3,17 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 
 // get Syllabi by level id
 const getSyllabiForLevels = async (levelId) => {
+
     try {
-      const token = Cookies.get('token');
-      const response = await axios.get(`${API_BASE_URL}/Syllabus/GetSyllabiByLevelId?levelId=${levelId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+        const response = await axios.get(`${API_BASE_URL}/Syllabus/GetSyllabiByLevelId?levelId=${levelId}`, { 
+            headers: getCommonHeaders() 
+        });
       // console.log(response.data);  
       return response.data;
     } catch (error) {
@@ -37,12 +35,9 @@ const getSyllabiForLevels = async (levelId) => {
 
 // add regular course query
     const addRegularCourse = async (course) => {
-        const token = Cookies.get('token');
-        const response = await axios.post(`${API_BASE_URL}/Course/AddRegularCourse`, course, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        
+        const response = await axios.post(`${API_BASE_URL}/Course/AddRegularCourse`, course, { 
+            headers: getCommonHeaders() 
         });
 
         if (response.status !== 200) {
@@ -68,12 +63,9 @@ const getSyllabiForLevels = async (levelId) => {
 
 // add retraining course query
     const addRetrainingCourse = async (course) => {
-        const token = Cookies.get('token');
-        const response = await axios.post(`${API_BASE_URL}/Course/AddRetrainingCourse`, course, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        
+        const response = await axios.post(`${API_BASE_URL}/Course/AddRetrainingCourse`, course, { 
+            headers: getCommonHeaders() 
         });
 
         if (response.status !== 200) {
@@ -98,12 +90,9 @@ const getSyllabiForLevels = async (levelId) => {
 
 // add custom course query 
     const addCustomCourse = async (course) => {
-        const token = Cookies.get('token');
-        const response = await axios.post(`${API_BASE_URL}/Course/AddCustomCourse`, course, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        
+        const response = await axios.post(`${API_BASE_URL}/Course/AddCustomCourse`, course, { 
+            headers: getCommonHeaders() 
         });
 
         if (response.status !== 200) {
@@ -129,14 +118,9 @@ const getSyllabiForLevels = async (levelId) => {
 // get Course dividers in education
     const getCourseDividers = async (isForClub) => {
 
-        const token = Cookies.get('token');
-
         try {
-        const response = await axios.get(`${API_BASE_URL}/Course/GetCourseDividers?isForClub=${isForClub || false}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Course/GetCourseDividers?isForClub=${isForClub || false}`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -162,17 +146,14 @@ const getSyllabiForLevels = async (levelId) => {
 
         try {
             const response = await axios.get(`${API_BASE_URL}/Course/GetCourses`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
+                headers: getCommonHeaders(), // Reusable headers
+                params: { // Params specific to this request
+                  type,
+                  organizationId,
+                  pageNumber,
+                  isForClub,
                 },
-                params: {
-                    type,
-                    organizationId,
-                    pageNumber,
-                    isForClub
-                }
-            });
+              });
             return response.data;
         } catch (error) {
             if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
@@ -192,17 +173,13 @@ const getSyllabiForLevels = async (levelId) => {
 
 // post trigger course status
     const postTriggerCourseStatus = async (params) => {
-        const token = Cookies.get('token');
 
         try {
             const response = await axios.post(
                 `${API_BASE_URL}/Course/TriggerCourseStatus`,
                 params,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
+                { 
+                    headers: getCommonHeaders() 
                 }
             );
             return response.data;
@@ -244,14 +221,10 @@ const getSyllabiForLevels = async (levelId) => {
     
 // get a course details
     const getACourse = async (courseId) => {
-        const token = Cookies.get('token');
         
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourse?courseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourse?courseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -274,14 +247,10 @@ const getSyllabiForLevels = async (levelId) => {
     
 // get a course students data
     const getACourseStudents = async (courseId, pageNumber) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudents?courseId=${courseId}&pageNumber=${pageNumber}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -306,14 +275,10 @@ const getSyllabiForLevels = async (levelId) => {
     
 // get a course old students data
     const getACourseHistoryStudents = async (courseId, pageNumber ) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudentsHistory?courseId=${courseId}&pageNumber=${pageNumber}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -335,14 +300,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // add student to course  /Course/AddStudentToCourse
     const addStudentToCourse = async (student) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Course/AddStudentToCourse`, student, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Course/AddStudentToCourse`, student, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) { 
@@ -371,14 +332,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get a course syllabi   /Course/GetCourseSyllabi?courseId=30&type=2
     const getACourseSyllabi = async (courseId, type) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseSyllabi?courseId=${courseId}&type=${type}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -400,14 +357,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get course classes Course/GetCourseClasses?courseId=30
     const getACourseClasses = async (courseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClasses?courseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClasses?courseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -430,14 +383,9 @@ const getSyllabiForLevels = async (levelId) => {
 
 // Get All Active Course Students /Course/GetAllActiveCourseStudents?courseId=30
     const getAllActiveCourseStudents = async (courseId) => {
-        const token = Cookies.get('token');
-
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetAllActiveCourseStudents?courseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllActiveCourseStudents?courseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -459,14 +407,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // add class to course /Course/AddCourseClass 
     const addCourseClass = async (courseClass) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Course/AddCourseClass`, courseClass, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Course/AddCourseClass`, courseClass, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -495,14 +439,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get a class data /Course/GetCourseClass?classId=1
     const getAClass = async (classId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClass?classId=${classId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseClass?classId=${classId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -524,14 +464,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get a class data /Course/GetCourseClass?classId=1
     const getUserCourseFlight = async (flightId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivity?practicalActivityId=${flightId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivity?practicalActivityId=${flightId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -556,14 +492,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // decline user flight
     const postDeclineUserFlight = async (flightId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Course/RejectStudentFlight?flightId=${flightId}`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Course/RejectStudentFlight?flightId=${flightId}`, {}, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -592,14 +524,10 @@ const getSyllabiForLevels = async (levelId) => {
 
 // accept user flight
     const postAcceptUserPracticalActivity = async (submitData) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/Course/AcceptStudentPracticalActivity`, submitData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.post(`${API_BASE_URL}/Course/AcceptStudentPracticalActivity`, submitData, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -626,17 +554,13 @@ const getSyllabiForLevels = async (levelId) => {
     
 // post trigger accept club
     const postTriggerClubStatus = async (triggerStatusForm) => {
-        const token = Cookies.get('token');
 
         try {
             const response = await axios.post(
                 `${API_BASE_URL}/Course/TriggerCoachClubStatus`,
                 triggerStatusForm,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
+                { 
+                    headers: getCommonHeaders() 
                 }
             );
             return response.data;
@@ -678,17 +602,13 @@ const getSyllabiForLevels = async (levelId) => {
     
 // post trigger student status
     const postTriggerStudentStatus = async (triggerStatusForm) => {
-        const token = Cookies.get('token');
 
         try {
             const response = await axios.post(
                 `${API_BASE_URL}/Course/TriggerStudentStatus`,
                 triggerStatusForm,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
+                { 
+                    headers: getCommonHeaders() 
                 }
             );
             return response.data;
@@ -729,14 +649,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get course counts
 // /Course/GetCourseCounts 
     const getCourseCounts = async (isForClub) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCounts?isForClub=${isForClub || false}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCounts?isForClub=${isForClub || false}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -764,14 +680,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get a course student
 // /Course/GetCourseStudent?userCourseId=35
     const getACourseStudent = async (userCourseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseStudent?userCourseId=${userCourseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -798,14 +710,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get course student flights
 // /Course/GetStudentFlights?userCourseId=35&pageNumber=1&pageSize=2
     const GetStudentPracticalActivities = async (userCourseId, pageNumber, pageSize) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivities?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivities?userCourseId=${userCourseId}&pageNumber=${pageNumber}&pageSize=${pageSize}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -830,14 +738,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get student flight
 // /Course/GetStudentFlight?flightId=25
     const GetStudentPracticalActivity = async (flightId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivity?practicalActivityId=${flightId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPracticalActivity?practicalActivityId=${flightId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -860,14 +764,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get course student classes
 // /Course/GetStudentClasses?userCourseId=35
     const getCourseStudentClasses = async (userCourseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentClasses?userCourseId=${userCourseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentClasses?userCourseId=${userCourseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -894,14 +794,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get course student class
 // /Course/GetStudentClass?classId=1
     const getCourseStudentClass = async (classId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentClass?classId=${classId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentClass?classId=${classId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -928,14 +824,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get student syllabi
 // /Course/GetStudentSyllabi?userCourseId=35
     const getStudentSyllabi = async (userCourseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentSyllabi?userCourseId=${userCourseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentSyllabi?userCourseId=${userCourseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -955,15 +847,10 @@ const getSyllabiForLevels = async (levelId) => {
 
     // /api/Course/GetStudentPendingPracticalActivityCount?userCourseId=45
     const GetStudentPendingPracticalActivityCount = async (userCourseId) => {
-                    
-        const token = Cookies.get('token');
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPendingPracticalActivityCount?userCourseId=${userCourseId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.get(`${API_BASE_URL}/Course/GetStudentPendingPracticalActivityCount?userCourseId=${userCourseId}`, { 
+            headers: getCommonHeaders() 
         });
         return response.data;
 
@@ -990,14 +877,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get all active students
 // /Course/GetAllActiveStudents?courseId=30
     const getAllActiveStudents = async (courseId) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetAllActiveStudents?courseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllActiveStudents?courseId=${courseId}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
 
@@ -1058,14 +941,10 @@ const getSyllabiForLevels = async (levelId) => {
 // use all students query
 // /Course/GetAllStudents?type=active
     const getAllStudents = async (type, pageNumber, pageSize, isForClub) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetAllStudents?type=${type}${pageNumber && `&pageNumber=${pageNumber}`}&pageSize=${pageSize}&isForClub=${isForClub || false}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetAllStudents?type=${type}${pageNumber && `&pageNumber=${pageNumber}`}&pageSize=${pageSize}&isForClub=${isForClub || false}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
 
@@ -1091,14 +970,10 @@ const getSyllabiForLevels = async (levelId) => {
 // get student courses
 // /Course/GetStudentCourses?studentUserId=890soq
     const GetStudentCourses = async (id, pageNumber, pageSize, isForClub) => {
-        const token = Cookies.get('token');
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}&isForClub=${isForClub}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
+            const response = await axios.get(`${API_BASE_URL}/Course/GetStudentCourses?studentUserId=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}&isForClub=${isForClub}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
 

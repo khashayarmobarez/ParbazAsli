@@ -2,6 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { API_BASE_URL } from '../Providers/apiUrl';
+import { getCommonHeaders } from '../Providers/headers';
 
 
 
@@ -20,16 +21,14 @@ const fetchAuthSettings = async () => {
 
 
 
-const postIsUserAuthenticated = async (token, navigate, isUserAuthenticated, setIsPageReloaded) => {
+const postIsUserAuthenticated = async ( isUserAuthenticated, setIsPageReloaded) => {
+
   try {
     const response = await axios.post(
       `${API_BASE_URL}/Auth/IsUserAuthenticated`,
       {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+      { 
+        headers: getCommonHeaders() 
       }
     );
     if (response.data.isSuccess) {
@@ -105,11 +104,8 @@ const postLogout = async (token) => {
     const response = await axios.post(
       `${API_BASE_URL}/Auth/Logout`,
       {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+      { 
+        headers: getCommonHeaders() 
       }
     );
     if (response.data.isSuccess) {
@@ -138,10 +134,8 @@ const postLogout = async (token) => {
 // }
   const postSendVerificationCode = async (input) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/Auth/SendVerificationCode`, input, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.post(`${API_BASE_URL}/Auth/SendVerificationCode`, input, { 
+          headers: getCommonHeaders() 
         });
         return response.data;
     } catch (error) {
@@ -166,11 +160,9 @@ const postLogout = async (token) => {
 // }
   const postCheckForgotPasswordCode = async (input) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/Auth/CheckForgotPasswordCode`, input, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await axios.post(`${API_BASE_URL}/Auth/CheckForgotPasswordCode`, input, { 
+            headers: getCommonHeaders() 
+          });
         return response.data;
     } catch (error) {
             throw error;
@@ -195,10 +187,8 @@ const postLogout = async (token) => {
 // };
   const postResetPassword = async (input) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/Auth/ForgotPassword`, input, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await axios.post(`${API_BASE_URL}/Auth/ForgotPassword`, input, { 
+          headers: getCommonHeaders() 
         });
         return response.data;
     } catch (error) {

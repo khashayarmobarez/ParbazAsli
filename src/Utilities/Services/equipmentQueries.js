@@ -1,17 +1,14 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { API_BASE_URL } from "../Providers/apiUrl";
+import { getCommonHeaders } from "../Providers/headers";
 
 
 // post equipment
     const addEquipment = async (formData) => {
-        const token = Cookies.get('token');
+        
         const response = await axios.post(`${API_BASE_URL}/Equipment/AddEquipment`, formData, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-        },
+            headers: getCommonHeaders('multipart/form-data') 
         });
     
         if (response.status !== 200) {
@@ -42,13 +39,10 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get all active Equipment from one type
     const getUserEquipmentsByType = async (equipmentType, isForClub) => {
+
         try {
-            const token = Cookies.get('token');
-            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}&isForClub=${isForClub}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipments?type=${equipmentType}&isForClub=${isForClub}`, { 
+                headers: getCommonHeaders() 
             });
             return response.data;
         } catch (error) {
@@ -71,14 +65,11 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // get active equipments for dropdown input
 // /Equipment/GetActiveEquipmentsForDropDown?type=3
     const getUserEquipmentsForDropDown = async (equipmentType,wingType) => {
+
         try {
-            const token = Cookies.get('token');
-            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            });
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, { 
+            headers: getCommonHeaders() 
+        });
             return response.data;
         } catch (error) {
             if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
@@ -98,14 +89,11 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get all active Equipment from one type
     const getUserEquipmentsHistoryByType = async (equipmentType, isForClub) => {
+
         try {
-            const token = Cookies.get('token');
-            const response = await axios.get(`${API_BASE_URL}/Equipment/GetEquipmentHistories?type=${equipmentType}&isForClub=${isForClub}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            });
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetEquipmentHistories?type=${equipmentType}&isForClub=${isForClub}`, { 
+            headers: getCommonHeaders() 
+        });
             return response.data;
         } catch (error) {
             if (error.response && error.response.data.ErrorMessages[0].ErrorKey === 'login') {
@@ -127,14 +115,11 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // get an Equipment data
     const getAnEquipmentData = async (equipmentId, isForClub) => {
+
         try {
-            const token = Cookies.get('token');
-            const response = await axios.get(`${API_BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}&isForClub=${isForClub}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            });
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetEquipment?equipmentId=${equipmentId}&isForClub=${isForClub}`, { 
+            headers: getCommonHeaders() 
+        });
             // console.log(response.data);  
             return response.data;
         } catch (error) {
@@ -154,12 +139,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // change equipment possession mutation
     const possessionTransition = async (formData) => {
-        const token = Cookies.get('token');
+        
         const response = await axios.post(`${API_BASE_URL}/Equipment/PossessionTransition`, formData, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-        },
+            headers: getCommonHeaders('multipart/form-data') 
         });
     
         if (response.status !== 200) {
@@ -190,12 +172,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // return euipment mutation
     const returnEquipment = async (formBody) => {
-        const token = Cookies.get('token');
-        const response = await axios.post(`${API_BASE_URL}/Equipment/ReturnEquipment`, formBody, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
+        
+        const response = await axios.post(`${API_BASE_URL}/Equipment/ReturnEquipment`, formBody, { 
+            headers: getCommonHeaders() 
         });
     
         if (response.status !== 200) {
@@ -215,12 +194,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 
 // post Edit Equipments
     const postEditEquipment = async (formData) => {
-        const token = Cookies.get('token');
+        
         const response = await axios.post(`${API_BASE_URL}/Equipment/EditEquipment`, formData, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-        },
+            headers: getCommonHeaders('multipart/form-data') 
         });
     
         if (response.status !== 200) {
@@ -255,12 +231,9 @@ import { API_BASE_URL } from "../Providers/apiUrl";
 // trigger equipment status mutation
 // /Equipment/TriggerEquipmentStatus
     const triggerEquipmentStatus = async (formData) => {
-        const token = Cookies.get('token');
-        const response = await axios.post(`${API_BASE_URL}/Equipment/TriggerEquipmentStatus`, formData, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
+        
+        const response = await axios.post(`${API_BASE_URL}/Equipment/TriggerEquipmentStatus`, formData, { 
+            headers: getCommonHeaders() 
         });
     
         if (response.status !== 200) {
