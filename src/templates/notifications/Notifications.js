@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // queries
 import { useNotifications } from '../../Utilities/Services/notificationAndSurveyQueries';
@@ -19,8 +19,15 @@ import PopupForNotif from '../../modules/Notifications/PopupForNotif';
 import NotifAcceptEquipment from '../../modules/Notifications/NotifAcceptEquipment';
 import Attention from '../../components/icons/Attention';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const Notifications = () => {
+
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const [PageNumber, setPageNumber ] = useState(1)
 
@@ -43,7 +50,7 @@ const Notifications = () => {
 
             <div className='flex flex-col py-14 justify-center items-center w-full gap-y-4 md:w-[60%] lg:w-[55%]'>
 
-                <PageTitle title={'اعلانات'} paddingRight={'40%'} />
+                <PageTitle title={t('notifications.title')} paddingRight={'40%'} />
 
                 {
                     notificationsData?.data.length < 1 && !notificationsLoading && !notificationsError &&
@@ -51,7 +58,7 @@ const Notifications = () => {
                         <span className='w-14 h-14 mb-2'>
                             <Attention />
                         </span>
-                        <p>اعلانی یافت نشد</p>
+                        <p>{t('notifications.noNotifications')}</p>
                     </div>
                 }
 
@@ -102,7 +109,7 @@ const Notifications = () => {
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                            صفحه ی {PageNumber}
+                            {t('notifications.page')} {PageNumber}
                         </p>
 
                         <button

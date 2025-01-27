@@ -236,6 +236,11 @@
             }
         }
     },
+    "notifications": {
+        "title": "اعلانات",
+        "noNotifications": "اعلانی یافت نشد",
+        "page": "صفحه ی"
+    },
     "flightHistory": {
         "logbook": "لاگ بوک",
         "searchFilterButton": "فیلتر جست‌وجو",

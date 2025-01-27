@@ -236,6 +236,11 @@
             }
         }
     },
+    "notifications": {
+        "title": "Notifications",
+        "noNotifications": "No notifications found",
+        "page": "Page"
+    },
     "flightHistory": {
         "logbook":"Logbook",
         "searchFilterButton": "Search Filter",
