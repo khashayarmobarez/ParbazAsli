@@ -155,7 +155,7 @@ const Syllabuses = () => {
     return (
         <div className="py-14 flex flex-col justify-center items-center gap-y-6">
 
-            <div className='flex flex-col items-center w-full lg:w-[50%]'>
+            <div className='flex flex-col items-center w-full lg:w-[55%]'>
 
                 <PageTitle title={t('notifications.approveStudentFlight.syllabi.title')} />
 
