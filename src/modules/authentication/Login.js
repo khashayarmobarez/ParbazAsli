@@ -95,7 +95,6 @@ const Login = () => {
                 theme: appTheme,
                 style: { width: "90%" }
             }); 
-            setErrMsg("اطلاعات درست نیست");
             return;
         }
         try {
