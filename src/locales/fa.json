@@ -569,6 +569,50 @@
         "previous": "قبلی",
         "submit": "ثبت",
         "confirmationWarning": "در صورت تایید کردن قابل ویرایش نمی‌باشد دقت کنید"
+    },
+    "settings": {
+        "title": "تنظیمات",
+        "appearance": "مود و ظاهر",
+        "personal": "شخصی",
+        "certificates": "گواهینامه‌ها",
+        "appColorMode": {
+            "lightMode": "حالت روز",
+            "darkMode": "حالت شب",
+            "autoMode": "خودکار",
+            "day": "روشن",
+            "night": "تیره",
+            "automatic": "خودکار"
+        },
+        "editUserSettings": {
+            "phoneCodeLengthError": "کد تایید باید ۶ رقمی باشد",
+            "phoneChangeSuccess": "شماره تلفن شما با موفقیت تغییر یافت",
+            "emailRequired": "ایمیل خود را وارد کنید",
+            "emailCodeSent": "کد تایید برای شما ارسال شد",
+            "phoneNumberRequired": "شماره تلفن خود را وارد کنید",
+            "phoneCodeSent": "کد تایید برای شما ارسال شد",
+            "emailCodeLengthError": "کد تایید باید ۶ رقمی باشد",
+            "emailChangeSuccess": "ایمیل شما با موفقیت تغییر یافت",
+            "change": "تغییر",
+            "changePassword": "تغییر رمز عبور"
+        },
+        "certificate": {
+            "viewAll": "مشاهده همه",
+            "addCertificate": "افزودن گواهینامه"
+        }
+    },
+    "editUser": {
+        "certificate": {
+            "card": {
+                "status":"وضعیت",
+                "statusActive": "فعال",
+                "statusPending": "در انتظار تایید",
+                "statusExpired": "منقضی شده",
+                "statusRejected": "رد شده",
+                "expirationDate": "تاریخ انقضا",
+                "rejectionReason": "دلیل رد شدن",
+                "renew": "تمدید"
+            }
+        }
     }
 }
   

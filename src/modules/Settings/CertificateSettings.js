@@ -14,7 +14,13 @@ import { useAllUserCertificates } from '../../Utilities/Services/userQueries';
 import Certificate from './Certificate';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const CertificateSettings = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -37,19 +43,21 @@ const CertificateSettings = () => {
                     <CircularProgressLoader />
                 }
 
-                {   
+                {
                     userCertificates && userCertificates.totalCount >= pageSize &&
-                    <p 
-                    onClick={() => navigate(`/editProfile/changeCertificate`)}
-                    className='w-full' style={{color:'var(--text-accent)'}}>
-                        مشاهده همه
+                    <p
+                        onClick={() => navigate(`/editProfile/changeCertificate`)}
+                        className='w-full'
+                        style={{ color: 'var(--text-accent)' }}
+                    >
+                        {t('settings.certificate.viewAll')}
                     </p>
                 }
 
-                <Link to='/Settings/AddNewCertificate' className='flex w-full rounded-xl mt-4 '>
-                    <button className={`${ButtonStyles.addButton} w-[100%]`} >
+                <Link to='/Settings/AddNewCertificate' className='flex w-full rounded-xl mt-4'>
+                    <button className={`${ButtonStyles.addButton} w-[100%]`}>
                         <AddIcon />
-                        <p>افزودن گواهینامه</p>
+                        <p>{t('settings.certificate.addCertificate')}</p>
                     </button>
                 </Link>
 

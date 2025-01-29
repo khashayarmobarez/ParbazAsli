@@ -23,8 +23,14 @@ import ChangePicPopUp from '../Profile/EditProfile/ChangePicPopUp';
 import PhoneVerificationCode from '../authentication/popUps/PhoneVerificationCode';
 import ChangePasswordPopUp from '../Profile/EditProfile/ChangePasswordPopUp';
 
-const EditUserSettings = () => {
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
+const EditUserSettings = () => {
+    
+    // language
+    const { t } = useTranslation();
+    
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
     const authSettings = useSelector(selectAuthSettings);
@@ -107,9 +113,8 @@ const EditUserSettings = () => {
     }
 
     const handleFinalPhoneSubmission = () => {
-        
-        if(phoneNumberCode.length !== phoneNumberCodeLength) {
-            toast('کد تایید باید ۶ رقمی باشد', {
+        if (phoneNumberCode.length !== phoneNumberCodeLength) {
+            toast(t('settings.editUserSettings.phoneCodeLengthError'), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -118,19 +123,19 @@ const EditUserSettings = () => {
             });
             return;
         }
-
-        setLoadingStatus(true)
-
+    
+        setLoadingStatus(true);
+    
         const requestBody = {
             phoneNumber: phoneNumber,
             code: phoneNumberCode
-        }
-
+        };
+    
         mutateChangePhone(requestBody, {
             onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
-                toast('شماره تلفن شما با موفقیت تغییر یافت', {
+                setLoadingStatus(false);
+                setShowPopupType('');
+                toast(t('settings.editUserSettings.phoneChangeSuccess'), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -139,120 +144,22 @@ const EditUserSettings = () => {
                 });
             },
             onError: (err) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
+                setLoadingStatus(false);
+                setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',  
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-            }
-        })
-    }
-
-
-    const changeEmailPopUp = async(e) => {
-
-        if (!email) { 
-            toast('ایمیل خود را وارد کنید ', {
-                type: 'error', 
-                position: 'top-right', 
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
-            return;
-        }
-
-
-        setLoadingStatus(true)
-        
-        const requestBody = {
-            username: email,
-        };
-
-        mutateCodeRequestToChange(requestBody,{
-            onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('confirmEmail')
-                setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds)
-                toast('کد تایید برای شما ارسال شد', {
-                    type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
                 });
-            },
-            onError: (err) => {
-                setLoadingStatus(false)
-                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
             }
-        })
-    }
-
-    const changePhoneNumberPopUp = async(e) => {
-
-        if (!phoneNumber) { 
-            toast('شماره تلفن خود را وارد کنید ', {
-                type: 'error', 
-                position: 'top-right', 
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
-            return;
-        }
-
-
-        setLoadingStatus(true)
-        
-        const requestBody = {
-            username: phoneNumber,
-        };
-
-        console.log(requestBody)
-
-        mutateCodeRequestToChange(requestBody,{
-            onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('confirmPhone')
-                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds)
-                toast('کد تایید برای شما ارسال شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-            },
-            onError: (err) => {
-                setLoadingStatus(false)
-                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-            }
-        })
-    }
-
-
-
-    const handleFinalEmailSubmission = () => {
-        
-        if(emailCode.length !== emailCodeLength) {
-            toast('کد تایید باید ۶ رقمی باشد', {
+        });
+    };
+    
+    const changeEmailPopUp = async (e) => {
+        if (!email) {
+            toast(t('settings.editUserSettings.emailRequired'), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -261,19 +168,19 @@ const EditUserSettings = () => {
             });
             return;
         }
-
-        setLoadingStatus(true)
-
+    
+        setLoadingStatus(true);
+    
         const requestBody = {
-            email: email,
-            code: emailCode
-        }
-
-        mutateChangeEmail(requestBody, {
+            username: email,
+        };
+    
+        mutateCodeRequestToChange(requestBody, {
             onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
-                toast('ایمیل شما با موفقیت تغییر یافت', {
+                setLoadingStatus(false);
+                setShowPopupType('confirmEmail');
+                setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds);
+                toast(t('settings.editUserSettings.emailCodeSent'), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -282,32 +189,137 @@ const EditUserSettings = () => {
                 });
             },
             onError: (err) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
+                setLoadingStatus(false);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',  
+                    position: 'top-right',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
                 });
             }
-        })
-    }
+        });
+    };
+    
+    const changePhoneNumberPopUp = async (e) => {
+        if (!phoneNumber) {
+            toast(t('settings.editUserSettings.phoneNumberRequired'), {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: appTheme,
+                style: { width: "90%" }
+            });
+            return;
+        }
+    
+        setLoadingStatus(true);
+    
+        const requestBody = {
+            username: phoneNumber,
+        };
+    
+        mutateCodeRequestToChange(requestBody, {
+            onSuccess: (data) => {
+                setLoadingStatus(false);
+                setShowPopupType('confirmPhone');
+                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds);
+                toast(t('settings.editUserSettings.phoneCodeSent'), {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            },
+            onError: (err) => {
+                setLoadingStatus(false);
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            }
+        });
+    };
+    
+    const handleFinalEmailSubmission = () => {
+        if (emailCode.length !== emailCodeLength) {
+            toast(t('settings.editUserSettings.emailCodeLengthError'), {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: appTheme,
+                style: { width: "90%" }
+            });
+            return;
+        }
+    
+        setLoadingStatus(true);
+    
+        const requestBody = {
+            email: email,
+            code: emailCode
+        };
+    
+        mutateChangeEmail(requestBody, {
+            onSuccess: (data) => {
+                setLoadingStatus(false);
+                setShowPopupType('');
+                toast(t('settings.editUserSettings.emailChangeSuccess'), {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            },
+            onError: (err) => {
+                setLoadingStatus(false);
+                setShowPopupType('');
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            }
+        });
+    };
 
     if(userData && userData.data) return (
         <div className='w-full flex flex-col'>
             <div className='flex flex-col w-full space-y-4 items-center md:grid md:grid-cols-2 md:gap-6 md:space-y-0'>
-
                 <FixedInput textData={userData.data.firstName} />
                 <FixedInput textData={userData.data.lastName} />
-                <InputWithButton isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
-                <InputWithButton Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} />
-
+                <InputWithButton
+                    isForPhone={true}
+                    Type={'number'}
+                    icon={<PhoneIcon />}
+                    onSubmit={changePhoneNumberPopUp}
+                    buttonText={t('settings.editUserSettings.change')}
+                    placeH={userData.data.phoneNumber}
+                    value={phoneNumber}
+                    onChange={changePhoneNumberHandler}
+                />
+                <InputWithButton
+                    Type={'text'}
+                    icon={<MailIcon />}
+                    onSubmit={changeEmailPopUp}
+                    buttonText={t('settings.editUserSettings.change')}
+                    placeH={userData.data.email}
+                    onChange={changeEmailHandler}
+                />
             </div>
-            <button type="submit" className={`${ButtonStyles.normalButton} w-[170px] self-center mt-4`} 
-            onClick={() => setShowPopupType('changePassword')}>
-                تغییر رمز عبور
+            <button
+                type="submit"
+                className={`${ButtonStyles.normalButton} w-[170px] self-center mt-4`}
+                onClick={() => setShowPopupType('changePassword')}
+            >
+                {t('settings.editUserSettings.changePassword')}
             </button>
             
             <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />

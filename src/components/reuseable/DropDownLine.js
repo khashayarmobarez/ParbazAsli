@@ -7,7 +7,7 @@ const DropDownLine = ({title, isActive, onClick, icon, textWidth, onClickActivat
     return (
         <div className='flex justify-between w-full' onClick={onClickActivation}>
             
-            <div  className={`flex w-full h-10 items-center justify-between gap-x-4`}>
+            <div  className={`flex w-full h-10 items-center justify-between gap-x-6`}>
 
                 <div className={`flex gap-x-2 justify-center  ${isActive ? 'text-textAccent' : 'text-bgDropdownDefault'}`}>
                     {icon ?

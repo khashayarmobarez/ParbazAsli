@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 // styles
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
@@ -17,11 +18,15 @@ import DropDownLine from '../../components/reuseable/DropDownLine';
 import WebColorMode from '../../modules/Settings/WebColorMode';
 import EditUserSettings from '../../modules/Settings/EditUserSettings';
 import CertificateSettings from '../../modules/Settings/CertificateSettings';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 // import AddClub from '../components/modules/Club/AddClub';
 
 
 const Settings = () => {
 
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
     
     // controlling  items drop down
     const [DropDown, setDropDown] = useState(['dropDown1']);
@@ -43,48 +48,55 @@ const Settings = () => {
 
             <div className='flex flex-col py-14 justify-center items-center w-full gap-y-8 md:w-[80%]'>
                 
-                <PageTitle title={'تنظیمات'} paddingRight={'40%'} /> 
+            <PageTitle title={t('settings.title')} paddingRight={'40%'} />
 
-                <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='مود و ظاهر' icon={<SettingIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown1')} onClickActivation={() => handleOpenDropDowns('dropDown1')} />
-                    {
-                        DropDown.includes('dropDown1') &&
-                        <WebColorMode />
-                    }
-                </div>
+            <div className='w-[90%] flex flex-col items-center gap-y-6'>
+                <DropDownLine
+                    title={t('settings.appearance')}
+                    icon={<SettingIcon />}
+                    dropDown={DropDown}
+                    isActive={DropDown.includes('dropDown1')}
+                    onClickActivation={() => handleOpenDropDowns('dropDown1')}
+                />
+                {
+                    DropDown.includes('dropDown1') &&
+                    <WebColorMode />
+                }
+            </div>
 
-                <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='شخصی' icon={<UserIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown2')} onClickActivation={() => handleOpenDropDowns('dropDown2')} />
-                    {
-                        DropDown.includes('dropDown2') &&
-                        <EditUserSettings />
-                    }
-                </div>                                                                                                                                                                                                                                                                                                                   <p className=' absolute -z-10 text-[#000000]/0'>front end developed by khashayar mobarez</p><p className=' absolute -z-10 text-[#000000]/0'>back end developed by hesam javadi</p>
-                                                                                                                                                                                                                                                                                                                         
-                <div className='w-[90%] flex flex-col items-center gap-y-4'>
-                    <DropDownLine title='گواهینامه‌ها' icon={<CertificateIcon/>} dropDown={DropDown} isActive={DropDown.includes('dropDown3')} onClickActivation={() => handleOpenDropDowns('dropDown3')} />
-                    {
-                        DropDown.includes('dropDown3') &&
-                        <div className='w-full flex flex-col items-center gap-y-6'>
-                            <CertificateSettings />
-                        </div>
-                    }
-                </div>
+            <div className='w-[90%] flex flex-col items-center gap-y-6'>
+                <DropDownLine
+                    title={t('settings.personal')}
+                    icon={<UserIcon />}
+                    dropDown={DropDown}
+                    isActive={DropDown.includes('dropDown2')}
+                    onClickActivation={() => handleOpenDropDowns('dropDown2')}
+                />
+                {
+                    DropDown.includes('dropDown2') &&
+                    <EditUserSettings />
+                }
+            </div>
 
-                {/* <div className='w-[90%] flex flex-col items-center gap-y-6'>
-                    <DropDownLine  title='تغییر مربی' icon={moneyIcon} dropDown={DropDown} isActive={DropDown === 'dropDown4'} onClickActivation={() => setDropDown(DropDown === 'dropDown4' ? '' : 'dropDown4')} />
-                    {
-                        DropDown === 'dropDown4' &&
-                        <div className='w-full flex flex-col items-center px-3 text-sm gap-y-6' style={{color:'var(--soft-white)'}}>
-                            <div className='flex w-full justify-between items-center'>
-                                <p>مربی : محمود شیرازی‌نیا</p>
-                                <p>کد کاربری : 22354678987</p>
-                            </div>
-                            <TextInput placeholder={'شماره کاربری مربی جدید'} Type={'number'}/>
-                            <button type='submit' className={`${ButtonStyles.addButton} w-36`}>ثبت </button>
-                        </div>
-                    }
-                </div> */}
+            <p className='absolute -z-10 text-[#000000]/0'>{t('settings.frontEndDevelopedBy')}</p>
+            <p className='absolute -z-10 text-[#000000]/0'>{t('settings.backEndDevelopedBy')}</p>
+
+            <div className='w-[90%] flex flex-col items-center gap-y-4'>
+                <DropDownLine
+                    title={t('settings.certificates')}
+                    icon={<CertificateIcon />}
+                    dropDown={DropDown}
+                    isActive={DropDown.includes('dropDown3')}
+                    onClickActivation={() => handleOpenDropDowns('dropDown3')}
+                />
+                {
+                    DropDown.includes('dropDown3') &&
+                    <div className='w-full flex flex-col items-center gap-y-6'>
+                        <CertificateSettings />
+                    </div>
+                }
+            </div>
+
 
                 {/* {   clubStatus &&
                     clubStatus.data === 'NotAdded' &&
@@ -103,7 +115,6 @@ const Settings = () => {
                         }
                     </div>
                 } */}
-                    
 
             </div>
         </div>

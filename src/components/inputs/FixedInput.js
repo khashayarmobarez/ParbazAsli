@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 // styles
 import inputStyles from '../../styles/Inputs.module.css'
@@ -7,6 +8,9 @@ import inputStyles from '../../styles/Inputs.module.css'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const FixedInput = ({ textData, userIcon }) => {
+
+    // language and direction
+    const dir = Cookies.get('dir') || 'ltr';
 
     return (
         <div className='w-full'>
@@ -18,7 +22,7 @@ const FixedInput = ({ textData, userIcon }) => {
                     </span>
                 :
                     <span style={{ color: 'var(--text-input-default)' }}>
-                        <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0' }} />
+                        <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 5px' }} />
                     </span>
                 }
                 <input 

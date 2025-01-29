@@ -569,5 +569,49 @@
         "previous": "Previous",
         "submit": "Submit",
         "confirmationWarning": "Once confirmed, it cannot be edited. Please be careful."
+    },
+    "settings": {
+        "title": "Settings",
+        "appearance": "Appearance",
+        "personal": "Personal",
+        "certificates": "Certificates",
+        "appColorMode": {
+            "lightMode": "Light Mode",
+            "darkMode": "Dark Mode",
+            "autoMode": "Auto Mode",
+            "day": "Day",
+            "night": "Night",
+            "automatic": "Automatic"
+        },
+        "editUserSettings": {
+            "phoneCodeLengthError": "Verification code must be 6 digits",
+            "phoneChangeSuccess": "Your phone number has been changed successfully",
+            "emailRequired": "Please enter your email",
+            "emailCodeSent": "Verification code has been sent to you",
+            "phoneNumberRequired": "Please enter your phone number",
+            "phoneCodeSent": "Verification code has been sent to you",
+            "emailCodeLengthError": "Verification code must be 6 digits",
+            "emailChangeSuccess": "Your email has been changed successfully",
+            "change": "Change",
+            "changePassword": "Change Password"
+        },
+        "certificate": {
+            "viewAll": "View All",
+            "addCertificate": "Add Certificate"
+        }
+    },
+    "editUser": {
+        "certificate": {
+            "card": {
+                "status":"Status",
+                "statusActive": "Active",
+                "statusPending": "Pending",
+                "statusExpired": "Expired",
+                "statusRejected": "Rejected",
+                "expirationDate": "Expiration Date",
+                "rejectionReason": "Rejection Reason",
+                "renew": "Renew"
+            }
+        }
     }
 }
