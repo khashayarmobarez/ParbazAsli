@@ -5,7 +5,13 @@ import Cookies from 'js-cookie';
 import {  useTriggerStudentStatus } from '../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -22,19 +28,19 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
             status: status
         }
 
-        triggerStudentStatus(triggerStatusForm,{
+        triggerStudentStatus(triggerStatusForm, {
             onSuccess: (data) => {
-                if(status === 'active') {
-                    toast('هنرجو تایید شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', 
+                if (status === 'active') {
+                    toast(t('notifications.acceptStudent.studentApproved'), {
+                        type: 'success',
+                        position: 'top-right',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
                     });
                 } else {
-                    toast('هنرجو رد شد', {
-                        type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+                    toast(t('notifications.acceptStudent.studentRejected'), {
+                        type: 'success',
                         position: 'top-right',
                         autoClose: 3000,
                         theme: appTheme,
@@ -42,7 +48,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                     });
                 }
                 window.location.reload();
-            },
+            }
         });
     }
 
@@ -77,13 +83,13 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         type="submit" 
                         disabled={true} 
                         className='text-textButtonMainDisabled font-medium' >
-                            تایید
+                            {t('notifications.accept')}
                         </button>
                         
                         <button 
                         disabled={true} 
                         className='text-textButtonMainDisabled font-medium'>
-                            رد
+                            {t('notifications.decline')}
                         </button>
 
                     </div>
@@ -101,14 +107,14 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         disabled={triggerStudentStatusLoading} 
                         onClick={(event) => handleTriggerStudentStatus( 'active', externalId, event) } 
                         className='text-textAccent font-medium'>
-                            تایید
+                            {t('notifications.accept')}
                         </button>
                         
                         <button 
                         disabled={triggerStudentStatusLoading} 
                         onClick={(event) => handleTriggerStudentStatus( 'coachRejected', externalId, event) } 
                         className='text-textError font-medium'>
-                            رد
+                            {t('notifications.decline')}
                         </button>
 
                     </div>

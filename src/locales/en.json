@@ -240,6 +240,8 @@
         "title": "Notifications",
         "noNotifications": "No notifications found",
         "page": "Page",
+        "accept":"Accept",
+        "decline": "Decline",
         "approveStudentFlight": {
             "success": "Flight qualification has been declined",
             "errorOccurred": "An error occurred",
@@ -288,6 +290,28 @@
                 "submit": "Final Submit",
                 "submitWithCount": "Final Submit ({{countersSum}})"
             }
+        },
+        "notifAcceptClub": {
+            "clubAccepted": "ClubAccepted",
+            "clubDeclined": "ClubDeclined"
+        },
+        "acceptCourse": {
+            "courseAccepted": "Course accepted",
+            "courseRejected": "Course rejected",
+            "errorOccurred": "An error occurred"
+        },
+        "acceptEquipment": {
+            "equipmentAccepted": "Equipment successfully accepted",
+            "equipmentRejected": "Equipment successfully rejected",
+            "errorOccurred": "An error occurred"
+        },
+        "acceptStudent": {
+            "studentApproved": "Student has been approved",
+            "studentRejected": "Student has been rejected"
+        },
+        "tandemPassengerSurvey": {
+            "setStatus": "Set Status",
+            "createdDateTime": "Created Date"
         }
     },
     "flightHistory": {

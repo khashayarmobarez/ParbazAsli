@@ -240,6 +240,8 @@
         "title": "اعلانات",
         "noNotifications": "اعلانی یافت نشد",
         "page": "صفحه ی",
+        "accept":"تایید",
+        "decline": "رد",
         "approveStudentFlight": {
             "success": "پرواز رد صلاحیت شد",
             "errorOccurred": "خطایی رخ داده است",
@@ -288,6 +290,28 @@
                 "submit": "ثبت نهایی",
                 "submitWithCount": "ثبت نهایی ({{countersSum}})"
             }
+        },
+        "notifAcceptClub": {
+            "clubAccepted": "باشگاه تایید شد",
+            "clubDeclined": "باشگاه رد شد"
+        },
+        "acceptCourse": {
+            "courseAccepted": "دوره تایید شد",
+            "courseRejected": "دوره رد شد",
+            "errorOccurred": "خطایی رخ داده است"
+        },
+        "acceptEquipment": {
+            "equipmentAccepted": "وسیله پروازی با موفقیت تایید شد",
+            "equipmentRejected": "وسیله پروازی با موفقیت رد شد",
+            "errorOccurred": "خطایی رخ داده است"
+        },
+        "acceptStudent": {
+            "studentApproved": "هنرجو تایید شد",
+            "studentRejected": "هنرجو رد شد"
+        },
+        "tandemPassengerSurvey": {
+            "setStatus": "تعیین وضعیت",
+            "createdDateTime": "تاریخ ایجاد"
         }
     },
     "flightHistory": {

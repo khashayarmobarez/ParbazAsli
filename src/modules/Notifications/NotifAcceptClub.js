@@ -5,7 +5,13 @@ import Cookies from 'js-cookie';
 import { useTriggerClubStatus } from '../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -26,7 +32,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
             onSuccess: (data) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
                 if(status === 'active') {
-                    toast('باشگاه تایید شد', {
+                    toast(t('notifications.notifAcceptClub.clubAccepted'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -34,7 +40,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                         style: { width: "350px" }
                     });
                 } else {
-                    toast('باشگاه رد شد', {
+                    toast(t('notifications.notifAcceptClub.clubDeclined'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -77,13 +83,13 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                         type="submit" 
                         disabled={true} 
                         className='text-textButtonMainDisabled font-medium' >
-                            تایید
+                            {t('notifications.accept')}
                         </button>
                         
                         <button 
                         disabled={true} 
                         className='text-textButtonMainDisabled font-medium'>
-                            رد
+                            {t('notifications.decline')}
                         </button>
 
                     </div>
@@ -99,14 +105,14 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                         disabled={triggerClubStatusLoading} 
                         onClick={(event) => handleTriggerClubStatus( 'active', externalId, event) } 
                         className='text-textAccent font-medium' >
-                            تایید
+                            {t('notifications.accept')}
                         </button>
                         
                         <button 
                         disabled={triggerClubStatusLoading} 
                         onClick={(event) => handleTriggerClubStatus( 'rejected', externalId, event) } 
                         className='text-textError font-medium'>
-                            رد
+                            {t('notifications.decline')}
                         </button>
 
                     </div>

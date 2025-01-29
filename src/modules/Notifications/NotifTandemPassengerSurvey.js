@@ -5,7 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import { useIsSurveyAvailabe } from '../../Utilities/Services/notificationAndSurveyQueries';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const NotifTandemPassengerSurvey = ({notif, handleActivatePopUp}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
 
@@ -50,29 +56,21 @@ const NotifTandemPassengerSurvey = ({notif, handleActivatePopUp}) => {
             <div>
                 {
                     status === 'Expired' ?
-                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'
-                    >
-
-                        <button 
-                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10 `} >
-                            تعیین وضعیت
+                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
+                        <button
+                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >
+                            {t('notifications.tandemPassengerSurvey.setStatus')}
                         </button>
-                    
                         <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
-                
                     </div>
                     :
-
                     <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
-
-                        <button 
+                        <button
                         onClick={() => navigate(`/survey/${externalId}`)}
                         className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >
-                            تعیین وضعیت
+                            {t('notifications.tandemPassengerSurvey.setStatus')}
                         </button>
-
                         <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
-                
                     </div>
                 }
             </div>

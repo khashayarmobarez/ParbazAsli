@@ -4,8 +4,12 @@ import Cookies from 'js-cookie';
 // queries
 import { useTriggerEquipmentStatus } from '../../Utilities/Services/equipmentQueries';
 import { toast } from 'react-toastify';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -17,77 +21,79 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
 
         event.preventDefault();
 
-        if(action === 'Accepted') {
+        if (action === 'Accepted') {
             // accept
             const formBody = {
-                equipmentId: id,
-                status: 'Accepted',
-            }
-            
+              equipmentId: id,
+              status: 'Accepted',
+            };
+          
             mutateTriggerEquipmentStatus(formBody, {
-                onSuccess: () => {
-                    toast('وسیله پروازی با موفقیت تایید شد', {
-                        type: 'success',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
-                    // reload
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-                }
-            }, { onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+              onSuccess: () => {
+                toast(t('notifications.acceptEquipment.equipmentAccepted'), {
+                  type: 'success',
+                  position: 'top-right',
+                  autoClose: 5000,
+                  theme: appTheme,
+                  style: { width: "90%" }
+                });
+                // reload
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              }
+            }, {
+              onError: (error) => {
+                let errorMessage = t('notifications.acceptEquipment.errorOccurred');
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                  errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
                 toast(errorMessage, {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
+                  type: 'error',
+                  position: 'top-right',
+                  autoClose: 5000,
+                  theme: appTheme,
+                  style: { width: "90%" }
                 });
-                }
-            })
+              }
+            });
         } else {
             // decline
             const formBody = {
-                equipmentId: id,
-                status: 'Rejected',
-            }
-
+              equipmentId: id,
+              status: 'Rejected',
+            };
+          
             mutateTriggerEquipmentStatus(formBody, {
-                onSuccess: () => {
-                    toast('وسیله پروازی با موفقیت رد شد', {
-                        type: 'success',
-                        position: 'top-right',
-                        autoClose: 5000,
-                        theme: appTheme,
-                        style: { width: "90%" }
-                    });
-                    // reload
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-                }
-            }, { onError: (error) => {
-                console.log(error)
-                let errorMessage = 'خطایی رخ داده است';
+              onSuccess: () => {
+                toast(t('notifications.acceptEquipment.equipmentRejected'), {
+                  type: 'success',
+                  position: 'top-right',
+                  autoClose: 5000,
+                  theme: appTheme,
+                  style: { width: "90%" }
+                });
+                // reload
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              }
+            }, {
+              onError: (error) => {
+                console.log(error);
+                let errorMessage = t('notifications.acceptEquipment.errorOccurred');
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
-                    errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
+                  errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
                 toast(errorMessage, {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
+                  type: 'error',
+                  position: 'top-right',
+                  autoClose: 5000,
+                  theme: appTheme,
+                  style: { width: "90%" }
                 });
-                }
-            })
+              }
+            });
         }
     }
 
@@ -121,13 +127,13 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         type="submit" 
                         disabled={true} 
                         className='text-textButtonMainDisabled font-medium' >
-                            تایید
+                            {t('notifications.accept')}
                         </button>
                         
                         <button 
                         disabled={true} 
                         className='text-textButtonMainDisabled font-medium'>
-                            رد
+                            {t('notifications.decline')}
                         </button>
 
                     </div>
@@ -143,14 +149,14 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                         disabled={loadingTriggerEquipmentStatus} 
                         onClick={(event) => handleSubmittingTranfer( 'Accepted', externalId, event) } 
                         className='text-textAccent font-medium' >
-                            تایید
+                            {t('notifications.accept')}
                         </button>
                         
                         <button 
                         disabled={loadingTriggerEquipmentStatus} 
                         onClick={(event) => handleSubmittingTranfer( 'rejected', externalId, event) } 
                         className='text-textError font-medium'>
-                            رد
+                            {t('notifications.decline')}
                         </button>
 
                     </div>
