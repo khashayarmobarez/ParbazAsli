@@ -14,7 +14,13 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css';
 import { toast } from 'react-toastify';
 import { useTriggerEquipmentStatus } from '../../Utilities/Services/equipmentQueries';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const PopupForNotif = ({popUpData, setPopUpData}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
     
@@ -35,7 +41,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
             onSuccess: (data) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
                 if(status === 'Active') {
-                    toast('باشگاه تایید شد', {
+                    toast(t('notifications.popup.clubApproved'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -43,7 +49,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         style: { width: "350px" }
                     });
                 } else {
-                    toast('باشگاه رد شد', {
+                    toast(t('notifications.popup.clubRejected'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -72,7 +78,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 // Handle success, e.g., show a notification, reset the form, etc.
                 window.location.reload();
                 if(status === 'active') {
-                    toast('دوره تایید شد', {
+                    toast(t('notifications.popup.courseApproved'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -80,7 +86,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         style: { width: "350px" }
                     });
                 } else {
-                    toast('دوره رد شد', {
+                    toast(t('notifications.popup.courseRejected'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -107,7 +113,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
         triggerStudentStatus(triggerStatusForm,{
             onSuccess: (data) => {
                 if(status === 'active') {
-                    toast('هنرجو تایید شد', {
+                    toast(t('notifications.popup.studentApproved'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', 
                         autoClose: 3000,
@@ -115,7 +121,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                         style: { width: "350px" }
                     });
                 } else {
-                    toast('هنرجو رد شد', {
+                    toast(t('notifications.popup.studentRejected'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
@@ -132,7 +138,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
 
     const { mutate: mutateTriggerEquipmentStatus, isLoading:loadingTriggerEquipmentStatus } = useTriggerEquipmentStatus()
 
-    const handleSubmittingTranfer = (action, id, event) => {
+    const handleSubmittingTransfer = (action, id, event) => {
 
         event.preventDefault();
 
@@ -145,7 +151,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
             
             mutateTriggerEquipmentStatus(formBody, {
                 onSuccess: () => {
-                    toast('وسیله پروازی با موفقیت تایید شد', {
+                    toast(t('notifications.popup.equipmentApproved'), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -158,7 +164,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                     }, 1000);
                 }
             }, { onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage = t('notifications.popup.errorOccurred');
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -180,7 +186,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
 
             mutateTriggerEquipmentStatus(formBody, {
                 onSuccess: () => {
-                    toast('وسیله پروازی با موفقیت رد شد', {
+                    toast(t('notifications.popup.equipmentRejected'), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -194,7 +200,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 }
             }, { onError: (error) => {
                 console.log(error)
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage =  t('notifications.popup.errorOccurred');
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -213,189 +219,183 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
     return (
         <div className={`z-30 w-full fixed inset-0 flex items-center justify-center backdrop-blur-sm ${popUpData ? 'visible' : 'invisible'}`}>
             <form
-            className={`${boxStyles.containerChangeOwnership} 
-            w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-4 rounded-lg shadow-lg gap-y-4 `}>
-                
-                <CloseIcon
+            className={`${boxStyles.containerChangeOwnership} w-[90%] md:w-[454px] h-auto flex flex-col justify-around items-center relative bg-white p-4 rounded-lg shadow-lg gap-y-4`}>
+
+            <CloseIcon
                 sx={{ cursor: 'pointer', position: 'absolute', top: 16, right: 16 }}
                 onClick={() => setPopUpData(null)}
-                />
+            />
 
-                {
-                    popUpData &&
-                    <>
-                        <h1 className='text-xl text-textAccent my-4' >توضیحات</h1>
-                        <p className='text-sm  md:text-base' >{popUpData.description}</p>
-                        {   popUpData.type === 'StudentFlightForm' &&
-                            (
-                                popUpData.status === 'Expired' ?
-                                <button 
-                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >تعیین وضعیت</button>
-                                :
-                                <button 
+            {
+                popUpData &&
+                <>
+                    <h1 className='text-xl text-textAccent my-4'>{t('notifications.popup.title')}</h1>
+                    <p className='text-sm md:text-base'>{popUpData.description}</p>
+                    {popUpData.type === 'StudentFlightForm' &&
+                        (
+                            popUpData.status === 'Expired' ?
+                            <button
+                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10`}>
+                                {t('notifications.popup.setStatus')}
+                            </button>
+                            :
+                            <button
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}
-                                className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
-                            )
-                        }
-                        {   popUpData.type === 'TandemPassenger' &&
-                            (
-                                popUpData.status === 'Expired' ?
-                                <button 
-                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >تعیین وضعیت</button>
-                                :
-                                <button 
+                                className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`}>
+                                {t('notifications.popup.setStatus')}
+                            </button>
+                        )
+                    }
+                    {popUpData.type === 'TandemPassenger' &&
+                        (
+                            popUpData.status === 'Expired' ?
+                            <button
+                                className={`${ButtonStyles.normalButtonDisable} w-7 h-10`}>
+                                {t('notifications.popup.setStatus')}
+                            </button>
+                            :
+                            <button
                                 onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${parseInt(popUpData.externalId)}`)}
-                                className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت</button>
-                            )
-                        }
-                        {   popUpData.type === 'AcceptClub' &&
-                           <>
-                           {
-                               popUpData.status === 'Expired' ?
-                               <div className='flex w-full justify-between gap-x-2'>
+                                className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`}>
+                                {t('notifications.popup.setStatus')}
+                            </button>
+                        )
+                    }
+                    {popUpData.type === 'AcceptClub' &&
+                        <>
+                            {
+                                popUpData.status === 'Expired' ?
+                                <div className='flex w-full justify-between gap-x-2'>
                                     <button
-                                    type="submit"
-                                    disabled={true}
-                                    className={`${ButtonStyles.normalButtonDisable}  w-28`}>
-                                        تایید
+                                        type="submit"
+                                        disabled={true}
+                                        className={`${ButtonStyles.normalButtonDisable} w-28`}>
+                                        {t('notifications.popup.approve')}
                                     </button>
                                     <button
-                                    disabled={true}
-                                    className={`${ButtonStyles.normalButtonDisable}`}
-                                    >
-                                       رد
+                                        disabled={true}
+                                        className={`${ButtonStyles.normalButtonDisable}`}>
+                                        {t('notifications.popup.reject')}
                                     </button>
-                               </div>
-                               :
-                               <div className='flex w-full justify-between gap-x-2'>
-                                   <button 
-                                    type="submit" 
-                                    disabled={triggerStudentStatusLoading} 
-                                    onClick={(event) => handleTriggerClubStatus( 'active', parseInt(popUpData.externalId), event) } 
-                                    className={`${ButtonStyles.addButton} w-28`} 
-                                    >
-                                           تایید
+                                </div>
+                                :
+                                <div className='flex w-full justify-between gap-x-2'>
+                                    <button
+                                        type="submit"
+                                        disabled={triggerStudentStatusLoading}
+                                        onClick={(event) => handleTriggerClubStatus('active', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.addButton} w-28`}>
+                                        {t('notifications.popup.approve')}
                                     </button>
-                                    <button 
-                                    disabled={triggerStudentStatusLoading} 
-                                    onClick={(event) => handleTriggerClubStatus( 'rejected', parseInt(popUpData.externalId), event) }
-                                    className={`${ButtonStyles.normalButton}`} 
-                                    >
-                                            رد
+                                    <button
+                                        disabled={triggerStudentStatusLoading}
+                                        onClick={(event) => handleTriggerClubStatus('rejected', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.normalButton}`}>
+                                        {t('notifications.popup.reject')}
                                     </button>
-                               </div>
-                           }
+                                </div>
+                            }
                         </>
-                        }
-                        {   popUpData.type === 'AcceptStudentInCourse' &&
-                            <>
-                                {
-                                    popUpData.status === 'Expired' ?
-                                    <div className='flex w-full justify-between gap-x-2'>
-                                        <button 
-                                            type="submit" 
-                                            disabled={true} 
-                                            className={`${ButtonStyles.normalButtonDisable} w-28`} >
-                                                تایید
-                                            </button>
-                                        <button 
-                                        disabled={true} 
-                                        className={`${ButtonStyles.normalButtonDisable} `} >
-                                            رد
-                                        </button>
-                                    </div>
-                                    :
-                                    <div className='flex w-full justify-between gap-x-2'>
-                                        <button 
-                                            type="submit" 
-                                            disabled={triggerStudentStatusLoading} 
-                                            onClick={(event) => handleTriggerStudentStatus( 'active', parseInt(popUpData.externalId), event) } 
-                                            className={`${ButtonStyles.addButton} w-28`} >
-                                                تایید
-                                            </button>
-                                        <button 
-                                        disabled={triggerStudentStatusLoading} 
-                                        onClick={(event) => handleTriggerStudentStatus( 'coachRejected', parseInt(popUpData.externalId), event) }
-                                        className={`${ButtonStyles.normalButton}`} >
-                                            رد
-                                        </button>
-                                    </div>
-                                }
-                            </>
-                        }
-                        {   popUpData.type === 'AcceptCourse' &&
-                            <>
-                                {
-                                    popUpData.status === 'Expired' ?
-                                    null
-                                    :
-                                    <div className='flex w-full justify-between gap-x-2'>
-                                        <button 
-                                            type="submit" 
-                                            disabled={triggerCourseStatusLoading} 
-                                            onClick={(event) => handleTriggerCourseStatus( 'active', parseInt(popUpData.externalId), event) } 
-                                            className={`${ButtonStyles.normalButtonDisable} w-28`}  
-                                        >
-                                            تایید
-                                        </button>
-                                        <button 
-                                            disabled={triggerCourseStatusLoading} 
-                                            onClick={(event) => handleTriggerCourseStatus( 'rejected', parseInt(popUpData.externalId), event) } 
-                                            className={`${ButtonStyles.normalButtonDisable}`} 
-                                        >
-                                            
-                                            رد
-                                        </button>
-                                    </div>
-
-                                }
-                            </>
-                        }
-                        {   (popUpData.type === 'AcceptUserEquipment' || popUpData.type === 'AcceptClubEquipment') &&
-                            <>
-                                {
+                    }
+                    {popUpData.type === 'AcceptStudentInCourse' &&
+                        <>
+                            {
                                 popUpData.status === 'Expired' ?
-                                    <div className='flex w-full justify-between gap-x-2'>
-                                        <button 
-                                        type="submit" 
-                                        disabled={true} 
-                                        className={`${ButtonStyles.normalButtonDisable} w-28`} >
-                                            تایید
-                                        </button>
-                                        <button 
-                                        disabled={true} 
-                                        className={`${ButtonStyles.normalButtonDisable} `} >
-                                            رد
-                                        </button>
-                                    </div>
-                                    :
-                                    <div className='flex w-full justify-between gap-x-2'>
-                                        <button 
-                                            type="submit" 
-                                            disabled={triggerCourseStatusLoading} 
-                                            onClick={(event) => handleSubmittingTranfer( 'Accepted', parseInt(popUpData.externalId), event) } 
-                                            className={`${ButtonStyles.addButton} w-28`}  
-                                        >
-                                            تایید
-                                        </button>
-                                        <button 
-                                            disabled={triggerCourseStatusLoading} 
-                                            onClick={(event) => handleSubmittingTranfer( 'rejected', parseInt(popUpData.externalId), event) } 
-                                            className={`${ButtonStyles.normalButton}`} 
-                                        >
-                                            
-                                            رد
-                                        </button>
-                                    </div>
-
-                                }
-                            </>
-                        }
-                    </>
-                }
-
-            
-            </form>
+                                <div className='flex w-full justify-between gap-x-2'>
+                                    <button
+                                        type="submit"
+                                        disabled={true}
+                                        className={`${ButtonStyles.normalButtonDisable} w-28`}>
+                                        {t('notifications.popup.approve')}
+                                    </button>
+                                    <button
+                                        disabled={true}
+                                        className={`${ButtonStyles.normalButtonDisable}`}>
+                                        {t('notifications.popup.reject')}
+                                    </button>
+                                </div>
+                                :
+                                <div className='flex w-full justify-between gap-x-2'>
+                                    <button
+                                        type="submit"
+                                        disabled={triggerStudentStatusLoading}
+                                        onClick={(event) => handleTriggerStudentStatus('active', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.addButton} w-28`}>
+                                        {t('notifications.popup.approve')}
+                                    </button>
+                                    <button
+                                        disabled={triggerStudentStatusLoading}
+                                        onClick={(event) => handleTriggerStudentStatus('rejected', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.normalButton}`}>
+                                        {t('notifications.popup.reject')}
+                                    </button>
+                                </div>
+                            }
+                        </>
+                    }
+                    {popUpData.type === 'AcceptCourse' &&
+                        <>
+                            {
+                                popUpData.status === 'Expired' ?
+                                null
+                                :
+                                <div className='flex w-full justify-between gap-x-2'>
+                                    <button
+                                        type="submit"
+                                        disabled={triggerCourseStatusLoading}
+                                        onClick={(event) => handleTriggerCourseStatus('active', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.normalButtonDisable} w-28`}>
+                                        {t('notifications.popup.approve')}
+                                    </button>
+                                    <button
+                                        disabled={triggerCourseStatusLoading}
+                                        onClick={(event) => handleTriggerCourseStatus('rejected', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.normalButtonDisable}`}>
+                                        {t('notifications.popup.reject')}
+                                    </button>
+                                </div>
+                            }
+                        </>
+                    }
+                    {(popUpData.type === 'AcceptUserEquipment' || popUpData.type === 'AcceptClubEquipment') &&
+                        <>
+                            {
+                                popUpData.status === 'Expired' ?
+                                <div className='flex w-full justify-between gap-x-2'>
+                                    <button
+                                        type="submit"
+                                        disabled={true}
+                                        className={`${ButtonStyles.normalButtonDisable} w-28`}>
+                                        {t('notifications.popup.approve')}
+                                    </button>
+                                    <button
+                                        disabled={true}
+                                        className={`${ButtonStyles.normalButtonDisable}`}>
+                                        {t('notifications.popup.reject')}
+                                    </button>
+                                </div>
+                                :
+                                <div className='flex w-full justify-between gap-x-2'>
+                                    <button
+                                        type="submit"
+                                        disabled={triggerCourseStatusLoading}
+                                        onClick={(event) => handleSubmittingTransfer('Accepted', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.addButton} w-28`}>
+                                        {t('notifications.popup.approve')}
+                                    </button>
+                                    <button
+                                        disabled={triggerCourseStatusLoading}
+                                        onClick={(event) => handleSubmittingTransfer('Rejected', parseInt(popUpData.externalId), event)}
+                                        className={`${ButtonStyles.normalButton}`}>
+                                        {t('notifications.popup.reject')}
+                                    </button>
+                                </div>
+                            }
+                        </>
+                    }
+                </>
+            }
+        </form>
         </div>
     );
 

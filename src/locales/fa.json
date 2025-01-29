@@ -312,6 +312,21 @@
         "tandemPassengerSurvey": {
             "setStatus": "تعیین وضعیت",
             "createdDateTime": "تاریخ ایجاد"
+        },
+        "popup": {
+            "title": "توضیحات",
+            "setStatus": "تعیین وضعیت",
+            "approve": "تایید",
+            "reject": "رد",
+            "clubApproved": "باشگاه تایید شد",
+            "clubRejected": "باشگاه رد شد",
+            "courseApproved": "دوره تایید شد",
+            "courseRejected": "دوره رد شد",
+            "studentApproved": "هنرجو تایید شد",
+            "studentRejected": "هنرجو رد شد",
+            "equipmentApproved": "وسیله پروازی با موفقیت تایید شد",
+            "equipmentRejected": "وسیله پروازی با موفقیت رد شد",
+            "errorOccurred": "خطایی رخ داده است"
         }
     },
     "flightHistory": {

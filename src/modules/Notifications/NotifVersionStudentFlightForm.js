@@ -4,7 +4,13 @@ import { useNavigate } from 'react-router-dom';
 // styles
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
 
@@ -49,7 +55,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
 
                         <button 
                         className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >
-                            تعیین وضعیت
+                            {t('notifications.tandemPassengerSurvey.setStatus')}
                         </button>
 
                         <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
@@ -60,7 +66,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
 
                         <button 
                         onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
-                        className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >تعیین وضعیت
+                        className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >{t('notifications.tandemPassengerSurvey.setStatus')}
                         </button>
 
                         <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>                       

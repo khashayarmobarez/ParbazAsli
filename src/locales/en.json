@@ -312,6 +312,21 @@
         "tandemPassengerSurvey": {
             "setStatus": "Set Status",
             "createdDateTime": "Created Date"
+        },
+        "popup": {
+            "title": "Details",
+            "setStatus": "Set Status",
+            "approve": "Approve",
+            "reject": "Reject",
+            "clubApproved": "Club has been approved",
+            "clubRejected": "Club has been rejected",
+            "courseApproved": "Course has been approved",
+            "courseRejected": "Course has been rejected",
+            "studentApproved": "Student has been approved",
+            "studentRejected": "Student has been rejected",
+            "equipmentApproved": "Flight equipment has been approved successfully",
+            "equipmentRejected": "Flight equipment has been rejected successfully",
+            "errorOccurred": "An error occurred"
         }
     },
     "flightHistory": {

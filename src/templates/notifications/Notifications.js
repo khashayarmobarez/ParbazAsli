@@ -99,13 +99,13 @@ const Notifications = () => {
                 </div>
 
                 {   notificationsData && notificationsData.totalCount > 7 &&
-                    <div className='w-full flex justify-between px-10 items-center'>
+                    <div className='w-full flex justify-center gap-x-6 px-10 items-center'>
                         <button
                             className={`transform w-6 h-6 justify-self-end `}
                             disabled={PageNumber === 1}
                             onClick={handleLastPageNumber}
                         >
-                            <ArrowButton isRight={true} isDisable={PageNumber === 1}/>
+                            <ArrowButton isRight={dir !== 'ltr' && true} isDisable={PageNumber === 1}/>
                         </button>
 
                         <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
@@ -117,7 +117,9 @@ const Notifications = () => {
                             disabled={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}
                             onClick={handleNextPageNumber}
                         >
-                            <ArrowButton isDisable={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}/>
+                            <ArrowButton 
+                            isDisable={notificationsData.totalPagesCount === 1 || notificationsData.totalPagesCount === PageNumber}
+                            isRight={dir === 'ltr' && true}/>
                         </button>
                     </div>
                 }
