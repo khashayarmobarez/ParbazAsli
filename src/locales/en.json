@@ -634,5 +634,35 @@
                 "renew": "Renew"
             }
         }
+    },
+    "equipment": {
+        "equipment":"Equipment",
+        "flightEquipment": "Flight Equipment",
+        "parachute": "Parachute",
+        "harness": "Harness",
+        "acceptSuccess": "Flight equipment has been approved successfully",
+        "acceptError": "An error occurred",
+        "rejectSuccess": "Flight equipment has been rejected successfully",
+        "returnSuccess": "Flight equipment has been returned successfully",
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "noActiveEquipment": "No active equipment registered",
+        "permanent": "Permanent",
+        "temporary": "Temporary",
+        "history": "History",
+        "pendingTransfer": "Pending transfer approval from",
+        "brandModel": "Brand {{brand}} / Model {{model}}",
+        "wingClass": "Class {{wingClass}}",
+        "flightCountDuration": "{{flightCount}} flights / {{flightDuration}} hours",
+        "serialNumber": "Serial Number: {{serialNumber}}",
+        "edit": "Edit",
+        "details": "Details",
+        "transfer": "Transfer Ownership",
+        "transferRestricted": "Pending...",
+        "accept": "Accept",
+        "reject": "Reject",
+        "daysToExpire": "{{daysToExpire}} days left for transfer",
+        "return": "Return",
+        "addNew": "Add New Item"
     }
 }

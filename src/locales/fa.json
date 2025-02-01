@@ -634,6 +634,36 @@
                 "renew": "تمدید"
             }
         }
+    },
+    "equipment": {
+        "equipment":"تجهیزات",
+        "flightEquipment": "بال",
+        "parachute": "چتر کمکی",
+        "harness": "هارنس",
+        "acceptSuccess": "وسیله پروازی با موفقیت تایید شد",
+        "acceptError": "خطایی رخ داده است",
+        "rejectSuccess": "وسیله پروازی با موفقیت رد شد",
+        "returnSuccess": "وسیله پروازی با موفقیت مرجوع شد",
+        "loading": "در حال بارگذاری...",
+        "error": "خطایی رخ داده است",
+        "noActiveEquipment": "هیچ تجهیزات فعالی ثبت نشده است",
+        "permanent": "دائمی",
+        "temporary": "موقت",
+        "history": "تاریخچه",
+        "pendingTransfer": "نیاز به تایید انتقال از",
+        "brandModel": "برند {{brand}} / مدل {{model}}",
+        "wingClass": "کلاس {{wingClass}}",
+        "flightCountDuration": "{{flightCount}} پرواز / {{flightDuration}} ساعت",
+        "serialNumber": "شماره سریال: {{serialNumber}}",
+        "edit": "ویرایش",
+        "details": "جزئیات",
+        "transfer": "انتقال مالکیت",
+        "transferRestricted": "در انتظار ...",
+        "accept": "تایید",
+        "reject": "رد",
+        "daysToExpire": "{{daysToExpire}} روز از دوره انتقال مانده",
+        "return": "مرجوع کردن",
+        "addNew": "افزودن مورد جدید"
     }
 }
   

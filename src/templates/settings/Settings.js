@@ -26,7 +26,6 @@ const Settings = () => {
 
     // language
     const { t } = useTranslation();
-    const dir = Cookies.get('dir') || 'ltr';
     
     // controlling  items drop down
     const [DropDown, setDropDown] = useState(['dropDown1']);
