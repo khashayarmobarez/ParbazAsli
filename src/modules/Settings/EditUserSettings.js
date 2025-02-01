@@ -324,9 +324,11 @@ const EditUserSettings = () => {
             
             <ChangePicPopUp showPopup={showPopupType === 'changePicture'} setShowPopup={setShowPopupType} />
 
+            {/* PHONE NUMBER */}
             <PhoneVerificationCode handleResendCode={changePhoneNumberPopUp}  isLoading={LoadingStatus} showPopup={showPopupType === 'confirmPhone'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimePhone} code={phoneNumberCode} setCode={setPhoneNumberCode}
             handleFinalSubmit={handleFinalPhoneSubmission} codeLength={phoneNumberCodeLength} />
 
+            {/* email */}
             <PhoneVerificationCode handleResendCode={changeEmailPopUp} isLoading={LoadingStatus} showPopup={showPopupType === 'confirmEmail'} setShowPopup={setShowPopupType} codeRemainingTime={codeRemainingTimeEmail} code={emailCode} setCode={setEmailCode}
             handleFinalSubmit={handleFinalEmailSubmission} codeLength={emailCodeLength} isForEmail={true} />
 
