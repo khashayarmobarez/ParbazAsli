@@ -27,7 +27,6 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // comps
 import PageTitle from '../../components/reuseable/PageTitle';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import BrandsSearchInputWithDropdown from '../../modules/Equipment page comps/BrandsSearchInputWithDropdown';
 import TextInput from '../../components/inputs/textInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import DropdownInput from '../../components/inputs/DropDownInput';
@@ -37,15 +36,18 @@ import CalenderIcon from '../../components/icons/CalenderIcon';
 import ClockIcon from '../../components/icons/ClockIcon';
 import UploadFileInput from '../../components/inputs/UploadFileInput';
 import SerialNumberIcon from '../../components/icons/SerialNumberIcon';
-import SubmitForm from '../../components/reuseable/SubmitForm';
 import DateInput from '../../components/inputs/DateInput';
 import UserIcon from '../../components/icons/UserIcon';
 import StandardPopup from '../../components/reuseable/StandardPopup';
+
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 const AddEquipment = () => {
 
     // language
+    const { t } = useTranslation();
     const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation(); 
@@ -60,10 +62,10 @@ const AddEquipment = () => {
     pathname.includes('addFlightEquipment') ? 'Wing' :
         pathname.includes('addHarness') ? 'Harness' : 'Parachute';
 
-    const equipmentTypeInPersian = 
-    equipmentType === 'Wing' ? 'بال' :
-        equipmentType === 'Harness' ? 'هارنس' :
-            equipmentType === 'Parachute' && 'چتر کمکی'
+    const equipmentTypeName = 
+    equipmentType === 'Wing' ? t('equipment.flightEquipment') :
+        equipmentType === 'Harness' ? t('equipment.harness')  :
+            equipmentType === 'Parachute' && t('equipment.parachute') 
 
     const backButtonRoute = 
     equipmentType === 'Wing' ? '/equipment/flightEquipment' :
@@ -224,23 +226,23 @@ const AddEquipment = () => {
 
     // submission handlers
         //Event handler for pop up
-        const handlePopUp= (event) => {
+        const handlePopUp = (event) => {
             event.preventDefault();
             setSubmitted(true);
             const currentYear = new Date().getFullYear();
-            
+        
             // Here you can handle form submission, such as sending data to a backend server
             const isSerialNumberValid = validateSerialNumber(serialNumber);
             const isPackerIdValid = validatePackerId(lastPackerId);
-    
+        
             if (
-            (equipmentType === 'Wing' && (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year || !selectedOptionClass || !selectedOptionType))
-            ||
-            (equipmentType === 'Harness' && (!(selectedOptionBrand || customBrand) || !aircraft || !size || !flightHour || !year))
-            ||
-            (equipmentType === 'Parachute' && (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity  || !flightHour || !year))
+                (equipmentType === 'Wing' && (!(selectedOptionBrand || customBrand) || !aircraft || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year || !selectedOptionClass || !selectedOptionType))
+                ||
+                (equipmentType === 'Harness' && (!(selectedOptionBrand || customBrand) || !aircraft || !size || !flightHour || !year))
+                ||
+                (equipmentType === 'Parachute' && (!(selectedOptionBrand || customBrand) || !aircraft || !packageDate || !minimumWeightCapacity || !maximumWeightCapacity || !flightHour || !year))
             ) {
-                toast('تمامی فیلدها را پر کنید', {
+                toast(t('equipment.addEquipment.fillAllFields'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -249,21 +251,9 @@ const AddEquipment = () => {
                 });
                 return;
             }
-    
-            
+        
             if (year <= 1979 || year > currentYear) {
-            toast('سال تولید را درست وارد کنید', {
-                type: 'error',
-                position: 'top-right',
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
-                return;
-            }
-
-            if (lastPackerId && !isPackerIdValid) {
-                toast('فرمت کد بسته بندی کننده اشتباه است', {
+                toast(t('equipment.addEquipment.validYear'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -272,21 +262,32 @@ const AddEquipment = () => {
                 });
                 return;
             }
-            
+        
+            if (lastPackerId && !isPackerIdValid) {
+                toast(t('equipment.addEquipment.validPackerId'), {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+                return;
+            }
+        
             // Validate inputs
             if (!isSerialNumberValid) {
-            toast('فرمت شماره سریال اشتباه است', {
-                type: 'error',
-                position: 'top-right',
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
-            return;
+                toast(t('equipment.addEquipment.validSerialNumber'), {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+                return;
             }
-            
+        
             if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
-                toast('در صورت تمایل به وارد کردن شماره سریال , شماره سریال و عکس از شماره سریال را با هم وارد کنید', {
+                toast(t('equipment.addEquipment.serialAndFileMismatch'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 10000,
@@ -298,12 +299,11 @@ const AddEquipment = () => {
         
             setShowPopup(true);
         };
-
+        
         const handleSubmit = (event) => {
-
             event.preventDefault();
             const formattedPackedDate = formatDate(packageDate) + " 00:00";
-    
+        
             const formData = new FormData();
             // type 1 for Hamutate Harness
             formData.append('Type', equipmentType);
@@ -322,325 +322,294 @@ const AddEquipment = () => {
             packageDate && equipmentType === "Parachute" && formData.append('LastPackingDateTime', formattedPackedDate);
             equipmentType === "Parachute" && formData.append('lastPackerId', lastPackerId);
             isForClub && formData.append('isForClub', true);
-    
-            console.log(formData)
-            console.log('submitting')
-    
+        
+            console.log(formData);
+            console.log('submitting');
+        
             mutateWing(formData, {
                 onSuccess: () => {
-                toast('وسیله پروازی با موفقیت ثبت شد', {
-                    type: 'success',
-                    position: 'top-right',
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-                setShowPopup(false);
-                navigate(isForClub ? backButtonRouteForClub : backButtonRoute)
+                    toast(t('equipment.addEquipment.success'), {
+                        type: 'success',
+                        position: 'top-right',
+                        autoClose: 5000,
+                        theme: appTheme,
+                        style: { width: "90%" }
+                    });
+                    setShowPopup(false);
+                    navigate(isForClub ? backButtonRouteForClub : backButtonRoute);
                 },
                 onError: (error) => {
-                console.log('submitError', submitError.message);
-                toast(submitError.response.data.ErrorMessages[0].ErrorMessage , {
-                    type: 'error',
-                    position: 'top-right',
-                    autoClose: 10000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
+                    console.log('submitError', submitError.message);
+                    toast(submitError.response.data.ErrorMessages[0].ErrorMessage, {
+                        type: 'error',
+                        position: 'top-right',
+                        autoClose: 10000,
+                        theme: appTheme,
+                        style: { width: "90%" }
+                    });
                 }
-            })
-            
-        }
+            });
+        };
 
 
-    return (
-        <div className='flex flex-col mt-14 items-center'>
+        return (
+            <div className='flex flex-col mt-14 items-center'>
+                <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%] lg:gap-y-12 lg:w-[55%]'>
+                    <PageTitle
+                        title={`${t('equipment.addEquipment.add')} ${equipmentTypeName}`}
+                        navigateTo={isForClub ? backButtonRouteForClub : backButtonRoute}
+                    />
+                    {
+                        brandsIsLoading &&
+                        <CircularProgressLoader />
+                    }
+                    {
+                        brandsData &&
+                        <>
+                            <p className='text-sm'>
+                                {t('equipment.addEquipment.equipmentDetailsNote1')}<br />
+                                {t('equipment.addEquipment.equipmentDetailsNote2')}
+                            </p>
 
-            <div className='flex flex-col items-center gap-y-4 w-full md:w-[75%] lg:gap-y-12 lg:w-[55%]'>
-
-                <PageTitle 
-                    title={`افزودن ${equipmentTypeInPersian}`}
-                    navigateTo={isForClub ? backButtonRouteForClub : backButtonRoute}
-                />
-
-                {
-                    brandsIsLoading &&
-                    <CircularProgressLoader/>
-                }
-
-
-                {
-                    brandsData &&
-                    <>
-                        <p className=' text-sm'>از صحت مشخصات وسیله خود اطمینان کامل داشته باشید<br/> 
-                        و بعد اقدام به ثبت کنید (غیر قابل ویرایش می‌باشد)</p>
-
-                        <form className='w-[90%] flex flex-col items-center space-y-6'>
-
-                            <div className=' w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
-
-                                {/* brand input / custom brand input */}
-                                <DropdownInput
-                                    className='col-span-1'
-                                    options={brandsData.data}
-                                    selectedOption={selectedOptionBrand}
-                                    handleSelectChange={handleSelectChangeBrand}
-                                    name={'برند'}
-                                    icon={<ClothesTag customColor = {!selectedOptionBrand && submitted && 'var(--text-error)'} />}
-                                    IsEmptyAfterSubmit={submitted && !selectedOptionBrand}
-                                    isSubmitted={submitted}
-                                    ErrorCondition={(!selectedOptionBrand && selectedOptionBrand?.id !== 0)}
-                                    ErrorText={'برند دستگاه الزامی می باشد'}
-                                />
-
-                                {/* show custom brand input */}
-                                {
-                                selectedOptionBrand.id === 0 &&
-                                    <TextInput 
-                                        id={'TI1'} 
-                                        value={customBrand} 
-                                        onChange={handleCustomBrand} 
-                                        placeholder='نام برند خود را وارد کنید' 
-                                        isSubmitted={submitted}
-                                        ErrorCondition={selectedOptionBrand?.id === 0 && customBrand} 
-                                        ErrorText={'برند دستگاه الزامی می باشد'}
-                                    />
-                                }
-
-                                {/* aircraft model input */}
-                                <TextInput 
-                                    id={'TI2'} 
-                                    value={aircraft} 
-                                    icon={<ClothesTag customColor = {!aircraft && submitted && 'var(--text-error)'}/>} 
-                                    onChange={handleTextInputAircraft} 
-                                    placeholder='نام مدل' 
-                                    IsEmptyAfterSubmit={submitted && !aircraft} 
-                                    isSubmitted={submitted}
-                                    ErrorCondition={!aircraft }
-                                    ErrorText={'نام مدل دستگاه الزامی می باشد'}
-                                />
-
-                                {/* size inputs for wing and parachute */}
-                                {
-                                    equipmentType !== 'Harness' &&
-                                    <div className='col-span-1 flex flex-col gap-y-2'>
-                                        <h1 className='text-[var(--text-default)]'>بازه وزن قابل تحمل وسیله</h1>
-                                        <div className='flex justify-between gap-x-2'>
-                                            <NumberInput
-                                                icon={<Cube customColor = {!minimumWeightCapacity && submitted && 'var(--text-error)'}/>}
-                                                id={'NI1'}
-                                                className='w-full'
-                                                value={minimumWeightCapacity}
-                                                onChange={handleMinimumWeightCapacity}
-                                                placeholder='حداقل وزن'
-                                                IsEmptyAfterSubmit={submitted && !minimumWeightCapacity}
-                                                isSubmitted={submitted}
-                                                ErrorCondition={!minimumWeightCapacity}
-                                                ErrorText={'حداقل وزن الزامی میباشد'}
-                                                ErrorCondition2={minimumWeightCapacity >= maximumWeightCapacity && maximumWeightCapacity && minimumWeightCapacity}
-                                                ErrorText2={'حداقل وزن باید از حداکثر کمتر باشد'}
-                                            />
-                                            <NumberInput 
-                                                icon={<Cube customColor = {!maximumWeightCapacity && submitted && 'var(--text-error)'}/>} 
-                                                id={'NI2'} 
-                                                className='w-full' 
-                                                value={maximumWeightCapacity} 
-                                                onChange={handleMaximumWeightCapacity} 
-                                                placeholder='حداکثر وزن' 
-                                                IsEmptyAfterSubmit={submitted && !maximumWeightCapacity} 
-                                                isSubmitted={submitted}
-                                                ErrorCondition={!maximumWeightCapacity}
-                                                ErrorText={'حداکثر وزن الزامی میباشد'}
-                                                ErrorCondition2={maximumWeightCapacity <= minimumWeightCapacity && minimumWeightCapacity && minimumWeightCapacity}
-                                                ErrorText2={'حداکثر وزن باید از حداقل بیشتر باشد'}
-                                            />
-                                        </div>
-                                    </div>
-                                }
-
-                                {/* size input for harness */}
-                                {
-                                    equipmentType === 'Harness' &&
-                                    <TextInput 
-                                        id={'TI3'} 
-                                        icon={<Cube customColor = {!size && submitted && 'var(--text-error)'}/>} 
-                                        className='col-span-1' 
-                                        value={size} 
-                                        onChange={handleTextInputSize} 
-                                        placeholder='سایز' 
-                                        IsEmptyAfterSubmit={submitted && !size} 
-                                        isSubmitted={submitted}
-                                        ErrorCondition={!size}
-                                        ErrorText={'سایز دستگاه الزامی میباشد'}
-                                    />
-                                }
-
-                                {/* class input */}
-                                {
-                                    equipmentType === 'Wing' && wingsClasses &&
+                            <form className='w-[90%] flex flex-col items-center space-y-6'>
+                                <div className='w-full flex flex-col items-center gap-y-4 md:grid md:grid-cols-2 md:gap-6'>
+                                    {/* brand input / custom brand input */}
                                     <DropdownInput
-                                        id={'ddi1'}
                                         className='col-span-1'
-                                        name={'کلاس'}
-                                        icon={<WingIcon customColor = {!selectedOptionClass && submitted && 'var(--text-error)'} />}
-                                        options={wingsClasses.data}
-                                        selectedOption={selectedOptionClass}
-                                        handleSelectChange={handleSelectChangeClass}
-                                        IsEmptyAfterSubmit={submitted && !selectedOptionClass}
+                                        options={brandsData.data}
+                                        selectedOption={selectedOptionBrand}
+                                        handleSelectChange={handleSelectChangeBrand}
+                                        name={t('equipment.addEquipment.brand')}
+                                        icon={<ClothesTag customColor={!selectedOptionBrand && submitted && 'var(--text-error)'} />}
+                                        isEmptyAfterSubmit={submitted && !selectedOptionBrand}
                                         isSubmitted={submitted}
-                                        ErrorCondition={!selectedOptionClass}
-                                        ErrorText={'کلاس دستگاه الزامی میباشد'}
+                                        errorCondition={!selectedOptionBrand && selectedOptionBrand?.id !== 0}
+                                        errorText={t('equipment.addEquipment.brandRequired')}
                                     />
-                                }
-
-                                {/* wing type input */}
-                                {
-                                equipmentType === 'Wing' &&
-                                <DropdownInput
-                                id={'ddi2'}
-                                className='col-span-1'
-                                icon={<ColorTagsIcon customColor = {!selectedOptionType && submitted && 'var(--text-error)'} />}
-                                name={'نوع بال'}
-                                options={dir === "ltr" ? flightTypeOptionsEquipmentEnglish : flightTypeOptionsEquipment}
-                                selectedOption={selectedOptionType} 
-                                handleSelectChange={handleSelectChangeType}
-                                IsEmptyAfterSubmit={submitted && !selectedOptionType}
-                                isSubmitted={submitted}
-                                ErrorCondition={!selectedOptionType}
-                                ErrorText={'نوع بال الزامی میباشد'}
-                                />
-                                }   
-
-                                {/* Year input */}
-                                <NumberInput
-                                id={'NI3'}
-                                icon={<CalenderIcon customColor = {!year && submitted && 'var(--text-error)'}/>}
-                                className='col-span-1'
-                                value={year}
-                                onChange={handleTextInputYear}
-                                placeholder='سال ساخت (میلادی)'
-                                IsEmptyAfterSubmit={submitted && !year}
-                                isSubmitted={submitted}
-                                ErrorCondition={!year}
-                                ErrorText={'سال ساخت الزامی میباشد'}
-                                ErrorCondition2={year <= 1980 || year > new Date().getFullYear()}
-                                ErrorText2={`سال ساخت باید بعد از 1980 و قبل از ${new Date().getFullYear() + 1} باشد`}
-                                />
-
-                                {   
-                                equipmentType === 'Parachute' &&
-                                <>
-                                    <DateInput 
-                                        name={'تاریخ آخرین بسته‌بندی '} 
-                                        defaultValue={packageDate} 
-                                        onChange={handlePackageDate} 
-                                        placeH={'تاریخ اخرین بسته بندی'} 
-                                        IsEmptyAfterSubmit={submitted && !packageDate} 
+                                    {/* show custom brand input */}
+                                    {
+                                        selectedOptionBrand.id === 0 &&
+                                        <TextInput
+                                            id={'TI1'}
+                                            value={customBrand}
+                                            onChange={handleCustomBrand}
+                                            placeholder={t('equipment.addEquipment.customBrand')}
+                                            isSubmitted={submitted}
+                                            errorCondition={selectedOptionBrand?.id === 0 && customBrand}
+                                            errorText={t('equipment.addEquipment.brandRequired')}
+                                        />
+                                    }
+                                    {/* aircraft model input */}
+                                    <TextInput
+                                        id={'TI2'}
+                                        value={aircraft}
+                                        icon={<ClothesTag customColor={!aircraft && submitted && 'var(--text-error)'} />}
+                                        onChange={handleTextInputAircraft}
+                                        placeholder={t('equipment.addEquipment.aircraftModel')}
+                                        isEmptyAfterSubmit={submitted && !aircraft}
                                         isSubmitted={submitted}
-                                        ErrorCondition={!packageDate}
-                                        ErrorText={'تاریخ اخرین بسته بندی الزامی می باشد'}
-                                        ErrorCondition2={packageDate && new Date(packageDate) > new Date()}
-                                        ErrorText2={'تاریخ بسته بندی باید قبل از امروز یا همین امروز باشد'}
+                                        errorCondition={!aircraft}
+                                        errorText={t('equipment.addEquipment.aircraftModelRequired')}
                                     />
-
-                                    {/* Last Packer ID input */}
-                                    <div className='w-full flex flex-col items-start gap-y-2'>
+                                    {/* size inputs for wing and parachute */}
+                                    {
+                                        equipmentType !== 'Harness' &&
+                                        <div className='col-span-1 flex flex-col gap-y-2'>
+                                            <h1 className='text-[var(--text-default)]'>{t('equipment.addEquipment.size')}</h1>
+                                            <div className='flex justify-between gap-x-2'>
+                                                <NumberInput
+                                                    icon={<Cube customColor={!minimumWeightCapacity && submitted && 'var(--text-error)'} />}
+                                                    id={'NI1'}
+                                                    className='w-full'
+                                                    value={minimumWeightCapacity}
+                                                    onChange={handleMinimumWeightCapacity}
+                                                    placeholder={t('equipment.addEquipment.minimumWeightCapacity')}
+                                                    isEmptyAfterSubmit={submitted && !minimumWeightCapacity}
+                                                    isSubmitted={submitted}
+                                                    errorCondition={!minimumWeightCapacity}
+                                                    errorText={t('equipment.addEquipment.minimumWeightCapacityRequired')}
+                                                    errorCondition2={minimumWeightCapacity >= maximumWeightCapacity && maximumWeightCapacity && minimumWeightCapacity}
+                                                    errorText2={t('equipment.addEquipment.minimumWeightCapacityError')}
+                                                />
+                                                <NumberInput
+                                                    icon={<Cube customColor={!maximumWeightCapacity && submitted && 'var(--text-error)'} />}
+                                                    id={'NI2'}
+                                                    className='w-full'
+                                                    value={maximumWeightCapacity}
+                                                    onChange={handleMaximumWeightCapacity}
+                                                    placeholder={t('equipment.addEquipment.maximumWeightCapacity')}
+                                                    isEmptyAfterSubmit={submitted && !maximumWeightCapacity}
+                                                    isSubmitted={submitted}
+                                                    errorCondition={!maximumWeightCapacity}
+                                                    errorText={t('equipment.addEquipment.maximumWeightCapacityRequired')}
+                                                    errorCondition2={maximumWeightCapacity <= minimumWeightCapacity && minimumWeightCapacity && minimumWeightCapacity}
+                                                    errorText2={t('equipment.addEquipment.maximumWeightCapacityError')}
+                                                />
+                                            </div>
+                                        </div>
+                                    }
+                                    {/* size input for harness */}
+                                    {
+                                        equipmentType === 'Harness' &&
                                         <TextInput
                                             id={'TI3'}
-                                            icon={<UserIcon/>}
+                                            icon={<Cube customColor={!size && submitted && 'var(--text-error)'} />}
                                             className='col-span-1'
-                                            value={lastPackerId}
-                                            onChange={handleTextInputLastPackerId}
-                                            placeholder='شناسه آخرین بسته‌بندی کننده (اختیاری)'
-                                            ErrorCondition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
-                                            ErrorText={'فرمت شناسه آخرین بسته‌بندی کننده درست نمی باشد'}
+                                            value={size}
+                                            onChange={handleTextInputSize}
+                                            placeholder={t('equipment.addEquipment.size')}
+                                            isEmptyAfterSubmit={submitted && !size}
+                                            isSubmitted={submitted}
+                                            errorCondition={!size}
+                                            errorText={t('equipment.addEquipment.sizeRequired')}
                                         />
-
-
-                                        {
-                                        userByIdData &&
-                                            <div className='flex gap-x-1 text-textAccent'>
-                                                <PersonOutlineOutlinedIcon />
-                                                <p>{userByIdData.data.fullName}</p>
+                                    }
+                                    {/* class input */}
+                                    {
+                                        equipmentType === 'Wing' && wingsClasses &&
+                                        <DropdownInput
+                                            id={'ddi1'}
+                                            className='col-span-1'
+                                            name={t('equipment.addEquipment.class')}
+                                            icon={<WingIcon customColor={!selectedOptionClass && submitted && 'var(--text-error)'} />}
+                                            options={wingsClasses.data}
+                                            selectedOption={selectedOptionClass}
+                                            handleSelectChange={handleSelectChangeClass}
+                                            isEmptyAfterSubmit={submitted && !selectedOptionClass}
+                                            isSubmitted={submitted}
+                                            errorCondition={!selectedOptionClass}
+                                            errorText={t('equipment.addEquipment.classRequired')}
+                                        />
+                                    }
+                                    {/* wing type input */}
+                                    {
+                                        equipmentType === 'Wing' &&
+                                        <DropdownInput
+                                            id={'ddi2'}
+                                            className='col-span-1'
+                                            icon={<ColorTagsIcon customColor={!selectedOptionType && submitted && 'var(--text-error)'} />}
+                                            name={t('equipment.addEquipment.wingType')}
+                                            options={dir === "ltr" ? flightTypeOptionsEquipmentEnglish : flightTypeOptionsEquipment}
+                                            selectedOption={selectedOptionType}
+                                            handleSelectChange={handleSelectChangeType}
+                                            isEmptyAfterSubmit={submitted && !selectedOptionType}
+                                            isSubmitted={submitted}
+                                            errorCondition={!selectedOptionType}
+                                            errorText={t('equipment.addEquipment.wingTypeRequired')}
+                                        />
+                                    }
+                                    {/* Year input */}
+                                    <NumberInput
+                                        id={'NI3'}
+                                        icon={<CalenderIcon customColor={!year && submitted && 'var(--text-error)'} />}
+                                        className='col-span-1'
+                                        value={year}
+                                        onChange={handleTextInputYear}
+                                        placeholder={t('equipment.addEquipment.year')}
+                                        isEmptyAfterSubmit={submitted && !year}
+                                        isSubmitted={submitted}
+                                        errorCondition={!year}
+                                        errorText={t('equipment.addEquipment.yearRequired')}
+                                        errorCondition2={year <= 1980 || year > new Date().getFullYear()}
+                                        errorText2={t('equipment.addEquipment.yearError', { currentYear: new Date().getFullYear() + 1 })}
+                                    />
+                                    {
+                                        equipmentType === 'Parachute' &&
+                                        <>
+                                            <DateInput
+                                                name={t('equipment.addEquipment.lastPackingDate')}
+                                                defaultValue={packageDate}
+                                                onChange={handlePackageDate}
+                                                placeH={t('equipment.addEquipment.lastPackingDate')}
+                                                isEmptyAfterSubmit={submitted && !packageDate}
+                                                isSubmitted={submitted}
+                                                errorCondition={!packageDate}
+                                                errorText={t('equipment.addEquipment.lastPackingDateRequired')}
+                                                errorCondition2={packageDate && new Date(packageDate) > new Date()}
+                                                errorText2={t('equipment.addEquipment.lastPackingDateError')}
+                                            />
+                                            {/* Last Packer ID input */}
+                                            <div className='w-full flex flex-col items-start gap-y-2'>
+                                                <TextInput
+                                                    id={'TI3'}
+                                                    icon={<UserIcon />}
+                                                    className='col-span-1'
+                                                    value={lastPackerId}
+                                                    onChange={handleTextInputLastPackerId}
+                                                    placeholder={t('equipment.addEquipment.lastPackerId')}
+                                                    errorCondition={!USER_ID_PATTERN.test(lastPackerId) && lastPackerId}
+                                                    errorText={t('equipment.addEquipment.lastPackerIdError')}
+                                                />
+                                                {
+                                                    userByIdData &&
+                                                    <div className='flex gap-x-1 text-textAccent'>
+                                                        <PersonOutlineOutlinedIcon />
+                                                        <p>{userByIdData.data.fullName}</p>
+                                                    </div>
+                                                }
                                             </div>
-                                        }
-                                    </div>
-                                </>
-                                }
-
-                                {/* total of functioning hours model input */}
-                                <NumberInput 
-                                id={'NI4'}
-                                icon={<ClockIcon customColor = {!flightHour && submitted && 'var(--text-error)'}/>} 
-                                className='col-span-1' 
-                                value={flightHour} 
-                                onChange={handleTextInputFlightHour}
-                                placeholder='حدود ساعت کارکرد وسیله'  
-                                IsEmptyAfterSubmit={submitted && !flightHour}
-                                isSubmitted={submitted}
-                                ErrorCondition={!flightHour}
-                                ErrorText={'حدود ساعت کارکرد الزامی میباشد'}
-                                ErrorCondition2={flightHour <= 0 && flightHour}
-                                ErrorText2={'ساعت کارکرد باید بزرگتر یا مساوی 0 باشد'}
-                                />
-
-                            </div>
-
-                            <div className='w-full flex flex-col text-start gap-y-1'>
-                                <p className=' self-start md:self-center text-[var(--text-default)]'>ثبت سریال بال (اختیاری)</p>
-                                <p className=' text-xs text-right'>
-                                با پرکردن این فیلد و سینک کردن سریال بال به خلبان مربوطه ، امکان ثبت سریال توسط شخص دیگری نمی باشد، مگر در صورت فروش و انتقال شماره سریال به مالک جدید.
-                                <br/>
-                                در صورت مفقودی بال ما را از طریق تیکت مطلع سازید.
-                                </p>
-                            </div>
-                            
-                            <TextInput
-                                id={'TI4'}
-                                icon={<SerialNumberIcon  />}
-                                className='col-span-1'
-                                value={serialNumber}
-                                onChange={handleTextInputSerialNumber}
-                                placeholder='شماره سریال (اختیاری)'
-                                isSubmitted={submitted}
-                                ErrorCondition={!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
-                                ErrorText={'فرمت شماره سریال درست نمیباشد '}
-                            />
-
-                            {/* for uploading pictures */}
-                            {
-                                serialNumber.length > 0 &&
-                                <div className={`w-full flex flex-col items-start space-y-3`}>
-                                    <UploadFileInput name={'بال'} selectedFile={selectedFile} onFileChange={handleFileChange} />
-                                    <p className=' text-xs'>*فرمت‌های مجاز فایل BMP,GIF,JPEG,JPG,PNG تا 10 مگابایت</p>
+                                        </>
+                                    }
+                                    {/* total of functioning hours model input */}
+                                    <NumberInput
+                                        id={'NI4'}
+                                        icon={<ClockIcon customColor={!flightHour && submitted && 'var(--text-error)'} />}
+                                        className='col-span-1'
+                                        value={flightHour}
+                                        onChange={handleTextInputFlightHour}
+                                        placeholder={t('equipment.addEquipment.flightHours')}
+                                        isEmptyAfterSubmit={submitted && !flightHour}
+                                        isSubmitted={submitted}
+                                        errorCondition={!flightHour}
+                                        errorText={t('equipment.addEquipment.flightHoursRequired')}
+                                        errorCondition2={flightHour <= 0 && flightHour}
+                                        errorText2={t('equipment.addEquipment.flightHoursError')}
+                                    />
                                 </div>
-                            }
-
-                            <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 `}>ثبت</button>
-
-                        </form>
-
-                        {/* submit pop up */}
-                        <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
-                            <StandardPopup
-                            explanationtext={'در صورت تایید کردن وسیله مورد نظر قابل ویرایش نمی‌باشد دقت کنید '}
-                            showPopup={showPopup}
-                            setShowPopup={setShowPopup}
-                            handleSubmit={handleSubmit}
-                            loading={isSubmitting}
-                            submitText='تایید'
-                            declineText='لغو'
-                            />
-                        </div>
-                        
-
-                    </>
-                }
-
+                                <div className='w-full flex flex-col text-start gap-y-1'>
+                                    <p className='self-start md:self-center text-[var(--text-default)] text-center'>{t('equipment.addEquipment.serialNumberNote')}</p>
+                                    <p className={`text-xs ${dir === 'ltr' ? 'text-left' : 'text-right'}`}>
+                                        {t('equipment.addEquipment.serialNumberNotePart2')}
+                                    </p>
+                                </div>
+                                <TextInput
+                                    id={'TI4'}
+                                    icon={<SerialNumberIcon />}
+                                    className='col-span-1'
+                                    value={serialNumber}
+                                    onChange={handleTextInputSerialNumber}
+                                    placeholder={t('equipment.addEquipment.serialNumber')}
+                                    isSubmitted={submitted}
+                                    errorCondition={!EQUIPMENT_SERIAL_NUMBER_PATTERN.test(serialNumber) && serialNumber}
+                                    errorText={t('equipment.addEquipment.serialNumberError')}
+                                />
+                                {/* for uploading pictures */}
+                                {
+                                    serialNumber.length > 0 &&
+                                    <div className={`w-full flex flex-col items-start space-y-3`}>
+                                        <UploadFileInput name={t('equipment.addEquipment.uploadFile')} selectedFile={selectedFile} onFileChange={handleFileChange} />
+                                        <p className='text-xs'>*{t('equipment.addEquipment.uploadFileNote')}</p>
+                                    </div>
+                                }
+                                <button onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32`}>{t('equipment.addEquipment.submit')}</button>
+                            </form>
+                            {/* submit pop up */}
+                            <div className={`${showPopup ? 'fixed' : 'hidden'} w-full h-full z-[70] backdrop-blur-sm`}>
+                                <StandardPopup
+                                    explanationText={t('equipment.addEquipment.submitNote')}
+                                    showPopup={showPopup}
+                                    setShowPopup={setShowPopup}
+                                    handleSubmit={handleSubmit}
+                                    loading={isSubmitting}
+                                    submitText={t('equipment.addEquipment.submit')}
+                                    declineText={t('equipment.addEquipment.cancel')}
+                                />
+                            </div>
+                        </>
+                    }
+                </div>
             </div>
-            
-        </div>
-    );
+        );
 };
 
 export default AddEquipment;
