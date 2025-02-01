@@ -597,7 +597,28 @@
         },
         "certificate": {
             "viewAll": "مشاهده همه",
-            "addCertificate": "افزودن گواهینامه"
+            "addCertificate": "افزودن گواهینامه",
+            "addNew": {
+                "title": "افزودن گواهینامه",
+                "loading": "در حال ثبت اطلاعات",
+                "organization": "صدور گواهینامه از",
+                "organizationRequired": "ارگان مربوطه را انتخاب کنید",
+                "level": "مقطع گواهینامه",
+                "levelRequired": "مقطع گواهینامه را انتخاب کنید",
+                "certificateId": "شماره گواهینامه",
+                "certificateIdRequired": "شماره گواهینامه الزامی می باشد",
+                "certificateIdLengthError": "شماره گواهینامه باید کمتر از 100 کاراکتر باشد",
+                "startDate": "تاریخ صدور",
+                "startDateRequired": "تاریخ صدور الزامی می باشد",
+                "startDateError": "تاریخ صدور نباید بعد از امروز باشد",
+                "endDate": "تاریخ انقضا",
+                "endDateRequired": "تاریخ انقضا الزامی می باشد",
+                "endDateError": "تاریخ انقضا نباید قبل از امروز باشد",
+                "uploadPicture": "آپلود تصویر",
+                "submit": "تایید",
+                "submitError": "خطایی رخ داده است",
+                "submitSuccess": "گواهینامه با موفقیت اضافه شد"
+            }
         }
     },
     "editUser": {

@@ -26,8 +26,15 @@ import DateInput from '../../components/inputs/DateInput';
 import PageTitle from '../../components/reuseable/PageTitle';
 import UploadPicture from '../../components/inputs/UploadPicture';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
-const AddCertificate = () => {
+
+const AddNewCertificate = () => {
+
+    // language
+    const dir = Cookies.get('dir') || 'ltr';
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
     const pathname = useLocation()
@@ -118,7 +125,7 @@ const AddCertificate = () => {
         setIsSubmitted(true)
 
         if(!organ || !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile) {
-            toast('اطلاعات گواهینامه را کامل وارد کنید', {
+            toast(t("RegistrationPages.addCertificate.notifications.formIncomplete"), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -153,7 +160,7 @@ const AddCertificate = () => {
         mutateCertificate(formData,
             {
                 onSuccess: () => {
-                    toast('گواهینامه اضافه شد', {
+                    toast(t("RegistrationPages.addCertificate.notifications.certificateAddedSuccess"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -165,7 +172,7 @@ const AddCertificate = () => {
                     }, 500);
                 },
                 onError: (error) => {
-                    let errorMessage = 'خطایی رخ داده است';
+                    let errorMessage = t("RegistrationPages.addCertificate.notifications.certificateAddedError");
                     if (error.response && error.response.data && error.response.data.ErrorMessages) {
                         errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     }
@@ -183,157 +190,133 @@ const AddCertificate = () => {
 
     return (
         <div className='flex flex-col items-center pt-14 pb-[4rem] gap-y-4'>
-
             <div className='w-full flex flex-col items-center md:w-[70%] lg:w-[55%]'>
-
-                <PageTitle title={'افزودن گواهینامه'} />
-
+                <PageTitle title={t('settings.certificate.addNew.title')} />
                 <div className='flex flex-col items-center justify-center gap-y-8 md:mt-4 w-[90%]'>
-
                     {
                         isSubmitting &&
-                            <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
-                                <CircularProgress sx={{ color:'var(--text-accent) '}} /> 
-                                <p>در حال ثبت اطلاعات</p>
-                            </div>
+                        <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
+                            <CircularProgress sx={{ color: 'var(--text-accent)' }} />
+                            <p>{t('settings.certificate.addNew.loading')}</p>
+                        </div>
                     }
-
-
-                    {/* line and circle of adding flight level */}
                     <div className='w-full flex flex-col gap-y-3 justify-center items-center pt-4'>
-
                         {
-                            organsLoading && 
+                            organsLoading &&
                             <div className='w-full min-h-[71vh]'>
                                 <p>Loading authentication settings...</p>
                             </div>
                         }
-
                         {
-                            organsError && 
+                            organsError &&
                             <div className='w-full min-h-[71vh]'>
                                 <p>Error fetching organization settings</p>
                             </div>
                         }
-
                         {
                             organsData &&
                             <>
                                 <form className='w-full flex flex-col gap-y-4'>
-                                    
                                     <DropdownInput
                                         id={'ddi1'}
-                                        icon={<CertificateIcon customColor = {!organ && isSubmitted && 'var(--text-error)'}/>}
+                                        icon={<CertificateIcon customColor={!organ && isSubmitted && 'var(--text-error)'} />}
                                         options={organsData.data}
                                         handleSelectChange={handleSelectOrganChange}
                                         selectedOption={organ}
-                                        name={'صدور گواهینامه از'}
+                                        name={t('settings.certificate.addNew.organization')}
                                         isDeselectDeactivated={true}
                                         ErrorCondition={!organ}
-                                        ErrorText={'ارگان مربوطه را انتخاب کنید'}
+                                        ErrorText={t('settings.certificate.addNew.organizationRequired')}
                                         isSubmitted={isSubmitted}
                                     />
                                     {
-                                        organ && 
+                                        organ &&
                                         <>
                                             {levelsLoading && <p>Loading levels...</p>}
                                             {levelsError && <p>Error fetching levels</p>}
                                             {!levelsError && !levelsLoading &&
                                                 <>
-
                                                     <DropdownInput
                                                         id={'ddi2'}
-                                                        icon={<CertificateIcon customColor = {!level && isSubmitted && 'var(--text-error)'}/>}
+                                                        icon={<CertificateIcon customColor={!level && isSubmitted && 'var(--text-error)'} />}
                                                         options={levelsData.data}
                                                         handleSelectChange={handleSelectLevelChange}
                                                         selectedOption={level}
                                                         isSubmitted={isSubmitted}
-                                                        name={'مقطع گواهینامه'}
+                                                        name={t('settings.certificate.addNew.level')}
                                                         isDeselectDeactivated={true}
                                                         ErrorCondition={!level}
-                                                        ErrorText={'مقطع گواهینامه را انتخاب کنید'}
+                                                        ErrorText={t('settings.certificate.addNew.levelRequired')}
                                                     />
-                                                    
-                                                    {/* removing other fill options for starters */}
                                                     {
                                                         !(level.id === 1) && !(level.id === 7) &&
                                                         <>
-
                                                             <TextInput
-                                                            id={'TI1'}
-                                                            value={certificateId}
-                                                            onChange={handleCertificateIdChange}
-                                                            placeholder={'شماره گواهینامه'}
-                                                            Type={'text'}
-                                                            icon={<CertificateIcon customColor = {!certificateId && isSubmitted && 'var(--text-error)'}/>}
-                                                            isSubmitted={isSubmitted}
-                                                            isRequired={true}
-                                                            RequiredMessage='شماره گواهینامه الزامی می باشد'
-                                                            ErrorCondition={!certificateId}
-                                                            ErrorText={'شماره گواهینامه الزامی می باشد'}
-                                                            ErrorCondition2={certificateId.length > 99}
-                                                            ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
+                                                                id={'TI1'}
+                                                                value={certificateId}
+                                                                onChange={handleCertificateIdChange}
+                                                                placeholder={t('settings.certificate.addNew.certificateId')}
+                                                                type={'text'}
+                                                                icon={<CertificateIcon customColor={!certificateId && isSubmitted && 'var(--text-error)'} />}
+                                                                isSubmitted={isSubmitted}
+                                                                isRequired={true}
+                                                                RequiredMessage={t('settings.certificate.addNew.certificateIdRequired')}
+                                                                ErrorCondition={!certificateId}
+                                                                ErrorText={t('settings.certificate.addNew.certificateIdRequired')}
+                                                                ErrorCondition2={certificateId.length > 99}
+                                                                ErrorText2={t('settings.certificate.addNew.certificateIdLengthError')}
                                                             />
-
-                                                            {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                            <DateInput 
-                                                                name={'تاریخ انقضا'}  
-                                                                onChange={handleCertificateStartDateChange} 
-                                                                placeH={'تاریخ صدور'} 
+                                                            <DateInput
+                                                                name={t('settings.certificate.addNew.startDate')}
+                                                                onChange={handleCertificateStartDateChange}
+                                                                placeH={t('settings.certificate.addNew.startDate')}
                                                                 ErrorCondition={!dateStartValue}
-                                                                ErrorText={'تاریخ صدور الزامی می باشد'}
+                                                                ErrorText={t('settings.certificate.addNew.startDateRequired')}
                                                                 ErrorCondition2={new Date(dateStartValue) >= new Date()}
-                                                                ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
+                                                                ErrorText2={t('settings.certificate.addNew.startDateError')}
                                                                 isSubmitted={isSubmitted}
                                                             />
-
-                                                            {/* the date picker component comes from equipment section, try moving it into this component */}
-                                                            <DateInput 
-                                                                name={'تاریخ آخرین بسته‌بندی'}  
-                                                                onChange={handleCertificateEndDateChange} 
-                                                                placeH={'تاریخ انقضا'} 
+                                                            <DateInput
+                                                                name={t('settings.certificate.addNew.endDate')}
+                                                                onChange={handleCertificateEndDateChange}
+                                                                placeH={t('settings.certificate.addNew.endDate')}
                                                                 ErrorCondition={!dateEndValue}
-                                                                ErrorText={'تاریخ انقضا الزامی می باشد'}
+                                                                ErrorText={t('settings.certificate.addNew.endDateRequired')}
                                                                 ErrorCondition2={new Date(dateEndValue) <= new Date()}
-                                                                ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                                                                ErrorText2={t('settings.certificate.addNew.endDateError')}
                                                                 isSubmitted={isSubmitted}
                                                             />
-
-                                                            {/* upload picture */}
-                                                            <UploadPicture 
-                                                                setUploadedFile={setUploadedFile} 
-                                                                uploadedFile={uploadedFile}  
-                                                                isSubmitted={isSubmitted} 
+                                                            <UploadPicture
+                                                                setUploadedFile={setUploadedFile}
+                                                                uploadedFile={uploadedFile}
+                                                                isSubmitted={isSubmitted}
                                                             />
-
                                                         </>
                                                     }
-
-                                                    <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center mt-4`}
-                                                    onClick={handleSubmit}
-                                                    disabled={isSubmitting} >
-                                                        تایید
+                                                    <button
+                                                        type="submit"
+                                                        className={`${ButtonStyles.addButton} w-32 self-center mt-4`}
+                                                        onClick={handleSubmit}
+                                                        disabled={isSubmitting}
+                                                    >
+                                                        {t('settings.certificate.addNew.submit')}
                                                     </button>
-
                                                     {SubmitIsError && <p style={{ color: 'red' }}>{SubmitError.response?.data.ErrorMessages[0].ErrorMessage}</p>}
                                                     {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}
-                                                    {SubmitSuccess && <p style={{ color: 'green' }}>گواهینامه با موفقیت اضافه شد</p>}
-
+                                                    {SubmitSuccess && <p style={{ color: 'green' }}>{t('settings.certificate.addNew.submitSuccess')}</p>}
                                                 </>
                                             }
                                         </>
                                     }
-
                                 </form>
                             </>
                         }
-
                     </div>
                 </div>
             </div>
-
         </div>
     );
+    
 };
 
-export default AddCertificate;
+export default AddNewCertificate;

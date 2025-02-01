@@ -597,7 +597,28 @@
         },
         "certificate": {
             "viewAll": "View All",
-            "addCertificate": "Add Certificate"
+            "addCertificate": "Add Certificate",
+            "addNew": {
+                "title": "Add Certificate",
+                "loading": "Submitting information",
+                "organization": "Issued by",
+                "organizationRequired": "Please select the organization",
+                "level": "Certificate Level",
+                "levelRequired": "Please select the certificate level",
+                "certificateId": "Certificate ID",
+                "certificateIdRequired": "Certificate ID is required",
+                "certificateIdLengthError": "Certificate ID must be less than 100 characters",
+                "startDate": "Issue Date",
+                "startDateRequired": "Issue Date is required",
+                "startDateError": "Issue Date must not be in the future",
+                "endDate": "Expiration Date",
+                "endDateRequired": "Expiration Date is required",
+                "endDateError": "Expiration Date must not be in the past",
+                "uploadPicture": "Upload Picture",
+                "submit": "Submit",
+                "submitError": "An error occurred",
+                "submitSuccess": "Certificate added successfully"
+            }
         }
     },
     "editUser": {

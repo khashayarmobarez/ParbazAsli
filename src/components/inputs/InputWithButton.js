@@ -14,7 +14,7 @@ const InputWithButton = ({icon, buttonText, placeH, Type, onSubmit, value, onCha
     const isPhoneNumber = /^09\d*$/.test(value);
 
     return (
-            <div className={` flex relative w-full h-12 justify-between gap-x-4`}>
+            <div className={` flex relative w-full h-12 justify-between gap-x-3`}>
                 <div className='w-full h-full flex'>
 
                     <span style={{color:'var(--text-input-default)'}} >
