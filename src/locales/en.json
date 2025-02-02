@@ -785,5 +785,24 @@
             "pendingSerialNote": "After approval, you will be able to transfer the ownership of your equipment",
             "noSerial": "To transfer the ownership of your equipment, you must first register the serial number of your equipment"
         }
+    },
+    "myCourses": {
+        "title": "My Courses",
+        "loading": "Loading...",
+        "error": "An error occurred, please try again",
+        "noCourses": "No active courses registered",
+        "courseType": "Course Type",
+        "organization": "Organization",
+        "flightDuration": "Duration",
+        "finished": "Finished",
+        "cancelled": "Cancelled",
+        "club": "Club",
+        "coach": "Coach",
+        "confirmCourse": "Do you confirm this course?",
+        "confirm": "Confirm",
+        "decline": "Decline",
+        "date": "Date",
+        "details": "Details",
+        "page": "page"
     }
 }

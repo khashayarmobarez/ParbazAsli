@@ -25,9 +25,15 @@ import PageTitle from '../../components/reuseable/PageTitle';
 import DropDownLine from '../../components/reuseable/DropDownLine';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 
 const MyCourses = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
 
@@ -100,7 +106,7 @@ const MyCourses = () => {
 
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%] md:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'دوره‌های من'} navigateTo={'/profile'} />  
+                <PageTitle title={t('myCourses.title')} navigateTo={'/profile'} />  
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
@@ -109,7 +115,7 @@ const MyCourses = () => {
                     }
 
                     {courseDividerError &&
-                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                        <p className='w-full text-center'>{t('myCourses.error')}</p>
                     }
 
                     {
@@ -118,8 +124,7 @@ const MyCourses = () => {
                             <div className='w-20 h-20 mx-auto' >
                                 <Attention />
                             </div>
-                            <p>در انتظار مربی...</p>
-                            <p className='mt-5'>هنوز دوره‌ای برای شما افزوده نشده است!</p>
+                            <p className='mt-5'>{t('myCourses.noCourses')}</p>
                         </div>
                     }
 
@@ -143,7 +148,7 @@ const MyCourses = () => {
                                         }
 
                                         { course.courseType !== 'Guest' && courseDataError &&
-                                            <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                                            <p className='w-full text-center'>{t('myCourses.error')}</p>
                                         }
 
                                             <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
@@ -196,7 +201,7 @@ const MyCourses = () => {
                                                                         { courseData.organization && courseData.type !== 'Regular' &&
                                                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
-                                                                                    ارگان:&nbsp;
+                                                                                    {t('myCourses.organization')}:&nbsp;
                                                                                 </span>
                                                                                 {courseData.organization}
                                                                             </p>
@@ -204,7 +209,7 @@ const MyCourses = () => {
                                                                         { courseData.clubName &&
                                                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
-                                                                                    باشگاه:&nbsp;
+                                                                                {t('myCourses.club')}:&nbsp;
                                                                                 </span>
                                                                                 {courseData.clubName}
                                                                             </p>
@@ -212,14 +217,14 @@ const MyCourses = () => {
                                                                         { courseData.coach &&
                                                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonMainDisabled' : 'text-textDefault'}`}>
                                                                                 <span >
-                                                                                    مربی:&nbsp;
+                                                                                    {t('myCourses.coach')}:&nbsp;
                                                                                 </span> 
                                                                                 {courseData.coach}
                                                                             </p>
                                                                         }
                                                                     </div>
                                                                     <button onClick={handleCourseDetails(courseData.id)} className={`${ButtonStyles.normalButton} self-end`} >
-                                                                        جزئیات  
+                                                                        {t('myCourses.details')}  
                                                                     </button>
 
                                                                 </div>
@@ -232,7 +237,7 @@ const MyCourses = () => {
 
                                                                     <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                                                         <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
-                                                                        <p >آیا این دوره مورد تایید شما است؟</p>
+                                                                        <p >{t('myCourses.confirmCourse')}</p>
                                                                     </div>
 
                                                                     <div className='flex gap-x-4 items-center px-4'>
@@ -246,12 +251,12 @@ const MyCourses = () => {
                                                                         <p
                                                                         className='text-textAccent text-sm font-semibold'
                                                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)}>
-                                                                            تایید
+                                                                            {t('myCourses.confirm')}
                                                                         </p>
                                                                         <p
                                                                         className='text-textError text-sm font-semibold'
                                                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)}>
-                                                                            رد
+                                                                            {t('myCourses.decline')}
                                                                         </p>
 
                                                                     </div>
@@ -274,7 +279,7 @@ const MyCourses = () => {
                                                     </button>
 
                                                     <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                        صفحه ی {pageNumber}
+                                                        {t('myCourses.page')} {pageNumber}
                                                     </p>
 
                                                     <button
@@ -295,7 +300,7 @@ const MyCourses = () => {
                                                             <p className='text-base'>{guestClass.name}</p>
                                                             <p>
                                                                 <span className=''>
-                                                                    تاریخ:&nbsp;
+                                                                    {t('myCourses.date')}:&nbsp;
                                                                 </span>
                                                                 {guestClass.dateTime}
                                                             </p>
@@ -304,13 +309,13 @@ const MyCourses = () => {
                                                             { guestClass.classDuration &&
                                                                 <p>
                                                                     <span className=''>
-                                                                        مدت زمان:&nbsp;
+                                                                        {t('myCourses.flightDuration')}:&nbsp;
                                                                     </span> 
                                                                     {guestClass.classDuration}
                                                                 </p>
                                                             }
                                                             <button onClick={handleGuestClassDetails(guestClass.id)} className={`${ButtonStyles.normalButton} self-end`} >
-                                                                جزئیات  
+                                                                {t('myCourses.details')}  
                                                             </button>
                                                         </div>
 
