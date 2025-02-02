@@ -850,6 +850,10 @@
                 "ground": "سرفصل‌های تمرین زمینی"
             }
         }
+    },
+    "education": {
+        "courseAccepted": "دوره تایید شد",
+        "courseDeclined": "دوره رد شد"
     }
 }
   

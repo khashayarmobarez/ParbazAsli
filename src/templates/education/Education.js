@@ -25,9 +25,15 @@ import DropDownLine from '../../components/reuseable/DropDownLine';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import Attention from '../../components/icons/Attention';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 
 const Education = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate()
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -97,7 +103,7 @@ const Education = () => {
             {
                 onSuccess: () => {
                     if(status === 'active') {
-                        toast('دوره تایید شد', {
+                        toast(t("education.courseAccepted"), {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                             position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
@@ -106,7 +112,7 @@ const Education = () => {
                         });
                         courseDataRefetch()
                     } else {
-                        toast('دوره رد شد', {
+                        toast(t("education.courseDeclined"), {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                             position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
@@ -124,9 +130,9 @@ const Education = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
 
-            <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
+            <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'آموزش'} navigateTo={'/profile'} />  
+                <PageTitle title={'آموزش'} navigateTo={'/profile'} />
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 

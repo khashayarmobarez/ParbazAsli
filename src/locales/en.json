@@ -850,5 +850,9 @@
                 "ground": "Ground Training Syllabi"
             }
         }
+    },
+    "education": {
+        "courseAccepted": "Course accepted",
+        "courseDeclined": "Course declined"
     }
 }
