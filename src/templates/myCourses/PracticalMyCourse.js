@@ -10,11 +10,17 @@ import { usePracticalActivities } from '../../Utilities/Services/flightHistories
 // components
 import PracticalFlightHistoryBox from '../../modules/FlightHistory/PracticalFlightHistoryBox';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const PracticalMyCourse = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const { id } = useParams();
 
-    const { data: userFlights, isLoading: userFlightsLoading } = usePracticalActivities(1,10,id, '', '', '', '', '', '', '', '', '', '' , '');
+    const { data: userFlights, isLoading: userFlightsLoading } = usePracticalActivities(1,10,id, '', '', '', '', '', '', '', '', '', '' , '','');
 
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
@@ -25,7 +31,7 @@ const PracticalMyCourse = () => {
             }
             {
             userFlights && userFlights.totalCount === 0 &&
-                <p className='text-textWarning'> هنوز پروازی برای این دوره ثبت نشده است</p>
+                <p className='text-textWarning'> {t("myCourses.aCourseDetails.practicalActivity.noActivity")}</p>
             }
             {
                 userFlights && userFlights.totalCount > 0 &&

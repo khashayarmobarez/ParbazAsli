@@ -803,6 +803,47 @@
         "decline": "Decline",
         "date": "Date",
         "details": "Details",
-        "page": "page"
+        "page": "page",
+        "aCourseDetails": {
+            "courseDetails": "Course Details",
+            "errorMessage": "An error occurred, please try again",
+            "name": "Name",
+            "type": "Type",
+            "accordingToSyllabus": "According to Syllabus",
+            "retraining": "Retraining",
+            "customized": "Customized",
+            "organization": "Organization",
+            "level": "Level",
+            "flightsCount": "Flights Count",
+            "clubName": "Club Name",
+            "coachName": "Coach Name",
+            "status": "Status",
+            "active": "Active",
+            "canceled": "Canceled",
+            "completed": "Completed",
+            "progressPercentage": "Progress Percentage",
+            "more": "More...",
+            "courseDescription": "Course Description",
+            "practical": "Practical",
+            "theory": "Theory",
+            "myStatus": "My Status",
+            "practicalActivity": {
+                "noActivity": "No activity has been registered for this course yet"
+            },
+            "Theory": {
+                "noTheoryClasses": "No theory classes have been registered by the coach for this course yet",
+                "classesCount": "Number of Classes Held",
+                "totalClassHours": "Total Class Hours",
+                "classesTitle": "Classes",
+                "name": "Name",
+                "duration": "Duration",
+                "startTime": "Start Time",
+                "endTime": "End Time",
+                "date": "Date",
+                "more": "More...",
+                "classDescription": "Class Description",
+                "syllabus": "Syllabus"
+            }
+        }
     }
 }

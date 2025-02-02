@@ -803,7 +803,48 @@
         "decline": "رد",
         "date": "تاریخ",
         "details": "جزئیات",
-        "page": "صفحه ی"
+        "page": "صفحه ی",
+        "aCourseDetails": {
+            "courseDetails": "جزئیات دوره",
+            "errorMessage": "مشکلی پیش اماده, دوباره تلاش کنید",
+            "name": "نام",
+            "type": "نوع",
+            "accordingToSyllabus": "مطابق سیلابس",
+            "retraining": "بازآموزی",
+            "customized": "شخصی‌سازی شده",
+            "organization": "ارگان",
+            "level": "مقطع",
+            "flightsCount": "تعداد پرواز",
+            "clubName": "نام باشگاه",
+            "coachName": "نام مربی",
+            "status": "وضعیت",
+            "active": "فعال",
+            "canceled": "لغو شده",
+            "completed": "تمام شده",
+            "progressPercentage": "درصد پیشرفت",
+            "more": "بیشتر ...",
+            "courseDescription": "توضیحات درباره دوره",
+            "practical": "عملی",
+            "theory": "تئوری",
+            "myStatus": "وضعیت من",
+            "practicalActivity": {
+                "noActivity": "هنوز فعالیتی برای این دوره ثبت نشده است"
+            },
+            "Theory": {
+                "noTheoryClasses": "هنوز کلاس تئوری برای این دوره توسط مربی ثبت نشده",
+                "classesCount": "تعداد کلاس های برگزار شده",
+                "totalClassHours": "جمع ساعت کلاس ها",
+                "classesTitle": "کلاس‌ها",
+                "name": "نام",
+                "duration": "مدت زمان",
+                "startTime": "زمان شروع",
+                "endTime": "زمان پایان",
+                "date": "تاریخ",
+                "more": "بیشتر ...",
+                "classDescription": "توضیحات کلاس",
+                "syllabus": "مباحث مطرح شده"
+            }
+        }
     }
 }
   

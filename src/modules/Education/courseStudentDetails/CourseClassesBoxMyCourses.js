@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // hooks
 import useConvertMinutesToHours from '../../../Utilities/Hooks/useConvertToHoursAndMinutes';
@@ -12,9 +13,14 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // queiries
 import { useCourseStudentClass } from '../../../Utilities/Services/coursesQueries';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 
 const CourseClassesBoxMyCourses = (props) => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const convertToHoursAndMinutes = useConvertMinutesToHours();
 
@@ -103,7 +109,7 @@ const CourseClassesBoxMyCourses = (props) => {
 
                             {
                                 !extra &&
-                                <p onClick={() => setExtra(true)} className='text-[var(--text-accent)] font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-[var(--text-accent)] font-medium text-base cursor-pointer self-start text-start mx-5 mt-6'>بیشتر ...</p>
                             }
 
                             {
