@@ -622,6 +622,27 @@
         }
     },
     "editUser": {
+        "profile": {
+            "title": "ویرایش پروفایل",
+            "certificate": "گواهینامه",
+            "profile": "پروفایل",
+            "flight": "پرواز",
+            "equipment": "تجهیزات",
+            "edit": "تغییر",
+            "changePass": "تغییر رمز عبور",
+            "toast": {
+                "enterPhoneNumber": "شماره تلفن خود را وارد کنید",
+                "validPhoneNumber": "شماره تلفن فقط باید شامل اعداد باشد",
+                "phoneNumberLength": "شماره تلفن نباید کمتر از 10 رقم باشد",
+                "codeSent": "کد تایید برای شما ارسال شد",
+                "validCodeLength": "کد تایید باید ۶ رقمی باشد",
+                "phoneChangeSuccess": "شماره تلفن شما با موفقیت تغییر یافت",
+                "enterEmail": "ایمیل خود را وارد کنید",
+                "codeSentEmail": "کد تایید برای شما ارسال شد",
+                "emailChangeSuccess": "ایمیل شما با موفقیت تغییر یافت",
+                "error": "خطایی رخ داده است"
+            }
+        },
         "certificate": {
             "card": {
                 "status":"وضعیت",

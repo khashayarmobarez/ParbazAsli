@@ -622,6 +622,27 @@
         }
     },
     "editUser": {
+        "profile": {
+            "title": "Edit Profile",
+            "certificate": "Certificate",
+            "profile": "Profile",
+            "flight": "Flight",
+            "equipment": "Equipment",
+            "edit":"Edit",
+            "changePass":"Change password",
+            "toast": {
+                "enterPhoneNumber": "Please enter your phone number",
+                "validPhoneNumber": "Phone number must contain only numbers",
+                "phoneNumberLength": "Phone number must be at least 10 digits long",
+                "codeSent": "Verification code has been sent to you",
+                "validCodeLength": "Verification code must be 6 digits long",
+                "phoneChangeSuccess": "Your phone number has been changed successfully",
+                "enterEmail": "Please enter your email",
+                "codeSentEmail": "Verification code has been sent to you",
+                "emailChangeSuccess": "Your email has been changed successfully",
+                "error": "An error occurred"
+            }
+        },
         "certificate": {
             "card": {
                 "status":"Status",
