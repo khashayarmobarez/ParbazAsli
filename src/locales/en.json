@@ -741,6 +741,28 @@
             "confirmation": "Confirmation",
             "confirmationMessage": "Are you sure you want to confirm the changes?",
             "loading": "Loading ..."
+        },
+        "transitionEquipment": {
+            "noUserData": "User not found",
+            "noExpirationDate": "Please enter the expiration date",
+            "invalidExpirationDate": "Expiration date must be after today",
+            "success": "Ownership transfer has been successfully completed",
+            "error": "An error occurred",
+            "title": "Transfer Equipment Ownership",
+            "loading": "Loading...",
+            "receiverId": "Receiver User ID",
+            "receiverIdRequired": "Receiver User ID is required",
+            "receiverIdFormatError": "Invalid receiver User ID format",
+            "temporary": "Temporary Transfer",
+            "permanent": "Permanent Transfer",
+            "submit": "Submit",
+            "cancel": "Cancel",
+            "confirmation": "Confirmation",
+            "confirmationMessage": "Are you sure you want to transfer the ownership of your {{activeLink === 'temporary' ? 'temporary' : 'permanent'}} device to {{userByIdData && userByIdData.data.fullName}}?",
+            "loadingSubmit": "Loading ...",
+            "pendingSerial": "The serial number of your equipment is currently pending approval",
+            "pendingSerialNote": "After approval, you will be able to transfer the ownership of your equipment",
+            "noSerial": "To transfer the ownership of your equipment, you must first register the serial number of your equipment"
         }
     }
 }

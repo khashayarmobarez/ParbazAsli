@@ -25,8 +25,15 @@ import DateInput from '../../components/inputs/DateInput';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import { USER_ID_PATTERN } from '../../Utilities/Providers/regexProvider';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const PossessionTransitionEquipment = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -106,7 +113,7 @@ const PossessionTransitionEquipment = () => {
 
         if(activeLink === 'temporary') {
             if(!userByIdData) {
-                toast('کاربر مورد نظر یافت نشد', {
+                toast(t('equipment.transitionEquipment.noUserData'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -114,7 +121,7 @@ const PossessionTransitionEquipment = () => {
                     style: { width: "90%" }
                 });
             } else if(!expirationDate) {
-                toast('تاریخ پایان انتقال را وارد کنید', {
+                toast(t('equipment.transitionEquipment.noExpirationDate'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -122,7 +129,7 @@ const PossessionTransitionEquipment = () => {
                     style: { width: "90%" }
                 });
             } else if(!expirationDate > new Date()) {
-                toast('تاریخ پایان انتقال باید بعد از امروز باشد ', {
+                toast(t('equipment.transitionEquipment.invalidExpirationDate'), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -157,7 +164,7 @@ const PossessionTransitionEquipment = () => {
             mutateTransitionData(formData, {
                 onSuccess: () => {
                     // Code to execute after successful mutation
-                    toast('انتقال مالکیت با موفقیت انجام شد', {
+                    toast(t('equipment.transitionEquipment.success'), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -199,17 +206,17 @@ const PossessionTransitionEquipment = () => {
 
             <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-2 lg:gap-y-8 lg:w-[55%]'>
 
-                <PageTitle title={'انتقال مالکیت وسیله'}/>
+                <PageTitle title={t('equipment.transitionEquipment.title')}/>
 
                 {isLoading && <CircularProgressLoader/>}
 
-                {error && <p>مشکلی رخ داده است، دوباره تلاش کنید</p>}
+                {error && <p>{t('equipment.transitionEquipment.error')}</p>}
 
                 {EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Accepted' &&
                     <>
                         <div className={`${ButtonStyles.ThreeStickedButtonCont}  sticky top-[8.2rem] lg:top-[9rem] z-50`}>
-                            <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>انتقال موقت</button>
-                            <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >انتقال دائمی</button>
+                            <button ref={buttonRef} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${activeLink === 'temporary' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('temporary')}>{t('equipment.transitionEquipment.temporary')}</button>
+                            <button  className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${activeLink === 'permanent' ? ButtonStyles.activeYellow : ''}`} onClick={() => setActiveLink('permanent')} >{t('equipment.transitionEquipment.permanent')}</button>
                         </div>
 
                         <form className='w-[90%] flex flex-col items-center mt-4  gap-y-4'>
@@ -221,12 +228,12 @@ const PossessionTransitionEquipment = () => {
                                 className='col-span-1'
                                 value={receiverId}
                                 onChange={handleTextInputReceiverId}
-                                placeholder={activeLink === 'temporary' ? 'کد کاربر مقصد' : 'کد کاربر یا باشگاه مقصد را وارد کنید'}
+                                placeholder={activeLink === 'temporary' ? t('equipment.transitionEquipment.receiverId') : t('equipment.transitionEquipment.receiverIdRequired')}
                                 isSubmitted={isSubmitted}
                                 ErrorCondition={!receiverId}
-                                ErrorText={'کد کاربر الزامی می باشد'}
+                                ErrorText={t('equipment.transitionEquipment.receiverIdRequired')}
                                 ErrorCondition2={!USER_ID_PATTERN.test(receiverId) && receiverId}
-                                ErrorText2={'فرمت کد کاربری صحیح نمی باشد'}
+                                ErrorText2={t('equipment.transitionEquipment.receiverIdFormatError')}
                             />
                             
                             {
@@ -241,21 +248,21 @@ const PossessionTransitionEquipment = () => {
                             receiverId && USER_ID_PATTERN.test(receiverId) && !userByIdData &&
                                 <div className='flex gap-x-1 text-textError self-start -mt-2.5 items-center'>
                                     <PersonOutlineOutlinedIcon />
-                                    <p>کاربر یافت نشد</p>
+                                    <p>{t('equipment.transitionEquipment.noUserData')}</p>
                                 </div>
                             }
 
                             {
                             activeLink === 'temporary' && 
                                 <DateInput 
-                                    name={'تاریخ پایان انتقال قرضی'} 
+                                    name={t('equipment.transitionEquipment.noExpirationDate')} 
                                     defaultValue={expirationDate} 
                                     onChange={handleExpirationDate} 
-                                    placeH={'تاریخ پایان انتقال قرضی'} 
+                                    placeH={t('equipment.transitionEquipment.noExpirationDate')} 
                                     ErrorCondition={!expirationDate}
-                                    ErrorText={'تاریخ الزامی میباشد'}
+                                    ErrorText={t('equipment.transitionEquipment.noExpirationDate')}
                                     ErrorCondition2={new Date(expirationDate) <= new Date() && expirationDate}
-                                    ErrorText2={'تاریخ انقضا باید برای بعد از امروز انتخاب شود'}
+                                    ErrorText2={t('equipment.transitionEquipment.invalidExpirationDate')}
                                 />
                             }
 
@@ -268,13 +275,13 @@ const PossessionTransitionEquipment = () => {
                         <div className={` ${showPopup ? 'fixed' : 'hidden'}  backdrop-blur-lg absolute w-full h-[100vh] flex justify-center items-center z-[120]`}>
                             <div className={`${boxStyles.containerChangeOwnership}   w-[88vw] md:w-[324px] h-auto py-10 gap-y-10 mt-48  flex flex-col justify-around items-center z-10 md:z-[50]`}>
                                 
-                                <h1 className='text-xl text-textWarning'>تاییدیه</h1>
+                                <h1 className='text-xl text-textWarning'>{t('equipment.transitionEquipment.confirmation')}</h1>
 
-                                <h3 className=' w-[90%] text-base font-normal'>ایا از انتقال مالکیت {activeLink === 'temporary' ? 'موقت' : 'دائم'} دستگاه خود به {userByIdData && userByIdData.data.fullName} اطمینان دارید!</h3>
+                                <h3 className=' w-[90%] text-base font-normal'>{t('equipment.transitionEquipment.confirmationMessage', { activeLink: activeLink === 'temporary' ? 'temporary' : 'permanent', userByIdData: userByIdData && userByIdData.data.fullName })}</h3>
                             
                                 <div className='w-[90%] flex justify-between'>
-                                    <button className={`${ButtonStyles.normalButton} w-32`} onClick={() => setShowPopup(false)}>خیر</button>
-                                    <button type="submit" className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit} >بله</button>
+                                    <button className={`${ButtonStyles.normalButton} w-32`} onClick={() => setShowPopup(false)}>{t('equipment.transitionEquipment.cancel')}</button>
+                                    <button type="submit" className={`${ButtonStyles.addButton} w-32`} onClick={handleSubmit} >{isLoading ? t('equipment.transitionEquipment.loadingSubmit') : t('equipment.transitionEquipment.submit')}</button>
                                 </div>
                             
                             </div>
@@ -284,13 +291,13 @@ const PossessionTransitionEquipment = () => {
                     {
                     EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
-                            <h1 className=' text-xl text-textWarning'>شماره سریال وسیله شما در حال حاضر در انتظار تایید است</h1>
-                            <h1 >بعد از تایید شما میتوانید مالکیت وسیله خود را انتقال دهید</h1>
+                            <h1 className=' text-xl text-textWarning'>{t('equipment.transitionEquipment.pendingSerial')}</h1>
+                            <h1 >{t('equipment.transitionEquipment.pendingSerialNote')}</h1>
                         </div>
                     }
                     {
                     (EquipmentData && EquipmentData.data && (EquipmentData.data.serialStatus === 'None' || EquipmentData.data.serialStatus === 'Rejected')) &&
-                        <h1 className=' w-[90%] mt-10 text-xl text-textWarning'>برای فعال شدن انتقال مالکیت ابتدا باید در بخش ویرایش، سریال وسیله درج شود.</h1>
+                        <h1 className=' w-[90%] mt-10 text-xl text-textWarning'>{t('equipment.transitionEquipment.noSerial')}</h1>
                     }
 
             </div>

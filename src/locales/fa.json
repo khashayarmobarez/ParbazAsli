@@ -741,6 +741,28 @@
             "confirmation": "تاییدیه",
             "confirmationMessage": "ایا از صحت تمدید خود اطمینان دارید؟",
             "loading": "صبر کنید ..."
+        },
+        "transitionEquipment": {
+            "noUserData": "کاربر مورد نظر یافت نشد",
+            "noExpirationDate": "تاریخ پایان انتقال را وارد کنید",
+            "invalidExpirationDate": "تاریخ پایان انتقال باید بعد از امروز باشد",
+            "success": "انتقال مالکیت با موفقیت انجام شد",
+            "error": "خطایی رخ داده است",
+            "title": "انتقال مالکیت وسیله",
+            "loading": "در حال بارگذاری...",
+            "receiverId": "کد کاربری مقصد",
+            "receiverIdRequired": "کد کاربری مقصد الزامی می باشد",
+            "receiverIdFormatError": "فرمت کد کاربری مقصد صحیح نمی باشد",
+            "temporary": "انتقال موقت",
+            "permanent": "انتقال دائمی",
+            "submit": "ثبت",
+            "cancel": "لغو",
+            "confirmation": "تاییدیه",
+            "confirmationMessage": "ایا از انتقال مالکیت {{activeLink === 'temporary' ? 'موقت' : 'دائمی'}} دستگاه خود به {{userByIdData && userByIdData.data.fullName}} اطمینان دارید؟",
+            "loadingSubmit": "صبر کنید ...",
+            "pendingSerial": "شماره سریال وسیله شما در حال حاضر در انتظار تایید است",
+            "pendingSerialNote": "بعد از تایید شما می‌توانید مالکیت وسیله خود را انتقال دهید",
+            "noSerial": "برای انتقال مالکیت وسیله خود باید ابتدا شماره سریال وسیله خود را ثبت کنید"
         }
     }
 }

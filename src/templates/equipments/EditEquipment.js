@@ -354,7 +354,7 @@ const EditEquipment = () => {
                                                         EquipmentData.data.equipmentType === 'Wing' &&
                                                         <div className='w-full flex flex-col text-start gap-y-1'>
                                                             <p className='self-start md:self-center'>{t('equipment.editEquipment.wingSerialExplanation')}</p>
-                                                            <p className='text-xs text-right'>
+                                                            <p className='text-xs text-start'>
                                                                 {t('equipment.editEquipment.wingSerialNote')}
                                                             </p>
                                                         </div>
