@@ -843,6 +843,11 @@
                 "more": "More...",
                 "classDescription": "Class Description",
                 "syllabus": "Syllabus"
+            },
+            "syllabi":{
+                "theory": "Theory Syllabi",
+                "fly": "Flight Syllabi",
+                "ground": "Ground Training Syllabi"
             }
         }
     }

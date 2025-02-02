@@ -145,10 +145,6 @@ const ClassesBoxMyCourses = (props) => {
                     </>
                 }
 
-                
-                
-
-
         </div>
     );
 };
