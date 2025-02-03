@@ -998,6 +998,28 @@
                     "guestStudents": "هنرجویان مهمان",
                     "moreInfo": "اطلاعات بیشتر...",
                     "closeInfo": "بستن اطلاعات بیشتر"
+                },
+                "addClassPage": {
+                    "endTimeBeforeStartTime": "تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.",
+                    "fillAllFields": "لطفا تمامی فیلد ها را پر کنید",
+                    "classAddedSuccessfully": "کلاس با موفقیت اضافه شد",
+                    "errorOccurred": "خطایی رخ داده است",
+                    "addClass": "افزودن کلاس",
+                    "className": "نام کلاس",
+                    "classNameRequired": "نام کلاس الزامی است",
+                    "startTime": "تایم شروع کلاس",
+                    "startTimeRequired": "تایم شروع کلاس را وارد کنید",
+                    "endTime": "تایم پایان کلاس",
+                    "endTimeRequired": "تایم پایان کلاس را وارد کنید",
+                    "selectSyllabi": "حداقل یک مورد را انتخاب کنید",
+                    "classDescription": "توضیحات کلاس",
+                    "descriptionRequired": "توضیحات کلاس الزامی است",
+                    "students": "هنرجویان",
+                    "selectStudents": "حداقل یک هنرجو را برای کلاس انتخاب کنید",
+                    "guestStudents": "هنرجویان مهمان",
+                    "selectGuestStudents": "حداقل یک هنرجوی مهمان را برای کلاس انتخاب کنید",
+                    "submit": "ثبت",
+                    "topics": "مباحث مورد نظر"
                 }
             },
             "syllabiDetails": {

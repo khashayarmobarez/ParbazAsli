@@ -998,6 +998,28 @@
                     "guestStudents": "Guest Students",
                     "moreInfo": "More Info...",
                     "closeInfo": "Close Info"
+                },
+                "addClassPage": {
+                    "endTimeBeforeStartTime": "The end time of the class should not be before the start time.",
+                    "fillAllFields": "Please fill in all fields",
+                    "classAddedSuccessfully": "Class added successfully",
+                    "errorOccurred": "An error occurred",
+                    "addClass": "Add Class",
+                    "className": "Class Name",
+                    "classNameRequired": "Class name is required",
+                    "startTime": "Start Time",
+                    "startTimeRequired": "Enter the start time of the class",
+                    "endTime": "End Time",
+                    "endTimeRequired": "Enter the end time of the class",
+                    "selectSyllabi": "Select at least one syllabus",
+                    "classDescription": "Class Description",
+                    "descriptionRequired": "Class description is required",
+                    "students": "Students",
+                    "selectStudents": "Select at least one student for the class",
+                    "guestStudents": "Guest Students",
+                    "selectGuestStudents": "Select at least one guest student for the class",
+                    "submit": "Submit",
+                    "topics": "Topics"
                 }
             },
             "syllabiDetails": {
