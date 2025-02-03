@@ -999,6 +999,12 @@
                     "moreInfo": "More Info...",
                     "closeInfo": "Close Info"
                 }
+            },
+            "syllabiDetails": {
+                "noSyllabi": "No syllabi have been registered for this course",
+                "theorySyllabi": "Theory Syllabi",
+                "flightSyllabi": "Flight Syllabi",
+                "groundSyllabi": "Ground Handling Syllabi"
             }
         }
     }

@@ -451,7 +451,9 @@ const CourseStudents = () => {
                                     {   
                                     studentsHistoryData &&
                                     studentsData.totalPagesCount < studentsData.currentPage && 
-                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem] text-textAccent ' >{t("education.aCourseDetails.studentsDetails.moreStudents")}</p>
+                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem] text-textAccent ' >
+                                            {t("education.aCourseDetails.studentsDetails.moreStudents")}
+                                        </p>
                                     }
                                 </div>
                             }

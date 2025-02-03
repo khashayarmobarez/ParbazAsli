@@ -999,6 +999,12 @@
                     "moreInfo": "اطلاعات بیشتر...",
                     "closeInfo": "بستن اطلاعات بیشتر"
                 }
+            },
+            "syllabiDetails": {
+                "noSyllabi": "سیلابسی برای این دوره ثبت نشده",
+                "theorySyllabi": "سرفصل‌های تئوری",
+                "flightSyllabi": "سرفصل‌های پرواز",
+                "groundSyllabi": "سرفصل‌های تمرین زمینی"
             }
         }
     }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // hooks
 import useConvertMinutesToHours from '../../Utilities/Hooks/useConvertToHoursAndMinutes';
@@ -26,6 +27,7 @@ const ClassesBoxCourses = (props) => {
 
     // language
     const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const convertToHoursAndMinutes = useConvertMinutesToHours();
 
@@ -63,7 +65,8 @@ const ClassesBoxCourses = (props) => {
                     classData &&
                     <>
                         {/* classesInput */}
-                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-3 rounded-2xl text-sm 
+                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 rounded-2xl text-sm
+                        ${dir === 'ltr' ? 'pl-3' : 'pr-3'}
                         ${isExpanded && 'text-textAccent'}`}>
                             <div className='flex gap-x-2'>
                                 <span>
