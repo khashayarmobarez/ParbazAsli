@@ -853,7 +853,32 @@
     },
     "education": {
         "courseAccepted": "دوره تایید شد",
-        "courseDeclined": "دوره رد شد"
+        "courseDeclined": "دوره رد شد",
+        "title": "آموزش",
+        "errorMessage": "مشکلی پیش اماده, دوباره تلاش کنید",
+        "noCourses": "در حال حاضر دوره ای وجود ندارد",
+        "activeCourses": "دوره های فعال",
+        "inactiveCourses": "دوره های غیرفعال",
+        "activeStudents": "هنرجویان فعال",
+        "previousStudents": "هنرجویان سابق",
+        "courseStatus": "وضعیت",
+        "active": "فعال",
+        "pending": "در انتظار تایید",
+        "inactive": "غیر فعال",
+        "rejected": "رد شده",
+        "coachName": "نام مربی",
+        "organization": "ارگان",
+        "level": "مقطع",
+        "flightsCount": "تعداد پرواز",
+        "clubName": "نام باشگاه",
+        "activeStudentCount": "تعداد هنرجویان فعال",
+        "previousStudentCount": "تعداد هنرجویان سابق",
+        "courseDetails": "جزئیات",
+        "approveCourse": "آیا این دوره مورد تایید شما است؟",
+        "approve": "تایید",
+        "reject": "رد",
+        "page": "صفحه ی",
+        "addNewCourse": "افزودن دوره جدید"
     }
 }
   

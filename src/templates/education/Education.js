@@ -132,7 +132,7 @@ const Education = () => {
 
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'آموزش'} navigateTo={'/profile'} />
+                <PageTitle title={t("education.title")} navigateTo={'/profile'} />
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
@@ -142,7 +142,7 @@ const Education = () => {
 
                 {  
                     courseDividerError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                    <p className='w-full text-center'>{t("education.errorMessage")}</p>
                 }
 
                 {
@@ -151,7 +151,7 @@ const Education = () => {
                         <span className='w-14 h-14 mb-2'>
                             <Attention />
                         </span>
-                        <p>در حال حاضر دوره ای وجود ندارد</p>
+                        <p>{t("education.noCourses")}</p>
                     </div>
                 }
 
@@ -160,14 +160,14 @@ const Education = () => {
                     <div className='grid grid-cols-2 w-full justify-between gap-y-4 gap-x-[6%]'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>
-                                <p className=' text-xs'>دوره های فعال</p>
+                                <p className=' text-xs'>{t("education.activeCourses")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                     <p>{courseCountsData.data.activeCourseCounts}</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
-                                <p className=' text-xs'>دوره های غیرفعال</p>
+                                <p className=' text-xs'>{t("education.inactiveCourses")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                     <p>{courseCountsData.data.disableCourseCounts}</p>
                                 </div>
@@ -176,23 +176,24 @@ const Education = () => {
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
                                 onClick={() => handleStudentListNavigation(1)}>
-                                    <p>هنرجویان فعال ({courseCountsData.data.activeStudentCounts})</p>
+                                    <p>{t("education.activeStudents")} ({courseCountsData.data.activeStudentCounts})</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
                                 onClick={() => handleStudentListNavigation(2)}>
-                                    <p>هنرجویان سابق ({courseCountsData.data.disableStudentCounts})</p>
+                                    <p>{t("education.previousStudents")} ({courseCountsData.data.disableStudentCounts})</p>
                                 </div>
                             </div>
+
                     </div>
                 }
 
                 {courseDividerData && courseDividerData.data.length > 0 &&
                     courseDividerData.data.map((course, index) => (
                         <div key={index} className='w-full flex flex-col items-center gap-y-4'>
-                            <DropDownLine  
+                            <DropDownLine
                                 onClickActivation={() => handleDropDownClick(index, course)}
                                 title={course.name} 
                                 dropDown={DropDown} 
@@ -208,7 +209,7 @@ const Education = () => {
 
                                     {
                                         courseDataError &&
-                                        <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                                        <p className='w-full text-center'>{t("education.errorMessage")}</p>
                                     }
 
                                     <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
@@ -227,18 +228,18 @@ const Education = () => {
 
                                                             <div className='flex gap-x-1'>
 
-                                                                <p className='text-textButtonProfileDisable '>وضعیت:
+                                                                <p className='text-textButtonProfileDisable '>{t("education.courseStatus")}
                                                                     {course.status === 'Active' && 
-                                                                        <span className='text-textAccent'> فعال</span>
+                                                                        <span className='text-textAccent'>{t("education.active")}</span>
                                                                     }
                                                                     {course.status === 'Pending' &&
-                                                                        <span className='text-textWarning'> در انتظار تایید</span>
+                                                                        <span className='text-textWarning'> {t("education.pending")}</span>
                                                                     }
                                                                     {course.status === 'Disable' && 
-                                                                        <span className=''> غیر فعال</span>
+                                                                        <span className=''> {t("education.inactive")}</span>
                                                                     }
                                                                     {course.status === 'Rejected' && 
-                                                                        <span className='text-textError'>رد شده</span>
+                                                                        <span className='text-textError'>{t("education.rejected")}</span>
                                                                     }
                                                                 </p>
 
@@ -248,7 +249,7 @@ const Education = () => {
 
                                                         {
                                                         isForClub &&
-                                                            <p className=''>نام مربی:    
+                                                            <p className=''>{t("education.coachName")}:    
                                                                 <span className='text-sm'> {course.coachFullName}</span>
                                                             </p>
                                                         }
@@ -266,18 +267,18 @@ const Education = () => {
                                                                 {
                                                                     course.type === 'Retraining' &&
                                                                     <p className='text-sm'>
-                                                                        <span className=''>مقطع:</span> {course.level}
+                                                                        <span className=''>{t("education.level")}:</span> {course.level}
                                                                     </p>
                                                                 } 
 
                                                                 <p>
-                                                                    <span className=''>تعداد پرواز: </span>{course.flightsCount}
+                                                                    <span className=''>{t("education.flightsCount")}: </span>{course.flightsCount}
                                                                 </p>
 
                                                                 {
                                                                 course.clubName &&
                                                                     <p>
-                                                                        <span className=''>باشگاه: </span> {course.clubName}
+                                                                        <span className=''>{t("education.clubName")}: </span> {course.clubName}
                                                                     </p>
                                                                 }
 
@@ -285,10 +286,10 @@ const Education = () => {
 
                                                             <div className='flex flex-col text-start gap-y-2'>
                                                                 <p>
-                                                                    <span className=''>تعداد هنرجویان فعال: </span>{course.activeStudentCounts}
+                                                                    <span className=''>{t("education.activeStudentCount")}: </span>{course.activeStudentCounts}
                                                                 </p>
                                                                 <p>
-                                                                    <span className=''>تعداد هنرجویان سابق: </span>{course.historyStudentCounts}
+                                                                    <span className=''>{t("education.previousStudentCount")}: </span>{course.historyStudentCounts}
                                                                 </p>
                                                             </div>
 
@@ -298,7 +299,7 @@ const Education = () => {
                                                         {
                                                             course.status !== 'Rejected' &&
                                                                 <button onClick={handleCourseDetails(course.id)} className={`${ButtonStyles.normalButton} self-center`} >
-                                                                    جزئیات 
+                                                                    {t("education.courseDetails")} 
                                                                 </button>
                                                         }
 
@@ -310,7 +311,7 @@ const Education = () => {
 
                                                             <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                                                 <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
-                                                                <p >آیا این دوره مورد تایید شما است؟</p>
+                                                                <p >{t("education.approveCourse")}</p>
                                                             </div>
 
                                                             <div className='flex gap-x-6 items-center px-2'>
@@ -322,11 +323,11 @@ const Education = () => {
                                                                 }
                                                                 
                                                                 <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} className='text-textAccent text-sm font-medium'  >
-                                                                    تایید
+                                                                    {t("education.approve")}
                                                                 </p>
 
                                                                 <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'rejected', course.id)} className='text-textError text-sm font-medium' >
-                                                                    رد
+                                                                    {t("education.reject")}
                                                                 </p>
 
                                                             </div>
@@ -349,7 +350,7 @@ const Education = () => {
                                             </button>
 
                                             <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                صفحه ی {pageNumber}
+                                                {t("education.page")} {pageNumber}
                                             </p>
 
                                             <button
@@ -359,7 +360,7 @@ const Education = () => {
                                             >
                                                 <ArrowButton isDisable={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}/>
                                             </button>
-                                        </div>
+                                        </div>  
                                     }
 
                                 </div>
@@ -375,11 +376,11 @@ const Education = () => {
                 <div className='fixed bottom-[4.5rem] w-[90%] bg-none rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-[56px] z-30'>
                     <div className="relative z-10">
                         <button 
-                            className={`${ButtonStyles.addButton} w-full`} 
-                            onClick={() => isForClub ? navigate('/club/addCourseToClub') : navigate('/education/addClass')}
+                        className={`${ButtonStyles.addButton} w-full`} 
+                        onClick={() => isForClub ? navigate('/club/addCourseToClub') : navigate('/education/addClass')}
                         >
                             <AddIcon /> 
-                            <p>افزودن دوره جدید</p>
+                            <p>{t("education.addNewCourse")}</p>
                         </button>
                     </div>
                     <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />

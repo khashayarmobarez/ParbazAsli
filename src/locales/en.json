@@ -853,6 +853,31 @@
     },
     "education": {
         "courseAccepted": "Course accepted",
-        "courseDeclined": "Course declined"
+        "courseDeclined": "Course declined",
+        "title": "Education",
+        "errorMessage": "An error occurred, please try again",
+        "noCourses": "Currently, there are no courses available",
+        "activeCourses": "Active Courses",
+        "inactiveCourses": "Inactive Courses",
+        "activeStudents": "Active Students",
+        "previousStudents": "Previous Students",
+        "courseStatus": "Status",
+        "active": "Active",
+        "pending": "Pending Approval",
+        "inactive": "Inactive",
+        "rejected": "Rejected",
+        "coachName": "Coach Name",
+        "organization": "Organization",
+        "level": "Level",
+        "flightsCount": "Flights Count",
+        "clubName": "Club Name",
+        "activeStudentCount": "Active Students Count",
+        "previousStudentCount": "Previous Students Count",
+        "courseDetails": "Details",
+        "approveCourse": "Do you approve this course?",
+        "approve": "Approve",
+        "reject": "Reject",
+        "page": "Page",
+        "addNewCourse": "Add New Course"
     }
 }
