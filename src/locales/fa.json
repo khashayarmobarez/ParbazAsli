@@ -878,7 +878,16 @@
         "approve": "تایید",
         "reject": "رد",
         "page": "صفحه ی",
-        "addNewCourse": "افزودن دوره جدید"
+        "addNewCourse": "افزودن دوره جدید",
+        "studentList": {
+            "errorMessage": "مشکلی پیش اماده, دوباره تلاش کنید",
+            "noStudentsFound": "هنرجویی یافت نشد",
+            "activeStudents": "هنرجویان فعال",
+            "previousStudents": "هنرجویان سابق",
+            "page": "صفحه ی",
+            "activeCourses":"دوره های فعال",
+            "deactiveCourses":"دوره‌های غیرفعال"
+        }
     }
 }
   

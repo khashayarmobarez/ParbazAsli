@@ -878,6 +878,15 @@
         "approve": "Approve",
         "reject": "Reject",
         "page": "Page",
-        "addNewCourse": "Add New Course"
+        "addNewCourse": "Add New Course",
+        "studentList": {
+            "errorMessage": "An error occurred, please try again",
+            "noStudentsFound": "No students found",
+            "activeStudents": "Active Students",
+            "previousStudents": "Previous Students",
+            "page": "Page",
+            "activeCourses": "Active Courses",
+            "deactiveCourses": "Inactive Courses"
+        }
     }
 }
