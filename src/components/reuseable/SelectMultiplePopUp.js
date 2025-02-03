@@ -76,7 +76,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
         className={`
           ${inputStyles.inputText2}
           ${ErrorCondition && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
-          ${dir === 'ltr' ? "pl-9" : "pr-9"}
+          ${dir === 'ltr' ? "pl-0" : "pr-9"}
            w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4
         `}
         onClick={handleIconClick}
@@ -85,7 +85,7 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
         <span className="absolute -mt-0 mx-3 w-5">
           { Icon || <Cube customColor = {!selectedOptions && isSubmitted && 'var(--text-error)'} />}
         </span>
-        <p className={`${(ErrorCondition && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}`}>{name}</p>
+        <p className={`${(ErrorCondition && isSubmitted) ? 'text-textError' : 'text-textInputDefault'} mx-10`}>{name}</p>
       </div>
 
       {isOpen && (
