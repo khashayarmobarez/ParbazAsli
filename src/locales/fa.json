@@ -951,7 +951,55 @@
             "reject": "رد",
             "confirmationMessage": "پس از غیرفعال کردن دوره کاربران فعال این دوره تا پایان دوران دوره خود حق ثبت پرواز دارند ولی کاربر جدیدی به دوره افزوده نمی‌شود. آیا از غیرفعال کردن این دوره اطمینان دارید؟",
             "yes": "بله",
-            "no": "خیر"
+            "no": "خیر",
+            "studentsDetails": {
+                "studentApproved": "هنرجو تایید شد",
+                "studentRemoved": "هنرجو از دوره حذف شد",
+                "studentCompleted": "اتمام دوره ی هنرجو تایید شد",
+                "studentRejected": "هنرجو رد شد",
+                "studentAdded": "شاگرد شما با موفقیت اضافه شد",
+                "errorOccurred": "خطایی رخ داده است",
+                "errorMessage": "مشکلی پیش اماده, دوباره تلاش کنید",
+                "noStudentsAdded": "هنرجویی به دوره اضافه نشده",
+                "students": "هنرجویان",
+                "active": "فعال",
+                "pending": "در انتظار تایید",
+                "confirmStudent": "آیا این هنرجو مورد تایید شما است؟",
+                "approve": "تایید",
+                "reject": "رد",
+                "completeCourse": "اتمام دوره",
+                "cancelCourse": "لغو دوره",
+                "page": "صفحه ی",
+                "checkingStudent": "در حال بررسی هنرجو ...",
+                "studentName": "نام هنرجو",
+                "addStudent": "افزودن هنرجو",
+                "enterStudentId": "کد هنرجو را وارد کنید",
+                "previousStudents": "هنرجویان سابق",
+                "completed": "تمام شده",
+                "canceled": "لغو شده",
+                "returnToCourse": "بازگردانی به دوره",
+                "moreStudents": "بقیه ی هنرجو ها ...",
+                "add": "افزودن"
+            },
+            "classes": {
+                "noClassesAdded": "کلاسی اضافه نشده است",
+                "numberOfClasses": "تعداد کلاس های برگزارشده",
+                "totalClassHours": "جمع ساعت کلاس ها",
+                "addClass": "افزودن کلاس جدید",
+                "classDetails": {
+                    "name": "نام",
+                    "duration": "مدت زمان",
+                    "startTime": "زمان شروع",
+                    "endTime": "زمان پایان",
+                    "date": "تاریخ",
+                    "description": "توضیحات کلاس",
+                    "topics": "مباحث مطرح شده",
+                    "students": "هنرجویان",
+                    "guestStudents": "هنرجویان مهمان",
+                    "moreInfo": "اطلاعات بیشتر...",
+                    "closeInfo": "بستن اطلاعات بیشتر"
+                }
+            }
         }
     }
 }

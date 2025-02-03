@@ -951,7 +951,55 @@
             "reject": "Reject",
             "confirmationMessage": "After deactivating the course, active users of this course will have the right to register flights until the end of the course period, but no new users will be added to the course. Are you sure you want to deactivate this course?",
             "yes": "Yes",
-            "no": "No"
+            "no": "No",
+            "studentsDetails": {
+                "studentApproved": "Student has been approved",
+                "studentRemoved": "Student has been removed from the course",
+                "studentCompleted": "Student's course completion has been approved",
+                "studentRejected": "Student has been rejected",
+                "studentAdded": "Your student has been successfully added",
+                "errorOccurred": "An error occurred",
+                "errorMessage": "An error occurred, please try again",
+                "noStudentsAdded": "No students have been added to the course",
+                "students": "Students",
+                "active": "Active",
+                "pending": "Pending Approval",
+                "confirmStudent": "Do you approve this student?",
+                "approve": "Approve",
+                "reject": "Reject",
+                "completeCourse": "Complete Course",
+                "cancelCourse": "Cancel Course",
+                "page": "Page",
+                "checkingStudent": "Checking student...",
+                "studentName": "Student Name",
+                "addStudent": "Add Student",
+                "enterStudentId": "Enter student ID",
+                "previousStudents": "Previous Students",
+                "completed": "Completed",
+                "canceled": "Canceled",
+                "returnToCourse": "Return to Course",
+                "moreStudents": "More Students...",
+                "add": "Add"
+            },
+            "classes": {
+                "noClassesAdded": "No classes have been added",
+                "numberOfClasses": "Number of classes held",
+                "totalClassHours": "Total class hours",
+                "addClass": "Add new class",
+                "classDetails": {
+                    "name": "Name",
+                    "duration": "Duration",
+                    "startTime": "Start Time",
+                    "endTime": "End Time",
+                    "date": "Date",
+                    "description": "Class Description",
+                    "topics": "Topics Covered",
+                    "students": "Students",
+                    "guestStudents": "Guest Students",
+                    "moreInfo": "More Info...",
+                    "closeInfo": "Close Info"
+                }
+            }
         }
     }
 }

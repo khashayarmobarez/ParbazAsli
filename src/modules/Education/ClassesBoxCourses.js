@@ -17,10 +17,15 @@ import { useAClass } from '../../Utilities/Services/coursesQueries';
 // redux
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../Utilities/ReduxToolKit/features/userData/userSlice';
-import { useLocation } from 'react-router-dom';
+
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 const ClassesBoxCourses = (props) => {
+
+    // language
+    const { t } = useTranslation();
 
     const convertToHoursAndMinutes = useConvertMinutesToHours();
 
@@ -76,35 +81,35 @@ const ClassesBoxCourses = (props) => {
                             <div className=' grid grid-cols-2 gap-x-4 gap-y-4 w-full'>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>نام</p>
+                                    <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.name")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.name}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>مدت زمان</p>
+                                    <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.duration")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.classDuration}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>زمان شروع</p>
+                                    <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.startTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.startTime}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>زمان پایان</p>
+                                    <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.endTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.endTime}</p>
                                     </div>
                                 </div>  
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>تاریخ</p>
+                                    <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.endTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.dateTime}</p>
                                     </div>
@@ -116,7 +121,7 @@ const ClassesBoxCourses = (props) => {
                             {
                                 !extraData &&
                                 <div className='w-full flex justify-center mt-12'>
-                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >اطلاعات بیشتر...</button>
+                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >{t("education.aCourseDetails.classes.classDetails.moreInfo")}</button>
                                 </div>
                             }
             
@@ -124,13 +129,13 @@ const ClassesBoxCourses = (props) => {
                                 <div id='no grid list' className='w-full items-center flex flex-col gap-y-6 '>
 
                                     <div className=' w-full flex flex-col items-start justify-between gap-y-2 mt-6' >
-                                        <p>توضیحات کلاس</p>
+                                        <p>{t("education.aCourseDetails.classes.classDetails.description")}</p>
                                         <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{classDetails.data.description}</p>
                                     </div>
                     
                     
                                     <div className=' w-full flex flex-col items-start gap-y-2 '>
-                                            <p className=' text-sm'>مباحث مطرح شده</p>
+                                            <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.topics")}</p>
                                             {   classDetails &&
                                                 classDetails.data.syllabi.map((syllabus) => (
                                                     <div key={syllabus.id} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>
@@ -144,7 +149,7 @@ const ClassesBoxCourses = (props) => {
                                     {
                                         classDetails.data.userCourses.length > 0 &&
                                             <div className=' flex flex-col items-start gap-y-2 mx-4 w-full'>
-                                                    <p className=' text-sm'>هنرجویان</p>
+                                                    <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.students")}</p>
                                                     <div className='w-full flex flex-col gap-y-5'>
                                                     {
                                                     classDetails.data.userCourses.map((student, index) => (    
@@ -161,7 +166,7 @@ const ClassesBoxCourses = (props) => {
                                     {
                                     classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
                                         <div className=' flex flex-col items-start gap-y-2 mx-4 w-full'>
-                                                <p className=' text-sm'>هنرجویان مهمان</p>
+                                                <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.guestStudents")}</p>
                                                 <div className='w-full flex flex-col gap-y-5'>   
                                                 {
                                                 classDetails.data.guestUsers.map((student,index) => ( 
@@ -178,7 +183,7 @@ const ClassesBoxCourses = (props) => {
                             {
                                 userRole === 'coach' && extraData &&
                                 <div className='w-full flex justify-center mt-12'>
-                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >بستن اطلاعات بیشتر</button>
+                                    <button onClick={handleClickExtraData} className='underline underline-offset-4 text-xs' style={{color:'var(--text-accent'}} >{t("education.aCourseDetails.classes.classDetails.closeInfo")}</button>
                                 </div>
                             }
             

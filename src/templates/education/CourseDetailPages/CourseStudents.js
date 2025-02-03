@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 
 // styles
 import gradients from '../../../styles/Gradient.module.css'
-import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -25,7 +24,14 @@ import TextInput from '../../../components/inputs/textInput';
 import { useUserById } from '../../../Utilities/Services/queries';
 import DropDownLine from '../../../components/reuseable/DropDownLine';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const CourseStudents = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -111,7 +117,7 @@ const CourseStudents = () => {
         triggerStudentStatus(triggerStatusForm,{
             onSuccess: (data) => {
                 if(status === 'Active') {
-                    toast('هنرجو تایید شد', {
+                    toast(t("education.aCourseDetails.studentsDetails.studentApproved"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', 
                         autoClose: 3000,
@@ -120,7 +126,7 @@ const CourseStudents = () => {
                     });
                 }
                 else if(status === 'Canceled') {
-                    toast('هنرجو از دوره حذف شد', {
+                    toast(t("education.aCourseDetails.studentsDetails.studentApproved"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
@@ -128,7 +134,7 @@ const CourseStudents = () => {
                         style: { width: "350px" }
                     });
                 } else if(status === 'Completed') {
-                    toast( 'اتمام دوره ی هنرجو تایید شد', {
+                    toast( t("education.aCourseDetails.studentsDetails.studentCompleted"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
@@ -136,7 +142,7 @@ const CourseStudents = () => {
                         style: { width: "350px" }
                     });
                 } else if(status === 'CoachRejected') {
-                    toast( 'هنرجو رد شد', {
+                    toast(t("education.aCourseDetails.studentsDetails.studentRejected"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right',
                         autoClose: 3000,
@@ -164,7 +170,7 @@ const CourseStudents = () => {
 
         addStudentToCourse( customCourseData , {
             onSuccess: () => {
-                toast('شاگرد شما با موفقیت اضافه شد', {
+                toast(t("education.aCourseDetails.studentsDetails.studentAdded"), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -178,7 +184,7 @@ const CourseStudents = () => {
                 }, 800);
             },
             onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage = t("education.aCourseDetails.studentsDetails.errorOccurred");
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -208,12 +214,12 @@ const CourseStudents = () => {
 
             {
                 studentsDataError &&
-                <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                <p className='w-full text-center'>{t("education.aCourseDetails.studentsDetails.errorMessage")}</p>
             }
 
             {
                 studentsData && studentsData.totalCount < 1 &&
-                <p className='w-full text-center pb-5 pt-4 text-textWarning'>هنرجویی به دوره اضافه نشده</p>
+                <p className='w-full text-center pb-5 pt-4 text-textWarning'>{t("education.aCourseDetails.studentsDetails.noStudentsAdded")}</p>
             }
 
             {
@@ -223,15 +229,15 @@ const CourseStudents = () => {
                         studentsData.totalCount > 0 &&
                         <DropDownLine  
                         onClickActivation={() => setDropDownActive(!DropDownActive)}
-                        title={'هنر‌جویان'} 
+                        title={t("education.aCourseDetails.studentsDetails.students")} 
                         dropDown={DropDownActive} 
                         isActive={DropDownActive === true}  
                         />
                     }
                     {DropDownActive && studentsData.data?.map((student) => (
                         <div className={`flex flex-col w-full mb-2 ${showActiveStudentOptions === student.id && 'z-30'}`}>
-                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 pr-3 mt-[-1rem] rounded-2xl text-xs`}
-                            >
+                            <div className={`${gradients.container} z-10 flex w-full justify-between items-center h-12 mt-[-1rem] rounded-2xl text-xs
+                            ${dir === 'ltr' ? 'pl-3' : 'pr-3'}`}>
                                 <div className='flex items-center justify-start gap-x-2'>
                                     <span onClick={() => handleClickStudent(student.id, student.status)}>
                                         <PersonOutlineOutlinedIcon sx={{width:'20px', height: '20px'}} />
@@ -244,9 +250,9 @@ const CourseStudents = () => {
                                 <p
                                 onClick={() => handleClickStudent(student.id)}>{student.name}</p>
                                 <p className='text-textButtonMainDisabled'
-                                onClick={() => handleClickStudent(student.id)}>وضعیت: 
-                                    {student.status === 'Active' && <span className='text-textAccent'> فعال </span>}
-                                    {student.status === 'CoachPending' && <span className='text-textWarning'> در انتظار تایید</span>}
+                                onClick={() => handleClickStudent(student.id)}>{t("education.aCourseDetails.status")}: 
+                                    {student.status === 'Active' && <span className='text-textAccent'> {t("education.aCourseDetails.studentsDetails.active")} </span>}
+                                    {student.status === 'CoachPending' && <span className='text-textWarning'> {t("education.aCourseDetails.studentsDetails.pending")}</span>}
                                 </p>
                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
                                     <CircularProgress variant="determinate" value={student.percent > 80 ? student.percent : student.percent + 5 }
@@ -262,7 +268,8 @@ const CourseStudents = () => {
                                         :
                                         student.id
                                     )}
-                                    className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-12 flex items-center justify-center rounded-l-2xl`}>
+                                    className={`${gradients.clipboardButtonBackgroundGradient} w-[52px] h-12 flex items-center justify-center 
+                                    ${dir === 'ltr' ? 'rounded-r-2xl' : 'rounded-l-2xl'}`}>
                                         <MoreVertIcon sx={{ width:'20px', height:'20px'}}  />
                                     </button>
                                 }
@@ -274,7 +281,7 @@ const CourseStudents = () => {
 
                                     <div className='flex justify-center text-xs gap-x-2 items-center gap-y-10'>
                                         <div className='w-2 h-2 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div>
-                                        <p >آیا این هنرجو مورد تایید شما است؟</p>
+                                        <p >{t("education.aCourseDetails.studentsDetails.confirmStudent")}</p>
                                     </div>
 
                                     <div className='flex gap-x-6 items-center px-2'>
@@ -286,11 +293,11 @@ const CourseStudents = () => {
                                         }
                                         
                                         <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'Active', student.id, event)} className='text-textAccent text-sm font-medium'  >
-                                            تایید
+                                            {t("education.aCourseDetails.studentsDetails.approve")}
                                         </p>
 
                                         <p onClick={(event) => !triggerStudentStatusLoading && handleTriggerStudentStatus( 'CoachRejected', student.id, event)} className='text-textError text-sm font-medium' >
-                                            رد
+                                            {t("education.aCourseDetails.studentsDetails.reject")}
                                         </p>
 
                                     </div>
@@ -304,12 +311,12 @@ const CourseStudents = () => {
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }
                                             className='w-full text-center py-1.5 active:bg-textAccent'
                                             >
-                                                اتمام دوره 
+                                                {t("education.aCourseDetails.studentsDetails.completeCourse")} 
                                         </p>
                                         <div className='w-full h-[2px] bg-bgPageMain'/>
                                         <p className=' w-full text-center py-1.5 active:bg-textAccent'
                                         onClick={(event) => handleTriggerStudentStatus( 'Canceled', student.id, event)}>
-                                            لغو دوره
+                                            {t("education.aCourseDetails.studentsDetails.cancelCourse")}
                                         </p>
                                     </div>
                                 </div>
@@ -327,7 +334,7 @@ const CourseStudents = () => {
                             </button>
 
                             <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                صفحه ی {pageNumber}
+                                {t("education.aCourseDetails.studentsDetails.page")} {pageNumber}
                             </p>
 
                             <button
@@ -342,7 +349,7 @@ const CourseStudents = () => {
 
                     <div className='flex flex-col w-full gap-y-2'>
                         { studentNameLoading && studentId.length > 5 &&
-                            <p className=' self-start text-textAccent'>در حال بررسی هنرجو ... </p>
+                            <p className=' self-start text-textAccent'>{t("education.aCourseDetails.studentsDetails.checkingStudent")}</p>
                         }
                         { studentData && 
                             <p className=' self-start text-textAccent'>{studentData.data.fullName}</p>
@@ -358,11 +365,11 @@ const CourseStudents = () => {
                                     id={'TI1'} 
                                     value={studentId} 
                                     onChange={handleInputStudentId} 
-                                    placeholder='افزودن هنرجو' 
+                                    placeholder={t("education.aCourseDetails.studentsDetails.addStudent")}
                                     className='w-full' 
                                     isSubmitted={isSubmitted}
                                     ErrorCondition={!studentId}
-                                    ErrorText={'کد هنرجو را وارد کنید'}
+                                    ErrorText={t("education.aCourseDetails.studentsDetails.enterStudentId")}
                                     />
                                 </div>
                                 <span
@@ -370,7 +377,7 @@ const CourseStudents = () => {
                                     onClick={handleAddStudnetToCourse}
                                     disabled={addStudentToCourseLoading}
                                 >
-                                    افزودن
+                                    {t("education.aCourseDetails.studentsDetails.add")}
                                 </span>
                             </div>
                         }
@@ -382,7 +389,7 @@ const CourseStudents = () => {
                         <div  className='w-full flex flex-col items-center gap-y-4'>
                             <DropDownLine  
                                 onClickActivation={() => setDropDownHistory(!DropDownHistory)}
-                                title={'هنرجویان سابق'} 
+                                title={t("education.aCourseDetails.studentsDetails.previousStudents")}
                                 dropDown={DropDownHistory} 
                                 isActive={DropDownHistory === true}  
                             />
@@ -403,9 +410,9 @@ const CourseStudents = () => {
                                                 <p onClick={() => handleClickStudent(student.id)}>{student.name}</p>
                                                 <p className='text-textButtonMainDisabled '
                                                 onClick={() => handleClickStudent(student.id)}>
-                                                    وضعیت: 
-                                                    {student.status === 'Completed' && <span className='text-textAccent '> تمام شده</span>}
-                                                    {student.status === 'Canceled' && <span className='text-textError'> لغو شده</span>}
+                                                    {t("education.aCourseDetails.status")}: 
+                                                    {student.status === 'Completed' && <span className='text-textAccent '> {t("education.aCourseDetails.studentsDetails.completed")}</span>}
+                                                    {student.status === 'Canceled' && <span className='text-textError'> {t("education.aCourseDetails.studentsDetails.canceled")}</span>}
                                                 </p>
                                                 <div/>
                                                 {/* <Box sx={{ display: 'flex' , justifyContent:'center' }}>
@@ -434,7 +441,7 @@ const CourseStudents = () => {
                                                     <div className='w-1/3 h-full bg-bgInputDropdown border border-textDisabled rounded-2xl flex flex-col items-center justify-center'>
                                                         <p className=' text-center active:bg-textAccent'
                                                         onClick={(event) => handleTriggerStudentStatus( 'Active', student.id, event)}>
-                                                            بازگردانی به دوره
+                                                            {t("education.aCourseDetails.studentsDetails.returnToCourse")}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -444,7 +451,7 @@ const CourseStudents = () => {
                                     {   
                                     studentsHistoryData &&
                                     studentsData.totalPagesCount < studentsData.currentPage && 
-                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem] text-textAccent ' >بقیه ی هنرجو ها ...</p>
+                                        <p onClick={handleNextPageHistory} className=' self-start mt-[-0.5rem] text-textAccent ' >{t("education.aCourseDetails.studentsDetails.moreStudents")}</p>
                                     }
                                 </div>
                             }
