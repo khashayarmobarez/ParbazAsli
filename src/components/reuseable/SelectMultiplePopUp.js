@@ -10,15 +10,12 @@ import TextInput from '../inputs/textInput';
 import SearchIcon from '../../components/icons/SearchIcon';
 import Checkbox from '../../modules/authentication/Inputs/CheckBox';  // Update the import path as needed
 
-// context
-import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, name, handleRemove, isForSyllabi, Icon, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, }) => {
   
-    // language
-    const { t } = useTranslation();
-    const dir = Cookies.get('dir') || 'ltr';
+  // language
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);

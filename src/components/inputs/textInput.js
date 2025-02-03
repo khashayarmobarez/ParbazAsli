@@ -4,13 +4,12 @@ import Cookies from 'js-cookie';
 
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs.module.css'
-import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
   
   // language
-    const { t } = useTranslation();
-    const dir = Cookies.get('dir') || 'ltr';
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [isFocused, setIsFocused] = useState(false);
   const [showErrors, setShowErrors] = useState(false);

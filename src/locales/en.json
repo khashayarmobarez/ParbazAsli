@@ -920,6 +920,38 @@
             "confirmationMessage": "If you confirm the course, it will not be editable. Please be careful.",
             "confirm": "Yes",
             "decline": "No"
+        },
+        "aCourseDetails": {
+            "courseActivated": "Your course has been successfully activated",
+            "courseDeactivated": "Your course has been successfully deactivated",
+            "courseRejected": "Your course has been successfully rejected",
+            "courseDetails": "Course Details",
+            "name": "Name",
+            "type": "Type",
+            "accordingToSyllabus": "According to Syllabus",
+            "retraining": "Retraining",
+            "customized": "Customized",
+            "organization": "Organization",
+            "level": "Level",
+            "flightsCount": "Flights Count",
+            "clubName": "Club Name",
+            "status": "Status",
+            "active": "Active",
+            "pending": "Pending Approval",
+            "inactive": "Inactive",
+            "courseDescription": "Course Description",
+            "close": "Close",
+            "more": "More...",
+            "students": "Students",
+            "theoryClasses": "Theory Classes",
+            "syllabi": "Syllabi",
+            "deactivate": "Deactivate",
+            "activate": "Activate",
+            "confirm": "Confirm",
+            "reject": "Reject",
+            "confirmationMessage": "After deactivating the course, active users of this course will have the right to register flights until the end of the course period, but no new users will be added to the course. Are you sure you want to deactivate this course?",
+            "yes": "Yes",
+            "no": "No"
         }
     }
 }

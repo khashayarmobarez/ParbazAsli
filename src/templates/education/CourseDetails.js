@@ -18,7 +18,13 @@ import { toast } from 'react-toastify';
 import StandardPopup from '../../components/reuseable/StandardPopup';
 import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const CourseDetails = () => {
+
+    // language
+    const { t } = useTranslation();
     
     const navigate = useNavigate()
     const location = useLocation()
@@ -50,7 +56,7 @@ const CourseDetails = () => {
         triggerCourseStatus(triggerStatusForm, {
             onSuccess: () => {
                 if(status === 'Active') {
-                    toast('دوره شما با موفقیت فعال شد', {
+                    toast(t("education.aCourseDetails.courseActivated"), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -59,7 +65,7 @@ const CourseDetails = () => {
                     });
                     refetchCourseData()
                 } else if(status === 'Disable') {
-                    toast('دوره با موفقیت غیرفعال شد', {
+                    toast(t("education.aCourseDetails.courseDeactivated"), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -69,7 +75,7 @@ const CourseDetails = () => {
                     refetchCourseData()
 
                 } else if(status === 'Rejected') {
-                    toast('دوره با موفقیت رد شد', {
+                    toast(t("education.aCourseDetails.courseRejected"), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -92,7 +98,7 @@ const CourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={isForClub ? clubHistoryPageUrl : '/education'} /> 
+                <PageTitle title={t("education.aCourseDetails.courseDetails")} navigateTo={isForClub ? clubHistoryPageUrl : '/education'} /> 
 
                 {
                     courseDataLoading &&
@@ -114,25 +120,25 @@ const CourseDetails = () => {
                             <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نام</p>
+                                    <p className=' text-xs pr-2'>{t("education.aCourseDetails.name")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>{aCourseData.data.name}</p>
                                     </div>
                                 </div>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نوع</p>
+                                    <p className=' text-xs pr-2'>{t("education.aCourseDetails.type")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                        {aCourseData.data.type === 'Regular' && <p>مطابق سیلابس</p> }
-                                        {aCourseData.data.type === 'Retraining' && <p>بازآموزی</p> }
-                                        {aCourseData.data.type === 'Custom' && <p>شخصی‌سازی شده</p> }
+                                        {aCourseData.data.type === 'Regular' && <p>{t("education.aCourseDetails.accordingToSyllabus")}</p> }
+                                        {aCourseData.data.type === 'Retraining' && <p>{t("education.aCourseDetails.retraining")}</p> }
+                                        {aCourseData.data.type === 'Custom' && <p>{t("education.aCourseDetails.customized")}</p> }
                                     </div>
                                 </div>
 
                                 {
                                     aCourseData.data.organization &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                        <p className=' text-xs pr-2'>ارگان</p>
+                                        <p className=' text-xs pr-2'>{t("education.aCourseDetails.organization")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center pr-4 w-full h-12 rounded-xl text-xs`}  id='data' >
                                             <p>{aCourseData.data.organization}</p>
                                         </div>
@@ -142,7 +148,7 @@ const CourseDetails = () => {
                                 {
                                     aCourseData.data.level &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                        <p className=' text-xs pr-2'>مقطع</p>
+                                        <p className=' text-xs pr-2'>{t("education.aCourseDetails.level")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.level}</p>
                                         </div>
@@ -150,7 +156,7 @@ const CourseDetails = () => {
                                 }
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                    <p className=' text-xs pr-2'>تعداد پرواز</p>
+                                    <p className=' text-xs pr-2'>{t("education.aCourseDetails.flightsCount")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>{aCourseData.data.flightsCount}</p>
                                     </div>
@@ -159,7 +165,7 @@ const CourseDetails = () => {
                                 {
                                     aCourseData.data.clubName &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>نام باشگاه</p>
+                                        <p className=' text-xs pr-2'>{t("education.aCourseDetails.clubName")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.clubName}</p>
                                         </div>
@@ -167,25 +173,25 @@ const CourseDetails = () => {
                                 }
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                    <p className=' text-xs pr-2'>وضعیت</p>
+                                    <p className=' text-xs pr-2'>{t("education.aCourseDetails.status")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         {aCourseData && aCourseData.data.status === 'Active' && 
                                             <>
-                                                <p>فعال</p>
+                                                <p>{t("education.aCourseDetails.active")}</p>
                                                 {/* below is a circle to show status of the app with color */}
                                                 {/* <div className='w-3 h-3 rounded-full ' style={{backgroundColor:'var(--text-accent)'}}></div> */}
                                             </>
                                         }
                                         {aCourseData && aCourseData.data.status === 'Pending' &&
                                             <>
-                                                <p>در انتظار تایید</p>
+                                                <p>{t("education.aCourseDetails.pending")}</p>
                                                 {/* below is a circle to show status of the app with color */}
                                                 {/* <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-default)'}}></div> */}
                                             </>
                                         }
                                         {aCourseData && aCourseData.data.status === 'Disable' &&
                                             <>
-                                                <p>غیرفعال</p>
+                                                <p>{t("education.aCourseDetails.inactive")}</p>
                                                 {/* below is a circle to show status of the app with color */}
                                                 {/* <div className='w-3 h-3 rounded-full' style={{backgroundColor:'var(--text-error)'}}></div> */}
                                             </>
@@ -198,7 +204,7 @@ const CourseDetails = () => {
                             {
                             showExtra && 
                                 <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
-                                    <p>توضیحات درباره دوره</p>
+                                    <p>{t("education.aCourseDetails.courseDescription")}</p>
                                     <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{aCourseData.data.description}</p>
                                 </div>
                             }   
@@ -207,7 +213,7 @@ const CourseDetails = () => {
                                 aCourseData?.data.description.length > 0  && 
                                 <p onClick={() => setShowExtra(!showExtra)}
                                 className='w-full px-6 text-sm text-textAccent text-start self-start'>
-                                    {showExtra ? 'بستن' : 'بیشتر ...'}
+                                    {showExtra ? t("education.aCourseDetails.close") : t("education.aCourseDetails.more")}
                                 </p>
                             }
 
@@ -223,7 +229,7 @@ const CourseDetails = () => {
                                     location.pathname === `/education/courseDetails/${id}/students` || location.pathname === `/club/courseDetails/${id}/students`)
                                     ? ButtonStyles.activeYellow : ''} `} 
                                 >
-                                هنرجویان
+                                {t("education.aCourseDetails.students")}
                             </Link> 
                             <Link 
                                 to={isForClub ? `/club/courseDetails/${id}/classes` : `/education/courseDetails/${id}/classes`} 
@@ -231,7 +237,7 @@ const CourseDetails = () => {
                                 ${(location.pathname === `/education/courseDetails/${id}/classes` || location.pathname === `/club/courseDetails/${id}/classes`)
                                     ? ButtonStyles.activeYellow : ''}`} 
                                 >
-                                کلاس تئوری
+                                {t("education.aCourseDetails.theoryClasses")}
                             </Link> 
                             <Link 
                                 to={isForClub ? `/club/courseDetails/${id}/syllabi` : `/education/courseDetails/${id}/syllabi`}  
@@ -239,7 +245,7 @@ const CourseDetails = () => {
                                 ${(location.pathname === `/education/courseDetails/${id}/syllabi` || location.pathname === `/club/courseDetails/${id}/syllabi`)
                                     ? ButtonStyles.activeYellow : ''} `} 
                                 >
-                                سرفصل‌ها
+                                {t("education.aCourseDetails.syllabi")}
                             </Link>
                         </div>
 
@@ -255,7 +261,7 @@ const CourseDetails = () => {
                                         className={`${ButtonStyles.normalButton} w-full text-base`} 
                                         onClick={() => setShowPopup(true)}
                                     >
-                                        <p>غیر فعال سازی</p>
+                                        <p>{t("education.aCourseDetails.deactivate")}</p>
                                     </button>
                                 </div>
                                 <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
@@ -270,7 +276,7 @@ const CourseDetails = () => {
                                         className={`${ButtonStyles.addButton} w-full text-base`} 
                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)}
                                     >
-                                        <p>فعال سازی</p>
+                                        <p>{t("education.aCourseDetails.activate")}</p>
                                     </button>
                                 </div>
                                 <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
@@ -284,13 +290,13 @@ const CourseDetails = () => {
                                         className={`${ButtonStyles.addButton} w-full text-base`} 
                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Active', id)}
                                     >
-                                        <p>تایید</p>
+                                        <p>{t("education.aCourseDetails.confirm")}</p>
                                     </button>
                                     <button 
                                         className={`${ButtonStyles.normalButton} w-full text-base`} 
                                         onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Rejected', id)}
                                     >
-                                        <p>رد</p>
+                                        <p>{t("education.aCourseDetails.reject")}</p>
                                     </button>
                                 </div>
                                 <div className="bg-bgPageMain opacity-90 h-8 w-full -mt-4 relative z-0" />
@@ -309,8 +315,8 @@ const CourseDetails = () => {
                     !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'Disable', id);
                     setShowPopup(false);
                 }}
-                topicText='تاییدیه' explanationtext='پس از غیرفعال کردن دوره کاربران فعال این دوره تا پایان دوران دوره خود حق ثبت پرواز دارند ولی کاربر جدیدی به دوره افزوده نمیشود. آیا از غیرفعال کردن این دوره اطمینان دارید؟'
-                submitText='بله' declineText='خیر' />
+                topicText={t("education.aCourseDetails.confirm")} explanationtext={t("education.aCourseDetails.confirmationMessage")}
+                submitText={t("education.aCourseDetails.yes")} declineText={t("education.aCourseDetails.no")} />
             </div>
 
         </div>

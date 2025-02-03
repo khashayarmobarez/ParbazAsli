@@ -920,6 +920,38 @@
             "confirmationMessage": "در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید",
             "confirm": "بله",
             "decline": "خیر"
+        },
+        "aCourseDetails": {
+            "courseActivated": "دوره شما با موفقیت فعال شد",
+            "courseDeactivated": "دوره با موفقیت غیرفعال شد",
+            "courseRejected": "دوره با موفقیت رد شد",
+            "courseDetails": "جزئیات دوره",
+            "name": "نام",
+            "type": "نوع",
+            "accordingToSyllabus": "مطابق سیلابس",
+            "retraining": "بازآموزی",
+            "customized": "شخصی‌سازی شده",
+            "organization": "ارگان",
+            "level": "مقطع",
+            "flightsCount": "تعداد پرواز",
+            "clubName": "نام باشگاه",
+            "status": "وضعیت",
+            "active": "فعال",
+            "pending": "در انتظار تایید",
+            "inactive": "غیرفعال",
+            "courseDescription": "توضیحات درباره دوره",
+            "close": "بستن",
+            "more": "بیشتر ...",
+            "students": "هنرجویان",
+            "theoryClasses": "کلاس تئوری",
+            "syllabi": "سرفصل‌ها",
+            "deactivate": "غیر فعال سازی",
+            "activate": "فعال سازی",
+            "confirm": "تایید",
+            "reject": "رد",
+            "confirmationMessage": "پس از غیرفعال کردن دوره کاربران فعال این دوره تا پایان دوران دوره خود حق ثبت پرواز دارند ولی کاربر جدیدی به دوره افزوده نمی‌شود. آیا از غیرفعال کردن این دوره اطمینان دارید؟",
+            "yes": "بله",
+            "no": "خیر"
         }
     }
 }
