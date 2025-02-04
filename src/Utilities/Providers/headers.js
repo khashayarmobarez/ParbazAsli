@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 
 export const getCommonHeaders = (contentType = 'application/json') => {
+  
   const token = Cookies.get('token');
   const culture = Cookies.get('culture') || 'en';
 
