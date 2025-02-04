@@ -1032,5 +1032,47 @@
     },
     "syllabiList": {
         "syllabi": "Syllabi"
+    },
+    "club": {
+        "profile": {
+            "clubProfile": "Club Profile",
+            "loading": "Loading...",
+            "addClub": "Add Club",
+            "pendingSubmission": "Pending Club Submission",
+            "equipment": "Equipment",
+            "education": "Education",
+            "coaches": "Coaches",
+            "clubId": "Club ID",
+            "activeCoaches": "Active Coaches",
+            "activeStudents": "Active Students"
+        },
+        "addClub": {
+            "submittingData": "Submitting data",
+            "invalidFileFormat": "Invalid image format. Please select a valid image file.",
+            "maxFileSize": "The maximum size for image upload is 10 MB.",
+            "fillAllFields": "Please fill in all fields",
+            "clubAddedSuccess": "Club added successfully, awaiting admin approval",
+            "errorOccurred": "An error occurred",
+            "uploadProfilePic": "Upload Profile Picture",
+            "clubName": "Club Name",
+            "clubNameRequired": "Club name is required",
+            "licenseNumber": "License Number",
+            "licenseNumberRequired": "License number is required",
+            "foundationDate": "Foundation Date",
+            "foundationDateRequired": "Foundation date is required",
+            "foundationDateBeforeExpiration": "Foundation date must be before expiration date",
+            "expirationDate": "Expiration Date",
+            "expirationDateRequired": "Expiration date is required",
+            "expirationDateAfterFoundation": "Expiration date must be after foundation date",
+            "uploadLicense": "Upload License",
+            "licenseFormat": "The image format must be jpeg, jpg, gif, bmp, or png",
+            "licenseSize": "The image size must not exceed 10 MB",
+            "licenseRequired": "License image is required",
+            "submit": "Submit"
+        },
+        "pendingClub": {
+            "waitingForApproval": "Waiting for Approval...",
+            "requestPending": "Your request to register the club is pending approval. Thank you for your patience."
+        }
     }
 }

@@ -1032,6 +1032,48 @@
     },
     "syllabiList": {
         "syllabi":"سرفصل‌ها"
+    },
+    "club": {
+        "profile": {
+            "clubProfile": "پروفایل باشگاه",
+            "loading": "در حال بارگذاری...",
+            "addClub": "افزودن باشگاه",
+            "pendingSubmission": "درخواست باشگاه در انتظار تایید",
+            "equipment": "تجهیزات",
+            "education": "آموزش",
+            "coaches": "مربیان",
+            "clubId": "کد باشگاه",
+            "activeCoaches": "مربی فعال",
+            "activeStudents": "هنرجو فعال"
+        },
+        "addClub": {
+            "submittingData": "در حال ثبت اطلاعات",
+            "invalidFileFormat": "فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.",
+            "maxFileSize": "حداکثر حجم برای آپلود عکس 10 مگابایت است.",
+            "fillAllFields": "لطفا تمامی فیلد ها را پر کنید",
+            "clubAddedSuccess": "باشگاه با موفقیت اضافه شد، منتظر تایید ادمین باشید",
+            "errorOccurred": "خطایی رخ داده است",
+            "uploadProfilePic": "آپلود عکس پروفایل",
+            "clubName": "نام باشگاه",
+            "clubNameRequired": "نام باشگاه الزامی می باشد",
+            "licenseNumber": "شماره مجوز",
+            "licenseNumberRequired": "شماره مجوز الزامی می باشد",
+            "foundationDate": "تاریخ تاسیس",
+            "foundationDateRequired": "تاریخ تاسیس الزامی می باشد",
+            "foundationDateBeforeExpiration": "تاریخ تاسیس باید قبل از تاریخ انقضا باشد",
+            "expirationDate": "تاریخ انقضا",
+            "expirationDateRequired": "تاریخ انقضا الزامی می باشد",
+            "expirationDateAfterFoundation": "تاریخ انقضا باید بعد از تاریخ تاسیس باشد",
+            "uploadLicense": "آپلود عکس مجوز",
+            "licenseFormat": "فرمت عکس باید jpeg, jpg, gif, bmp یا png باشد",
+            "licenseSize": "حجم عکس نباید بیشتر از 10 مگابایت باشد",
+            "licenseRequired": "عکس مجوز الزامی میباشد",
+            "submit": "ثبت"
+        },
+        "pendingClub": {
+            "waitingForApproval": "در انتظار تایید...",
+            "requestPending": "درخواست شما برای ثبت باشگاه در انتظار تایید است. از صبوری شما سپاسگزاریم."
+        }
     }
 }
   

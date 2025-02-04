@@ -6,7 +6,14 @@ import Attention from '../../components/icons/Attention';
 // components
 import PageTitle from '../../components/reuseable/PageTitle';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const PendingClubSubmission = () => {
+
+    // language
+    const { t } = useTranslation();
+
     return (
         <>
 
@@ -14,9 +21,8 @@ const PendingClubSubmission = () => {
                 <span className='w-14 h-14 mx-auto'>
                     <Attention />
                 </span>
-                <p className='mt-4'>در انتظار تایید...</p>
-                <p className='mt-6'>درخواست شما برای ثبت باشگاه در انتظار تایید است.
-                از صبوری شما سپاسگزاریم.</p>
+                <p className='mt-4'>{t("club.pendingClub.waitingForApproval")}</p>
+                <p className='mt-6'>{t("club.pendingClub.requestPending")}</p>
             </div>
         </>
     );
