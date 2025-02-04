@@ -1073,6 +1073,18 @@
         "pendingClub": {
             "waitingForApproval": "Waiting for Approval...",
             "requestPending": "Your request to register the club is pending approval. Thank you for your patience."
+        },
+        "changeClubPic": {
+            "invalidFileFormat": "Invalid image format. Please select a valid image file.",
+            "maxFileSize": "The file size exceeds the maximum allowed limit. Please select a smaller image file.",
+            "selectFile": "Please select an image file.",
+            "uploadProfilePic": "Upload Profile Picture",
+            "allowedFormats": "Image formats must be bmp, gif, jpg, jpeg, or png",
+            "maxFileSizeNum": "Image size must not exceed 10 MB",
+            "deleting": "Deleting...",
+            "removePicture": "Remove Picture",
+            "uploading": "Uploading...",
+            "saveChanges": "Save Changes"
         }
     }
 }

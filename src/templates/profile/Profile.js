@@ -100,29 +100,29 @@ const Profile = () => {
                     ${dir === 'ltr' ? 'lg:right-0' : 'lg:left-0'}
                     ${!data.data.hasCoach ? 'px-12 justify-center gap-x-8' : 'justify-around' }`}>
 
-                        <Link to='/equipment/flightEquipment' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
+                        <Link to='/equipment/flightEquipment' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[62px] h-[62px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>{t("profile.userDashboard.buttons.equipment")}</p>
                         </Link>
                         
-                        <Link to='/MyCourses' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
+                        <Link to='/MyCourses' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[62px] h-[62px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>{t("profile.userDashboard.buttons.courses")}</p>
                         </Link>
                         
-                        <Link to='/syllabi' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
+                        <Link to='/syllabi' className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover w-[62px] h-[62px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>{t("profile.userDashboard.buttons.syllabi")}</p>
                         </Link>
                         
                         {/* education is condition based on, data.data.hasCoach  */}
-                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`}>
+                        <Link  to={data.data.hasCoach ? '/education' : '/'} className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover ${!data.data.hasCoach && 'hidden'} w-[62px] h-[62px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`}>
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>{t("profile.userDashboard.buttons.education")}</p>
                         </Link>
                         
                         {/* club is condition based on, data.data.hasCoach  */}
-                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover ${!data.data.hasCoach && 'hidden'} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
+                        <Link to={data.data.hasCoach ? '/club' : '/'} className={`${ButtonStyles.profileButton} bg-bgButtonProfileDefault hover:bg-bgButtonProfileHover ${!data.data.hasCoach && 'hidden'} w-[62px] h-[62px] rounded-2xl flex flex-col justify-between items-center p-3 text-textButtonProfileDefault text-xs`} >
                             <img src={pencil} alt='icon' className='w-[56%]'/>
                             <p>{t("profile.userDashboard.buttons.club")}</p>
                         </Link>

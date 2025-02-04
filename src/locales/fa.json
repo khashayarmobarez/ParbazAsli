@@ -1073,6 +1073,18 @@
         "pendingClub": {
             "waitingForApproval": "در انتظار تایید...",
             "requestPending": "درخواست شما برای ثبت باشگاه در انتظار تایید است. از صبوری شما سپاسگزاریم."
+        },
+        "changeClubPic": {
+            "invalidFileFormat": "فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.",
+            "maxFileSize": "اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید.",
+            "selectFile": "لطفا یک فایل تصویری انتخاب کنید.",
+            "uploadProfilePic": "آپلود عکس پروفایل",
+            "allowedFormats": "فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد",
+            "maxFileSizeNum": "حجم عکس ها نباید بیشتر از 10 مگابایت باشد",
+            "deleting": "در حال حذف...",
+            "removePicture": "حذف عکس فعلی",
+            "uploading": "در حال بارگذاری...",
+            "saveChanges": "ثبت تغییرات"
         }
     }
 }

@@ -66,19 +66,19 @@ const Club = () => {
                         <ClubData data={clubData} />
 
                         <div className='w-full flex justify-around'>
-                            <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
+                            <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[65px] h-[65px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
                                 <span className='w-[18px]'>
                                     <ParachuteIcon anotherColor={'var(--text-accent)'} />
                                 </span>
                                 {t("club.profile.equipment")}
                             </Link>
                             
-                            <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
+                            <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[65px] h-[65px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
                                 <AutoStoriesOutlinedIcon sx={{width:'18px', height:'18px'}} />
                                 {t("club.profile.education")}
                             </Link>
                             
-                            <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
+                            <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[65px] h-[65px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
                                 <AccountCircleOutlinedIcon sx={{width:'18px', height:'18px'}} />
                                 {t("club.profile.coaches")}
                             </Link>
