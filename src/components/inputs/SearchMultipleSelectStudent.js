@@ -79,7 +79,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
           onChange={handleInputChange}
           onFocus={() => setIsOpen(true)}
         />
-        <span 
+        <span
           onClick={handleIconClick}
           className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer
           ${dir === 'ltr' ? 'right-3' : 'left-3'}`}

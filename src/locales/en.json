@@ -1029,5 +1029,8 @@
                 "groundSyllabi": "Ground Handling Syllabi"
             }
         }
+    },
+    "syllabiList": {
+        "syllabi": "Syllabi"
     }
 }
