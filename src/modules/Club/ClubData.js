@@ -32,9 +32,9 @@ const ClubData = ({data}) => {
             {/* club data box  */}
            { 
             data &&
-                <div className={`${boxStyles.containerDarkmode} flex w-full items-start min-h-5 justify-around p-4 rounded-3xl md:py-4 md:px-2 md:h-full`}>
+                <div className={`${boxStyles.containerDarkmode} flex w-full items-start min-h-5 justify-between p-4 rounded-3xl md:py-4 md:px-2 md:h-full`}>
 
-                    <div className='flex flex-col w-full justify-between items-center gap-y-2 md:flex-row  md:justify-between md:h-[8rem] md:px-8'>
+                    <div className='flex flex-col w-[55%] justify-between items-center gap-y-2 md:flex-row  md:justify-between md:h-[8rem] md:px-8'>
 
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
                             <Avatar alt={data.data.name} src={data.data.file?.path ? data.data.file.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
@@ -47,27 +47,27 @@ const ClubData = ({data}) => {
 
                     </div>
 
-                    <div className='w-full h-full flex flex-col items-start justify-between  py-2 gap-y-2 md:space-y-5 lg:pl-[2vw] '>
+                    <div className='w-[45%] h-full flex flex-col items-start justify-between  py-2 gap-y-2 md:pl-[5vw]  md:gap-y-4 md:pt-4 '>
 
                         <div className=' flex justify-center items-center' >
                             <span className='w-5'>
                                 <UserIcon/>
                             </span>
-                            <p className=' font-normal text-sm mx-2  text-start'>{t("club.profile.clubId")} {data.data.id}</p>
+                            <p className=' font-normal text-xs mx-2  text-start'>{t("club.profile.clubId")} {data.data.id}</p>
                         </div>
 
                         <div className=' flex justify-center items-center' >
                             <span className='w-5'>
                             <UserIcon/>
                             </span>
-                            <p className=' font-normal text-sm mx-2  text-start'>{data.data.activeCoachesCount} {t("club.profile.activeCoaches")}</p>
+                            <p className=' font-normal text-xs mx-2  text-start'>{data.data.activeCoachesCount} {t("club.profile.activeCoaches")}</p>
                         </div>
 
                         <div className=' flex justify-between items-center' >
                             <span className='w-5 h-5'>
                             <UsersIcon/>
                             </span>
-                            <p className=' font-normal text-sm mx-2  text-start'>{data.data.activeStudentsCount} {t("club.profile.activeStudents")}</p>
+                            <p className=' font-normal text-xs mx-2  text-start'>{data.data.activeStudentsCount} {t("club.profile.activeStudents")}</p>
                         </div>
 
                     </div>

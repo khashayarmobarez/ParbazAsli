@@ -905,13 +905,11 @@ const getSyllabiForLevels = async (levelId) => {
 // Get Syllabus Landing Content
 // /api/Syllabus/GetSyllabusLandingContent?levelId=3 
     const getSyllabusLandingContent = async (levelId) => {
-        const token = Cookies.get('token');
 
         try {
             const response = await axios.get(`${API_BASE_URL}/Syllabus/GetSyllabusLandingContent?levelId=${levelId}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
+                    headers: getCommonHeaders() 
                 },
             });
             return response.data;
