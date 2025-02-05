@@ -35,7 +35,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
                         !notif.isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className='text-base'>{notif.title}</p>
+                    <p className='text-sm text-start'>{notif.title}</p>
                 </div>
 
                 {
