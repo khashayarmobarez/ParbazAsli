@@ -18,7 +18,14 @@ import { useACourseStudent, useStudentPendingPracticalActivityCount } from '../.
 import PageTitle from '../../../components/reuseable/PageTitle';
 import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const CourseStudentDetails = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -56,7 +63,7 @@ const CourseStudentDetails = () => {
                             <div className='w-full h-full flex flex-col justify-between items-start gap-y-4'>
                                 
                                 {
-                                    isMobile &&
+                                isMobile &&
                                     <h1 className='text-base'>{studentData.data.name}</h1>
                                 }
 

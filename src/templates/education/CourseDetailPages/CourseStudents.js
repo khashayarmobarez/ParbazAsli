@@ -305,7 +305,7 @@ const CourseStudents = () => {
                             }
                             {
                                 aCourseData?.data.accesses.canCancelOrFinishStudent && showActiveStudentOptions === student.id &&
-                                <div className=' absolute w-full flex justify-end left-[5%] h-[68px] mt-9 md:left-[25%]'>
+                                <div className={` absolute w-full flex justify-end ${dir === 'ltr' ? 'right-[5%]' : 'left-[5%]'} h-[68px] mt-9 md:left-[25%]`}>
                                     <div className='w-1/3 md:w-1/6 lg:w-1/12 h-full bg-bgOutputDefault text-textDefault rounded-2xl flex flex-col items-center justify-end'>
                                         <p
                                             onClick={(event) => handleTriggerStudentStatus( 'Completed', student.id, event) }

@@ -20,8 +20,13 @@ import ClubCoachBox from '../../../modules/Club/ClubCoachBox';
 import TextInput from '../../../components/inputs/textInput';
 import PageTitle from '../../../components/reuseable/PageTitle';
 import { USER_ID_PATTERN } from '../../../Utilities/Providers/regexProvider';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 const ClubCoaches = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
     const [DropDown, setDropDown] = useState('');
@@ -78,7 +83,7 @@ const ClubCoaches = () => {
         if (coachId.length > 5) {
             addCoachToClub( coachId , {
                 onSuccess: () => {
-                    toast('درخواست عضویت شما به مربی ارسال شد', {
+                    toast(t("club.coach.requestSent"), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -92,7 +97,7 @@ const ClubCoaches = () => {
                     }, 800);
                 },
                 onError: (error) => {
-                    let errorMessage = 'خطایی رخ داده است';
+                    let errorMessage = t("club.coach.errorOccurred")
                     if (error.response && error.response.data && error.response.data.ErrorMessages) {
                         errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     }
@@ -106,7 +111,7 @@ const ClubCoaches = () => {
                 }
             })
         } else {
-            toast('لطفا کد عضویت را به درستی وارد کنید', {
+            toast(t("club.coach.invalidMembershipCode"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -121,14 +126,14 @@ const ClubCoaches = () => {
 
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:w-[55%]'>
 
-            <PageTitle  title='مربیان' navigateTo={'/club'} />
+            <PageTitle  title={t("club.coach.coaches")} navigateTo={'/club'} />
 
                 <div className='w-[90%] flex flex-col gap-y-2 '>
 
 
                     <DropDownLine  
                         onClickActivation={() => handleDropDownClick('activeCoaches')}
-                        title={'مربیان'} 
+                        title={t("club.coach.activeCoaches")} 
                         dropDown={'activeCoaches'}
                         isActive={DropDown === `activeCoaches`}  
                     />
@@ -156,7 +161,7 @@ const ClubCoaches = () => {
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                    صفحه ی {pageNumber}
+                                                    {t("club.coach.page")} {pageNumber}
                                                 </p>
 
                                                 <button
@@ -170,7 +175,7 @@ const ClubCoaches = () => {
                                         }
                                     </>
                                 : 
-                                <p className='text-textWarning'>مربی فعالی در باشگاه وجود ندارد</p>
+                                <p className='text-textWarning'>{t("club.coach.noActiveCoaches")}</p>
                                 }
                             </div>
                         }
@@ -178,7 +183,7 @@ const ClubCoaches = () => {
 
                     <DropDownLine  
                         onClickActivation={() => handleDropDownClick('PreviousCoaches')}
-                        title={'مربیان سابق'} 
+                        title={t("club.coach.previousCoaches")} 
                         dropDown={'PreviousCoaches'} 
                         isActive={DropDown === `PreviousCoaches`}  
                     />
@@ -202,11 +207,11 @@ const ClubCoaches = () => {
                                                     disabled={pageNumberPrevious === 1}
                                                     onClick={handleLastPageNumberPrevious}
                                                 >
-                                                    <ArrowButton isRight={true} isDisable={pageNumberPrevious === 1}/>
+                                                    <ArrowButton isRight={dir !== 'ltr' && true} isDisable={pageNumberPrevious === 1}/>
                                                 </button>
 
                                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                    صفحه ی {pageNumberPrevious}
+                                                    {t("club.coach.page")} {pageNumberPrevious}
                                                 </p>
 
                                                 <button
@@ -214,13 +219,13 @@ const ClubCoaches = () => {
                                                     disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
                                                     onClick={handleNextPageNumberPrevious}
                                                 >
-                                                    <ArrowButton isDisable={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}/>
+                                                    <ArrowButton isRight={dir === 'ltr' && true} isDisable={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}/>
                                                 </button>
                                             </div>
                                         }
                                     </>
                                     :
-                                    <p className='text-textWarning'>مربی سابقی در این باشکاه وجود ندارد</p>
+                                    <p className='text-textWarning'>{t("club.coach.noPreviousCoaches")}</p>
                                 }
                             </div>
                         }
@@ -233,31 +238,31 @@ const ClubCoaches = () => {
                                     id={'TI1'} 
                                     value={coachId} 
                                     onChange={handleInputCoachId} 
-                                    placeholder='افزودن مربی' 
+                                    placeholder={t("club.coach.addCoach")}
                                     className='w-full' 
                                     isSubmitted={isSubmitted}
                                     ErrorCondition={!USER_ID_PATTERN.test(coachId) && coachId}
-                                    ErrorText={'فرمت کد کاربری اشتباه می باشد'}
+                                    ErrorText={t("club.coach.invalidUserIdFormat")}
                                     ErrorCondition2={!coachId}
-                                    ErrorText2={'کد کاربری الزامی می باشد'}
+                                    ErrorText2={t("club.coach.userIdRequired")}
                                     />
                             </div>
                             <span
-                                className={` w-[26%] h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
-                                onClick={handleAddCoachToClub}
-                                disabled={addCoachToClubLoading}
-                                >
-                                افزودن
+                            className={` w-[26%] h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}
+                            onClick={handleAddCoachToClub}
+                            disabled={addCoachToClubLoading}
+                            >
+                                {t("club.coach.addCoach")}
                             </span>
                         </div>
                         { coachData && 
                             <p className=' self-start text-textAccent -mt-1'>{coachData.data.fullName}</p>
                         }
                         { coachDataLoading && USER_ID_PATTERN.test(coachId) &&
-                            <p className=' self-start text-textWarning text-xs -mt-1'>...در حال جستجوی مربی</p>
+                            <p className=' self-start text-textWarning text-xs -mt-1'>{t("club.coach.searchingCoach")}</p>
                         }
                         { coachDataError && USER_ID_PATTERN.test(coachId) &&
-                            <p className=' self-start text-textError text-xs -mt-1'>مربی یافت نشد!</p>
+                            <p className=' self-start text-textError text-xs -mt-1'>{t("club.coach.coachNotFound")}</p>
                         }
                     </div>
 
