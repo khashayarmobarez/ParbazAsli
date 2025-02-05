@@ -654,6 +654,24 @@
                 "rejectionReason": "Rejection Reason",
                 "renew": "Renew"
             }
+        },
+        "renewCertificate": {
+            "title":"Renew certificate",
+            "fillAllFields": "Please fill in all fields",
+            "invalidFileFormat": "Invalid file format. Please upload a file with the extension jpg, jpeg, gif, bmp, or png",
+            "certificateRenewed": "Certificate has been renewed",
+            "errorOccurred": "An error occurred",
+            "certificateId": "Certificate ID",
+            "certificateIdRequired": "Certificate ID is required",
+            "certificateIdLength": "Certificate ID must be less than 100 characters",
+            "startDate": "Start Date",
+            "startDateRequired": "Start date is required",
+            "startDateFuture": "Start date cannot be in the future",
+            "endDate": "End Date",
+            "endDateRequired": "End date is required",
+            "endDatePast": "End date cannot be in the past",
+            "uploadPicture": "Upload Picture",
+            "submit": "Submit"
         }
     },
     "equipment": {
@@ -710,6 +728,8 @@
             "yearError": "Year of manufacture must be after 1980 and before {currentYear}",
             "lastPackerId": "Last Packer ID (Optional)",
             "lastPackerIdError": "Invalid last packer ID format",
+            "lastPackingDate": "Last packing date",
+            "lastPackingDateRequired": "Last packing date required",
             "flightHours": "Estimated Flight Hours",
             "flightHoursRequired": "Estimated flight hours are required",
             "flightHoursError": "Flight hours must be greater than or equal to 0",

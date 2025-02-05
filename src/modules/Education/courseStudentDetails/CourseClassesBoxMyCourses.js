@@ -72,35 +72,35 @@ const CourseClassesBoxMyCourses = (props) => {
                             <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>{t("education.StudentCourseDetails.theoryPage.className")}</p>
+                                    <p className='text-sm'>{t("education.StudentCourseDetails.theoryPage.className")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.name}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>{t("education.StudentCourseDetails.theoryPage.classDuration")}</p>
+                                    <p className='text-sm'>{t("education.StudentCourseDetails.theoryPage.classDuration")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.classDuration}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>{t("education.StudentCourseDetails.theoryPage.startTime")}</p>
+                                    <p className='text-sm'>{t("education.StudentCourseDetails.theoryPage.startTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.startTime}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>{t("education.StudentCourseDetails.theoryPage.endTime")}</p>
+                                    <p className='text-sm'>{t("education.StudentCourseDetails.theoryPage.endTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.endTime}</p>
                                     </div>
                                 </div>  
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>{t("education.StudentCourseDetails.theoryPage.dateTime")}</p>
+                                    <p className='text-sm'>{t("education.StudentCourseDetails.theoryPage.dateTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.dateTime}</p>
                                     </div>

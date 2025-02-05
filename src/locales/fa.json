@@ -654,6 +654,24 @@
                 "rejectionReason": "دلیل رد شدن",
                 "renew": "تمدید"
             }
+        },
+        "renewCertificate": {
+            "title": "تمدید گواهینامه",
+            "fillAllFields": "لطفا تمامی فیلدها را پر کنید",
+            "invalidFileFormat": "فرمت فایل مجاز نیست. لطفاً فایل با پسوندهای jpg, jpeg, gif, bmp یا png آپلود کنید",
+            "certificateRenewed": "گواهینامه تمدید شد",
+            "errorOccurred": "خطایی رخ داده است",
+            "certificateId": "شماره گواهینامه",
+            "certificateIdRequired": "شماره گواهینامه الزامی می باشد",
+            "certificateIdLength": "شماره گواهینامه باید کمتر از 100 کاراکتر باشد",
+            "startDate": "تاریخ صدور",
+            "startDateRequired": "تاریخ صدور الزامی می باشد",
+            "startDateFuture": "تاریخ صدور نباید بعد از امروز باشد",
+            "endDate": "تاریخ انقضا",
+            "endDateRequired": "تاریخ انقضا الزامی می باشد",
+            "endDatePast": "تاریخ انقضا نباید قبل از امروز باشد",
+            "uploadPicture": "آپلود تصویر",
+            "submit": "تایید"
         }
     },
     "equipment": {
@@ -710,6 +728,8 @@
             "yearError": "سال ساخت باید بعد از 1980 و قبل از {{currentYear}} باشد",
             "lastPackerId": "شناسه آخرین بسته‌بندی کننده (اختیاری)",
             "lastPackerIdError": "فرمت شناسه آخرین بسته‌بندی کننده درست نمی باشد",
+            "lastPackingDate": "تاریخ اخرین بسته بندی",
+            "lastPackingDateRequired": "تاریخ اخرین بسته بندی الزامی است",
             "flightHours": "حدود ساعت کارکرد وسیله",
             "flightHoursRequired": "حدود ساعت کارکرد الزامی می باشد",
             "flightHoursError": "ساعت کارکرد باید بزرگتر یا مساوی 0 باشد",
