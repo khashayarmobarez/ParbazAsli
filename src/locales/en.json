@@ -1028,6 +1028,20 @@
                 "flightSyllabi": "Flight Syllabi",
                 "groundSyllabi": "Ground Handling Syllabi"
             }
+        },
+        "aStudentCourses": {
+            "studentName": "Student Name",
+            "noCourses": "No courses available at the moment",
+            "courseName": "Course Name",
+            "courseCompleted": "Course Completed",
+            "courseCanceled": "Course Canceled",
+            "waitingForApproval": "Waiting for approval...",
+            "coursePercent": "Course Percent",
+            "organization": "Organization",
+            "clubName": "Club Name",
+            "coach": "Coach",
+            "courseDetails": "Course Details",
+            "page": "Page"
         }
     },
     "syllabiList": {

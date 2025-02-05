@@ -1028,6 +1028,20 @@
                 "flightSyllabi": "سرفصل‌های پرواز",
                 "groundSyllabi": "سرفصل‌های تمرین زمینی"
             }
+        },
+        "aStudentCourses": {
+            "studentName": "نام هنرجو",
+            "noCourses": "در حال حاضر دوره ای وجود ندارد",
+            "courseName": "نام دوره",
+            "courseCompleted": "دوره تمام شده",
+            "courseCanceled": "دوره لغو شده",
+            "waitingForApproval": "در انتظار تایید...",
+            "coursePercent": "درصد دوره",
+            "organization": "سازمان",
+            "clubName": "نام باشگاه",
+            "coach": "مربی",
+            "courseDetails": "جزئیات دوره",
+            "page": "صفحه"
         }
     },
     "syllabiList": {
