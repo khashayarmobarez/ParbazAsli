@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 // styles
 import boxStyles from '../../../styles/DataBox.module.css'
@@ -15,11 +16,12 @@ import CourseClassesBoxMyCourses from '../../../modules/Education/courseStudentD
 
 const CourseStudentTheoryDetails = () => {
 
+    // language
+    const { t } = useTranslation();
+
     const { studentId } = useParams();
-    
 
     const {  data: classesData, isLoading: classesDataLoading, error: classesDataError } = useCourseStudentClasses(studentId);
-
 
     
     return (
@@ -33,7 +35,7 @@ const CourseStudentTheoryDetails = () => {
             }
 
             {classesData && classesData.data.classesCount < 1 && 
-                <p className='text-textWarning mb-4'> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
+                <p className='text-textWarning mb-4'> {t("education.StudentCourseDetails.theoryPage.noClasses")}</p>
             }
 
             {classesData && classesData.data.classesCount > 0 &&
@@ -42,14 +44,14 @@ const CourseStudentTheoryDetails = () => {
                     <div className='flex w-full justify-between gap-x-2 mb-2'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>
-                                <p className=' text-xs'>تعداد کلاس های برگزار شده</p>
+                                <p className=' text-xs'>{t("education.StudentCourseDetails.theoryPage.uploadedClasses")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                     <p>{classesData.data.classesCount}</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
-                                <p className=' text-xs'>جمع ساعت کلاس ها</p>
+                                <p className=' text-xs'>{t("education.StudentCourseDetails.theoryPage.totalClassHours")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                     <p>{classesData.data.totalClassHours}</p>
                                 </div>
@@ -59,7 +61,7 @@ const CourseStudentTheoryDetails = () => {
 
                 {
                     classesData.data.classes.map((classData) => {
-                    return <CourseClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    return <CourseClassesBoxMyCourses title={t("education.StudentCourseDetails.theoryPage.classes")} key={classData.id} classData={classData} />;
                     })
                 }
 

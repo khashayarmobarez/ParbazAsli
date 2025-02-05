@@ -1042,6 +1042,40 @@
             "coach": "Coach",
             "courseDetails": "Course Details",
             "page": "Page"
+        },
+        "StudentCourseDetails": {
+            "studentDetails": "Student Details",
+            "status": "Status",
+            "active": "Active",
+            "canceled": "Canceled",
+            "completed": "Completed",
+            "pending": "Pending",
+            "flightCount": "Flight Count",
+            "flightHours": "Flight Hours",
+            "coachingHours": "Coaching Hours",
+            "userId": "User ID",
+            "progressPercent": "Progress Percent",
+            "practical": "Practical",
+            "theory": "Theory",
+            "studentStatus": "Student Status",
+            "practicalPage": {
+                "noFlights": "No flights have been registered for this course yet",
+                "page": "Page"
+            },
+            "theoryPage": {
+                "noClasses": "No theoretical classes have been registered for this course by the coach",
+                "uploadedClasses": "Number of Uploaded Classes",
+                "totalClassHours": "Total Class Hours",
+                "classes":"Classes",
+                "className": "Class Name",
+                "classDuration": "Class Duration",
+                "startTime": "Start Time",
+                "endTime": "End Time",
+                "dateTime": "Date and Time",
+                "classDescription": "Class Description",
+                "syllabi": "Syllabi",
+                "moreDetails": "More Details"
+            }
         }
     },
     "syllabiList": {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // mui
 import { Box, CircularProgress } from '@mui/material';
@@ -10,8 +11,13 @@ import { useStudentPracticalActivities } from '../../../Utilities/Services/cours
 // components
 import PracticalFlightHistoryBox from '../../../modules/FlightHistory/PracticalFlightHistoryBox';
 import ArrowButton from '../../../components/icons/ArrowButton';
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 const CourseStudentPracticalDetails = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation();
     const { studentId } = useParams();
@@ -44,7 +50,7 @@ const CourseStudentPracticalDetails = () => {
             }
             {
             userFlights && userFlights.totalCount === 0 &&
-                <p className='text-textWarning py-4'> هنوز پروازی برای این دوره ثبت نشده است</p>
+                <p className='text-textWarning py-4'> {t("education.StudentCourseDetails.practicalPage.noFlights")}</p>
             }
             {
                 userFlights && userFlights.totalCount > 0 &&
@@ -66,11 +72,11 @@ const CourseStudentPracticalDetails = () => {
                     disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
                     onClick={handleNextPage}
                     >
-                        <ArrowButton isRight={true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
+                        <ArrowButton isRight={dir !== 'ltr' && true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
                     </button>
 
                     <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                        صفحه ی {pageNumber}
+                        {t("education.StudentCourseDetails.practicalPage.page")} {pageNumber}
                     </p>
 
                     <button
@@ -79,7 +85,7 @@ const CourseStudentPracticalDetails = () => {
                     onClick={handlePrevPage}
                     >
 
-                        <ArrowButton isDisable={pageNumber === 1}/>
+                        <ArrowButton isRight={dir === 'ltr' && true} isDisable={pageNumber === 1}/>
 
                     </button>
                     

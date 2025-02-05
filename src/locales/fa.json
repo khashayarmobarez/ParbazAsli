@@ -1042,6 +1042,40 @@
             "coach": "مربی",
             "courseDetails": "جزئیات دوره",
             "page": "صفحه"
+        },
+        "StudentCourseDetails": {
+            "studentDetails": "جزئیات هنرجو",
+            "status": "وضعیت",
+            "active": "فعال",
+            "canceled": "غیرفعال",
+            "completed": "تایید شده",
+            "pending": "در انتظار تایید",
+            "flightCount": "تعداد پرواز",
+            "flightHours": "ساعت پرواز",
+            "coachingHours": "ساعت مربی‌گری",
+            "userId": "کد کاربری",
+            "progressPercent": "درصد پیشرفت",
+            "practical": "عملی",
+            "theory": "تئوری",
+            "studentStatus": "وضعیت هنرجو",
+            "practicalPage": {
+                "noFlights": "هنوز پروازی برای این دوره ثبت نشده است",
+                "page": "صفحه"
+            },
+            "theoryPage": {
+                "noClasses": "هنوز کلاس تئوری برای این دوره توسط مربی ثبت نشده",
+                "uploadedClasses": "تعداد کلاس های برگزار شده",
+                "totalClassHours": "جمع ساعت کلاس ها",
+                "classes":"کلاس ها",
+                "className": "نام کلاس",
+                "classDuration": "مدت زمان",
+                "startTime": "زمان شروع",
+                "endTime": "زمان پایان",
+                "dateTime": "تاریخ",
+                "classDescription": "توضیحات کلاس",
+                "syllabi": "مباحث مطرح شده",
+                "moreDetails": "بیشتر ..."
+            }
         }
     },
     "syllabiList": {
