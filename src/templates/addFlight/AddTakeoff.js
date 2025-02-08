@@ -23,7 +23,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, updateTakeOffWindUnit } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { useTakeoffTypes } from '../../Utilities/Services/addFlightQueries';
-import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import { TimePicker } from '../../components/inputs/TimePicker';
 

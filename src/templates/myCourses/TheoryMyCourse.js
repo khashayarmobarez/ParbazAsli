@@ -13,8 +13,13 @@ import { useUserCourseClasses } from '../../Utilities/Services/StudentCoursesQue
 // components
 import ClassesBoxMyCourses from '../../modules/MyCourses/ClassesBoxMyCourses';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const TheoryMyCourse = () => {
+
+    const { t } = useTranslation();
 
     const { id } = useParams();
 
@@ -32,7 +37,7 @@ const TheoryMyCourse = () => {
             }
 
             {classesData && classesData.data.classesCount === 0 && 
-                <p className='text-textWarning'> هنوز کلاس  تئوری برای این دوره توسط مربی ثبت نشده</p>
+                <p className='text-textWarning'>{t("myCourses.aCourseDetails.Theory.noTheoryClasses")}</p>
             }
 
             {classesData && classesData.data.classesCount > 0 &&
@@ -41,14 +46,14 @@ const TheoryMyCourse = () => {
                     <div className='flex w-full justify-between gap-x-2 mb-2'>
                         
                             <div className='w-full flex flex-col items-center gap-y-2'>
-                                <p className=' text-xs'>تعداد کلاس های برگزار شده</p>
+                                <p className=' text-xs'>{t("myCourses.aCourseDetails.Theory.classesCount")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                     <p>{classesData.data.classesCount}</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
-                                <p className=' text-xs'>جمع ساعت کلاس ها</p>
+                                <p className=' text-xs'>{t("myCourses.aCourseDetails.Theory.totalClassHours")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                     <p>{classesData.data.totalClassHours}</p>
                                 </div>
@@ -58,7 +63,7 @@ const TheoryMyCourse = () => {
 
                 {
                     classesData.data.classes.map((classData) => {
-                    return <ClassesBoxMyCourses title={'کلاس‌ها'} key={classData.id} classData={classData} />;
+                    return <ClassesBoxMyCourses title={t("myCourses.aCourseDetails.Theory.classesTitle")} key={classData.id} classData={classData} />;
                     })
                 }
 

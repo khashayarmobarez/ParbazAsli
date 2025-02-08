@@ -20,7 +20,15 @@ import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 import Attention from '../../../components/icons/Attention';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const AStudentCourses = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
+
     const { studentId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -61,7 +69,7 @@ const AStudentCourses = () => {
         <div className='flex flex-col mt-14 items-center pb-14 gap-y-6'>
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] '>
                 <PageTitle 
-                    title={StudentCourses ? `${StudentCourses.data[0].studentName}` : 'نام هنرجو' }
+                    title={StudentCourses ? `${StudentCourses.data[0].studentName}` : t("education.aStudentCourses.studentName") }
                     navigateTo={isForClub ? '/club/clubCourses/studentsListClub/1' : '/education/studentsList/1'}
                 />
 
@@ -71,7 +79,7 @@ const AStudentCourses = () => {
                             <span className='w-14 h-14 mb-2'>
                                 <Attention />
                             </span>
-                            <p>در حال حاضر دوره ای وجود ندارد</p>
+                            <p>{t("education.aStudentCourses.noCourses")}</p>
                         </div>
                     }
 
@@ -81,13 +89,13 @@ const AStudentCourses = () => {
                                 <div className='w-full flex justify-between'>
                                     {/* conditional course name */}
                                     {(courseData.status === 'Active' || courseData.status === 'CoachPending') && <p className='text-base'>{courseData.name}</p>}
-                                    {courseData.status === 'Completed' && <p className='text-base text-textAccent'>{courseData.name}(تمام شده)</p>}
-                                    {courseData.status === 'Canceled' && <p className='text-base text-textError'>{courseData.name}(لغو شده)</p>}
+                                    {courseData.status === 'Completed' && <p className='text-base text-textAccent'>{courseData.name} ({t("education.aStudentCourses.courseCompleted")})</p>}
+                                    {courseData.status === 'Canceled' && <p className='text-base text-textError'>{courseData.name} ({t("education.aStudentCourses.courseCanceled")})</p>}
 
                                     {/* conditional course percent */}
                                     {courseData.status === 'CoachPending' ? (
                                         <p className={` text-textWarning`}>
-                                            در انتظار تایید...
+                                            {t("education.aStudentCourses.waitingForApproval")}
                                         </p>
                                     ) : (
                                         <p className={`
@@ -130,19 +138,19 @@ const AStudentCourses = () => {
                                     `}>
                                         {courseData.organization && courseData.type !== 'Regular' && (
                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`}>
-                                                <span>ارگان:&nbsp;</span>
+                                                <span>{t("education.aStudentCourses.organization")}:&nbsp;</span>
                                                 {courseData.organization}
                                             </p>
                                         )}
                                         {courseData.clubName && (
                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`}>
-                                                <span>باشگاه:&nbsp;</span>
+                                                <span>{t("education.aStudentCourses.clubName")}:&nbsp;</span>
                                                 {courseData.clubName}
                                             </p>
                                         )}
                                         {courseData.coach && (
                                             <p className={`${(courseData.status === 'Canceled' || courseData.status === 'Completed') ? 'text-textButtonProfileDisable' : 'text-textDefault'}`}>
-                                                <span>مربی:&nbsp;</span> 
+                                                <span>{t("education.aStudentCourses.coach")}:&nbsp;</span> 
                                                 {courseData.coach}
                                             </p>
                                         )}
@@ -151,7 +159,7 @@ const AStudentCourses = () => {
                                     onClick={handleCourseDetails(courseData.id)} 
                                     disabled={courseData.status === 'CoachPending'}
                                     className={`${courseData.status === 'CoachPending' ? ButtonStyles.normalButtonDisable : ButtonStyles.normalButton} self-end`}>
-                                        جزئیات  
+                                        {t("education.aStudentCourses.courseDetails")}  
                                     </button>
                                 </div>
                             </div>
@@ -169,8 +177,8 @@ const AStudentCourses = () => {
                             <ArrowButton isRight={true} isDisable={StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber}/>
                         </button>
 
-                        <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                            صفحه ی {pageNumber}
+                        <p className='text-sm justify-self-center' style={{color: 'var(--text-accent)'}}>
+                            {t("education.aStudentCourses.page")} {pageNumber}
                         </p>
 
                         <button

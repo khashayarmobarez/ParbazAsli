@@ -35,7 +35,6 @@ import { CircularProgress } from '@mui/material';
 import DropdownInput from '../../components/inputs/DropDownInput';
 import TextInput from '../../components/inputs/textInput';
 import SubmitForm from '../../components/reuseable/SubmitForm';
-import TimeInput from '../../components/inputs/TimeInput';
 import NumberInput from '../../components/inputs/NumberInput';
 import DescriptionInput from '../../components/inputs/DescriptionInput';
 import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
@@ -328,7 +327,7 @@ const AddLanding = () => {
             (SoloLoading || TandemLoading || courseLoading) &&
                 <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
                     <CircularProgress sx={{ color:'var(--text-accent) '}} /> 
-                    <p>در حال ثبت اطلاعات</p>
+                    <p>{t('certificate.addNew.loading')}</p>
                 </div>
             }
 

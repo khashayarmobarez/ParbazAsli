@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Cube from '../../components/icons/ThreeDCube';
@@ -8,7 +10,13 @@ import TextInput from '../inputs/textInput';
 import SearchIcon from '../../components/icons/SearchIcon';
 import Checkbox from '../../modules/authentication/Inputs/CheckBox';  // Update the import path as needed
 
+
+
 const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, name, handleRemove, isForSyllabi, Icon, isSubmitted, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, }) => {
+  
+  // language
+  const dir = Cookies.get('dir') || 'ltr';
+
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -65,15 +73,16 @@ const SelectMultiplePopUp = ({ options, selectedOptions, handleSelectChange, nam
         className={`
           ${inputStyles.inputText2}
           ${ErrorCondition && isSubmitted && inputStyles.inputEmptyAfterSubmitBorder}
-          pr-9 w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4
+          ${dir === 'ltr' ? "pl-0" : "pr-9"}
+           w-full h-12 placeholder-text-color flex relative rounded-xl items-center justify-start gap-x-4
         `}
         onClick={handleIconClick}
         onFocus={() => setIsOpen(true)}
       >
-        <span className="absolute -mt-0 -mr-7 w-5">
+        <span className="absolute -mt-0 mx-3 w-5">
           { Icon || <Cube customColor = {!selectedOptions && isSubmitted && 'var(--text-error)'} />}
         </span>
-        <p className={`${(ErrorCondition && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}`}>{name}</p>
+        <p className={`${(ErrorCondition && isSubmitted) ? 'text-textError' : 'text-textInputDefault'} mx-10`}>{name}</p>
       </div>
 
       {isOpen && (

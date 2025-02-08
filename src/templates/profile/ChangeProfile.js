@@ -28,7 +28,14 @@ import PhoneVerificationCode from '../../modules/authentication/popUps/PhoneVeri
 import ChangePasswordPopUp from '../../modules/Profile/EditProfile/ChangePasswordPopUp';
 import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const ChangeProfile = () => {
+
+    
+    // language
+    const { t } = useTranslation();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -111,22 +118,21 @@ const ChangeProfile = () => {
 
 
 
-    const changePhoneNumberPopUp = async(e) => {
-
-        if (!phoneNumber) { 
-            toast('شماره تلفن خود را وارد کنید ', {
-                type: 'error', 
-                position: 'top-right', 
+    const changePhoneNumberPopUp = async (e) => {
+        if (!phoneNumber) {
+            toast(t('editUser.profile.toast.enterPhoneNumber'), {
+                type: 'error',
+                position: 'top-right',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
             });
             return;
         }
-
+    
         // Check if the phone number contains only numbers
         if (!/^\d+$/.test(phoneNumber)) {
-            toast('شماره تلفن فقط باید شامل اعداد باشد', {
+            toast(t('editUser.profile.toast.validPhoneNumber'), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -135,10 +141,10 @@ const ChangeProfile = () => {
             });
             return;
         }
-
+    
         // Check if the phone number is less than 10 digits
         if (phoneNumber.length < 10) {
-            toast('شماره تلفن نباید کمتر از 10 رقم باشد', {
+            toast(t('editUser.profile.toast.phoneNumberLength'), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -147,21 +153,21 @@ const ChangeProfile = () => {
             });
             return;
         }
-
-        setLoadingStatus(true)
-        
+    
+        setLoadingStatus(true);
+    
         const requestBody = {
             username: phoneNumber,
         };
-
-        console.log(requestBody)
-
-        mutateCodeRequestToChange(requestBody,{
+    
+        console.log(requestBody);
+    
+        mutateCodeRequestToChange(requestBody, {
             onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('confirmPhone')
-                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds)
-                toast('کد تایید برای شما ارسال شد', {
+                setLoadingStatus(false);
+                setShowPopupType('confirmPhone');
+                setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds);
+                toast(t('editUser.profile.toast.codeSent'), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -170,24 +176,21 @@ const ChangeProfile = () => {
                 });
             },
             onError: (err) => {
-                setLoadingStatus(false)
+                setLoadingStatus(false);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
+                    type: 'error',
+                    position: 'top-right',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
                 });
             }
-        })
-    }
-
-
+        });
+    };
     
     const handleFinalPhoneSubmission = () => {
-        
-        if(phoneNumberCode.length !== phoneNumberCodeLength) {
-            toast('کد تایید باید ۶ رقمی باشد', {
+        if (phoneNumberCode.length !== phoneNumberCodeLength) {
+            toast(t('editUser.profile.toast.validCodeLength'), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -196,19 +199,19 @@ const ChangeProfile = () => {
             });
             return;
         }
-
-        setLoadingStatus(true)
-
+    
+        setLoadingStatus(true);
+    
         const requestBody = {
             phoneNumber: phoneNumber,
             code: phoneNumberCode
-        }
-
+        };
+    
         mutateChangePhone(requestBody, {
             onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
-                toast('شماره تلفن شما با موفقیت تغییر یافت', {
+                setLoadingStatus(false);
+                setShowPopupType('');
+                toast(t('editUser.profile.toast.phoneChangeSuccess'), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -220,71 +223,22 @@ const ChangeProfile = () => {
                 }, 1000);
             },
             onError: (err) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
+                setLoadingStatus(false);
+                setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',  
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
-            }
-        })
-    }
-
-
-    const changeEmailPopUp = async(e) => {
-
-        if (!email) { 
-            toast('ایمیل خود را وارد کنید ', {
-                type: 'error', 
-                position: 'top-right', 
-                autoClose: 5000,
-                theme: appTheme,
-                style: { width: "90%" }
-            });
-            return;
-        }
-
-        setLoadingStatus(true)
-        
-        const requestBody = {
-            username: email,
-        };
-
-        mutateCodeRequestToChange(requestBody,{
-            onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('confirmEmail')
-                setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds)
-                toast('کد تایید برای شما ارسال شد', {
-                    type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
                 });
-            },
-            onError: (err) => {
-                setLoadingStatus(false)
-                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
-                    type: 'error', 
-                    position: 'top-right', 
-                    autoClose: 5000,
-                    theme: appTheme,
-                    style: { width: "90%" }
-                });
             }
-        })
-    }
-
-
-
-    const handleFinalEmailSubmission = () => {
-        
-        if(emailCode.length !== emailCodeLength) {
-            toast('کد تایید باید ۶ رقمی باشد', {
+        });
+    };
+    
+    const changeEmailPopUp = async (e) => {
+        if (!email) {
+            toast(t('editUser.profile.toast.enterEmail'), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -293,19 +247,63 @@ const ChangeProfile = () => {
             });
             return;
         }
-
-        setLoadingStatus(true)
-
+    
+        setLoadingStatus(true);
+    
+        const requestBody = {
+            username: email,
+        };
+    
+        mutateCodeRequestToChange(requestBody, {
+            onSuccess: (data) => {
+                setLoadingStatus(false);
+                setShowPopupType('confirmEmail');
+                setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds);
+                toast(t('editUser.profile.toast.codeSentEmail'), {
+                    type: 'success',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            },
+            onError: (err) => {
+                setLoadingStatus(false);
+                toast(err.response.data.ErrorMessages[0].ErrorMessage, {
+                    type: 'error',
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: appTheme,
+                    style: { width: "90%" }
+                });
+            }
+        });
+    };
+    
+    const handleFinalEmailSubmission = () => {
+        if (emailCode.length !== emailCodeLength) {
+            toast(t('editUser.profile.toast.validCodeLength'), {
+                type: 'error',
+                position: 'top-right',
+                autoClose: 5000,
+                theme: appTheme,
+                style: { width: "90%" }
+            });
+            return;
+        }
+    
+        setLoadingStatus(true);
+    
         const requestBody = {
             email: email,
             code: emailCode
-        }
-
+        };
+    
         mutateChangeEmail(requestBody, {
             onSuccess: (data) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
-                toast('ایمیل شما با موفقیت تغییر یافت', {
+                setLoadingStatus(false);
+                setShowPopupType('');
+                toast(t('editUser.profile.toast.emailChangeSuccess'), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -317,18 +315,18 @@ const ChangeProfile = () => {
                 }, 1000);
             },
             onError: (err) => {
-                setLoadingStatus(false)
-                setShowPopupType('')
+                setLoadingStatus(false);
+                setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',  
+                    position: 'top-right',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
                 });
             }
-        })
-    }
+        });
+    };
 
 
     
@@ -353,15 +351,15 @@ const ChangeProfile = () => {
 
                                 <FixedInput textData={userData.data.firstName} />
                                 <FixedInput textData={userData.data.lastName} />
-                                <InputWithButton isLoading={phoneNumLoading} isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={'تغییر'} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
-                                <InputWithButton isLoading={emailLoading} Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={'تغییر'} placeH={userData.data.email} onChange={changeEmailHandler} value={email} />
+                                <InputWithButton isLoading={phoneNumLoading} isForPhone={true} Type={'number'} icon={<PhoneIcon/>} onSubmit={changePhoneNumberPopUp} buttonText={t('editUser.profile.edit')} placeH={userData.data.phoneNumber} value={phoneNumber} onChange={changePhoneNumberHandler} />
+                                <InputWithButton isLoading={emailLoading} Type={'text'} icon={<MailIcon />} onSubmit={changeEmailPopUp} buttonText={t('editUser.profile.edit')} placeH={userData.data.email} onChange={changeEmailHandler} value={email} />
 
 
                             </div>
                         }
                         <button type="submit" className={`${ButtonStyles.normalButton} w-[170px] self-center mt-4`} 
                         onClick={() => setShowPopupType('changePassword')}>
-                            تغییر رمز عبور
+                            {t('editUser.profile.changePass')}
                         </button>
                         
 

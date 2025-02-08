@@ -1,10 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs.module.css';
 
 const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectChange, name, handleRemove, Icon }) => {
+
+  const dir = Cookies.get('dir') || 'ltr';
+
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -58,7 +62,7 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
   return (
     <div className='flex flex-col w-full md:items-center' ref={dropdownRef}>
       <div className='flex relative w-[100%] h-12 rounded-xl'>
-        <span className="absolute mt-3.5 mr-2 w-5">
+        <span className={`absolute mt-3.5 mx-2 w-5`}>
           {Icon ? 
             Icon
             :
@@ -69,14 +73,16 @@ const SearchMultipleSelectStudent = ({ options, selectedOptions, handleSelectCha
           ref={inputRef}
           type="text"
           className={`${inputStyles.inputDropdown} w-[100%] pl-10 pr-10 placeholder-text-color`}
+          style={{padding:'0 35px'}}
           placeholder={name}
           value={searchTerm}
           onChange={handleInputChange}
           onFocus={() => setIsOpen(true)}
         />
-        <span 
+        <span
           onClick={handleIconClick}
-          className='absolute left-3 top-1/2 transform -translate-y-1/2 cursor-pointer'
+          className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer
+          ${dir === 'ltr' ? 'right-3' : 'left-3'}`}
         >
           <ArrowBackIosNewIcon sx={{ transform: 'rotate(-90deg)' }} />
         </span>

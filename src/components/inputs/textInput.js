@@ -4,13 +4,12 @@ import Cookies from 'js-cookie';
 
 // Assuming you want to keep some custom styles
 import inputStyles from '../../styles/Inputs.module.css'
-import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterSubmit, isIconAtTheEnd, customIconSize, customActivePlaceHolderBgColor, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, disablePlaceholderFloating, className, isSubmitted }) => {
   
   // language
-    const { t } = useTranslation();
-    const dir = Cookies.get('dir') || 'ltr';
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [isFocused, setIsFocused] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
@@ -40,14 +39,14 @@ const TextInput = ({ id, value, onChange, placeholder, Type, icon, IsEmptyAfterS
         <span htmlFor="floatingInput">
           { 
           icon ?
-            <span className={`absolute mt-3 mr-2 
+            <span className={`absolute mt-3 
               ${dir === 'ltr' ? 'ml-2' : `mr-2`}
               ${customIconSize ? customIconSize : 'w-6'}`}
             >  
               {icon}
             </span>
             :
-            <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 0'
+            <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: dir === 'ltr' ? '10px 0 0 10px' : '10px 5px 0 0'
             , color:(IsEmptyAfterSubmit || ErrorCondition2 || ErrorCondition) && isSubmitted && 'var(--text-error)' }} />
           }
         </span>

@@ -17,12 +17,14 @@ const FixedInput = ({ textData, userIcon }) => {
             <div className='flex relative w-[100%] h-12 '>
                 {
                 userIcon ?
-                    <span  style={{ color: 'var(--text-input-default)' }} className=' absolute mt-4 mr-2 w-5'>
+                    <span  style={{ color: 'var(--text-input-default)' }} 
+                    className={`absolute mt-4 w-5
+                    ${dir === 'ltr' ? 'ml-2' : 'mr-2'}`}>
                         {userIcon}
                     </span>
                 :
                     <span style={{ color: 'var(--text-input-default)' }}>
-                        <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: '10px 5px 0 5px' }} />
+                        <PersonOutlineOutlinedIcon sx={{ position: 'absolute', margin: dir === 'ltr' ? '10px 0px 5px 5px' : '10px 5px 0px 5px' }} />
                     </span>
                 }
                 <input 

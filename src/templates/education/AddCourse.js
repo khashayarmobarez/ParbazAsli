@@ -38,9 +38,13 @@ import { useGetActiveClubCoaches } from '../../Utilities/Services/clubQueries';
 import Attention from '../../components/icons/Attention';
 import UserIcon from '../../components/icons/UserIcon';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const AddCourse = () => {
 
     // language
+    const { t } = useTranslation();
     const dir = Cookies.get('dir') || 'ltr';
 
     const navigate = useNavigate()
@@ -320,7 +324,7 @@ const AddCourse = () => {
         event.preventDefault();
 
         if (selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
-                toast('اطلاعات را کامل وارد کنید', {
+                toast(t("education.addCourse.completeInfo"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -329,7 +333,7 @@ const AddCourse = () => {
                 });
                 return;
         } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !(selectedSyllabiFlight.length > 0 || selectedSyllabiTheory.length > 0  || selectedSyllabiGround.length > 0) ) ) {
-            toast('اطلاعات را کامل وارد کنید', {
+            toast(t("education.addCourse.completeInfo"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -338,7 +342,7 @@ const AddCourse = () => {
             });
             return;
         } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || customCourses.length < 1) ) {
-            toast('اطلاعات را کامل وارد کنید', {
+            toast(t("education.addCourse.completeInfo"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -347,7 +351,7 @@ const AddCourse = () => {
             });
             return;
         } else if(isForClub && !Coach) {
-            toast('مربی را انتخاب کنید', {
+            toast(t("education.addCourse.selectCoach"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -414,7 +418,7 @@ const AddCourse = () => {
             if (selectedClassType.id === 1) {
                 addRegularCourse(regularformData, {
                     onSuccess: () => {
-                        toast('دوره شما با موفقیت ثبت شد', {
+                        toast(t("education.addCourse.courseAddedSuccess"), {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
@@ -424,7 +428,7 @@ const AddCourse = () => {
                         navigate(isForClub ? '/club/clubCourses' : '/education');
                     },
                     onError: (error) => {
-                        let errorMessage = 'خطایی رخ داده است';
+                        let errorMessage = t("education.addCourse.errorOccurred");
                         if (error.response && error.response.data && error.response.data.ErrorMessages) {
                             errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                         }
@@ -441,7 +445,7 @@ const AddCourse = () => {
             } else if ( selectedClassType.id === 2  ) {
                 addRetrainingCourse(retrainingformData, {
                     onSuccess: () => {
-                        toast('دوره شما با موفقیت ثبت شد', {
+                        toast(t("education.addCourse.courseAddedSuccess"), {
                             type: 'success',
                             position: 'top-right',
                             autoClose: 5000,
@@ -454,7 +458,7 @@ const AddCourse = () => {
                         navigate('/education');
                     },
                     onError: (error) => {
-                        let errorMessage = 'خطایی رخ داده است';
+                        let errorMessage = t("education.addCourse.errorOccurred");
                         if (error.response && error.response.data && error.response.data.ErrorMessages) {
                             errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                         }
@@ -498,7 +502,7 @@ const AddCourse = () => {
 
             addCustomCourse(customCourseData, {
                 onSuccess: () => {
-                    toast('دوره شما با موفقیت ثبت شد', {
+                    toast(t("education.addCourse.courseAddedSuccess"), {
                         type: 'success',
                         position: 'top-right',
                         autoClose: 5000,
@@ -532,7 +536,7 @@ const AddCourse = () => {
 
             <div className='w-full md:w-[55%] flex flex-col items-center gap-y-14'>
             
-                <PageTitle title={'افزودن دوره'} /> 
+                <PageTitle title={t("education.addCourse.addCourseTitle")} /> 
 
                 {
                     (isForClub && coachNamesData && coachNamesData.data.length < 1) ?
@@ -540,7 +544,7 @@ const AddCourse = () => {
                             <span className='w-16 h-16'>
                                 <Attention />
                             </span>
-                            <p className='text-textWarning'>در حال حاضر مربی فعالی در دوره وجود ندارد</p>
+                            <p className='text-textWarning'>{t("education.addCourse.noActiveCoach")}</p>
                         </div>
                         :
                         <>
@@ -553,7 +557,7 @@ const AddCourse = () => {
                                 options={coachNamesData.data}
                                 handleSelectChange={handleSelectCoachChange}
                                 selectedOption={Coach}
-                                name={'انتخاب مربی'}
+                                name={t("education.addCourse.selectCoach")}
                                 icon={<UserIcon/>}
                             />
                         }
@@ -561,7 +565,7 @@ const AddCourse = () => {
                             <DropdownInput 
                                 id={'ddi1'} 
                                 isDeselectDeactivated={true}
-                                name={'نوع دوره'}
+                                name={t("education.addCourse.courseType")}
                                 options={dir === 'ltr' ? courseTypeOptionDataEnglish : courseTypeOptionData}
                                 selectedOption={selectedClassType}
                                 handleSelectChange={handleSelectClassType}
@@ -579,7 +583,7 @@ const AddCourse = () => {
                                         organsError && 
                                         <div className='w-full min-h-[71vh]'>
                                             <p> 
-                                                خطا در دریافت اطلاعات سازمان ها...
+                                                {t("education.addCourse.organizationFetchError")}
                                             </p>
                                         </div>
                                     }
@@ -592,10 +596,10 @@ const AddCourse = () => {
                                             options={organsData.data}
                                             handleSelectChange={handleSelectOrganChange}
                                             selectedOption={organ}
-                                            name={'ارگان'}
+                                            name={t("education.addCourse.organization")}
                                             icon={<CertificateIcon />}
                                             />
-                                            {levelsLoading && organ && <p> در حال دریافت مقاطع ...</p>}
+                                            {levelsLoading && organ && <p> {t("education.addCourse.fetchingLevels")}</p>}
                                             {
                                                 levelsData && organ && !levelsError &&
                                                 <>
@@ -609,7 +613,7 @@ const AddCourse = () => {
                                                                 handleSelectChange={handleSelectLevelChange}
                                                                 selectedOption={level}
                                                                 icon={<ChartIcon2/> }
-                                                                name={'مقطع'}
+                                                                name={t("education.addCourse.level")}
                                                             />
                                                         </>
                                                     }
@@ -656,7 +660,7 @@ const AddCourse = () => {
                                                             isSubmitted={isSubmitted}
                                                             selectedOptions={selectedSyllabiGround}
                                                             handleSelectChange={handleSelectChangeSyllabiGround}
-                                                            name="سرفصل های تمرین زمینی"
+                                                            name={t("education.addCourse.groundHandlingSyllabi")}
                                                             handleRemove={handleRemoveSyllabiGround}
                                                             isForSyllabi={true}
                                                             ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
@@ -665,7 +669,7 @@ const AddCourse = () => {
                                                     
                                                     {
                                                         selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && selectedSyllabiGround.length < 1 && isSubmitted &&
-                                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                                        <p className='text-textError -mt-4 self-start text-xs'>{t("education.addCourse.selectAtLeastOne")}</p>
                                                     } 
 
                                                     <SelectMultiplePopUp
@@ -674,14 +678,14 @@ const AddCourse = () => {
                                                         isSubmitted={isSubmitted}
                                                         selectedOptions={selectedSyllabiFlight}
                                                         handleSelectChange={handleSelectChangeSyllabiFlight}
-                                                        name="سرفصل های پرواز"
+                                                        name={t("education.addCourse.flightSyllabi")}
                                                         handleRemove={handleRemoveSyllabiFlight}
                                                         isForSyllabi={true}
                                                         ErrorCondition={!(selectedSyllabiTheory.length > 0 || selectedSyllabiFlight.length > 0 || selectedSyllabiGround.length > 0)}
                                                     />
                                                     {
                                                         selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && selectedSyllabiGround.length < 1 && isSubmitted &&
-                                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                                        <p className='text-textError -mt-4 self-start text-xs'>{t("education.addCourse.selectAtLeastOne")}</p>
                                                     } 
 
                                                     <SelectMultiplePopUp
@@ -689,7 +693,7 @@ const AddCourse = () => {
                                                         options={syllabiData.data.filter(syllabus => syllabus.type === 'Theory') }
                                                         selectedOptions={selectedSyllabiTheory}
                                                         handleSelectChange={handleSelectChangeSyllabiTheory}
-                                                        name="سرفصل های تئوری"
+                                                        name={t("education.addCourse.theorySyllabi")}
                                                         isSubmitted={isSubmitted}
                                                         handleRemove={handleRemoveSyllabiTheory}
                                                         isForSyllabi={true}
@@ -697,18 +701,18 @@ const AddCourse = () => {
                                                     />
                                                     {
                                                         selectedSyllabiFlight.length < 1 && selectedSyllabiTheory.length < 1 && selectedSyllabiGround.length < 1 && isSubmitted &&
-                                                        <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و عملی انتخاب کنید</p>
+                                                        <p className='text-textError -mt-4 self-start text-xs'>{t("education.addCourse.selectAtLeastOne")}</p>
                                                     }
 
                                                     <TextInput
                                                         id={'TI1'}
                                                         value={courseName}
                                                         onChange={handleCourseName}
-                                                        placeholder='نام دوره'
+                                                        placeholder={t("education.addCourse.courseName")}
                                                         icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
                                                         isSubmitted={isSubmitted}
                                                         ErrorCondition={!courseName}
-                                                        ErrorText={'نام دوره الزامی است'}
+                                                        ErrorText={t("education.addCourse.courseNameRequired")}
                                                     />
                                                 </>
 
@@ -725,11 +729,11 @@ const AddCourse = () => {
                                                 id={'TI2'}
                                                 value={courseName}  
                                                 onChange={handleCourseName}
-                                                placeholder='نام دوره'
+                                                placeholder={t("education.addCourse.courseName")}
                                                 icon={<ADressTag customColor = {!courseName && isSubmitted && 'var(--text-error)'}/>}
                                                 isSubmitted={isSubmitted}
                                                 ErrorCondition={!courseName}
-                                                ErrorText={'نام دوره الزامی است'}
+                                                ErrorText={t("education.addCourse.courseNameRequired")}
                                             />
 
 
@@ -742,7 +746,7 @@ const AddCourse = () => {
                                                     value={customCourseTheory} 
                                                     isSubmitted={isSubmitted}
                                                     onChange={handleInputTheory} 
-                                                    placeholder='سرفصل های تئوری'
+                                                    placeholder={t("education.addCourse.theorySyllabi")}
                                                     className='w-full'
                                                     ErrorCondition={customCourses.length < 1}
                                                 />
@@ -752,13 +756,13 @@ const AddCourse = () => {
                                                     style={{ borderRadius: '16px', minWidth: '0px' }}
                                                     onClick={() => handleAddCustomCourse(1)}
                                                 >
-                                                    افزودن
+                                                    {t("education.addCourse.add")}
                                                 </span>
                                             </div>
 
                                             {
                                                 customCourses.length < 1 && isSubmitted &&
-                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                                <p className='text-textError -mt-4 self-start text-xs'>{t("education.addCourse.selectAtLeastOneCustom")}</p>
                                             }
 
                                             <ul className='w-full py-0 mt-[-1rem] gap-2'>
@@ -789,7 +793,7 @@ const AddCourse = () => {
                                                         value={customCourseFlight}
                                                         isSubmitted={isSubmitted}
                                                         onChange={handleInputPractical}
-                                                        placeholder='سرفصل های پرواز'
+                                                        placeholder={t("education.addCourse.flightSyllabi")}
                                                         className='w-full'
                                                         ErrorCondition={customCourses.length < 1}
                                                     />
@@ -799,13 +803,13 @@ const AddCourse = () => {
                                                 style={{ borderRadius: '16px', minWidth: '0px' }}
                                                 onClick={() => handleAddCustomCourse(2)}
                                                 >
-                                                    افزودن
+                                                    {t("education.addCourse.add")}
                                                 </span>
                                             </div>
 
                                             {
                                                 customCourses.length < 1 && isSubmitted &&
-                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                                <p className='text-textError -mt-4 self-start text-xs'>{t("education.addCourse.selectAtLeastOneCustom")}</p>
                                             }
 
                                             <ul className=' w-full py-0 mt-[-1rem] gap-2'>
@@ -843,7 +847,7 @@ const AddCourse = () => {
                                                         value={customCourseGround}
                                                         isSubmitted={isSubmitted}
                                                         onChange={handleInputGroundHandling}
-                                                        placeholder='سرفصل های تمرین زمینی'
+                                                        placeholder={t("education.addCourse.groundHandlingSyllabi")}
                                                         className='w-full'
                                                         ErrorCondition={customCourses.length < 1}
                                                     />
@@ -853,13 +857,13 @@ const AddCourse = () => {
                                                 style={{ borderRadius: '16px', minWidth: '0px' }}
                                                 onClick={() => handleAddCustomCourse(3)}
                                                 >
-                                                    افزودن
+                                                    {t("education.addCourse.add")}
                                                 </span>
                                             </div>
 
                                             {
                                                 customCourses.length < 1 && isSubmitted &&
-                                                <p className='text-textError -mt-4 self-start text-xs'>حداقل یک مورد را از بین سرفصل های تئوری و پروازی و زمینی وارد کنید</p>
+                                                <p className='text-textError -mt-4 self-start text-xs'>{t("education.addCourse.selectAtLeastOneCustom")}</p>
                                             }
 
                                             <ul className=' w-full py-0 mt-[-1rem] gap-2'>
@@ -898,15 +902,15 @@ const AddCourse = () => {
                                             <NumberInput 
                                             id={'NI1'} 
                                             icon={<ChartIcon customColor = {!flightCount && isSubmitted && 'var(--text-error)'}/>}
-                                            name={'تعداد پرواز'}
+                                            name={t("education.addCourse.flightCount")}
                                             value={flightCount}
                                             onChange={handleFlightCount}
-                                            placeholder='تعداد پرواز'
+                                            placeholder={t("education.addCourse.flightCount")}
                                             isSubmitted={isSubmitted}
                                             ErrorCondition={!flightCount}
-                                            ErrorText={'تعداد پرواز الزامی است'}
+                                            ErrorText={t("education.addCourse.flightCountRequired")}
                                             ErrorCondition2={flightCount && flightCount < 0}
-                                            ErrorText2={'تعداد پرواز باید بزرگتر از 0 باشد'}
+                                            ErrorText2={t("education.addCourse.flightCountPositive")}
                                             />
 
                                             {/* add students */}   
@@ -916,13 +920,13 @@ const AddCourse = () => {
                                                     id={'TI6'}
                                                     value={studentId}
                                                     onChange={handleInputStudent}
-                                                    placeholder='کد کاربری هنرجو'
+                                                    placeholder={t("education.addCourse.studentId")}
                                                     className='w-full'
                                                     />
                                                 </div>
 
                                                 { studentNameLoading && studentId.length > 5 &&
-                                                <p className=' self-start mt-1'>در حال بررسی هنرجو ... </p>
+                                                    <p className=' self-start mt-1'>{t("education.addCourse.checkingStudent")}</p>
                                                 }
                                                 { studentError && studentId.length > 5 &&
                                                     <p className='text-[var(--text-error)] self-start text-right mt-1'>{studentError.response.data.ErrorMessages[0].ErrorMessage}</p>
@@ -973,11 +977,11 @@ const AddCourse = () => {
                                             <DescriptionInput
                                                 value={description}
                                                 onChange={handleDescription}
-                                                placeholder='توضیحات دوره را اینجا بنویسید ...'
+                                                placeholder={t("education.addCourse.courseDescription")}
                                             />
 
 
-                                            <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 mt-4`}>ثبت </button>
+                                            <button type='submit' onClick={handlePopUp} className={`${ButtonStyles.addButton} w-32 mt-4`}>{t("education.addCourse.submit")} </button>
                                         </>
                                         
                                     }
@@ -992,13 +996,13 @@ const AddCourse = () => {
                         {/* submit pop up */}
                         <div className={` ${showPopup ? 'fixed' : 'hidden' }  w-full h-full z-[70] backdrop-blur-sm`}>
                             <StandardPopup 
-                            explanationtext={'در صورت تایید کردن دوره مورد نظر, دوره قابل ویرایش نمی‌باشد دقت کنید '}
+                            explanationtext={t("education.addCourse.confirmationMessage")}
                             showPopup={showPopup} 
                             setShowPopup={setShowPopup} 
                             handleSubmit={handleSubmit}
                             loading={addCustomCourseLoading || addRegularCourseLoading || addRetrainingCourseLoading}
-                            submitText='بله' 
-                            declineText='خیر'
+                            submitText={t("education.addCourse.confirm")}
+                            declineText={t("education.addCourse.decline")}
                             />
                         </div>
                     </>

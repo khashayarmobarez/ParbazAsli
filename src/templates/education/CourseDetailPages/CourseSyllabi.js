@@ -8,9 +8,15 @@ import { useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 import DropDownDataBox from '../../../components/reuseable/DropDownDataBox';
 import { Box, CircularProgress } from '@mui/material';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 
 const CourseSyllabi = () => {
     
+    // language
+    const { t } = useTranslation();
+
     const { id } = useParams();
     const location = useLocation();
 
@@ -32,27 +38,29 @@ const CourseSyllabi = () => {
             }
             {
                 syllabiDataTheory && syllabiDataFlight && syllabiDataGround && syllabiDataTheory?.data.length < 1 && syllabiDataFlight?.data.length < 1 && syllabiDataGround?.data.length < 1 &&
-                <p className='w-full text-center'>سیلابسی برای این دوره ثبت نشده</p>
+                <p className='w-full text-center'>
+                    {t("education.aCourseDetails.syllabiDetails.noSyllabi")}
+                </p>
             }
             {
                 syllabiDataTheory && syllabiDataFlight && syllabiDataGround && syllabiDataTheory?.data.length > 0 &&
                 <DropDownDataBox
-                title={"سرفصل‌های تئوری"}
-                data={syllabiDataTheory.data}
+                    title={t("education.aCourseDetails.syllabiDetails.theorySyllabi")}
+                    data={syllabiDataTheory.data}
                 />
             }
             {
                 syllabiDataTheory && syllabiDataFlight && syllabiDataGround && syllabiDataFlight?.data.length > 0 &&
                 <DropDownDataBox
-                title={"سرفصل‌های پرواز"}
-                data={syllabiDataFlight.data}
+                    title={t("education.aCourseDetails.syllabiDetails.flightSyllabi")}
+                    data={syllabiDataFlight.data}
                 />
             }
             {
                 syllabiDataTheory && syllabiDataFlight && syllabiDataGround && syllabiDataGround?.data.length > 0 &&
                 <DropDownDataBox
-                title={"سرفصل‌های تمرین زمینی"}
-                data={syllabiDataGround.data}
+                    title={t("education.aCourseDetails.syllabiDetails.groundSyllabi")}
+                    data={syllabiDataGround.data}
                 />
             }
         </div>

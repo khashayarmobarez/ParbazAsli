@@ -6,7 +6,13 @@ import ArrowButton from '../../../components/icons/ArrowButton';
 import CircularProgressLoader from '../../../components/Loader/CircularProgressLoader';
 import ACourseStudentBox from '../../../components/reuseable/ACourseStudentBox';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const StudentsList = () => {
+
+    // language
+    const { t } = useTranslation();
 
     // id 1 is for active students and id 2 is for history student
     const {id} = useParams()
@@ -45,7 +51,7 @@ const StudentsList = () => {
 
                 {
                 AllStudentError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                    <p className='w-full text-center'>{t("education.studentList.errorMessage")}</p>
                 }
 
                 {
@@ -53,13 +59,13 @@ const StudentsList = () => {
                     <div className='w-full flex flex-col justify-center items-center gap-y-8'>
 
                         <PageTitle
-                            title={`${id === '1' ? `هنرجویان فعال (${courseCountsData.data.activeStudentCounts})` : `هنرجویان سابق (${courseCountsData.data.disableStudentCounts})`}`} 
+                            title={`${id === '1' ? `${t("education.studentList.activeStudents")} (${courseCountsData.data.activeStudentCounts})` : `${t("education.studentList.previousStudents")} (${courseCountsData.data.disableStudentCounts})`}`} 
                             navigateTo={isForClub ? '/club/clubCourses' : '/education'}y
                         />
 
                         {
                             AllStudents && AllStudents.data.length < 1 && !AllStudentLoading && !AllStudentError &&
-                            <p className='h-60vh w-full text-center flex justify-center items-center mt-8 text-textWarning' > هنرجویی یافت نشد</p>
+                            <p className='h-60vh w-full text-center flex justify-center items-center mt-8 text-textWarning' >{t("education.studentList.noStudentsFound")}</p>
                         }
 
                         <div className='w-[90%] flex flex-col gap-y-4 items-center'>
@@ -83,7 +89,7 @@ const StudentsList = () => {
                                 </button>
 
                                 <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                    صفحه ی {pageNumber}
+                                    {t("education.studentList.page")} {pageNumber}
                                 </p>
 
                                 <button

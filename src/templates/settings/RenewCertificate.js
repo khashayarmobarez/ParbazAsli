@@ -21,10 +21,15 @@ import CertificateIcon from '../../components/icons/CertificateIcon';
 import TextInput from '../../components/inputs/textInput';
 import DateInput from '../../components/inputs/DateInput';
 import UploadPicture from '../../components/inputs/UploadPicture';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 
 const RenewCertificate = () => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const params = useParams()
     const navigate = useNavigate()
@@ -119,7 +124,7 @@ const RenewCertificate = () => {
             setIsSubmitted(true)
     
             if(!organ || !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile) {
-                toast('اطلاعات گواهینامه را کامل وارد کنید', {
+                toast(t("editUser.renewCertificate.fillAllFields"), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
@@ -130,7 +135,7 @@ const RenewCertificate = () => {
             }
 
             if (!isValidFileFormat(uploadedFile)) {
-                toast('فرمت فایل مجاز نیست. لطفاً فایل با پسوندهای jpg, jpeg, gif, bmp یا png آپلود کنید', {
+                toast(t("editUser.renewCertificate.invalidFileFormat"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 3000,
@@ -165,7 +170,7 @@ const RenewCertificate = () => {
             mutateCertificate(formData,
                 {
                     onSuccess: () => {
-                        toast('گواهینامه تمدید شد', {
+                        toast(t("editUser.renewCertificate.certificateRenewed"), {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                             position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
@@ -177,7 +182,7 @@ const RenewCertificate = () => {
                         }, 500);
                     },
                     onError: (error) => {
-                        let errorMessage = 'خطایی رخ داده است';
+                        let errorMessage = t("editUser.renewCertificate.errorOccurred");
                         if (error.response && error.response.data && error.response.data.ErrorMessages) {
                             errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                         }
@@ -198,7 +203,7 @@ const RenewCertificate = () => {
 
             <div className='w-full flex flex-col items-center md:w-[70%] lg:w-[55%]'>
 
-                <PageTitle title={'تمدید گواهینامه'} />
+                <PageTitle title={t("editUser.renewCertificate.title")} />
 
                {
                 certificateDataLoading ?
@@ -224,40 +229,40 @@ const RenewCertificate = () => {
                         <TextInput 
                             id={'TI1'}
                             customIconSize={'w-5'}
-                            placeholder={'شماره گواهینامه'}
+                            placeholder={t("editUser.renewCertificate.certificateId")}
                             value={certificateId} 
                             onChange={handleCertificateInputChange} 
                             icon={<CertificateIcon anotherColor={'var(--text-input-default)'} />}
                             isSubmitted={isSubmitted}
                             isRequired={true}
-                            RequiredMessage='شماره گواهینامه الزامی می باشد'
+                            RequiredMessage={t("editUser.renewCertificate.certificateIdRequired")}
                             ErrorCondition={!certificateId}
-                            ErrorText={'شماره گواهینامه الزامی می باشد'}
+                            ErrorText={t("editUser.renewCertificate.certificateIdRequired")}
                             ErrorCondition2={certificateId.length > 99}
-                            ErrorText2={'شماره گواهینامه باید کمتر از 100 کارکتر باشد'}
+                            ErrorText2={t("editUser.renewCertificate.certificateIdLength")}
                         />
 
                         {/* the date picker component comes from equipment section, try moving it into this component */}
                         <DateInput
-                            name={'تاریخ آخرین بسته‌بندی'}  
+                            name={t("editUser.renewCertificate.startDate")}
                             onChange={handleCertificateStartDateChange} 
-                            placeH={'تاریخ صدور'} 
+                            placeH={t("editUser.renewCertificate.startDate")}
                             ErrorCondition={!dateStartValue}
-                            ErrorText={'تاریخ صدور الزامی می باشد'}
+                            ErrorText={t("editUser.renewCertificate.startDateRequired")}
                             ErrorCondition2={new Date(dateStartValue) >= new Date()}
-                            ErrorText2={'تاریخ صدور نباید بعد از امروز باشد'}
+                            ErrorText2={t("editUser.renewCertificate.startDateFuture")}
                             isSubmitted={isSubmitted}
                             />
 
                         {/* the date picker component comes from equipment section, try moving it into this component */}
                         <DateInput 
-                            name={'تاریخ آخرین بسته‌بندی'}  
+                            name={t("editUser.renewCertificate.endDate")}
                             onChange={handleCertificateEndDateChange} 
-                            placeH={'تاریخ انقضا'} 
+                            placeH={t("editUser.renewCertificate.endDate")}
                             ErrorCondition={!dateEndValue}
-                            ErrorText={'تاریخ انقضا الزامی می باشد'}
+                            ErrorText={t("editUser.renewCertificate.endDateRequired")}
                             ErrorCondition2={new Date(dateEndValue) <= new Date()}
-                            ErrorText2={'تاریخ انقضا نباید قبل از امروز باشد'}
+                            ErrorText2={t("editUser.renewCertificate.endDatePast")}
                             isSubmitted={isSubmitted}
                             />
 
@@ -275,7 +280,7 @@ const RenewCertificate = () => {
                     <button type="submit" className={`${ButtonStyles.addButton} w-24 self-center mt-4`}
                     onClick={handleSubmit}
                     disabled={isSubmitting} >
-                        تایید
+                        {t("editUser.renewCertificate.submit")}
                     </button>
                 </>
                 } 

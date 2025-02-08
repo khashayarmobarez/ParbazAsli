@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 // queries
 import { useOrganLevelsForCourse, useOrgansData } from '../../Utilities/Services/queries';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
@@ -14,8 +15,13 @@ import ClipboardIcon from '../../components/icons/ClipboardIcon'
 import PageTitle from '../../components/reuseable/PageTitle';
 import OrgansSlider from '../../modules/SyllabiList/OrgansSlider';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 const SyllabiList = () => {
+
+    // language
+    const { t } = useTranslation();
+
     const navigate = useNavigate()
 
     // queries
@@ -53,7 +59,7 @@ const SyllabiList = () => {
     return (
         <div className='flex flex-col mt-14 items-center pb-14'>
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
-                <PageTitle title={'سرفصل ها'} navigateTo={'/profile'} /> 
+                <PageTitle title={t("syllabiList.syllabi")} navigateTo={'/profile'} /> 
 
                 {organsLoading && <CircularProgressLoader />}
 

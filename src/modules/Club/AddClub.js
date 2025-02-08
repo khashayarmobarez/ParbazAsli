@@ -23,8 +23,14 @@ import PageTitle from '../../components/reuseable/PageTitle';
 import TextInput from '../../components/inputs/textInput';
 import DateInput from '../../components/inputs/DateInput';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const AddClub = ({isForSetting}) => {
+
+    // language
+    const { t } = useTranslation();
     
     const { formatDate } = useDateFormat();
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -59,7 +65,7 @@ const AddClub = ({isForSetting}) => {
         if (file) {
             // Check file format
             if (!allowedFormats.includes(file.type)) {
-                toast('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.', {
+                toast(t("club.addClub.invalidFileFormat"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
@@ -71,7 +77,7 @@ const AddClub = ({isForSetting}) => {
     
             // Check file size
             if (file.size > maxFileSize) {
-                toast('حداکثر حجم برای آپلود عکس 10 مگابایت است', {
+                toast(t("club.addClub.maxFileSize"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                     position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
@@ -142,13 +148,13 @@ const AddClub = ({isForSetting}) => {
         if (file) {
             // Check file format
             if (!allowedFormats.includes(file.type)) {
-                toast.error('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
+                toast.error(t("club.addClub.invalidFileFormat"))
                 return;
             }
     
             // Check file size
             if (file.size > maxFileSize) {
-                toast.error('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
+                toast.error(t("club.addClub.maxFileSize"))
                 return;
             }
     
@@ -166,7 +172,7 @@ const AddClub = ({isForSetting}) => {
 
 
         if(!clubName || !licenseNumber || !foundationDate || !expirationDate || !uploadedLicense) {
-            toast('لطفا تمامی فیلد ها را پر کنید', {
+            toast(t("club.addClub.fillAllFields"), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                 position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -188,7 +194,7 @@ const AddClub = ({isForSetting}) => {
             mutateClub(formData, {
                 onSuccess: (data) => {
                     console.log('Club Added:', data);
-                    toast('باشگاه با موفقیت اضافه شد، منتظر تایید ادمین باشید', {
+                    toast(t("club.addClub.clubAddedSuccess"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
@@ -202,7 +208,7 @@ const AddClub = ({isForSetting}) => {
                     }, 500);
                 },
                 onError: (error) => {
-                    let errorMessage = 'خطایی رخ داده است';
+                    let errorMessage = t("club.addClub.errorOccurred");
                     if (error.response && error.response.data && error.response.data.ErrorMessages) {
                         errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     }
@@ -228,7 +234,7 @@ const AddClub = ({isForSetting}) => {
              mutateClubLoading &&
                 <div className='fixed w-[100svh] h-[100svh] z-[110] backdrop-blur-sm flex flex-col justify-center items-center gap-y-2'>
                     <CircularProgress sx={{ color:'var(--text-accent) '}} /> 
-                    <p>در حال ثبت اطلاعات</p>
+                    <p>{t("club.addClub.submittingData")}</p>
                 </div>
             }
 
@@ -243,8 +249,6 @@ const AddClub = ({isForSetting}) => {
                         ref={ProfilePicInputRef}
                         style={{ display: 'none' }}
                         onChange={handleFileChange}
-
-                        
                     />
 
                     <AddCircleOutlineOutlinedIcon sx={{width:'1.5rem', height:'1.5rem'}} />
@@ -274,57 +278,57 @@ const AddClub = ({isForSetting}) => {
                     
                 </div>
 
-                <p className='text-xl text-textAccent mt-[-0.5rem] mb-2'>آپلود عکس پروفایل</p>
+                <p className='text-xl text-textAccent mt-[-0.5rem] mb-2'>{t("club.addClub.uploadProfilePic")}</p>
 
                 {/* aircraft model input */}
                 <TextInput 
                 id={'TI1'} 
-                placeholder='نام باشگاه'
+                placeholder={t("club.addClub.clubName")}
                 value={clubName} 
                 onChange={handleChangeClubName}  
                 isSubmitted={isSubmitted}
                 ErrorCondition={!clubName}
-                ErrorText={'نام باشگاه الزامی می باشد'}
+                ErrorText={t("club.addClub.clubNameRequired")}
                 />
                 
                 <TextInput 
                 id={'TI2'} 
-                placeholder='شماره مجوز'
+                placeholder={t("club.addClub.licenseNumber")}
                 value={licenseNumber}
                 onChange={handleLicenseNumber}
                 isSubmitted={isSubmitted}
                 ErrorCondition={!licenseNumber}
-                ErrorText={'شماره مجوز الزامی می باشد'}
+                ErrorText={t("club.addClub.licenseNumberRequired")}
                 />
 
                 {/* the date picker component comes from equipment section */}
                 <DateInput 
-                    name={'تاریخ تاسیس'}
+                    name={t("club.addClub.foundationDate")}
                     onChange={handleFoundationDateChange}
-                    placeH={'تاریخ تاسیس'}
+                    placeH={t("club.addClub.foundationDate")}
                     isSubmitted={isSubmitted}
                     ErrorCondition={!foundationDate}
-                    ErrorText={'تاریخ تاسیس الزامی می باشد'}
+                    ErrorText={t("club.addClub.foundationDateRequired")}
                     ErrorCondition2={new Date(foundationDate) > new Date(expirationDate) && foundationDate && expirationDate}
-                    ErrorText2={'تاریخ تاسیس باید قبل از تاریخ انقضا باشد'}
+                    ErrorText2={t("club.addClub.foundationDateBeforeExpiration")}
                 />
                 
                 {/* the date picker component comes from equipment section */}
                 <DateInput 
-                    name={'تاریخ انقضا'}  
+                    name={t("club.addClub.expirationDate")}  
                     onChange={handleExpirationDataChange} 
-                    placeH={'تاریخ انقضا'} 
+                    placeH={t("club.addClub.expirationDate")} 
                     isSubmitted={isSubmitted}
                     ErrorCondition={!expirationDate}
-                    ErrorText={'تاریخ انقضا الزامی می باشد'}
+                    ErrorText={t("club.addClub.expirationDateRequired")}
                     ErrorCondition2={new Date(expirationDate) < new Date(foundationDate) && foundationDate && expirationDate}
-                    ErrorText2={'تاریخ انقضا باید بعد از تاریخ تاسیس باشد'}
+                    ErrorText2={t("club.addClub.expirationDateAfterFoundation")}
                 />
 
                 {/* upload license */}
                 <div className='w-full flex flex-col items-center gap-y-4'>
 
-                    <p className='text-sm'>آپلود عکس مجوز</p>
+                    <p className='text-sm'>{t("club.addClub.uploadLicense")}</p>
 
                     <div onClick={handleUploadLicenseClick} className='bg-bgUploadFile w-[340px] md:w-[370px] h-36 self-center flex justify-center items-center border-dashed border-2 rounded-3xl'
                     style={{borderColor:'var(--text-default)'}}>
@@ -353,13 +357,13 @@ const AddClub = ({isForSetting}) => {
                     </div>
 
                     <p className='text-sm w-[85%] self-center'>
-                        فرمت عکس باید jpeg, jpg, gif, bmp یا png 
-                        باشد حجم عکس نباید بیشتر از 10 مگابایت باشد
+                    {t("club.addClub.licenseFormat")}
+                    {t("club.addClub.licenseSize")}
                     </p>
 
                     {
                         !uploadedLicense && isSubmitted &&
-                        <p className='text-sm text-textError self-center -mt-1'>عکس الزامی میباشد</p>
+                        <p className='text-sm text-textError self-center -mt-1'>{t("club.addClub.licenseRequired")}</p>
                     }
 
                 </div>
@@ -367,7 +371,7 @@ const AddClub = ({isForSetting}) => {
                 <button type="submit" className={`${ButtonStyles.addButton} w-32 self-center mt-6`}
                 onClick={handleSubmit}
                 disabled={mutateClubLoading} >
-                    ثبت
+                    {t("club.addClub.submit")}
                 </button>
 
             </form>

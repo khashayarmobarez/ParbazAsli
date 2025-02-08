@@ -21,10 +21,16 @@ import PendingClubSubmission from '../../modules/Club/PendingClubSubmission';
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import ParachutesSwiperSlider from '../../modules/Profile/ParachutesSwiperSlider';
 import PageTitle from '../../components/reuseable/PageTitle';
+
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 // import ClubMemberCoach from '../components/modules/Club/ClubMemberCoach';
 // import StudentClubs from '../components/modules/Club/StudentClubs';
 
 const Club = () => {
+
+    // language
+    const { t } = useTranslation();
 
     // clubstatus could be NotAdded, Pending, Accepted
     const {data:clubStatus , isLoading: clubStatusLoading} = useClubStatus();
@@ -39,7 +45,7 @@ const Club = () => {
 
             <div className='w-full md:w-[75%] flex flex-col items-center lg:w-[55%]'>
 
-            <PageTitle title={'پروفایل باشگاه'} navigateTo={'/profile'} />
+            <PageTitle title={t("club.profile.clubProfile")} navigateTo={'/profile'} />
 
                 {
                     clubStatusLoading && 
@@ -51,7 +57,7 @@ const Club = () => {
                 }
 
                 {
-                    clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission /> 
+                    clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission />
                 }
 
                 {clubStatus && clubStatus.data === 'Accepted' && 
@@ -60,21 +66,21 @@ const Club = () => {
                         <ClubData data={clubData} />
 
                         <div className='w-full flex justify-around'>
-                            <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
+                            <Link to='/club/clubEquipment/flightEquipments' className={`${GradientStyles.container2} w-[65px] h-[65px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
                                 <span className='w-[18px]'>
                                     <ParachuteIcon anotherColor={'var(--text-accent)'} />
                                 </span>
-                                <p>تجهیزات</p>
+                                {t("club.profile.equipment")}
                             </Link>
                             
-                            <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
+                            <Link to='/club/clubCourses' className={`${GradientStyles.container2} w-[65px] h-[65px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
                                 <AutoStoriesOutlinedIcon sx={{width:'18px', height:'18px'}} />
-                                <p>آموزش</p>
+                                {t("club.profile.education")}
                             </Link>
                             
-                            <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[60px] h-[60px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
+                            <Link to='/club/clubCoaches' className={`${GradientStyles.container2} w-[65px] h-[65px] rounded-2xl flex flex-col justify-between items-center p-3 text-xs`} >
                                 <AccountCircleOutlinedIcon sx={{width:'18px', height:'18px'}} />
-                                <p>مربیان</p>
+                                {t("club.profile.coaches")}
                             </Link>
                         </div>
                         

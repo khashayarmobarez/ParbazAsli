@@ -1,7 +1,12 @@
 import React from 'react';
+import Cookies from 'js-cookie';
+
 import ArrowButton from '../../components/icons/ArrowButton';
 
 const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
+
+    const dir = Cookies.get('dir') || 'ltr';
+
     // setting the next organ on organ state
     const handleNextOrgan = () => {
         const index = organs.indexOf(theOrgan)
@@ -25,7 +30,7 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
     return (
         <div className='w-[60%] md:w-[30%] flex justify-between items-center'>
             <button onClick={handlePrevOrgan} className='w-6 h-6 active:w-6 hover:h-6'>
-                <ArrowButton isRight={true} />
+                <ArrowButton isRight={dir !== 'ltr' && true} />
             </button>
 
             {theOrgan && (
@@ -33,7 +38,7 @@ const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
             )}
 
             <button onClick={handleNextOrgan} className='w-6 h-6'>
-                <ArrowButton/>
+                <ArrowButton isRight={dir === 'ltr' && true} />
             </button>
         </div>
     );

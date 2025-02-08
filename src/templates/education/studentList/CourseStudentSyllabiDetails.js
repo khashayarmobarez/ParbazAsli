@@ -11,7 +11,13 @@ import { useGetStudentSyllabi } from '../../../Utilities/Services/coursesQueries
 // components
 import DropDownSyllabiData from '../../../modules/MyCourses/DropDownSyllabiData';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const CourseStudentSyllabiDetails = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const { studentId } = useParams();
 
@@ -31,7 +37,7 @@ const CourseStudentSyllabiDetails = () => {
             {
                 syllabiData && syllabiData.data?.theorySyllabi?.length > 0 &&
                 <DropDownSyllabiData 
-                title={"سرفصل‌های تئوری"} 
+                title={t("myCourses.aCourseDetails.syllabi.theory")} 
                 data={syllabiData.data?.theorySyllabi} 
                 percent={syllabiData.data?.theorySyllabiPercent}
                 />
@@ -39,7 +45,7 @@ const CourseStudentSyllabiDetails = () => {
             {
                 syllabiData && syllabiData.data?.flightSyllabi?.length > 0 &&
                 <DropDownSyllabiData 
-                title={"سرفصل‌های پرواز"} 
+                title={t("myCourses.aCourseDetails.syllabi.fly")}
                 data={syllabiData.data?.flightSyllabi} 
                 percent={syllabiData.data?.flightSyllabiPercent} 
                 />
@@ -47,7 +53,7 @@ const CourseStudentSyllabiDetails = () => {
             {
                 syllabiData && syllabiData.data?.groundHandlingSyllabi?.length > 0 &&
                 <DropDownSyllabiData 
-                title={"سرفصل‌های تمرین زمینی"} 
+                title={t("myCourses.aCourseDetails.syllabi.ground")} 
                 data={syllabiData.data?.groundHandlingSyllabi} 
                 percent={syllabiData.data?.groundHandlingSyllabiPercent} 
                 />

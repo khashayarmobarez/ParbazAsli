@@ -7,8 +7,14 @@ import gradients from '../../styles/Gradient.module.css'
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 
 const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -34,10 +40,10 @@ const ACourseStudentBox = ({studentData, isForHistory, isForClub}) => {
 
                 {
                     !isForHistory &&
-                    <p className='text-[var(--text-accent)] w-full'>دوره فعال:{studentData.activeCourseCount}</p>
+                    <p className='text-[var(--text-accent)] w-full'>{t("education.studentList.activeCourses")}:{studentData.activeCourseCount}</p>
                 }
                  
-                <p className='w-full text-end'>دوره غیر فعال:{studentData.disableCourseCount}</p>
+                <p className='w-full text-end text-xs'>{t("education.studentList.deactiveCourses")}:{studentData.disableCourseCount}</p>
 
             </div>
     );

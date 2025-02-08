@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // hooks
 import useConvertMinutesToHours from '../../Utilities/Hooks/useConvertToHoursAndMinutes';
@@ -12,10 +13,15 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // queiries
 import { useAUserCourseClass } from '../../Utilities/Services/StudentCoursesQueries';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 
 
 const ClassesBoxMyCourses = (props) => {
+
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const convertToHoursAndMinutes = useConvertMinutesToHours();
 
@@ -48,8 +54,9 @@ const ClassesBoxMyCourses = (props) => {
                     classData &&
                     <>
                         {/* classesInput */}
-                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 pr-4 rounded-2xl text-xs 
-                        ${isExpanded && 'text-textAccent'}`}>
+                        <div onClick={handleClick} className={`${gradients.container} flex w-full justify-between items-center h-12 rounded-2xl text-xs 
+                        ${isExpanded && 'text-textAccent'}
+                        ${dir === 'ltr' ? 'pl-4' : 'pr-4'}`}>
                             <div className='flex gap-x-2 items-center'>
                                 <span>
                                     <AutoStoriesOutlinedIcon sx={{color:isExpanded ? 'var(--text-accent)' : '' , width:'20px', height:'20px'}} />
@@ -66,35 +73,35 @@ const ClassesBoxMyCourses = (props) => {
                             <div className=' grid grid-cols-2 gap-x-4 gap-y-7 w-full  px-4'>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>نام</p>
+                                    <p className=' text-sm'>{t("myCourses.aCourseDetails.Theory.name")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.name}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>مدت زمان</p>
+                                    <p className=' text-sm'>{t("myCourses.aCourseDetails.Theory.duration")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.classDuration}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>زمان شروع</p>
+                                    <p className=' text-sm'>{t("myCourses.aCourseDetails.Theory.startTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.startTime}</p>
                                     </div>
                                 </div>
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>زمان پایان</p>
+                                    <p className=' text-sm'>{t("myCourses.aCourseDetails.Theory.endTime")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.endTime}</p>
                                     </div>
                                 </div>  
             
                                 <div className='flex flex-col items-start gap-y-2'>
-                                    <p className=' text-sm'>تاریخ</p>
+                                    <p className=' text-sm'>{t("myCourses.aCourseDetails.Theory.date")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
                                         <p>{classDetails.data.dateTime}</p>
                                     </div>
@@ -104,20 +111,22 @@ const ClassesBoxMyCourses = (props) => {
 
                             {
                                 !extra &&
-                                <p onClick={() => setExtra(true)} className='text-textAccent font-medium text-base cursor-pointer self-start text-start mr-5 mt-6'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-textAccent font-medium text-base cursor-pointer self-start text-start mx-5 mt-6'>
+                                    {t("myCourses.aCourseDetails.Theory.more")}
+                                </p>
                             }
 
                             {
                                 extra &&
                                 <>
                                     <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
-                                        <p>توضیحات کلاس</p>
+                                        <p>{t("myCourses.aCourseDetails.Theory.classDescription")}</p>
                                         <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{classDetails.data.description}</p>
                                     </div>
                     
                                     {classDetails.data.syllabi &&
                                         <div className='w-[90%] flex flex-col items-start gap-y-2 mx-4 mt-7'>
-                                                <p className=' text-sm'>مباحث مطرح شده</p>
+                                                <p className=' text-sm'>{t("myCourses.aCourseDetails.Theory.syllabus")}</p>
                                                 { 
                                                     classDetails.data.syllabi.map((syllabus, index) => (
                                                         <div key={index} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 py-2 w-full min-h-12 rounded-xl`} id='data'>
@@ -135,10 +144,6 @@ const ClassesBoxMyCourses = (props) => {
                         }
                     </>
                 }
-
-                
-                
-
 
         </div>
     );

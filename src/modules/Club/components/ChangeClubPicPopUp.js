@@ -10,9 +10,13 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 // styles
 import boxStyles from '../../../styles/DataBox.module.css';
 import ButtonStyles from '../../../styles/ButtonsBox.module.css'
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 
 const ChangeClubPicPopUp = ({setShowPopup, showPopup}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const allowedFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/jpg'];
     const maxFileSize = 10485760;
@@ -39,13 +43,13 @@ const ChangeClubPicPopUp = ({setShowPopup, showPopup}) => {
         if (file) {
             // Check file format
             if (!allowedFormats.includes(file.type)) {
-                setErrMsg('فرمت تصویر اشتباه است. لطفاً یک فایل تصویری معتبر انتخاب کنید.')
+                setErrMsg(t("club.changeClubPic.invalidFileFormat"))
                 return;
             }
     
             // Check file size
             if (file.size > maxFileSize) {
-                setErrMsg('اندازه فایل از حد مجاز بیشتر است. لطفا یک فایل تصویری کوچکتر انتخاب کنید')
+                setErrMsg(t("club.changeClubPic.maxFileSize"))
                 return;
             }
     
@@ -70,7 +74,7 @@ const ChangeClubPicPopUp = ({setShowPopup, showPopup}) => {
             );
             // setShowPopup(false)
         } else {
-            setErrMsg('لطفا یک فایل تصویری انتخاب کنید.');
+            setErrMsg(t("club.changeClubPic.selectFile"));
         }
     };
 
@@ -99,7 +103,7 @@ const ChangeClubPicPopUp = ({setShowPopup, showPopup}) => {
                 />
 
                 {/* upload picture */}
-                <p className='text-xl text-textAccent mt-4 mb-2'>آپلود عکس پروفایل</p>
+                <p className='text-xl text-textAccent mt-4 mb-2'>{t("club.changeClubPic.uploadProfilePic")}</p>
                 
                 <div onClick={handleUploadClick} className='w-32 h-32 self-center flex justify-center items-center border-dashed border-2 rounded-full bg-bgUploadFile'
                 style={{borderColor:'var(--softer-white)'}}>
@@ -128,18 +132,18 @@ const ChangeClubPicPopUp = ({setShowPopup, showPopup}) => {
                     
                 </div>
                 
-                <p className='text-xs mt-2'>فرمت عکس ها باید bmp, gif, jpg, jpeg یا png باشد</p>
-                <p className='text-xs'>حجم عکس ها نباید بیشتر از 10 مگابایت باشد</p>
+                <p className='text-xs mt-2'>{t("club.changeClubPic.allowedFormats")}</p>
+                <p className='text-xs'>{t("club.changeClubPic.maxFileSize")}</p>
                 
                 <div className='w-full flex justify-around items-center mt-4'>
 
                     <button type="reset" disabled={isDeleting}  className={`${ButtonStyles.normalButton} w-28 text-sm `} onClick={handleRemove} >
-                        {isDeleting ? 'در حال حذف...' : 'حذف عکس فعلی'}
+                        {isDeleting ? t("club.changeClubPic.deleting") : t("club.changeClubPic.removePicture")}
                     </button>
 
                     <button type="submit" disabled={isLoading} className={`${ButtonStyles.addButton} w-28 self-center text-sm`}
                     onClick={handleSubmit} >
-                        {isLoading ? 'در حال بارگذاری...' : 'ثبت تغییرات'}
+                        {isLoading ? t("club.changeClubPic.uploading") : t("club.changeClubPic.saveChanges")}
                     </button>
 
                 </div>

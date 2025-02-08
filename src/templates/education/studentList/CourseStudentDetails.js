@@ -18,7 +18,14 @@ import { useACourseStudent, useStudentPendingPracticalActivityCount } from '../.
 import PageTitle from '../../../components/reuseable/PageTitle';
 import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const CourseStudentDetails = () => {
+    
+    // language
+    const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -28,7 +35,7 @@ const CourseStudentDetails = () => {
     const { studentId } = useParams();
     
     const historyPageUrl = Cookies.get('lastPathForStudentDetails') || null;
-    const ClubhistoryPageUrl = Cookies.get('lastPathForClubStudentDetails') || null;
+    const ClubhistoryPageUrl = Cookies.get('lastPathForClubStudentDetails') || null;    
 
     const isMobile = useMediaQuery('(max-width:720px)');
 
@@ -41,7 +48,7 @@ const CourseStudentDetails = () => {
             
             <div  className='w-full flex flex-col items-center gap-y-4 md:w-[70%]'>
 
-                <PageTitle navigateTo={isForClub ? ClubhistoryPageUrl : historyPageUrl} title={'جزئیات هنرجو '} />
+                <PageTitle navigateTo={isForClub ? ClubhistoryPageUrl : historyPageUrl} title={t("education.StudentCourseDetails.studentDetails")} />
 
                 {/* the data box */}
                 <div className={`w-[90%] min-h-52 rounded-3xl flex justify-between items-start relative z-[60]`}
@@ -56,7 +63,7 @@ const CourseStudentDetails = () => {
                             <div className='w-full h-full flex flex-col justify-between items-start gap-y-4'>
                                 
                                 {
-                                    isMobile &&
+                                isMobile &&
                                     <h1 className='text-base'>{studentData.data.name}</h1>
                                 }
 
@@ -75,7 +82,7 @@ const CourseStudentDetails = () => {
                                 !isMobile && studentData.data &&
                                 <div className='w-full flex flex-col justify-center items-center gap-y-4'>
                                     <h1 className='text-sm'>{studentData.data.firstName}&nbsp;{studentData.data.lastName}</h1>
-                                    <p className='text-xs text-lowOpacityWhite'>گواهینامه {studentData.data.levelName}</p>
+                                    <p className='text-xs text-lowOpacityWhite'>{t("education.StudentCourseDetails.studentStatus")} {studentData.data.levelName}</p>
                                 </div>
                             }
 
@@ -89,16 +96,16 @@ const CourseStudentDetails = () => {
                                         وضعیت: 
                                         {
                                             studentData.data.status === 'Active' ?
-                                            <span className='text-textAccent'> فعال </span>
+                                            <span className='text-textAccent'> {t("education.StudentCourseDetails.active")} </span>
                                             :
                                                 studentData.data.status === 'Canceled' ?
-                                                <span className='text-textError'> غیرفعال </span>
+                                                <span className='text-textError'> {t("education.StudentCourseDetails.canceled")} </span>
                                                 :
                                                     studentData.data.status === 'Completed' ?
-                                                    <span className='text-textAccent'> تایید شده </span>
+                                                    <span className='text-textAccent'> {t("education.StudentCourseDetails.completed")} </span>
                                                     :
                                                     studentData.data.status === 'Pending' ?
-                                                    <span className='text-textWarning'> در انتظار تایید </span>
+                                                    <span className='text-textWarning'> {t("education.StudentCourseDetails.pending")} </span>
                                                     :
                                                     ''
                                         }
@@ -110,27 +117,27 @@ const CourseStudentDetails = () => {
                                         <span className='w-5'>
                                             <FlightQuantity/>
                                         </span>
-                                        تعداد پرواز {studentData.data.flightCounts}
+                                        {t("education.StudentCourseDetails.flightCount")}: {studentData.data.flightCounts}
                                     </p>
                                     <p className='flex gap-x-2'>
                                         <span className='w-5'>
                                             <ClockIcon/>
                                         </span>
-                                        ساعت پرواز {studentData.data.flightHours}
+                                        {t("education.StudentCourseDetails.flightHours")}: {studentData.data.flightHours}
                                     </p>
                                     {studentData.data.coachingHours && studentData.data.coachingHours > 0 &&
                                         <p className='flex gap-x-2'>
                                             <span className='w-5'>
                                                 <ClockIcon/>
                                             </span>
-                                            {studentData.data.coachingHours} ساعت مربی‌گری
+                                            {studentData.data.coachingHours} {t("education.StudentCourseDetails.coachingHours")}
                                         </p>
                                     }
                                     <p className='flex gap-x-2'>
                                     <span className='w-5'>
                                         <UserIcon/>
                                     </span>
-                                        کد کاربری: {studentData.data.userId}
+                                    {t("education.StudentCourseDetails.userId")}: {studentData.data.userId}
                                     </p>
                                 </div>
 
@@ -139,7 +146,7 @@ const CourseStudentDetails = () => {
                         
                         <div className='w-full flex flex-col justify-between items-center gap-y-4 '>
                             <div className='w-full flex justify-between text-base'>
-                                <p>درصد پیشرفت</p>
+                                <p>{t("education.StudentCourseDetails.progressPercent")}</p>
                                 <p>{studentData.data.percent}%</p>
                             </div>
                             <Box sx={{ width: '100%' }}>
@@ -174,14 +181,14 @@ const CourseStudentDetails = () => {
 
                 <LowOpacityBackForStickedButtons />
 
-                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-20`}>
+                <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-20`}>
                     
                     <Link 
                     to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/practical` : `/education/courseDetails/studentDetails/${studentId}/practical`} 
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl 
                     ${location.pathname.includes('/practical') ? ButtonStyles.activeYellow : ''}`} 
                     >
-                        عملی
+                        {t("education.StudentCourseDetails.practical")}
                         {
                             studentPendingFlightCounts && studentPendingFlightCounts.data > 0 &&
                                 <span className='text-textError'>
@@ -195,7 +202,7 @@ const CourseStudentDetails = () => {
                     className={`${ButtonStyles.ThreeStickedButtonButton}  
                     ${location.pathname.includes('/theory') ? ButtonStyles.activeYellow : ''}`} 
                     >
-                        تئوری
+                        {t("education.StudentCourseDetails.theory")}
                     </Link> 
 
                     <Link 
@@ -203,7 +210,7 @@ const CourseStudentDetails = () => {
                     className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  
                     ${location.pathname.includes('/syllabi') ? ButtonStyles.activeYellow : ''}`} 
                     >
-                        وضعیت هنرجو
+                        {t("education.StudentCourseDetails.studentStatus")}
                     </Link>
                 </div>
 

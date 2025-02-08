@@ -20,13 +20,18 @@ import { useUserById } from '../../../Utilities/Services/queries';
 // components
 import PageTitle from '../../../components/reuseable/PageTitle';
 import TextInput from '../../../components/inputs/textInput';
-import TimeInput from '../../../components/inputs/TimeInput';
 import SearchMultipleSelectStudent from '../../../components/inputs/SearchMultipleSelectStudent';
 import DescriptionInput from '../../../components/inputs/DescriptionInput';
 import SelectMultiplePopUp from '../../../components/reuseable/SelectMultiplePopUp';
 import { TimePicker } from '../../../components/inputs/TimePicker';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const AddClass = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -69,7 +74,7 @@ const AddClass = () => {
     useEffect(() => {
         if (StartSelectedTime && endSelectedTime) {
             if (StartSelectedTime > endSelectedTime) {
-                toast('تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.', {
+                toast(t("education.aCourseDetails.classes.addClassPage.endTimeBeforeStartTime"), {
                     type: 'error',
                     position: 'top-right',
                     autoClose: 5000,
@@ -158,7 +163,7 @@ const AddClass = () => {
         e.preventDefault();
 
         if(!id || !ClassName || !StartSelectedTime || !endSelectedTime || syllabusIds.length === 0 ){
-            return toast('لطفا تمامی فیلد ها را پر کنید', {
+            return toast(t("education.aCourseDetails.classes.addClassPage.fillAllFields"), {
                         type: 'error',
                         position: 'top-right',
                         autoClose: 5000,
@@ -166,7 +171,7 @@ const AddClass = () => {
                         style: { width: "90%" }
                     });
         } else if (StartSelectedTime > endSelectedTime) {
-            return toast('تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.', {
+            return toast(t("education.aCourseDetails.classes.addClassPage.endTimeBeforeStartTime"), {
                 type: 'error',
                 position: 'top-right',
                 autoClose: 5000,
@@ -192,7 +197,7 @@ const AddClass = () => {
 
         addCourseClass(classData, {
             onSuccess: () => {
-                toast('کلاس با موفقیت اضافه شد', {
+                toast(t("education.aCourseDetails.classes.addClassPage.classAddedSuccessfully"), {
                     type: 'success',
                     position: 'top-right',
                     autoClose: 5000,
@@ -201,7 +206,7 @@ const AddClass = () => {
                 });
                 navigate(`/education/courseDetails/${id}/classes`)
             }, onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage = t("education.aCourseDetails.classes.addClassPage.errorOccurred");
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -227,7 +232,7 @@ const AddClass = () => {
 
             <div  className='w-full flex flex-col items-center gap-y-4 lg:gap-y-12 md:w-[70%]'>
             
-                <PageTitle title={'افزودن کلاس'} />
+                <PageTitle title={t("education.aCourseDetails.classes.addClassPage.addClass")} />
 
                 <div className='w-[90%] flex flex-col gap-y-6'>
 
@@ -241,23 +246,23 @@ const AddClass = () => {
                                 id={'TI1'}
                                 value={ClassName}
                                 onChange={handleClassName}
-                                placeholder='نام کلاس'
+                                placeholder={t("education.aCourseDetails.classes.addClassPage.className")}
                                 icon={<ADressTag/>}
                                 isSubmitted={isSubmitted}
                                 ErrorCondition={!ClassName}
-                                ErrorText={'نام کلاس الزامی است'}
+                                ErrorText={t("education.aCourseDetails.classes.addClassPage.classNameRequired")}
                             />
 
                             <div className='w-full flex flex-col gap-y-2'>
                                 <TimePicker
-                                value={StartSelectedTime}
-                                onChange={handleStartTimeChange}
-                                placeholder="تایم شروع کلاس"
-                                isSubmitted={isSubmitted}
+                                    value={StartSelectedTime}
+                                    onChange={handleStartTimeChange}
+                                    placeholder={t("education.aCourseDetails.classes.addClassPage.startTime")}
+                                    isSubmitted={isSubmitted}
                                 />
                                 {
                                     isSubmitted && !StartSelectedTime &&
-                                    <p className='text-textError self-start text-xs -mt-1'>تایم شروع کلاس را وارد کنید</p>
+                                    <p className='text-textError self-start text-xs -mt-1'>{t("education.aCourseDetails.classes.addClassPage.startTimeRequired")}</p>
                                 }
                             </div>
 
@@ -265,16 +270,16 @@ const AddClass = () => {
                                 <TimePicker
                                     value={endSelectedTime}
                                     onChange={handleEndTimeChange}
-                                    placeholder="تایم پایان کلاس"
+                                    placeholder={t("education.aCourseDetails.classes.addClassPage.endTime")}
                                     isSubmitted={isSubmitted}
                                 />
                                 {
                                     (StartSelectedTime > endSelectedTime) &&
-                                    <p className='text-start text-sm text-textError' >تایم پایان کلاس نباید قبل از تایم شروع کلاس باشد.</p>
+                                    <p className='text-start text-sm text-textError' >{t("education.aCourseDetails.classes.addClassPage.endTimeBeforeStartTime")}</p>
                                 }
                                 {
                                     isSubmitted && !StartSelectedTime &&
-                                    <p className='text-textError self-start text-xs -mt-1'>تایم پایان کلاس را وارد کنید</p>
+                                    <p className='text-textError self-start text-xs -mt-1'>{t("education.aCourseDetails.classes.addClassPage.endTimeRequired")}</p>
                                 }
                             </div>
 
@@ -288,7 +293,7 @@ const AddClass = () => {
                             /> */}
 
                             <SelectMultiplePopUp
-                                name={'مباحث مورد نظر'}
+                                name={t("education.aCourseDetails.classes.addClassPage.topics")}
                                 options={syllabiDataTheory.data}
                                 selectedOptions={selectedSyllabi}
                                 handleSelectChange={handleSelectChangeSyllabi}
@@ -297,21 +302,21 @@ const AddClass = () => {
                             />
                             {
                                 isSubmitted && selectedSyllabi.length < 1 &&
-                                <p className='text-textError self-start text-xs -mt-3'>حداقل یک مورد را انتخاب کنید</p>
+                                <p className='text-textError self-start text-xs -mt-3'>{t("education.aCourseDetails.classes.addClassPage.selectSyllabi")}</p>
                             }
 
                             
                             <DescriptionInput
                                 value={description}
                                 onChange={handleDescription}
-                                placeholder='توضیحات کلاس'
+                                placeholder={t("education.aCourseDetails.classes.addClassPage.classDescription")}
                                 isSubmitted={isSubmitted}
                                 ErrorCondition={!description}
-                                ErrorText={'توضیحات کلاس الزامی است'}
+                                ErrorText={t("education.aCourseDetails.classes.addClassPage.descriptionRequired")}
                             />
 
                             <SearchMultipleSelectStudent
-                                name={'هنرجویان'}
+                                name={t("education.aCourseDetails.classes.addClassPage.students")}
                                 options={courseStudents.data}
                                 selectedOptions={selectedStudents}
                                 handleSelectChange={handleSelectChangeStudents}
@@ -320,13 +325,13 @@ const AddClass = () => {
                             />
                             {
                                 isSubmitted && !(selectedStudents.length > 0 || guestStudentDatas.length > 0) &&
-                                <p className='text-textError self-start text-xs -mt-3'>حداقل یک هنرجو را برای کلاس انتخاب کنید</p>
+                                <p className='text-textError self-start text-xs -mt-3'>{t("education.aCourseDetails.classes.addClassPage.selectStudents")}</p>
                             }
                             
 
                             <div className='w-full flex flex-col items-center relative'>
                                 <div className='w-full flex flex-col'>
-                                    <TextInput id={'TI2'} value={guestStudentId} onChange={handleGuestStudentId} placeholder='هنرجویان مهمان' className='w-full' />
+                                    <TextInput id={'TI2'} value={guestStudentId} onChange={handleGuestStudentId} placeholder={t("education.aCourseDetails.classes.addClassPage.guestStudents")} className='w-full' />
                                 </div>
                                 {userByIdData?.data && (
                                     <ul className="absolute z-20 w-full bg-bgOutputDefault mt-12 rounded-xl shadow-lg max-h-60 overflow-auto" >
@@ -345,7 +350,7 @@ const AddClass = () => {
                                 )}
                                 {
                                     isSubmitted && !(selectedStudents.length > 0 || guestStudentDatas.length > 0) &&
-                                    <p className='text-textError self-start text-xs mt-2'>حداقل یک هنرجو را برای کلاس انتخاب کنید</p>
+                                    <p className='text-textError self-start text-xs mt-2'>{t("education.aCourseDetails.classes.addClassPage.selectGuestStudents")}</p>
                                 }
                             </div>
 
@@ -368,7 +373,7 @@ const AddClass = () => {
                                 </ul>
                             }
 
-                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 mt-2`}>ثبت </button>
+                            <button type='submit' onClick={handleSubmit} className={`${ButtonStyles.addButton} w-32 mt-2`}>{t("education.aCourseDetails.classes.addClassPage.submit")}</button>
 
                         </form>
                     }

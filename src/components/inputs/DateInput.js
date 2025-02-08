@@ -80,7 +80,6 @@ const DateInput = ({
             } bg-[var(--bg-page-main)] text-textDefault focus:outline-none`}
           />
           <label
-            
             htmlFor="floatingInput"
             className={`
               ${dir === 'ltr' ? 'left-9' : `right-9`}
@@ -125,7 +124,7 @@ const DateInput = ({
             position={position}
             round="thin"
             accentColor="#23bc7c"
-            locale="fa"
+            locale="en"
             inputAttributes={{ placeholder: placeH }}
             direction="rtl"
           />

@@ -15,7 +15,12 @@ import { useAUserCourse } from '../../Utilities/Services/StudentCoursesQueries';
 import PageTitle from '../../components/reuseable/PageTitle';
 import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
 
+// context
+import { useTranslation } from '../../Utilities/context/TranslationContext';
+
 const MyCourseDetails = () => {
+
+    const { t } = useTranslation();
 
     const location = useLocation();
 
@@ -46,7 +51,7 @@ const MyCourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={'جزئیات دوره'} navigateTo={'/myCourses'} /> 
+                <PageTitle title={t("myCourses.aCourseDetails.courseDetails")} navigateTo={'/myCourses'} /> 
 
                 {
                     courseDataLoading &&
@@ -57,7 +62,7 @@ const MyCourseDetails = () => {
 
                 {
                     courseDataError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                    <p className='w-full text-center'>{t("myCourses.aCourseDetails.errorMessage")}</p>
                 }
 
                 {
@@ -68,19 +73,19 @@ const MyCourseDetails = () => {
                             <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نام</p>
+                                    <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.name")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>{aCourseData.data.name}</p>
                                     </div>
                                 </div>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نوع</p>
+                                    <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.type")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>
-                                            {aCourseData.data.type === 'Regular' && <p>مطابق سیلابس</p> }
-                                            {aCourseData.data.type === 'Retraining' && <p>بازآموزی</p> }
-                                            {aCourseData.data.type === 'Custom' && <p>شخصی‌سازی شده</p> }
+                                            {aCourseData.data.type === 'Regular' && <p>{t("myCourses.aCourseDetails.accordingToSyllabus")}</p> }
+                                            {aCourseData.data.type === 'Retraining' && <p>{t("myCourses.aCourseDetails.retraining")}</p> }
+                                            {aCourseData.data.type === 'Custom' && <p>{t("myCourses.aCourseDetails.customized")}</p> }
                                         </p>
                                     </div>
                                 </div>
@@ -88,7 +93,7 @@ const MyCourseDetails = () => {
                                 {
                                     aCourseData.data.organization &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                        <p className=' text-xs pr-2'>ارگان</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.organization")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center pr-4 w-full h-12 rounded-xl text-xs`}  id='data' >
                                             <p>{aCourseData.data.organization}</p>
                                         </div>
@@ -98,7 +103,7 @@ const MyCourseDetails = () => {
                                 {
                                     aCourseData.data.level &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                        <p className=' text-xs pr-2'>مقطع</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.level")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.level}</p>
                                         </div>
@@ -106,7 +111,7 @@ const MyCourseDetails = () => {
                                 }
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                    <p className=' text-xs pr-2'>تعداد پرواز</p>
+                                    <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.flightsCount")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>{aCourseData.data.flightsCount}</p>
                                     </div>
@@ -115,7 +120,7 @@ const MyCourseDetails = () => {
                                 {
                                     aCourseData.data.clubName &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>نام باشگاه</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.clubName")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.clubName}</p>
                                         </div>
@@ -125,7 +130,7 @@ const MyCourseDetails = () => {
                                 {
                                     aCourseData.data.coach &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>نام مربی</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.coachName")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.coach}</p>
                                         </div>
@@ -133,26 +138,26 @@ const MyCourseDetails = () => {
                                 }
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                    <p className=' text-xs pr-2'>وضعیت</p>
+                                    <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.status")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 gap-x-2 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         {
                                         aCourseData.data.status === 'Active' && 
                                             <>
-                                                <p>فعال</p>
+                                                <p>{t("myCourses.aCourseDetails.active")}</p>
                                                 {/* <div className='w-3 h-3 rounded-full bg-textAccent'></div> */}
                                             </>
                                         }
                                         {
                                         aCourseData.data.status === 'Canceled' &&
                                             <>
-                                                <p>لغو شده</p>
+                                                <p>{t("myCourses.aCourseDetails.canceled")}</p>
                                                 {/* <div className='w-3 h-3 rounded-full bg-textError'></div> */}
                                             </>
                                         }
                                         {
                                         aCourseData.data.status === 'Completed' &&
                                             <>
-                                                <p>تمام شده</p>
+                                                <p>{t("myCourses.aCourseDetails.completed")}</p>
                                                 {/* <div className='w-3 h-3 rounded-full bg-textAccent'></div> */}
                                             </>
                                         }
@@ -163,7 +168,7 @@ const MyCourseDetails = () => {
                             
                             <Box sx={{ width: '90%', display:'flex', flexDirection:'column', rowGap:'1rem' }}>
                                 <div className='w-full flex justify-between px-1 text-base'>
-                                        <p>درصد پیشرفت</p>
+                                        <p>{t("myCourses.aCourseDetails.progressPercentage")}</p>
                                         <p>{aCourseData.data.percent}%</p>
                                 </div>
                                 <LinearProgress variant="determinate" value={aCourseData.data.percent > 3 ? aCourseData.data.percent : aCourseData.data.percent + 3} 
@@ -174,13 +179,15 @@ const MyCourseDetails = () => {
 
                             {
                                 !extra && aCourseData.data.description &&
-                                <p onClick={() => setExtra(true)} className='text-textAccent font-medium text-base cursor-pointer self-start text-start mr-[5vw]'>بیشتر ...</p>
+                                <p onClick={() => setExtra(true)} className='text-textAccent font-medium text-base cursor-pointer self-start text-start mx-[5vw]'>
+                                    {t("myCourses.aCourseDetails.more")}
+                                </p>
                             }
                             
                             {
                                 extra &&
                                 <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
-                                    <p>توضیحات درباره دوره</p>
+                                    <p>{t("myCourses.aCourseDetails.courseDescription")}</p>
                                     <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{aCourseData.data.description}</p>
                                 </div>
                             }
@@ -189,10 +196,10 @@ const MyCourseDetails = () => {
 
                         <LowOpacityBackForStickedButtons />
 
-                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
-                            <Link to={`/MyCourses/courseDetails/${id}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/MyCourses/courseDetails/${id}/practical` ? ButtonStyles.activeYellow : ''}`} >عملی</Link> 
-                            <Link to={`/MyCourses/courseDetails/${id}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/MyCourses/courseDetails/${id}/theory` ? ButtonStyles.activeYellow : ''}`} >تئوری</Link> 
-                            <Link to={`/MyCourses/courseDetails/${id}/mySyllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/MyCourses/courseDetails/${id}/mySyllabi` ? ButtonStyles.activeYellow : ''}`} >وضعیت من</Link>
+                        <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
+                            <Link to={`/MyCourses/courseDetails/${id}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/MyCourses/courseDetails/${id}/practical` ? ButtonStyles.activeYellow : ''}`} >{t("myCourses.aCourseDetails.practical")}</Link> 
+                            <Link to={`/MyCourses/courseDetails/${id}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/MyCourses/courseDetails/${id}/theory` ? ButtonStyles.activeYellow : ''}`} >{t("myCourses.aCourseDetails.theory")}</Link> 
+                            <Link to={`/MyCourses/courseDetails/${id}/mySyllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/MyCourses/courseDetails/${id}/mySyllabi` ? ButtonStyles.activeYellow : ''}`} >{t("myCourses.aCourseDetails.myStatus")}</Link>
                         </div>
 
                         <div className='w-[90%]'>
