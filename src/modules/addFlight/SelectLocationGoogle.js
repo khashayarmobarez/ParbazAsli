@@ -85,7 +85,7 @@ const SelectLocationGoogle = ({ selectedLocation, setSelectedLocation }) => {
 
   return (
     <div className="w-full h-72">
-      <LoadScript googleMapsApiKey={'AIzaSyBkD-nKRgHwndn7DHgQFjqUO6-iHN3jHO4'} libraries={['marker']}>
+      <LoadScript googleMapsApiKey={mapKey} libraries={['marker']}>
         <GoogleMap
           mapContainerStyle={{
             height: '280px',
