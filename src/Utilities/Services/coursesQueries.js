@@ -142,7 +142,6 @@ const getSyllabiForLevels = async (levelId) => {
 
 // get courses data
     const getCourses = async (type, organizationId, pageNumber, isForClub) => {
-        const token = Cookies.get('token');
 
         try {
             const response = await axios.get(`${API_BASE_URL}/Course/GetCourses`, {
@@ -908,15 +907,13 @@ const getSyllabiForLevels = async (levelId) => {
 
         try {
             const response = await axios.get(`${API_BASE_URL}/Syllabus/GetSyllabusLandingContent?levelId=${levelId}`, {
-                headers: {
-                    headers: getCommonHeaders() 
-                },
+                headers: getCommonHeaders() 
             });
             return response.data;
 
         } catch (error) {
             if (error.response.data.ErrorMessages[0].ErrorKey === 'login') {
-                window.location.reload();
+                // window.location.reload();
             } else {
                 throw error;
             }

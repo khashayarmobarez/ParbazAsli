@@ -31,14 +31,14 @@ const SyllabiItemsContainer = ({syllabiDataList}) => {
         <div className='w-full flex flex-col items-center justify-center gap-y-4 -mt-4'>
 
             <div className='w-full flex items-center justify-center text-base font-extrabold text-textAccent'>
-                <p style={{fontSize:'16px', fontWeight:'700'}}>موارد آموزش عملی</p>
+                <p style={{fontSize:'16px', fontWeight:'700'}}>Practical training syllabi</p>
             </div>
 
             {
                 syllabi.groundHandlingSyllabi.length > 0 &&
                 <div class='w-full min-h-6 rounded-2xl bg-bgCard pb-2 flex flex-col gap-y-4'>
                     <div class='w-full flex bg-bgOutputSelectedOption h-11 text-textAccent items-center justify-center text-lg font-bold rounded-t-2xl'>
-                        <p class='h-full flex items-center'>تمرین زمینی</p>
+                        <p class='h-full flex items-center'>Ground handling</p>
                     </div>
                     {
                         syllabi && syllabi.groundHandlingSyllabi?.map((syllabi) => (
@@ -53,7 +53,7 @@ const SyllabiItemsContainer = ({syllabiDataList}) => {
             
             <div class='w-full min-h-6 rounded-2xl bg-bgCard pb-2 flex flex-col items-start gap-y-4'>
                 <div class='w-full flex bg-bgOutputSelectedOption h-11 text-textAccent items-center justify-center text-lg font-bold rounded-t-2xl'>
-                    <p class='h-full flex items-center'>پرواز</p>
+                    <p class='h-full flex items-center'>Flight</p>
                 </div>
                 {
                     syllabi && syllabi.flightSyllabi?.map((syllabi) => (
@@ -68,7 +68,7 @@ const SyllabiItemsContainer = ({syllabiDataList}) => {
             
             <div className='w-full flex flex-col items-center gap-y-4'>
                 <div className='w-full flex items-center justify-center text-textAccent'>
-                    <p style={{fontSize:'16px', fontWeight:'700'}}>موارد تئوری </p>
+                    <p style={{fontSize:'16px', fontWeight:'700'}}>Theoretical syllabi</p>
                 </div>
                 <div class='w-full min-h-6 rounded-2xl bg-bgCard p-2 flex flex-col items-start gap-y-4'>
                     {
