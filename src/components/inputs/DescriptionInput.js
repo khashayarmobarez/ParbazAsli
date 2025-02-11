@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 // css styles 
 import inputStyles from '../../styles/Inputs.module.css'
 
 const DescriptionInput = ({ value, onChange, placeholder, ErrorCondition, ErrorCondition2, ErrorText, ErrorText2, isSubmitted, className }) => {
+
+  const dir = Cookies.get('dir') || 'ltr';
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -47,7 +50,8 @@ const DescriptionInput = ({ value, onChange, placeholder, ErrorCondition, ErrorC
         <label
           htmlFor="floatingDescription"
           className={`
-            absolute right-3 top-2 
+            absolute top-2 
+            ${dir === 'ltr' ? 'left-3' : 'right-3'}
             ${((!value || ErrorCondition2 || ErrorCondition) && isSubmitted) ? 'text-textError' : 'text-textInputDefault'}
             transition-all duration-300 transform
             peer-placeholder-shown:translate-y-0
