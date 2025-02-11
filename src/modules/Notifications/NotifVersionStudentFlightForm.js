@@ -69,7 +69,8 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
                         className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >{t('notifications.tandemPassengerSurvey.setStatus')}
                         </button>
 
-                        <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>                       
+                        <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
+                                            
                     </div>
                 }
             </div>
