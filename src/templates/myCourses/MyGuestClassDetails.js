@@ -10,8 +10,12 @@ import boxStyles from '../../styles/DataBox.module.css'
 // comps
 import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
 import PageTitle from '../../components/reuseable/PageTitle';
+import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 const MyGuestClassDetails = () => {
+    
+    // language
+    const { t } = useTranslation();
 
     const { id } = useParams();
 
@@ -21,7 +25,7 @@ const MyGuestClassDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%]'>
 
-                <PageTitle title={'جزئیات کلاس'} navigateTo={'/MyCourses'} /> 
+                <PageTitle title={t("myCourses.guestCourseDetails.courseDetails")} navigateTo={'/MyCourses'} /> 
             
                 {
                     courseDataLoading &&
@@ -30,7 +34,7 @@ const MyGuestClassDetails = () => {
 
                 {
                     courseDataError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                    <p className='w-full text-center'>{t("myCourses.guestCourseDetails.errorMessage")}</p>
                 }
 
                 {
@@ -41,7 +45,7 @@ const MyGuestClassDetails = () => {
                             <div className=' grid grid-cols-8 gap-x-4 gap-y-4 w-full px-4 md:grid-cols-14 md:gap-y-0'>
 
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-2'>
-                                    <p className=' text-xs pr-2'>نام</p>
+                                    <p className=' text-xs pr-2'>{t("myCourses.guestCourseDetails.name")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                         <p>{aCourseData.data.name}</p>
                                     </div>
@@ -51,7 +55,7 @@ const MyGuestClassDetails = () => {
                                 {
                                     aCourseData.data.classDuration &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>مدت زمان</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.guestCourseDetails.duration")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.classDuration}</p>
                                         </div>  
@@ -61,7 +65,7 @@ const MyGuestClassDetails = () => {
                                 {
                                     aCourseData.data.startTime &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>زمان شروع</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.guestCourseDetails.startTime")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.startTime}</p>
                                         </div>
@@ -71,7 +75,7 @@ const MyGuestClassDetails = () => {
                                 {
                                     aCourseData.data.endTime &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>زمان پایان</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.guestCourseDetails.endTime")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.endTime}</p>
                                         </div>
@@ -81,7 +85,7 @@ const MyGuestClassDetails = () => {
                                 {
                                     aCourseData.data.dateTime &&
                                     <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
-                                        <p className=' text-xs pr-2'>تاریخ</p>
+                                        <p className=' text-xs pr-2'>{t("myCourses.guestCourseDetails.date")}</p>
                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                             <p>{aCourseData.data.dateTime}</p>
                                         </div>
@@ -91,14 +95,14 @@ const MyGuestClassDetails = () => {
                                 {
                                     aCourseData.data.description &&
                                     <div className=' w-full flex flex-col items-start justify-between col-span-8 gap-y-2' >
-                                            <p>توضیحات درباره دوره</p>
+                                            <p>{t("myCourses.guestCourseDetails.description")}</p>
                                             <p className='border-solid border-[1px] rounded-3xl p-4 text-sm min-h-14 w-full text-right'>{aCourseData.data.description}</p>
                                     </div>
                                 }
 
                                 {aCourseData.data.syllabi &&
                                     <div className='flex flex-col items-start gap-y-2 col-span-8'>
-                                            <p className=' text-sm'>مباحث مطرح شده</p>
+                                            <p className=' text-sm'>{t("myCourses.guestCourseDetails.topics")}</p>
                                             { 
                                                 aCourseData.data.syllabi.map((syllabus, index) => (
                                                     <div key={index} className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full min-h-12 rounded-xl`} id='data'>

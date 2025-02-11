@@ -233,6 +233,15 @@
                     "custom": "Customized"
                 },
                 "detailsButton": "Details"
+            },
+            "UserCertificateStatus":{
+                "expiredMessage": "Your certificate has expired!",
+                "limitedAccess": "Your access to the panel is limited.",
+                "renewCertificate": "Renew Certificate",
+                "adminPendingMessage": "Your certificate is awaiting approval",
+                "limitedAccessPending": "Your access is limited until approval.",
+                "expireSoonMessage": "Warning! {{daysToCertificateExpiration}} days until certificate expiration.",
+                "limitedAccessSoon": "Your access to the panel will be limited."
             }
         }
     },
@@ -869,6 +878,17 @@
                 "fly": "Flight Syllabi",
                 "ground": "Ground Training Syllabi"
             }
+        },
+        "guestCourseDetails": {
+            "courseDetails": "Course Details",
+            "name": "Name",
+            "duration": "Duration",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "date": "Date",
+            "description": "Description",
+            "topics": "Topics Covered",
+            "errorMessage": "An error occurred, please try again"
         }
     },
     "education": {

@@ -233,6 +233,15 @@
                     "custom": "شخصی سازی شده"
                 },
                 "detailsButton": "جزئیات"
+            },
+            "UserCertificateStatus":{
+                "expiredMessage": "گواهینامه شما منقضی شده است!",
+                "limitedAccess": "دسترسی شما به پنل محدود می‌باشد.",
+                "renewCertificate": "تمدید گواهینامه",
+                "adminPendingMessage": "گواهینامه شما در انتظار تایید است",
+                "limitedAccessPending": "تا زمان تایید دسترسی شما محدود می‌باشد.",
+                "expireSoonMessage": "اخطار! {{daysToCertificateExpiration}} روز تا انقضاء گواهینامه.",
+                "limitedAccessSoon": "دسترسی شما به پنل محدود خواهد شد."
             }
         }
     },
@@ -869,6 +878,17 @@
                 "fly": "سرفصل‌های پرواز",
                 "ground": "سرفصل‌های تمرین زمینی"
             }
+        },
+        "guestCourseDetails": {
+            "courseDetails": "جزئیات کلاس",
+            "name": "نام",
+            "duration": "مدت زمان",
+            "startTime": "زمان شروع",
+            "endTime": "زمان پایان",
+            "date": "تاریخ",
+            "description": "توضیحات درباره دوره",
+            "topics": "مباحث مطرح شده",
+            "errorMessage": "مشکلی پیش اماده, دوباره تلاش کنید"
         }
     },
     "education": {

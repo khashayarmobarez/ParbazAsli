@@ -2,19 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // mui
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { LinearProgress } from '@mui/material';
 
 // assets
 import Attention from '../../components/icons/Attention'
 import ArrowButton from '../../components/icons/ArrowButton';
-
-// styles
-import ButtonStyles from '../../styles/ButtonsBox.module.css'
-import boxStyles from '../../styles/DataBox.module.css'
 
 // queries
 import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../../Utilities/Services/StudentCoursesQueries';
