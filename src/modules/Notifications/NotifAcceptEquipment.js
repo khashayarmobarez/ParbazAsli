@@ -32,7 +32,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
               onSuccess: () => {
                 toast(t('notifications.acceptEquipment.equipmentAccepted'), {
                   type: 'success',
-                  position: 'top-right',
+                  position: 'top-center',
                   autoClose: 5000,
                   theme: appTheme,
                   style: { width: "90%" }
@@ -50,7 +50,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                 }
                 toast(errorMessage, {
                   type: 'error',
-                  position: 'top-right',
+                  position: 'top-center',
                   autoClose: 5000,
                   theme: appTheme,
                   style: { width: "90%" }
@@ -68,7 +68,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
               onSuccess: () => {
                 toast(t('notifications.acceptEquipment.equipmentRejected'), {
                   type: 'success',
-                  position: 'top-right',
+                  position: 'top-center',
                   autoClose: 5000,
                   theme: appTheme,
                   style: { width: "90%" }
@@ -87,7 +87,7 @@ const NotifAcceptEquipment = ({notif, isForClub, handleActivatePopUp}) => {
                 }
                 toast(errorMessage, {
                   type: 'error',
-                  position: 'top-right',
+                  position: 'top-center',
                   autoClose: 5000,
                   theme: appTheme,
                   style: { width: "90%" }

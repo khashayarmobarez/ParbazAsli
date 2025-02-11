@@ -141,7 +141,7 @@ const EditEquipment = () => {
                 onSuccess: () => {
                     toast(t('equipment.editEquipment.success'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -152,7 +152,7 @@ const EditEquipment = () => {
                     const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -164,7 +164,7 @@ const EditEquipment = () => {
         } else {
             toast(t('equipment.editEquipment.fillRequiredFields'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }

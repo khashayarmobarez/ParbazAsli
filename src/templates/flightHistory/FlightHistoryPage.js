@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // styles
 import boxStyles from '../../styles/DataBox.module.css'
@@ -15,10 +16,14 @@ import { useStudentPracticalActivity } from '../../Utilities/Services/coursesQue
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 
+// toaster
+import { toast } from 'react-toastify';
+
 const FlightHistoryPage = () => {
 
     // language
     const { t } = useTranslation();
+    const appTheme = Cookies.get('themeApplied') || 'dark';
     
     const { id } = useParams()
     const location = useLocation()
@@ -49,6 +54,16 @@ const FlightHistoryPage = () => {
         }
 
     },[fullPracticalActivityData, studentFlightData, location])
+
+    const handleNoIgc = () => {
+         toast('no igc file available', {
+            type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
+            position: 'top-center', 
+            autoClose: 3000,
+            theme: appTheme,
+            style: { width: "350px" }
+        });
+    }
 
     
     return (
@@ -506,7 +521,7 @@ const FlightHistoryPage = () => {
                             {
                             !flightData.data.igcFile &&
                                 <div className='w-full'>
-                                    <button onClick={() => window.open(flightData.data.igcFile.path, '_blank')} className={`${ButtonStyles.normalButton} text-base w-32`}>{t("flightHistory.flightDetails.viewIGC")}</button>
+                                    <button onClick={() => flightData.data.igcFile ? window.open(flightData.data.igcFile?.path, '_blank') : handleNoIgc()} className={`${ButtonStyles.normalButton} text-base w-32`}>{t("flightHistory.flightDetails.viewIGC")}</button>
                                 </div>
                             }
 

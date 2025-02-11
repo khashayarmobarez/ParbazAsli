@@ -85,7 +85,7 @@ const ClubCoaches = () => {
                 onSuccess: () => {
                     toast(t("club.coach.requestSent"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -103,7 +103,7 @@ const ClubCoaches = () => {
                     }
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -113,7 +113,7 @@ const ClubCoaches = () => {
         } else {
             toast(t("club.coach.invalidMembershipCode"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }

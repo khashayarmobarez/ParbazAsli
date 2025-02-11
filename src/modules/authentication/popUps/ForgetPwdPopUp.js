@@ -156,7 +156,7 @@ const ForgetPwdPopUp = ({showPopup, setShowPopup}) => {
 
     const Toastify = (toastText,toastType) => toast(toastText, {
         type: toastType, 
-        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
         autoClose: 5000,
         theme: appTheme,
         style: { width: "90%" }

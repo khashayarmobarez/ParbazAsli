@@ -76,7 +76,7 @@ const AddClass = () => {
             if (StartSelectedTime > endSelectedTime) {
                 toast(t("education.aCourseDetails.classes.addClassPage.endTimeBeforeStartTime"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -165,7 +165,7 @@ const AddClass = () => {
         if(!id || !ClassName || !StartSelectedTime || !endSelectedTime || syllabusIds.length === 0 ){
             return toast(t("education.aCourseDetails.classes.addClassPage.fillAllFields"), {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -173,7 +173,7 @@ const AddClass = () => {
         } else if (StartSelectedTime > endSelectedTime) {
             return toast(t("education.aCourseDetails.classes.addClassPage.endTimeBeforeStartTime"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -199,7 +199,7 @@ const AddClass = () => {
             onSuccess: () => {
                 toast(t("education.aCourseDetails.classes.addClassPage.classAddedSuccessfully"), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -212,7 +212,7 @@ const AddClass = () => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

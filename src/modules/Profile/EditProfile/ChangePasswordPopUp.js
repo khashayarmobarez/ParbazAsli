@@ -46,7 +46,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
         if(pwd !== matchPwd) {
             toast('رمز عبور جدید با تکرارش باید یکسان باشد', {
                 type: 'error', 
-                position: 'top-right', 
+                position: 'top-center', 
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -64,7 +64,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
             onSuccess: (data) => {
                 toast('رمز عبور با موفقیت تغییر یافت', {
                     type: 'success', 
-                    position: 'top-right', 
+                    position: 'top-center', 
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -78,7 +78,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                 }
                 toast(errorMessage, {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }

@@ -33,7 +33,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                 if (status === 'active') {
                     toast(t('notifications.acceptStudent.studentApproved'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -41,7 +41,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                 } else {
                     toast(t('notifications.acceptStudent.studentRejected'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }

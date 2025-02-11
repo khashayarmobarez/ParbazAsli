@@ -100,7 +100,7 @@ const EquipmentsList = () => {
                         refetchUserEquipmentsData();
                         toast(t('equipment.acceptSuccess'), {
                             type: 'success',
-                            position: 'top-right',
+                            position: 'top-center',
                             autoClose: 5000,
                             theme: appTheme,
                             style: { width: "90%" }
@@ -114,7 +114,7 @@ const EquipmentsList = () => {
                         }
                         toast(errorMessage, {
                             type: 'error',
-                            position: 'top-right',
+                            position: 'top-center',
                             autoClose: 5000,
                             theme: appTheme,
                             style: { width: "90%" }
@@ -133,7 +133,7 @@ const EquipmentsList = () => {
                         refetchUserEquipmentsData();
                         toast(t('equipment.rejectSuccess'), {
                             type: 'success',
-                            position: 'top-right',
+                            position: 'top-center',
                             autoClose: 5000,
                             theme: appTheme,
                             style: { width: "90%" }
@@ -148,7 +148,7 @@ const EquipmentsList = () => {
                         }
                         toast(errorMessage, {
                             type: 'error',
-                            position: 'top-right',
+                            position: 'top-center',
                             autoClose: 5000,
                             theme: appTheme,
                             style: { width: "90%" }
@@ -169,7 +169,7 @@ const EquipmentsList = () => {
                     refetchUserEquipmentsData();
                     toast(t('equipment.returnSuccess'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }

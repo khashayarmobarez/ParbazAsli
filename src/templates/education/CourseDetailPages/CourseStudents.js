@@ -122,7 +122,7 @@ const CourseStudents = () => {
                 if(status === 'Active') {
                     toast(t("education.aCourseDetails.studentsDetails.studentApproved"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', 
+                        position: 'top-center', 
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -131,7 +131,7 @@ const CourseStudents = () => {
                 else if(status === 'Canceled') {
                     toast(t("education.aCourseDetails.studentsDetails.studentApproved"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -139,7 +139,7 @@ const CourseStudents = () => {
                 } else if(status === 'Completed') {
                     toast( t("education.aCourseDetails.studentsDetails.studentCompleted"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -147,7 +147,7 @@ const CourseStudents = () => {
                 } else if(status === 'CoachRejected') {
                     toast(t("education.aCourseDetails.studentsDetails.studentRejected"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -175,7 +175,7 @@ const CourseStudents = () => {
             onSuccess: () => {
                 toast(t("education.aCourseDetails.studentsDetails.studentAdded"), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -193,7 +193,7 @@ const CourseStudents = () => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

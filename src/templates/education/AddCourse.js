@@ -326,7 +326,7 @@ const AddCourse = () => {
         if (selectedClassType.id === 1 && (!selectedClassType || !flightCount || !level) ) {
                 toast(t("education.addCourse.completeInfo"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -335,7 +335,7 @@ const AddCourse = () => {
         } else if(selectedClassType.id === 2 && (!selectedClassType || !flightCount || !level || !courseName || !(selectedSyllabiFlight.length > 0 || selectedSyllabiTheory.length > 0  || selectedSyllabiGround.length > 0) ) ) {
             toast(t("education.addCourse.completeInfo"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -344,7 +344,7 @@ const AddCourse = () => {
         } else if(selectedClassType.id === 3 && (!selectedClassType || !flightCount || !courseName || customCourses.length < 1) ) {
             toast(t("education.addCourse.completeInfo"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -353,7 +353,7 @@ const AddCourse = () => {
         } else if(isForClub && !Coach) {
             toast(t("education.addCourse.selectCoach"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -420,7 +420,7 @@ const AddCourse = () => {
                     onSuccess: () => {
                         toast(t("education.addCourse.courseAddedSuccess"), {
                             type: 'success',
-                            position: 'top-right',
+                            position: 'top-center',
                             autoClose: 5000,
                             theme: appTheme,
                             style: { width: "90%" }
@@ -434,7 +434,7 @@ const AddCourse = () => {
                         }
                         toast(errorMessage, {
                             type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
                             theme: appTheme,
                             style: { width: "350px" }
@@ -447,7 +447,7 @@ const AddCourse = () => {
                     onSuccess: () => {
                         toast(t("education.addCourse.courseAddedSuccess"), {
                             type: 'success',
-                            position: 'top-right',
+                            position: 'top-center',
                             autoClose: 5000,
                             theme: appTheme,
                             style: { width: "90%" }
@@ -464,7 +464,7 @@ const AddCourse = () => {
                         }
                         toast(errorMessage, {
                             type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
                             theme: appTheme,
                             style: { width: "350px" }
@@ -504,7 +504,7 @@ const AddCourse = () => {
                 onSuccess: () => {
                     toast(t("education.addCourse.courseAddedSuccess"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -518,7 +518,7 @@ const AddCourse = () => {
                     const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }

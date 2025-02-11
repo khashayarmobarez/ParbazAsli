@@ -116,7 +116,7 @@ const Syllabuses = () => {
                 onSuccess: () => {
                     toast(t('notifications.approveStudentFlight.syllabi.flightApproved'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: '90%' }
@@ -130,7 +130,7 @@ const Syllabuses = () => {
                     }
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: '350px' },
@@ -140,7 +140,7 @@ const Syllabuses = () => {
             } else {
                 toast(t('notifications.approveStudentFlight.syllabi.completeSyllabus'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: '350px' },

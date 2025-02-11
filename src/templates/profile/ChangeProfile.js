@@ -122,7 +122,7 @@ const ChangeProfile = () => {
         if (!phoneNumber) {
             toast(t('editUser.profile.toast.enterPhoneNumber'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -134,7 +134,7 @@ const ChangeProfile = () => {
         if (!/^\d+$/.test(phoneNumber)) {
             toast(t('editUser.profile.toast.validPhoneNumber'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -146,7 +146,7 @@ const ChangeProfile = () => {
         if (phoneNumber.length < 10) {
             toast(t('editUser.profile.toast.phoneNumberLength'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -169,7 +169,7 @@ const ChangeProfile = () => {
                 setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds);
                 toast(t('editUser.profile.toast.codeSent'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -179,7 +179,7 @@ const ChangeProfile = () => {
                 setLoadingStatus(false);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -192,7 +192,7 @@ const ChangeProfile = () => {
         if (phoneNumberCode.length !== phoneNumberCodeLength) {
             toast(t('editUser.profile.toast.validCodeLength'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -213,7 +213,7 @@ const ChangeProfile = () => {
                 setShowPopupType('');
                 toast(t('editUser.profile.toast.phoneChangeSuccess'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -227,7 +227,7 @@ const ChangeProfile = () => {
                 setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -240,7 +240,7 @@ const ChangeProfile = () => {
         if (!email) {
             toast(t('editUser.profile.toast.enterEmail'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -261,7 +261,7 @@ const ChangeProfile = () => {
                 setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds);
                 toast(t('editUser.profile.toast.codeSentEmail'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -271,7 +271,7 @@ const ChangeProfile = () => {
                 setLoadingStatus(false);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -284,7 +284,7 @@ const ChangeProfile = () => {
         if (emailCode.length !== emailCodeLength) {
             toast(t('editUser.profile.toast.validCodeLength'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -305,7 +305,7 @@ const ChangeProfile = () => {
                 setShowPopupType('');
                 toast(t('editUser.profile.toast.emailChangeSuccess'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -319,7 +319,7 @@ const ChangeProfile = () => {
                 setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

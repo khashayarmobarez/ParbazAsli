@@ -68,7 +68,7 @@ const AddUsedEquipment = () => {
             navigate('/addFlight/AddFlightType')
             toast(t('addFlight.addUsedEquipment.notifs.completePreviousPages'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -86,7 +86,7 @@ const AddUsedEquipment = () => {
         if(selectedOption === passengerHarness) {
             toast(t('addFlight.addUsedEquipment.notifs.wingCannotMatchPassengerHarness'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -100,7 +100,7 @@ const AddUsedEquipment = () => {
         if(selectedOption === harness) {
             toast(t('addFlight.addUsedEquipment.notifs.passengerHarnessCannotMatchWing'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -132,7 +132,7 @@ const AddUsedEquipment = () => {
         } else {
             toast(t('addFlight.addUsedEquipment.notifs.completeInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }

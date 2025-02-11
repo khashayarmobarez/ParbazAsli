@@ -99,7 +99,7 @@ const AddEmail = () => {
         if (!validEmail) { 
             toast(t("RegistrationPages.addEmail.notification.incompleteForm"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -129,7 +129,7 @@ const AddEmail = () => {
                 setShowPopupSubmit(true)
                 toast(t("RegistrationPages.addEmail.notification.codeSentSuccess"), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -142,7 +142,7 @@ const AddEmail = () => {
             if (!err?.response) {
                 toast(t("RegistrationPages.addEmail.notification.genericError"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -150,7 +150,7 @@ const AddEmail = () => {
             } else if (err.response?.status === 409) {
                 toast(t("RegistrationPages.addEmail.notification.phoneUsed"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -158,7 +158,7 @@ const AddEmail = () => {
             } else {
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -193,7 +193,7 @@ const AddEmail = () => {
         if ( !validEmail || !code) { 
             toast(t("RegistrationPages.addEmail.notification.enterValidCode"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -233,7 +233,7 @@ const AddEmail = () => {
                 console.error('Registration failed');
                 toast(t("RegistrationPages.addEmail.notification.emailRegistrationFailed"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -244,7 +244,7 @@ const AddEmail = () => {
             if (!err?.response) {
                 toast(t("RegistrationPages.addEmail.notification.genericError"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -253,7 +253,7 @@ const AddEmail = () => {
                 console.log(err);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

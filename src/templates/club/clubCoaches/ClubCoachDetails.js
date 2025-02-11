@@ -62,7 +62,7 @@ const ClubCoachDetails = () => {
                 onSuccess: () => {
                     toast(t("club.coach.coachDetails.coachDisabled"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -76,7 +76,7 @@ const ClubCoachDetails = () => {
                     }
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -93,7 +93,7 @@ const ClubCoachDetails = () => {
                 onSuccess: () => {
                     toast(t("club.coach.coachDetails.coachActivated"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -107,7 +107,7 @@ const ClubCoachDetails = () => {
                     }
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }

@@ -202,7 +202,7 @@ const getSyllabiForLevels = async (levelId) => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: 'dark',
                     style: { width: "90%" }
@@ -582,7 +582,7 @@ const getSyllabiForLevels = async (levelId) => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: 'dark',
                     style: { width: "90%" }
@@ -630,7 +630,7 @@ const getSyllabiForLevels = async (levelId) => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: 'dark',
                     style: { width: "90%" }

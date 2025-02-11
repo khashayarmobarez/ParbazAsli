@@ -244,7 +244,7 @@ const AddEquipment = () => {
             ) {
                 toast(t('equipment.addEquipment.fillAllFields'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -255,7 +255,7 @@ const AddEquipment = () => {
             if (year <= 1979 || year > currentYear) {
                 toast(t('equipment.addEquipment.validYear'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -266,7 +266,7 @@ const AddEquipment = () => {
             if (lastPackerId && !isPackerIdValid) {
                 toast(t('equipment.addEquipment.validPackerId'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -278,7 +278,7 @@ const AddEquipment = () => {
             if (!isSerialNumberValid) {
                 toast(t('equipment.addEquipment.validSerialNumber'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -289,7 +289,7 @@ const AddEquipment = () => {
             if ((serialNumber && !selectedFile) || (selectedFile && !serialNumber)) {
                 toast(t('equipment.addEquipment.serialAndFileMismatch'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 10000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -330,7 +330,7 @@ const AddEquipment = () => {
                 onSuccess: () => {
                     toast(t('equipment.addEquipment.success'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -342,7 +342,7 @@ const AddEquipment = () => {
                     console.log('submitError', submitError.message);
                     toast(submitError.response.data.ErrorMessages[0].ErrorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 10000,
                         theme: appTheme,
                         style: { width: "90%" }

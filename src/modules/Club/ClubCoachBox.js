@@ -22,7 +22,7 @@ const ClubCoachBox = ({ coachData }) => {
         } else if (coachData.status === 'Pending') {
             toast(t("club.coach.coachPending"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -30,7 +30,7 @@ const ClubCoachBox = ({ coachData }) => {
         } else if (coachData.status === 'Rejected') {
             toast(t("club.coach.coachRejected"), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }

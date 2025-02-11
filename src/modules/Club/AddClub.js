@@ -67,7 +67,7 @@ const AddClub = ({isForSetting}) => {
             if (!allowedFormats.includes(file.type)) {
                 toast(t("club.addClub.invalidFileFormat"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -79,7 +79,7 @@ const AddClub = ({isForSetting}) => {
             if (file.size > maxFileSize) {
                 toast(t("club.addClub.maxFileSize"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -174,7 +174,7 @@ const AddClub = ({isForSetting}) => {
         if(!clubName || !licenseNumber || !foundationDate || !expirationDate || !uploadedLicense) {
             toast(t("club.addClub.fillAllFields"), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -196,7 +196,7 @@ const AddClub = ({isForSetting}) => {
                     console.log('Club Added:', data);
                     toast(t("club.addClub.clubAddedSuccess"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -214,7 +214,7 @@ const AddClub = ({isForSetting}) => {
                     }
                     toast(errorMessage, {
                         type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }

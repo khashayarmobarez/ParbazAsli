@@ -34,7 +34,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                 if(status === 'active') {
                     toast(t('notifications.notifAcceptClub.clubAccepted'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -42,7 +42,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
                 } else {
                     toast(t('notifications.notifAcceptClub.clubDeclined'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }

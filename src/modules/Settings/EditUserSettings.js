@@ -116,7 +116,7 @@ const EditUserSettings = () => {
         if (phoneNumberCode.length !== phoneNumberCodeLength) {
             toast(t('settings.editUserSettings.phoneCodeLengthError'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -137,7 +137,7 @@ const EditUserSettings = () => {
                 setShowPopupType('');
                 toast(t('settings.editUserSettings.phoneChangeSuccess'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -148,7 +148,7 @@ const EditUserSettings = () => {
                 setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -161,7 +161,7 @@ const EditUserSettings = () => {
         if (!email) {
             toast(t('settings.editUserSettings.emailRequired'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -182,7 +182,7 @@ const EditUserSettings = () => {
                 setCodeRemainingTimeEmail(data.data.remainTimeSpanInSeconds);
                 toast(t('settings.editUserSettings.emailCodeSent'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -192,7 +192,7 @@ const EditUserSettings = () => {
                 setLoadingStatus(false);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -205,7 +205,7 @@ const EditUserSettings = () => {
         if (!phoneNumber) {
             toast(t('settings.editUserSettings.phoneNumberRequired'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -226,7 +226,7 @@ const EditUserSettings = () => {
                 setCodeRemainingTimePhone(data.data.remainTimeSpanInSeconds);
                 toast(t('settings.editUserSettings.phoneCodeSent'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -236,7 +236,7 @@ const EditUserSettings = () => {
                 setLoadingStatus(false);
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -249,7 +249,7 @@ const EditUserSettings = () => {
         if (emailCode.length !== emailCodeLength) {
             toast(t('settings.editUserSettings.emailCodeLengthError'), {
                 type: 'error',
-                position: 'top-right',
+                position: 'top-center',
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -270,7 +270,7 @@ const EditUserSettings = () => {
                 setShowPopupType('');
                 toast(t('settings.editUserSettings.emailChangeSuccess'), {
                     type: 'success',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -281,7 +281,7 @@ const EditUserSettings = () => {
                 setShowPopupType('');
                 toast(err.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

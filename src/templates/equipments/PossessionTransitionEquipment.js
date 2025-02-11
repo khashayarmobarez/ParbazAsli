@@ -115,7 +115,7 @@ const PossessionTransitionEquipment = () => {
             if(!userByIdData) {
                 toast(t('equipment.transitionEquipment.noUserData'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -123,7 +123,7 @@ const PossessionTransitionEquipment = () => {
             } else if(!expirationDate) {
                 toast(t('equipment.transitionEquipment.noExpirationDate'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -131,7 +131,7 @@ const PossessionTransitionEquipment = () => {
             } else if(!expirationDate > new Date()) {
                 toast(t('equipment.transitionEquipment.invalidExpirationDate'), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -166,7 +166,7 @@ const PossessionTransitionEquipment = () => {
                     // Code to execute after successful mutation
                     toast(t('equipment.transitionEquipment.success'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -179,7 +179,7 @@ const PossessionTransitionEquipment = () => {
                     const errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                     toast(errorMessage, {
                         type: 'error',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }

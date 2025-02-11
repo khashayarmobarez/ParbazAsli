@@ -126,7 +126,7 @@ const RenewCertificate = () => {
             if(!organ || !level || !certificateId || !dateStartValue || !dateEndValue || !uploadedFile) {
                 toast(t("editUser.renewCertificate.fillAllFields"), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }
@@ -137,7 +137,7 @@ const RenewCertificate = () => {
             if (!isValidFileFormat(uploadedFile)) {
                 toast(t("editUser.renewCertificate.invalidFileFormat"), {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }
@@ -172,7 +172,7 @@ const RenewCertificate = () => {
                     onSuccess: () => {
                         toast(t("editUser.renewCertificate.certificateRenewed"), {
                             type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
                             theme: appTheme,
                             style: { width: "350px" }
@@ -188,7 +188,7 @@ const RenewCertificate = () => {
                         }
                         toast(errorMessage, {
                             type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                            position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                            position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                             autoClose: 3000,
                             theme: appTheme,
                             style: { width: "350px" }

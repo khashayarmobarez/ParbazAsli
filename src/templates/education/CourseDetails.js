@@ -58,7 +58,7 @@ const CourseDetails = () => {
                 if(status === 'Active') {
                     toast(t("education.aCourseDetails.courseActivated"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -67,7 +67,7 @@ const CourseDetails = () => {
                 } else if(status === 'Disable') {
                     toast(t("education.aCourseDetails.courseDeactivated"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -77,7 +77,7 @@ const CourseDetails = () => {
                 } else if(status === 'Rejected') {
                     toast(t("education.aCourseDetails.courseRejected"), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }

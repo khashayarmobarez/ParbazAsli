@@ -90,7 +90,7 @@ const Login = () => {
         if (!userInput || !pwd || !validUserInput) {
             toast(t("RegistrationPages.notifications.invalidInfo"), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 5000,
                 theme: appTheme,
                 style: { width: "90%" }
@@ -118,7 +118,7 @@ const Login = () => {
 
                 toast(t("RegistrationPages.notifications.loginSuccess"), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -154,7 +154,7 @@ const Login = () => {
                 setErrMsg(t("RegistrationPages.notifications.tryAgain"));
                 toast(t("RegistrationPages.notifications.tryAgain"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -165,7 +165,7 @@ const Login = () => {
                 setErrMsg(t("RegistrationPages.notifications.resetPasswordRequired"));
                 toast(t("RegistrationPages.notifications.resetPasswordRequired"), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -178,7 +178,7 @@ const Login = () => {
                 setErrMsg(error.response.data.ErrorMessages[0].ErrorMessage);
                 toast(error.response.data.ErrorMessages[0].ErrorMessage, {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

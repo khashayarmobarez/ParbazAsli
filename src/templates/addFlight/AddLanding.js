@@ -85,7 +85,7 @@ const AddLanding = () => {
             navigate('/addFlight/AddFlightType')
             toast(t('addFlight.addLanding.incompleteInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -138,7 +138,7 @@ const AddLanding = () => {
             } else {
                 toast(t('addFlight.addLanding.completeInfo'), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }
@@ -151,7 +151,7 @@ const AddLanding = () => {
             } else {
                 toast(t('addFlight.addLanding.completeInfo'), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }
@@ -203,7 +203,7 @@ const AddLanding = () => {
         } else {
             toast(t('addFlight.addLanding.completeInfo'), {
                 type: 'error', // Specify the type of toast 
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -221,7 +221,7 @@ const AddLanding = () => {
                         onSuccess: () => {
                             toast(t('addFlight.addLanding.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -236,7 +236,7 @@ const AddLanding = () => {
                             }
                             toast(errorMessage, {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -255,7 +255,7 @@ const AddLanding = () => {
                         onSuccess: () => {
                             toast(t('addFlight.addLanding.flightRegisteredCourse'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -270,7 +270,7 @@ const AddLanding = () => {
                             }
                             toast(errorMessage, {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -289,7 +289,7 @@ const AddLanding = () => {
                         onSuccess: () => {
                             toast(t('addFlight.addLanding.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -304,7 +304,7 @@ const AddLanding = () => {
                             }
                             toast(errorMessage, {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }

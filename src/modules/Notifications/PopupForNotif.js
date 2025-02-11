@@ -43,7 +43,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 if(status === 'Active') {
                     toast(t('notifications.popup.clubApproved'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -51,7 +51,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 } else {
                     toast(t('notifications.popup.clubRejected'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -80,7 +80,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 if(status === 'active') {
                     toast(t('notifications.popup.courseApproved'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -88,7 +88,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 } else {
                     toast(t('notifications.popup.courseRejected'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                        position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -115,7 +115,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 if(status === 'active') {
                     toast(t('notifications.popup.studentApproved'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right', 
+                        position: 'top-center', 
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -123,7 +123,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 } else {
                     toast(t('notifications.popup.studentRejected'), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 3000,
                         theme: appTheme,
                         style: { width: "350px" }
@@ -153,7 +153,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 onSuccess: () => {
                     toast(t('notifications.popup.equipmentApproved'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -170,7 +170,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }
@@ -188,7 +188,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 onSuccess: () => {
                     toast(t('notifications.popup.equipmentRejected'), {
                         type: 'success',
-                        position: 'top-right',
+                        position: 'top-center',
                         autoClose: 5000,
                         theme: appTheme,
                         style: { width: "90%" }
@@ -206,7 +206,7 @@ const PopupForNotif = ({popUpData, setPopUpData}) => {
                 }
                 toast(errorMessage, {
                     type: 'error',
-                    position: 'top-right',
+                    position: 'top-center',
                     autoClose: 5000,
                     theme: appTheme,
                     style: { width: "90%" }

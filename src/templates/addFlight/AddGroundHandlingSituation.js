@@ -85,7 +85,7 @@ const AddGroundHandlingSituation = () => {
             navigate('/addFlight/AddFlightType')
             toast(t('addGroundHandling.incompleteInfo'), {
                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -141,7 +141,7 @@ const AddGroundHandlingSituation = () => {
             } else {
                 toast(t('addGroundHandling.completeInfo'), {
                     type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }
@@ -154,7 +154,7 @@ const AddGroundHandlingSituation = () => {
             } else {
                 toast(t('addGroundHandling.completeInfo'), {
                     type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                    position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                    position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                     autoClose: 3000,
                     theme: appTheme,
                     style: { width: "350px" }
@@ -202,7 +202,7 @@ const AddGroundHandlingSituation = () => {
         } else {
             toast('لطفا اطلاعات را کامل وارد کنید', {
                 type: 'error', // Specify the type of toast 
-                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
                 theme: appTheme,
                 style: { width: "350px" }
@@ -220,7 +220,7 @@ const AddGroundHandlingSituation = () => {
                         onSuccess: () => {
                             toast(t('addGroundHandling.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -235,7 +235,7 @@ const AddGroundHandlingSituation = () => {
                             }
                             toast(errorMessage, {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -254,7 +254,7 @@ const AddGroundHandlingSituation = () => {
                         onSuccess: () => {
                             toast(t('addGroundHandling.flightRegisteredCourse'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -269,7 +269,7 @@ const AddGroundHandlingSituation = () => {
                             }
                             toast(errorMessage, {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -288,7 +288,7 @@ const AddGroundHandlingSituation = () => {
                         onSuccess: () => {
                             toast(t('addGroundHandling.flightRegistered'), {
                                 type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
@@ -303,7 +303,7 @@ const AddGroundHandlingSituation = () => {
                             }
                             toast(errorMessage, {
                                 type: 'error', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
-                                position: 'top-right', // Set the position (e.g., 'top-left', 'bottom-right')
+                                position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                                 autoClose: 3000,
                                 theme: appTheme,
                                 style: { width: "350px" }
