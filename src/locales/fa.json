@@ -20,6 +20,9 @@
             "hour": "ساعت",
             "minutes": "دقیقه",
             "time": "زمان"
+        },
+        "normalInputs": {
+            "oldPass": "*رمز عبور قدیمی الزامی است!"
         }
     },
     "reusables": {
@@ -628,6 +631,17 @@
                 "submitError": "خطایی رخ داده است",
                 "submitSuccess": "گواهینامه با موفقیت اضافه شد"
             }
+        },
+        "passwordChange": {
+            "oldPassword": "رمز عبور قدیمی",
+            "newPassword": "رمز عبور جدید",
+            "confirmPassword": "تکرار رمز عبور جدید",
+            "passwordMismatch": "رمز عبور جدید با تکرارش باید یکسان باشد",
+            "changePassword": "تغییر رمز عبور",
+            "loading": "در حال بارگذاری...",
+            "successMessage": "رمز عبور با موفقیت تغییر یافت",
+            "errorMessage": "خطایی رخ داده است",
+            "change": "تغییر"
         }
     },
     "editUser": {

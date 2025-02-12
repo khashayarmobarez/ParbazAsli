@@ -118,7 +118,7 @@ const AddFlight = () => {
                             <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
                                 <p>{ flightDuration ? flightDuration : '0' } min</p>
                             </div>
-                        </div> 
+                        </div>
 
                         {
                             coachName && flightType === 'Course' &&

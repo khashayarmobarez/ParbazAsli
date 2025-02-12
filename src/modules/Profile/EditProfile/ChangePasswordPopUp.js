@@ -19,7 +19,13 @@ import ConfirmPassInputSignup from '../../authentication/Inputs/ConfirmPassInput
 import PasswordInputLogin from '../../authentication/Inputs/PasswordInputLogin';
 import { toast } from 'react-toastify';
 
+// context
+import { useTranslation } from '../../../Utilities/context/TranslationContext';
+
 const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
+
+    // language
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const appTheme = Cookies.get('themeApplied') || 'dark';
@@ -44,7 +50,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
         e.preventDefault();
 
         if(pwd !== matchPwd) {
-            toast('رمز عبور جدید با تکرارش باید یکسان باشد', {
+            toast(t("settings.passwordChange.passwordMismatch"), {
                 type: 'error', 
                 position: 'top-center', 
                 autoClose: 5000,
@@ -62,7 +68,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
 
         changePass(data , {
             onSuccess: (data) => {
-                toast('رمز عبور با موفقیت تغییر یافت', {
+                toast(t("settings.passwordChange.successMessage"), {
                     type: 'success', 
                     position: 'top-center', 
                     autoClose: 5000,
@@ -72,7 +78,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                 setShowPopUp(false);
             },
             onError: (error) => {
-                let errorMessage = 'خطایی رخ داده است';
+                let errorMessage = t("settings.passwordChange.errorMessage");
                 if (error.response && error.response.data && error.response.data.ErrorMessages) {
                     errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                 }
@@ -106,7 +112,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
                     focus={oldpwdFocus}
                     onFocus={() => setOldPwdFocus(true)}
                     onBlur={() => setOldPwdFocus(false)}
-                    customPlaceHolder='رمز عبور قدیمی'
+                    customPlaceHolder={t("settings.passwordChange.oldPassword")}
                     customLabelBgColor='bgCard'
                 />
 
@@ -132,7 +138,7 @@ const ChangePasswordPopUp = ({showPopUp, setShowPopUp}) => {
 
                 <button type="submit" disabled={changePassLoading} className={`${ButtonStyles.addButton} w-[108px] self-center text-sm`}
                 onClick={handleSubmit} >
-                    {changePassLoading ? 'در حال بارگذاری...' : 'تغییر'}
+                    {changePassLoading ? t("settings.passwordChange.loading") : t("settings.passwordChange.change")}
                 </button>
 
                 {/* {errMsg && <p style={{ color: 'red' }}>Error: {errMsg}</p>}

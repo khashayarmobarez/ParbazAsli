@@ -168,7 +168,7 @@ const PasswordInputLogin = ({ onChange, value, focus, onFocus, onBlur, customPla
       </div>
       <p id="inputnote" className={`${(!value && showErrors) ? "instructions" : "hidden"} mt-2 ${dir === 'ltr' ? 'text-left' : `text-right`} text-xs mr-4 text-[${textErrorColor}]`}>
         {isForOldPass ?
-        '*رمز عبور قدیمی الزامی است'
+        t("inputs.normalInputs.oldPass")
         :
         t("RegistrationPages.Login.passwordInputError")
         }

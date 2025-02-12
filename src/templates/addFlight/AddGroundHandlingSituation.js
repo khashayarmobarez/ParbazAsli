@@ -200,7 +200,7 @@ const AddGroundHandlingSituation = () => {
             }
 
         } else {
-            toast('لطفا اطلاعات را کامل وارد کنید', {
+            toast(t('addGroundHandling.completeInfo'), {
                 type: 'error', // Specify the type of toast 
                 position: 'top-center', // Set the position (e.g., 'top-left', 'bottom-right')
                 autoClose: 3000,
@@ -447,8 +447,14 @@ const AddGroundHandlingSituation = () => {
                 </div>
 
                 <div className='w-full justify-center items-center'>
-                    <SubmitForm text={t('addGroundHandling.confirmationWarning')}
-                    showPopup={showPopup} setShowPopup={setShowPopup} loading={TandemLoading || SoloLoading || courseLoading} handleSubmit={handleSubmit} handlePost={() => handlePost()} />
+                    <SubmitForm
+                    text={t('addGroundHandling.confirmationWarning')}
+                    showPopup={showPopup}
+                    setShowPopup={setShowPopup}
+                    loading={TandemLoading || SoloLoading || courseLoading}
+                    handleSubmit={handleSubmit}
+                    handlePost={() => handlePost()}
+                    />
                 </div>
             </div>                                                                                                                                                                                                                                                                                       <p className=' absolute -z-10 text-[#000000]/0'>developed by khashayar mobarez</p>
         </>

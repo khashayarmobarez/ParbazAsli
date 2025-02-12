@@ -20,6 +20,9 @@
             "hour":"Hour",
             "minutes": "Minute",
             "time": "Time"
+        },
+        "normalInputs": {
+            "oldPass": "*the old password is required!"
         }
     },
     "reusables": {
@@ -628,6 +631,17 @@
                 "submitError": "An error occurred",
                 "submitSuccess": "Certificate added successfully"
             }
+        },
+        "passwordChange": {
+            "oldPassword": "old Password",
+            "newPassword": "New Password",
+            "confirmPassword": "Confirm Password",
+            "passwordMismatch": "New password and confirmation must match",
+            "changePassword": "Change Password",
+            "loading": "Loading...",
+            "successMessage": "Password changed successfully",
+            "errorMessage": "An error occurred",
+            "change": "Change"
         }
     },
     "editUser": {
