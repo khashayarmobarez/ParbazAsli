@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import KeyIcon from '../../../components/icons/KeyIcon';
+import KeyIcon from '../../../elements/icons/KeyIcon';
 import inputStyles from '../../../styles/Inputs.module.css';
 
 import Cookies from 'js-cookie';

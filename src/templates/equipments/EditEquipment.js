@@ -19,15 +19,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // assets
-import UserIcon from '../../components/icons/UserIcon'
-import SerialNumberIcon from '../../components/icons/SerialNumberIcon'
+import UserIcon from '../../elements/icons/UserIcon'
+import SerialNumberIcon from '../../elements/icons/SerialNumberIcon'
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
-import DateInput from '../../components/inputs/DateInput';
-import TextInput from '../../components/inputs/textInput';
-import UploadFileInput from '../../components/inputs/UploadFileInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DateInput from '../../elements/inputs/DateInput';
+import TextInput from '../../elements/inputs/textInput';
+import UploadFileInput from '../../elements/inputs/UploadFileInput';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 import { EQUIPMENT_SERIAL_NUMBER_PATTERN } from '../../Utilities/Providers/regexProvider';
 
 // context

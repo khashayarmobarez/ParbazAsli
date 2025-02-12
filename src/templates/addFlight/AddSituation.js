@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import ArrowButton from '../../components/icons/ArrowButton'
+import ArrowButton from '../../elements/icons/ArrowButton'
 
 // reactToastify
 
@@ -20,8 +20,8 @@ import { selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight
 import { updateCity, updateSight,updateClouds,updateCountry } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // components
-import DropdownInput from '../../components/inputs/DropDownInput';
-import SearchInputWithDropdown from '../../components/inputs/SearchInputWithDropdown';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import SearchInputWithDropdown from '../../elements/inputs/SearchInputWithDropdown';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

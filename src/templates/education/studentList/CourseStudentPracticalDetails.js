@@ -10,7 +10,7 @@ import { useStudentPracticalActivities } from '../../../Utilities/Services/cours
 
 // components
 import PracticalFlightHistoryBox from '../../../modules/FlightHistory/PracticalFlightHistoryBox';
-import ArrowButton from '../../../components/icons/ArrowButton';
+import ArrowButton from '../../../elements/icons/ArrowButton';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 const CourseStudentPracticalDetails = () => {

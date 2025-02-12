@@ -11,8 +11,8 @@ import { selectFlightFilter, resetAllFilters } from '../../Utilities/ReduxToolKi
 import ButtonStyles from '../../styles/ButtonsBox.module.css';
 
 // assets 
-import ArrowButton from '../../components/icons/ArrowButton';
-import Eraser from '../../components/icons/Eraser1Icon';
+import ArrowButton from '../../elements/icons/ArrowButton';
+import Eraser from '../../elements/icons/Eraser1Icon';
 
 // mui
 import CircularProgress from '@mui/material/CircularProgress';
@@ -22,7 +22,7 @@ import Box from '@mui/material/Box';
 import { usePracticalActivities } from '../../Utilities/Services/flightHistoriesQueries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import PracticalFlightHistoryBox from '../../modules/FlightHistory/PracticalFlightHistoryBox';
 import FilterVariables from '../../modules/FlightHistory/FilterVariables';
 

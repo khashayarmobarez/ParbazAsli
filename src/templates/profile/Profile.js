@@ -26,7 +26,7 @@ import pencil from '../../assets/icons/pencil-alt.svg'
 import UserDataBox from '../../modules/Profile/UserDataBox';
 import ParachutesSwiperSlider from '../../modules/Profile/ParachutesSwiperSlider';
 import UserCoursesSlider from '../../modules/Profile/UserCoursesSlider';
-import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
+import DigilogbookLoading from '../../elements/Loader/DigilogbookLoading';
 import UserCertificateStatus from '../../modules/Profile/UserCertificateStatus';
 
 // context

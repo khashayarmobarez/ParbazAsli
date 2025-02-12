@@ -15,11 +15,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // assets
-import ClockIcon from '../../../components/icons/ClockIcon'
-import DocumentIcon from '../../../components/icons/DocumentIcon'
-import UsersIcon from '../../../components/icons/UsersIcon'
-import ArrowButton from '../../../components/icons/ArrowButton'
-import PageTitle from '../../../components/reuseable/PageTitle';
+import ClockIcon from '../../../elements/icons/ClockIcon'
+import DocumentIcon from '../../../elements/icons/DocumentIcon'
+import UsersIcon from '../../../elements/icons/UsersIcon'
+import ArrowButton from '../../../elements/icons/ArrowButton'
+import PageTitle from '../../../elements/reuseable/PageTitle';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
 
 

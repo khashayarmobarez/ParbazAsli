@@ -17,16 +17,16 @@ import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange,
 import { Avatar } from '@mui/material';
 
 // assets
-import PhoneIcon from '../../components/icons/PhoneIcon';
-import MailIcon from '../../components/icons/MailIcon';
+import PhoneIcon from '../../elements/icons/PhoneIcon';
+import MailIcon from '../../elements/icons/MailIcon';
 
 // components
-import FixedInput from '../../components/inputs/FixedInput';
-import InputWithButton from '../../components/inputs/InputWithButton';
+import FixedInput from '../../elements/inputs/FixedInput';
+import InputWithButton from '../../elements/inputs/InputWithButton';
 import ChangePicPopUp from '../../modules/Profile/EditProfile/ChangePicPopUp';
 import PhoneVerificationCode from '../../modules/authentication/popUps/PhoneVerificationCode';
 import ChangePasswordPopUp from '../../modules/Profile/EditProfile/ChangePasswordPopUp';
-import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
+import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBorderIcon';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

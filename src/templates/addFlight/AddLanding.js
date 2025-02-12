@@ -8,11 +8,11 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import ArrowButton from '../../components/icons/ArrowButton'
-import WindIcon from '../../components/icons/WindIcon'
-import WindDirectionCock from '../../components/icons/WindDirectionCock'
-import PhoneIcon from '../../components/icons/PhoneIcon'
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
+import ArrowButton from '../../elements/icons/ArrowButton'
+import WindIcon from '../../elements/icons/WindIcon'
+import WindDirectionCock from '../../elements/icons/WindDirectionCock'
+import PhoneIcon from '../../elements/icons/PhoneIcon'
+import ColorTagsIcon from '../../elements/icons/ColorTagsIcon'
 
 // react-toastify
 import { toast } from 'react-toastify';
@@ -32,13 +32,13 @@ import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, 
 import { CircularProgress } from '@mui/material';
 
 // components
-import DropdownInput from '../../components/inputs/DropDownInput';
-import TextInput from '../../components/inputs/textInput';
-import SubmitForm from '../../components/reuseable/SubmitForm';
-import NumberInput from '../../components/inputs/NumberInput';
-import DescriptionInput from '../../components/inputs/DescriptionInput';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import TextInput from '../../elements/inputs/textInput';
+import SubmitForm from '../../elements/reuseable/SubmitForm';
+import NumberInput from '../../elements/inputs/NumberInput';
+import DescriptionInput from '../../elements/inputs/DescriptionInput';
 import { PHONE_REGEX } from '../../Utilities/Providers/regexProvider';
-import { TimePicker } from '../../components/inputs/TimePicker';
+import { TimePicker } from '../../elements/inputs/TimePicker';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

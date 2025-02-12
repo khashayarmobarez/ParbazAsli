@@ -18,12 +18,12 @@ import useClickOutside from '../Utilities/Hooks/useClickOutside';
 
 // assets
 import companyLogo from '../assets/Logo/DigilogbookMainLogo.svg';
-import Logout from '../components/icons/Logout';
+import Logout from '../elements/icons/Logout';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { Avatar } from '@mui/material';
 import { GroupsOutlined,  PhoneOutlined, SettingsOutlined } from '@mui/icons-material';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import BookIcon from '../components/icons/BookIcon';
+import BookIcon from '../elements/icons/BookIcon';
 
 // context
 import { useTranslation } from '../Utilities/context/TranslationContext';

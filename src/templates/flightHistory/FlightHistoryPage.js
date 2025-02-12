@@ -10,8 +10,8 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
 import { useStudentPracticalActivity } from '../../Utilities/Services/coursesQueries';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 import { useTranslation } from '../../Utilities/context/TranslationContext';

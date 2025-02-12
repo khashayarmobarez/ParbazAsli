@@ -5,10 +5,10 @@ import Cookies from 'js-cookie';
 import { useNotifications } from '../../Utilities/Services/notificationAndSurveyQueries';
 
 // icons
-import ArrowButton from '../../components/icons/ArrowButton';
+import ArrowButton from '../../elements/icons/ArrowButton';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import NotifVersionStudentFlightForm from '../../modules/Notifications/NotifVersionStudentFlightForm';
 import NotifAcceptClub from '../../modules/Notifications/NotifAcceptClub';
 import NotifAcceptCourse from '../../modules/Notifications/NotifAcceptCourse';
@@ -17,7 +17,7 @@ import RegularTextNotif from '../../modules/Notifications/RegularTextNotif';
 import NotifTandemPassengerSurvey from '../../modules/Notifications/NotifTandemPassengerSurvey';
 import PopupForNotif from '../../modules/Notifications/PopupForNotif';
 import NotifAcceptEquipment from '../../modules/Notifications/NotifAcceptEquipment';
-import Attention from '../../components/icons/Attention';
+import Attention from '../../elements/icons/Attention';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

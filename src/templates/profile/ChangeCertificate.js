@@ -8,7 +8,7 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import { useAllUserCertificates } from '../../Utilities/Services/userQueries';
 
 // mui and assets
-import ArrowButton from '../../components/icons/ArrowButton';
+import ArrowButton from '../../elements/icons/ArrowButton';
 import AddIcon from '@mui/icons-material/Add';
 
 // components

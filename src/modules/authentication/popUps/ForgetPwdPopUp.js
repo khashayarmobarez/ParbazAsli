@@ -13,7 +13,7 @@ import { selectAuthSettings, getAuthSettings } from '../../../Utilities/ReduxToo
 import CloseIcon from '@mui/icons-material/Close';
 
 // assets
-import UserIcon from '../../../components/icons/UserIcon';
+import UserIcon from '../../../elements/icons/UserIcon';
 
 // styles
 import boxStyles from '../../../styles/DataBox.module.css';
@@ -23,7 +23,7 @@ import ButtonStyles from '../../../styles/ButtonsBox.module.css';
 import PasswordInputSignup from '../Inputs/PasswordInputSignup';
 import ConfirmPassInputSignup from '../Inputs/ConfirmPassInputSignup';
 import { useCheckForgotPasswordCode, useResetPassword, useSendVerificationCode } from '../../../Utilities/Services/AuthenticationApi';
-import TextInput from '../../../components/inputs/textInput';
+import TextInput from '../../../elements/inputs/textInput';
 
 // regexes
 import { EMAIL_REGEX, PHONE_REGEX, PWD_REGEX } from '../../../Utilities/Providers/regexProvider';

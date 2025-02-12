@@ -20,25 +20,25 @@ import { useUserById } from '../../Utilities/Services/queries';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assets
-import ClothesTag from '../../components/icons/ClothesTag';
-import Cube from '../../components/icons/ThreeDCube';
+import ClothesTag from '../../elements/icons/ClothesTag';
+import Cube from '../../elements/icons/ThreeDCube';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import TextInput from '../../components/inputs/textInput';
-import NumberInput from '../../components/inputs/NumberInput';
-import DropdownInput from '../../components/inputs/DropDownInput';
-import WingIcon from '../../components/icons/WingIcon';
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon';
-import CalenderIcon from '../../components/icons/CalenderIcon';
-import ClockIcon from '../../components/icons/ClockIcon';
-import UploadFileInput from '../../components/inputs/UploadFileInput';
-import SerialNumberIcon from '../../components/icons/SerialNumberIcon';
-import DateInput from '../../components/inputs/DateInput';
-import UserIcon from '../../components/icons/UserIcon';
-import StandardPopup from '../../components/reuseable/StandardPopup';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
+import TextInput from '../../elements/inputs/textInput';
+import NumberInput from '../../elements/inputs/NumberInput';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import WingIcon from '../../elements/icons/WingIcon';
+import ColorTagsIcon from '../../elements/icons/ColorTagsIcon';
+import CalenderIcon from '../../elements/icons/CalenderIcon';
+import ClockIcon from '../../elements/icons/ClockIcon';
+import UploadFileInput from '../../elements/inputs/UploadFileInput';
+import SerialNumberIcon from '../../elements/icons/SerialNumberIcon';
+import DateInput from '../../elements/inputs/DateInput';
+import UserIcon from '../../elements/icons/UserIcon';
+import StandardPopup from '../../elements/reuseable/StandardPopup';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

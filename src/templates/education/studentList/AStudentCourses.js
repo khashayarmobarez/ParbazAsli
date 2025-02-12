@@ -6,19 +6,19 @@ import Cookies from 'js-cookie';
 import { useAStudentCourses } from '../../../Utilities/Services/coursesQueries';
 
 // comps
-import PageTitle from '../../../components/reuseable/PageTitle';
+import PageTitle from '../../../elements/reuseable/PageTitle';
 
 // styles
 import boxStyles from '../../../styles/DataBox.module.css'
 import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // assets
-import ArrowButton from '../../../components/icons/ArrowButton';
+import ArrowButton from '../../../elements/icons/ArrowButton';
 
 // mui
 import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
-import Attention from '../../../components/icons/Attention';
+import Attention from '../../../elements/icons/Attention';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';

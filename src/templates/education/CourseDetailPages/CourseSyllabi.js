@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useACourseSyllabi } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import DropDownDataBox from '../../../components/reuseable/DropDownDataBox';
+import DropDownDataBox from '../../../elements/reuseable/DropDownDataBox';
 import { Box, CircularProgress } from '@mui/material';
 
 // context

@@ -13,10 +13,10 @@ import { Box, CircularProgress } from '@mui/material';
 import { useACourse, useTriggerCourseStatus } from '../../Utilities/Services/coursesQueries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import { toast } from 'react-toastify';
-import StandardPopup from '../../components/reuseable/StandardPopup';
-import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
+import StandardPopup from '../../elements/reuseable/StandardPopup';
+import LowOpacityBackForStickedButtons from '../../elements/reuseable/LowOpacityBackForStickedButtons';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

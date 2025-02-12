@@ -13,7 +13,7 @@ import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 // assets
 import IGC from '../../assets/icons/IGC-Download.svg'
-import ArrowButton from '../../components/icons/ArrowButton'
+import ArrowButton from '../../elements/icons/ArrowButton'
 
 // style
 import ButtonStyles from '../../styles/ButtonsBox.module.css'

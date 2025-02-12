@@ -8,12 +8,12 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assets 
 import AddIcon from '@mui/icons-material/Add';
-import ListIcon from '../../components/icons/ListIcon';
-import ChartIcon from '../../components/icons/ChartIcon';
-import ChartIcon2 from '../../components/icons/ChartIcon2';
-import ADressTag from '../../components/icons/ADressTag';
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon';
-import CertificateIcon from '../../components/icons/CertificateIcon';
+import ListIcon from '../../elements/icons/ListIcon';
+import ChartIcon from '../../elements/icons/ChartIcon';
+import ChartIcon2 from '../../elements/icons/ChartIcon2';
+import ADressTag from '../../elements/icons/ADressTag';
+import ColorTagsIcon from '../../elements/icons/ColorTagsIcon';
+import CertificateIcon from '../../elements/icons/CertificateIcon';
 
 // mui
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -26,17 +26,17 @@ import { useOrganLevelsForCourse, useOrgansData, useUserLevelById } from '../../
 import { useAddCustomCourse, useAddRegularCourse, useAddRetrainingCourse, useSyllabiForLevels } from '../../Utilities/Services/coursesQueries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
-import DropdownInput from '../../components/inputs/DropDownInput';
-import TextInput from '../../components/inputs/textInput';
-import NumberInput from '../../components/inputs/NumberInput';
-import DescriptionInput from '../../components/inputs/DescriptionInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import SelectMultiplePopUp from '../../components/reuseable/SelectMultiplePopUp';
-import StandardPopup from '../../components/reuseable/StandardPopup';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import TextInput from '../../elements/inputs/textInput';
+import NumberInput from '../../elements/inputs/NumberInput';
+import DescriptionInput from '../../elements/inputs/DescriptionInput';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
+import SelectMultiplePopUp from '../../elements/reuseable/SelectMultiplePopUp';
+import StandardPopup from '../../elements/reuseable/StandardPopup';
 import { useGetActiveClubCoaches } from '../../Utilities/Services/clubQueries';
-import Attention from '../../components/icons/Attention';
-import UserIcon from '../../components/icons/UserIcon';
+import Attention from '../../elements/icons/Attention';
+import UserIcon from '../../elements/icons/UserIcon';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

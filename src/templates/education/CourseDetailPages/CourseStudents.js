@@ -13,16 +13,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 // assests
-import ArrowButton from '../../../components/icons/ArrowButton';
+import ArrowButton from '../../../elements/icons/ArrowButton';
 
 
 // queries
 import { useACourse, useACourseHistoryStudents, useACourseStudents, useAddStudentToCourse, useTriggerStudentStatus } from '../../../Utilities/Services/coursesQueries';
 
 // components
-import TextInput from '../../../components/inputs/textInput';
+import TextInput from '../../../elements/inputs/textInput';
 import { useUserById } from '../../../Utilities/Services/queries';
-import DropDownLine from '../../../components/reuseable/DropDownLine';
+import DropDownLine from '../../../elements/reuseable/DropDownLine';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';

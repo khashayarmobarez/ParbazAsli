@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../components/icons/ThreeDCube';
+import Cube from '../../elements/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs.module.css';
 
 const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, ClickedOthers, showCustomBrandInput, setShowCustomBrandInput, IsEmptyAfterSubmit }) => {

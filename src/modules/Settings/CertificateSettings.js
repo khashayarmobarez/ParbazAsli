@@ -12,7 +12,7 @@ import { useAllUserCertificates } from '../../Utilities/Services/userQueries';
 
 // components
 import Certificate from './Certificate';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

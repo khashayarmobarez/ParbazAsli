@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import boxStyles from '../../styles/DataBox.module.css'
 
 // assets
-import UserIcon from '../../components/icons/UserIcon'
-import UsersIcon from '../../components/icons/UsersIcon'
+import UserIcon from '../../elements/icons/UserIcon'
+import UsersIcon from '../../elements/icons/UsersIcon'
 
 
 // mui
@@ -13,7 +13,7 @@ import { Avatar } from '@mui/material';
 
 // components
 import ChangeClubPicPopUp from './components/ChangeClubPicPopUp';
-import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
+import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBorderIcon';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

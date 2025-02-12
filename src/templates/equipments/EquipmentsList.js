@@ -12,8 +12,8 @@ import AddIcon from '@mui/icons-material/Add';
 
 // api
 import { useReturnEquipment, useTriggerEquipmentStatus, useUserEquipments, useUserEquipmentsHistory } from '../../Utilities/Services/equipmentQueries';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

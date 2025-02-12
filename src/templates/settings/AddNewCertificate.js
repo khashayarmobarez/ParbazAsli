@@ -11,7 +11,7 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import { CircularProgress } from '@mui/material';
 
 // assets
-import CertificateIcon from '../../components/icons/CertificateIcon'
+import CertificateIcon from '../../elements/icons/CertificateIcon'
 
 // queries
 import { useAddCertificate, useLevelsByOrganizationId, useOrgansData } from '../../Utilities/Services/queries'
@@ -20,11 +20,11 @@ import { useAddCertificate, useLevelsByOrganizationId, useOrgansData } from '../
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // components
-import DropdownInput from '../../components/inputs/DropDownInput';
-import TextInput from '../../components/inputs/textInput';
-import DateInput from '../../components/inputs/DateInput';
-import PageTitle from '../../components/reuseable/PageTitle';
-import UploadPicture from '../../components/inputs/UploadPicture';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import TextInput from '../../elements/inputs/textInput';
+import DateInput from '../../elements/inputs/DateInput';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import UploadPicture from '../../elements/inputs/UploadPicture';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

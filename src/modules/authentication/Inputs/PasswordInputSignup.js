@@ -10,7 +10,7 @@
     import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
     // assets 
-    import KeyIcon from '../../../components/icons/KeyIcon';
+    import KeyIcon from '../../../elements/icons/KeyIcon';
     import inputStyles from '../../../styles/Inputs.module.css';
     import { useTranslation } from '../../../Utilities/context/TranslationContext';
 

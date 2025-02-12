@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 // assets
-import Attention from '../../components/icons/Attention';
+import Attention from '../../elements/icons/Attention';
 import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 import DoNotDisturbRoundedIcon from '@mui/icons-material/DoNotDisturbRounded';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';

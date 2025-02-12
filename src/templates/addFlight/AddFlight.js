@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import jalaali from 'jalaali-js';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 
 // style
 import boxStyles from '../../styles/DataBox.module.css'

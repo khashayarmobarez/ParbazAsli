@@ -17,7 +17,7 @@ import { useDeclineUserFlight } from '../../Utilities/Services/coursesQueries';
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import NotInterestedIcon from '@mui/icons-material/NotInterested';
-import GroundHandlingIcon from '../../components/icons/GroundHandlingIcon';
+import GroundHandlingIcon from '../../elements/icons/GroundHandlingIcon';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 

@@ -13,14 +13,14 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 import { useAddCertificate } from '../../Utilities/Services/queries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import { CircularProgress } from '@mui/material';
-import FixedInput from '../../components/inputs/FixedInput';
+import FixedInput from '../../elements/inputs/FixedInput';
 import { useACertificate } from '../../Utilities/Services/userQueries';
-import CertificateIcon from '../../components/icons/CertificateIcon';
-import TextInput from '../../components/inputs/textInput';
-import DateInput from '../../components/inputs/DateInput';
-import UploadPicture from '../../components/inputs/UploadPicture';
+import CertificateIcon from '../../elements/icons/CertificateIcon';
+import TextInput from '../../elements/inputs/textInput';
+import DateInput from '../../elements/inputs/DateInput';
+import UploadPicture from '../../elements/inputs/UploadPicture';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 

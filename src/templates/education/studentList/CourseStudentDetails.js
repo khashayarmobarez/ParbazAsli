@@ -11,12 +11,12 @@ import Box from '@mui/material/Box';
 import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // assets
-import ClockIcon from '../../../components/icons/ClockIcon';
-import FlightQuantity from '../../../components/icons/FlightQuantity';
-import UserIcon from '../../../components/icons/UserIcon';
+import ClockIcon from '../../../elements/icons/ClockIcon';
+import FlightQuantity from '../../../elements/icons/FlightQuantity';
+import UserIcon from '../../../elements/icons/UserIcon';
 import { useACourseStudent, useStudentPendingPracticalActivityCount } from '../../../Utilities/Services/coursesQueries';
-import PageTitle from '../../../components/reuseable/PageTitle';
-import LowOpacityBackForStickedButtons from '../../../components/reuseable/LowOpacityBackForStickedButtons';
+import PageTitle from '../../../elements/reuseable/PageTitle';
+import LowOpacityBackForStickedButtons from '../../../elements/reuseable/LowOpacityBackForStickedButtons';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';

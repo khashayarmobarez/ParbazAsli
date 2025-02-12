@@ -8,7 +8,7 @@ import boxStyles from '../../styles/DataBox.module.css'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 // assets
-import ClipboardIcon from '../../components/icons/ClipboardIcon'
+import ClipboardIcon from '../../elements/icons/ClipboardIcon'
 
 // redux
 import { useSelector } from 'react-redux';

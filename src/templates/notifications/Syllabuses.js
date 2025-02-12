@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 import ButtonStyles from '../../styles/ButtonsBox.module.css';
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import { useAcceptUserPracticalActivity, useACourseSyllabi } from '../../Utilities/Services/coursesQueries';
 import { toast } from 'react-toastify';
-import DescriptionInput from '../../components/inputs/DescriptionInput';
-import TextInput from '../../components/inputs/textInput';
+import DescriptionInput from '../../elements/inputs/DescriptionInput';
+import TextInput from '../../elements/inputs/textInput';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // assets
-import SearchIcon from '../../components/icons/SearchIcon';
+import SearchIcon from '../../elements/icons/SearchIcon';
 import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
 
 // context

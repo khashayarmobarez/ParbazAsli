@@ -7,9 +7,9 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../../styles/ButtonsBox.module.css'
 
 // assets
-import ADressTag from '../../../components/icons/ADressTag';
-import ListIcon from '../../../components/icons/ListIcon';
-import UsersIcon from '../../../components/icons/UsersIcon';
+import ADressTag from '../../../elements/icons/ADressTag';
+import ListIcon from '../../../elements/icons/ListIcon';
+import UsersIcon from '../../../elements/icons/UsersIcon';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // queries
@@ -18,12 +18,12 @@ import { useUserById } from '../../../Utilities/Services/queries';
 
 
 // components
-import PageTitle from '../../../components/reuseable/PageTitle';
-import TextInput from '../../../components/inputs/textInput';
-import SearchMultipleSelectStudent from '../../../components/inputs/SearchMultipleSelectStudent';
-import DescriptionInput from '../../../components/inputs/DescriptionInput';
-import SelectMultiplePopUp from '../../../components/reuseable/SelectMultiplePopUp';
-import { TimePicker } from '../../../components/inputs/TimePicker';
+import PageTitle from '../../../elements/reuseable/PageTitle';
+import TextInput from '../../../elements/inputs/textInput';
+import SearchMultipleSelectStudent from '../../../elements/inputs/SearchMultipleSelectStudent';
+import DescriptionInput from '../../../elements/inputs/DescriptionInput';
+import SelectMultiplePopUp from '../../../elements/reuseable/SelectMultiplePopUp';
+import { TimePicker } from '../../../elements/inputs/TimePicker';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';

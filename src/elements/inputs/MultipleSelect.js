@@ -1,7 +1,7 @@
 import React from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Cube from '../../components/icons/ThreeDCube';
+import Cube from '../../elements/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs.module.css';
 
 const MultipleSelect = ({ options, selectedOptions , handleSelectChange, name, handleRemove, IsEmptyAfterSubmit }) => {

@@ -8,7 +8,7 @@ import boxStyles from '../../styles/DataBox.module.css'
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assests 
-import ArrowButton from '../../components/icons/ArrowButton';
+import ArrowButton from '../../elements/icons/ArrowButton';
 
 // mui
 import AddIcon from '@mui/icons-material/Add';
@@ -20,10 +20,10 @@ import Box from '@mui/material/Box';
 import { useCourseCounts, useCourseDividers, useCourses, useTriggerCourseStatus } from '../../Utilities/Services/coursesQueries';
 
 // components 
-import PageTitle from '../../components/reuseable/PageTitle';
-import DropDownLine from '../../components/reuseable/DropDownLine';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import Attention from '../../components/icons/Attention';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
+import Attention from '../../elements/icons/Attention';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

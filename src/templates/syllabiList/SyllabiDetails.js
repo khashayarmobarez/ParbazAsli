@@ -9,8 +9,8 @@ import styles from '../../styles/others/SyllabiDetails.module.css';
 import { useSyllabiForLevels, useSyllabusLandingContent } from '../../Utilities/Services/coursesQueries';
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 import SyllabiItemsContainer from '../../modules/SyllabiList/SyllabiItemsContainer';
 
 

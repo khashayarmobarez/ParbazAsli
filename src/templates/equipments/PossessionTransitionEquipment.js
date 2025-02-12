@@ -8,7 +8,7 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import boxStyles from '../../styles/DataBox.module.css'
 
 // assets
-import UserIcon from '../../components/icons/UserIcon'
+import UserIcon from '../../elements/icons/UserIcon'
 
 // mui
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -19,10 +19,10 @@ import { useUserById } from '../../Utilities/Services/queries';
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
-import TextInput from '../../components/inputs/textInput';
-import DateInput from '../../components/inputs/DateInput';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import TextInput from '../../elements/inputs/textInput';
+import DateInput from '../../elements/inputs/DateInput';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 import { USER_ID_PATTERN } from '../../Utilities/Providers/regexProvider';
 
 // context

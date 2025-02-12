@@ -3,16 +3,16 @@ import React, { useState, useEffect } from 'react';
 
 // queries
 import { useOrganLevelsForCourse, useOrgansData } from '../../Utilities/Services/queries';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 
 // mui
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 // assets
-import ClipboardIcon from '../../components/icons/ClipboardIcon'
+import ClipboardIcon from '../../elements/icons/ClipboardIcon'
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import OrgansSlider from '../../modules/SyllabiList/OrgansSlider';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from '../../Utilities/context/TranslationContext';

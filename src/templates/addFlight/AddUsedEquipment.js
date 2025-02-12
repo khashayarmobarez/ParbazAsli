@@ -7,10 +7,10 @@ import Cookies from 'js-cookie';
 import { Box, CircularProgress } from '@mui/material';
 
 // assets
-import ArrowButton from '../../components/icons/ArrowButton'
-import WingIcon from '../../components/icons/WingIcon'
-import HarnessIcon from '../../components/icons/HarnessIcon'
-import ParachuteIcon from '../../components/icons/ParachuteIcon'
+import ArrowButton from '../../elements/icons/ArrowButton'
+import WingIcon from '../../elements/icons/WingIcon'
+import HarnessIcon from '../../elements/icons/HarnessIcon'
+import ParachuteIcon from '../../elements/icons/ParachuteIcon'
 
 // queries
 import { useUserEquipmentsForDropDown } from '../../Utilities/Services/equipmentQueries';
@@ -21,8 +21,8 @@ import { selectAddFlight, updatePassengerHarness } from '../../Utilities/ReduxTo
 import { updateWing, updateHarness, updateParachute } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // components
-import DropdownInput from '../../components/inputs/DropDownInput';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

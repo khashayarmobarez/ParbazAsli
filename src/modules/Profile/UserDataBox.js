@@ -17,15 +17,15 @@ import Box from '@mui/material/Box';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 // assets
-import ClockIcon from '../../components/icons/ClockIcon'
-import FlightQuantity from '../../components/icons/FlightQuantity'
+import ClockIcon from '../../elements/icons/ClockIcon'
+import FlightQuantity from '../../elements/icons/FlightQuantity'
 
 // queries 
 import { useUserData } from '../../Utilities/Services/userQueries';
 
 // components
 import ChangePicPopUp from './EditProfile/ChangePicPopUp'
-import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
+import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBorderIcon';
 
 
 

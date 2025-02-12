@@ -8,9 +8,9 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import ArrowButton from '../../components/icons/ArrowButton'
-import WindIcon from '../../components/icons/WindIcon'
-import WindDirectionCock from '../../components/icons/WindDirectionCock'
+import ArrowButton from '../../elements/icons/ArrowButton'
+import WindIcon from '../../elements/icons/WindIcon'
+import WindDirectionCock from '../../elements/icons/WindDirectionCock'
 
 // react-toastify
 import { toast } from 'react-toastify';
@@ -30,12 +30,12 @@ import { updateLandingTime, updateLandingWindSpeed, updateLandingWindDirection, 
 import { CircularProgress } from '@mui/material';
 
 // components
-import DropdownInput from '../../components/inputs/DropDownInput';
-import SubmitForm from '../../components/reuseable/SubmitForm';
-import NumberInput from '../../components/inputs/NumberInput';
-import DescriptionInput from '../../components/inputs/DescriptionInput';
-import { TimePicker } from '../../components/inputs/TimePicker';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import SubmitForm from '../../elements/reuseable/SubmitForm';
+import NumberInput from '../../elements/inputs/NumberInput';
+import DescriptionInput from '../../elements/inputs/DescriptionInput';
+import { TimePicker } from '../../elements/inputs/TimePicker';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 
 // context

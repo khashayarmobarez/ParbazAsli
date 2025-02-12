@@ -4,16 +4,16 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 
 // components
-import DropdownInput from '../../components/inputs/DropDownInput';
+import DropdownInput from '../../elements/inputs/DropDownInput';
 
 // provider
 import { useNavigate } from 'react-router-dom';
 
 // assets
-import ArrowButton from '../../components/icons/ArrowButton'
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
-import WindIcon from '../../components/icons/WindIcon'
-import WindDirectionCock from '../../components/icons/WindDirectionCock'
+import ArrowButton from '../../elements/icons/ArrowButton'
+import ColorTagsIcon from '../../elements/icons/ColorTagsIcon'
+import WindIcon from '../../elements/icons/WindIcon'
+import WindDirectionCock from '../../elements/icons/WindDirectionCock'
 
 // provider
 import { windDirectionOptions, windDirectionOptionsEnglish, windSpeedUnits } from '../../Utilities/Providers/dropdownInputOptions';
@@ -23,8 +23,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { updateTakeoffTime, updateTakeOfftype, updateTakeoffWindSpeed, updateTakeOffWindDirection, updateTakeOffWindUnit } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 import { useTakeoffTypes } from '../../Utilities/Services/addFlightQueries';
-import NumberInput from '../../components/inputs/NumberInput';
-import { TimePicker } from '../../components/inputs/TimePicker';
+import NumberInput from '../../elements/inputs/NumberInput';
+import { TimePicker } from '../../elements/inputs/TimePicker';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

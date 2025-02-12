@@ -8,15 +8,15 @@ import boxStyles from '../../styles/DataBox.module.css'
 import { usePracticalActivityTypes } from '../../Utilities/Services/addFlightQueries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAddFlight, updateCourseName, updateWingType, updateFlightType, updateCourseId,  updateFlightCount, updateCourseLevel, updateClubName, updateCoachName, resetFlightDataExceptType, updateActivityType, updateHasNecessaryFlightEquipment, updateHasNecessaryGroundHandlingEquipments, updateFlightEquipmentValidationError, updateGroundHandlingEquipmentValidationError, updateInvalidFlightEquipmentType, updateInvalidGroundHandlingEquipmentType, updateGroundHandlingCount } from '../../Utilities/ReduxToolKit/features/AddFlight/addFlightSlice';
 
 // comps
-import StandardPopup from '../../components/reuseable/StandardPopup';
-import Attention from '../../components/icons/Attention';
+import StandardPopup from '../../elements/reuseable/StandardPopup';
+import Attention from '../../elements/icons/Attention';
 import ActivityTypeLogPopUp from '../../modules/addFlight/ActivityTypeLogPopUp';
 
 // context

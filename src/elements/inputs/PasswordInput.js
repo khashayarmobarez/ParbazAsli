@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import inputStyles from '../../styles/Inputs.module.css'
 
 // assets
-import KeyIcon from '../../components/icons/KeyIcon'
+import KeyIcon from '../../elements/icons/KeyIcon'
 
 // mui
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';

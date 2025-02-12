@@ -5,7 +5,7 @@ import gradients from '../../styles/Gradient.module.css'
 
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-import ClipboardIcon from '../../components/icons/ClipboardIcon'
+import ClipboardIcon from '../../elements/icons/ClipboardIcon'
 
 const StudentBox = (props) => {
 

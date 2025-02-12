@@ -6,8 +6,8 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assets
-import PhoneIcon from '../../components/icons/PhoneIcon';
-import MailIcon from '../../components/icons/MailIcon';
+import PhoneIcon from '../../elements/icons/PhoneIcon';
+import MailIcon from '../../elements/icons/MailIcon';
 
 // redux
 import { useSelector } from 'react-redux';
@@ -17,8 +17,8 @@ import { selectAuthSettings } from '../../Utilities/ReduxToolKit/features/Authen
 import { useChangeEmail, useChangePhoneNumber, useSendVerificattionCodeToChange, useUserData } from '../../Utilities/Services/userQueries';
 
 // components
-import FixedInput from '../../components/inputs/FixedInput';
-import InputWithButton from '../../components/inputs/InputWithButton';
+import FixedInput from '../../elements/inputs/FixedInput';
+import InputWithButton from '../../elements/inputs/InputWithButton';
 import ChangePicPopUp from '../Profile/EditProfile/ChangePicPopUp';
 import PhoneVerificationCode from '../authentication/popUps/PhoneVerificationCode';
 import ChangePasswordPopUp from '../Profile/EditProfile/ChangePasswordPopUp';

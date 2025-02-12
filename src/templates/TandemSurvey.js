@@ -14,9 +14,9 @@ import checkIcon from '../assets/icons/bigCheckIcon.svg'
 
 // queries
 import { useIsSurveyAvailabe, useSubmitSurvey } from '../Utilities/Services/notificationAndSurveyQueries';
-import DescriptionInput from '../components/inputs/DescriptionInput';
+import DescriptionInput from '../elements/inputs/DescriptionInput';
 import { toast } from 'react-toastify';
-import StarRating from '../components/reuseable/StarRating';
+import StarRating from '../elements/reuseable/StarRating';
 import { useTranslation } from '../Utilities/context/TranslationContext';
 
 const TandemSurvey = () => {

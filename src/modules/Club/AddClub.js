@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assets
-import PlusWithCircularBorderIcon from '../../components/icons/PlusWithCircularBorderIcon';
+import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBorderIcon';
 
 // Utilities
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
@@ -19,9 +19,9 @@ import { CircularProgress } from '@mui/material';
 import { useAddClub } from '../../Utilities/Services/clubQueries'; 
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
-import TextInput from '../../components/inputs/textInput';
-import DateInput from '../../components/inputs/DateInput';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import TextInput from '../../elements/inputs/textInput';
+import DateInput from '../../elements/inputs/DateInput';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

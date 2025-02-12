@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import GradientStyles from '../../styles/Gradient.module.css'
 
 // assets
-import ParachuteIcon from '../../components/icons/ParachuteIcon'
+import ParachuteIcon from '../../elements/icons/ParachuteIcon'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
@@ -18,14 +18,14 @@ import { useUserEquipments } from '../../Utilities/Services/equipmentQueries';
 import ClubData from '../../modules/Club/ClubData';
 import AddClub from '../../modules/Club/AddClub';
 import PendingClubSubmission from '../../modules/Club/PendingClubSubmission';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 import ParachutesSwiperSlider from '../../modules/Profile/ParachutesSwiperSlider';
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
-// import ClubMemberCoach from '../components/modules/Club/ClubMemberCoach';
-// import StudentClubs from '../components/modules/Club/StudentClubs';
+// import ClubMemberCoach from '../elements/modules/Club/ClubMemberCoach';
+// import StudentClubs from '../elements/modules/Club/StudentClubs';
 
 const Club = () => {
 

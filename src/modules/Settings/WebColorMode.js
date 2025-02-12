@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTheme } from '../../Utilities/Hooks/useTheme';
-import DropdownInput from '../../components/inputs/DropDownInput';
+import DropdownInput from '../../elements/inputs/DropDownInput';
 
 // assets
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon';
+import ColorTagsIcon from '../../elements/icons/ColorTagsIcon';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import BedtimeOutlinedIcon from '@mui/icons-material/BedtimeOutlined';
 import PhonelinkSetupOutlinedIcon from '@mui/icons-material/PhonelinkSetupOutlined';

@@ -6,8 +6,8 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
-import LowOpacityBackForStickedButtons from '../../components/reuseable/LowOpacityBackForStickedButtons';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import LowOpacityBackForStickedButtons from '../../elements/reuseable/LowOpacityBackForStickedButtons';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

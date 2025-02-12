@@ -9,7 +9,7 @@ import gradientStyles from '../../styles/Gradient.module.css'
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import SearchInput from '../inputs/SearchInput';
 import StudentBox from '../../reuseable/StudentBox';
 

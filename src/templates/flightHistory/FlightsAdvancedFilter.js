@@ -10,13 +10,13 @@ import { resetAllFilters, selectFlightFilter, updateCoachNameFilter, updateCount
 import buttonStyles from '../../styles/ButtonsBox.module.css';
 
 // assets
-import WingIcon from '../../components/icons/WingIcon'
-import HarnessIcon from '../../components/icons/HarnessIcon'
-import LocationIcon from '../../components/icons/LocationIcon'
-import EarthIcon from '../../components/icons/EarthIcon'
-import ColorTagsIcon from '../../components/icons/ColorTagsIcon'
-import ADressTag from '../../components/icons/ADressTag'
-import UserIcon from '../../components/icons/UserIcon'
+import WingIcon from '../../elements/icons/WingIcon'
+import HarnessIcon from '../../elements/icons/HarnessIcon'
+import LocationIcon from '../../elements/icons/LocationIcon'
+import EarthIcon from '../../elements/icons/EarthIcon'
+import ColorTagsIcon from '../../elements/icons/ColorTagsIcon'
+import ADressTag from '../../elements/icons/ADressTag'
+import UserIcon from '../../elements/icons/UserIcon'
 
 
 // mui
@@ -33,12 +33,12 @@ import { useCountries, useProvincesByCountryId, useSitesByProvinceId } from '../
 import { flightTypeOptions, flightStatusOptions, flightTypeOptionsEnglish, flightStatusOptionsEnglish } from '../../Utilities/Providers/dropdownInputOptions';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
-import DropdownInput from '../../components/inputs/DropDownInput';
-import DateLastRepackInput from '../../components/inputs/DateInput';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import DateLastRepackInput from '../../elements/inputs/DateInput';
 import useDateFormat from '../../Utilities/Hooks/useDateFormat';
-import SearchInputWithDropdown from '../../components/inputs/SearchInputWithDropdown';
-import RadioButton from '../../components/inputs/RadioButton';
+import SearchInputWithDropdown from '../../elements/inputs/SearchInputWithDropdown';
+import RadioButton from '../../elements/inputs/RadioButton';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

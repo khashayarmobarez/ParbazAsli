@@ -14,10 +14,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
 // comps
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import { toast } from 'react-toastify';
 import { usePracticalActivity } from '../../Utilities/Services/flightHistoriesQueries';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
 import SelectLocationGoogle from '../../modules/addFlight/SelectLocationGoogle';
 
 // context

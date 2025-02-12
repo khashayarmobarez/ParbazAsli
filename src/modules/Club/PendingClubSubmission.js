@@ -1,10 +1,10 @@
 import React from 'react';
 
 // assets
-import Attention from '../../components/icons/Attention';
+import Attention from '../../elements/icons/Attention';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
+import PageTitle from '../../elements/reuseable/PageTitle';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

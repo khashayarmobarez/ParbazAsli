@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 // mui
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import SpeedoMeter from '../../components/reuseable/SpeedoMeter';
+import SpeedoMeter from '../../elements/reuseable/SpeedoMeter';
 
 import { register } from "swiper/element/bundle";
 register();

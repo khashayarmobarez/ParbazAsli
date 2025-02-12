@@ -8,8 +8,8 @@ import { useAGuestUserClass } from '../../Utilities/Services/StudentCoursesQueri
 import boxStyles from '../../styles/DataBox.module.css'
 
 // comps
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
-import PageTitle from '../../components/reuseable/PageTitle';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
+import PageTitle from '../../elements/reuseable/PageTitle';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 const MyGuestClassDetails = () => {

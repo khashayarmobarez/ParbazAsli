@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 //  assets
-import CertificateIcon from '../../components/icons/CertificateIcon'
+import CertificateIcon from '../../elements/icons/CertificateIcon'
 
 // 
 import { useTranslation } from '../../Utilities/context/TranslationContext';

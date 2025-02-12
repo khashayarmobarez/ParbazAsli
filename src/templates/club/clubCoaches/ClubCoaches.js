@@ -8,17 +8,17 @@ import gradients from '../../../styles/Gradient.module.css'
 
 // assets
 import AddIcon from '@mui/icons-material/Add';
-import ArrowButton from '../../../components/icons/ArrowButton';
+import ArrowButton from '../../../elements/icons/ArrowButton';
 
 // queries
 import { useUserById } from '../../../Utilities/Services/queries';
 import { useAddCoachToClub, useGetClubCoaches, useGetClubCoachesHistory } from '../../../Utilities/Services/clubQueries';
 
 // components
-import DropDownLine from '../../../components/reuseable/DropDownLine';
+import DropDownLine from '../../../elements/reuseable/DropDownLine';
 import ClubCoachBox from '../../../modules/Club/ClubCoachBox';
-import TextInput from '../../../components/inputs/textInput';
-import PageTitle from '../../../components/reuseable/PageTitle';
+import TextInput from '../../../elements/inputs/textInput';
+import PageTitle from '../../../elements/reuseable/PageTitle';
 import { USER_ID_PATTERN } from '../../../Utilities/Providers/regexProvider';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
 

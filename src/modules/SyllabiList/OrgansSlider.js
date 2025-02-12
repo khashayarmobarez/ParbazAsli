@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 
-import ArrowButton from '../../components/icons/ArrowButton';
+import ArrowButton from '../../elements/icons/ArrowButton';
 
 const OrgansSlider = ({organs, setOrgan, theOrgan}) => {
 

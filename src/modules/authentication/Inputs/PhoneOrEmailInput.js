@@ -14,7 +14,7 @@ import inputStyles from '../../../styles/Inputs.module.css';
 
 // regexes
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../Utilities/Providers/regexProvider';
-import UserIcon from '../../../components/icons/UserIcon';
+import UserIcon from '../../../elements/icons/UserIcon';
 
 
 const PhoneOrEmailInput = ({ onChange, value, focus, onFocus, onBlur, isSubmitted }) => {

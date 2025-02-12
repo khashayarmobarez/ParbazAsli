@@ -3,7 +3,7 @@ import { useTranslation } from '../../Utilities/context/TranslationContext';
 import Cookies from 'js-cookie';
 
 // icons
-import Cube from '../../components/icons/ThreeDCube';
+import Cube from '../../elements/icons/ThreeDCube';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 // css styles 

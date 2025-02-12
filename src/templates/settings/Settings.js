@@ -5,21 +5,21 @@ import Cookies from 'js-cookie';
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
 
 // assets
-import SettingIcon from '../../components/icons/SettingIcon'
-import CertificateIcon from '../../components/icons/CertificateIcon'
-import UserIcon from '../../components/icons/UserIcon'
+import SettingIcon from '../../elements/icons/SettingIcon'
+import CertificateIcon from '../../elements/icons/CertificateIcon'
+import UserIcon from '../../elements/icons/UserIcon'
 
 // queries
 // import { useClubStatus } from '../Utilities/Services/clubQueries';
 
 // components
-import PageTitle from '../../components/reuseable/PageTitle';
-import DropDownLine from '../../components/reuseable/DropDownLine';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
 import WebColorMode from '../../modules/Settings/WebColorMode';
 import EditUserSettings from '../../modules/Settings/EditUserSettings';
 import CertificateSettings from '../../modules/Settings/CertificateSettings';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
-// import AddClub from '../components/modules/Club/AddClub';
+// import AddClub from '../elements/modules/Club/AddClub';
 
 
 const Settings = () => {

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import {  useNavigate } from 'react-router-dom';
 
 // assets 
-import CertificateIcon from '../../components/icons/CertificateIcon'
+import CertificateIcon from '../../elements/icons/CertificateIcon'
 
 // styles
 import ButtonStyles from '../../styles/ButtonsBox.module.css'
@@ -19,12 +19,12 @@ import useDateFormat from '../../Utilities/Hooks/useDateFormat';
 
 // components
 import UserDataBox from '../../modules/Profile/UserDataBox';
-import DropdownInput from '../../components/inputs/DropDownInput';
-import TextInput from '../../components/inputs/textInput';
-import DateInput from '../../components/inputs/DateInput';
-import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
+import DropdownInput from '../../elements/inputs/DropDownInput';
+import TextInput from '../../elements/inputs/textInput';
+import DateInput from '../../elements/inputs/DateInput';
+import DigilogbookLoading from '../../elements/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
-import UploadPicture from '../../components/inputs/UploadPicture';
+import UploadPicture from '../../elements/inputs/UploadPicture';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 
 

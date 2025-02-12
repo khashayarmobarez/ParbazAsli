@@ -17,7 +17,7 @@ import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import EmailInputSignup from '../../modules/authentication/Inputs/EmailInputSignUp';
 import PhoneVerificationCode from '../../modules/authentication/popUps/PhoneVerificationCode';
 import UserDataBox from '../../modules/Profile/UserDataBox';
-import DigilogbookLoading from '../../components/Loader/DigilogbookLoading';
+import DigilogbookLoading from '../../elements/Loader/DigilogbookLoading';
 import { toast } from 'react-toastify';
 
 // regexes

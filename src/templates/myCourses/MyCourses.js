@@ -6,17 +6,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 // assets
-import Attention from '../../components/icons/Attention'
-import ArrowButton from '../../components/icons/ArrowButton';
+import Attention from '../../elements/icons/Attention'
+import ArrowButton from '../../elements/icons/ArrowButton';
 
 // queries
 import { useGuestUserClasses, useUserCourseDividers, useUserCourses } from '../../Utilities/Services/StudentCoursesQueries';
 import { useTriggerCourseStatus } from '../../Utilities/Services/coursesQueries';
 
 // components 
-import PageTitle from '../../components/reuseable/PageTitle';
-import DropDownLine from '../../components/reuseable/DropDownLine';
-import CircularProgressLoader from '../../components/Loader/CircularProgressLoader';
+import PageTitle from '../../elements/reuseable/PageTitle';
+import DropDownLine from '../../elements/reuseable/DropDownLine';
+import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';

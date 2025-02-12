@@ -1,12 +1,12 @@
 import React from 'react';
 
 // components
-import PageTitle from '../../../components/reuseable/PageTitle';
-import SearchInput from '../../../components/inputs/SearchInput';
+import PageTitle from '../../../elements/reuseable/PageTitle';
+import SearchInput from '../../../elements/inputs/SearchInput';
 
 // styles
 import ButtonStyles from '../../../styles/ButtonsBox.module.css'
-import FlightDetailsBox from '../../../components/reuseable/FlightDetailsBox';
+import FlightDetailsBox from '../../../elements/reuseable/FlightDetailsBox';
 
 
 
