@@ -120,7 +120,8 @@ const CourseClassesBoxMyCourses = (props) => {
                                 <>
                                     <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2 mt-6' >
                                         <p>{t("education.StudentCourseDetails.theoryPage.classDescription")}</p>
-                                        <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{classDetails.data.description}</p>
+                                        <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full 
+                                        ${dir === 'ltr' ? 'text-left' : 'text-right'}`}>{classDetails.data.description}</p>
                                     </div>
                     
                                     {classDetails.data.syllabi &&

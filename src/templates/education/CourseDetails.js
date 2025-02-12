@@ -25,6 +25,7 @@ const CourseDetails = () => {
 
     // language
     const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
     
     const navigate = useNavigate()
     const location = useLocation()
@@ -205,7 +206,7 @@ const CourseDetails = () => {
                             showExtra && 
                                 <div className=' w-[90%] flex flex-col items-start justify-between gap-y-2' >
                                     <p>{t("education.aCourseDetails.courseDescription")}</p>
-                                    <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full text-right`}>{aCourseData.data.description}</p>
+                                    <p className={`${boxStyles.classDetailsData} p-4 text-sm min-h-14 w-full ${dir === 'ltr' ? 'text-left' : 'text-right'}`}>{aCourseData.data.description}</p>
                                 </div>
                             }   
 

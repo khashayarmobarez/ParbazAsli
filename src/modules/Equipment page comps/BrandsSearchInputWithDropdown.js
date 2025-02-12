@@ -4,6 +4,7 @@ import Cube from '../../components/icons/ThreeDCube';
 import inputStyles from '../../styles/Inputs.module.css';
 
 const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectChange, name, icon, ClickedOthers, showCustomBrandInput, setShowCustomBrandInput, IsEmptyAfterSubmit }) => {
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options);
