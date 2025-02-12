@@ -167,6 +167,7 @@ const ClassesBoxCourses = (props) => {
 
                 
                                     {
+
                                     classDetails.data.guestUsers && classDetails.data.guestUsers.length > 0 &&
                                         <div className=' flex flex-col items-start gap-y-2 mx-4 w-full'>
                                                 <p className=' text-sm'>{t("education.aCourseDetails.classes.classDetails.guestStudents")}</p>
@@ -181,7 +182,8 @@ const ClassesBoxCourses = (props) => {
                                         </div>
                                     }
             
-                                </div>}
+                                </div>
+                            }
 
                             {
                                 userRole === 'coach' && extraData &&

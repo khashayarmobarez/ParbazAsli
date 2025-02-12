@@ -5,8 +5,6 @@ const RegularTextNotif = ({notif, handleActivatePopUp}) => {
 
     const {description ,title, isRead, createdDateTime} = notif;
 
-
-
     return (
         <div className=' w-full h-auto rounded-2xl flex flex-col items-center justify-between px-6 py-2 gap-y-2'
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}

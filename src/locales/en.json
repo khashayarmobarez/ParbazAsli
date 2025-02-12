@@ -1231,7 +1231,7 @@
         "feedbackMessage": "Please provide your valuable feedback on the flight you took to help us improve.",
         "rateReason": "Write the reason for your rating...",
         "uploadVideo": "Upload your flight video if you wish",
-        "uploadvideoSection": "آپلود ویدئو",
+        "uploadvideoSection": "upload your video",
         "allowedFormats": "Allowed formats: mp4, mov, webm, and mkv up to 150 MB",
         "submit": "Submit",
         "errorMessage": "An error occurred",

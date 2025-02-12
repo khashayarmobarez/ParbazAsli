@@ -56,7 +56,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
 
   const handleClickOthers = () => {
     setShowCustomBrandInput(true);
-    setSearchTerm('سایر ...');
+    setSearchTerm('rest ...');
     setIsOpen(false);
   }
 
@@ -110,7 +110,7 @@ const BrandsSearchInputWithDropdown = ({ options, selectedOption, handleSelectCh
               className="px-4 w-full py-2 hover:bg-[var(--corn-flower-blue)] cursor-pointer"
               onClick={handleClickOthers}
             >
-              سایر ...
+              rest ...
             </li> 
             <div className='w-full h-[1px] bg-textDisabled' />
           </div>

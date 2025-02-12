@@ -133,7 +133,7 @@ const TandemSurvey = () => {
 
     return (
         <div className='w-full flex flex-col items-center'>
-                    <div className='flex flex-col py-16 justify-center items-center w-[90%] md:w-[80%]'>
+                    <div className='flex flex-col py-16 justify-center items-center w-[90%] md:w-[40%]'>
 
                         {
                             availablityLoading &&

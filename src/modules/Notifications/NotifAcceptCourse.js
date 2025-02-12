@@ -1,5 +1,4 @@
 import React from 'react';
-import ButtonStyles from '../../styles/ButtonsBox.module.css'
 import Cookies from 'js-cookie';
 
 // queries
