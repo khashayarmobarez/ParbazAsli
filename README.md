@@ -14,8 +14,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Tech Stack
+ - **Frontend:** React.js, MUI, Redux
 
+## Available Scripts
 In the project directory, you can run:
 
 ### `npm install`
@@ -201,7 +203,9 @@ my-app/
 - **src/**: Contains all the source codes of the app.
 - **public/**: Contains static files such as `index.html` and images.
 - **src/**: Contains the source code for the React application.
-    - **components/**: Contains React components.
+    - **templates/**: includes the main pages of the app
+    - **modules/**: includes the containers and greater components used in the app
+    - **components/**: Contains React reusable components.
     - **assets/**: Contains images, styles, and other assets.
     - **services/**: Contains API service files.
     - **utils/**: Contains utility functions.

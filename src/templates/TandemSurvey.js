@@ -17,8 +17,12 @@ import { useIsSurveyAvailabe, useSubmitSurvey } from '../Utilities/Services/noti
 import DescriptionInput from '../components/inputs/DescriptionInput';
 import { toast } from 'react-toastify';
 import StarRating from '../components/reuseable/StarRating';
+import { useTranslation } from '../Utilities/context/TranslationContext';
 
 const TandemSurvey = () => {
+
+    // language
+    const { t } = useTranslation();
 
     const appTheme = Cookies.get('themeApplied') || 'dark';
 
@@ -49,7 +53,7 @@ const TandemSurvey = () => {
             setVideoFiles((prevFiles) => [...prevFiles, ...validFiles]);
         } else {
           setVideoFiles([]);
-          toast('نوع یا اندازه فایل‌ها نامعتبر است. لطفاً فایل‌های ویدیویی کمتر از 50 مگابایت آپلود کنید.', {
+          toast(t("tandemSurvey.invalidFileMessage"), {
             type: 'error',
             position: 'top-center',
             autoClose: 5000,
@@ -69,7 +73,7 @@ const TandemSurvey = () => {
         event.preventDefault();
 
         if (!rating) {
-            toast('لطفا امتیاز دهید', {
+            toast(t("tandemSurvey.ratingError"), {
                 type: 'error',
                 position: 'top-center',
                 autoClose: 5000,
@@ -93,7 +97,7 @@ const TandemSurvey = () => {
             submitSurvey(formData
                 , {
                     onSuccess: () => {
-                        toast('امتیاز شما با موفقیت ثبت شد', {
+                        toast(t("tandemSurvey.successMessage"), {
                             type: 'success',
                             position: 'top-center',
                             autoClose: 5000,
@@ -105,7 +109,7 @@ const TandemSurvey = () => {
                         }, 1000);
                     },
                     onError: (error) => {
-                        let errorMessage = 'خطایی رخ داده است';
+                        let errorMessage = t("tandemSurvey.errorMessage");
                         if (error.response && error.response.data && error.response.data.ErrorMessages) {
                             errorMessage = error.response.data.ErrorMessages[0].ErrorMessage;
                         }
@@ -142,8 +146,8 @@ const TandemSurvey = () => {
                             !availablityLoading && !IsSurveyAvailable &&
                             <div className='mt-40 flex flex-col items-center justify-center gap-y-6 w-full'>
                                 <img src={checkIcon} alt='check icon' className='w-16 h-w-16' />
-                                <p className=' text-textDefault text-xl' >با تشکر از همکاری شما...</p>
-                                <button onClick={() => navigate('/profile')} type="submit" className={`${ButtonStyles.addButton} w-32 h-12`}>صفحه اصلی</button>
+                                <p className=' text-textDefault text-xl' >{t("tandemSurvey.thankYouMessage")}</p>
+                                <button onClick={() => navigate('/profile')} type="submit" className={`${ButtonStyles.addButton} w-32 h-12`}>{t("tandemSurvey.thankYouMessage")}</button>
                             </div>
                         }
 
@@ -151,7 +155,7 @@ const TandemSurvey = () => {
                             IsSurveyAvailable &&
                             <form className='w-full flex flex-col gap-y-4 items-center pt-16' onSubmit={handleSubmit}>
 
-                                <p className='text-center px-4 text-sm'>با نظرات مفید خود از پروازی که انجام دادید ما را در راستای پیشرفت و هر چه بهتر شدن یاری فرمایید</p>
+                                <p className='text-center px-4 text-sm'>{t("tandemSurvey.feedbackMessage")}</p>
 
                                 {/* star rating */}
                                 <div className='w-[70%]'>
@@ -163,11 +167,11 @@ const TandemSurvey = () => {
                                     <DescriptionInput
                                         value={description}
                                         onChange={handleDescription}
-                                        placeholder='دلیل نمره خود را بنویسید...'
+                                        placeholder={t("tandemSurvey.rateReason")}
                                     />
                                 </div>
 
-                                <p className='text-center px-4 text-base mt-6 mb-2 text-[var(--text-accent)]'>در صورت تمایل ویدیو پرواز خود را آپلود کنید</p>
+                                <p className='text-center px-4 text-base mt-6 mb-2 text-[var(--text-accent)]'>{t("tandemSurvey.uploadVideo")}</p>
 
                                 
                                 <div className="w-full">
@@ -187,10 +191,10 @@ const TandemSurvey = () => {
                                         htmlFor="fileInput"
                                         className={`${ButtonStyles.normalButton} w-full h-12 flex items-center justify-center cursor-pointer`} // Custom styles
                                     >
-                                        آپلود  ویدئو
+                                        {t("tandemSurvey.uploadvideoSection")}
                                     </label>
 
-                                    <p className=' text-xs mt-2 text-start'>فرمت مجاز: mp4, mov ,webm و mkv تا حجم 150 مگابایت</p>
+                                    <p className=' text-xs mt-2 text-start'>{t("tandemSurvey.allowedFormats")}</p>
 
                                 </div>
 
