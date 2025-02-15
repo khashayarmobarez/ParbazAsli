@@ -181,11 +181,12 @@ const CourseStudentDetails = () => {
 
                 <LowOpacityBackForStickedButtons />
 
-                <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-20`}>
+                <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-20`}>
                     
                     <Link 
                     to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/practical` : `/education/courseDetails/studentDetails/${studentId}/practical`} 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl 
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'} 
                     ${location.pathname.includes('/practical') ? ButtonStyles.activeYellow : ''}`} 
                     >
                         {t("education.StudentCourseDetails.practical")}
@@ -207,7 +208,8 @@ const CourseStudentDetails = () => {
 
                     <Link 
                     to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/syllabi` : `/education/courseDetails/studentDetails/${studentId}/syllabi`} 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}  
                     ${location.pathname.includes('/syllabi') ? ButtonStyles.activeYellow : ''}`} 
                     >
                         {t("education.StudentCourseDetails.studentStatus")}

@@ -301,7 +301,7 @@ const CourseStudents = () => {
                                 <span
                                     className={` w-[26%] h-12 flex justify-center items-center rounded-2xl bg-bgButtonMainDefault text-[#eee] hover:bg-bgButtonMainHover cursor-pointer`}
                                     onClick={handleAddStudnetToCourse}
-                                    disabled={addStudentToCourseLoading}
+                                    disabled={addStudentToCourseLoading}    
                                 >
                                     {t("education.aCourseDetails.studentsDetails.add")}
                                 </span>
