@@ -32,28 +32,28 @@ const Equipment = () => {
                 className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}
                 >
 
-                    <Link 
-                    to='/equipment/flightEquipment' 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    <Link
+                    to='/equipment/flightEquipment'
+                    className={`${ButtonStyles.ThreeStickedButtonButton}
                     ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
-                    ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`} 
+                    ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`}
                     style={{fontSize: dir === 'ltr' ? '12px' : '14px'}}
                     >
                         {t('equipment.flightEquipment')}
                     </Link> 
 
-                    <Link 
-                    to='/equipment/parachute' 
-                    className={`${ButtonStyles.ThreeStickedButtonButton}  
-                    ${location.pathname === '/equipment/parachute' ? ButtonStyles.activeYellow : ''}`}  
+                    <Link
+                    to='/equipment/parachute'
+                    className={`${ButtonStyles.ThreeStickedButtonButton}
+                    ${location.pathname === '/equipment/parachute' ? ButtonStyles.activeYellow : ''}`}
                     >
                         {t('equipment.parachute')}
                     </Link> 
 
-                    <Link 
+                    <Link
                     to='/equipment/harness' 
                     className={`${ButtonStyles.ThreeStickedButtonButton} 
-                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}  
+                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
                     ${location.pathname === '/equipment/harness' ? ButtonStyles.activeYellow : ''}`}  
                     >
                         {t('equipment.harness')}
