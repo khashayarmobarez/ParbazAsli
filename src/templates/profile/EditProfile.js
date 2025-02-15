@@ -17,7 +17,7 @@ const EditProfile = () => {
 
     // language
     const { t } = useTranslation();
-
+    const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation();
 
@@ -34,11 +34,28 @@ const EditProfile = () => {
 
                 <LowOpacityBackForStickedButtons />
 
-                <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9.2rem] z-50`}>
+                <div 
+                 className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9.2rem] z-50`}>
 
-                    <Link to='/editProfile/changeProfile' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === '/editProfile/changeProfile' ? ButtonStyles.activeYellow : ''}`} >{t('editUser.profile.profile')}</Link> 
+                    <Link 
+                    
+                    
+                    to='/editProfile/changeProfile' 
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
+                    ${location.pathname === '/editProfile/changeProfile' ? ButtonStyles.activeYellow : ''}`} >
+                        {t('editUser.profile.profile')}
+                    </Link> 
 
-                    <Link to='/editProfile/changeCertificate' className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl ${location.pathname === '/editProfile/changeCertificate' ? ButtonStyles.activeYellow : ''}`}  >{t('editUser.profile.certificate')}</Link> 
+                    <Link 
+                    
+                    
+                    to='/editProfile/changeCertificate' 
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
+                    ${location.pathname === '/editProfile/changeCertificate' ? ButtonStyles.activeYellow : ''}`}  >
+                        {t('editUser.profile.certificate')}
+                    </Link> 
                     
                 </div>
 
