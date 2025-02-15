@@ -78,8 +78,8 @@ const SignUpOrLogin = () => {
             </div>
             {
                 isDesktop &&
-                <div className='w-full h-[100dvh] relative col-span-8'>
-                    <img src={authenticationBackground} alt='Authentication' className='w-full h-full object-cover' />
+                <div className='w-full h-[97svh] relative col-span-8'>
+                    <img src={authenticationBackground} alt='Authentication' className='w-full h-[100svh] object-cover absolute' />
                     <img src={logo} alt='logo' className='w-80 absolute left-[34%] top-[42dvh] cursor-pointer' onClick={handleLogoClick} />
                 </div>
             }
