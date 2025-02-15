@@ -123,10 +123,11 @@ const MyCourses = () => {
                         </div>
                     }
 
-                    {courseDividerData && courseDividerData.data.length > 0 &&
+                    {
+                    courseDividerData && courseDividerData.data.length > 0 &&
                         courseDividerData.data.map((course, index) => (
                             <div key={index} className='w-full flex flex-col items-center gap-y-4'>
-                                <DropDownLine  
+                                <DropDownLine
                                     onClickActivation={() => handleDropDownClick(index, course)}
                                     title={course.name} 
                                     dropDown={DropDown} 

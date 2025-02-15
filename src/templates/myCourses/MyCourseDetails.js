@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // styles
 import boxStyles from '../../styles/DataBox.module.css'
@@ -21,6 +22,7 @@ import { useTranslation } from '../../Utilities/context/TranslationContext';
 const MyCourseDetails = () => {
 
     const { t } = useTranslation();
+    const dir = Cookies.get('dir') || 'ltr';
 
     const location = useLocation();
 
@@ -196,10 +198,26 @@ const MyCourseDetails = () => {
 
                         <LowOpacityBackForStickedButtons />
 
-                        <div dir='rtl' className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
-                            <Link to={`/MyCourses/courseDetails/${id}/practical`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl ${location.pathname === `/MyCourses/courseDetails/${id}/practical` ? ButtonStyles.activeYellow : ''}`} >{t("myCourses.aCourseDetails.practical")}</Link> 
-                            <Link to={`/MyCourses/courseDetails/${id}/theory`} className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/MyCourses/courseDetails/${id}/theory` ? ButtonStyles.activeYellow : ''}`} >{t("myCourses.aCourseDetails.theory")}</Link> 
-                            <Link to={`/MyCourses/courseDetails/${id}/mySyllabi`} className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  ${location.pathname === `/MyCourses/courseDetails/${id}/mySyllabi` ? ButtonStyles.activeYellow : ''}`} >{t("myCourses.aCourseDetails.myStatus")}</Link>
+                        <div className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}>
+                            <Link 
+                            to={`/MyCourses/courseDetails/${id}/practical`} 
+                            className={`${ButtonStyles.ThreeStickedButtonButton} 
+                            ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
+                            ${location.pathname === `/MyCourses/courseDetails/${id}/practical` ? ButtonStyles.activeYellow : ''}`} >
+                            {t("myCourses.aCourseDetails.practical")}
+                            </Link> 
+                            <Link 
+                            to={`/MyCourses/courseDetails/${id}/theory`} 
+                            className={`${ButtonStyles.ThreeStickedButtonButton}  ${location.pathname === `/MyCourses/courseDetails/${id}/theory` ? ButtonStyles.activeYellow : ''}`} >
+                            {t("myCourses.aCourseDetails.theory")}
+                            </Link> 
+                            <Link 
+                            to={`/MyCourses/courseDetails/${id}/mySyllabi`} 
+                            className={`${ButtonStyles.ThreeStickedButtonButton} 
+                            ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
+                            ${location.pathname === `/MyCourses/courseDetails/${id}/mySyllabi` ? ButtonStyles.activeYellow : ''}`} >
+                            {t("myCourses.aCourseDetails.myStatus")}
+                            </Link>
                         </div>
 
                         <div className='w-[90%]'>
