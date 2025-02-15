@@ -208,8 +208,8 @@ const CourseStudentDetails = () => {
 
                     <Link 
                     to={isForClub ? `/club/courseDetails/studentDetails/${studentId}/syllabi` : `/education/courseDetails/studentDetails/${studentId}/syllabi`} 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} 
-                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}  
+                    className={`${ButtonStyles.ThreeStickedButtonButton}
+                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
                     ${location.pathname.includes('/syllabi') ? ButtonStyles.activeYellow : ''}`} 
                     >
                         {t("education.StudentCourseDetails.studentStatus")}
