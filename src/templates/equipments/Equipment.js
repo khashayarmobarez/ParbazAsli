@@ -29,13 +29,13 @@ const Equipment = () => {
                 
                 {/* buttons */}
                 <div 
-                dir='rtl' 
                 className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9rem] z-50`}
                 >
 
                     <Link 
                     to='/equipment/flightEquipment' 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-r-xl 
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
                     ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`} 
                     style={{fontSize: dir === 'ltr' ? '12px' : '14px'}}
                     >
@@ -52,7 +52,8 @@ const Equipment = () => {
 
                     <Link 
                     to='/equipment/harness' 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} rounded-l-xl  
+                    className={`${ButtonStyles.ThreeStickedButtonButton} 
+                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}  
                     ${location.pathname === '/equipment/harness' ? ButtonStyles.activeYellow : ''}`}  
                     >
                         {t('equipment.harness')}
