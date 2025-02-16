@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pagination = () => {
+const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount}) => {
     return (
         <div>
             
