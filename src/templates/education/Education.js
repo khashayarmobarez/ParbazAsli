@@ -28,6 +28,7 @@ import Attention from '../../elements/icons/Attention';
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 import CourseBox from '../../modules/Education/CourseBox';
+import Pagination from '../../elements/reuseable/Pagination';
 
 
 
@@ -228,29 +229,13 @@ const Education = () => {
                                         }
                                     </div>
 
-                                    {courseData && courseData.totalPagesCount > 1 &&
-                                        <div className='w-full flex justify-between px-10 items-center'>
-                                            <button
-                                                className={`w-6 h-6 justify-self-start`}
-                                                disabled={pageNumber === 1}
-                                                onClick={handleLastPageNumber}
-                                            >
-                                                <ArrowButton isRight={true} isDisable={pageNumber === 1}/>
-                                            </button>
-
-                                            <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                {t("education.page")} {pageNumber}
-                                            </p>
-
-                                            <button
-                                                className={`transform w-6 h-6 justify-self-end`}
-                                                disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
-                                                onClick={handleNextPageNumber}
-                                            >
-                                                <ArrowButton isDisable={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}/>
-                                            </button>
-                                        </div>  
-                                    }
+                                    <Pagination
+                                        totalPagesCount={courseData?.totalPagesCount} 
+                                        totalCount={courseData?.totalCount}
+                                        setPageNumber={setPageNumber}
+                                        PageNumber={pageNumber}
+                                        refetch={courseDataRefetch}
+                                    />
 
                                 </div>
                             }
@@ -268,7 +253,7 @@ const Education = () => {
                         className={`${ButtonStyles.addButton} w-full`} 
                         onClick={() => isForClub ? navigate('/club/addCourseToClub') : navigate('/education/addClass')}
                         >
-                            <AddIcon /> 
+                            <AddIcon />
                             <p>{t("education.addNewCourse")}</p>
                         </button>
                     </div>

@@ -36,7 +36,7 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
         }
     }
 
-    if(totalCount && totalCount > 7) return (
+    if(totalPagesCount && totalPagesCount > 1) return (
         <div className='w-full flex justify-center items-center'>
             <div className='bg-bgCard w-40 h-11 rounded-[34px] flex justify-between items-center px-4'>
 

@@ -22,6 +22,7 @@ import CircularProgressLoader from '../../elements/Loader/CircularProgressLoader
 import { useTranslation } from '../../Utilities/context/TranslationContext';
 import MyCourseBox from '../../modules/MyCourses/MyCourseBox';
 import MyCourseBoxGuest from '../../modules/MyCourses/MyCourseBoxGuest';
+import Pagination from '../../elements/reuseable/Pagination';
 
 
 
@@ -41,7 +42,7 @@ const MyCourses = () => {
 
     // queries
     const { data: courseDividerData, isLoading: courseDividerLoading, error: courseDividerError } = useUserCourseDividers();
-    const { data: courseData, isLoading: courseDataLoading, error: courseDataError } = useUserCourses(courseType, organizationId, pageNumber);
+    const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: refetchCourse} = useUserCourses(courseType, organizationId, pageNumber);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
     // guest classes
     const { data: guestClassesData, isLoading: guestClassesLoading, error: guestClassesError } = useGuestUserClasses();
@@ -163,29 +164,15 @@ const MyCourses = () => {
                                                 }
                                             </div>
 
-                                            { course.courseType !== 'Guest' && courseData && courseData.totalPagesCount > 1 && (
-                                                <div className='w-full flex justify-between px-10 items-center'>
-                                                    <button
-                                                        className={`w-6 h-6 justify-self-start `}
-                                                        disabled={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}
-                                                        onClick={handleNextPageNumber}
-                                                    >
-                                                        <ArrowButton isRight={true} isDisable={courseData.totalPagesCount === 1 || courseData.totalPagesCount === pageNumber}/>
-                                                    </button>
-
-                                                    <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                        {t('myCourses.page')} {pageNumber}
-                                                    </p>
-
-                                                    <button
-                                                        className={`transform w-6 h-6 justify-self-end`}
-                                                        disabled={pageNumber === 1}
-                                                        onClick={handleLastPageNumber}
-                                                    >
-                                                        <ArrowButton isDisable={pageNumber === 1}/>
-                                                    </button>
-                                                </div>
-                                            )}
+                                            { course.courseType !== 'Guest' && 
+                                                <Pagination
+                                                    totalPagesCount={course?.totalPagesCount} 
+                                                    totalCount={course?.totalCount}
+                                                    setPageNumber={setPageNumber}
+                                                    PageNumber={pageNumber}
+                                                    refetch={refetchCourse}
+                                                />
+                                            }
 
                                         <div className='w-full flex flex-col gap-4 md:grid md:grid-cols-2 '>
                                             {course.courseType === 'Guest' && guestClassesData && guestClassesData.data.map((guestClass, index) => (
