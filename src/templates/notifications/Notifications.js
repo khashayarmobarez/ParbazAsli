@@ -21,6 +21,7 @@ import Attention from '../../elements/icons/Attention';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
+import Pagination from '../../elements/reuseable/Pagination';
 
 
 const Notifications = () => {
@@ -98,7 +99,7 @@ const Notifications = () => {
                     ))}
                 </div>
 
-                {   notificationsData && notificationsData.totalCount > 7 &&
+                {/* {   notificationsData && notificationsData.totalCount > 7 &&
                     <div className='w-full flex justify-center gap-x-6 px-10 items-center'>
                         <button
                             className={`transform w-6 h-6 justify-self-end `}
@@ -122,7 +123,14 @@ const Notifications = () => {
                             isRight={dir === 'ltr' && true}/>
                         </button>
                     </div>
-                }
+                } */}
+                <Pagination
+                    totalPagesCount={notificationsData?.totalPagesCount} 
+                    totalCount={notificationsData?.totalCount}
+                    setPageNumber={setPageNumber}
+                    PageNumber={PageNumber}
+                    refetch={refetchNotifications}
+                />
                 
             </div>
 
