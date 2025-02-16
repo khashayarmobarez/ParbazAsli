@@ -52,7 +52,7 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
                     <p>{totalPagesCount} / </p>
                     <input type='number' 
                     value={temporaryPageNumber} 
-                    className='w-6 h-6 text-center bg-bgCard text-sm rounded-md border border-textDefault'
+                    className='w-6 h-6 text-center text-sm rounded-md border border-textDefault bg-bgButtonSecondaryDefault'
                     onChange={handlePageChange}
                     />
                 </div>
@@ -74,3 +74,13 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
 };
 
 export default Pagination;
+
+
+// example of usage
+// <Pagination 
+//     totalPagesCount={notificationsData?.totalPagesCount} 
+//     totalCount={notificationsData?.totalCount}
+//     setPageNumber={setPageNumber}
+//     PageNumber={PageNumber}
+//     refetch={refetchNotifications}
+// />
