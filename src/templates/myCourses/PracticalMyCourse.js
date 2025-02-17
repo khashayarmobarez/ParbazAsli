@@ -23,7 +23,7 @@ const PracticalMyCourse = () => {
 
     const [ pageNumber, setPageNumber ] = useState(1)
 
-    const { data: userFlights, isLoading: userFlightsLoading, refetch: refetchFlights } = usePracticalActivities(pageNumber,2,id, '', '', '', '', '', '', '', '', '', '' , '','');
+    const { data: userFlights, isLoading: userFlightsLoading, refetch: refetchFlights } = usePracticalActivities(pageNumber,5,id, '', '', '', '', '', '', '', '', '', '' , '','');
 
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
@@ -56,7 +56,7 @@ const PracticalMyCourse = () => {
                 PageNumber={pageNumber}
                 refetch={refetchFlights}
             />
-            
+
         </div>
     );
 };

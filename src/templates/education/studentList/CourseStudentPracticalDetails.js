@@ -29,19 +29,6 @@ const CourseStudentPracticalDetails = () => {
 
     const { data: userFlights, isLoading: userFlightsLoading, refetch: refetchFlights } = useStudentPracticalActivities(studentId && studentId,pageNumber,pageSize);
 
-
-    const handleNextPage = () => {
-        if (pageNumber < userFlights?.totalPagesCount) {
-            setPageNumber(pageNumber + 1);
-        }
-    };
-
-    const handlePrevPage = () => {
-        if (pageNumber > 1) {
-            setPageNumber(pageNumber - 1);
-        }
-    };
-
     return (
         <div className=' w-full flex flex-col gap-y-7 pb-14'>
             {userFlightsLoading &&

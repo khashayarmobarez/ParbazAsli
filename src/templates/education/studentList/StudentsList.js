@@ -8,6 +8,7 @@ import ACourseStudentBox from '../../../elements/reuseable/ACourseStudentBox';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import Pagination from '../../../elements/reuseable/Pagination';
 
 const StudentsList = () => {
 
@@ -21,22 +22,15 @@ const StudentsList = () => {
     const isForClub = location.pathname.includes('/club')
 
     const [pageNumber, setPageNumber] = useState(1);
-    let pageSize = 10
+    let pageSize = 8
 
 
     // queries
     const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts(isForClub);
     // id 1 is for active students and id 2 is for history student
-    const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError } = useAllStudents(id && id, pageNumber, pageSize, isForClub);
+    const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError, refetch: refetchStudents } = useAllStudents(id && id, pageNumber, pageSize, isForClub);
 
 
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-    }
 
 
     return (
@@ -76,33 +70,13 @@ const StudentsList = () => {
                             }
                         </div>
 
-
-                        { 
-                        (AllStudents?.totalPagesCount && AllStudents.totalPagesCount > 1 && AllStudents.data.length > 0) ?
-                            <div className='w-full flex justify-between px-10 items-center'>
-                                <button
-                                    className={`w-6 h-6 justify-self-start`}
-                                    disabled={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}
-                                    onClick={handleNextPageNumber}
-                                >
-                                    <ArrowButton isRight={true} isDisable={AllStudents.totalPagesCount === 1 || AllStudents.totalPagesCount === pageNumber}/>
-                                </button>
-
-                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                    {t("education.studentList.page")} {pageNumber}
-                                </p>
-
-                                <button
-                                    className={`transform w-6 h-6 justify-self-end`}
-                                    disabled={pageNumber === 1}
-                                    onClick={handleLastPageNumber}
-                                >
-                                    <ArrowButton isDisable={pageNumber === 1}/>
-                                </button>
-                            </div>
-                            :
-                            ''
-                        }
+                        <Pagination
+                            totalPagesCount={AllStudents?.totalPagesCount} 
+                            totalCount={AllStudents?.totalCount}
+                            setPageNumber={setPageNumber}
+                            PageNumber={pageNumber}
+                            refetch={refetchStudents}
+                        />
                         
                     </div>
                 }

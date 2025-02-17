@@ -16,6 +16,7 @@ import Certificate from '../../modules/Settings/Certificate';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
+import Pagination from '../../elements/reuseable/Pagination';
 
 
 const ChangeCertificate = () => {
@@ -27,51 +28,25 @@ const ChangeCertificate = () => {
 
     const [pageNumber, setPageNumber] = useState(1)
 
-    const { data: userCertificates, isLoading, error } = useAllUserCertificates(pageNumber,5);
-
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-    }
+    const { data: userCertificates, isLoading, error, refetch: refetchCertificates } = useAllUserCertificates(pageNumber,5);
 
 
     return (
         <div className='w-[90%] flex flex-col items-center gap-y-6 mt-4'>
             {
-                    userCertificates && userCertificates.data.map((certificate, index) => (
-
-                        <Certificate key={index} certificateData={certificate} />
-
-                    ))
+                userCertificates && userCertificates.data.map((certificate, index) => (
+                    <Certificate key={index} certificateData={certificate} />
+                ))
             }
 
-            {userCertificates && userCertificates.totalPagesCount > 1 &&
-                <div className={`w-full flex justify-between px-14 items-center mt-2 `}>
-                    <button
-                        className='transform  w-6 h-6 justify-self-end'
-                        disabled={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}
-                        onClick={handleNextPageNumber}
-                    >
-                        <ArrowButton isRight={true} isDisable={userCertificates.totalPagesCount === 1 || userCertificates.totalPagesCount === pageNumber}/>
-                    </button>
 
-                    <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                        {t("flightHistory.pageText", { name: pageNumber })}
-                        صفحه ی {pageNumber}
-                    </p>
-
-                    <button
-                        className={`w-6 h-6 justify-self-start `}
-                        isDisable={pageNumber === 1}
-                        onClick={handleLastPageNumber}
-                    >
-                        <ArrowButton  isDisable={pageNumber === 1}/>
-                    </button>
-                </div>
-            }
+            <Pagination
+                totalPagesCount={userCertificates?.totalPagesCount} 
+                totalCount={userCertificates?.totalCount}
+                setPageNumber={setPageNumber}
+                PageNumber={pageNumber}
+                refetch={refetchCertificates}
+            />
 
             <div className='fixed bottom-[4rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 z-30'>
                 <div className="relative z-10">

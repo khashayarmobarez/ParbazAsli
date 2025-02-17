@@ -58,13 +58,6 @@ const AStudentCourses = () => {
             navigate(`/education/courseDetails/studentDetails/${id}/practical`);
     };
 
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1);
-    };
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1);
-    };
 
     return (
         <div className='flex flex-col mt-14 items-center pb-14 gap-y-6'>

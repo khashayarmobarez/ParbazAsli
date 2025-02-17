@@ -37,9 +37,7 @@ const EditProfile = () => {
                 <div 
                  className={`${ButtonStyles.ThreeStickedButtonCont} sticky top-[8.2rem] lg:top-[9.2rem] z-50`}>
 
-                    <Link 
-                    
-                    
+                    <Link
                     to='/editProfile/changeProfile' 
                     className={`${ButtonStyles.ThreeStickedButtonButton} 
                     ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}

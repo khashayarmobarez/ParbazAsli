@@ -21,6 +21,7 @@ import TextInput from '../../../elements/inputs/textInput';
 import PageTitle from '../../../elements/reuseable/PageTitle';
 import { USER_ID_PATTERN } from '../../../Utilities/Providers/regexProvider';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import Pagination from '../../../elements/reuseable/Pagination';
 
 const ClubCoaches = () => {
 
@@ -36,8 +37,8 @@ const ClubCoaches = () => {
     const [coachId, setCoachId] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false)
     
-    const {  data: clubCoachesData, isLoading: coachesDataLoading } = useGetClubCoaches(pageNumber,4);
-    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading } = useGetClubCoachesHistory(pageNumberPrevious,5);
+    const {  data: clubCoachesData, isLoading: coachesDataLoading, refetch: refetchCoaches } = useGetClubCoaches(pageNumber,5);
+    const {  data: clubCoachesPreviousData, isLoading: coachesPreviousDataLoading, refetch: refetchPreviousData } = useGetClubCoachesHistory(pageNumberPrevious,5);
     const {  data: coachData, isLoading: coachDataLoading, error: coachDataError } = useUserById(coachId && coachId);
     const { mutate: addCoachToClub, isLoading: addCoachToClubLoading } = useAddCoachToClub();
 
@@ -59,21 +60,6 @@ const ClubCoaches = () => {
         setCoachId(event.target.value);
     }
 
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-    }
-
-    const handleNextPageNumberPrevious = () => {
-        setPageNumberPrevious(prev => prev + 1)
-    }
-
-    const handleLastPageNumberPrevious = () => {
-        setPageNumberPrevious(prev => prev - 1)
-    }
 
 
     const handleAddCoachToClub = () => {
@@ -150,29 +136,13 @@ const ClubCoaches = () => {
                                             ))}
                                         </div>
 
-                                        {clubCoachesData && clubCoachesData.totalPagesCount > 1 &&
-                                            <div className='w-full flex justify-between px-10 items-center'>
-                                                <button
-                                                    className={`  w-6 h-6 justify-self-end `}
-                                                    disabled={pageNumber === 1}
-                                                    onClick={handleLastPageNumber}
-                                                >
-                                                    <ArrowButton isRight={true} isDisable={pageNumber === 1} />
-                                                </button>
-
-                                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                    {t("club.coach.page")} {pageNumber}
-                                                </p>
-
-                                                <button
-                                                    className={`w-6 h-6 justify-self-start`}
-                                                    disabled={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}
-                                                    onClick={handleNextPageNumber}
-                                                >
-                                                    <ArrowButton isDisable={clubCoachesData.totalPagesCount === 1 || clubCoachesData.totalPagesCount === pageNumber}/>
-                                                </button>
-                                            </div>
-                                        }
+                                        <Pagination
+                                            totalPagesCount={clubCoachesData?.totalPagesCount} 
+                                            totalCount={clubCoachesData?.totalCount}
+                                            setPageNumber={setPageNumber}
+                                            PageNumber={pageNumber}
+                                            refetch={refetchCoaches}
+                                        />
                                     </>
                                 : 
                                 <p className='text-textWarning'>{t("club.coach.noActiveCoaches")}</p>
@@ -200,29 +170,13 @@ const ClubCoaches = () => {
                                             ))}
                                         </div>
 
-                                        {clubCoachesPreviousData && clubCoachesPreviousData.totalPagesCount > 1 &&
-                                            <div className={`w-full flex justify-between px-10 items-center`}>
-                                                <button
-                                                    className={`' w-6 h-6 justify-self-end `}
-                                                    disabled={pageNumberPrevious === 1}
-                                                    onClick={handleLastPageNumberPrevious}
-                                                >
-                                                    <ArrowButton isRight={dir !== 'ltr' && true} isDisable={pageNumberPrevious === 1}/>
-                                                </button>
-
-                                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                                    {t("club.coach.page")} {pageNumberPrevious}
-                                                </p>
-
-                                                <button
-                                                    className={`w-6 h-6 justify-self-start`}
-                                                    disabled={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}
-                                                    onClick={handleNextPageNumberPrevious}
-                                                >
-                                                    <ArrowButton isRight={dir === 'ltr' && true} isDisable={clubCoachesPreviousData.totalPagesCount === 1 || clubCoachesPreviousData.totalPagesCount === pageNumberPrevious}/>
-                                                </button>
-                                            </div>
-                                        }
+                                        <Pagination
+                                            totalPagesCount={clubCoachesPreviousData?.totalPagesCount} 
+                                            totalCount={clubCoachesPreviousData?.totalCount}
+                                            setPageNumber={setPageNumberPrevious}
+                                            PageNumber={pageNumberPrevious}
+                                            refetch={refetchPreviousData}
+                                        />
                                     </>
                                     :
                                     <p className='text-textWarning'>{t("club.coach.noPreviousCoaches")}</p>
@@ -245,7 +199,7 @@ const ClubCoaches = () => {
                                     ErrorText={t("club.coach.invalidUserIdFormat")}
                                     ErrorCondition2={!coachId}
                                     ErrorText2={t("club.coach.userIdRequired")}
-                                    />
+                                />
                             </div>
                             <span
                             className={` w-[26%] h-12 flex justify-center text-[#eee] items-center rounded-2xl cursor-pointer bg-bgButtonMainDefault hover:bg-bgButtonMainHover`}

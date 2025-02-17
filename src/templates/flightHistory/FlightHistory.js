@@ -28,6 +28,7 @@ import FilterVariables from '../../modules/FlightHistory/FilterVariables';
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
+import Pagination from '../../elements/reuseable/Pagination';
 
 
 const FlightHistory = () => {
@@ -58,9 +59,9 @@ const FlightHistory = () => {
 
     const [pageNumber, setPageNumber] = useState(1);
 
-    const { data: userFlights, isLoading: userFlightsLoading } = usePracticalActivities(
+    const { data: userFlights, isLoading: userFlightsLoading, refetch: refetchFlights } = usePracticalActivities(
         pageNumber,
-        10,
+        8,
         courseFilter?.id || '',
         wingFilter?.id || '',
         harnessFilter?.id || '',
@@ -76,17 +77,6 @@ const FlightHistory = () => {
         activityType?.id || '',
     );
 
-    const handleNextPage = () => {
-        if (pageNumber < userFlights?.totalPagesCount) {
-            setPageNumber(pageNumber + 1);
-        }
-    };
-
-    const handlePrevPage = () => {
-        if (pageNumber > 1) {
-            setPageNumber(pageNumber - 1);
-        }
-    };
 
     const handleResetData = () => {
         dispatch(resetAllFilters());
@@ -141,32 +131,13 @@ const FlightHistory = () => {
                             </div>
                         )}
 
-                        {userFlights && userFlights.data.length > 0 && (
-                            <div className='w-full flex justify-between px-10 items-center'>
-                                <button
-                                    className={`w-6 h-6 justify-self-start `}
-                                    disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
-                                    onClick={handleNextPage}
-                                >
-                                    <ArrowButton isRight={dir === 'ltr' ? false : true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
-                                </button>
-
-                                <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                    {t("flightHistory.pageText", { pageNumber })}
-                                </p>
-
-                                <button
-                                className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
-                                disabled={pageNumber === 1}
-                                onClick={handlePrevPage}
-                                >
-
-                                    <ArrowButton isRight={dir === 'ltr' ? true : false} isDisable={pageNumber === 1}/>
-
-                                </button>
-                                
-                            </div>
-                        )}
+                        <Pagination
+                            totalPagesCount={userFlights?.totalPagesCount} 
+                            totalCount={userFlights?.totalCount}
+                            setPageNumber={setPageNumber}
+                            PageNumber={pageNumber}
+                            refetch={refetchFlights}
+                        />
                     </div>
                 </div>
             </div>

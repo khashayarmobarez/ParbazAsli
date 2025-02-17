@@ -28,6 +28,7 @@ import DropDownLine from '../../../elements/reuseable/DropDownLine';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
 import StudentBox from '../../../modules/Education/StudentBox';
 import StudentBoxHistory from '../../../modules/Education/StudentBoxHistory';
+import Pagination from '../../../elements/reuseable/Pagination';
 
 
 
@@ -69,19 +70,6 @@ const CourseStudents = () => {
     const {  mutate: addStudentToCourse, isLoading: addStudentToCourseLoading, error: addStudentToCourseError } = useAddStudentToCourse();
     
 
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-        setTimeout(() => {
-            refetchStudentdata();
-        }, 100);
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-        setTimeout(() => {
-            refetchStudentdata();
-        }, 100);
-    }
 
     const handleNextPageHistory = () => {
         if(studentsHistoryData.totalPagesCount === historyPageNumber) return;
@@ -249,29 +237,14 @@ const CourseStudents = () => {
                         handleTriggerStudentStatus={handleTriggerStudentStatus}
                         />
                     ))}
-                    {studentsData && studentsData.totalPagesCount > 1 && (
-                        <div className={`w-full flex justify-between px-10 items-center `}>
-                            <button
-                                className='w-6 h-6 justify-self-start'
-                                disabled={studentsData.totalPagesCount === 1 || studentsData.totalPagesCount === pageNumber}
-                                onClick={handleNextPageNumber}
-                            >
-                                <ArrowButton isRight={true} isDisable={studentsData.totalPagesCount === 1 || studentsData.totalPagesCount === pageNumber}/>
-                            </button>
 
-                            <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                                {t("education.aCourseDetails.studentsDetails.page")} {pageNumber}
-                            </p>
-
-                            <button
-                                className={`transform w-6 h-6 justify-self-end `}
-                                disabled={pageNumber === 1}
-                                onClick={handleLastPageNumber}
-                            >
-                                <ArrowButton isDisable={pageNumber === 1}/>
-                            </button>
-                        </div>
-                    )}
+                    <Pagination
+                        totalPagesCount={studentsData?.totalPagesCount} 
+                        totalCount={studentsData?.totalCount}
+                        setPageNumber={setPageNumber}
+                        PageNumber={pageNumber}
+                        refetch={refetchStudentdata}
+                    />
 
                     <div className='flex flex-col w-full gap-y-2'>
                         { studentNameLoading && studentId.length > 5 &&
