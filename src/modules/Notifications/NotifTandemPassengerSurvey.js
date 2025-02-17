@@ -19,17 +19,10 @@ const NotifTandemPassengerSurvey = ({notif, handleActivatePopUp}) => {
 
     const {  data: isSurveyAvailable, isLoading: availablityLoading, error: availablityError } = useIsSurveyAvailabe(externalId);
 
-    const [ shortDescription, setShortDescription ] = useState()
 
-    useEffect(() => {
-        if(description) {
-            const shortingDescription = description.substring(0,60)
-            setShortDescription(shortingDescription)
-        }
-    }, [description])
 
     return (
-        <div className=' w-full h-auto rounded-2xl flex items-center justify-between px-4 py-4' 
+        <div className=' w-full h-auto rounded-2xl flex flex-col items-start justify-between px-4 py-4 gap-y-2' 
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'
@@ -40,40 +33,31 @@ const NotifTandemPassengerSurvey = ({notif, handleActivatePopUp}) => {
                         !isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className='text-base'>{title}</p>
+                    <p className='text-base text-start'>{title}</p>
                 </div>
-
-                {
-                    shortDescription &&
-                        <div className=' pl-2'>
-                            <p className='text-start text-xs'>{shortDescription}</p>
-                        </div>
-                }
 
 
             </div>
             
-            <div>
-                {
-                    status === 'Expired' ?
-                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
-                        <button
-                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >
-                            {t('notifications.tandemPassengerSurvey.setStatus')}
-                        </button>
-                        <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
-                    </div>
-                    :
-                    <div className='flex flex-col w-45% h-full justify-between items-end gap-y-2'>
-                        <button
-                        onClick={() => navigate(`/survey/${externalId}`)}
-                        className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >
-                            {t('notifications.tandemPassengerSurvey.setStatus')}
-                        </button>
-                        <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
-                    </div>
-                }
-            </div>
+            {
+                status === 'Expired' ?
+                <div className='flex w-full h-full justify-between items-center gap-y-2'>
+                    <p className='text-end  text-xs'>{createdDateTime}</p>
+                    <button
+                    className={`w-auto text-textDisabled text-xs`} >
+                        {t('notifications.tandemPassengerSurvey.setStatus')}
+                    </button>
+                </div>
+                :
+                <div className='flex w-full h-full justify-between items-center gap-y-2'>
+                    <p className='text-end  text-xs'>{createdDateTime}</p>
+                    <button
+                    onClick={() => navigate(`/survey/${externalId}`)}
+                    className={` w-auto text-textAccent text-xs`} >
+                        {t('notifications.tandemPassengerSurvey.setStatus')}
+                    </button>
+                </div>
+            }
 
         </div>
     );

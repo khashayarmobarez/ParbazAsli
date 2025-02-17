@@ -53,7 +53,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
     }
 
     return (
-        <div className=' w-full h-auto rounded-2xl flex items-center justify-between px-6 py-4' 
+        <div className=' w-full h-auto rounded-2xl flex flex-col items-start justify-between px-4 py-4 gap-y-2' 
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
             <div className='text-xs flex flex-col justify-center items-start space-y-2'
@@ -64,11 +64,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         !isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className='text-base'> {title}</p>
-                </div>
-
-                <div className=' '>
-                    <p className='text-start'>{description.slice(0, 32)}{description.length > 0 ? ' ...' : ''}</p>
+                    <p className='text-base text-start'> {title}</p>
                 </div>
 
 
@@ -76,7 +72,10 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
             
             {
                 status === 'Expired' ?
-                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                <div className='flex  w-full h-full justify-between items-end'>
+                    
+                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
+
                     <div className='flex w-20 justify-between'>
 
                         <button 
@@ -93,13 +92,13 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         </button>
 
                     </div>
-
-                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                 
                 </div>
                 :
-                <div className='flex flex-col w-45% h-full justify-around items-end'>
+                <div className='flex  w-full h-full justify-between items-end'>
                     
+                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
+
                     <div className='flex w-20 justify-between'>
 
                         <button 
@@ -118,8 +117,6 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                         </button>
 
                     </div>
-
-                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                 
                 </div>
             }

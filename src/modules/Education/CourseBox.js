@@ -36,7 +36,7 @@ const CourseBox = ({
 
                     <div className='flex gap-x-1'>
 
-                        <p className='text-textButtonProfileDisable '>{t("education.courseStatus")}
+                        <p className='text-textButtonProfileDisable '>{t("education.courseStatus")}&nbsp;
                             {course.status === 'Active' && 
                                 <span className='text-textAccent'>{t("education.active")}</span>
                             }

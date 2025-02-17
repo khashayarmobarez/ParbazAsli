@@ -257,7 +257,7 @@ const CourseDetails = () => {
                         </div>
                         
                         {
-                            aCourseData.data.accesses.buttonStatus === 'Disable' && !aCourseData.data.clubName &&
+                            aCourseData.data.accesses.buttonStatus === 'Disable' &&
                             <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
                                 <div className="relative z-10">
                                     <button 
@@ -272,7 +272,7 @@ const CourseDetails = () => {
                         }
                         
                         {
-                            aCourseData.data.accesses.buttonStatus === 'Enable' && !aCourseData.data.clubName &&
+                            aCourseData.data.accesses.buttonStatus === 'Enable' &&
                             <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
                                 <div className="relative z-10">
                                     <button 

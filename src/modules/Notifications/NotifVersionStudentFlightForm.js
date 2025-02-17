@@ -14,17 +14,9 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
 
     const navigate = useNavigate()
 
-    const [ shortDescription, setShortDescription ] = useState()
-
-    useEffect(() => {
-        if(notif.description) {
-            const shortingDescription = notif.description.substring(0,30)
-            setShortDescription(shortingDescription)
-        }
-    }, [notif])
 
     return (
-        <div className=' w-full h-auto rounded-2xl flex items-center justify-between px-4 py-4'
+        <div className=' w-full h-auto rounded-2xl flex flex-col items-start justify-between px-4 py-4 gap-y-2'
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
             <div className='text-xs h-full flex flex-col justify-between items-start gap-y-2'
@@ -35,45 +27,36 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
                         !notif.isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className='text-sm text-start'>{notif.title}</p>
+                    <p className=' text-start text-base'>{notif.title}</p>
                 </div>
-
-                {
-                    shortDescription &&
-                        <div className=' '>
-                            <p className='text-start text-xs'>{shortDescription} ...</p>
-                        </div>
-                }
-
 
             </div>
             
-            <div>
-                {
-                    notif.status === 'Expired' ?
-                    <div className='flex flex-col w-45% h-full justify-center items-end gap-y-2'>
+            {
+                notif.status === 'Expired' ?
+                <div className='flex w-full h-full justify-between items-center gap-y-2'>
 
-                        <button 
-                        className={`${ButtonStyles.normalButtonDisable} w-7 h-10`} >
-                            {t('notifications.tandemPassengerSurvey.setStatus')}
-                        </button>
+                    <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
 
-                        <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
+                    <button 
+                    className={` w-auto text-textDisabled text-xs`} >
+                        {t('notifications.tandemPassengerSurvey.setStatus')}
+                    </button>
 
-                    </div>
-                    :
-                    <div className='flex flex-col w-45% h-full justify-center items-end gap-y-2'>
+                </div>
+                :
+                <div className='flex w-full h-full justify-between items-center gap-y-2'>
 
-                        <button 
-                        onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
-                        className={`${ButtonStyles.normalButton} w-7 h-10 text-sm`} >{t('notifications.tandemPassengerSurvey.setStatus')}
-                        </button>
+                    <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
 
-                        <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
-                                            
-                    </div>
-                }
-            </div>
+                    <button 
+                    onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
+                    className={` w-auto text-textAccent text-xs`} >
+                        {t('notifications.tandemPassengerSurvey.setStatus')}
+                    </button>
+                                        
+                </div>
+            }
 
         </div>
     );
