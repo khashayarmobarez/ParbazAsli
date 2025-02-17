@@ -5,6 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import ArrowButton from '../../../elements/icons/ArrowButton';
 import CircularProgressLoader from '../../../elements/Loader/CircularProgressLoader';
 import ACourseStudentBox from '../../../elements/reuseable/ACourseStudentBox';
+import Cookies from 'js-cookie';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
@@ -24,13 +25,12 @@ const StudentsList = () => {
     const [pageNumber, setPageNumber] = useState(1);
     let pageSize = 8
 
+    Cookies.set('lastStudentListPath', location.pathname)
 
     // queries
     const { data: courseCountsData, isLoading: courseCountsLoading } = useCourseCounts(isForClub);
     // id 1 is for active students and id 2 is for history student
     const { data: AllStudents, isLoading: AllStudentLoading, error: AllStudentError, refetch: refetchStudents } = useAllStudents(id && id, pageNumber, pageSize, isForClub);
-
-
 
 
     return (

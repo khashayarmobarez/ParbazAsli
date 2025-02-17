@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Cookies from 'js-cookie';
+    import Cookies from 'js-cookie';
 
 // queries
 import { useAStudentCourses } from '../../../Utilities/Services/coursesQueries';
@@ -29,6 +29,8 @@ const AStudentCourses = () => {
     // language
     const { t } = useTranslation();
     const dir = Cookies.get('dir') || 'ltr';
+    
+    const backButtonRoute = Cookies.get('lastStudentListPath');
 
     const { studentId } = useParams();
     const navigate = useNavigate();
@@ -44,7 +46,7 @@ const AStudentCourses = () => {
     const [pageNumber, setPageNumber] = useState(1);
     let pageSize = 4;
 
-    const { data: StudentCourses, isLoading: StudentCoursesLoading, error: StudentCoursesError, refetch: reftchCourses } = useAStudentCourses(studentId && studentId, pageNumber, pageSize, isForClub);
+    const { data: StudentCourses, refetch: reftchCourses } = useAStudentCourses(studentId && studentId, pageNumber, pageSize, isForClub);
 
     // refetch courses when pageNumber changed
     useEffect(() => {
@@ -64,7 +66,7 @@ const AStudentCourses = () => {
             <div className='w-full flex flex-col items-center gap-y-4 md:w-[70%] '>
                 <PageTitle 
                     title={StudentCourses ? `${StudentCourses.data[0].studentName}` : t("education.aStudentCourses.studentName") }
-                    navigateTo={isForClub ? '/club/clubCourses/studentsListClub/1' : '/education/studentsList/1'}
+                    navigateTo={backButtonRoute}
                 />
 
                 <div className='w-[90%] flex flex-col gap-4 md:grid md:grid-cols-2 lg:mt-8'>
