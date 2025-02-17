@@ -25,27 +25,18 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
     }
 
     const handlePageChange = (e) => {
-        const value = e.target.value
-        setTemporaryPageNumber(value);
+        const value = e.target.value;
+        if (!isNaN(value)) {
+            setTemporaryPageNumber(value);
+        }
         
-        if (value > 0 && value <= totalPagesCount) {
+        if (value > 0 && value <= totalPagesCount && !isNaN(value)) {
             setTimeout(() => {
                 setPageNumber(value);
                 refetch();
             }, 1000);
         }
     }
-
-    // const handleBlurOrSubmit = (e) => {
-    //     if (e.type === 'blur' || (e.type === 'keydown' && e.key === 'Enter')) {
-    //         if (temporaryPageNumber > 0 && temporaryPageNumber <= totalPagesCount) {
-    //             setPageNumber(temporaryPageNumber);
-    //             refetch();
-    //         } else {
-    //             setTemporaryPageNumber(PageNumber);
-    //         }
-    //     }
-    // }
 
     if(totalPagesCount && totalPagesCount > 1) return (
         <div className='w-full flex justify-center items-center'>
@@ -60,14 +51,16 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
                 </button>
 
                 <div className='w-16 flex gap-x-1 justify-center items-center text-xs'>
+
                     <p>{totalPagesCount} / </p>
-                    <input type='number' 
-                    value={temporaryPageNumber} 
-                    className='w-6 h-6 text-center text-sm rounded-md border border-textDefault bg-bgButtonSecondaryDefault'
-                    onChange={handlePageChange}
-                    // onBlur={handleBlurOrSubmit}
-                    // onKeyDown={handleBlurOrSubmit}
+
+                    <input 
+                        type='text' 
+                        value={temporaryPageNumber} 
+                        className='w-6 h-6 text-center text-sm rounded-md border border-textDefault bg-bgButtonSecondaryDefault'
+                        onChange={handlePageChange}
                     />
+
                 </div>
 
                 <button
