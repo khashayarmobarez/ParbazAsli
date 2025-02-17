@@ -22,6 +22,7 @@ import Attention from '../../../elements/icons/Attention';
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import Pagination from '../../../elements/reuseable/Pagination';
 
 const AStudentCourses = () => {
 
@@ -167,29 +168,14 @@ const AStudentCourses = () => {
                     ))}
                 </div>
 
-                { StudentCourses && StudentCourses.totalPagesCount && StudentCourses.totalPagesCount > 1 && (
-                    <div className='w-full flex justify-between px-10 items-center'>
-                        <button
-                            className={`w-6 h-6 justify-self-start`}
-                            disabled={StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber}
-                            onClick={handleNextPageNumber}
-                        >
-                            <ArrowButton isRight={true} isDisable={StudentCourses.totalPagesCount === 1 || StudentCourses.totalPagesCount === pageNumber}/>
-                        </button>
+                <Pagination
+                    totalPagesCount={StudentCourses?.totalPagesCount} 
+                    totalCount={StudentCourses?.totalCount}
+                    setPageNumber={setPageNumber}
+                    PageNumber={pageNumber}
+                    refetch={reftchCourses}
+                />
 
-                        <p className='text-sm justify-self-center' style={{color: 'var(--text-accent)'}}>
-                            {t("education.aStudentCourses.page")} {pageNumber}
-                        </p>
-
-                        <button
-                            className={`transform w-6 h-6 justify-self-end`}
-                            disabled={pageNumber === 1}
-                            onClick={handleLastPageNumber}
-                        >
-                            <ArrowButton isDisable={pageNumber === 1}/>
-                        </button>
-                    </div>
-                )}
             </div>
         </div>
     );

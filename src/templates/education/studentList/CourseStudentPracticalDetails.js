@@ -12,6 +12,7 @@ import { useStudentPracticalActivities } from '../../../Utilities/Services/cours
 import PracticalFlightHistoryBox from '../../../modules/FlightHistory/PracticalFlightHistoryBox';
 import ArrowButton from '../../../elements/icons/ArrowButton';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import Pagination from '../../../elements/reuseable/Pagination';
 
 const CourseStudentPracticalDetails = () => {
 
@@ -26,7 +27,7 @@ const CourseStudentPracticalDetails = () => {
     const [pageNumber, setPageNumber] = useState(1)
     const pageSize = 10
 
-    const { data: userFlights, isLoading: userFlightsLoading } = useStudentPracticalActivities(studentId && studentId,pageNumber,pageSize);
+    const { data: userFlights, isLoading: userFlightsLoading, refetch: refetchFlights } = useStudentPracticalActivities(studentId && studentId,pageNumber,pageSize);
 
 
     const handleNextPage = () => {
@@ -65,32 +66,13 @@ const CourseStudentPracticalDetails = () => {
                 </div>
             }
 
-            {userFlights && userFlights.totalPagesCount > 1 && (
-                <div className='w-full flex justify-between px-10 items-center'>
-                    <button
-                    className={`w-6 h-6 justify-self-start `}
-                    disabled={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}
-                    onClick={handleNextPage}
-                    >
-                        <ArrowButton isRight={dir !== 'ltr' && true} isDisable={userFlights.totalPagesCount === 1 || userFlights.totalPagesCount === pageNumber}/>
-                    </button>
-
-                    <p className='text-sm justify-self-center' style={{ color: 'var(--text-accent)' }}>
-                        {t("education.StudentCourseDetails.practicalPage.page")} {pageNumber}
-                    </p>
-
-                    <button
-                    className={`transform w-6 h-6 justify-self-end ${pageNumber === 1 && 'opacity-60'}`}
-                    disabled={pageNumber === 1}
-                    onClick={handlePrevPage}
-                    >
-
-                        <ArrowButton isRight={dir === 'ltr' && true} isDisable={pageNumber === 1}/>
-
-                    </button>
-                    
-                </div>
-            )}
+            <Pagination
+                totalPagesCount={userFlights?.totalPagesCount} 
+                totalCount={userFlights?.totalCount}
+                setPageNumber={setPageNumber}
+                PageNumber={pageNumber}
+                refetch={refetchFlights}
+            />
         </div>
     );
 };

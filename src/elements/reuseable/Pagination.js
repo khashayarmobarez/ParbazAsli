@@ -25,16 +25,27 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
     }
 
     const handlePageChange = (e) => {
-        const value = Number(e.target.value);
+        const value = e.target.value
         setTemporaryPageNumber(value);
-
+        
         if (value > 0 && value <= totalPagesCount) {
-            setPageNumber(value);
             setTimeout(() => {
+                setPageNumber(value);
                 refetch();
             }, 1000);
         }
     }
+
+    // const handleBlurOrSubmit = (e) => {
+    //     if (e.type === 'blur' || (e.type === 'keydown' && e.key === 'Enter')) {
+    //         if (temporaryPageNumber > 0 && temporaryPageNumber <= totalPagesCount) {
+    //             setPageNumber(temporaryPageNumber);
+    //             refetch();
+    //         } else {
+    //             setTemporaryPageNumber(PageNumber);
+    //         }
+    //     }
+    // }
 
     if(totalPagesCount && totalPagesCount > 1) return (
         <div className='w-full flex justify-center items-center'>
@@ -54,6 +65,8 @@ const Pagination = ({totalCount, PageNumber, setPageNumber, totalPagesCount, ref
                     value={temporaryPageNumber} 
                     className='w-6 h-6 text-center text-sm rounded-md border border-textDefault bg-bgButtonSecondaryDefault'
                     onChange={handlePageChange}
+                    // onBlur={handleBlurOrSubmit}
+                    // onKeyDown={handleBlurOrSubmit}
                     />
                 </div>
 
