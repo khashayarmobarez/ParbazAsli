@@ -110,7 +110,7 @@ const CourseDetails = () => {
 
                 {
                     courseDataError &&
-                    <p className='w-full text-center'>مشکلی پیش اماده, دوباره تلاش کنید</p>
+                    <p className='w-full text-center'>{t("myCourses.aCourseDetails.errorMessage")}</p>
                 }
 
                 {
