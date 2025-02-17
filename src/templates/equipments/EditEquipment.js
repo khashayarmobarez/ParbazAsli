@@ -235,7 +235,7 @@ const EditEquipment = () => {
                                     </div>
                                 }
                                 {
-                                    estimatedFlightDuration >= 0 &&
+                                    estimatedFlightDuration &&
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className='text-sm'>{t('equipment.editEquipment.flightDuration')}</p>
                                         <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
@@ -253,7 +253,7 @@ const EditEquipment = () => {
                                     </div>
                                 }
                                 {
-                                    minimumWeightCapacity >= 0 && maximumWeightCapacity >= 0 &&
+                                    minimumWeightCapacity && maximumWeightCapacity &&
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className='text-sm'>{t('equipment.editEquipment.weightCapacity')}</p>
                                         <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
@@ -280,7 +280,7 @@ const EditEquipment = () => {
                                     </div>
                                 }
                                 {
-                                    flightCount >= 0 && flightCount !== null &&
+                                    flightCount &&
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className='text-sm'>{t('equipment.editEquipment.flightCount')}</p>
                                         <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>
@@ -298,7 +298,7 @@ const EditEquipment = () => {
                                     </div>
                                 }
                                 {
-                                    flightHours >= 0 && flightHours !== null &&
+                                    flightHours && 
                                     <div className='flex flex-col items-start gap-y-2'>
                                         <p className='text-sm'>{t('equipment.editEquipment.flightHours')}</p>
                                         <div className={`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`} id='data'>

@@ -115,7 +115,7 @@ const MyCourseDetails = () => {
                                 <div className='flex flex-col items-start gap-y-1 col-span-4 md:col-span-1'>
                                     <p className=' text-xs pr-2'>{t("myCourses.aCourseDetails.flightsCount")}</p>
                                     <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl text-sm`}  id='data' >
-                                        <p>{aCourseData.data.flightsCount}</p>
+                                        <p>{aCourseData.data.flightCount}</p>
                                     </div>
                                 </div>
 

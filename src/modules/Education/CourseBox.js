@@ -80,7 +80,7 @@ const CourseBox = ({
                         } 
 
                         <p>
-                            <span className=''>{t("education.flightsCount")}: </span>{course.flightsCount}
+                            <span className=''>{t("education.flightsCount")}: </span>{course.flightCount}
                         </p>
 
                         {
@@ -94,13 +94,12 @@ const CourseBox = ({
 
                     <div className='flex flex-col text-start gap-y-2'>
                         <p>
-                            <span className=''>{t("education.activeStudentCount")}: </span>{course.activeStudentCounts}
+                            <span className=''>{t("education.activeStudentCount")}: </span>{course.activeStudentCount}
                         </p>
                         <p>
-                            <span className=''>{t("education.previousStudentCount")}: </span>{course.historyStudentCounts}
+                            <span className=''>{t("education.previousStudentCount")}: </span>{course.historyStudentCount}
                         </p>
                     </div>
-
 
                 </div>
 

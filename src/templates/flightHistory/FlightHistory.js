@@ -85,7 +85,7 @@ const FlightHistory = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center'>
             <div className='w-full md:w-[75%] py-14 flex flex-col justify-center items-center gap-y-0 lg:gap-y-12 lg:w-[55%]'>
-                <PageTitle title={t("flightHistory.logbook")} navigateTo={'/profile'} />
+                <PageTitle title={t("flightHistory.logbook")}  />
                 <div className='w-[90%] mt-6 flex flex-col'>
                     <div className='w-full flex flex-col justify-center items-center px-1 gap-y-8'>
 
