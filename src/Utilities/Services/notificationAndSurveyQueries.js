@@ -36,9 +36,6 @@ import { getCommonHeaders } from "../Providers/headers";
 
 
 
-
-
-
 // get notification counts
     const getUnreadNotificationCounts = async () => {
 
@@ -63,8 +60,6 @@ import { getCommonHeaders } from "../Providers/headers";
     const useUnreadNotificationCounts = () => {
         return useQuery(['userUnreadNotificationCounts'], () => getUnreadNotificationCounts());
     }
-
-
 
 
 

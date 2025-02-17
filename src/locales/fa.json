@@ -822,7 +822,7 @@
             "submit": "ثبت",
             "cancel": "لغو",
             "confirmation": "تاییدیه",
-            "confirmationMessage": "ایا از انتقال مالکیت {{activeLink === 'temporary' ? 'موقت' : 'دائمی'}} دستگاه خود به {{userByIdData && userByIdData.data.fullName}} اطمینان دارید؟",
+            "confirmationMessage": "ایا از انتقال مالکیت {{activeLink}} دستگاه خود به {{userByIdData}} اطمینان دارید؟",
             "loadingSubmit": "صبر کنید ...",
             "pendingSerial": "شماره سریال وسیله شما در حال حاضر در انتظار تایید است",
             "pendingSerialNote": "بعد از تایید شما می‌توانید مالکیت وسیله خود را انتقال دهید",

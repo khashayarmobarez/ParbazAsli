@@ -231,7 +231,7 @@ const ClubCoachDetails = () => {
                         </div>
                     }
                     {coachDetails && coachDetails.data.status === 'Active' && 
-                    // !coachDetails.data.isOwner &&
+                    !coachDetails.data.isOwner &&
                         <div className='fixed bottom-[4.5rem] w-[90%] rounded-xl md:w-96 md:relative md:bottom-0 md:top-4 h-12 z-30'>
                             <div className="relative z-10">
                                 <button className={`${ButtonStyles.normalButton} w-full`} onClick={() => handleTriggerCoachStatus(coachDetails.data.status)}>

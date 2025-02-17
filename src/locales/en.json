@@ -822,7 +822,7 @@
             "submit": "Submit",
             "cancel": "Cancel",
             "confirmation": "Confirmation",
-            "confirmationMessage": "Are you sure you want to transfer the ownership of your {{activeLink === 'temporary' ? 'temporary' : 'permanent'}} device to {{userByIdData && userByIdData.data.fullName}}?",
+            "confirmationMessage": "Are you sure you want to transfer the ownership of your {{activeLink}} device to {{userByIdData}}?",
             "loadingSubmit": "Loading ...",
             "pendingSerial": "The serial number of your equipment is currently pending approval",
             "pendingSerialNote": "After approval, you will be able to transfer the ownership of your equipment",

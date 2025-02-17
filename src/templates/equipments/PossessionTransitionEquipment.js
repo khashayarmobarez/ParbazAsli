@@ -277,7 +277,7 @@ const PossessionTransitionEquipment = () => {
                                 
                                 <h1 className='text-xl text-textWarning'>{t('equipment.transitionEquipment.confirmation')}</h1>
 
-                                <h3 className=' w-[90%] text-base font-normal'>{t('equipment.transitionEquipment.confirmationMessage', { activeLink: activeLink === 'temporary' ? 'temporary' : 'permanent', userByIdData: userByIdData && userByIdData.data.fullName })}</h3>
+                                <h3 className=' w-[90%] text-base font-normal'>{t('equipment.transitionEquipment.confirmationMessage', { activeLink: activeLink === 'temporary' ? t('equipment.transitionEquipment.temporary') : t('equipment.transitionEquipment.permanent'), userByIdData: userByIdData && userByIdData.data.fullName })}</h3>
                             
                                 <div className='w-[90%] flex justify-between'>
                                     <button className={`${ButtonStyles.normalButton} w-32`} onClick={() => setShowPopup(false)}>{t('equipment.transitionEquipment.cancel')}</button>
@@ -291,8 +291,7 @@ const PossessionTransitionEquipment = () => {
                     {
                     EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
-                            <h1 className=' text-xl text-textWarning'>{t('equipment.transitionEquipment.pendingSerial')}</h1>
-                            <h1 >{t('equipment.transitionEquipment.pendingSerialNote')}</h1>
+                           ClubCoachDetails
                         </div>
                     }
                     {

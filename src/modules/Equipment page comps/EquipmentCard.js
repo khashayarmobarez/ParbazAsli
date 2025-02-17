@@ -25,7 +25,7 @@ const EquipmentCard = ({
 
                     {
                         equipment.ownershipStatus === 'Pending' &&
-                        <p className='text-textWarning font-bold'>{t('equipment.pendingTransfer', { transferorFullName: equipment?.transferorFullName })}</p>
+                        <p className='text-textWarning font-bold'>{t('equipment.pendingTransfer', { transferorFullName: equipment?.transferorFullname })}</p>
                     }
 
                     <div className='w-full text-xs flex justify-between items-start gap-y-1'>
