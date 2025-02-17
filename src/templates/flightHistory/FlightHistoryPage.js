@@ -292,11 +292,11 @@ const FlightHistoryPage = () => {
                                                     </div>
                                             }
                                             {
-                                                flightData.data.finishTime && flightData.data.groundHandling &&
+                                                flightData.data.endTime && flightData.data.groundHandling &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-3'>
                                                         <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.finishTime")}</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                            <p>{flightData.data.finishTime}</p>
+                                                            <p>{flightData.data.endTime}</p>
                                                         </div>
                                                     </div>
                                             }
@@ -402,11 +402,11 @@ const FlightHistoryPage = () => {
                                             <>
                                             
                                                 {
-                                                    flightData.data.finishTime &&
+                                                    flightData.data.endTime &&
                                                     <div className='flex flex-col items-start gap-y-3 col-span-3'>
                                                         <p className=' text-xs pr-2'>{t("flightHistory.flightDetails.landing")}</p>
                                                         <div className= {`${boxStyles.classDetailsData} flex justify-start items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                                            <p>{flightData.data.finishTime}</p>
+                                                            <p>{flightData.data.endTime}</p>
                                                         </div>
                                                     </div>
                                                 }

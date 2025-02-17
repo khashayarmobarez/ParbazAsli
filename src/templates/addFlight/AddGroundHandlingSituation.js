@@ -184,7 +184,7 @@ const AddGroundHandlingSituation = () => {
             formData.append('longitude', selectedLocation.lng);
             formData.append('cloudCoverTypeId', clouds.id);
             formData.append('startTime',takeoffTime);
-            formData.append('finishTime', landingTime);
+            formData.append('endTime', landingTime);
             formData.append('windSpeedInKmh', landingWindSpeedInKmh);
             formData.append('windDirection', landingWindDirection.id);
             if(flightType === 'Solo') {
