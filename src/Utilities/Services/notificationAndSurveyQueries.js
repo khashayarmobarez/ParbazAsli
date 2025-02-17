@@ -49,7 +49,7 @@ import { getCommonHeaders } from "../Providers/headers";
         // }
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Notification/GetUnreadNotificationsCount`, { 
+        const response = await axios.get(`${API_BASE_URL}/Notification/GetUnreadNotificationCount`, { 
             headers: getCommonHeaders() 
         });
         return response.data;

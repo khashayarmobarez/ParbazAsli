@@ -117,7 +117,7 @@ const CourseStudentDetails = () => {
                                         <span className='w-5'>
                                             <FlightQuantity/>
                                         </span>
-                                        {t("education.StudentCourseDetails.flightCount")}: {studentData.data.flightCounts}
+                                        {t("education.StudentCourseDetails.flightCount")}: {studentData.data.flightCount}
                                     </p>
                                     <p className='flex gap-x-2'>
                                         <span className='w-5'>

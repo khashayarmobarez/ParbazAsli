@@ -56,6 +56,10 @@ const Education = () => {
     const { data: courseData, isLoading: courseDataLoading, error: courseDataError, refetch: courseDataRefetch } = useCourses(courseType, organizationId, pageNumber, isForClub);
     const { mutate: triggerCourseStatus, isLoading: triggerCourseStatusLoading } = useTriggerCourseStatus();
 
+    useEffect(()=> {
+        Cookies.set('lastPathBeforCourseDetails',location.pathname)
+    },[])
+
     // to set the first state for dropdown 
     useEffect(() => {
         if(courseDividerData && courseDividerData.data.length > 0) {
@@ -82,15 +86,6 @@ const Education = () => {
         !isForClub && navigate(`/education/studentsList/${id}`)
         isForClub && navigate(`/club/clubCourses/studentsListClub/${id}`)
     }
-
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-    }
-
 
     const handleTriggerCourseStatus = (event ,status ,id) => {
 
@@ -164,28 +159,28 @@ const Education = () => {
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <p className=' text-xs'>{t("education.activeCourses")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                    <p>{courseCountsData.data.activeCourseCounts}</p>
+                                    <p>{courseCountsData.data.activeCourseCount}</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <p className=' text-xs'>{t("education.inactiveCourses")}</p>
                                 <div className= {`${boxStyles.classDetailsData} flex justify-center items-center px-4 w-full h-12 rounded-xl`}  id='data' >
-                                    <p>{courseCountsData.data.disableCourseCounts}</p>
+                                    <p>{courseCountsData.data.disableCourseCount}</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
                                 onClick={() => handleStudentListNavigation(1)}>
-                                    <p>{t("education.activeStudents")} ({courseCountsData.data.activeStudentCounts})</p>
+                                    <p>{t("education.activeStudents")} ({courseCountsData.data.activeStudentCount})</p>
                                 </div>
                             </div>
 
                             <div className='w-full flex flex-col items-center gap-y-2'>
                                 <div className= {`${ButtonStyles.normalButton} flex justify-center items-center px-4 w-full h-12 rounded-xl text-xs`}  id='data'
                                 onClick={() => handleStudentListNavigation(2)}>
-                                    <p>{t("education.previousStudents")} ({courseCountsData.data.disableStudentCounts})</p>
+                                    <p>{t("education.previousStudents")} ({courseCountsData.data.disableStudentCount})</p>
                                 </div>
                             </div>
 

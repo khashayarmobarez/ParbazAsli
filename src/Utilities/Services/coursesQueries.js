@@ -646,11 +646,11 @@ const getSyllabiForLevels = async (levelId) => {
 
 
 // get course counts
-// /Course/GetCourseCounts 
-    const getCourseCounts = async (isForClub) => {
+// /Course/GetCourseCount
+    const getCourseCount = async (isForClub) => {
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCounts?isForClub=${isForClub || false}`, { 
+            const response = await axios.get(`${API_BASE_URL}/Course/GetCourseCount?isForClub=${isForClub || false}`, { 
                 headers: getCommonHeaders() 
             });
             return response.data;
@@ -664,7 +664,7 @@ const getSyllabiForLevels = async (levelId) => {
     };
 
     const useCourseCounts = (isForClub) => {
-        return useQuery(['courseCounts', isForClub], () => getCourseCounts(isForClub));
+        return useQuery(['courseCounts', isForClub], () => getCourseCount(isForClub));
     }
 
 

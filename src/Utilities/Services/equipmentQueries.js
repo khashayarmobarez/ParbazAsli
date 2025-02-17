@@ -63,11 +63,11 @@ import { getCommonHeaders } from "../Providers/headers";
 
 
 // get active equipments for dropdown input
-// /Equipment/GetActiveEquipmentsForDropDown?type=3
+// /Equipment/GetAllEquipmentsForDropDown?type=3
     const getUserEquipmentsForDropDown = async (equipmentType,wingType) => {
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/Equipment/GetActiveEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, { 
+            const response = await axios.get(`${API_BASE_URL}/Equipment/GetAllEquipmentsForDropDown?type=${equipmentType}${wingType ? `&wingType=${wingType}`: ''}`, { 
             headers: getCommonHeaders() 
         });
             return response.data;

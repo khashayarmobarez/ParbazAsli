@@ -53,7 +53,7 @@ const StudentsList = () => {
                     <div className='w-full flex flex-col justify-center items-center gap-y-8'>
 
                         <PageTitle
-                            title={`${id === '1' ? `${t("education.studentList.activeStudents")} (${courseCountsData.data.activeStudentCounts})` : `${t("education.studentList.previousStudents")} (${courseCountsData.data.disableStudentCounts})`}`} 
+                            title={`${id === '1' ? `${t("education.studentList.activeStudents")} (${courseCountsData.data.activeStudentCount})` : `${t("education.studentList.previousStudents")} (${courseCountsData.data.disableStudentCount})`}`} 
                             navigateTo={isForClub ? '/club/clubCourses' : '/education'}y
                         />
 

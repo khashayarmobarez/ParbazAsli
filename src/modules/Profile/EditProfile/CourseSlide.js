@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // style
 import boxStyles from '../../../styles/DataBox.module.css'
@@ -16,6 +17,7 @@ const CourseSlide = ({courseData}) => {
 
     // language
     const { t } = useTranslation();
+    const location = useLocation();
 
     const navigate = useNavigate()
 
@@ -27,6 +29,11 @@ const CourseSlide = ({courseData}) => {
             setTheOne(2)
         }
     },[courseData])
+
+    const handleSelect = () => {
+        Cookies.set('lastPathBeforCourseDetails',location.pathname)
+        navigate(`/MyCourses/courseDetails/${courseData.id}/practical`)
+    }
 
     return (
         <div className={`${boxStyles.containerDarkmode} rounded-[34px] h-[228px] z-0 w-[98%] md:w-full flex flex-col justify-start items-center p-4 gap-y-4 mr-1 mt-1`}>
@@ -67,7 +74,7 @@ const CourseSlide = ({courseData}) => {
                     }
                 </div>
                 <button
-                onClick={() => navigate(`/MyCourses/courseDetails/${courseData.id}/practical`) }
+                onClick={handleSelect }
                 className={`${ButtonStyles.normalButton} self-end`} >
                     {t("profile.userDashboard.courseCard.detailsButton")}
                 </button>

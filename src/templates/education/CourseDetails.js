@@ -99,7 +99,7 @@ const CourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div  className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={t("education.aCourseDetails.courseDetails")} navigateTo={isForClub ? clubHistoryPageUrl : '/education'} /> 
+                <PageTitle title={t("education.aCourseDetails.courseDetails")} navigateTo={isForClub ? '/club/clubCourses' : '/education'} /> 
 
                 {
                     courseDataLoading &&

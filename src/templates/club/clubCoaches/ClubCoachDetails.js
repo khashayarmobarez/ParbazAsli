@@ -209,8 +209,8 @@ const ClubCoachDetails = () => {
                                     <p><span>{t("club.coach.coachDetails.flightsCount")}:</span> {course.flightsCount}</p>
                                 </div>
                                 <div className='flex flex-col text-start gap-y-1 text-sm'>
-                                    <p><span>{t("club.coach.coachDetails.activeStudentsCount")}:</span> {course.activeStudentCounts}</p>
-                                    <p><span>{t("club.coach.coachDetails.previousStudentsCount")}:</span> {course.historyStudentCounts}</p>
+                                    <p><span>{t("club.coach.coachDetails.activeStudentsCount")}:</span> {course.activeStudentCount}</p>
+                                    <p><span>{t("club.coach.coachDetails.previousStudentsCount")}:</span> {course.historyStudentCount}</p>
                                 </div>
                             </div>
                             {course.status !== 'Rejected' &&
