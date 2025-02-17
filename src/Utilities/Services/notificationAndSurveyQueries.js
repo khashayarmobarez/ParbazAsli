@@ -77,7 +77,7 @@ import { getCommonHeaders } from "../Providers/headers";
     const getIsSurveyAvailable = async (surveyId) => {
 
         try {
-        const response = await axios.get(`${API_BASE_URL}/Survey/IsSurveyAvailable?id=${surveyId}`, { 
+        const response = await axios.get(`${API_BASE_URL}/Survey/IsSurveyAvailable?surveyId=${surveyId}`, { 
             headers: getCommonHeaders() 
         });
         return response.data;

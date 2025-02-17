@@ -86,8 +86,8 @@ const Club = () => {
                         
                         {
                         userEquipmentsData &&
-                            <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
-                            // <ParachutesSwiperSlider isForClub={true} parachutesData={clubData.data.parachutes} />
+                            // <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
+                            <ParachutesSwiperSlider isForClub={true} parachutesData={clubData.data.parachutes} />
                         }
                         
                     </div>

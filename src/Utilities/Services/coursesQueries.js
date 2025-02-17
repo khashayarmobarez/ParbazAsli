@@ -752,7 +752,7 @@ const getSyllabiForLevels = async (levelId) => {
         }
     };
 
-    const  = (flightId) => {
+    const useStudentPracticalActivity  = (flightId) => {
         return useQuery(['courseStudentFlight', flightId], () => GetStudentPracticalActivity(flightId));
     }
 

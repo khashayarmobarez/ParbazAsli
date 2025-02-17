@@ -91,7 +91,7 @@ const TandemSurvey = () => {
                 formData.append(`files`, file); // Append each file with a unique key
             });
             formData.append('rate', rating);
-            formData.append('id', id);
+            formData.append('surveyId', id);
             formData.append('description', description);
 
             submitSurvey(formData
