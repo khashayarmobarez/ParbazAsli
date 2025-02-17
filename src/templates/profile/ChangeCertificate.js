@@ -28,7 +28,7 @@ const ChangeCertificate = () => {
 
     const [pageNumber, setPageNumber] = useState(1)
 
-    const { data: userCertificates, isLoading, error, refetch: refetchCertificates } = useAllUserCertificates(pageNumber,5);
+    const { data: userCertificates, refetch: refetchCertificates } = useAllUserCertificates(pageNumber,5);
 
 
     return (
