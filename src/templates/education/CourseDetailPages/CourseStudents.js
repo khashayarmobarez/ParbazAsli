@@ -218,7 +218,7 @@ const CourseStudents = () => {
                 <div className='w-full flex flex-col items-center gap-y-6 -mt-2'>
                     {
                         studentsData.totalCount > 0 &&
-                        <DropDownLine  
+                        <DropDownLine
                         onClickActivation={() => setDropDownActive(!DropDownActive)}
                         title={t("education.aCourseDetails.studentsDetails.students")} 
                         dropDown={DropDownActive} 
