@@ -117,7 +117,7 @@ const CourseStudents = () => {
                     });
                 }
                 else if(status === 'Canceled') {
-                    toast(t("education.aCourseDetails.studentsDetails.studentApproved"), {
+                    toast(t("education.aCourseDetails.studentsDetails.studentRemoved"), {
                         type: 'success', // Specify the type of toast (e.g., 'success', 'error', 'info', 'warning')
                         position: 'top-center',
                         autoClose: 3000,
