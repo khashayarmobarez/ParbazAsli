@@ -10,15 +10,15 @@ const RegularTextNotif = ({notif, handleActivatePopUp}) => {
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}
         onClick={handleActivatePopUp}>
 
-            <div className=' flex self-start justify-start text-start items-start gap-x-2'>
+            <div className='w-full flex self-start justify-start text-start items-start gap-x-2'>
 
                 {
                     !isRead &&
-                    <div className='w-[10px] h-[10px] rounded-full ' style={{background:'var(--text-error)'}} />
+                    <div className='w-[10px] h-[10px] rounded-full bg-textError ' />
                 }
 
                 {/* <p className='text-base text-start '>{title.slice(0, 42)}{title.length > 42 ? '...' : ''}</p> */}
-                <p className='text-base text-start '>{title}</p>
+                <p className='text-base text-start max-w-[90%]'>{title}</p>
 
             </div>
 

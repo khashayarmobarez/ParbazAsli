@@ -22,12 +22,12 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
             <div className='text-xs h-full flex flex-col justify-between items-start gap-y-2'
             onClick={handleActivatePopUp}>
 
-                <div className=' flex justify-center items-center gap-x-2'>
+                <div className='w-full flex justify-center items-center gap-x-2'>
                     {
                         !notif.isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className=' text-start text-base'>{notif.title}</p>
+                    <p className=' text-start text-base max-w-[90%]'>{notif.title}</p>
                 </div>
 
             </div>

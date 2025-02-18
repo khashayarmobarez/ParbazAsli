@@ -60,12 +60,12 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
             <div className='text-xs flex flex-col justify-center items-start space-y-2'
             onClick={handleActivatePopUp}>
 
-                <div className=' flex items-center justify-center gap-x-2'>
+                <div className='w-full flex items-center justify-center gap-x-2'>
                     {
                         !isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className='text-base text-start'>{title}</p>
+                    <p className='text-base text-start max-w-[90%]'>{title}</p>
                 </div>
 
             </div>
@@ -76,7 +76,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
 
                     <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
 
-                    <div className='flex w-[70px] justify-between'>
+                    <div className='flex gap-x-4 justify-between'>
 
                         <button 
                         type="submit" 
@@ -99,7 +99,7 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
 
                     <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
                     
-                    <div className='flex w-[70px] justify-between'>
+                    <div className='flex gap-x-4 justify-between'>
 
                         <button 
                         type="submit" 

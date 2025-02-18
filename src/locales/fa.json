@@ -712,7 +712,7 @@
         "permanent": "دائمی",
         "temporary": "موقت",
         "history": "تاریخچه",
-        "pendingTransfer": "نیاز به تایید انتقال از",
+        "pendingTransfer": "نیاز به تایید انتقال از {{transferorFullname}}",
         "brandModel": "برند {{brand}} / مدل {{model}}",
         "wingClass": "کلاس {{wingClass}}",
         "flightCountDuration": "{{flightCount}} پرواز / {{flightDuration}} ساعت",

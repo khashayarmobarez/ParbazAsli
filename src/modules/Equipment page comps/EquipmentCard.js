@@ -25,7 +25,7 @@ const EquipmentCard = ({
 
                     {
                         equipment.ownershipStatus === 'Pending' &&
-                        <p className='text-textWarning font-bold'>{t('equipment.pendingTransfer', { transferorFullName: equipment?.transferorFullname })}</p>
+                        <p className='text-textWarning font-bold'>{t('equipment.pendingTransfer', { transferorFullname: equipment?.transferorFullname })}</p>
                     }
 
                     <div className='w-full text-xs flex justify-between items-start gap-y-1'>
@@ -49,7 +49,7 @@ const EquipmentCard = ({
                             <p>{t('equipment.serialNumber', { serialNumber: equipment.serialNumber })}</p>
                         }
 
-                        <button className={`${ButtonStyles.normalButton} ${equipment.ownershipStatus === 'Pending' && '-mt-2'} w-[33%] h-10`}
+                        <button className={`${ButtonStyles.normalButton} ${equipment.ownershipStatus === 'Pending' && 'mt-2'} w-[33%] h-10`}
                             style={{ minWidth: '0', minHeight: '0' }}
                             onClick={handleEditEquipment(equipment.id)}>
                             {(equipment.serialStatus === 'None' || equipment.serialStatus === 'Rejected') && equipment.ownershipStatus !== 'Pending' ?

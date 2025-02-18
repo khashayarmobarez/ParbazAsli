@@ -69,7 +69,7 @@ const CourseClasses = () => {
             
             {
                 aCourseData?.data.accesses.canAddClass &&
-                <div className='fixed bottom-[2.85rem] w-[90%] md:w-2/6 z-10'>
+                <div className=' top-[2.85rem] w-[90%] md:w-2/6 z-10'>
                     <div className="relative z-10">
                         <button 
                         onClick={() => navigate(`/education/${id}/AddClass`)} 

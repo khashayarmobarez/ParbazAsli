@@ -59,12 +59,12 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
             <div className='text-xs flex flex-col justify-center items-start space-y-2'
             onClick={handleActivatePopUp}>
 
-                <div className=' flex justify-center items-center gap-x-2'>
+                <div className='w-full flex justify-start items-center gap-x-2'>
                     {
                         !isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
                     }
-                    <p className='text-base text-start'> {title}</p>
+                    <p className='text-base text-start max-w-[90%]'> {title}</p>
                 </div>
 
 
@@ -74,9 +74,9 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                 status === 'Expired' ?
                 <div className='flex  w-full h-full justify-between items-end'>
                     
-                    <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
+                    <p className='text-end  text-xs'>{createdDateTime}</p>
 
-                    <div className='flex w-20 justify-between'>
+                    <div className='flex gap-x-4 justify-between'>
 
                         <button 
                         type="submit" 
@@ -99,7 +99,7 @@ const NotifAcceptStudent = ({notif, handleActivatePopUp}) => {
                     
                     <p className='text-end ml-2 text-xs'>{createdDateTime}</p>
 
-                    <div className='flex w-20 justify-between'>
+                    <div className='flex gap-x-4 justify-between'>
 
                         <button 
                         type="submit" 

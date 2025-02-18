@@ -33,7 +33,18 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>دیجی لاگ بوک - سامانه ثبت پرواز</title>
+    <title id="dynamic-title">Digilogbook - Flight Logging System</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var title = document.getElementById('dynamic-title');
+      var cultureCookie = document.cookie.replace(/(?:(?:^|.*;\s*)culture\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      if (cultureCookie === 'fa') {
+        title.textContent = 'دیجی لاگ بوک - سیستم ثبت پرواز';
+      } else if (cultureCookie === 'en') {
+        title.textContent = 'Digilogbook - Flight Logging System';
+      }
+      });
+    </script>
   </head>
   <body>
     <aside></aside>

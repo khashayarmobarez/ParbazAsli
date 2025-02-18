@@ -712,7 +712,7 @@
         "permanent": "Permanent",
         "temporary": "Temporary",
         "history": "History",
-        "pendingTransfer": "Pending transfer approval from",
+        "pendingTransfer": "Pending transfer approval from {{transferorFullname}}",
         "brandModel": "Brand {{brand}} / Model {{model}}",
         "wingClass": "Class {{wingClass}}",
         "flightCountDuration": "{{flightCount}} flights / {{flightDuration}} hours",

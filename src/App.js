@@ -142,6 +142,10 @@ function App() {
 
   useAppModeEffect(true)
 
+  useEffect(() => {
+    window.history.scrollRestoration = "auto"; // Let the browser restore scroll automatically
+  }, []);
+
   // setting language and direction
   useEffect(() => {
     document.documentElement.setAttribute('dir',language === "fa" ? 'rtl' : 'ltr');

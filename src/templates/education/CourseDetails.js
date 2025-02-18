@@ -258,7 +258,7 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.accesses.buttonStatus === 'Disable' &&
-                            <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
+                            <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-[61]'>
                                 <div className="relative z-10">
                                     <button 
                                         className={`${ButtonStyles.normalButton} w-full text-base`} 
@@ -273,7 +273,7 @@ const CourseDetails = () => {
                         
                         {
                             aCourseData.data.accesses.buttonStatus === 'Enable' &&
-                            <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-50'>
+                            <div className='fixed bottom-[4rem] w-[90%] md:w-2/6 z-[61]'>
                                 <div className="relative z-10">
                                     <button 
                                         className={`${ButtonStyles.addButton} w-full text-base`} 
@@ -287,7 +287,7 @@ const CourseDetails = () => {
                         }
                         {
                             aCourseData.data.accesses.buttonStatus === 'Confirmation' &&
-                            <div className='fixed bottom-[70px] w-[90%] md:w-2/6 z-[70]'>
+                            <div className='fixed bottom-[70px] w-[90%] md:w-2/6 z-[61]'>
                                 <div className="relative z-10 flex justify-between gap-x-[6%]">
                                     <button 
                                         className={`${ButtonStyles.addButton} w-full text-base`} 
