@@ -60,21 +60,21 @@ const ClubData = ({data}) => {
                             <span className='w-5'>
                                 <UserIcon/>
                             </span>
-                            <p className=' font-normal text-xs mx-2  text-start'>{t("club.profile.clubId")} {data.data.id}</p>
+                            <p className=' font-normal text-xs mx-2 text-start'>{t("club.profile.clubId")} {data.data.id}</p>
                         </div>
 
                         <div className=' flex justify-center items-center' >
                             <span className='w-5'>
                             <UserIcon/>
                             </span>
-                            <p className=' font-normal text-xs mx-2  text-start'>{data.data.activeCoachesCount} {t("club.profile.activeCoaches")}</p>
+                            <p className=' font-normal text-xs mx-2 text-start'>{data.data.activeCoachesCount} {t("club.profile.activeCoaches")}</p>
                         </div>
 
                         <div className=' flex justify-between items-center' >
                             <span className='w-5 h-5'>
                             <UsersIcon/>
                             </span>
-                            <p className=' font-normal text-xs mx-2  text-start'>{data.data.activeStudentsCount} {t("club.profile.activeStudents")}</p>
+                            <p className=' font-normal text-xs mx-2 text-start'>{data.data.activeStudentsCount} {t("club.profile.activeStudents")}</p>
                         </div>
 
                     </div>

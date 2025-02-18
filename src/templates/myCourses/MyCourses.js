@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // mui
 import CircularProgress from '@mui/material/CircularProgress';
@@ -30,6 +31,7 @@ const MyCourses = () => {
 
     // language
     const { t } = useTranslation();
+    const location = useLocation()
 
     const navigate = useNavigate()
 
@@ -57,6 +59,11 @@ const MyCourses = () => {
         }
     }, [courseDividerData])
 
+    // applying last path for my course details back button
+    useEffect(() => {
+        Cookies.set('lastPathBeforMyCourseDetails',location.pathname)
+    },[])
+
 
     // dropDown onClick
     const handleDropDownClick = (index, course) => {
@@ -73,15 +80,6 @@ const MyCourses = () => {
     const handleGuestClassDetails = (id) => () => {
         navigate(`/MyCourses/guestClassDetails/${id}`);
     };
-
-
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-    }
 
 
     const handleTriggerCourseStatus = (event ,status ,id) => {

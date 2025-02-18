@@ -31,7 +31,7 @@ const CourseSlide = ({courseData}) => {
     },[courseData])
 
     const handleSelect = () => {
-        Cookies.set('lastPathBeforCourseDetails',location.pathname)
+        Cookies.set('lastPathBeforMyCourseDetails',location.pathname)
         navigate(`/MyCourses/courseDetails/${courseData.id}/practical`)
     }
 

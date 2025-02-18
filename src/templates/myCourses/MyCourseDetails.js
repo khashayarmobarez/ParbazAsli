@@ -23,8 +23,9 @@ const MyCourseDetails = () => {
 
     const { t } = useTranslation();
     const dir = Cookies.get('dir') || 'ltr';
-
+    
     const location = useLocation();
+    const lastPath = Cookies.get('lastPathBeforMyCourseDetails') || '/myCourses';
 
     const { id } = useParams();
 
@@ -53,7 +54,7 @@ const MyCourseDetails = () => {
         <div className='flex flex-col mt-14 items-center'>
             <div className='w-full flex flex-col items-center gap-y-6 md:w-[70%] lg:gap-y-12 lg:w-[55%]'>
 
-                <PageTitle title={t("myCourses.aCourseDetails.courseDetails")} navigateTo={'/myCourses'} /> 
+                <PageTitle title={t("myCourses.aCourseDetails.courseDetails")} navigateTo={lastPath} /> 
 
                 {
                     courseDataLoading &&
