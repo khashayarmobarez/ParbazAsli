@@ -21,6 +21,7 @@ import UsersIcon from '../../../elements/icons/UsersIcon'
 import ArrowButton from '../../../elements/icons/ArrowButton'
 import PageTitle from '../../../elements/reuseable/PageTitle';
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import UserDefaultProfilePic from '../../../elements/reuseable/UserDefaultProfilePic';
 
 
 const ClubCoachDetails = () => {
@@ -148,9 +149,16 @@ const ClubCoachDetails = () => {
 
                             <div className='w-full flex items-center justify-between gap-y-4'>
 
-                                <Avatar src={coachDetails.data.profilePicture?.path || ''} alt="Remy Sharp" sx={{ height: '100px', width: '100px', zIndex: '0' }} />
+                                {
+                                    coachDetails.data.profilePicture ?
+                                    <Avatar src={coachDetails.data.profilePicture?.path || ''} alt="Remy Sharp" sx={{ height: '100px', width: '100px', zIndex: '0' }} />
+                                    :
+                                    <div className='w-[100px] h-[100px] '>
+                                        <UserDefaultProfilePic />
+                                    </div>
+                                }
 
-                                <div className='flex flex-col w-full h-full justify-around items-end gap-y-4 text-sm md:flex-row md:pl-10'>
+                                <div className='flex flex-col w-[60%] md:w-[80%] h-full justify-around items-end gap-y-4 text-sm md:flex-row md:pl-10'>
 
                                     <div className='flex justify-start items-center w-32 md:w-auto'>
                                         <span className='w-5 h-5'>

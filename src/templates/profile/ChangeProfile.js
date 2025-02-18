@@ -30,6 +30,7 @@ import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBor
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
+import UserDefaultProfilePic from '../../elements/reuseable/UserDefaultProfilePic';
 
 const ChangeProfile = () => {
 
@@ -339,7 +340,14 @@ const ChangeProfile = () => {
                     <>
                         {/* should an onClick be added to this div for changing profile picture */}
                         <div onClick={() => setShowPopupType('changePicture')} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'98px', width:'100px', zIndex:'0'}}/>
+                            {
+                                userData.data.image ?
+                                <Avatar alt={userData.data.firstName} src={userData.data.image?.path ? userData.data.image.path : '/'} sx={{height:'98px', width:'100px', zIndex:'0'}}/>
+                                :
+                                <div className='w-[100px] h-[97px]'>
+                                    <UserDefaultProfilePic />
+                                </div>
+                            }
                             <div className='w-[105px] h-[105px] mt-[-99px]  rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
                             <span className='w-7 absolute mt-20 ml-16 z-20' >
                                 <PlusWithCircularBorderIcon />

@@ -26,6 +26,7 @@ import { useUserData } from '../../Utilities/Services/userQueries';
 // components
 import ChangePicPopUp from './EditProfile/ChangePicPopUp'
 import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBorderIcon';
+import UserDefaultProfilePic from '../../elements/reuseable/UserDefaultProfilePic'
 
 
 
@@ -60,8 +61,13 @@ const UserDataBox = ({hasCoach}) => {
                     <div className='w-full flex flex-col justify-center items-center gap-y-2 md:flex-row md:justify-around'>
 
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
+                            {
+                                data.data?.image?
+                                <Avatar alt={data.data.firstName} src={data.data.image?.path ? data.data.image.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                                :
+                                <UserDefaultProfilePic />
+                            }
+                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '1px solid var(--text-accent)',}}></div>
                             <span className='w-[24px] absolute mt-20 ml-16 z-20' >
                                 <PlusWithCircularBorderIcon />
                             </span>

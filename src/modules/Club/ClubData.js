@@ -17,6 +17,7 @@ import PlusWithCircularBorderIcon from '../../elements/icons/PlusWithCircularBor
 
 // context
 import { useTranslation } from '../../Utilities/context/TranslationContext';
+import UserDefaultProfilePic from '../../elements/reuseable/UserDefaultProfilePic';
 
 
 const ClubData = ({data}) => {
@@ -37,8 +38,14 @@ const ClubData = ({data}) => {
                     <div className='flex flex-col w-[55%] justify-between items-center gap-y-2 md:flex-row  md:justify-between md:h-[8rem] md:px-8'>
 
                         <div onClick={() => setShowPopup(true)} className='w-[99px] h-[99px] flex flex-col items-center justify-center' >
-                            <Avatar alt={data.data.name} src={data.data.file?.path ? data.data.file.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
-                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '2px solid var(--text-accent)',}}></div>
+                            {
+                                data.data.file ?
+                                <Avatar alt={data.data.name} src={data.data.file?.path ? data.data.file.path : '/'} sx={{height:'99px', width:'100px', zIndex:'0'}}/>
+                                :
+                                <UserDefaultProfilePic />
+                            }
+
+                            <div className='w-[105px] h-[105px] mt-[-99px] z-10 rounded-full' style={{border: '1px solid var(--text-accent)',}}></div>
                             <span className='w-7 absolute mt-20 ml-16 z-20' >
                                 <PlusWithCircularBorderIcon />
                             </span>

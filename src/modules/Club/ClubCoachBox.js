@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 // mui
 import { Avatar } from '@mui/material';
 import { useTranslation } from '../../Utilities/context/TranslationContext';
+import UserDefaultProfilePic from '../../elements/reuseable/UserDefaultProfilePic';
 
 const ClubCoachBox = ({ coachData }) => {
 
@@ -32,7 +33,7 @@ const ClubCoachBox = ({ coachData }) => {
                 type: 'error',
                 position: 'top-center',
                 autoClose: 5000,
-                theme: appTheme,
+                theme: appTheme,    
                 style: { width: "90%" }
             });
         }
@@ -47,7 +48,14 @@ const ClubCoachBox = ({ coachData }) => {
                     style={{ background: 'var(--bg-output-default)', boxShadow: 'var(--shadow-all)' }}
                 >
                     <div className='flex items-center justify-start gap-x-2'>
-                        <Avatar src={coachData.profilePicture?.path || ''} alt="Remy Sharp" sx={{ height: '34px', width: '34px', zIndex: '0' }} />
+                        {
+                            coachData.profilePicture ?
+                            <Avatar src={coachData.profilePicture?.path || ''} alt="Remy Sharp" sx={{ height: '34px', width: '34px', zIndex: '0' }} />
+                            :
+                            <div className='w-[34px] h-[34px]'>
+                                <UserDefaultProfilePic />
+                            </div>
+                        }
                         <p>{coachData.name}</p>
                     </div>
                     <p className='text-textButtonMainDisabled'>

@@ -20,6 +20,7 @@ import LowOpacityBackForStickedButtons from '../../../elements/reuseable/LowOpac
 
 // context
 import { useTranslation } from '../../../Utilities/context/TranslationContext';
+import UserDefaultProfilePic from '../../../elements/reuseable/UserDefaultProfilePic';
 
 const CourseStudentDetails = () => {
     
@@ -67,12 +68,18 @@ const CourseStudentDetails = () => {
                                     <h1 className='text-base'>{studentData.data.name}</h1>
                                 }
 
-                                    
-                                <Avatar
-                                    src={ studentData.data.image?.path || ''} 
-                                    alt='userPicture' 
-                                    sx={{height:'100px', width:'100px', zIndex:'0'}}
-                                />
+                                {
+                                    studentData.data.image ?
+                                    <Avatar
+                                        src={ studentData.data.image?.path || ''} 
+                                        alt='userPicture' 
+                                        sx={{height:'100px', width:'100px', zIndex:'0'}}
+                                    />
+                                    :
+                                    <div className='w-[100px] h-[100px]'>
+                                        <UserDefaultProfilePic />
+                                    </div>
+                                }
 
                             </div>
 
