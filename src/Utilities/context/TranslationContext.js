@@ -9,7 +9,7 @@ const TranslationContext = createContext();
 export const TranslationProvider = ({ children }) => {
 
   // replace with en if you want the default to be in english
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("fa");
 
   // Utility function to get translations
   const t = (key, params = {}) => {
