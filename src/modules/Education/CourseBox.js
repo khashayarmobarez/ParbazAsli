@@ -124,10 +124,10 @@ const CourseBox = ({
                     <div className='flex gap-x-6 items-center px-2'>
 
                         {
-                        triggerCourseStatusLoading && 
-                            <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
-                                <CircularProgress sx={{width:'1rem'}} /> 
-                            </Box>
+                            triggerCourseStatusLoading && 
+                                <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
+                                    <CircularProgress sx={{width:'1rem'}} /> 
+                                </Box>
                         }
                         
                         <p onClick={(event) => !triggerCourseStatusLoading && handleTriggerCourseStatus(event, 'active', course.id)} className='text-textAccent text-sm font-medium'  >
