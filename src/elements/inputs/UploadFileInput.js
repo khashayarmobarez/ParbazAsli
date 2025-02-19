@@ -14,8 +14,7 @@ const UploadFileInput = ({ selectedFile, onFileChange, name }) => {
 
   return (
     <>
-  {/* 
-        {selectedFile && <p>Selected file: {selectedFile.name}</p>} */}
+  {/* {selectedFile && <p>Selected file: {selectedFile.name}</p>} */}
 
       <label className={`${inputStyles.customFileUpload} ${filled && inputStyles.inputFilledBorder}`}>
           { !selectedFile && <h3>عکس شناسه {name}</h3>}

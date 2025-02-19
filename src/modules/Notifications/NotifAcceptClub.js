@@ -57,10 +57,10 @@ const NotifAcceptClub = ({notif,handleActivatePopUp}) => {
         <div className=' w-full h-auto rounded-2xl flex flex-col items-start justify-between px-4 py-4' 
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
-            <div className='text-xs flex flex-col justify-center items-start space-y-2'
+            <div className='w-full text-xs flex flex-col justify-center items-start space-y-2'
             onClick={handleActivatePopUp}>
 
-                <div className='w-full flex items-center justify-center gap-x-2'>
+                <div className='w-full flex items-center justify-start gap-x-2'>
                     {
                         !isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />

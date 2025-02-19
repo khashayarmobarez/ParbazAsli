@@ -19,10 +19,10 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
         <div className=' w-full h-auto rounded-2xl flex flex-col items-start justify-between px-4 py-4 gap-y-2'
         style={{background:'var(--bg-output-default)', boxShadow:'var(--shadow-all)', color:'var(--text-default)', border: notif.status === 'Pending' ? '1px solid var(--text-accent)' : '' }}>
 
-            <div className='text-xs h-full flex flex-col justify-between items-start gap-y-2'
+            <div className='w-full text-xs h-full flex flex-col justify-between items-start gap-y-2'
             onClick={handleActivatePopUp}>
 
-                <div className='w-full flex justify-center items-center gap-x-2'>
+                <div className='w-full flex justify-start items-center gap-x-2'>
                     {
                         !notif.isRead &&
                         <div className='w-[10px] h-[10px] rounded-full' style={{background:'var(--text-error)'}} />
@@ -49,7 +49,7 @@ const NotifVersionStudentFlightForm = ({notif, handleActivatePopUp}) => {
 
                     <p className='text-end ml-2 text-xs'>{notif.createdDateTime}</p>
 
-                    <button 
+                    <button
                     onClick={() => navigate(`/addFlight/ReviewStudentsFlight/${notif.externalId}`)}
                     className={` w-auto text-textAccent text-xs`} >
                         {t('notifications.tandemPassengerSurvey.setStatus')}
