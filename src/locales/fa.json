@@ -108,8 +108,8 @@
         },
         "userDataBox": {
             "flightCount": "تعداد پرواز",
-            "flightHours": "ساعت پرواز",
-            "coachingHours": "ساعت مربیگری",
+            "flightHours": " پرواز",
+            "coachingHours": " مربیگری",
             "editProfile": "ویرایش پروفایل",
             "userId": "کد کاربری",
             "certificate": "گواهینامه"

@@ -291,7 +291,8 @@ const PossessionTransitionEquipment = () => {
                     {
                     EquipmentData && EquipmentData.data && EquipmentData.data.serialStatus === 'Pending' &&
                         <div className='w-[90%] mt-10 flex flex-col items-center gap-y-4'>
-                           ClubCoachDetails
+                            <h1 className=' text-xl text-textWarning'>{t('equipment.transitionEquipment.pendingSerial')}</h1>
+                            <h1 >{t('equipment.transitionEquipment.pendingSerialNote')}</h1>
                         </div>
                     }
                     {

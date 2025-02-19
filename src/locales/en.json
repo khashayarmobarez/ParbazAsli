@@ -108,8 +108,8 @@
         },
         "userDataBox": {
             "flightCount": "Flight count",
-            "flightHours": "Flight hours",
-            "coachingHours": "Coaching hours",
+            "flightHours": "Flight ",
+            "coachingHours": "Coaching ",
             "editProfile": "Edit Profile",
             "userId": "User ID",
             "certificate": "Certificate"
@@ -239,7 +239,7 @@
             },
             "UserCertificateStatus":{
                 "expiredMessage": "Your certificate has expired!",
-                "limitedAccess": "Your access to the panel is limited.",
+                "limitedAccess": "Your access is limited.",
                 "renewCertificate": "Renew Certificate",
                 "adminPendingMessage": "Your certificate is awaiting approval",
                 "limitedAccessPending": "Your access is limited until approval.",
@@ -699,7 +699,7 @@
     },
     "equipment": {
         "equipment":"Equipment",
-        "flightEquipment": "Flight Equipment",
+        "flightEquipment": "Wing",
         "parachute": "Parachute",
         "harness": "Harness",
         "acceptSuccess": "Flight equipment has been approved successfully",

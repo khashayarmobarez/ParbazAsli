@@ -123,7 +123,8 @@ const CourseBox = ({
 
                     <div className='flex gap-x-6 items-center px-2'>
 
-                        {triggerCourseStatusLoading && 
+                        {
+                        triggerCourseStatusLoading && 
                             <Box sx={{ display: 'flex', width:'full' , justifyContent:'center' }}>
                                 <CircularProgress sx={{width:'1rem'}} /> 
                             </Box>

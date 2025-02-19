@@ -33,28 +33,28 @@ const Equipment = () => {
                 >
 
                     <Link
-                    to='/equipment/flightEquipment'
-                    className={`${ButtonStyles.ThreeStickedButtonButton}
-                    ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
-                    ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`}
-                    style={{fontSize: dir === 'ltr' ? '12px' : '14px'}}
+                        to='/equipment/flightEquipment'
+                        className={`${ButtonStyles.ThreeStickedButtonButton}
+                        ${dir === 'ltr' ? 'rounded-l-xl' : 'rounded-r-xl'}
+                        ${location.pathname === '/equipment/flightEquipment' ? ButtonStyles.activeYellow : ''}`}
+                        style={{fontSize: dir === 'ltr' ? '12px' : '14px'}}
                     >
                         {t('equipment.flightEquipment')}
                     </Link> 
 
                     <Link
-                    to='/equipment/parachute'
-                    className={`${ButtonStyles.ThreeStickedButtonButton}
-                    ${location.pathname === '/equipment/parachute' ? ButtonStyles.activeYellow : ''}`}
+                        to='/equipment/parachute'
+                        className={`${ButtonStyles.ThreeStickedButtonButton}
+                        ${location.pathname === '/equipment/parachute' ? ButtonStyles.activeYellow : ''}`}
                     >
                         {t('equipment.parachute')}
                     </Link> 
 
                     <Link
-                    to='/equipment/harness' 
-                    className={`${ButtonStyles.ThreeStickedButtonButton} 
-                    ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
-                    ${location.pathname === '/equipment/harness' ? ButtonStyles.activeYellow : ''}`}  
+                        to='/equipment/harness' 
+                        className={`${ButtonStyles.ThreeStickedButtonButton} 
+                        ${dir === 'ltr' ? 'rounded-r-xl' : 'rounded-l-xl'}
+                        ${location.pathname === '/equipment/harness' ? ButtonStyles.activeYellow : ''}`}  
                     >
                         {t('equipment.harness')}
                     </Link> 

@@ -35,8 +35,6 @@ const Club = () => {
     // clubstatus could be NotAdded, Pending, Accepted
     const {data:clubStatus , isLoading: clubStatusLoading} = useClubStatus();
 
-    const { data: userEquipmentsData, } = useUserEquipments(1, true)
-
     const { data: clubData } = useGetClub();
 
 
@@ -60,7 +58,7 @@ const Club = () => {
                     clubStatus && clubStatus.data === 'Pending' && <PendingClubSubmission />
                 }
 
-                {clubStatus && clubStatus.data === 'Accepted' && 
+                {clubStatus && clubStatus.data === 'Accepted' && clubData &&
                     <div className=' flex flex-col items-center w-[90%] gap-y-5 mt-5 lg:mt-16'>
 
                         <ClubData data={clubData} />
@@ -85,7 +83,7 @@ const Club = () => {
                         </div>
                         
                         {
-                        userEquipmentsData &&
+                        clubData &&
                             // <ParachutesSwiperSlider isForClub={true} parachutesData={userEquipmentsData.data} />
                             <ParachutesSwiperSlider isForClub={true} parachutesData={clubData.data?.parachutes} />
                         }

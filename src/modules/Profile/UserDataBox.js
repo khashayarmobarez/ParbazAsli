@@ -105,7 +105,7 @@ const UserDataBox = ({hasCoach}) => {
                             {/* condition based on coach  */}
                             { hasCoach ?
                                 <div className=' flex justify-between items-center ' >
-                                    <span className='w-6 h-5'>
+                                    <span className='w-5 h-5'>
                                         <ClockIcon/>
                                     </span>
                                     <p className={` font-normal text-xs ${dir === 'ltr' ? 'ml-2' : 'mr-2'} text-start`}>{t("RegistrationPages.userDataBox.coachingHours")} {data?.data.coachingHours}</p>
