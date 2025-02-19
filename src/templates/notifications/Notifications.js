@@ -37,14 +37,6 @@ const Notifications = () => {
     const {  data: notificationsData, isLoading: notificationsLoading, error: notificationsError, refetch: refetchNotifications } = useNotifications(PageNumber,7);
 
 
-    const handleNextPageNumber = () => {
-        setPageNumber(prev => prev + 1)
-    }
-
-    const handleLastPageNumber = () => {
-        setPageNumber(prev => prev - 1)
-    }
-
 
     return (
         <div className='w-full flex flex-col items-center'>

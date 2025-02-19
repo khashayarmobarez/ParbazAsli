@@ -65,7 +65,9 @@ const UploadPicture = ({ isSubmitted, setUploadedFile, uploadedFile }) => {
             onChange={handleFileChange}
           />
 
-          {!uploadedFile && <AddCircleOutlineOutlinedIcon sx={{ width: '2rem', height: '2rem' }} />}
+          {
+            !uploadedFile && <AddCircleOutlineOutlinedIcon sx={{ width: '2rem', height: '2rem' }} />
+          }
 
           {uploadedFile && uploadedFile.type.startsWith('image/') && (
             <div className="w-[315px] md:w-[365px] h-[150px] absolute flex-col items-center self-center">

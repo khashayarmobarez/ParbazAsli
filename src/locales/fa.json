@@ -201,8 +201,8 @@
     },
     "footer": {
         "profile": "پروفایل",
-        "log": "ورود",
-        "logbook": "دفتر ثبت"
+        "log": "لاگ",
+        "logbook": "لاگ بوک"
     },
     "profile": {
         "userDashboard": {
